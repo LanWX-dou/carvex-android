@@ -1,0 +1,45 @@
+{
+  "build": "24A446",
+  "device": "iPhone18,1",
+  "ios": "27.0.1",
+  "primary_binary": {
+    "name": "APTransport",
+    "path": "firmware/extracted/24A446/binaries/APTransport/APTransport",
+    "framework": "/System/Library/PrivateFrameworks/APTransport.framework/APTransport",
+    "size": 1593864,
+    "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+    "uuid": "14228b3f-1df6-308b-97c4-b7574dbd7a97",
+    "symbol_count": 7013,
+    "function_starts": 5367,
+    "text_vmaddr": "0x24fd8c530",
+    "text_size": 747500
+  },
+  "cross_check_binaries": [
+    {
+      "name": "AirPlaySupport",
+      "path": "firmware/extracted/24A446/binaries/AirPlaySupport/AirPlaySupport",
+      "size": 1536072,
+      "note": "也含 _airplay._tcp（1 处），只用于交叉核对"
+    },
+    {
+      "name": "CoreUtils",
+      "path": "firmware/extracted/24A446/binaries/CoreUtils/CoreUtils",
+      "size": 2232432,
+      "note": "含 _airplay._tcp. / _raop._tcp.，未作为本阶段主证据"
+    }
+  ],
+  "captures": {
+    "present": false,
+    "note": "工作区无任何 Wi-Fi mDNS pcap；见 analysis/09-runtime-captures.md"
+  },
+  "tooling": {
+    "ghidra": "12.1.4 (WSL, OpenJDK 21)",
+    "python": "3.13",
+    "new_tools": [
+      "firmware/tools/macho-strings.py",
+      "firmware/tools/macho-xrefs.py",
+      "firmware/tools/annotate-func.py",
+      "firmware/tools/macho-strxrefs.py"
+    ]
+  }
+}

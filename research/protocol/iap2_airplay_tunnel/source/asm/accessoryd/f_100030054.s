@@ -1,0 +1,21 @@
+; accessoryd 0x100030054-0x10003009c; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x100030054:	pacibsp	
+0x100030058:	stp	x29, x30, [sp, #-0x10]!
+0x10003005c:	mov	x29, sp
+0x100030060:	cbz	x0, #0x100030094
+0x100030064:	cbz	x1, #0x100030098
+0x100030068:	mov	w8, #0x1d
+0x10003006c:	strb	w8, [x1]
+0x100030070:	ldr	x0, [x0, #0x10]
+0x100030074:	mov	w1, #6
+0x100030078:	mov	x2, #0
+0x10003007c:	ldp	x29, x30, [sp], #0x10
+0x100030080:	autibsp	
+0x100030084:	eor	x16, x30, x30, lsl #1
+0x100030088:	tbz	x16, #0x3e, #0x100030090
+0x10003008c:	brk	#0xc471
+0x100030090:	b	#0x1000321a8
+0x100030094:	bl	#0x100129180
+0x100030098:	bl	#0x100129158

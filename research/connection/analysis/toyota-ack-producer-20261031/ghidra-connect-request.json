@@ -1,0 +1,71 @@
+{
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "ghidra_image_base": "0x100000",
+  "functions": [
+    {
+      "address": "0x11fc90",
+      "end": "0x11ff18",
+      "raw_sha256": "eb6d944917a3dc20067af709df8b3e4349ed0f54e751005e6d9e675686e95028"
+    },
+    {
+      "address": "0x13d738",
+      "end": "0x13d7a0",
+      "raw_sha256": "ba4c9fa1775d28c0f19c218c1ed3d2e5d76115f77a697f75fa69ab77740e9af3"
+    },
+    {
+      "address": "0x13c820",
+      "end": "0x13c9a0",
+      "raw_sha256": "2503f7f98a0da105ee90c1ef3bddc7ce7fbd6a0cbb33df9e6cdd6e7e599381a8"
+    },
+    {
+      "address": "0x13c9a0",
+      "end": "0x13ca30",
+      "raw_sha256": "6085fc56f9de574d486bce3eb6e634a4888ee5c6ff5f15a37c2dd1335620a845"
+    },
+    {
+      "address": "0x13db70",
+      "end": "0x13db98",
+      "raw_sha256": "620c8dc735aeaa863f2ae255e9d4c885146f7204091b2d27fb33eaf9e3cd2eb8"
+    },
+    {
+      "address": "0x13db98",
+      "end": "0x13dbd8",
+      "raw_sha256": "d58938fd0c2385e0610f1f83527940f3c6dfec086c7e70cec6b00f0b0eb8a546"
+    },
+    {
+      "address": "0x13e3e0",
+      "end": "0x13e408",
+      "raw_sha256": "f8dc70e7a5e17a696ade1ab9b13e10b453c14e9d1ee46113f57a89dad9ca718e"
+    },
+    {
+      "address": "0x13e348",
+      "end": "0x13e368",
+      "raw_sha256": "96b4982a09e52653ce9a5ca3321447bc642563c21fc5ab92bb7ede0d11b80c0c"
+    },
+    {
+      "address": "0x11f038",
+      "end": "0x11f698",
+      "raw_sha256": "d54bfc421e07972f03112a8ec6ef5dc51f7b08f80910dbc9c65d552cd0807c33"
+    },
+    {
+      "address": "0x11f698",
+      "end": "0x11f7e8",
+      "raw_sha256": "45f84e716f35b62e49b9b83bb382e1ee05d7754f99e3c05ffc24cf9f503dcc1d"
+    },
+    {
+      "address": "0x11ea88",
+      "end": "0x11ec10",
+      "raw_sha256": "9be0fb9a44434849e402187fc2ad948c53d9839cf3bfef3845e8ebd66d528f3c"
+    },
+    {
+      "address": "0x11f8b0",
+      "end": "0x11fa50",
+      "raw_sha256": "63a2fa32ec00e468a2947936174c575d2d426cf01a232b7586ce88f111cee1fd"
+    },
+    {
+      "address": "0x11f7e8",
+      "end": "0x11f8b0",
+      "raw_sha256": "216d4962aaf09a23cdf907f3488b0a32c985c2e0909ebde06dea3cd37685b60e"
+    }
+  ]
+}

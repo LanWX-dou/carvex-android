@@ -1,0 +1,13 @@
+{
+  "address": "0x1002f1798",
+  "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+  "raw_sha256": "3bb8e309238004c89e450bfab5e621f141acdfc09a168d5852ef25d1d9732a3e",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "3bb8e309238004c89e450bfab5e621f141acdfc09a168d5852ef25d1d9732a3e",
+  "ghidra_name": "phone_fn_1002f1798",
+  "signature": "undefined phone_fn_1002f1798(void)",
+  "diagnostic": "",
+  "c_file": "f_1002f1798.ghidra.c",
+  "c_sha256": "6660ce0e2c55a11eec1793c9624f658f8e38d74e6c1027f557a1b7c5b0be34b2",
+  "status": "DECOMPILED_UNREVIEWED"
+}

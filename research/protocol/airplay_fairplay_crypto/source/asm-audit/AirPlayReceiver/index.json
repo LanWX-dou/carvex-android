@@ -1,0 +1,31 @@
+{
+ "image": "AirPlayReceiver",
+ "source_sha256": "ad6eddbb9bedcb8f121699e7fc94702632c4acf30135564763a646ac472cc51a",
+ "source_size": 2453520,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 2,
+ "functions": [
+  {
+   "symbol": "___aprscreen_Start_block_invoke",
+   "address": "0x251859c8c",
+   "end": "0x25185b4e4",
+   "size": 6232,
+   "group": "screen-aad-audit",
+   "raw_sha256": "e816c9e00163d3c37c76bcf36c7ef961f2db549c55f9d2d9797a9446b079ad86",
+   "bin": "f_251859c8c.bin",
+   "asm": "f_251859c8c.s"
+  },
+  {
+   "symbol": "_aprscreen_ntpTimestamp",
+   "address": "0x25185b970",
+   "end": "0x25185ba2c",
+   "size": 188,
+   "group": "screen-aad-audit",
+   "raw_sha256": "3a40d1ccbc065042b70a9c061cd442aa25758f9b86897850d526dc5b6bab02e1",
+   "bin": "f_25185b970.bin",
+   "asm": "f_25185b970.s"
+  }
+ ],
+ "missing_symbols": []
+}

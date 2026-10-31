@@ -1,0 +1,13 @@
+{
+  "address": "0x1000053a4",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "056b8cd16d39a4c06df6496a39af8ce30f402530f60e311cc57037b0e72e08de",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "056b8cd16d39a4c06df6496a39af8ce30f402530f60e311cc57037b0e72e08de",
+  "ghidra_name": "_iAP2MsgCalcMessageLen",
+  "signature": "undefined _iAP2MsgCalcMessageLen()",
+  "diagnostic": "",
+  "c_file": "f_1000053a4.ghidra.c",
+  "c_sha256": "adca27c2a67d7cd870079a095d913a93b849c6b162666b8ff464af1cd7ecdbe7",
+  "status": "DECOMPILED_UNREVIEWED"
+}

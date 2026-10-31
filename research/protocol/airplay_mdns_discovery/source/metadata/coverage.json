@@ -1,0 +1,177 @@
+{
+  "docset": "airplay_mdns_discovery",
+  "build": "24A446",
+  "items": [
+    {
+      "id": "CS-01",
+      "title": "mDNS 传输与宣告",
+      "status": "部分确认",
+      "spec": [
+        "spec/01-mdns-transport.md"
+      ],
+      "open": [
+        "OPEN-MDNS-1",
+        "OPEN-MDNS-2",
+        "OPEN-MDNS-3",
+        "OPEN-MDNS-5",
+        "OPEN-MDNS-7"
+      ],
+      "notes": "端点/TTL/QU/cache-flush/Probe 与 Announce 的规则来自 RFC；车机侧节奏与实际取值无抓包。"
+    },
+    {
+      "id": "CS-02",
+      "title": "DNS 报文格式",
+      "status": "已确认",
+      "spec": [
+        "analysis/02-dns-message-format.md"
+      ],
+      "open": [
+        "OPEN-MDNS-3",
+        "OPEN-MDNS-6"
+      ],
+      "notes": "参考实现覆盖 header/名称压缩/五类记录，10 条向量全过；截断与 EDNS0 未覆盖。"
+    },
+    {
+      "id": "CS-03",
+      "title": "服务类型与浏览",
+      "status": "部分确认",
+      "spec": [
+        "spec/01-mdns-transport.md",
+        "spec/02-browse-and-instance-names.md"
+      ],
+      "open": [
+        "OPEN-MDNS-8",
+        "OPEN-MDNS-17"
+      ],
+      "notes": "24A446 含 5 个服务类型字符串，且 _APBonjourBrowserCreate 默认建 _airplay._tcp.local. 浏览器（Ghidra 数据引用 0x24fdce464）；车机实际宣告集合与实例名形态未知。"
+    },
+    {
+      "id": "CS-04",
+      "title": "SRV 解析",
+      "status": "部分确认",
+      "spec": [
+        "analysis/02-dns-message-format.md",
+        "spec/05-address-selection.md"
+      ],
+      "open": [
+        "OPEN-MDNS-9"
+      ],
+      "notes": "priority/weight/port/target 解析已实现并测试；车机端口与 target 形态未知。"
+    },
+    {
+      "id": "CS-05",
+      "title": "TXT 编码",
+      "status": "已确认",
+      "spec": [
+        "spec/03-txt-schema.md"
+      ],
+      "open": [],
+      "notes": "长度前缀、空值、重复键、未知键、非 UTF-8 均有向量覆盖。"
+    },
+    {
+      "id": "CS-06",
+      "title": "AirPlay TXT 字段",
+      "status": "部分确认",
+      "spec": [
+        "spec/03-txt-schema.md",
+        "analysis/03-txt-and-features.md"
+      ],
+      "open": [
+        "OPEN-MDNS-10",
+        "OPEN-MDNS-13"
+      ],
+      "notes": "读方键集合由 24A446 两个函数确认；车机取值与 pk 语义未知。"
+    },
+    {
+      "id": "CS-07",
+      "title": "设备能力位",
+      "status": "部分确认",
+      "spec": [
+        "spec/04-features-bits.md",
+        "spec/03-txt-schema.md"
+      ],
+      "open": [
+        "OPEN-MDNS-11",
+        "OPEN-MDNS-15"
+      ],
+      "notes": "已确认文本格式（单段/双段、低位在前，A02.6）、legacy/extended 拆分（A02.7）与 fex 是独立字符串键（A02.8）；位 55/56 的语义仍未知（A02.4 只证明查询，不证明含义）。"
+    },
+    {
+      "id": "CS-08",
+      "title": "地址解析",
+      "status": "部分确认",
+      "spec": [
+        "analysis/02-dns-message-format.md"
+      ],
+      "open": [
+        "OPEN-MDNS-12"
+      ],
+      "notes": "A/AAAA 解析与 link-local 标记已实现；IPv6 可用性与 scope 未知。"
+    },
+    {
+      "id": "CS-09",
+      "title": "服务选择",
+      "status": "部分确认",
+      "spec": [
+        "spec/05-address-selection.md",
+        "reference-impl/mdns_discovery.py"
+      ],
+      "open": [
+        "OPEN-MDNS-12",
+        "OPEN-MDNS-16"
+      ],
+      "notes": "实现给出可解释排序（IPv4/同网段优先、缺地址不可用），但不自动连接；iOS 的多地址策略未取证。"
+    },
+    {
+      "id": "CS-10",
+      "title": "缓存与生命周期",
+      "status": "部分确认",
+      "spec": [
+        "spec/01-mdns-transport.md",
+        "spec/10-cache-and-security.md"
+      ],
+      "open": [
+        "OPEN-MDNS-3",
+        "OPEN-MDNS-5",
+        "OPEN-MDNS-19",
+        "OPEN-MDNS-21"
+      ],
+      "notes": "TTL=0 撤销、TTL 递减、切网清缓存已写成规则并有向量；车机的休眠/唤醒与代理行为未知。"
+    },
+    {
+      "id": "CS-11",
+      "title": "安全边界",
+      "status": "部分确认",
+      "spec": [
+        "spec/00-scope-and-terms.md",
+        "spec/03-txt-schema.md",
+        "spec/10-cache-and-security.md"
+      ],
+      "open": [
+        "OPEN-MDNS-13",
+        "OPEN-MDNS-20"
+      ],
+      "notes": "明确 mDNS 无认证、pk 不得当身份、不得自动连未知设备、冲突要记录；防冒充的具体流程属配对阶段。"
+    },
+    {
+      "id": "CS-12",
+      "title": "版本与差异",
+      "status": "OPEN",
+      "spec": [
+        "spec/09-version-differences.md",
+        "spec/08-open-items.md"
+      ],
+      "open": [
+        "OPEN-MDNS-18"
+      ],
+      "notes": "只有一个构建、零台车机；只能写“不得假设版本一致”，无法比较 AirPlay 1/2 或不同车机的字段差异。"
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "已确认": 2,
+    "部分确认": 9,
+    "未开始": 0,
+    "OPEN": 1
+  }
+}

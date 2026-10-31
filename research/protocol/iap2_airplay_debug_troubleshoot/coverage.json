@@ -1,0 +1,17 @@
+{
+  "scope": "documentation coverage, not field validation",
+  "items": [
+    {"id": 1, "title": "错误分层", "paths": ["spec/01-diagnostic-model.md"], "open": ["OPEN-DBG-01"]},
+    {"id": 2, "title": "iAP2链路错误", "paths": ["spec/02-error-codes.md", "spec/05-casebook.md"], "cases": ["D01"], "open": ["OPEN-DBG-01", "OPEN-DBG-04"]},
+    {"id": 3, "title": "RTSP错误", "paths": ["spec/02-error-codes.md", "spec/05-casebook.md"], "cases": ["D03", "D04", "D09"], "open": ["OPEN-DBG-03"]},
+    {"id": 4, "title": "配对错误", "paths": ["spec/02-error-codes.md", "spec/05-casebook.md"], "open": ["OPEN-DBG-05"]},
+    {"id": 5, "title": "加密失败", "paths": ["spec/02-error-codes.md", "spec/05-casebook.md"], "cases": ["D05", "D06"], "open": ["OPEN-DBG-05"]},
+    {"id": 6, "title": "超时场景", "paths": ["spec/08-timeouts-recovery.md"], "open": ["OPEN-DBG-04"]},
+    {"id": 7, "title": "抓包过滤", "paths": ["spec/03-capture-filters.md"], "cases": ["D08"], "open": ["OPEN-DBG-02"]},
+    {"id": 8, "title": "日志点", "paths": ["spec/04-logging.md"], "cases": ["D10"], "open": ["OPEN-DBG-07"]},
+    {"id": 9, "title": "常见case", "paths": ["spec/05-casebook.md"], "cases": ["D01", "D02", "D03", "D04", "D05", "D06", "D07", "D08", "D09", "D10"], "open": ["OPEN-DBG-01"]},
+    {"id": 10, "title": "复现步骤", "paths": ["spec/05-casebook.md", "reference-impl/reproduce.py"], "open": ["OPEN-DBG-01"]},
+    {"id": 11, "title": "误判排除", "paths": ["spec/01-diagnostic-model.md", "spec/06-checklist.md"], "open": ["OPEN-DBG-01"]},
+    {"id": 12, "title": "版本差异", "paths": ["spec/06-checklist.md"], "open": ["OPEN-DBG-06"]}
+  ]
+}

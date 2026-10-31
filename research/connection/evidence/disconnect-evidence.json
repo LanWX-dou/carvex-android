@@ -1,0 +1,1093 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-29",
+  "build": "24A446",
+  "scope": "Local teardown/control-disconnect/screen-lifecycle and timeout producer-chain. No runtime execution or headunit test.",
+  "runtime_observed": false,
+  "full_reconnect_proven": false,
+  "method": "Re-read Mach-O LC_SEGMENT_64 mapped bytes and compare cached .bin; re-read selected C and assembly. Original dyld v5 pointers/CFStrings and direct function bytes resolved read-only. Old LOCAL/mock reports are not runtime proof.",
+  "images": [
+    {
+      "component": "AirPlaySender",
+      "path": "D:/carvex-research/firmware/extracted/24A446/binaries/AirPlaySender/AirPlaySender",
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f"
+    },
+    {
+      "component": "APTransport",
+      "path": "D:/carvex-research/firmware/extracted/24A446/binaries/APTransport/APTransport",
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d"
+    },
+    {
+      "component": "AirPlaySupport",
+      "path": "D:/carvex-research/firmware/extracted/24A446/binaries/AirPlaySupport/AirPlaySupport",
+      "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15"
+    }
+  ],
+  "functions": [
+    {
+      "id": "LC01",
+      "image": "AirPlaySender",
+      "address": "0x2519ce5c4",
+      "name": [
+        "_apsession_sendTeardownWithStreamDescArray"
+      ],
+      "image_file_offset": 230852,
+      "raw_length": 704,
+      "raw_sha256": "7a6ea6c89fb56d48b3d3a216a4fa3714e724287e54c61e5ec95511914f89afc5",
+      "raw_matches_image": true,
+      "scope_reviewed": "TEARDOWN streams/null/type/absent-control/result branch",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-2519ce5c4.bin",
+          "sha256": "7a6ea6c89fb56d48b3d3a216a4fa3714e724287e54c61e5ec95511914f89afc5"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-2519ce5c4.s",
+          "sha256": "3dd77867510051736d005761b9c1ae28e7df3e8d1e5eb4c1eeaac67aeae9a143"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-2519ce5c4.ghidra.c",
+          "sha256": "6690e1c2f6dd0d174aa5257ef0ffb13cf58af110b20ca9470877007fe2995b94"
+        }
+      ]
+    },
+    {
+      "id": "LC02",
+      "image": "AirPlaySender",
+      "address": "0x251b5e7c4",
+      "name": [
+        "___apsession_EnsureStopped_block_invoke"
+      ],
+      "image_file_offset": 1869764,
+      "raw_length": 1848,
+      "raw_sha256": "433d251915d4cba6a7228c7e5f0046acbfc5ac35260e6791cf3d3136bec4da03",
+      "raw_matches_image": true,
+      "scope_reviewed": "EnsureStopped full/shared branch; assembly success/error exits reviewed",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-251b5e7c4.bin",
+          "sha256": "433d251915d4cba6a7228c7e5f0046acbfc5ac35260e6791cf3d3136bec4da03"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-251b5e7c4.s",
+          "sha256": "88084d82ef2937fd1f4467a80626cb177d74553fcfa72d4b9a2d9e5f9b8fa05e"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-251b5e7c4.ghidra.c",
+          "sha256": "a96e1363f7bdcde9d1882318efa5f0fa21aa2442b3d76871da874f27baf6c243"
+        }
+      ]
+    },
+    {
+      "id": "LC03",
+      "image": "AirPlaySender",
+      "address": "0x2519cce10",
+      "name": [
+        "_apsession_teardownStreamInternal"
+      ],
+      "image_file_offset": 224784,
+      "raw_length": 648,
+      "raw_sha256": "5cc8392ba6eecaf04a0495969a65ce7e283a7f61d69fa1d21df3060bde8121d5",
+      "raw_matches_image": true,
+      "scope_reviewed": "single stream unregister-before-send and keepalive-result return",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-2519cce10.bin",
+          "sha256": "5cc8392ba6eecaf04a0495969a65ce7e283a7f61d69fa1d21df3060bde8121d5"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-2519cce10.s",
+          "sha256": "11150d74c211c9e859ef3adb9563506a212ecdd85f19c3f0b590142cff8ea259"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-2519cce10.ghidra.c",
+          "sha256": "c424c256ea0bdb315096bfd83fafde5ee505809a10f12bd49ec984b9ed262da1"
+        }
+      ]
+    },
+    {
+      "id": "LC04",
+      "image": "AirPlaySender",
+      "address": "0x251b5eefc",
+      "name": [
+        "___apsession_TeardownStreams_block_invoke"
+      ],
+      "image_file_offset": 1871612,
+      "raw_length": 304,
+      "raw_sha256": "623329b62615ef699d11ac5922fc1b50cdd95ccd1bd7a4bd30d7db4deb8ad59c",
+      "raw_matches_image": true,
+      "scope_reviewed": "batch unregister before connected check",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-251b5eefc.bin",
+          "sha256": "623329b62615ef699d11ac5922fc1b50cdd95ccd1bd7a4bd30d7db4deb8ad59c"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-251b5eefc.s",
+          "sha256": "cc38e3a36848220bb69f1fa0f713283abf5b29e5b60c0d96ce966b8fc6130739"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-251b5eefc.ghidra.c",
+          "sha256": "1ac1fac1251d95e7237dfbfc2ccfdabc5958236c7273bc417968566a0668446c"
+        }
+      ]
+    },
+    {
+      "id": "LC05",
+      "image": "AirPlaySender",
+      "address": "0x251a61f78",
+      "name": [
+        "___apsession_TeardownStreams_block_invoke_2"
+      ],
+      "image_file_offset": 835448,
+      "raw_length": 124,
+      "raw_sha256": "8f08b5ec39ef10409c7838b50cd524024dbc8bd68c890de01de89010f27069f7",
+      "raw_matches_image": true,
+      "scope_reviewed": "batch type/streamID extraction",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-251a61f78.bin",
+          "sha256": "8f08b5ec39ef10409c7838b50cd524024dbc8bd68c890de01de89010f27069f7"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-251a61f78.s",
+          "sha256": "211e77ad40755a46bb1744dc245a3ff396893ba70afa758f9a36dd9ef062c6b5"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/stream-teardown/AirPlaySender-251a61f78.ghidra.c",
+          "sha256": "f71e059323882266754647c25879707d9d9a2d66b26cc2b4e26269da43c915e1"
+        }
+      ]
+    },
+    {
+      "id": "LC06",
+      "image": "AirPlaySender",
+      "address": "0x251a53780",
+      "name": [
+        "_APSenderSessionAirPlayCreate"
+      ],
+      "image_file_offset": 776064,
+      "raw_length": 3504,
+      "raw_sha256": "50df258f0e2b23456834fe44ae1cd97daab3149e8035cbd1d929b9ebe47bf088",
+      "raw_matches_image": true,
+      "scope_reviewed": "UseConnectionSharing producer at session storage +0x10",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/normal-close/f_251a53780.bin",
+          "sha256": "50df258f0e2b23456834fe44ae1cd97daab3149e8035cbd1d929b9ebe47bf088"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/normal-close/f_251a53780.s",
+          "sha256": "754959c111144ee928457f57a7a54075629476777c30af41e801d0d9056f1781"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/normal-close/f_251a53780.ghidra.c",
+          "sha256": "a680b61c7a5e60b20990c326e0ea06a2ff7b4c58c1d3ff78f1eacbac96b95f28"
+        }
+      ]
+    },
+    {
+      "id": "LC07",
+      "image": "AirPlaySender",
+      "address": "0x251a61c48",
+      "name": [
+        "_apsession_unregisterStream"
+      ],
+      "image_file_offset": 834632,
+      "raw_length": 220,
+      "raw_sha256": "d3f46392fd029b1301434ffe6090d0d64a4816c91f8538229087438369c64eb7",
+      "raw_matches_image": true,
+      "scope_reviewed": "registry key type-ID and remove",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a61c48.bin",
+          "sha256": "d3f46392fd029b1301434ffe6090d0d64a4816c91f8538229087438369c64eb7"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a61c48.s",
+          "sha256": "87d2fbaa389f24fda64e09b7283678ce8c088c756ef6091638aa0d43786a69dd"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a61c48.ghidra.c",
+          "sha256": "057c0a3a7b6186af2c0e0bfc164f8e1265eeab0124535319b3dd8fcb2a4d97a7"
+        }
+      ]
+    },
+    {
+      "id": "LC08",
+      "image": "AirPlaySender",
+      "address": "0x251a56e44",
+      "name": [
+        "_apsession_disconnectControlStream"
+      ],
+      "image_file_offset": 790084,
+      "raw_length": 224,
+      "raw_sha256": "f6721287112a17e386a29389d818b036c7d1eaa16dc320ff9907f41ef6c081e2",
+      "raw_matches_image": true,
+      "scope_reviewed": "disconnect control: network clock, ensureDisconnected, security/setup local slots",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a56e44.bin",
+          "sha256": "f6721287112a17e386a29389d818b036c7d1eaa16dc320ff9907f41ef6c081e2"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a56e44.s",
+          "sha256": "556265e75e8bb72dd6d7b865bb229000098459f275505fee754f376b575968b7"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a56e44.ghidra.c",
+          "sha256": "1c52031f7eb0e93dfd97b1194196b186bd417308b2fa0c9807efe13e37df3d10"
+        }
+      ]
+    },
+    {
+      "id": "LC09",
+      "image": "AirPlaySender",
+      "address": "0x251b5b9d8",
+      "name": [
+        "_apsession_ensureDisconnected"
+      ],
+      "image_file_offset": 1858008,
+      "raw_length": 464,
+      "raw_sha256": "487a08743dc9af014fe62aa59c4d838e531a40a9f113801498877a7b422f0960",
+      "raw_matches_image": true,
+      "scope_reviewed": "ensureDisconnected: stream/session invalidation and notification",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b5b9d8.bin",
+          "sha256": "487a08743dc9af014fe62aa59c4d838e531a40a9f113801498877a7b422f0960"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b5b9d8.s",
+          "sha256": "0756372fff24e9d8bb79b3437549cdeb444e77b8bd1d2c4a5257590c28a5a3fd"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b5b9d8.ghidra.c",
+          "sha256": "feac84bde6a5976f428ea5f829f22d2b18e203988616418c4c14f133e28fafba"
+        }
+      ]
+    },
+    {
+      "id": "LC10",
+      "image": "AirPlaySender",
+      "address": "0x251a56168",
+      "name": [
+        "_apsession_invalidateAndClearTransportStreams"
+      ],
+      "image_file_offset": 786792,
+      "raw_length": 284,
+      "raw_sha256": "a7aec9326e6ded5ee0e0025cfb10fa19e066b615fa4d936ae9b8f3dfc8181451",
+      "raw_matches_image": true,
+      "scope_reviewed": "clear live stream slots then queue invalidation context",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a56168.bin",
+          "sha256": "a7aec9326e6ded5ee0e0025cfb10fa19e066b615fa4d936ae9b8f3dfc8181451"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a56168.s",
+          "sha256": "5ebee1fd638e61eb44112ff6f052ef97931ea8ef1f9a34d08df2b3169b6344dd"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a56168.ghidra.c",
+          "sha256": "449cae490980e7987aa2cca0b273eb4e1326ec9a014b230c2dc778a089ebeffa"
+        }
+      ]
+    },
+    {
+      "id": "LC11",
+      "image": "AirPlaySender",
+      "address": "0x251a5692c",
+      "name": [
+        "_apsession_invalidateTransportStreams"
+      ],
+      "image_file_offset": 788780,
+      "raw_length": 904,
+      "raw_sha256": "50eae9f2d10e1dee8d493101a81d89d41c4b87553b06aaf91bf514aabe7a1e18",
+      "raw_matches_image": true,
+      "scope_reviewed": "assembly confirms all 3 stream callbacks cleared, invalidated, released despite truncated C",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5692c.bin",
+          "sha256": "50eae9f2d10e1dee8d493101a81d89d41c4b87553b06aaf91bf514aabe7a1e18"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5692c.s",
+          "sha256": "d5712c66a7135f82191eed96c908802bf6d55b3dcfa4ac232773cb9fc3891e2f"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5692c.ghidra.c",
+          "sha256": "cb9e0358efbceae2fb8b5be4cc5a9c274debbdba5227588762bdc889bbdb3800"
+        }
+      ]
+    },
+    {
+      "id": "LC12",
+      "image": "AirPlaySender",
+      "address": "0x251bd642c",
+      "name": [
+        "___screenstream_Suspend_block_invoke"
+      ],
+      "image_file_offset": 2360364,
+      "raw_length": 428,
+      "raw_sha256": "e7bcf08d262a0e86efbf2991574a07ca584e6db166dc5002501f36e328740b6d",
+      "raw_matches_image": true,
+      "scope_reviewed": "Suspend stop timer, producer suspend, teardown false, resumed=false",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251bd642c.bin",
+          "sha256": "e7bcf08d262a0e86efbf2991574a07ca584e6db166dc5002501f36e328740b6d"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251bd642c.s",
+          "sha256": "9deb5e0a3566a8c8a564915b6b515754ae3d0dcb1064f21d43ff640ebd6a9ba4"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251bd642c.ghidra.c",
+          "sha256": "d2bfb1fbf77a51a844fcd1dc289872dfd8ba2b75ef9fd592f3e16aa353de63c8"
+        }
+      ]
+    },
+    {
+      "id": "LC13",
+      "image": "AirPlaySender",
+      "address": "0x251bd5e48",
+      "name": [
+        "_screenstream_teardownTransportStream"
+      ],
+      "image_file_offset": 2358856,
+      "raw_length": 1152,
+      "raw_sha256": "0b4946a326a9bc410cb52397af7918a2c86666bcbff4e989b9cfa8376fd5769c",
+      "raw_matches_image": true,
+      "scope_reviewed": "transport callback clear and optional session teardown, local buffer reset",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251bd5e48.bin",
+          "sha256": "0b4946a326a9bc410cb52397af7918a2c86666bcbff4e989b9cfa8376fd5769c"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251bd5e48.s",
+          "sha256": "996eaa072718cbcf251f1145e80f9753e559da002ffc3c81a55fc7ab96d51eb5"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251bd5e48.ghidra.c",
+          "sha256": "f60be971f17ce7fc74243d05e448b42c69e49c6746ce66e780964c945517fb02"
+        }
+      ]
+    },
+    {
+      "id": "LC14",
+      "image": "AirPlaySender",
+      "address": "0x251b43140",
+      "name": [
+        "_screenstream_handleFatalError"
+      ],
+      "image_file_offset": 1757504,
+      "raw_length": 364,
+      "raw_sha256": "b5267327c0748bf692e967da725445b087bba55417c6893dffa04e594c912af6",
+      "raw_matches_image": true,
+      "scope_reviewed": "fatal error queues notification and dissociation separately",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b43140.bin",
+          "sha256": "b5267327c0748bf692e967da725445b087bba55417c6893dffa04e594c912af6"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b43140.s",
+          "sha256": "ae2f75fe285670a8977c367631cb7614c7645564c6ef36de94273f4a0c73693b"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b43140.ghidra.c",
+          "sha256": "f5a15c4eab87072222979a3951fa241418eb7f68706f7f05806c24cd99593323"
+        }
+      ]
+    },
+    {
+      "id": "LC15",
+      "image": "AirPlaySender",
+      "address": "0x251b43370",
+      "name": [
+        "___screenstream_handleFatalError_block_invoke_2"
+      ],
+      "image_file_offset": 1758064,
+      "raw_length": 60,
+      "raw_sha256": "fb1786a878d61e109ab1c2c1436374b1ad3e9539dec3e013dbbd9ef831310649",
+      "raw_matches_image": true,
+      "scope_reviewed": "fatal block calls dissociate then releases retained object",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b43370.bin",
+          "sha256": "fb1786a878d61e109ab1c2c1436374b1ad3e9539dec3e013dbbd9ef831310649"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b43370.s",
+          "sha256": "8686a9cfaf4e187610b28392f233d567963dcd9429eb5c1221bb9b29b1c1475f"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b43370.ghidra.c",
+          "sha256": "e4bb65ee4515302e0d6ef62e6c1b81954cb069f9553c8949c01e4f85b5e26d70"
+        }
+      ]
+    },
+    {
+      "id": "LC16",
+      "image": "AirPlaySender",
+      "address": "0x251bd62c8",
+      "name": [
+        "_screenstream_dissociateInternal"
+      ],
+      "image_file_offset": 2360008,
+      "raw_length": 356,
+      "raw_sha256": "2b85dc93499c4d9ead8e06fed8039284ee9be7e30a47b130d6af2a6ba48ecadb",
+      "raw_matches_image": true,
+      "scope_reviewed": "dissociate cleanup then invalid bit and queued notification",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251bd62c8.bin",
+          "sha256": "2b85dc93499c4d9ead8e06fed8039284ee9be7e30a47b130d6af2a6ba48ecadb"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251bd62c8.s",
+          "sha256": "a32599935e57d7dc85db205ced46919524e19547050983fd67b0b5a2150a43c4"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251bd62c8.ghidra.c",
+          "sha256": "7e78fcef341d0df96a6f078da9a85e33e9a597f875881acd607e3b32eaaa4da2"
+        }
+      ]
+    },
+    {
+      "id": "LC17",
+      "image": "AirPlaySender",
+      "address": "0x251b42e34",
+      "name": [
+        "_screenstream_cleanup"
+      ],
+      "image_file_offset": 1756724,
+      "raw_length": 416,
+      "raw_sha256": "64e55eacf54aa82b5ed572e898e9c462a4868faf016036590269a04a772f9c07",
+      "raw_matches_image": true,
+      "scope_reviewed": "cleanup tears transport down with skip-wire true",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b42e34.bin",
+          "sha256": "64e55eacf54aa82b5ed572e898e9c462a4868faf016036590269a04a772f9c07"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b42e34.s",
+          "sha256": "23579363e04308b1c4626eb6dc640b79c2c976d35ee862ea953a428047dc6743"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b42e34.ghidra.c",
+          "sha256": "09e0a8486ff45c12f94905d8400c795a67a1ebeb728554866fbd94a2b5819322"
+        }
+      ]
+    },
+    {
+      "id": "LC18",
+      "image": "AirPlaySender",
+      "address": "0x251b42fd4",
+      "name": [
+        "_screenstream_stopStatsTimer"
+      ],
+      "image_file_offset": 1757140,
+      "raw_length": 148,
+      "raw_sha256": "c313c955e47418c05c43286b812786f8d01dbed262fbc13b90c1b23c5f2ca982",
+      "raw_matches_image": true,
+      "scope_reviewed": "stats timer tailcall reviewed in assembly",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b42fd4.bin",
+          "sha256": "c313c955e47418c05c43286b812786f8d01dbed262fbc13b90c1b23c5f2ca982"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b42fd4.s",
+          "sha256": "5072e96a342e78dbd23abd1e27f5c4bc8efac395cb543b8bc970de74884ddbaa"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b42fd4.ghidra.c",
+          "sha256": "4b6da2d29a15e202c78a7c59841ce69caa8e48df67919e93d38ef9f33ddffb24"
+        }
+      ]
+    },
+    {
+      "id": "LT01",
+      "image": "AirPlaySender",
+      "address": "0x251ab0f14",
+      "name": [
+        "_APSenderSessionMessageSendTimeout"
+      ],
+      "image_file_offset": 1158932,
+      "raw_length": 56,
+      "raw_sha256": "235c1fa8daffd16de80ee5bde8eeb9832a29532f61ee6c08c5b6decc51269eaa",
+      "raw_matches_image": true,
+      "scope_reviewed": "global timeout provider and once initialization",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251ab0f14.bin",
+          "sha256": "235c1fa8daffd16de80ee5bde8eeb9832a29532f61ee6c08c5b6decc51269eaa"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251ab0f14.s",
+          "sha256": "0420fc941c6cc6c1d921af2701a4e376fb103c1cf12cac0a6ef34640ad18ecef"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251ab0f14.ghidra.c",
+          "sha256": "0ae6ffaf0fb15fdadb240d1d5494766c0b6add01a620da9af777dde762f36e6f"
+        }
+      ]
+    },
+    {
+      "id": "LT03",
+      "image": "AirPlaySender",
+      "address": "0x251a5b22c",
+      "name": [
+        "_apsession_ensureConnectedInternal"
+      ],
+      "image_file_offset": 807468,
+      "raw_length": 11412,
+      "raw_sha256": "8c8967f28c79453c413aefebda19f2567be73913be0995adc70a2f39af9e3289",
+      "raw_matches_image": true,
+      "scope_reviewed": "control stream package timeout kind5=10 else provider; only selected range",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5b22c.bin",
+          "sha256": "8c8967f28c79453c413aefebda19f2567be73913be0995adc70a2f39af9e3289"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5b22c.s",
+          "sha256": "ef22403695e87c540d6c364ca6aa0a29a53794c1b4ae93942f9dae4cc185ed3b"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5b22c.ghidra.c",
+          "sha256": "1981215862f5ad2f17740c0be364defaaac914ec8c7643a4ffdbef57dcb4331a"
+        }
+      ]
+    },
+    {
+      "id": "LT04",
+      "image": "AirPlaySender",
+      "address": "0x251a5dec0",
+      "name": [
+        "_apsession_ensureEventStreamCreated"
+      ],
+      "image_file_offset": 818880,
+      "raw_length": 2456,
+      "raw_sha256": "da5c10872975888c24e5c5bddbc87e402597ba37cec60b7a3b8b6e08885f0ec8",
+      "raw_matches_image": true,
+      "scope_reviewed": "event stream timeout provider call; selected range",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5dec0.bin",
+          "sha256": "da5c10872975888c24e5c5bddbc87e402597ba37cec60b7a3b8b6e08885f0ec8"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5dec0.s",
+          "sha256": "a94d7d8864c65ed192a3db5f2d7bf47f3043c86e31d0286b4d134d595c46408a"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5dec0.ghidra.c",
+          "sha256": "b24212970a2f03a82c695f6dd9582b62e8d301cd571a896f3107c89dc0ba7168"
+        }
+      ]
+    },
+    {
+      "id": "LT05",
+      "image": "APTransport",
+      "address": "0x24fdaf4a8",
+      "name": [
+        "_stream_setPropertyInternal"
+      ],
+      "image_file_offset": 148648,
+      "raw_length": 964,
+      "raw_sha256": "c385dfefd195d23b5c18a953154c4ad650c87799b7ce1ef6743e157d4a21ed5f",
+      "raw_matches_image": true,
+      "scope_reviewed": "PackageSendTimeout delegate; local +0xb0 fallback only on -12784",
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fdaf4a8.bin",
+          "sha256": "c385dfefd195d23b5c18a953154c4ad650c87799b7ce1ef6743e157d4a21ed5f"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fdaf4a8.s",
+          "sha256": "fa2d26b77c6ad3ab4f1843d4d4e1f7461b3f823f66dbc532304565693a5deca8"
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fdaf4a8.ghidra.c",
+          "sha256": "9f5b2d92ba843431e75e229e56f60b707d11705765a4242b27c4e84e66c402d0"
+        }
+      ]
+    }
+  ],
+  "direct_functions": [
+    {
+      "id": "LT02",
+      "image": "AirPlaySender",
+      "address": "0x251ab0f4c",
+      "length": 124,
+      "name": [
+        "___APSenderSessionMessageSendTimeout_block_invoke"
+      ],
+      "raw_matches_image_and_cache": true,
+      "region": {
+        "address": "0x251ab0f4c",
+        "length": 124,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.48",
+        "file_offset": 23793484,
+        "sha256": "bb673fea8e712b9aa57d3f5fc4136395b115a8366a2cc958f8fcf2b466b8aad1",
+        "raw_hex": null
+      },
+      "instructions": [
+        "0x251ab0f4c: pacibsp ",
+        "0x251ab0f50: stp x20, x19, [sp, #-0x20]!",
+        "0x251ab0f54: stp x29, x30, [sp, #0x10]",
+        "0x251ab0f58: add x29, sp, #0x10",
+        "0x251ab0f5c: adrp x0, #0x276137000",
+        "0x251ab0f60: add x0, x0, #0x6b0",
+        "0x251ab0f64: mov x1, #0",
+        "0x251ab0f68: bl #0x258109e00",
+        "0x251ab0f6c: mov x19, x0",
+        "0x251ab0f70: cmp w19, #1",
+        "0x251ab0f74: b.lt #0x251ab0fb0",
+        "0x251ab0f78: adrp x8, #0x26e7da000",
+        "0x251ab0f7c: ldr w8, [x8, #0x498]",
+        "0x251ab0f80: cmp w8, #0x32",
+        "0x251ab0f84: b.gt #0x251ab0fa8",
+        "0x251ab0f88: cmn w8, #1",
+        "0x251ab0f8c: b.ne #0x251ab0fbc",
+        "0x251ab0f90: adrp x0, #0x26e7da000",
+        "0x251ab0f94: add x0, x0, #0x498",
+        "0x251ab0f98: mov w1, #0x32",
+        "0x251ab0f9c: movk w1, #0x200, lsl #16",
+        "0x251ab0fa0: bl #0x258101e40",
+        "0x251ab0fa4: cbnz w0, #0x251ab0fbc",
+        "0x251ab0fa8: adrp x8, #0x26e7da000",
+        "0x251ab0fac: str w19, [x8, #0x508]",
+        "0x251ab0fb0: ldp x29, x30, [sp, #0x10]",
+        "0x251ab0fb4: ldp x20, x19, [sp], #0x20",
+        "0x251ab0fb8: retab ",
+        "0x251ab0fbc: mov x0, x19",
+        "0x251ab0fc0: bl #0x251b8a044",
+        "0x251ab0fc4: b #0x251ab0fa8"
+      ]
+    },
+    {
+      "id": "LT06",
+      "image": "AirPlaySupport",
+      "address": "0x226e64e74",
+      "length": 188,
+      "name": [
+        "_APSSetFBOPropertyInt64"
+      ],
+      "raw_matches_image_and_cache": true,
+      "region": {
+        "address": "0x226e64e74",
+        "length": 188,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+        "file_offset": 111562356,
+        "sha256": "c728e69ae01ebccd6e10581de07b682b382af00c4e8b2f71ca91110ce155856b",
+        "raw_hex": null
+      },
+      "instructions": [
+        "0x226e64e74: pacibsp ",
+        "0x226e64e78: stp x22, x21, [sp, #-0x30]!",
+        "0x226e64e7c: stp x20, x19, [sp, #0x10]",
+        "0x226e64e80: stp x29, x30, [sp, #0x20]",
+        "0x226e64e84: add x29, sp, #0x20",
+        "0x226e64e88: mov x20, x1",
+        "0x226e64e8c: mov x21, x0",
+        "0x226e64e90: mov x0, x2",
+        "0x226e64e94: bl #0x22818baf0",
+        "0x226e64e98: cbz x0, #0x226e64f28",
+        "0x226e64e9c: mov x19, x0",
+        "0x226e64ea0: mov x0, x21",
+        "0x226e64ea4: bl #0x22818bdf0",
+        "0x226e64ea8: ldr x16, [x0, #8]!",
+        "0x226e64eac: mov x17, x0",
+        "0x226e64eb0: movk x17, #0xb911, lsl #48",
+        "0x226e64eb4: autda x16, x17",
+        "0x226e64eb8: ldr x9, [x16, #0x38]!",
+        "0x226e64ebc: cbz x9, #0x226e64f08",
+        "0x226e64ec0: mov x8, x16",
+        "0x226e64ec4: movk x8, #0x2724, lsl #48",
+        "0x226e64ec8: mov x16, x9",
+        "0x226e64ecc: mov x17, x8",
+        "0x226e64ed0: autia x16, x17",
+        "0x226e64ed4: mov x17, x16",
+        "0x226e64ed8: xpaci x17",
+        "0x226e64edc: cmp x16, x17",
+        "0x226e64ee0: b.eq #0x226e64ee8",
+        "0x226e64ee4: brk #0xc470",
+        "0x226e64ee8: paciza x16",
+        "0x226e64eec: cbz x16, #0x226e64f08",
+        "0x226e64ef0: mov x0, x21",
+        "0x226e64ef4: mov x1, x20",
+        "0x226e64ef8: mov x2, x19",
+        "0x226e64efc: blraa x9, x8",
+        "0x226e64f00: mov x20, x0",
+        "0x226e64f04: b #0x226e64f0c",
+        "0x226e64f08: mov w20, #-0x31ee",
+        "0x226e64f0c: mov x0, x19",
+        "0x226e64f10: bl #0x22813f190",
+        "0x226e64f14: mov x0, x20",
+        "0x226e64f18: ldp x29, x30, [sp, #0x20]",
+        "0x226e64f1c: ldp x20, x19, [sp, #0x10]",
+        "0x226e64f20: ldp x22, x21, [sp], #0x30",
+        "0x226e64f24: retab ",
+        "0x226e64f28: mov w20, #-0x1a48",
+        "0x226e64f2c: b #0x226e64f14"
+      ]
+    },
+    {
+      "id": "LT07",
+      "image": "AirPlaySupport",
+      "address": "0x226e638c4",
+      "length": 76,
+      "name": [
+        "_APSSettingsGetInt64"
+      ],
+      "raw_matches_image_and_cache": true,
+      "region": {
+        "address": "0x226e638c4",
+        "length": 76,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+        "file_offset": 111556804,
+        "sha256": "524527dba99ec8c85da239fe4786660d32ca29c2956c28353435f09c56eb65f7",
+        "raw_hex": null
+      },
+      "instructions": [
+        "0x226e638c4: pacibsp ",
+        "0x226e638c8: stp x20, x19, [sp, #-0x20]!",
+        "0x226e638cc: stp x29, x30, [sp, #0x10]",
+        "0x226e638d0: add x29, sp, #0x10",
+        "0x226e638d4: mov x19, x1",
+        "0x226e638d8: mov x1, #0",
+        "0x226e638dc: mov x2, x19",
+        "0x226e638e0: bl #0x226e63910",
+        "0x226e638e4: cbz x0, #0x226e63904",
+        "0x226e638e8: mov x20, x0",
+        "0x226e638ec: mov x1, x19",
+        "0x226e638f0: bl #0x22818bad0",
+        "0x226e638f4: mov x19, x0",
+        "0x226e638f8: mov x0, x20",
+        "0x226e638fc: bl #0x22813f190",
+        "0x226e63900: mov x0, x19",
+        "0x226e63904: ldp x29, x30, [sp, #0x10]",
+        "0x226e63908: ldp x20, x19, [sp], #0x20",
+        "0x226e6390c: retab "
+      ]
+    }
+  ],
+  "public_constants": [
+    {
+      "value": "streams",
+      "header": {
+        "address": "0x27612ff50",
+        "length": 32,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201752400,
+        "sha256": "060a0f4d41ae14490094818e119844a5f012abec913300a49be8ed9e67a76164",
+        "raw_hex": "c08bf06684ab2d80c8070000000000006b66bfd1000020000700000000000000"
+      },
+      "characters_pointer": {
+        "address": "0x27612ff60",
+        "length": 8,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201752416,
+        "sha256": "313e40a00cee0095aa4f59d4a5dbb8e161b2c75b187997d9a6c70b348fbce79d",
+        "raw_hex": "6b66bfd100002000",
+        "decoded_target": "0x251bf666b"
+      },
+      "characters": {
+        "address": "0x251bf666b",
+        "length": 8,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.48",
+        "file_offset": 25126507,
+        "sha256": "f0646f16a2a3fbaab0fe1aec97d9316270d3fb2631de644f098556f2a211f257",
+        "raw_hex": "73747265616d7300"
+      }
+    },
+    {
+      "value": "teardownType",
+      "header": {
+        "address": "0x27612ff70",
+        "length": 32,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201752432,
+        "sha256": "583c891b9530a5a6b46c8a0e537d868f0472693bfb0be14b1bacbef9d08ac465",
+        "raw_hex": "c08bf06684ab2d80c807000000000000806abfd1000020000c00000000000000"
+      },
+      "characters_pointer": {
+        "address": "0x27612ff80",
+        "length": 8,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201752448,
+        "sha256": "464c25b22576ba909d3cdbca9c905c135c9f5a4d88508d5d39783ca91cc96cfa",
+        "raw_hex": "806abfd100002000",
+        "decoded_target": "0x251bf6a80"
+      },
+      "characters": {
+        "address": "0x251bf6a80",
+        "length": 13,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.48",
+        "file_offset": 25127552,
+        "sha256": "adaca846536ddcfdd6b8f9cbd83b6dc8bc4b1f47b95f63dc76940286a7ce4b33",
+        "raw_hex": "74656172646f776e5479706500"
+      }
+    },
+    {
+      "value": "teardownMetricsPayload",
+      "header": {
+        "address": "0x27612ff90",
+        "length": 32,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201752464,
+        "sha256": "9c64c261bbb5bd81e6acddbfe5431376bf99f8521b77c1ca2a6a036af6a5a54b",
+        "raw_hex": "c08bf06684ab2d80c807000000000000266bbfd1000020001600000000000000"
+      },
+      "characters_pointer": {
+        "address": "0x27612ffa0",
+        "length": 8,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201752480,
+        "sha256": "57dd639c4b21ce30f9b8331f75eab53f46fd07b1ef8a30b746c40f78811cd8ce",
+        "raw_hex": "266bbfd100002000",
+        "decoded_target": "0x251bf6b26"
+      },
+      "characters": {
+        "address": "0x251bf6b26",
+        "length": 23,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.48",
+        "file_offset": 25127718,
+        "sha256": "5260694c6a0efdb3b27c30c1ca13c79e84c7bc0a17edb6ede1b470537a6b0cff",
+        "raw_hex": "74656172646f776e4d6574726963735061796c6f616400"
+      }
+    },
+    {
+      "value": "UseConnectionSharing",
+      "header": {
+        "address": "0x276136b70",
+        "length": 32,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201780080,
+        "sha256": "19ec3637d564feb8bec4fe23c789cde90467ca08af34f809d13e1268dfba2417",
+        "raw_hex": "c08bf06684ab2d80c807000000000000ded8c1d1000020001400000000000000"
+      },
+      "characters_pointer": {
+        "address": "0x276136b80",
+        "length": 8,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201780096,
+        "sha256": "e00512fc69294418f6abf4a22f3998e9518a7c32c5b5e79d8e4f54dbbcba9ef1",
+        "raw_hex": "ded8c1d100002000",
+        "decoded_target": "0x251c1d8de"
+      },
+      "characters": {
+        "address": "0x251c1d8de",
+        "length": 21,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.48",
+        "file_offset": 25286878,
+        "sha256": "feb3647ef49ef87e5c0776a3cb335c2f3da3c6aacce18aa073c47f83f5d36db5",
+        "raw_hex": "557365436f6e6e656374696f6e53686172696e6700"
+      }
+    },
+    {
+      "value": "senderMessageTimeoutSecs",
+      "header": {
+        "address": "0x2761376b0",
+        "length": 32,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201782960,
+        "sha256": "2fc6e8297a62dff94d906490b2924593c73c6d9c85023d4817c135ce3411119d",
+        "raw_hex": "c08bf06684ab2d80c80700000000000018dfc1d1000020001800000000000000"
+      },
+      "characters_pointer": {
+        "address": "0x2761376c0",
+        "length": 8,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 201782976,
+        "sha256": "a2d74fc98c58b78be66bb47074d763395011505cca5e963f6a4593ee7ad76827",
+        "raw_hex": "18dfc1d100002000",
+        "decoded_target": "0x251c1df18"
+      },
+      "characters": {
+        "address": "0x251c1df18",
+        "length": 25,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.48",
+        "file_offset": 25288472,
+        "sha256": "e06343e1ccaef4f103ba5b1aabd6bf02216b435dae06cba7c347047c73195db5",
+        "raw_hex": "73656e6465724d65737361676554696d656f75745365637300"
+      }
+    },
+    {
+      "value": "PackageSendTimeout",
+      "header": {
+        "address": "0x275fa82a0",
+        "length": 32,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 200147616,
+        "sha256": "4dfc8a15a94bbb51f661e5c55d06fbec7e969207314dc74038c2fc95e6270612",
+        "raw_hex": "c08bf06684ab2d80c807000000000000f3d8e6cf000020001200000000000000"
+      },
+      "characters_pointer": {
+        "address": "0x275fa82b0",
+        "length": 8,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 200147632,
+        "sha256": "f590d1ba6344950ddd57c0acde4151c6eaa75a005d04b186417572088c026058",
+        "raw_hex": "f3d8e6cf00002000",
+        "decoded_target": "0x24fe6d8f3"
+      },
+      "characters": {
+        "address": "0x24fe6d8f3",
+        "length": 19,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.46",
+        "file_offset": 128375027,
+        "sha256": "0fa9173cc500cc75b03e02bd2dfec33669f0910273a51254a93defc0a9b632b9",
+        "raw_hex": "5061636b61676553656e6454696d656f757400"
+      }
+    }
+  ],
+  "timeout": {
+    "default_storage": {
+      "address": "0x26e7da508",
+      "length": 4,
+      "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+      "file_offset": 74523912,
+      "sha256": "621293836cafba765c105b23559d2564fbca2932bc13ebfebe9a63b7f393c3cd",
+      "raw_hex": "3c000000"
+    },
+    "default_i32": 60,
+    "preference": "senderMessageTimeoutSecs",
+    "override_guard": "signed w19 >= 1 in 0x251ab0f70-74",
+    "property_pointer_chain": [
+      {
+        "address": "0x2680fc070",
+        "length": 8,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 213104,
+        "sha256": "0de306e34824528c1ab5e1b4025083fe52b8ead9f925810fe53b94e6d0c09973",
+        "raw_hex": "888037e900001000",
+        "decoded_target": "0x269378088"
+      },
+      {
+        "address": "0x269378088",
+        "length": 8,
+        "file": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 19595400,
+        "sha256": "24b34e07ec125fb609043506245689da823408238da3d17a064cf52d57ae2094",
+        "raw_hex": "a082faf500001000",
+        "decoded_target": "0x275fa82a0"
+      }
+    ],
+    "property_value": "PackageSendTimeout",
+    "control_kind5_source": 10,
+    "event_source": "provider default 60 or accepted once preference",
+    "stream_b0_update": "Only fallback when connection SetProperty(PackageSendTimeout) returns 0xffffce10 (-12784); not unconditional",
+    "runtime_observed": false,
+    "binding_limit": "Producer uses APSSetFBOPropertyInt64 and the stream property consumer compares the same resolved CFString. This audit has not independently re-bound the concrete stream SetProperty vtable slot to this consumer or the connection-specific implementation; values reaching +0xb0 are conditional, not runtime-observed."
+  },
+  "cache_files": [
+    {
+      "path": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+      "bytes": 131563520,
+      "sha256": "0226a90a4d52ace5800c1a70e0df9e97c78033a255e6fd186d730909dc2c974c"
+    },
+    {
+      "path": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.46",
+      "bytes": 130859008,
+      "sha256": "74eddde4b9d7085b45e7d5dedf79970b89f8222df9d8a80a406f6d805d935098"
+    },
+    {
+      "path": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.48",
+      "bytes": 131268608,
+      "sha256": "298a27c9c6bb80d0fe4a6fb812c8cee69a4c7b9524801a13c4acd6c42a41703a"
+    },
+    {
+      "path": "D:/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+      "bytes": 226328576,
+      "sha256": "e60cf2f93941a4977e04d43c94811c877c787e39e26d11f7ef52c93c12a05a0f"
+    }
+  ],
+  "limits": [
+    "Full packet status mapping and wait wrapper covered separately by chapter22.",
+    "Connection-specific PackageSendTimeout implementation not resolved; +0xb0 fallback is conditional.",
+    "Generic attempt generation, all late callbacks, persistent peer-store deletion and automatic reconnect scheduling not closed.",
+    "Some C is truncated at authenticated tailcalls; assembly used for listed anchors, not proof of all paths."
+  ],
+  "claims": [
+    {
+      "id": "LC-A",
+      "status": "CLOSED-STATIC",
+      "claim": "NULL streams pointer omits the streams field; nonNULL including empty array emits streams. NULL alone does not identify a whole-session stop: the helper separately checks internal type==2 at 0x2519ce64c-0x2519ce654, while the reviewed whole-session EnsureStopped branch specifically passes NULL/type2. teardownType only when UseConnectionSharing storage is nonzero. Missing control stream returns success without sending.",
+      "evidence": [
+        "LC01",
+        "LC06",
+        "LC02"
+      ]
+    },
+    {
+      "id": "LC-B",
+      "status": "CLOSED-STATIC",
+      "claim": "Full EnsureStopped sends if connected then disconnects only after helper success; in-function send error returns failure rather than unconditionally reaching disconnect.",
+      "evidence": [
+        "LC02"
+      ]
+    },
+    {
+      "id": "LC-C",
+      "status": "CLOSED-STATIC",
+      "claim": "Single and batch stream removal happens before TEARDOWN send; single helper returns keepalive restart result after logging send error, so zero return is not peer confirmation.",
+      "evidence": [
+        "LC03",
+        "LC04",
+        "LC05",
+        "LC07"
+      ]
+    },
+    {
+      "id": "LC-D",
+      "status": "CLOSED-STATIC",
+      "claim": "Session clears live control/event/extra stream slots and removes observer registrations before queued invalidation; invalidation function processes retained old streams sequentially.",
+      "evidence": [
+        "LC08",
+        "LC09",
+        "LC10",
+        "LC11"
+      ]
+    },
+    {
+      "id": "LC-E",
+      "status": "CLOSED-STATIC",
+      "claim": "Screen Suspend passes skip-session-teardown=false; fatal error asynchronous dissociate→cleanup passes true, hence fatal cleanup does not inherently send per-screen TEARDOWN.",
+      "evidence": [
+        "LC12",
+        "LC13",
+        "LC14",
+        "LC15",
+        "LC16",
+        "LC17"
+      ]
+    },
+    {
+      "id": "LT-A",
+      "status": "CLOSED-STATIC",
+      "claim": "Timeout provider global initial value 60, once preference senderMessageTimeoutSecs overrides only if low32 interpreted signed >=1; kind5 control creation supplies 10 instead of provider, events use provider.",
+      "evidence": [
+        "LT01",
+        "LT02",
+        "LT03",
+        "LT04"
+      ]
+    },
+    {
+      "id": "LT-B",
+      "status": "PARTIAL",
+      "claim": "PackageSendTimeout property first delegates to underlying connection and writes stream+0xb0 only when that setter returns 0xffffce10; exact concrete vtable binding and connection implementation remain open.",
+      "evidence": [
+        "LT05",
+        "LT06"
+      ]
+    }
+  ]
+}

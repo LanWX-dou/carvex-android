@@ -1,0 +1,1516 @@
+{
+ "image": "accessoryd",
+ "pointer_rule": "0x100000000 + (value & 0xFFFFFFFFFF)",
+ "link_device_fsm": {
+  "states_table": "0x100219600",
+  "state_count": 8,
+  "event_count": 29,
+  "states": [
+   {
+    "index": 0,
+    "events_ptr": "0x100219030",
+    "event_count": 1,
+    "events": [
+     {
+      "event": 0,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 1
+     }
+    ]
+   },
+   {
+    "index": 1,
+    "events_ptr": "0x100219040",
+    "event_count": 2,
+    "events": [
+     {
+      "event": 1,
+      "handler": "0x10002f8dc",
+      "handler_symbol": "",
+      "next_state": 2
+     },
+     {
+      "event": 14,
+      "handler": "0x100031c7c",
+      "handler_symbol": "",
+      "next_state": 1
+     }
+    ]
+   },
+   {
+    "index": 2,
+    "events_ptr": "0x100219060",
+    "event_count": 29,
+    "events": [
+     {
+      "event": 2,
+      "handler": "0x10002f920",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 14,
+      "handler": "0x100031c7c",
+      "handler_symbol": "",
+      "next_state": 1
+     },
+     {
+      "event": 23,
+      "handler": "0x10002fac8",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 25,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 15,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     },
+     {
+      "event": 0,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 0
+     }
+    ]
+   },
+   {
+    "index": 3,
+    "events_ptr": "0x100219230",
+    "event_count": 16,
+    "events": [
+     {
+      "event": 2,
+      "handler": "0x10002f920",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 4,
+      "handler": "0x10002fcd4",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 5,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 3
+     },
+     {
+      "event": 6,
+      "handler": "0x10002fcd4",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 8,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 3
+     },
+     {
+      "event": 10,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 11,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 3
+     },
+     {
+      "event": 12,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 3
+     },
+     {
+      "event": 14,
+      "handler": "0x100031c7c",
+      "handler_symbol": "",
+      "next_state": 1
+     },
+     {
+      "event": 15,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 16,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 17,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 20,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 7
+     },
+     {
+      "event": 21,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 23,
+      "handler": "0x10002fac8",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 19,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     }
+    ]
+   },
+   {
+    "index": 4,
+    "events_ptr": "0x100219330",
+    "event_count": 13,
+    "events": [
+     {
+      "event": 2,
+      "handler": "0x10002f920",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 3,
+      "handler": "0x10002feb0",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 4,
+      "handler": "0x10002fcd4",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 6,
+      "handler": "0x10002fcd4",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 12,
+      "handler": "0x10002feb0",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 14,
+      "handler": "0x100031c7c",
+      "handler_symbol": "",
+      "next_state": 1
+     },
+     {
+      "event": 15,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 16,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 19,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 20,
+      "handler": "0x100030054",
+      "handler_symbol": "",
+      "next_state": 7
+     },
+     {
+      "event": 21,
+      "handler": "0x10003009c",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 22,
+      "handler": "0x100030128",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 23,
+      "handler": "0x10002fac8",
+      "handler_symbol": "",
+      "next_state": 3
+     }
+    ]
+   },
+   {
+    "index": 5,
+    "events_ptr": "0x100219400",
+    "event_count": 16,
+    "events": [
+     {
+      "event": 2,
+      "handler": "0x10002f920",
+      "handler_symbol": "",
+      "next_state": 4
+     },
+     {
+      "event": 8,
+      "handler": "0x100000000",
+      "handler_symbol": "__mh_execute_header",
+      "next_state": 3
+     },
+     {
+      "event": 10,
+      "handler": "0x1000826e8",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 11,
+      "handler": "0x100082660",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 15,
+      "handler": "0x100032670",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 12,
+      "handler": "0x1000323f8",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 13,
+      "handler": "0x100031cc0",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 16,
+      "handler": "0x100031cc0",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 19,
+      "handler": "0x10002fb54",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 14,
+      "handler": "0x100031c7c",
+      "handler_symbol": "",
+      "next_state": 1
+     },
+     {
+      "event": 17,
+      "handler": "0x100031ef8",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 18,
+      "handler": "0x100006680",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 20,
+      "handler": "0x10003286c",
+      "handler_symbol": "",
+      "next_state": 7
+     },
+     {
+      "event": 21,
+      "handler": "0x10000bc04",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 23,
+      "handler": "0x10002fac8",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 27,
+      "handler": "0x10003021c",
+      "handler_symbol": "",
+      "next_state": 6
+     }
+    ]
+   },
+   {
+    "index": 6,
+    "events_ptr": "0x100219500",
+    "event_count": 12,
+    "events": [
+     {
+      "event": 10,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 6
+     },
+     {
+      "event": 11,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 6
+     },
+     {
+      "event": 12,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 6
+     },
+     {
+      "event": 13,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 6
+     },
+     {
+      "event": 14,
+      "handler": "0x100031c7c",
+      "handler_symbol": "",
+      "next_state": 1
+     },
+     {
+      "event": 23,
+      "handler": "0x10002fac8",
+      "handler_symbol": "",
+      "next_state": 3
+     },
+     {
+      "event": 15,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 6
+     },
+     {
+      "event": 16,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 6
+     },
+     {
+      "event": 17,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 6
+     },
+     {
+      "event": 18,
+      "handler": "0x100006680",
+      "handler_symbol": "",
+      "next_state": 6
+     },
+     {
+      "event": 28,
+      "handler": "0x1000302a0",
+      "handler_symbol": "",
+      "next_state": 5
+     },
+     {
+      "event": 20,
+      "handler": "0x10003286c",
+      "handler_symbol": "",
+      "next_state": 7
+     }
+    ]
+   },
+   {
+    "index": 7,
+    "events_ptr": "0x1002195c0",
+    "event_count": 4,
+    "events": [
+     {
+      "event": 12,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 7
+     },
+     {
+      "event": 13,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 7
+     },
+     {
+      "event": 14,
+      "handler": "0x100031c50",
+      "handler_symbol": "",
+      "next_state": 1
+     },
+     {
+      "event": 23,
+      "handler": "0x10002fac8",
+      "handler_symbol": "",
+      "next_state": 3
+     }
+    ]
+   }
+  ]
+ },
+ "message_handler_tables": {
+  "kiAP2MessageHandlerEntries_AccAuthentication": {
+   "address": "0x1002205d8",
+   "entries": [
+    {
+     "msg_id": 43521,
+     "handler": "0x1001850bc",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 43523,
+     "handler": "0x100185d6c",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 43526,
+     "handler": "0x1001860d4",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 3
+  },
+  "kiAP2MessageHandlerEntries_AppLaunch": {
+   "address": "0x10021d018",
+   "entries": [
+    {
+     "msg_id": 59906,
+     "handler": "0x1001539dc",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 1
+  },
+  "kiAP2MessageHandlerEntries_AppLinks": {
+   "address": "0x10021ce10",
+   "entries": [
+    {
+     "msg_id": 44288,
+     "handler": "0x100150750",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 44290,
+     "handler": "0x100150ff4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 44291,
+     "handler": "0x10015115c",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 3
+  },
+  "kiAP2MessageHandlerEntries_AssistiveTouch": {
+   "address": "0x10021c708",
+   "entries": [
+    {
+     "msg_id": 21504,
+     "handler": "0x10014bab4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 21505,
+     "handler": "0x10014bbdc",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 21506,
+     "handler": "0x10014bcf4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 21508,
+     "handler": "0x10014be18",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 4
+  },
+  "kiAP2MessageHandlerEntries_BLEPairing": {
+   "address": "0x100219870",
+   "entries": [
+    {
+     "msg_id": 45314,
+     "handler": "0x100129a28",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 45315,
+     "handler": "0x100129d14",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 45317,
+     "handler": "0x10012a03c",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 3
+  },
+  "kiAP2MessageHandlerEntries_BTConnectionStatus": {
+   "address": "0x100220b10",
+   "entries": [
+    {
+     "msg_id": 19969,
+     "handler": "0x100189680",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 19971,
+     "handler": "0x100189c00",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 19973,
+     "handler": "0x10018a024",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 3
+  },
+  "kiAP2MessageHandlerEntries_CarPlayStartSession": {
+   "address": "0x10021e650",
+   "entries": [
+    {
+     "msg_id": 17153,
+     "handler": "0x10016d3ac",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 1
+  },
+  "kiAP2MessageHandlerEntries_Communications": {
+   "address": "0x100218740",
+   "entries": [
+    {
+     "msg_id": 16724,
+     "handler": "0x10011e6e4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16726,
+     "handler": "0x10011ec18",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16727,
+     "handler": "0x10011ece4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16729,
+     "handler": "0x10011f020",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16730,
+     "handler": "0x10011f0e0",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16731,
+     "handler": "0x10011f4bc",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16732,
+     "handler": "0x10011f70c",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16733,
+     "handler": "0x10011f968",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16734,
+     "handler": "0x10011f97c",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16735,
+     "handler": "0x10011f990",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16736,
+     "handler": "0x10011fb84",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16737,
+     "handler": "0x10011fd54",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16752,
+     "handler": "0x10011ff54",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 16754,
+     "handler": "0x10012081c",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 14
+  },
+  "kiAP2MessageHandlerEntries_DestinationSharing": {
+   "address": "0x1002218a0",
+   "entries": [
+    {
+     "msg_id": 4314,
+     "handler": "0x10019a738",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 4316,
+     "handler": "0x10019aa70",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 4317,
+     "handler": "0x10019ac90",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 3
+  },
+  "kiAP2MessageHandlerEntries_DeviceAuthentication": {
+   "address": "0x100218eb0",
+   "entries": [
+    {
+     "msg_id": 43536,
+     "handler": "0x100123108",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 43538,
+     "handler": "0x100123204",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 43540,
+     "handler": "0x10012356c",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 43541,
+     "handler": "0x100123690",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 4
+  },
+  "kiAP2MessageHandlerEntries_DigitalAudio": {
+   "address": "0x10021fc00",
+   "entries": [
+    {
+     "msg_id": 55808,
+     "handler": "0x1001819f8",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 55810,
+     "handler": "0x100181ad4",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 2
+  },
+  "kiAP2MessageHandlerEntries_DigitalCarKey_Matching": {
+   "address": "0x100220698",
+   "entries": [
+    {
+     "msg_id": 17154,
+     "handler": "0x1000ed624",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 1
+  },
+  "kiAP2MessageHandlerEntries_ExternalAccessory": {
+   "address": "0x10021d268",
+   "entries": [
+    {
+     "msg_id": 59907,
+     "handler": "0x100154964",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 1
+  },
+  "kiAP2MessageHandlerEntries_HID": {
+   "address": "0x10021a0b0",
+   "entries": [
+    {
+     "msg_id": 26624,
+     "handler": "0x100130444",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 26626,
+     "handler": "0x100130cf0",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 26627,
+     "handler": "0x1001313dc",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 26629,
+     "handler": "0x10013101c",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 4
+  },
+  "kiAP2MessageHandlerEntries_Identification": {
+   "address": "0x10021a7e0",
+   "entries": [
+    {
+     "msg_id": 7425,
+     "handler": "0x10013bcc8",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 7430,
+     "handler": "0x100050934",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 7429,
+     "handler": "0x10013b28c",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 3
+  },
+  "kiAP2MessageHandlerEntries_Location": {
+   "address": "0x10021f770",
+   "entries": [
+    {
+     "msg_id": 65531,
+     "handler": "0x100179484",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 1
+  },
+  "kiAP2MessageHandlerEntries_MediaLibrary": {
+   "address": "0x10021d608",
+   "entries": [
+    {
+     "msg_id": 19456,
+     "handler": "0x100157e20",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 19458,
+     "handler": "0x100157f14",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 19459,
+     "handler": "0x100157fa8",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 19461,
+     "handler": "0x100158c30",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 19462,
+     "handler": "0x100158f18",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 19463,
+     "handler": "0x1001591d4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 19464,
+     "handler": "0x1001595f0",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 19465,
+     "handler": "0x100159a3c",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 8
+  },
+  "kiAP2MessageHandlerEntries_Navigation": {
+   "address": "0x10021f620",
+   "entries": [
+    {
+     "msg_id": 20992,
+     "handler": "0x10017527c",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 20995,
+     "handler": "0x10017593c",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 3329,
+     "handler": "0x100175c70",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 3
+  },
+  "kiAP2MessageHandlerEntries_NowPlaying": {
+   "address": "0x10021c038",
+   "entries": [
+    {
+     "msg_id": 20480,
+     "handler": "0x1001499f0",
+     "handler_symbol": "__startNowPlayingUpdatesHandler"
+    },
+    {
+     "msg_id": 20482,
+     "handler": "0x10014a93c",
+     "handler_symbol": "__stopNowPlayingUpdatesHandler"
+    },
+    {
+     "msg_id": 20483,
+     "handler": "0x10014aa20",
+     "handler_symbol": "__setNowPlayingInfoHandler"
+    }
+   ],
+   "count": 3
+  },
+  "kiAP2MessageHandlerEntries_OOBBTPairing": {
+   "address": "0x10021a4d0",
+   "entries": [
+    {
+     "msg_id": 177,
+     "handler": "0x1001378cc",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 179,
+     "handler": "0x100137de0",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 2
+  },
+  "kiAP2MessageHandlerEntries_OOBBTPairing2": {
+   "address": "0x10021e3b0",
+   "entries": [
+    {
+     "msg_id": 2817,
+     "handler": "0x1001695e8",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 2818,
+     "handler": "0x100169e34",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 2
+  },
+  "kiAP2MessageHandlerEntries_Power": {
+   "address": "0x10021f158",
+   "entries": [
+    {
+     "msg_id": 44544,
+     "handler": "0x1000c2088",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 44546,
+     "handler": "0x1000c2220",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 44547,
+     "handler": "0x1000c1888",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 44549,
+     "handler": "0x1000c1c6c",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 44550,
+     "handler": "0x1000c1848",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 5
+  },
+  "kiAP2MessageHandlerEntries_Test": {
+   "address": "0x10021e050",
+   "entries": [
+    {
+     "msg_id": 0,
+     "handler": "0x100166354",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 1,
+     "handler": "0x1001668d4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 4,
+     "handler": "0x100166550",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 5,
+     "handler": "0x100166758",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 4
+  },
+  "kiAP2MessageHandlerEntries_USBHostMode": {
+   "address": "0x10021d310",
+   "entries": [
+    {
+     "msg_id": 32256,
+     "handler": "0x100157590",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 32258,
+     "handler": "0x100157888",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 2
+  },
+  "kiAP2MessageHandlerEntries_Vehicle": {
+   "address": "0x10021e260",
+   "entries": [
+    {
+     "msg_id": 41217,
+     "handler": "0x1000ad35c",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 1
+  },
+  "kiAP2MessageHandlerEntries_VoiceOver": {
+   "address": "0x100219a30",
+   "entries": [
+    {
+     "msg_id": 22017,
+     "handler": "0x1000354d0",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22018,
+     "handler": "0x10012bbd4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22019,
+     "handler": "0x10003573c",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22022,
+     "handler": "0x10012bc78",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22024,
+     "handler": "0x10012bea4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22025,
+     "handler": "0x10012bf48",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22027,
+     "handler": "0x10012bfec",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22029,
+     "handler": "0x10012c2b4",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22030,
+     "handler": "0x10012c354",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22031,
+     "handler": "0x10012c608",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22033,
+     "handler": "0x10012c940",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22034,
+     "handler": "0x10012c9e0",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22035,
+     "handler": "0x10012cb20",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 13
+  },
+  "kiAP2MessageHandlerEntries_WiFiSharing": {
+   "address": "0x10021f2f0",
+   "entries": [
+    {
+     "msg_id": 22272,
+     "handler": "0x10017020c",
+     "handler_symbol": ""
+    },
+    {
+     "msg_id": 22275,
+     "handler": "0x1001703cc",
+     "handler_symbol": ""
+    }
+   ],
+   "count": 2
+  }
+ },
+ "feature_tables": {
+  "kiAP2FeatureHandlerEntries": {
+   "address": "0x10021e8c0",
+   "raw_entries": [
+    {
+     "slot0": "0x64",
+     "ptr": "0x10016c7d0"
+    },
+    {
+     "slot0": "0x65",
+     "ptr": "0x10016c848"
+    },
+    {
+     "slot0": "0x66",
+     "ptr": "0x10016c8c0"
+    },
+    {
+     "slot0": "0x67",
+     "ptr": "0x10016ca08"
+    },
+    {
+     "slot0": "0xc8",
+     "ptr": "0x10014569c"
+    },
+    {
+     "slot0": "0xc9",
+     "ptr": "0x100145e70"
+    },
+    {
+     "slot0": "0xca",
+     "ptr": "0x1001465c4"
+    },
+    {
+     "slot0": "0xcb",
+     "ptr": "0x1001474b4"
+    },
+    {
+     "slot0": "0xcc",
+     "ptr": "0x10014778c"
+    },
+    {
+     "slot0": "0x12c",
+     "ptr": "0x1001316f4"
+    },
+    {
+     "slot0": "0x12d",
+     "ptr": "0x100131864"
+    },
+    {
+     "slot0": "0x12e",
+     "ptr": "0x100131a14"
+    },
+    {
+     "slot0": "0x190",
+     "ptr": "0x100157a9c"
+    },
+    {
+     "slot0": "0x1f4",
+     "ptr": "0x100159e84"
+    },
+    {
+     "slot0": "0x1f5",
+     "ptr": "0x10015ab54"
+    },
+    {
+     "slot0": "0x1f6",
+     "ptr": "0x10015add0"
+    },
+    {
+     "slot0": "0x1f7",
+     "ptr": "0x10015cf84"
+    },
+    {
+     "slot0": "0x258",
+     "ptr": "0x10014bf24"
+    },
+    {
+     "slot0": "0x2bc",
+     "ptr": "0x1000c2a60"
+    },
+    {
+     "slot0": "0x2bd",
+     "ptr": "0x1000c2d7c"
+    },
+    {
+     "slot0": "0x2be",
+     "ptr": "0x10016fbf8"
+    },
+    {
+     "slot0": "0x320",
+     "ptr": "0x10012cc60"
+    },
+    {
+     "slot0": "0x321",
+     "ptr": "0x10012d09c"
+    },
+    {
+     "slot0": "0x384",
+     "ptr": "0x100181bac"
+    },
+    {
+     "slot0": "0x3e8",
+     "ptr": "0x1001708e8"
+    },
+    {
+     "slot0": "0x3e9",
+     "ptr": "0x100170bb0"
+    },
+    {
+     "slot0": "0x44c",
+     "ptr": "0x10009f248"
+    },
+    {
+     "slot0": "0x44d",
+     "ptr": "0x100155218"
+    },
+    {
+     "slot0": "0x44e",
+     "ptr": "0x10015589c"
+    },
+    {
+     "slot0": "0x44f",
+     "ptr": "0x100155358"
+    },
+    {
+     "slot0": "0x4b0",
+     "ptr": "0x10012a284"
+    },
+    {
+     "slot0": "0x4b1",
+     "ptr": "0x10012a57c"
+    },
+    {
+     "slot0": "0x4b2",
+     "ptr": "0x10012a864"
+    },
+    {
+     "slot0": "0x4b3",
+     "ptr": "0x10012aab8"
+    },
+    {
+     "slot0": "0x4b4",
+     "ptr": "0x10012ad0c"
+    },
+    {
+     "slot0": "0x514",
+     "ptr": "0x100179848"
+    },
+    {
+     "slot0": "0x515",
+     "ptr": "0x100179a78"
+    },
+    {
+     "slot0": "0x516",
+     "ptr": "0x100179be8"
+    },
+    {
+     "slot0": "0x578",
+     "ptr": "0x10018a0d8"
+    },
+    {
+     "slot0": "0x5dc",
+     "ptr": "0x10019b0f4"
+    },
+    {
+     "slot0": "0x640",
+     "ptr": "0x100138110"
+    },
+    {
+     "slot0": "0x641",
+     "ptr": "0x100138328"
+    },
+    {
+     "slot0": "0x642",
+     "ptr": "0x1001386b4"
+    },
+    {
+     "slot0": "0x6a4",
+     "ptr": "0x1000027f4"
+    },
+    {
+     "slot0": "0x6a5",
+     "ptr": "0x1001777c0"
+    },
+    {
+     "slot0": "0x6a6",
+     "ptr": "0x100177d80"
+    },
+    {
+     "slot0": "0x6a7",
+     "ptr": "0x1001783bc"
+    },
+    {
+     "slot0": "0x6a8",
+     "ptr": "0x1001788f4"
+    },
+    {
+     "slot0": "0x708",
+     "ptr": "0x1001208f8"
+    },
+    {
+     "slot0": "0x709",
+     "ptr": "0x10012114c"
+    },
+    {
+     "slot0": "0x70a",
+     "ptr": "0x10012170c"
+    },
+    {
+     "slot0": "0x70b",
+     "ptr": "0x100122060"
+    },
+    {
+     "slot0": "0x70c",
+     "ptr": "0x100122140"
+    },
+    {
+     "slot0": "0x70d",
+     "ptr": "0x100122a10"
+    },
+    {
+     "slot0": "0x76c",
+     "ptr": "0x10016a340"
+    },
+    {
+     "slot0": "0x76d",
+     "ptr": "0x10016a630"
+    },
+    {
+     "slot0": "0x7d0",
+     "ptr": "0x100151564"
+    },
+    {
+     "slot0": "0x7d1",
+     "ptr": "0x1001521b0"
+    },
+    {
+     "slot0": "0x834",
+     "ptr": "0x10016e004"
+    },
+    {
+     "slot0": "0x898",
+     "ptr": "0x100186bc8"
+    }
+   ]
+  }
+ }
+}

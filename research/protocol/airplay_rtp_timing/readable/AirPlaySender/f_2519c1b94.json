@@ -1,0 +1,13 @@
+{
+  "address": "0x2519c1b94",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "39dec1e48153cd60dc1a9772ee4060fba9971eb97a23ea80581e188d12614010",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "39dec1e48153cd60dc1a9772ee4060fba9971eb97a23ea80581e188d12614010",
+  "ghidra_name": "_APAudioZeroTimeStampProviderGetZeroTimeStamp",
+  "signature": "undefined _APAudioZeroTimeStampProviderGetZeroTimeStamp()",
+  "diagnostic": "",
+  "c_file": "f_2519c1b94.ghidra.c",
+  "c_sha256": "620b0f6a922badf66820063545035159c7eb235ea1f010fdcdb0f143d2c0c8dd",
+  "status": "DECOMPILED_UNREVIEWED"
+}

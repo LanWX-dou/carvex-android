@@ -1,0 +1,50 @@
+; accessoryd 0x1000221a8-0x100022264; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x1000221a8:	pacibsp	
+0x1000221ac:	stp	x24, x23, [sp, #-0x40]!
+0x1000221b0:	stp	x22, x21, [sp, #0x10]
+0x1000221b4:	stp	x20, x19, [sp, #0x20]
+0x1000221b8:	stp	x29, x30, [sp, #0x30]
+0x1000221bc:	add	x29, sp, #0x30
+0x1000221c0:	mov	x21, x3
+0x1000221c4:	mov	x20, x2
+0x1000221c8:	mov	x19, x1
+0x1000221cc:	mov	x22, x0
+0x1000221d0:	mov	x0, x2
+0x1000221d4:	bl	#0x1001a1590
+0x1000221d8:	mov	x23, x0
+0x1000221dc:	mov	x0, x20
+0x1000221e0:	bl	#0x1001a1570
+0x1000221e4:	mov	x20, x0
+0x1000221e8:	mov	x0, x19
+0x1000221ec:	mov	x1, x21
+0x1000221f0:	mov	w2, #0
+0x1000221f4:	mov	x3, #0
+0x1000221f8:	mov	w4, #0
+0x1000221fc:	mov	x5, #0
+0x100022200:	mov	x6, #0
+0x100022204:	bl	#0x100068004
+0x100022208:	mov	w0, #0xffff
+0x10002220c:	mov	x1, x22
+0x100022210:	mov	x2, #0
+0x100022214:	mov	x3, x21
+0x100022218:	bl	#0x10008eb48
+0x10002221c:	mov	w22, w23
+0x100022220:	cbz	x22, #0x10002224c
+0x100022224:	mov	x21, x0
+0x100022228:	mov	x23, #0
+0x10002222c:	ldrb	w1, [x20, x23]
+0x100022230:	mov	x0, x21
+0x100022234:	mov	x2, x19
+0x100022238:	bl	#0x10008eb68
+0x10002223c:	cbnz	x0, #0x100022250
+0x100022240:	add	x23, x23, #1
+0x100022244:	subs	x22, x22, #1
+0x100022248:	b.ne	#0x10002222c
+0x10002224c:	mov	x0, #0
+0x100022250:	ldp	x29, x30, [sp, #0x30]
+0x100022254:	ldp	x20, x19, [sp, #0x20]
+0x100022258:	ldp	x22, x21, [sp, #0x10]
+0x10002225c:	ldp	x24, x23, [sp], #0x40
+0x100022260:	retab	

@@ -1,0 +1,3442 @@
+{
+ "docset": "iap2_link_establish",
+ "build": "24A446",
+ "device": "iPhone18,1",
+ "source": {
+  "binary": "accessoryd",
+  "path": "source/firmware/accessoryd",
+  "size": 4330752,
+  "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "uuid": "b3f36577-c4a2-3960-85ab-9d801b3f2c73",
+  "function_starts": 8706
+ },
+ "counts": {
+  "files": 621,
+  "analysis_docs": 16,
+  "spec_docs": 10,
+  "asm_files": 143,
+  "readable_c_files": 143,
+  "exported_functions": 143,
+  "sampling": "143 / 8706"
+ },
+ "coverage": [
+  {
+   "no": 1,
+   "name": "传输绑定",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-1.1",
+    "R-1.6",
+    "R-1.8",
+    "analysis/01",
+    "analysis/02"
+   ],
+   "open": [
+    "OPEN-TX-1",
+    "OPEN-TX-2",
+    "OPEN-TX-3",
+    "OPEN-TX-4"
+   ],
+   "summary": "link→runloop→transport 三层与发送/接收路径已确认；平台传输（RFCOMM/os_channel/USB）到解析器的具体注册点未定位。"
+  },
+  {
+   "no": 2,
+   "name": "链路层初始化",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-1.2",
+    "R-1.3",
+    "R-5.10",
+    "analysis/02",
+    "analysis/06"
+   ],
+   "open": [
+    "OPEN-INIT-1",
+    "OPEN-INIT-2",
+    "OPEN-INIT-3",
+    "OPEN-INIT-4"
+   ],
+   "summary": "对象大小、创建顺序、run_once 事件位、FSM 启动事件已确认；运行循环的驱动源（线程/队列）未确认。"
+  },
+  {
+   "no": 3,
+   "name": "帧格式",
+   "status": "已确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-2.1",
+    "R-2.2",
+    "R-2.3",
+    "R-2.6",
+    "R-2.10",
+    "analysis/03"
+   ],
+   "open": [
+    "OPEN-FRAME-1",
+    "OPEN-FRAME-3",
+    "OPEN-FRAME-5",
+    "OPEN-FRAME-6"
+   ],
+   "summary": "头 8 字节、大端整帧长度、控制位、两种校验算法、传统帧结构与校验范围均已由指令证明；控制位 bit2–0 与 hdr[6]/[7] 语义未确认。"
+  },
+  {
+   "no": 4,
+   "name": "SYN 协商",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-3.1",
+    "R-3.2",
+    "R-3.4",
+    "R-3.7",
+    "R-3.9",
+    "analysis/04"
+   ],
+   "open": [
+    "OPEN-SYN-1",
+    "OPEN-SYN-2",
+    "OPEN-SYN-4",
+    "OPEN-SYN-5"
+   ],
+   "summary": "参数结构/线格式/合法性/协商顺序已确认；0x04 字段语义、扩展字节与特性条目编码、协商失败处置未全部确认。"
+  },
+  {
+   "no": 5,
+   "name": "序号/确认/重传",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-4.1",
+    "R-4.2",
+    "R-4.3",
+    "R-4.4",
+    "R-4.8",
+    "analysis/05"
+   ],
+   "open": [
+    "OPEN-SEQ-1",
+    "OPEN-SEQ-2",
+    "OPEN-SEQ-3",
+    "OPEN-SEQ-5"
+   ],
+   "summary": "8 位序号、初始序号派生、窗口缺省 1、ACK 判定、复位矩阵已确认；EAK 编码、重传策略、重复帧处理未确认。"
+  },
+  {
+   "no": 6,
+   "name": "链路状态机",
+   "status": "已确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-5.1",
+    "R-5.3",
+    "R-5.4",
+    "R-5.7",
+    "R-5.8",
+    "analysis/06"
+   ],
+   "open": [
+    "OPEN-FSM-1",
+    "OPEN-FSM-2",
+    "OPEN-FSM-3",
+    "OPEN-FSM-4"
+   ],
+   "summary": "8 状态、29 事件上限、完整迁移表、空 handler 不迁移、链式迁移、非法事件无副作用均已确认；事件名映射与部分触发点未确认。"
+  },
+  {
+   "no": 7,
+   "name": "IDPS 阶段",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-2.11",
+    "R-6.1",
+    "analysis/07"
+   ],
+   "open": [
+    "OPEN-IDPS-1",
+    "OPEN-IDPS-2",
+    "OPEN-IDPS-3",
+    "OPEN-IDPS-4"
+   ],
+   "summary": "Detect/DetectNACK/RequestIdentify 三种帧的字节与判定已确认，SendDetect 的步骤已逐条读出；IDPS 的状态查询/结果判定与门控未确认。"
+  },
+  {
+   "no": 8,
+   "name": "识别阶段",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-6.2",
+    "R-6.3",
+    "R-6.3.1",
+    "analysis/08"
+   ],
+   "open": [
+    "OPEN-ID-1",
+    "OPEN-ID-2",
+    "OPEN-ID-4",
+    "OPEN-ID-5"
+   ],
+   "summary": "3 条识别消息 + 参数级白名单（ID 0..0x22，18 个接受、其余拒绝）+ 6 个 transport component 编号与子参数 + 拒绝原因码已由分派器证明；发送顺序、必需集合、超时未确认。"
+  },
+  {
+   "no": 9,
+   "name": "认证阶段",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-6.6",
+    "R-6.6.1",
+    "R-6.6.2",
+    "R-6.6.3",
+    "R-6.6.6",
+    "R-6.6.7",
+    "R-6.6.8",
+    "analysis/09",
+    "analysis/14"
+   ],
+   "open": [
+    "OPEN-AUTH-1",
+    "OPEN-AUTH-2",
+    "OPEN-AUTH-5",
+    "OPEN-AUTH-6"
+   ],
+   "summary": "隧道封装、13 条协议消息、authType 分支、消息应答关系、失败回退阶梯（6 种类型）与 10 s 缺省超时已确认；同一类型内部时序仍 OPEN。"
+  },
+  {
+   "no": 10,
+   "name": "会话启动边界",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-6.8",
+    "R-6.9",
+    "analysis/10"
+   ],
+   "open": [
+    "OPEN-SES-1",
+    "OPEN-SES-2",
+    "OPEN-SES-3",
+    "OPEN-SES-4"
+   ],
+   "summary": "链路可用=FSM Connected、会话启动消息 0x4301 唯一、会话按服务号路由已确认；静态字段 schema 已在 control/spec/14 闭合，运行时平台交接与下游 CarPlay 结果仍 OPEN。"
+  },
+  {
+   "no": 11,
+   "name": "异常与清理",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-7.1",
+    "R-7.2",
+    "R-7.4",
+    "R-7.9",
+    "analysis/11"
+   ],
+   "open": [
+    "OPEN-ERR-1",
+    "OPEN-ERR-2",
+    "OPEN-ERR-3",
+    "OPEN-ERR-4"
+   ],
+   "summary": "detach/attach 顺序与幂等、Failed 的唯一入口、RST 前置顺序已确认；重试上限判定、销毁顺序、挂起期队列处理未确认。"
+  },
+  {
+   "no": 12,
+   "name": "差异与未知",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "spec/08",
+    "analysis/00",
+    "STATUS.md"
+   ],
+   "open": [
+    "OPEN-RUNTIME-1"
+   ],
+   "summary": "与公开文档的差异仅记录「校验范围不同」一项（传统帧不含 FF 55）；其余无证据点已全部登记为 OPEN，共 59 项。"
+  }
+ ],
+ "coverage_summary": {
+  "已确认": 2,
+  "部分确认": 10,
+  "OPEN": 0
+ },
+ "open_items": {
+  "OPEN-TX-1": "STATUS.md",
+  "OPEN-TX-2": "STATUS.md",
+  "OPEN-TX-3": "STATUS.md",
+  "OPEN-TX-4": "STATUS.md",
+  "OPEN-INIT-1": "STATUS.md",
+  "OPEN-INIT-2": "STATUS.md",
+  "OPEN-INIT-3": "STATUS.md",
+  "OPEN-INIT-4": "STATUS.md",
+  "OPEN-FRAME-1": "STATUS.md",
+  "OPEN-FRAME-3": "STATUS.md",
+  "OPEN-FRAME-5": "STATUS.md",
+  "OPEN-FRAME-6": "STATUS.md",
+  "OPEN-SYN-1": "STATUS.md",
+  "OPEN-SYN-2": "STATUS.md",
+  "OPEN-SYN-4": "STATUS.md",
+  "OPEN-SYN-5": "STATUS.md",
+  "OPEN-SEQ-1": "STATUS.md",
+  "OPEN-SEQ-2": "STATUS.md",
+  "OPEN-SEQ-3": "STATUS.md",
+  "OPEN-SEQ-5": "STATUS.md",
+  "OPEN-FSM-1": "STATUS.md",
+  "OPEN-FSM-2": "STATUS.md",
+  "OPEN-FSM-3": "STATUS.md",
+  "OPEN-FSM-4": "STATUS.md",
+  "OPEN-IDPS-1": "STATUS.md",
+  "OPEN-IDPS-2": "STATUS.md",
+  "OPEN-IDPS-3": "STATUS.md",
+  "OPEN-IDPS-4": "STATUS.md",
+  "OPEN-ID-1": "STATUS.md",
+  "OPEN-ID-2": "STATUS.md",
+  "OPEN-ID-4": "STATUS.md",
+  "OPEN-ID-5": "STATUS.md",
+  "OPEN-AUTH-1": "STATUS.md",
+  "OPEN-AUTH-2": "STATUS.md",
+  "OPEN-AUTH-3": "STATUS.md",
+  "OPEN-AUTH-5": "STATUS.md",
+  "OPEN-SES-1": "STATUS.md",
+  "OPEN-SES-2": "STATUS.md",
+  "OPEN-SES-3": "STATUS.md",
+  "OPEN-SES-4": "STATUS.md",
+  "OPEN-ERR-1": "STATUS.md",
+  "OPEN-ERR-2": "STATUS.md",
+  "OPEN-ERR-3": "STATUS.md",
+  "OPEN-ERR-4": "STATUS.md",
+  "OPEN-RUNTIME-1": "STATUS.md",
+  "OPEN-AUTH-4": "STATUS.md",
+  "OPEN-AUTH-6": "STATUS.md",
+  "OPEN-AUTH-7": "STATUS.md",
+  "OPEN-BUF-1": "STATUS.md",
+  "OPEN-FRAME-2": "STATUS.md",
+  "OPEN-FRAME-4": "STATUS.md",
+  "OPEN-FRAME-7": "STATUS.md",
+  "OPEN-FRM-1": "STATUS.md",
+  "OPEN-ID-3": "STATUS.md",
+  "OPEN-MSG-1": "STATUS.md",
+  "OPEN-MSG-2": "STATUS.md",
+  "OPEN-MSG-3": "STATUS.md",
+  "OPEN-MSG-4": "STATUS.md",
+  "OPEN-SEQ-4": "STATUS.md",
+  "OPEN-SYN-3": "STATUS.md",
+  "OPEN-SYN-6": "STATUS.md",
+  "OPEN-SYN-7": "STATUS.md",
+  "OPEN-TMR-1": "STATUS.md",
+  "OPEN-TMR-2": "STATUS.md",
+  "OPEN-TMR-3": "STATUS.md"
+ },
+ "open_item_count": 65,
+ "files": [
+  {
+   "path": "STATUS.md",
+   "size": 19518,
+   "sha256": "20bc8f8efe227c6360cc3501a9d31e1f73605f5a95caa8495b8cc5d7462e66fd"
+  },
+  {
+   "path": "TASK.md",
+   "size": 14399,
+   "sha256": "4dc1938f24ea333fef0e9e46274cb54f29760ad01c0db96575abb094937c64f0"
+  },
+  {
+   "path": "analysis/00-method-and-environment.md",
+   "size": 11748,
+   "sha256": "08d45ad9699623e4dda3973ef21d16ffbbc9f7a3060ddc9b7f90777100de2ae5"
+  },
+  {
+   "path": "analysis/01-transport-binding.md",
+   "size": 7876,
+   "sha256": "7e78a7e967d5c0cd0d931473839eb43e62d640523742af69cc398c42e5965d79"
+  },
+  {
+   "path": "analysis/02-link-init-and-runloop.md",
+   "size": 7189,
+   "sha256": "6d3d936e39563c86d0217431fd03c0c4194a4f0bd903922e834f353f581f269a"
+  },
+  {
+   "path": "analysis/03-framing-and-checksum.md",
+   "size": 16699,
+   "sha256": "c417d2ca1a5a7fd291a6ed67c17637aff8efb4267a2c5c7949381b398293648a"
+  },
+  {
+   "path": "analysis/04-syn-negotiation.md",
+   "size": 14377,
+   "sha256": "f90de1efabdade268931d4d9fad6576be602b04dfb4d4bef7a8c88d7369d4c9e"
+  },
+  {
+   "path": "analysis/05-seq-ack-retransmit.md",
+   "size": 7573,
+   "sha256": "757bc07b95d062f7e364ca12d398d6af953de5716f7a5c749e4cb005f68b840e"
+  },
+  {
+   "path": "analysis/06-link-state-machine.md",
+   "size": 16602,
+   "sha256": "0eceee4ab75637a4d18a622d74ed26681bc6c5885337c82c003157abfa5950fc"
+  },
+  {
+   "path": "analysis/07-idps.md",
+   "size": 8744,
+   "sha256": "93cb72f4f728ddf231b011b34a56eed58d878bda0d0b135f133d8320912401c8"
+  },
+  {
+   "path": "analysis/08-identification.md",
+   "size": 6006,
+   "sha256": "492153924411fd59a289e309cd5b49c3f911223dd9e8fc08616ed48d7f9f722a"
+  },
+  {
+   "path": "analysis/09-authentication.md",
+   "size": 7489,
+   "sha256": "8a654eb443ec6444d121f91269b8a7d9ccc119406e2412bc47a7ede12c83a053"
+  },
+  {
+   "path": "analysis/10-session-boundary.md",
+   "size": 3315,
+   "sha256": "1cc2015d122459c95735189f009129920ea47b6b7b5999396665c6791a334939"
+  },
+  {
+   "path": "analysis/11-errors-and-teardown.md",
+   "size": 4510,
+   "sha256": "affc1dfbd07246e86da5b6fd2a99183e39a424946fadfae3aed906e29902c2d9"
+  },
+  {
+   "path": "analysis/12-message-table.md",
+   "size": 7932,
+   "sha256": "51bfca908373da18a0d7689bb4712953e5278e791b718ddfb2751b5c80327fdc"
+  },
+  {
+   "path": "analysis/13-function-inventory.md",
+   "size": 10666,
+   "sha256": "ba3504927cbbe3b1fe7c9600f9d6ace5691a3883830051cb9521755d31089407"
+  },
+  {
+   "path": "analysis/14-authentication-protocol.md",
+   "size": 12093,
+   "sha256": "f1971d7af8a0eb85d909c3042f91253dae321e4dc64a5dd2e15b74ea36472b53"
+  },
+  {
+   "path": "analysis/15-transport-seam.md",
+   "size": 4938,
+   "sha256": "f66244499d2c24eed43371674fb487bf93fee68627d1292ff77141d7e79168b7"
+  },
+  {
+   "path": "function-index.json",
+   "size": 74747,
+   "sha256": "4ed92d1835c1871a2ce3a72f9bab0e72c21891a637eabadbf1160d3985c165f3"
+  },
+  {
+   "path": "readable/README.md",
+   "size": 1690,
+   "sha256": "9c0797df67a28ee850bb4b8888c515c4829d3f2f3a5ff4924acb002f1a813b73"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100005f38.ghidra.c",
+   "size": 594,
+   "sha256": "b547370908697d24d397e62343642b6b282f0cd52c9e6212aef1ebf124ed5fa1"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100005f38.json",
+   "size": 632,
+   "sha256": "427187f3350c650ab298e308b22e7b10997745119e78d4c175e0c55d16020e2c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100005f4c.ghidra.c",
+   "size": 592,
+   "sha256": "120ab61c11ea7480279fbd5b8335afd889c17276377f433f1aef9e175db37f9c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100005f4c.json",
+   "size": 626,
+   "sha256": "3166f5b66bc514c72a9ebb7674dc9e567e6732d252a25d78f0664827f43afb68"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100006120.ghidra.c",
+   "size": 846,
+   "sha256": "539d3c740ca078e8fb480a116db987bf8e34d2018f7370c4842a8ab50d631364"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100006120.json",
+   "size": 630,
+   "sha256": "19e76b726ceff130d7148e909391a6af401b815df171ea1f325672ac56de51f6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000626c.ghidra.c",
+   "size": 1304,
+   "sha256": "5f85a3e90c6c5287b48f76ee6ec03d73c8f23bf9d22b40ca24fcfff6e1cc4d1a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000626c.json",
+   "size": 646,
+   "sha256": "f56d20ebefa22605e781c2a74e4672a55b0ca7467e522062c7f72ebdf7e568ee"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000639c.ghidra.c",
+   "size": 4929,
+   "sha256": "3290d4149ef23017ae5231e6e3ed7efbc45418686f07aa460fd27766ae8fcd17"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000639c.json",
+   "size": 620,
+   "sha256": "2b22e9f59e6b2f5b158ccb5f7a03c2d11e2f769a5094251c8e2f6969a39707bd"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100006e24.ghidra.c",
+   "size": 2339,
+   "sha256": "30b01e7ba1545d404daa534e65dd5066cecc63ad2043a23e9356fa37c0986c9f"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100006e24.json",
+   "size": 616,
+   "sha256": "04dc45367909a5203dbae5b7d646c4f3b68d303b9e83c8da3188269618afb4e6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100006f8c.ghidra.c",
+   "size": 693,
+   "sha256": "b00c4a6907dc78eeaa03a8fa6e6404f07a1fe3680d8ea76c1ec285caafa516f9"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100006f8c.json",
+   "size": 634,
+   "sha256": "6ac3ec02bc12ef019edff7ca09e9228fd8f6848748eea26118375636b6f73087"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000070fc.ghidra.c",
+   "size": 1034,
+   "sha256": "09af197548a6fc0dd6492b6081972ba177cab90582bd789935b317129b75e653"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000070fc.json",
+   "size": 634,
+   "sha256": "b7797c51eaa1295040d2633ba629db9777fa90f83826d1111212f2799624dc56"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000071f4.ghidra.c",
+   "size": 2158,
+   "sha256": "35106373344916bf73abfcfa02292e7ebef13e238c7edfb01f98ddb9b76565c5"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000071f4.json",
+   "size": 632,
+   "sha256": "18bf9645c534b418eaeddc737413f59a4fed31cd083f909e19847b399fe3f828"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100007728.ghidra.c",
+   "size": 1429,
+   "sha256": "fe784a5893346afcbb0a7d3f5c243a07937b1cf44d88864c6930e584eaaa1c9c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100007728.json",
+   "size": 626,
+   "sha256": "af2e82679c57181ec88e90e36cf4af878d819dfcef1994ca7fb448ad6c7a6816"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100007914.ghidra.c",
+   "size": 5671,
+   "sha256": "6385087d929f8868a66635cdf01baf8921f0fb0b8820f66b49337f8db93ddb29"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100007914.json",
+   "size": 634,
+   "sha256": "361871e4fb1f5e95bc372927547eaca6701b9858ec44bffc3a8a3d4d1644d210"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000084b8.ghidra.c",
+   "size": 509,
+   "sha256": "4feea22cc98634d6eef5e8faccd247fabd74f161ed3131667c4d29b55f8d8175"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000084b8.json",
+   "size": 624,
+   "sha256": "34a2f7844e5040eec5b93abff0a2428fa8c739ddebe36a44f7644977d31a60e3"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008590.ghidra.c",
+   "size": 1317,
+   "sha256": "f96b8d17864d125988af776494b5449bb9e5323d77869caeb7bbc6124cc1e788"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008590.json",
+   "size": 628,
+   "sha256": "ecac34aac1ce89937db4ee70f1e17a8e524df2037564f65059a28bbb185d8c84"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008698.ghidra.c",
+   "size": 3070,
+   "sha256": "e9d51595447ae99c80dae5711e067e9e5d02c70b9e830729f64530391cdbbf2d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008698.json",
+   "size": 628,
+   "sha256": "7c9b3df918f53cbff9f9d8204c4e2d44724d8d69bdf3c245337782125ae07a26"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000088b8.ghidra.c",
+   "size": 2391,
+   "sha256": "ae9810bb4c8698377f56e5d25691769ef4d39217d57ad481af95a06185c44b33"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000088b8.json",
+   "size": 632,
+   "sha256": "200b2938bc657ecbf33b07e363a63f516f6757c23481f3dfbe41517203357860"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008a44.ghidra.c",
+   "size": 1340,
+   "sha256": "2369ed62f6407830daab979f1604e66133947cc5379d02b943b2f1a5a34ce454"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008a44.json",
+   "size": 624,
+   "sha256": "50ca77ea4630b103589a7313535af56cf618be9aa95a9b70ebcc44a1c29c7753"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008ae8.ghidra.c",
+   "size": 3522,
+   "sha256": "5b0fb54918a190ad23ccef08ddd3ee054f67ceeee712b02990e30aa1d1bb32c1"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008ae8.json",
+   "size": 628,
+   "sha256": "93eb3fcf7a1125c26dac79d23af4e4c625e30f91b28813cf0dfc997fb196ff8e"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008e80.ghidra.c",
+   "size": 578,
+   "sha256": "cfcbdf8f2bc26e5bca34fcd6a7e902093738cceeea300efabbae8593c135a278"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100008e80.json",
+   "size": 632,
+   "sha256": "be03c58ce40de78d9ca51af169fcfc777a818a0e21fc0a932947d890423e8cab"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000a488.ghidra.c",
+   "size": 1046,
+   "sha256": "38635fb054da1d76b7d894e950f2da63c9500843553464a546e6ab1d02246df8"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000a488.json",
+   "size": 646,
+   "sha256": "90b5b63d0c0c227d5fc7805a68d766a5bf5267df1806f22fbaf03e3d011c7644"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000a5d0.ghidra.c",
+   "size": 11960,
+   "sha256": "2d5f72cfe04c0014ed7f0e9cc51d090b3823543939bbff55ec8f503ec55c7b7d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000a5d0.json",
+   "size": 626,
+   "sha256": "2e128788146a2ce480b3880001b05e267522c3ca31a6e0f61e4fd4f5873b468a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000ad78.ghidra.c",
+   "size": 580,
+   "sha256": "3158193b2a438a8f9fcd34f4776d0465d31552b6d26c92916a4586f1d6d09f89"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000ad78.json",
+   "size": 640,
+   "sha256": "ad0c55ddb506aac3c89dcd3e5ac145c3185bf552ca9079f19554dfd979b02cf2"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000ad88.ghidra.c",
+   "size": 601,
+   "sha256": "c77e9bedd99472de9e4515b77f006dc7b45a73e933dd89b4fe1c64ff199033d7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000ad88.json",
+   "size": 624,
+   "sha256": "3b3044be97f61c539ff9e702800d498970e25d958455549bbb8d7fa0cfe14ba3"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000ada0.ghidra.c",
+   "size": 8774,
+   "sha256": "c7a151b71878c6e1f955b4e63002bc88d3db98daca15bf88783d6d1091a3f8fa"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000ada0.json",
+   "size": 634,
+   "sha256": "30e97b9bf06fa0da2915ca1446db48b6eb02a352cd3993ce63db7c22e9948c7c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b368.ghidra.c",
+   "size": 699,
+   "sha256": "cb891adf7b2c49f2ca9fd7a8236f35b7bbb1210b8afe94376cef089f9c2beee6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b368.json",
+   "size": 622,
+   "sha256": "9cd0a353c0d0a5fcd4f867986b1f214a50bce321a657f0e9becfaa052ab54ac3"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b3bc.ghidra.c",
+   "size": 523,
+   "sha256": "fe274127c031d1b5ffec40150b192f9687420eabce362175db1f9a648b356d1a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b3bc.json",
+   "size": 614,
+   "sha256": "bbee91367003fe1e08c918c09b28c6dd157cf4de6db74dc4ecbc64cd1a209f49"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b5c0.ghidra.c",
+   "size": 540,
+   "sha256": "7e3ed7fa7fef095905458c2408842a6c316b8a1d1b4b8c1d84311608950507f9"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b5c0.json",
+   "size": 622,
+   "sha256": "b0c19680c118ff8cd887929f33cec014075a5da7a5b6b58ea4ba40828dd34880"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b5ec.ghidra.c",
+   "size": 515,
+   "sha256": "02d33db69979e1d6e09ea5a9154f952f90e7c7091493460995083b9fc288dcc0"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b5ec.json",
+   "size": 624,
+   "sha256": "dd5ab46999dbea5c536ecfcd3a89204dbcdf6e069153edcd3256cac07d663024"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b690.ghidra.c",
+   "size": 10503,
+   "sha256": "479bcc8f00c4adefc5dae84a497720e7bd05a10083f7a5d98b0a37d21ec0e4f8"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000b690.json",
+   "size": 640,
+   "sha256": "5582dbe2d4d49e3e2a0a3408c8846ada653854625097019b390d132e52b0f2c4"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000bc04.ghidra.c",
+   "size": 735,
+   "sha256": "16a97d7fac0999a5043e9d848c9a5583aa39768844d1e62bae588a37821acc3a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10000bc04.json",
+   "size": 630,
+   "sha256": "7718fe8f53ca17e6298520d4855e226c4f1143ffb9b0f7e5cd8a59288c7cb036"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000221a8.ghidra.c",
+   "size": 1122,
+   "sha256": "6fbe395b7b9fc483961223ecb955c20481c34e743946a2956d57cea6ee94b178"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000221a8.json",
+   "size": 632,
+   "sha256": "1b57659f43f8407ee0a65629ef0cfc9331223a96989e1002cdd0d9728b3609e3"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100022264.ghidra.c",
+   "size": 1702,
+   "sha256": "8c658f3eafe8045d91640da03ddc8c63f655670cce7852e3f3fa06fb8e6a029b"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100022264.json",
+   "size": 658,
+   "sha256": "0232b081b6b0aab280445f25739e3fa3370f5fb84d844a754d48cea2ad5f8948"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100022398.ghidra.c",
+   "size": 5316,
+   "sha256": "d75b56953fddace16c4d42e1449998c245b171e6136743eba2a67608f1487d17"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100022398.json",
+   "size": 662,
+   "sha256": "81bf5f4a83397494fc3805f5fdc13d4fdd3830831a0c02ae7ab8e653e8be4064"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002e5b4.ghidra.c",
+   "size": 2249,
+   "sha256": "a2c2dd46569594adea957f137b87347d9d166815b0484759fff0567d8dd11329"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002e5b4.json",
+   "size": 710,
+   "sha256": "3829dda69caadd6ff1bcd641fcf76cd996db3ca2781f86646d6adb5744d376fb"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002e730.ghidra.c",
+   "size": 2634,
+   "sha256": "6fc7a9805251c18e89ff9b3598f0e29661481e345040a8f993fd5245171e2b04"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002e730.json",
+   "size": 722,
+   "sha256": "a7e7a43d6d41224bfb4e47bc015651a7578a50ff47e7e8aed9f22f730f35fbde"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002f920.ghidra.c",
+   "size": 4544,
+   "sha256": "d7a24cf3afb30b7f8171e26d440cf154c995d1d65b5a33461db2b1432f01c875"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002f920.json",
+   "size": 654,
+   "sha256": "e4db008ca0bf64f5d2d67e927ae8c4aa6d43879f442effe9b1f820d1f8cccb32"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002fac8.ghidra.c",
+   "size": 1805,
+   "sha256": "e09b93694d9081ac9b59771ea54e09a59224457808c58617fb8fc1ca3324c199"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002fac8.json",
+   "size": 644,
+   "sha256": "a5dbfff13ceef6632eb9cd2acb2f1f34d48ae6b9f4c7401652d0e21f1e9a80da"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002fb54.ghidra.c",
+   "size": 2827,
+   "sha256": "f3015bf70622ea0a708c0e5ed4a6c928eb17c96d9156e1b5413f7919ba56d20a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002fb54.json",
+   "size": 638,
+   "sha256": "600866e387b9ae10e34982ca1be6235870f72431d80e05eabf05983081ba963d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002fcd4.ghidra.c",
+   "size": 3600,
+   "sha256": "b662c9282cccf4ada892a16745e7860eeb91ee17c4bf3a8175fe549fbe5d38b6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002fcd4.json",
+   "size": 644,
+   "sha256": "f962a59933f6b2bce781319ffea832aeeacfc8cbcd126e8c72ae8d3522228c20"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002feb0.ghidra.c",
+   "size": 2773,
+   "sha256": "e3cfcfff44ac00d36ca2350516f08b533808773322521bc07ef64827a58be79e"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10002feb0.json",
+   "size": 648,
+   "sha256": "4d94052e0850c9f6ba3720f206658253dad9db42e509819f18ce2c2d34aa06d4"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100030054.ghidra.c",
+   "size": 5256,
+   "sha256": "ce950773441c2baaef44051bf2b6f435a20fcf47caba346334d1ea432bc041c6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100030054.json",
+   "size": 656,
+   "sha256": "597277c10119bd6a6618ef22ab71609cf2e394fe571f81e0f9ddf199ca6e1b96"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10003009c.ghidra.c",
+   "size": 4888,
+   "sha256": "be875d7323a89e534ea57fc1b3a0ce5c0845030bb815c20594cf519353a51301"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10003009c.json",
+   "size": 656,
+   "sha256": "ac35c122268937853c91987ff2499f6b1baead248254d2afd0b1ce5614b49688"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100030128.ghidra.c",
+   "size": 3843,
+   "sha256": "b7ebc9e54f0b2632bb69d537e3453a59dc96096108ba30875d133bb1cf4473fc"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100030128.json",
+   "size": 682,
+   "sha256": "048266f24d11e8215acb59ade5e96601b2a504e7ea308c3ce4aec2a93a51d823"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100031c7c.ghidra.c",
+   "size": 4644,
+   "sha256": "4f2b7288decd124221f957dd9947d9b15267e8b8cf63ae2a7cda35f4141a1eed"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100031c7c.json",
+   "size": 624,
+   "sha256": "e10a0d1f93633f0f186debffd59d474fe215540d5b5629450e6b352ef8f5d5ae"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100031ef0.ghidra.c",
+   "size": 500,
+   "sha256": "24d7e982bdef838790ddb96a2b5788bf0d7fc349dc18e807e85b3ebb3f7f9c53"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100031ef0.json",
+   "size": 620,
+   "sha256": "71506896021cb437d0f0478187c6e0348333cac0edee56a5a71bdb1ed15ac845"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100031ef8.ghidra.c",
+   "size": 4354,
+   "sha256": "85f03f83855b8fce85e1226b91a9a8e643d14cec585ef822f26eba7a60376ea6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100031ef8.json",
+   "size": 638,
+   "sha256": "e719175b327430e7dd1a8d53f1df52ea9c6c51f98f67319f2338df26dc16d598"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000323f8.ghidra.c",
+   "size": 4209,
+   "sha256": "6b111b704ff0b79b2f991292e27aa0a8ec99c776bd1ec788f5ea3f5991e95e98"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000323f8.json",
+   "size": 632,
+   "sha256": "ed4386c0e3205b360cf8fcd3315f22f350b7cf7181f43c44f16310524a886dbd"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100032670.ghidra.c",
+   "size": 3107,
+   "sha256": "c86aa217dc01da84bad59f0b756498c511fbb6111cd7611af439697eaa96b6da"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100032670.json",
+   "size": 628,
+   "sha256": "44d611bea05bb600d982c8b65f3801635d6c4bef832ee3efdf40abe0cff85c76"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10003286c.ghidra.c",
+   "size": 1065,
+   "sha256": "bb15097535a0b6c569cdc04a55ae8f4f36aee3577dcc1d999cf329ee0e971d8f"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10003286c.json",
+   "size": 652,
+   "sha256": "6f2d383e615398bd38ad4290cf2a79b6302e019203936f89997b28bb88d64681"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000328b0.ghidra.c",
+   "size": 689,
+   "sha256": "892b936c386a0a8a3288aa77eabf7ff7c1ac1cacb70fc4ac60c040faad0598dd"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000328b0.json",
+   "size": 636,
+   "sha256": "4b9f4be70bbab131da768d14969a5d3959aaec42d9df2bbf2e054751e672718d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000328dc.ghidra.c",
+   "size": 11540,
+   "sha256": "c648614803e17a43fe44f6d26fb0a69dcb9f3432b029720c88315b073c153623"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000328dc.json",
+   "size": 630,
+   "sha256": "1303ea52648871ad88464bf6c9d9ccb6aeb4c00d5c2ee2b73664a3c511e74262"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033114.ghidra.c",
+   "size": 1375,
+   "sha256": "7e588467fb00adeb71e8c1eae28d3cc71da41868f4368534e5b943a63be24218"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033114.json",
+   "size": 676,
+   "sha256": "941b21ab238243f59aa1aa1cba63ffe12f85b724e8643576abac3cd087f55d3e"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000331d4.ghidra.c",
+   "size": 1140,
+   "sha256": "01083909d3f6fb744d867fbc355522f9d5c3839a3ff33f4db85c1718f81cd5c8"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000331d4.json",
+   "size": 660,
+   "sha256": "7a77b14a954c498b60911fd1f4a6b07a31aa6b9f37b109c8c7ae74825277370c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033284.ghidra.c",
+   "size": 1156,
+   "sha256": "53691a90d454684583f323d4ca45eb4a4258e433f7ae3a7c17778d18a8ccb6e2"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033284.json",
+   "size": 670,
+   "sha256": "91e6d8aa14779d140d56390667b1e41714ef248b6768320b607c6c7a280a3ec6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033338.ghidra.c",
+   "size": 1290,
+   "sha256": "8bca7f0c06f9f8bbb935171e9de5c3e426928ff387b0f8ccc3a951a9e8bb2a9d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033338.json",
+   "size": 652,
+   "sha256": "42290828f557b9c3e641d8ec354653a7f0ae13db2415450c7f32fe2bf0259b5d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000333f4.ghidra.c",
+   "size": 16062,
+   "sha256": "626eb7f8e67292d0ee2060812503203ce4030a8fb6c55782c18b3c4c584788a3"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000333f4.json",
+   "size": 632,
+   "sha256": "a8c6f39ec6dd974a8453c560b7b6e71f1a66a54418e178c5c5f4f3fc3edf1ca2"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033ed8.ghidra.c",
+   "size": 1439,
+   "sha256": "06555178eafdcc2d1192b3926ba7942c401e84dd2c5c731c864a7f954fa8348b"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033ed8.json",
+   "size": 622,
+   "sha256": "ba49f436f6900da440ff2eb4eddd53bd1e1a58a7185b0e2ea988eac0a8ca60b2"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033fd0.ghidra.c",
+   "size": 5225,
+   "sha256": "cccdf457c721c250a21d694aecac574ef9d4fa3aaf58ad42d0eb1a91f1bc3c62"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100033fd0.json",
+   "size": 612,
+   "sha256": "6a6efe71c2a3fe4c20ed8f58eefcf0f5b3e4da831c67752c17ace038ab98c870"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034424.ghidra.c",
+   "size": 731,
+   "sha256": "2d5a725ab855f622b6aaacfc7c411acf8489a47673e18de2e5ecb1f80d3b40f2"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034424.json",
+   "size": 624,
+   "sha256": "8ebe5a74c6ec1cd5b826ca8d14d9db7c9f300829eb64b939f0d23c05add887b7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034464.ghidra.c",
+   "size": 2025,
+   "sha256": "79be7700f2825b3c4399099050a01110247848d148574041be6387d911085ac1"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034464.json",
+   "size": 618,
+   "sha256": "f4cf98f2609ca2ea27ae98fc65da347e498819b40bc0ac5370277eca5151ae51"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000346c8.ghidra.c",
+   "size": 1345,
+   "sha256": "bb84f68f30e2b9bfc8623c77425caca15d689c70729c6fb6debb05fc2d4656f7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000346c8.json",
+   "size": 622,
+   "sha256": "d5ec74fc22a39bf17621ca1e5a9f50fa8c2cedb937ac3e9b55be10690941b087"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034778.ghidra.c",
+   "size": 604,
+   "sha256": "7302902504883b22838567526b02f8590ba852e4cae1215703a60305a5bb436d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034778.json",
+   "size": 624,
+   "sha256": "7953d1f86510d53100be20cb0829c341664ba82d480f86bee3dab4e308087849"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000347b0.ghidra.c",
+   "size": 3002,
+   "sha256": "68c4348d20d4ff28f9cc008605fddcfb9b83e4674aacc207664fa0d70e2242fe"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000347b0.json",
+   "size": 612,
+   "sha256": "74865ec3eaabdecc2f0b965a77c3500fe3ea3a08cf30249c9459fe499914dcfb"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000349e8.ghidra.c",
+   "size": 1038,
+   "sha256": "6eabb8fd6369300df703affef26a71a26654d1bdfb9d91e55f30e781ba064860"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000349e8.json",
+   "size": 642,
+   "sha256": "2ac3faec49fcd1c1d5cdc65e668748cd1dc3227c2b54e28142f3db3d892a22c4"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034a28.ghidra.c",
+   "size": 714,
+   "sha256": "f285c343fa783a2808990d5d0c1277629165b2a5f4903eb771f1d425302cb3d3"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034a28.json",
+   "size": 640,
+   "sha256": "4fd8c9c017ef19b7d069727175e959cad287bb17e705887e57612d91fac057bc"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034a40.ghidra.c",
+   "size": 799,
+   "sha256": "2332842a92d72b71fcdece4dcafaf45f58a2c65471b8260adecd92f7a73a169a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034a40.json",
+   "size": 642,
+   "sha256": "7e79c2866843de6edd49ec7af1f747676bdf28b8e48979b93591b5af5a4b0078"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034a70.ghidra.c",
+   "size": 526,
+   "sha256": "d9df790b1cd112065c70639d074d131f9c70bfa6156e7931668e8bc8c39c9c95"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034a70.json",
+   "size": 610,
+   "sha256": "be6e12d84f78a8d7956af0d5aeadba16b85366eb8ea253d04291d141f1f5ad02"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034a7c.ghidra.c",
+   "size": 765,
+   "sha256": "c31a812af103bb45fd5532e2ef5e7ca6c1db9366c4636638d2d5234565e65e42"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034a7c.json",
+   "size": 616,
+   "sha256": "6a67c600139f951c34433a0ec6bd4ed28b68d111e41dcb236837a1faafc29c73"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034bbc.ghidra.c",
+   "size": 755,
+   "sha256": "16cf85af8cc5eee222acd4ff7e5bd7362d0d1159ab8b73331d4ed2b2ff5f5c0a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034bbc.json",
+   "size": 616,
+   "sha256": "36fff4f09f3fa101bbb38bbfc19e8f13b1aa68fa533facb2a18a4db5743792a0"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034f24.ghidra.c",
+   "size": 931,
+   "sha256": "5f5b3abaf469eaba0ea9fce9acc987a0ed8830c2b072b3898e2a17665aa8317c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100034f24.json",
+   "size": 626,
+   "sha256": "009c97ea5599a33ec49f4c48ae90a4dae79a0186b0ee89c7ea1e480b9f468e27"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100035144.ghidra.c",
+   "size": 551,
+   "sha256": "5b90a3d95448ba9f26e17fced16e0d40c037e14788e80a6f622c140a760282d0"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100035144.json",
+   "size": 642,
+   "sha256": "1e97eb05c7040017354411b06e11e8ee8d122d6a484687e689cd7399f6658a3d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100035154.ghidra.c",
+   "size": 3592,
+   "sha256": "cfd288abe10a33fcd5498383311aedfb27f12f4dbef38405b224069c2a5bc5c8"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100035154.json",
+   "size": 632,
+   "sha256": "7d1ad402db3fb74a15a04d6f1a1f6c66ec403334a90ee0effed0a59a19c7474d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000353f8.ghidra.c",
+   "size": 1198,
+   "sha256": "d87283810104c0af877b229fef7891fd0da0282ebd496a25b275329e26475757"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000353f8.json",
+   "size": 634,
+   "sha256": "0d6aa4b7d66be7cfd9308a240012c355259a36dff5f10b7c8c7d5ef42c9b2b4a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100044ee4.ghidra.c",
+   "size": 1128,
+   "sha256": "304541f78f357d5bb1bb505e1a4adf14c376f73734662a7e94fff45d05a0ee93"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100044ee4.json",
+   "size": 644,
+   "sha256": "eee7a4e54772f4e70679da2699d680a868ae3a26fecf00e33615c8b11f14008c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100044f3c.ghidra.c",
+   "size": 1692,
+   "sha256": "1350478b84a8b7ffa779acf2d7d88335d8dcd31cc8d71986a9ad03bccf7f24ef"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100044f3c.json",
+   "size": 696,
+   "sha256": "d5675ee70f7b73efb4a826f730d1747e622a64a3b3bb569f806fefb16588abdb"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100045148.ghidra.c",
+   "size": 29590,
+   "sha256": "84256509faa96e6d218330bef46dfd4ada33bdab815b2ed66c572dbbd512a265"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100045148.json",
+   "size": 648,
+   "sha256": "f502527b90441b81cae032a45b4c298432b8f9ffd0f4acba76a434ba0e3f31c3"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000464e8.ghidra.c",
+   "size": 6691,
+   "sha256": "e82b7dad926c6ce0b53848a44d7f933691459c8cf55d4a62cc75342f1b7ae1ee"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000464e8.json",
+   "size": 658,
+   "sha256": "9c300e340034245cbb42c85b90c6fd9267372e652a71842425de4bf690fd6d33"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100046780.ghidra.c",
+   "size": 1286,
+   "sha256": "eb0db81f8ff82f9c77aa6fff956c0c08350f3654b166691e7a73d6ba1690495c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100046780.json",
+   "size": 648,
+   "sha256": "c53f9981dbf143a3a30d488c89e93f68c9266bf8b21cbbda15432e14ed3d5af9"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000467e4.ghidra.c",
+   "size": 864,
+   "sha256": "9d732851c6de1c2df9de914139056e169fb0e653a52d90dc763151cdd9c39f6e"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000467e4.json",
+   "size": 660,
+   "sha256": "637ee09eeac5dfbafb20c80822d3964a635e0d0b2afa3a8bff7d1f912020ebc1"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100046830.ghidra.c",
+   "size": 1384,
+   "sha256": "5a8ccafe1885e6d5ebc286f1f818034346be5fb99187395d399c30e904d0dfa9"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100046830.json",
+   "size": 648,
+   "sha256": "7ef59ca8be3186889ad84909e586e20e88038c2d0660e064261138208adfd908"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000468dc.ghidra.c",
+   "size": 6021,
+   "sha256": "984f11e4f6d154194f11bfde400671e7d5df6057b83388bd3754789e60154fc2"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000468dc.json",
+   "size": 660,
+   "sha256": "2bb4f53c13799a0876bf90adcfb85369f18a05915384b31fbc19bbb66314bfc7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100046c78.ghidra.c",
+   "size": 49799,
+   "sha256": "06ebc68be2623fd0afe463770ef453219bb40bb3141dfcadf3a64f57e821bf71"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100046c78.json",
+   "size": 646,
+   "sha256": "41ba67e70fd0d97989a0842394aeaa06e940ed1ab810e77b1592e0fbd6173cc0"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048904.ghidra.c",
+   "size": 2072,
+   "sha256": "b1349f1e51590ef8e7f1f8b8a85678432ee578feb7fad22945ac4e0476ae2016"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048904.json",
+   "size": 670,
+   "sha256": "7d583e873e459a944e3a3d07815cc07891be8b6dcd37c23272edeca3a39e2928"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048a1c.ghidra.c",
+   "size": 2686,
+   "sha256": "6fff5c5ad20475c93ba31c42419e91a1734ebf60bd4fa6c64976df636135a0b6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048a1c.json",
+   "size": 650,
+   "sha256": "674d6c6ac0f95cce1d5b11031f3e5c1be84de58e3a3334ab1afaf84818b8e0d5"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048bd8.ghidra.c",
+   "size": 2153,
+   "sha256": "04eff0f513522193b6328e44db8bf36a252ef5b833d0cced6fcd41d457ba9121"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048bd8.json",
+   "size": 672,
+   "sha256": "5e9b91261e65e81aa3112119ef227f22966d5cd2048b6442e3a3704a14556d5f"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048d70.ghidra.c",
+   "size": 2202,
+   "sha256": "7e49d2eeec4b999c2aeb3f9cfb5d4e9852e524ff5e1f8e3c850e38444114f89f"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048d70.json",
+   "size": 668,
+   "sha256": "3b0e52e7f82b97ba814a7f5f78c5c7db67b34f467bddd171bb9cc964b2e51241"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048e90.ghidra.c",
+   "size": 1403,
+   "sha256": "1de7528509e88d0f55d3cd68d73d05b6c572ffda57dd4c034f5ffe785e657346"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100048e90.json",
+   "size": 670,
+   "sha256": "837613edddb89db078c33098ab63e278bd41415e0cd37b2f05f52e97c3844fa1"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100049224.ghidra.c",
+   "size": 14463,
+   "sha256": "a55b31561bdc57400c4bbfb476eb994132e6f2edb474088542cf46d42a473c26"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100049224.json",
+   "size": 660,
+   "sha256": "98ccd3a165445266190126c2e7ac226858231988f4d7054beba5c4eb0ba03cf6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10004f254.ghidra.c",
+   "size": 2252,
+   "sha256": "2bac6622f3ed22abbc322060abe6354f914c432fe7171dc69ea975014d9de960"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10004f254.json",
+   "size": 680,
+   "sha256": "d3223cb15ceed75e7fd431a88beeecc12c86599b56734aec1079b87272e7697d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000500a8.ghidra.c",
+   "size": 2714,
+   "sha256": "fa3a9716f274551d3116091eec0006019f9d5a174e3df3e1229f4abd46772ceb"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000500a8.json",
+   "size": 666,
+   "sha256": "7b8b90ac36ed8e2c527b9e8b43625878bb8b30e562f66141bc1fa0298a07e8b0"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100050934.ghidra.c",
+   "size": 2797,
+   "sha256": "7edb36bd7178ca7a5dcb9d31072ab1ee712bc40c6980b4182a5ad1e17ed25a88"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100050934.json",
+   "size": 682,
+   "sha256": "3f636fc24de4f2bad55fa03a9813d11b81ab67c8a9efbd04b718ad2cf80e2246"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000512e8.ghidra.c",
+   "size": 5733,
+   "sha256": "3c2555d9ff04eefc3bdc7eec59e49ec766a616959c07a988fc2a72d05918be8f"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000512e8.json",
+   "size": 632,
+   "sha256": "e3cca6154b7ef3f33d9633c738b32cc0b01047d5be5e031407f998b58ed93160"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10006baa4.ghidra.c",
+   "size": 479,
+   "sha256": "cfedf299cad69fbf375a1ef70781d3dccc8d615d09633a3f2855f85c7aaf0746"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10006baa4.json",
+   "size": 620,
+   "sha256": "1d055c894af906bd09c020d73cf2c74e8c8ee3cad3b1c89b5c1cb2a184689ee0"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10006baac.ghidra.c",
+   "size": 1128,
+   "sha256": "b9d3fd8208ce6b6d1aa894c0db90f5ac007e2bc871735878071d90c983ef6e3c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10006baac.json",
+   "size": 610,
+   "sha256": "e12b3691d0627b40292f95e308ea5bad1995c9230fd00f9b2d407308f5d21ab3"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10008d0f4.ghidra.c",
+   "size": 4184,
+   "sha256": "6737809e19b7dd4c335d43a0230878705cf2a54f2c3f4eb5b22bcd7e9d05ea7b"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10008d0f4.json",
+   "size": 674,
+   "sha256": "6aff67d86b702aacabb00cc50f575300fa7f48adecae2f9ac8c8bf0a48f83290"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10008d72c.ghidra.c",
+   "size": 12868,
+   "sha256": "d1dbb55731a3446b47248eac625b6979439a9e19bd3909a732e42b39041a21cc"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10008d72c.json",
+   "size": 666,
+   "sha256": "12ccb00567028327aaf09cfa6ff689fd43a505c633616e50e3589a398d1d66ce"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10008e434.ghidra.c",
+   "size": 1712,
+   "sha256": "bb8395c48e855d31b458b0497d0dcfd96d417119cb5d91ccf97bab3cbcb8842c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10008e434.json",
+   "size": 652,
+   "sha256": "1279d3439e0c43c834e977bcdbccc944214e9ea37c024d8ca1df7d28a1d40d9e"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10008e528.ghidra.c",
+   "size": 6111,
+   "sha256": "8f16c4632c7f967852289685a5dfdbded4ad46c479fd3461844b6be2f5425adf"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10008e528.json",
+   "size": 664,
+   "sha256": "1c4cf6749557fe131a9b16775e651d63d30167439e2bfc2d48882d5315b93184"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10009fba8.ghidra.c",
+   "size": 10980,
+   "sha256": "ff0084595e97ef139a8a62e82ef4a08958a7e102802a92581b8e64c2f340c04d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10009fba8.json",
+   "size": 658,
+   "sha256": "d1f0cddf85be58694635a2b4d241519e44506acca4b67d1944e60fc48d82c2b1"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000a02d0.ghidra.c",
+   "size": 2668,
+   "sha256": "b7c7d9edc0756ef8dc0c3b208cfe5938e10d2522fbd1913862f978427ba19f37"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000a02d0.json",
+   "size": 662,
+   "sha256": "30c73bf95e8d0327887c20cebec3e86f9d43529e5fe3fbc4956a753b8f6f44ea"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000a9414.ghidra.c",
+   "size": 777,
+   "sha256": "8040ee44fcf7f44a976c2f2afa0764090200ce782aa7913a8fb8c90c72f088e2"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000a9414.json",
+   "size": 672,
+   "sha256": "b9f02dd47fbd76fe66c159b9350f487bce5ccc63d923d62f6bac47519b19f886"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000c07a8.ghidra.c",
+   "size": 6537,
+   "sha256": "69cb978b7554ae804fbfcd8df6cc4fe5af02b17a8ae175d4f761ea2f940ac062"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000c07a8.json",
+   "size": 642,
+   "sha256": "eba017a99ef8d1307d4d9f7903d45c6f10addccbcb7b559394e8cd3c5a9cdf9c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cae1c.ghidra.c",
+   "size": 538,
+   "sha256": "be0e449ee37f5b6b062e411de3c4c7b7f7aed672d78c3627894478b147bf2ac7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cae1c.json",
+   "size": 636,
+   "sha256": "ae62d2487cea0d8c1bd946b11fa9804035feeb247e64710468db9c01b3e92f47"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cae38.ghidra.c",
+   "size": 722,
+   "sha256": "27abce46803b3bfa0618522bd19e810598d70e565704b2106ba9bddfaa4e3940"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cae38.json",
+   "size": 638,
+   "sha256": "f1d5627ff3959bbcd96a22f9d4fdfe914b1455b935d42c145efd3c69ead70f31"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cae54.ghidra.c",
+   "size": 1394,
+   "sha256": "278a0caabb008c3e5122913d3da7c954a5a607c21c9f9e8339b6663ff022563a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cae54.json",
+   "size": 626,
+   "sha256": "38bec0595910d0f77c86aeefbb6586993ac5d149a74f2809deb1db7c8e90a01a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000caef4.ghidra.c",
+   "size": 624,
+   "sha256": "0b194dd8c5e3663ccc7933687d2cf0fb8545a33ee12bf5e14cd1946b65956803"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000caef4.json",
+   "size": 638,
+   "sha256": "23df82e324ad27a4f5cafcd4664f9259a91dab5b7b1473642bfc6b575acfea3b"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000caf0c.ghidra.c",
+   "size": 2192,
+   "sha256": "60409be69cb2403e0fcd3749d7dada59703f68d95024dd26ba627dd66c929edb"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000caf0c.json",
+   "size": 626,
+   "sha256": "ca4c9ac07a16de330834674821ca8f82e465d8d5ebeac62045f6cafbf3437a3c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cb0b8.ghidra.c",
+   "size": 1227,
+   "sha256": "9a955e916107b45688144b922e22da461a25ca1927ac12515df44869349861af"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cb0b8.json",
+   "size": 628,
+   "sha256": "3a66ddf68ea96e01960b8f77a2f4cd48421490c5e726127c024dac3929696724"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cb158.ghidra.c",
+   "size": 832,
+   "sha256": "9271963b1b74fc99de71aa094169c3e31453c8bd92da17478dcb2c5a738800c0"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cb158.json",
+   "size": 630,
+   "sha256": "e4d15f8b35a98333fb9e4ae8858ad6fcbce2b12224a985cd5f86457367f36b4b"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cf5b8.ghidra.c",
+   "size": 11654,
+   "sha256": "398deb45c33e40518167cfb2fc594ca8db27696a456ce770c5f62376ebe9a608"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000cf5b8.json",
+   "size": 638,
+   "sha256": "877f85bd087787f75b692317571fda9bd3a04bdc72477f2b28596951a41e261d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000d3094.ghidra.c",
+   "size": 2123,
+   "sha256": "fd1b525113de0f4c12e05ce7bccb1097e63dac2edb72e443da7aa493477d6987"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1000d3094.json",
+   "size": 626,
+   "sha256": "75e292135998fa7965ea4bb6c3aafb6f56e72d7adf781bedf7800eb2d3fa94e6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100102e20.ghidra.c",
+   "size": 1067,
+   "sha256": "55b4dc61e7a0361cedc8ecf3816dcf58d18f5abae2b2a207a8889229cb616545"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100102e20.json",
+   "size": 626,
+   "sha256": "ff35a8f163cd7ec7580b6f3c7378d56c0140a052fcdf626874b805fccfba60d4"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100102ea0.ghidra.c",
+   "size": 1479,
+   "sha256": "a62b5cc9be27544bf904386104dd83fcbb80a2cdab90d429f1ae75f2eae395dd"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100102ea0.json",
+   "size": 634,
+   "sha256": "584e66368f9ed4f8b9d14f0e52d2d54efe12e6967b7d5d15aac744d7dc49e3a5"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100102f58.ghidra.c",
+   "size": 1173,
+   "sha256": "353dd68d9fcffda94265977e78b6a599a6c086a4264b36596d2ae02b6ccca204"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100102f58.json",
+   "size": 644,
+   "sha256": "8bf85aa417ae4e38a9bc1ad0bffb887e4033328de029fb6f73838ee2996c0f46"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100102fdc.ghidra.c",
+   "size": 2985,
+   "sha256": "5f66b66b5b984d1260cd6404d398019e88c2d10e740260609a5c506cc7349681"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100102fdc.json",
+   "size": 634,
+   "sha256": "6a200f68d4f65b192be176974842d802650c60bf50e2e64f23c5d00500bc3766"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001031d0.ghidra.c",
+   "size": 668,
+   "sha256": "63251782b3e4a57e9f8d2ab3e22ccdef65a98c7f1061ff724d045a9bb5c52b4a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001031d0.json",
+   "size": 634,
+   "sha256": "de61800317799dae8505b31958ffbf72272c2d20966548678cfb407764a3cfd1"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001031f0.ghidra.c",
+   "size": 561,
+   "sha256": "17195c3870fe841b746e641d298e84e048c27381ba1cae5e7fb43ab54512cdc1"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001031f0.json",
+   "size": 634,
+   "sha256": "94c30fa1324f38dcaeab1ffc304926c881e6322bf235305b845d53928f53212d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100103210.ghidra.c",
+   "size": 558,
+   "sha256": "dcfebbb442c39299470443dfdfb0440b30a1e9d7bc826b3da4c01e4e86f2b4bc"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100103210.json",
+   "size": 634,
+   "sha256": "f042da8fc5fa5bfb0a8a99ba59805b3baef261fcef490c55d09689d5dd5b5d1b"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100103230.ghidra.c",
+   "size": 3069,
+   "sha256": "0461341dff00cae3b0290641c4f5bde87ecbb687a215f975ad308f1d272fca5e"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100103230.json",
+   "size": 628,
+   "sha256": "bb08db53448cef442420a834363b8344d238312f1ef7b8be181070c1cf55a264"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10010366c.ghidra.c",
+   "size": 1103,
+   "sha256": "15704d2f14086f77f7e86f8bce62a55c7c8a25877ff0bba3b9d496ee856f1833"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10010366c.json",
+   "size": 612,
+   "sha256": "4f0dd2bfbc3660fa5dd562486823a59c57633ba2153d472cacd65caacd409973"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100103954.ghidra.c",
+   "size": 483,
+   "sha256": "b17cc0f341d3d561bfffc2b5f3488e1d1481c3a725002e825af4af8edf99d3da"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100103954.json",
+   "size": 650,
+   "sha256": "45ab58ab86b991a04461d517b8f3b18818a3e77cc055319f48c421d4da0aee8c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100103970.ghidra.c",
+   "size": 563,
+   "sha256": "3bb887e2a982ccb2eb69f2a13de139758e84d9472de5591d87e15b3e79e831e4"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100103970.json",
+   "size": 622,
+   "sha256": "d5447d416cd87de7df1b2419154c5d698779be8040684ba44a6b621301e8a974"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100123108.ghidra.c",
+   "size": 1712,
+   "sha256": "b23b34cfc447f95f7e3df27be923bd5b2e4d959d50c4e3450adb8835f0dcb0f9"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100123108.json",
+   "size": 680,
+   "sha256": "2df647936d4c838e0578771987f92f8bbb77cc0bdb491de250f9977fdf023c84"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100123204.ghidra.c",
+   "size": 5147,
+   "sha256": "870bd6d0769fbafc55a0bb51455daf998513d2a61f88557a314772ec220b4388"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100123204.json",
+   "size": 692,
+   "sha256": "5a1b073b31efa420d2f1aafdb722af36a95a9fc305ab65c6e56d72b66012f2f6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10012356c.ghidra.c",
+   "size": 799,
+   "sha256": "4cee6218ef94f2cc7824748b316604eb79ff18a644dc959a2634484096a7b8f6"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10012356c.json",
+   "size": 684,
+   "sha256": "2f5a54613056a69f30722a6d512149ef8e34a8e156c783508d04592cab25f2ff"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100123690.ghidra.c",
+   "size": 766,
+   "sha256": "e61220cfd73b73fed898fa0e550678836154ebcadeb74575cccfebb8f42dabc8"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100123690.json",
+   "size": 690,
+   "sha256": "874526a84d789d60d03be885686d30d197fd70f07b381bf01eaa74a116dc442c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100129350.ghidra.c",
+   "size": 3860,
+   "sha256": "b4188e921c8ed9e517b5923273c272a4aff6e39298c96374e46fc683947193f7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100129350.json",
+   "size": 620,
+   "sha256": "9c3c507f2531510e834edf57b517f2fdb7cc43a52f3c59021748063a7527349b"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100132e28.ghidra.c",
+   "size": 2630,
+   "sha256": "3d9808c97d8fc80ae388572cf6db6eed47de2cc4ef38240e8fa174db6ed2281c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100132e28.json",
+   "size": 672,
+   "sha256": "b19d665724d046d394daee5dd41ee5fd8835866bcf402d6f8a748b0a98f599e2"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100132fc0.ghidra.c",
+   "size": 1983,
+   "sha256": "60cb969cfa982ea183d483e41c08975c3cf4977bcca8222b11e1c3226557d56c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100132fc0.json",
+   "size": 672,
+   "sha256": "25b52c46f7c3b38ba7cb682d8cb3417993cc274914406814f493fb4759794418"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001330e0.ghidra.c",
+   "size": 5281,
+   "sha256": "4380b1346e73cd7f7ed6693563d54ad2dab58dd228a86654d8193e2699b0c8e7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001330e0.json",
+   "size": 656,
+   "sha256": "68e4562226df9747058f617d3aeb9e5ea87cc9b857b4814646737cdfa41a85fc"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001334b8.ghidra.c",
+   "size": 1658,
+   "sha256": "6c1bbf3b920aaeb7ea4fbe3c5ac97b91191409472812eb27ee9ae27996fc8139"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001334b8.json",
+   "size": 686,
+   "sha256": "9d1d18904868768652d41476dc6eab8ae3671653182e0f5bd24a867e593bda43"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10013358c.ghidra.c",
+   "size": 7439,
+   "sha256": "77916ef33b576437869caaea5a0fe0b9dd3ba7f5536446041dc474faae3c8fa7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10013358c.json",
+   "size": 676,
+   "sha256": "c09c2df8c94bcfc21ee0967682378e747d1c0948b6fea9d57fab678f145d0dba"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10013b28c.ghidra.c",
+   "size": 2232,
+   "sha256": "64441bc5e68e0f2c396239b335be3bb832e14353c9ccf21cbf1f332d30a0d0ce"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10013b28c.json",
+   "size": 674,
+   "sha256": "4536d7fe9e7ec06f4b76fecd0caa864742f59bb4bcdd5fdb3df7808011f9c9ad"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10013bcc8.ghidra.c",
+   "size": 8305,
+   "sha256": "f98eacff55d6c418687f7a63d28cb7ba3dc11d884992ca4531f1c809a5355936"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10013bcc8.json",
+   "size": 670,
+   "sha256": "59fd3cd741e21b95e4b70e0843c3a17a0e3e7a2217e36deadf368dc7c4dd08f3"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100152520.ghidra.c",
+   "size": 4859,
+   "sha256": "9d7c1cc5a41083264437cbf645b0f70da3bff189d4324617462f88201b61f51e"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100152520.json",
+   "size": 654,
+   "sha256": "78199eb55681f1f1e48d099e7094905b20bbd0767a56711b0a1127a760344ec7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10017b5fc.ghidra.c",
+   "size": 972,
+   "sha256": "0d1769037bc125f4de71de5bf730303e5b61d1a0c14061f72d2c89c5e376bec2"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10017b5fc.json",
+   "size": 644,
+   "sha256": "148e77f28c9d23735d44d8da49eac098add72a3848eb5f2daf6b6adb295bb160"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10017b680.ghidra.c",
+   "size": 788,
+   "sha256": "fabc7792169d9596cac8afcdb05b5bc21684abb352da6963216cdb1fba0ee459"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10017b680.json",
+   "size": 642,
+   "sha256": "c6ed66fb4bddbad423c81d859c490035bdae2c14cedaf525bf086b112fe98869"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10017b6a8.ghidra.c",
+   "size": 653,
+   "sha256": "6c20f575df96eeecec65098f57ee40dd76208b6a5dc9c12794cd5aaf28cca5da"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10017b6a8.json",
+   "size": 646,
+   "sha256": "1384facf49697482c18dc5064a110a5c8477d37768a4c699c9b165f93fbcabba"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001850bc.ghidra.c",
+   "size": 17026,
+   "sha256": "e3f5a7ba02c9cb5dddd160ec280bc87c13ab9f4304e5811891263f9f7399e0f4"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001850bc.json",
+   "size": 648,
+   "sha256": "f76bb06aa15bca07ec7939a1cafdc410e57a0a59b0dc7bee547586459b50180e"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100185d6c.ghidra.c",
+   "size": 6315,
+   "sha256": "fa40e186b43e869039a9f06248562c1abcd207ef3beafeffb7dd8572946572cb"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_100185d6c.json",
+   "size": 660,
+   "sha256": "567558784c743702291ffb0507a51202825c9ce849d3bfe6dd43dabdb3e97e47"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001860d4.ghidra.c",
+   "size": 8321,
+   "sha256": "278e93301bf3bc12f9e2208a390be183c57fbb7a5fb07eccc1fa679edabd4691"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_1001860d4.json",
+   "size": 646,
+   "sha256": "202f5b9e295b9ddde2782a2b5e1ab206d463ab4a4def0d52fdfc83e2a76bdc3a"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10019bfac.ghidra.c",
+   "size": 2390,
+   "sha256": "542bfcd7c7ba59bb51026ecb947e18303ce454eb163cad7a893bf7eb35a054c7"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10019bfac.json",
+   "size": 622,
+   "sha256": "3d9edf2ca2851e81e30fa2562dcbc1acb736857fd67dae0f6c59e488ee57b44c"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10019c120.ghidra.c",
+   "size": 1344,
+   "sha256": "872d90f9aa8f96075448d86b7351aa7703d0763f77fe39deb5aeac67adc4d86d"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10019c120.json",
+   "size": 632,
+   "sha256": "f1e2502d749577c971e77ffc03b58b8ff35c4a6d67ef8a46faec8a467f16fc53"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10019c124.ghidra.c",
+   "size": 2393,
+   "sha256": "03cd3a7306a6361390550a9228426f62ccbbb22ad4a61b9820bc96757e149f92"
+  },
+  {
+   "path": "readable/ghidra/accessoryd/f_10019c124.json",
+   "size": 624,
+   "sha256": "ae00a97426cd18366fb16a1faddbb73089f3d377bfc8791520fc236d1ade9e53"
+  },
+  {
+   "path": "reference-impl/iap2_link.py",
+   "size": 11526,
+   "sha256": "4f7890110e68ff88db8842806d74f009a458a8acba316c59e9f662c422ae9ee1"
+  },
+  {
+   "path": "reference-impl/test_vectors.py",
+   "size": 7008,
+   "sha256": "1cc3f8969f5837a335e5a7fe8b1bc2c3096cfa4ec7a9903804ac7f26a00ca0a5"
+  },
+  {
+   "path": "reference/glossary.md",
+   "size": 2286,
+   "sha256": "c6f471d66ab52d0b715b89be7dd936a40d39d389a82a6df8b29b81193ad7dd4d"
+  },
+  {
+   "path": "reference/iAP2-symbols.tsv",
+   "size": 70234,
+   "sha256": "be3f24fc7ab3d23e3b25aca7a175d49b3b70dabbcf71930a9dc830fb520322df"
+  },
+  {
+   "path": "runtime/observations.md",
+   "size": 2147,
+   "sha256": "a3c187a7c9ace83c34703c8948869ea608df763023c1c9cb34922e02ee4634c3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100005f38.bin",
+   "size": 20,
+   "sha256": "faf5f3e11f6cd836318747c7be008dc29f85c2da2c959a2ea89dfe3692b0d434"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100005f38.s",
+   "size": 404,
+   "sha256": "e7977b3abd98e156af8f295af55e069d44e56063f7d32166886ad9f4ce036d99"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100005f4c.bin",
+   "size": 20,
+   "sha256": "a2fc5e0f6c1b80f4c3be57e4541f7edc279ab70c2b2e4cd9df85aaa1353aa3d9"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100005f4c.s",
+   "size": 404,
+   "sha256": "5e4e316b072539c2f3971029302d99fcb5bd53fbdd5f2fac67f73ba17f5285e6"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100006120.bin",
+   "size": 84,
+   "sha256": "a2c9dc586cd9d863cb4d9d9dcad3c0a5fc1eaedfe238451148d53045e939be60"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100006120.s",
+   "size": 930,
+   "sha256": "9eecc134b72b8f5028e083329c65a016c2be4ab3e4a79547ca2619d2d18baca1"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000626c.bin",
+   "size": 168,
+   "sha256": "993796977463e21526fc6596cdc7535e7ae7485f503ad5422da3e911de82b9ea"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000626c.s",
+   "size": 1569,
+   "sha256": "a1d41bc190a67f519dc56a785cae3dd2f8728080764f1d0043763cf8e026fb25"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000639c.bin",
+   "size": 740,
+   "sha256": "e0c2e4531df4aed8ebc3debad945fca980a20888458e8fda06682dcdba00ed24"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000639c.s",
+   "size": 6101,
+   "sha256": "d56413ce7bafdfef0f20c716ebc2982b6aa944ce13680d7460fb78ab21bfe49d"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100006e24.bin",
+   "size": 360,
+   "sha256": "92cf0aa250e8bce2959f0cb9fc4e0d88030673f72699d067b7e6cfb2d54456fa"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100006e24.s",
+   "size": 3049,
+   "sha256": "e74c95adfc41232cc02c11bc67d1d790c41eadf2bf0c4ba706813a349a3d3e9a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100006f8c.bin",
+   "size": 32,
+   "sha256": "2b8f888621580f7874bdea4b5bf70214746fdde8023507e9f19e104348f3029d"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100006f8c.s",
+   "size": 474,
+   "sha256": "6ae392ea4b42375fdf55def38ccc5e156262f2236ee37999162cf94af1274a2d"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000070fc.bin",
+   "size": 64,
+   "sha256": "e5ba706b71f1495090c5714424f587d717640259cb261170eeea0102cd4bdd64"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000070fc.s",
+   "size": 752,
+   "sha256": "479f788e31a5bd2bc37b762dcb8001d6eff51671a5d75d6c00ed8f0403e5b387"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000071f4.bin",
+   "size": 328,
+   "sha256": "7749b468905afc002c5655d80a428f54cef9301e9f52e488368d62b2786bbbd5"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000071f4.s",
+   "size": 2845,
+   "sha256": "650acc835752d5ca0103a97b4468f7554637973e8499119be1afc66dda397aee"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100007728.bin",
+   "size": 164,
+   "sha256": "7b7f2c7d31343b147db48a3522d9a853a3b9dc3ebb27b7f8c0de57f80700b017"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100007728.s",
+   "size": 1586,
+   "sha256": "855cbaf71275c277412fe52e040d34f457af40d85efc300b948f69d5a2df16b6"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100007914.bin",
+   "size": 860,
+   "sha256": "fcded225f787a147e02309452042a5faf85f5b529baed4e4564f9bc5ec091944"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100007914.s",
+   "size": 7018,
+   "sha256": "64f9c151ae50b9948d10222d62c26ae42eed55a676d76851ba6396307b7a3465"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000084b8.bin",
+   "size": 12,
+   "sha256": "bc065b2e0709e37f70f01585c5ea1859777d76d1a6af3d8316daf74fdd1cf239"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000084b8.s",
+   "size": 352,
+   "sha256": "a2697975bde4d9bffe7d55fe5930651be11cb7595c65cee76a7a6da9ed69f09a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008590.bin",
+   "size": 212,
+   "sha256": "b32d0213cade91546b184e470013fd64ecaa428e2366985dae6db2a1f8ee0a59"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008590.s",
+   "size": 1929,
+   "sha256": "f082f47cd95c0c2538e172c65a0995671b1985f4c09403f30eb8b586455d38f3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008698.bin",
+   "size": 524,
+   "sha256": "6eff63dd9f12d8230c89f55ddeb6e6ffe10d5c7f5367b3c154a83190cdfa1c8d"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008698.s",
+   "size": 4372,
+   "sha256": "2dd68d174aca9f07500b3e54919f49b6d1c3eba9213ffc00d5c6ac70b86caa85"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000088b8.bin",
+   "size": 396,
+   "sha256": "12b8123ebe515c1c5f20f00aec2806aa79e3506c8eb96725f06a9e7038b8e34c"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000088b8.s",
+   "size": 3277,
+   "sha256": "d83c969a39261b0f3a66b5d395002288a80811033aeecd1941650b1f2ee2a573"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008a44.bin",
+   "size": 164,
+   "sha256": "3918f119b56471a43ac44a48ea3dd418ed4779f62c715fb17edb596af3ab73f9"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008a44.s",
+   "size": 1582,
+   "sha256": "3521d93459f4c50fc276cc38d0a74ce952789c06570016a9c3092684595717de"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008ae8.bin",
+   "size": 608,
+   "sha256": "a46fff0c269e0aa30fec5520c4dc2ef26b68c9db5b4b48977e2362b299a2f235"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008ae8.s",
+   "size": 4990,
+   "sha256": "f2f0f44af5554357172ffb02c1f5c96035d387ed75944c4c80cf87f0a6a0226e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008e80.bin",
+   "size": 20,
+   "sha256": "35d617c84ec7868c4b29fe11963b0608db9e428dde312cd3265d60f3183422e1"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100008e80.s",
+   "size": 434,
+   "sha256": "e1c5a9b102451682005041be76c7d1a90db461a5d9358eb614eead26d8c6c8bf"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000a488.bin",
+   "size": 116,
+   "sha256": "1816308f944c7b4938e68199d8fea66d8fee0a8cf881cbd54034391c0a56bdaf"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000a488.s",
+   "size": 1164,
+   "sha256": "a9a1618c8e301d441c529678121ff6a6196700e306fb256deb72043c5875bd16"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000a5d0.bin",
+   "size": 1888,
+   "sha256": "73fc3b511b987db270bef9651316f1b0d769eea61008058b0b18c61baa84581b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000a5d0.s",
+   "size": 14674,
+   "sha256": "d4081f29278544551b10b86d44377b00a762cc662bfb85122e6a65c60f1c6586"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000ad78.bin",
+   "size": 16,
+   "sha256": "16483236f074714028d040d7503a0ec9eba63eda363feca6e1a32dbdf256b531"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000ad78.s",
+   "size": 380,
+   "sha256": "546a5aaafdee0fb7560955842f5b0a14cb02a1bbf1147d116b5267938c70d9b1"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000ad88.bin",
+   "size": 24,
+   "sha256": "bc3bfb31bf9ccf3329c8a4ea1803d6c2b01d0aa537f8a913acdc729193a0192f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000ad88.s",
+   "size": 445,
+   "sha256": "0db7eeef7c6bc2b36fd9811b1ab86db124532c6cdc8f0316af601abb67598ec6"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000ada0.bin",
+   "size": 1384,
+   "sha256": "663071d03988fd3d381b71fad3dc66edcc58a9e7ae6c90dc2f0f9bf5c4d9543e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000ada0.s",
+   "size": 11041,
+   "sha256": "b03fc325a412e7708df421cda9f2bc6ce7552eeb0e067176970fe324f8cc166a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b368.bin",
+   "size": 84,
+   "sha256": "6ef9b582ff5275f031303ec2e1b5c4294d9151eeec7762c8d1391dea68a25884"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b368.s",
+   "size": 886,
+   "sha256": "66098bd193c586a802935e0ed4109ce69c1fa110319614809564b7127695faf5"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b3bc.bin",
+   "size": 16,
+   "sha256": "5b321ea3140d7b1c12a7c59710119f3dd6b4a2c4168af1b229d5b6ce65493fe3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b3bc.s",
+   "size": 390,
+   "sha256": "6350de20d565ab53762e236bb6d3a9799ac1128eb3ab9c44e4b96de80a317f3e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b5c0.bin",
+   "size": 16,
+   "sha256": "ef30e42b769a6572415d41a5485fee19b2d09341452c3c23136809a1241c601f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b5c0.s",
+   "size": 376,
+   "sha256": "b9ba9702228afc13ef08512a500935817a826c7a5705b5cf474c78269bd4ce3f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b5ec.bin",
+   "size": 8,
+   "sha256": "23c8cd26d5ae71e2b941a005fab14d9165cc525ac58267621bb0e69e4a263bb3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b5ec.s",
+   "size": 326,
+   "sha256": "e722410614ba200e26aff16ca4795cf1febcb70b186c060ed15f42989145e529"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b690.bin",
+   "size": 1396,
+   "sha256": "6297759e11815a9be74f9d60b3768dd1a36e5999301665b8ea8707ea241cf7ca"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000b690.s",
+   "size": 11090,
+   "sha256": "f9111862419265bfede7f953faa23d61fa1b83c55fa6f440951736fecbde5c62"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000bc04.bin",
+   "size": 44,
+   "sha256": "a5b8225dab2f354879bb38bc6fc6896bea1ed30ba4d945208c37c9b0c72edf3e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10000bc04.s",
+   "size": 602,
+   "sha256": "63cfd53e8b920713725d8ae1fb69fabd799d2464330f4603b916e08de4a14e76"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000221a8.bin",
+   "size": 188,
+   "sha256": "7f5791529bfcb207168ca75fab75b20d54b5d8361f48af63deeb0ca1610c1676"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000221a8.s",
+   "size": 1625,
+   "sha256": "9fbc476cf6177d57253849d2d9acee3acd65514427fcbfe066e36959e640f395"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100022264.bin",
+   "size": 308,
+   "sha256": "b92730d13cd5d4b01ef670606d08a56e1a7125e927e32160f47530e7de0b83b3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100022264.s",
+   "size": 2574,
+   "sha256": "a39008da707966085afa7dc0a306e00a37af8a0511af5911d0667d61499c6f7a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100022398.bin",
+   "size": 968,
+   "sha256": "66e6429ef04370767d8df7b602515577687284bd41f2ab9fab45bfebff2071de"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100022398.s",
+   "size": 7596,
+   "sha256": "345e54b3f948323bb545fc42a18ab8e0b3ee06def5ba6d1916f8708700bde788"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002e5b4.bin",
+   "size": 380,
+   "sha256": "8d08b9e05e6d7b74173edcd3054fb31850cf9e192f5dd3a09083f7cb800d4920"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002e5b4.s",
+   "size": 3172,
+   "sha256": "8c4f88c4d9e66c480323ff74c8335ab60daddbd6c357577fe7bc09668569795e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002e730.bin",
+   "size": 444,
+   "sha256": "fcd19f803b749d86808e00ec8d1884e09a37411b7ba9048d96ce7d971a6e32f3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002e730.s",
+   "size": 3729,
+   "sha256": "60ba787e1fc65152c912630be9737ca4f119ce53e73fe0f67477b335dd08828b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002f920.bin",
+   "size": 424,
+   "sha256": "2351a8e9ede055cea604c1bbe391937bbdbb00508eccf511e1e0effc0ec827d6"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002f920.s",
+   "size": 3539,
+   "sha256": "ea43bc3318e12e7771eabdc31a31b4b80ba2b60f1249d389205c1126025142c0"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002fac8.bin",
+   "size": 140,
+   "sha256": "86c0ee14fee66262143ba8409e2e167857dfaf9c6d0df4cc41c5a21655e0eac7"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002fac8.s",
+   "size": 1352,
+   "sha256": "a292bea7755bcab960246d0e890186bdb04fd3f1e81fa897e5b32d1ab63498eb"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002fb54.bin",
+   "size": 384,
+   "sha256": "8a6debb4ee14c89a2c1ba92fd1e1a1ed6bdfad2bec6e86350eb69964600be8c6"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002fb54.s",
+   "size": 3228,
+   "sha256": "79bd3a11cdb5e7bad3e48ba473fa0fd21ac299e88c2bb41a1fa6f92c0e660447"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002fcd4.bin",
+   "size": 476,
+   "sha256": "1acc6ed15a8523c36882bde87af30dbd78a8fd9bc4aca0e9ac1d0484ffe3dff8"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002fcd4.s",
+   "size": 3979,
+   "sha256": "2988bdef46368f9144429f67bdf30cb7f0586304b4e30cbacbb8218b80aeaee5"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002feb0.bin",
+   "size": 420,
+   "sha256": "2913796d158dd6965c9e4247715328638569a5d69b3a3fe5f548d183811d9e3b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10002feb0.s",
+   "size": 3548,
+   "sha256": "70dfc6e26b0962374833b43ccc9e6c26d30ae523a8a2b19ff5b1bcdb12de8575"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100030054.bin",
+   "size": 72,
+   "sha256": "a486f03f1f3ae3d12fc169d74f45938c8edf525dd1dc85c32b398069f36e0338"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100030054.s",
+   "size": 819,
+   "sha256": "59f9ccfe801abd816182c0739aff84e8ad10737285504cb819f32bbec1126a02"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10003009c.bin",
+   "size": 140,
+   "sha256": "616b3b1395be75a0990cf2e85f9ee365e615d18d8c4e09203869d295e55039ac"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10003009c.s",
+   "size": 1389,
+   "sha256": "23e4b8fc5d6776fd722eb64421beb9c9273bf6eb6600bd2aaa4add4e5e240666"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100030128.bin",
+   "size": 244,
+   "sha256": "e67e44fe6ab54f100ef018f17a49de09444d1d3cb6484ce16ea298d5f4944fee"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100030128.s",
+   "size": 2180,
+   "sha256": "8bf476e4d33bfb1b220ddb1ef99dff350cccff06306b2282ca60f34131a8a800"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100031c7c.bin",
+   "size": 68,
+   "sha256": "fc7619ee04e8ee2e166deb5e33d78fb025b5e340f700a69d4ea2bd9cb606c623"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100031c7c.s",
+   "size": 795,
+   "sha256": "b2ec829a2ea34ae4c5a145caa682ae17de4b418e110285eb32b52e7c29a669c1"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100031ef0.bin",
+   "size": 8,
+   "sha256": "343eb5eb70e89d79b9c0ad97cf52129fac9ef223ff75718b29b02a218a3cb8ab"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100031ef0.s",
+   "size": 327,
+   "sha256": "3d89957c15cc89f2e8529af40b2981387521d57135fa3dc8e35c170772ec987b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100031ef8.bin",
+   "size": 688,
+   "sha256": "021822fe3cef32592de059ed677f330aea2c87d9f1db89f7490a1378aa9416e9"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100031ef8.s",
+   "size": 5581,
+   "sha256": "274370ac698646dec73945276cce5dc03497546bc688f1e04a0120127b140908"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000323f8.bin",
+   "size": 632,
+   "sha256": "911b9c55871242540b5dd8f2ce63931fbd9286ddef34f963747bebd8a3ad966f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000323f8.s",
+   "size": 5212,
+   "sha256": "b8c72b23af04644fc02014f475d8896d0313b72d1769e3c9068749b33c593292"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100032670.bin",
+   "size": 440,
+   "sha256": "18254a93bd00327fa12559f066f0ac55e9be2c4f6444aca2d60e59a24806770b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100032670.s",
+   "size": 3712,
+   "sha256": "740e7c3317eaeae6e93bd52332a42654080552a4ed3388660fd11f9b8a6986dd"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10003286c.bin",
+   "size": 68,
+   "sha256": "c6b5631b0e9b58a6e7b7f7975b27b0d32323bd6d42ffa898eb71c5bc36fed379"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10003286c.s",
+   "size": 795,
+   "sha256": "054b60ee2e94093d85f086a8ceaab3779d33664bfb4c1f2a2a8c007dc639113c"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000328b0.bin",
+   "size": 44,
+   "sha256": "a6925aa53bbd56bb700989dbb84c345e8c379540e0f7841e390e309fbf53daf7"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000328b0.s",
+   "size": 604,
+   "sha256": "e6b0fc9483eb3492075af3e083cacef73d0f494caea38a0a8cdd26f8abf34cfa"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000328dc.bin",
+   "size": 2104,
+   "sha256": "d21744c91b4085e0a26d32d9874eb7e76dd691ab49a03681b0a93dd54f4b4901"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000328dc.s",
+   "size": 16698,
+   "sha256": "fe21fb943d5e04f591e8d3c42ef7de24c717f59ec6ff84068769647e51745a81"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033114.bin",
+   "size": 192,
+   "sha256": "7be110310565d3364b4fccab1291f5f519527b68a2ca887e70997490c62db13a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033114.s",
+   "size": 1748,
+   "sha256": "3322608e7cfd1cb8e132d49b20fce6f946b1bf59c7def75479c71c5e1643f1d1"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000331d4.bin",
+   "size": 176,
+   "sha256": "c425bf235ce8717f4afbceda61585a6e212d8dccb0b7c7b5ed0f9b1fe35ff044"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000331d4.s",
+   "size": 1647,
+   "sha256": "14d1f1a4f2372eccb3644907365676a522c83e1591234b2122e299dcad5b6aea"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033284.bin",
+   "size": 180,
+   "sha256": "b574e2f12c1dbe083fcfd519b68001a7fb84861c56fd30860f1bf9ca9c68b293"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033284.s",
+   "size": 1680,
+   "sha256": "38c5c0b242b414f9278cefff27926a77ec23b1b92b8b0a2b6fd0ccffcd99faa0"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033338.bin",
+   "size": 188,
+   "sha256": "4e6c679bf2cd4e3c495a71119ece2d09cc6f89f038233cf9e7c367a9b7974386"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033338.s",
+   "size": 1726,
+   "sha256": "773c7034ccaa1c77d17c334d6043d77ea6a11cb725a8e6e134464236d80609cd"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000333f4.bin",
+   "size": 2788,
+   "sha256": "ef40f0d0fc538c3863d6646880eb52e8c5d6ccce93cadda4d0b369e8e2fb34d3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000333f4.s",
+   "size": 22083,
+   "sha256": "78699e5cce60967522dae43ac0b2a56445e6cd2689af9d88550ad6bb47b58486"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033ed8.bin",
+   "size": 248,
+   "sha256": "0c6fea9d4958cb0a92934289129b57674f60c55d8eaf925119bfe8701777de6f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033ed8.s",
+   "size": 2073,
+   "sha256": "5e6db5bb238a32c3f8fc3e7406853458ed68d4f380cb0ea859ccf876f517bb5b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033fd0.bin",
+   "size": 752,
+   "sha256": "4c1e87d568d15ec191a8f0bc8a2b62fda6507bc9b3830831c44374d89e828e79"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100033fd0.s",
+   "size": 5875,
+   "sha256": "4727f9ee21481c06364110b472c8989752f4dd9aea47687845dfeb65fc29cfe8"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034424.bin",
+   "size": 64,
+   "sha256": "28b4e15022ffee1ec111deac5d6bb64e81f21178f673f95db98770b45fce2060"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034424.s",
+   "size": 792,
+   "sha256": "1ce2cdf9a82a4350a495385709c8e297df59a43a5638a343fc0ea74a55d7dc2a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034464.bin",
+   "size": 372,
+   "sha256": "c089004e6c6782e6093c50560891d92bdc47e07a1d82a5b10520adbb862838e3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034464.s",
+   "size": 3182,
+   "sha256": "85abc99cb4a3a34f4097cbec1d5f082aacb0f2ea59d99d8d3ae7ad5956ca906c"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000346c8.bin",
+   "size": 176,
+   "sha256": "bcd355c846e466c7ca8163474ee190f8f7831dc356fb446d64f34466d486a834"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000346c8.s",
+   "size": 1713,
+   "sha256": "feaf71d8f855e4fd4a8dc3086a4a5b83c5a50edbb402c638656427085429bf53"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034778.bin",
+   "size": 56,
+   "sha256": "141fccbf54379950ff8c564960fe49f875154177970c936c8fef2a3ce7a0d67f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034778.s",
+   "size": 717,
+   "sha256": "87b7463a4e3e04367e44f00b00fffdffa2aea5a73d4848c21b2e1821977896e2"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000347b0.bin",
+   "size": 568,
+   "sha256": "f5cd92772f9a1dc58bc443d6df4f6ce5e93bbff058c135fa4f3cde599ecb6cad"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000347b0.s",
+   "size": 4736,
+   "sha256": "02a7df8999862c93598a71e83567c7c563a43a4d6fc27f8a317708b38ef1a8ff"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000349e8.bin",
+   "size": 64,
+   "sha256": "e5ba706b71f1495090c5714424f587d717640259cb261170eeea0102cd4bdd64"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000349e8.s",
+   "size": 752,
+   "sha256": "8e5d026ac496160b9d6169b8b96ca4aaff37f94c964aff4d9c0c97385eae1963"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034a28.bin",
+   "size": 24,
+   "sha256": "e7cbf6f4d86cf2ef3460ffd30c09f6b31cf4899c5e1814cc01fc07c5a4f52f43"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034a28.s",
+   "size": 453,
+   "sha256": "0f6a44ce89b2d34209e04efb073613eb19230891eca169eb4aa915816d5ae1a3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034a40.bin",
+   "size": 48,
+   "sha256": "c25b76fb30080649af5790fa3617717b6527073515ced847fdd887408770bf4b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034a40.s",
+   "size": 626,
+   "sha256": "bbbac33ca5596009c4c7c3344d995437502eb6c4417bfd38d3c3479162f62a31"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034a70.bin",
+   "size": 12,
+   "sha256": "15df4ed30df35c9adecbc6f0690b513a7c5e2b9adf893410073bc6b7dfd23d17"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034a70.s",
+   "size": 357,
+   "sha256": "553c9b74d6854f59a973643ba679ba1398237f4946d3c59b7ccd314654e4e733"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034a7c.bin",
+   "size": 64,
+   "sha256": "8337f2332c46f59a96df915a634852f98ab58219d63122b7078787fd0a333380"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034a7c.s",
+   "size": 753,
+   "sha256": "f6e16b8773436b96427ae30858ed8c807934855dd5a2bf2b096d478493dff02c"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034bbc.bin",
+   "size": 96,
+   "sha256": "e73297e547fc3a9595973f1f80aaffa7203ff966c37c723e9ff1d3e9b8a382fb"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034bbc.s",
+   "size": 1019,
+   "sha256": "09b090e76984882b8f28c43d61b84fcad8e729407cda1897a8dbb454af887ed3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034f24.bin",
+   "size": 44,
+   "sha256": "76e01055ece1b46c01411ef55f0adde7cabb509e55f4efa2593634de89555080"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100034f24.s",
+   "size": 614,
+   "sha256": "6c63f66b4beaf29ba0fc1537f5ea0a41c420d2c9fb989f78611b60cdc3c12648"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100035144.bin",
+   "size": 16,
+   "sha256": "f4723137cdf4ea7f8ec1cbc53d901305169d3f9421f6d252630fccc859fe0878"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100035144.s",
+   "size": 392,
+   "sha256": "83f447240e29f818650587ac56e0351c9db154756a4a8e361f9839567bb30ddf"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100035154.bin",
+   "size": 608,
+   "sha256": "7f7a65c955d0970217dc74887fe841b58f2ac45b49224f71e248c42ccc2a0c5d"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100035154.s",
+   "size": 5043,
+   "sha256": "ae4108b2d603ba1d4267ad54b159517df7a405f5c69d37f097fc020d33dcb6e1"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000353f8.bin",
+   "size": 108,
+   "sha256": "54165a65b7b331990752a0d8630963d41f27a340a16187a75ef2be1f5d0e4972"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000353f8.s",
+   "size": 1107,
+   "sha256": "c96da2784b8ad6ea2fc78751f42e59fba936a28cf23adc83a0cc17606dda6941"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100044ee4.bin",
+   "size": 88,
+   "sha256": "62f33597e53e7d5d7bdcbfbd0d537db2d9caf44ad921b3e2658fc03cbc65817f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100044ee4.s",
+   "size": 941,
+   "sha256": "e75f1554ce098082b5bbe2e8ea31f5c055317949ff75127641132a3e5e15707d"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100044f3c.bin",
+   "size": 232,
+   "sha256": "b09c09befcf5bc06de1fd1cf2721e8ca5029222d26d60ad594d45d533b08e124"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100044f3c.s",
+   "size": 2028,
+   "sha256": "eec07567a545f6d1e352b7226b9f6e79697cdf47597139e5a9d8556d0bc0ef6a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100045148.bin",
+   "size": 5024,
+   "sha256": "745df27edd4deae10cb40ced27bd941d3e896420ef4d20f07baabce1422a855b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100045148.s",
+   "size": 37966,
+   "sha256": "4eb885c494292e0a8db5c609fae635908e2b3c4e69c9e10dcf1e361baddcc09e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000464e8.bin",
+   "size": 664,
+   "sha256": "259b6fde9cc8deb698eb631ca035101a9882abc1b3f3e53d86c6ae7ead0ddb8a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000464e8.s",
+   "size": 5366,
+   "sha256": "f2217ca5933c49b5158ad1b1e11e23312c2b782ebc9511c6f44b09e578dd84ec"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100046780.bin",
+   "size": 100,
+   "sha256": "6fde2db62cdff292bd2b5cf61429615927e23cf5d7914fdc31ffd1d1258371e4"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100046780.s",
+   "size": 1023,
+   "sha256": "5eed82646ea1501c34384d8fa16cfb483573127e5aa9b834fca0d44e4ab38363"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000467e4.bin",
+   "size": 76,
+   "sha256": "5ad44e04e587dd6cded0c9ffcc17150b686fb03498e5e37db2da98defd3b45ec"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000467e4.s",
+   "size": 827,
+   "sha256": "4ed283cd91571f7ad0299a863c9d1f3ab7d5e9981f13ccdfdac5741f838b0110"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100046830.bin",
+   "size": 172,
+   "sha256": "ce8965e756fb87b011d3e474d6770a00c4d3865456d1b5a5f7824db7f22241fa"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100046830.s",
+   "size": 1535,
+   "sha256": "ee27609137348a9c770a47a07087857cebac96b8bff5d154cd419c42c58ffb3d"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000468dc.bin",
+   "size": 924,
+   "sha256": "b968de982afd6ab95add487792c8d9441cde0ef8c466e4ac8f4956fdf1537c09"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000468dc.s",
+   "size": 7305,
+   "sha256": "c535d293e690b50f357259b2a8a94b956730e5ba789668ac93bd8fc196569918"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100046c78.bin",
+   "size": 6808,
+   "sha256": "6199a26826c1910fccb86e1b088a2dc78935c6151a603be843c7a5053315f208"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100046c78.s",
+   "size": 51521,
+   "sha256": "08e1b0c3c96cfb3435fd57f180e137c987f4f9a6d4cabbdc5b49cd2dc6835300"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048904.bin",
+   "size": 280,
+   "sha256": "319b289dc1b9bd4d2c694a67ed0c92d0928a2bc237c033190b414dd91e1c05d8"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048904.s",
+   "size": 2358,
+   "sha256": "3013eb0c171263e38ae1a23ace454c3aa4a8485eff8a5683885ee1c900774106"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048a1c.bin",
+   "size": 444,
+   "sha256": "2f929fab803d302787f4f710cb532bfcefc47bfd214772274645a69aa85e881f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048a1c.s",
+   "size": 3520,
+   "sha256": "27d3b9b37318e1d11042a5bffdcc068ad6c1bea931a85bcb1f4c8e8a914c809c"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048bd8.bin",
+   "size": 408,
+   "sha256": "f7dc5c3cf3b7fee8f1abed95e6b9b4feb93523fd1f337c152920af1934f02a9c"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048bd8.s",
+   "size": 3297,
+   "sha256": "046915a14bf7ea2f560cafab24ac222009cd60e656c3e8660ee8fa4c7a21ec68"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048d70.bin",
+   "size": 288,
+   "sha256": "c46bab998fc6d5727e373d0857255158c5cdee7bba47cc839042350967ee791a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048d70.s",
+   "size": 2464,
+   "sha256": "1a0f377d2db671b3cfe549edae2925292f04bb3f5ed63cccf5bf95dbc226dcbb"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048e90.bin",
+   "size": 180,
+   "sha256": "64545fd67954cbb2e68624b66974b78ac4917ced76352c61b85af93fa06543e4"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100048e90.s",
+   "size": 1570,
+   "sha256": "162f458cec638ca619890c0e1a9058aa512fd67f5f95b48ab3ff2ecf003aecdd"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100049224.bin",
+   "size": 2292,
+   "sha256": "4577cacf5fdf907d3fa57369e7118ebc1f0bc321366492433350112a81b73121"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100049224.s",
+   "size": 17191,
+   "sha256": "b51caa6b0d206865e7e93f19be2ae1b997c30f059b49886adf6cc8fc4961313f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10004f254.bin",
+   "size": 392,
+   "sha256": "74c679edc3d6d765f09bfada51a9ef24fa1a44e94c1cb260f2842d5f5049cf03"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10004f254.s",
+   "size": 3251,
+   "sha256": "2ad9ce827e1490a0d7661a93f68a146e98652c05dd97e4e57786261cbabbc110"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000500a8.bin",
+   "size": 444,
+   "sha256": "bd12ca1504cc0214ce58634ab61deb5d332a500c172a22b47c19dc1854048a81"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000500a8.s",
+   "size": 3630,
+   "sha256": "55bf238cbb05d14107d593e40ed9ec71ae704937a0d642d6726ebe215abb24a5"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100050934.bin",
+   "size": 448,
+   "sha256": "6ca108c1bcc2c736ed804028af9c97470d44dd4157f25b6b964e925b4d91df21"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100050934.s",
+   "size": 3656,
+   "sha256": "c7fa16bf5bc52fda511df7b125a628ccd5e5cfa2cbd1910c71305ad1326cad0f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000512e8.bin",
+   "size": 1160,
+   "sha256": "1ffe2ab259762fcd0fccfa69489e707e34a58980a0405bf6b63fb1a05751bfb1"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000512e8.s",
+   "size": 8784,
+   "sha256": "97a6f9a67e790b19e70771583276a2547ea6e43d8c544078ef3940cad709d888"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10006baa4.bin",
+   "size": 8,
+   "sha256": "0a7bc4ac64a6118d59ac01cec4eb80e854de1b68b50af86557c4ffb1fcfe11ed"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10006baa4.s",
+   "size": 320,
+   "sha256": "8788474bb403f145c2ebd0569b14424bb0a71e3588f9aec1e4fa2efa3250441a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10006baac.bin",
+   "size": 64,
+   "sha256": "5d28bc6b39e78140aaf020b45c6bf870ed4f305e3331173d5d13635eedcd1d11"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10006baac.s",
+   "size": 771,
+   "sha256": "03da2a12b65298ab9334ee5614e5acbd79a8e8318834280ecc1c50f6a157acbf"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10008d0f4.bin",
+   "size": 632,
+   "sha256": "cf87494ed4d3f37279b97dda857f32018000a8a9507684e56910cdbee5251200"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10008d0f4.s",
+   "size": 5097,
+   "sha256": "c017ab8b3cbdee3a3dc843693084708c1d810bfed772ae84a40572f9519c4535"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10008d72c.bin",
+   "size": 1908,
+   "sha256": "d1cc8c6c051fa5240c8cfacead92cad745fb00133ff5d46a95df0255715479fd"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10008d72c.s",
+   "size": 14824,
+   "sha256": "caa4a10cc862838e1791d954b42fc6dd8cb04133f82007f83ee08065889c929e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10008e434.bin",
+   "size": 244,
+   "sha256": "958c55a0d4046d7526ece6d6fdd8034002a509bc865c559e45c37e3de140f968"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10008e434.s",
+   "size": 2149,
+   "sha256": "e8963e7394ab5fef7a66c3b2af2f422f7bf3565b794b8a792c47d672048ca387"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10008e528.bin",
+   "size": 944,
+   "sha256": "8f2daf6d1e9c01b65b887b23c122106ee78c8b3ddbfe807d7d58526266063a52"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10008e528.s",
+   "size": 7507,
+   "sha256": "174d112a61f9553842fb41982f7e4bd70a9833863f12d3a7e2c5eba168f1c13d"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10009fba8.bin",
+   "size": 1832,
+   "sha256": "2108995c432507bd05dc5e153e8957aee8aff6fa1644f4faa188466e8bb0eddc"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10009fba8.s",
+   "size": 14088,
+   "sha256": "044fe72fdd82f34f90553098ef40654f669c2dbc56677eebc5ad30dc31973c2c"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000a02d0.bin",
+   "size": 472,
+   "sha256": "f61afb2a8aa840427c9fc446c4e2db720b022445b62541cc6b2bb25025bc97b2"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000a02d0.s",
+   "size": 3809,
+   "sha256": "f0f329f73d3f9c0f0018c6cad8c7709c59b2080236af5e45d99cb401372211ad"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000a9414.bin",
+   "size": 72,
+   "sha256": "94374a3bfbc4a005ae90a3cf63663ab0ab06adc295906eafe3bcbaa41426f23b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000a9414.s",
+   "size": 831,
+   "sha256": "96eb2645fd64590cc2083cc14686d9e3d4963d621a0aa6284a6f21cdc27c679e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000c07a8.bin",
+   "size": 1224,
+   "sha256": "2e5b176f4024ecf638ddb417a85a44345f60ad6c8953544220f1449bd72392e2"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000c07a8.s",
+   "size": 9413,
+   "sha256": "dc3e3b113459b144a37a4c068831da6d5b22f9766fb7e515ff60e35bc4f79f35"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cae1c.bin",
+   "size": 28,
+   "sha256": "59946aaaead63f43da2d0bdc07be61c5654eb9d4213f2e8ac7c2f2527c19290e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cae1c.s",
+   "size": 482,
+   "sha256": "a23eb66729f09bccff8560a881c199446a16c70249940e62f4523d73aab6ce70"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cae38.bin",
+   "size": 28,
+   "sha256": "8d9a5931a88f7a7fbeead1d707c0a5c1dd0666f69ce015713377e14f8db83dbc"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cae38.s",
+   "size": 447,
+   "sha256": "0fbb1d172c2fc6e68dd6f4a8c241eadd40fcabf8306dcca4e6ee814bfe91584a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cae54.bin",
+   "size": 160,
+   "sha256": "d07b5492924b235afaaddd550bf583d89a68ed61d142bb0c890076a6d028cdad"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cae54.s",
+   "size": 1510,
+   "sha256": "35bd82602f46e4838799ca0e6b03e92f10629045dd27d0e97a5337aaf94fa24c"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000caef4.bin",
+   "size": 24,
+   "sha256": "f6dc4aa03c333d2009dbb1b0f86001b270e73b02ed37a2eb3a6c2b4f95f72e5f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000caef4.s",
+   "size": 446,
+   "sha256": "e096ac03115b8409a2463662a23b6d9df0fbf2c34576639680ef784a79f2673a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000caf0c.bin",
+   "size": 428,
+   "sha256": "a42e47c86bc1d81eb0625105595e8992e114f2b295015547280fc499b4489940"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000caf0c.s",
+   "size": 3604,
+   "sha256": "8c5670f838aff1e9ed5b1c66990ee9b7eb540c3393d9eb00adfd98336a024969"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cb0b8.bin",
+   "size": 160,
+   "sha256": "cd10b271d98ca7bbec441e91cd937e593d9424ce83f906d60200b6cf19af109e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cb0b8.s",
+   "size": 1477,
+   "sha256": "5ccdbeb99cfb785f19452045f8ec4937e1c7e84a89b79f10232e6ff324b35c76"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cb158.bin",
+   "size": 76,
+   "sha256": "12beb2a8570d7de5037702a7191c559cca0e9c5e779f044bf1279c307a0a3cd9"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cb158.s",
+   "size": 846,
+   "sha256": "db64468372a9ad89ac7d205942d26553a816226d3f88781a2f6bdbf83ed51361"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cf5b8.bin",
+   "size": 2336,
+   "sha256": "e03d30f543ee9dfb7f0c46e9895f5bbac8bccb92601c9c598cdb10f45f330fb4"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000cf5b8.s",
+   "size": 18050,
+   "sha256": "6aa8a724381282596321d08317a1f7d5a2274de97ec7ef19fbf7329aaa6aee82"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000d3094.bin",
+   "size": 364,
+   "sha256": "7fcc1f16b3f62b80106e6222a309aad3aafd919c50a4ae32a306c8936a34e19e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1000d3094.s",
+   "size": 2901,
+   "sha256": "6c9c1cbd8f10d66f400825cf431c50a2cb4a88c5b7ecfdabc28692e237be3d70"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100102e20.bin",
+   "size": 128,
+   "sha256": "7e1798b2ab7de0f5d6553f65171d3589831c331cae2c232415c5b59c9bc2f294"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100102e20.s",
+   "size": 1191,
+   "sha256": "c2207770ff4d378f08672f794f9f479f339ecdac83c3b0a013e91dfd64a079ae"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100102ea0.bin",
+   "size": 184,
+   "sha256": "b3ac1673302698604519711dfad9ca3b36f387aef85e7b88f2c5c218e8c895b3"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100102ea0.s",
+   "size": 1578,
+   "sha256": "947a2ad9fc250fef3aecef9022ef65ae088e01f8ee82fc60aaeda68754abf93a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100102f58.bin",
+   "size": 132,
+   "sha256": "e5ebc888fa9c5feee72c51bd5f834365c6fe9b0ab95fac5199eac4535d514ce8"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100102f58.s",
+   "size": 1213,
+   "sha256": "28fe83c91a712a34d1b62b1e8c5e53d6100da8b6e26bf87d231c83d7751767f8"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100102fdc.bin",
+   "size": 500,
+   "sha256": "00390949ee63999b1a46b390a878c057c612ae627a5371418f0cd4f28dbe96bc"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100102fdc.s",
+   "size": 4153,
+   "sha256": "1c33b6b22f823363caf992e56d0b8c34d5ecd9245a2f7d1406f4c7181736ec86"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001031d0.bin",
+   "size": 32,
+   "sha256": "632bdaad05cba62b93425ca56c54b0bb4cea8213142f72bf5eb7cd7b96dacd7b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001031d0.s",
+   "size": 474,
+   "sha256": "7f5899cff81d7f697d775393924d84d883e8517c3a998f971c9206fec3e47fa5"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001031f0.bin",
+   "size": 32,
+   "sha256": "c889879894eeccff16e8be3f487ca65828f2bfeb688e6284839439a1e9bf0fa8"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001031f0.s",
+   "size": 474,
+   "sha256": "b51281dd464da8f4f750b1e17f153a19c3b24d063bdf3e05f3240d934dc95e61"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100103210.bin",
+   "size": 32,
+   "sha256": "d6d1184435dd5337c205f1cc80be7ad776a4f45c85aa284440474cf139d5ff6e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100103210.s",
+   "size": 471,
+   "sha256": "fa165d523de01ef02e860e6ce08968b1f0483c2383ce37eb8eebd3cdd4f603d2"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100103230.bin",
+   "size": 396,
+   "sha256": "d244b47ebb3982ff87b8a8a23224be3f2fc99d641efed1786d8de31c46fb05df"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100103230.s",
+   "size": 3270,
+   "sha256": "f40c048a46690696a24f00ee7b8223355b9eeec45aaf15777fd02dc8bdd3b90c"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10010366c.bin",
+   "size": 180,
+   "sha256": "edcec07b4e98aecbb3543cd0a4fdad7da8b083c6c52a15c50578eca05ada3121"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10010366c.s",
+   "size": 1678,
+   "sha256": "6baeae442bb0b00607e6b5079f8522a7fbace1e796bb5bdc9d75d53f99098335"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100103954.bin",
+   "size": 4,
+   "sha256": "110f46b5b35c069160560c6ad6786f647dd44e8760a52a46fc22dbbcd7630b91"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100103954.s",
+   "size": 293,
+   "sha256": "eaa704f3be37b9407f0fe4f7660a976d9b8e3ccffd42c0d475cafbb4ddc3e977"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100103970.bin",
+   "size": 12,
+   "sha256": "4e82f16242e6f7da57cc58ff1bfed5e5da77e45cdc2a522d06496107c7843a81"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100103970.s",
+   "size": 369,
+   "sha256": "767b8cc9506d1e3c84dfe64df132ec64341d32be841ebcf0908a018be5884aac"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100123108.bin",
+   "size": 252,
+   "sha256": "bd7d94e34bc6d01fc104b6eac2c1b288e8e23a2f50c39acc8685e7d0603d340a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100123108.s",
+   "size": 2239,
+   "sha256": "5a1982c572f82b822dc03312f783cbc814896deca44c48abd86bfeb11b31a52e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100123204.bin",
+   "size": 872,
+   "sha256": "aa50da674227ae6fc5faeb8ef0d58a2382fa38b858c0d8fb46a2707967195fa6"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100123204.s",
+   "size": 7047,
+   "sha256": "220a4b428db113e75d4d27cf4d058d685b496b3119d986274d14c6744e9d31d5"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10012356c.bin",
+   "size": 84,
+   "sha256": "f7c12460c6f51926e47ae5ea925686dceefd1e063afa44bb77c870b093a1101b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10012356c.s",
+   "size": 893,
+   "sha256": "21e526fbc73ce4e68d02ab0c0042f27cd4acdee40b91e0ccae6405dbcec142ed"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100123690.bin",
+   "size": 76,
+   "sha256": "2ef6edbf7064aca1ad56f212c52e9b6eecc15dc9a92376ebea62aff0a1918c3b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100123690.s",
+   "size": 839,
+   "sha256": "ec918630800552c3278b79fe3f75a9d1d9a026339446d0b71b81e4b49606ba09"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100129350.bin",
+   "size": 656,
+   "sha256": "f342cee149c7c85316a54178f872178ad5dce549db7904e449b3de4a439b86b9"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100129350.s",
+   "size": 5280,
+   "sha256": "041cad4b52a086dbfc69fd8742263680da90de9939db55ec0cfa90cbbd79fc0b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100132e28.bin",
+   "size": 408,
+   "sha256": "d703fc3597762742039b32d292d1ddcb50b467876ab4e3b01385c3e68fee805f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100132e28.s",
+   "size": 3313,
+   "sha256": "15d9f92121c223954b40bf3c635d1a4b70284f7ee73573f836339344a4188cdd"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100132fc0.bin",
+   "size": 288,
+   "sha256": "f3bb360f5cdadfca9db41963b6c707c6dfa2d7b937e7541f16520e2b726070bb"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100132fc0.s",
+   "size": 2436,
+   "sha256": "b34d830aa9180a337a91072846f8979026ed63d6a79dbad82d42685432aa2ab7"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001330e0.bin",
+   "size": 984,
+   "sha256": "d8d111a2741850cfb91d3ab4437d1c558d8fb8606f13a1ffec3dc9d259571319"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001330e0.s",
+   "size": 7781,
+   "sha256": "46debde8f7c9e4f7a0b28f3c489abbc7ac027813e4384f17346a052b373555d1"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001334b8.bin",
+   "size": 212,
+   "sha256": "149a84243e6da566beb587a9180fba63e3624582e5607880260bcabd22b7e011"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001334b8.s",
+   "size": 1884,
+   "sha256": "c5d1f661c68110b32b7db5876a42a9bbc5ab37274086383657c248df01acb4f2"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10013358c.bin",
+   "size": 1068,
+   "sha256": "ee68b13faab4e8bbff5395a8cc3bff022a98d89df37ea8d8c3d1eec91b862cec"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10013358c.s",
+   "size": 8370,
+   "sha256": "803527570b3fad7002228a2287f7513691e02fe84a894be8356a50df82e834f8"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10013b28c.bin",
+   "size": 392,
+   "sha256": "f7e5131f6b17a6f724b52955ad188ca74fb4eb8efd487714abb47c2e1c2ee0f1"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10013b28c.s",
+   "size": 3242,
+   "sha256": "b55a177cd58bb3dacdb889909f2537308763892eb86a7aeb89e86d3547b92eec"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10013bcc8.bin",
+   "size": 1060,
+   "sha256": "5265716a10600e7b85d22168a5ecca684497351484144f14d1069ce73deaad01"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10013bcc8.s",
+   "size": 8327,
+   "sha256": "a5c67925c954d9ccd2e2d898a2f52431b9f60b9248aa1c33af46bcad3f75c3de"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100152520.bin",
+   "size": 1036,
+   "sha256": "fbfb9a9912c7a41d80d15e24db2e45a865f2744dbba537455bc6974f2f62d6db"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100152520.s",
+   "size": 8304,
+   "sha256": "bfd6caaa98c87cc34efe5d5d11f1cdb37aa0ea74fddca7fd672a7c0d5db1cf86"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10017b5fc.bin",
+   "size": 132,
+   "sha256": "64df48190b7fd9e3d9860e918d925f41792bd7304feeb0b2cd64181cddc2749a"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10017b5fc.s",
+   "size": 1275,
+   "sha256": "8ca66f01d04c13f28498cc388ffa5c8ee3552bfacc15cbcacca37d877224b961"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10017b680.bin",
+   "size": 40,
+   "sha256": "29334272fd35650937f353d888573fd74d3099ba59e96e871e68734dd718e288"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10017b680.s",
+   "size": 568,
+   "sha256": "162ac5e2a18deaada308fb0701cc49fbcdd6523b4f7c322ce722424c0e6cc59b"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10017b6a8.bin",
+   "size": 60,
+   "sha256": "439c0ebe9e4c9f3d050d4f2f23dd1e7df80707468bb4f6234e7303996afe02a4"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10017b6a8.s",
+   "size": 734,
+   "sha256": "f77150feec7f938151946adad2684b8e761021a982158f0b04ede519b5981b42"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001850bc.bin",
+   "size": 2504,
+   "sha256": "ad5f8c9a290acc985f3e69a1b737fc8bcdccdc1e8c88f1ad3baa7cdceb79deb2"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001850bc.s",
+   "size": 19562,
+   "sha256": "9e975a6aeeedb057933c3846b6b38fa9cf098cfc488a765d489d1f29d735fa53"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100185d6c.bin",
+   "size": 872,
+   "sha256": "16f9d5528a1b6c83f3bf88cbaf2eb87f18dbd88d5619e6ec221dd7498af62fba"
+  },
+  {
+   "path": "source/asm/accessoryd/f_100185d6c.s",
+   "size": 6906,
+   "sha256": "367163853c32bbd55884d73624b0d0d9f53ff44eff336adc46fa65e487a426f9"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001860d4.bin",
+   "size": 1244,
+   "sha256": "ed820e32b6f9cd4b54905f81c867972c421de2af8ef939e411f02d7cbcb09162"
+  },
+  {
+   "path": "source/asm/accessoryd/f_1001860d4.s",
+   "size": 9798,
+   "sha256": "1cbc462562e005fca671d45b36f8bb19b21ba5f1116c80a97a348616cf8daa07"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10019bfac.bin",
+   "size": 372,
+   "sha256": "e23236fca393cc47750126f2ef5539de359e2b3b051e07738f575ea9d00968e7"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10019bfac.s",
+   "size": 3110,
+   "sha256": "d40452c6265979fc7057e36c28da8c288a346168819399ee64dc9f24fc75a78f"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10019c120.bin",
+   "size": 4,
+   "sha256": "7b89df9fd6dd44453c9d19e6ce8ac024a1f5e87b44312b9fb63f790009b5b6e6"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10019c120.s",
+   "size": 303,
+   "sha256": "a8fbebc2d3f097f315b92928cb08b3ecb27e1984eda5b0dfe6f52f44f0478061"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10019c124.bin",
+   "size": 280,
+   "sha256": "916deec9e75a34d247c75aa2f939b01bb1264d860719fd27331c4afcc4e72a9e"
+  },
+  {
+   "path": "source/asm/accessoryd/f_10019c124.s",
+   "size": 2456,
+   "sha256": "d8dd4267c84497575d72550a4c21374ae8d2ad6430968933c2ca3305ee4fb7ff"
+  },
+  {
+   "path": "source/asm/accessoryd/index.json",
+   "size": 41068,
+   "sha256": "a8adb24111ccb01609026cf3df88648e817cb8667d09447cb6e39952e0ca642d"
+  },
+  {
+   "path": "source/firmware/accessoryd",
+   "size": 4330752,
+   "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe"
+  },
+  {
+   "path": "source/metadata/coverage.json",
+   "size": 6061,
+   "sha256": "57444d2e3cd8cb168b64fdd3f43af50187262bd3bf0378e4df91786e3e3d0431"
+  },
+  {
+   "path": "source/metadata/function-starts.json",
+   "size": 121886,
+   "sha256": "d3ca73270cfd66f5a0125b77080fc8fc012d8c0cbddb94f6d99a66c451f28cad"
+  },
+  {
+   "path": "source/metadata/ghidra-request.json",
+   "size": 21153,
+   "sha256": "effcda4c6d4ed2b5f8ad711d89b9f32dfed56cb5ccb249bb7ace7b1e33f63499"
+  },
+  {
+   "path": "source/metadata/load-commands.json",
+   "size": 4115,
+   "sha256": "8bfec6d985520d3e857952bd8c149759a5d53ddd62663b83e7fba72c6fb4c960"
+  },
+  {
+   "path": "source/metadata/sections.json",
+   "size": 5872,
+   "sha256": "53126ec98ebe4ccf87ffa41e8f28289de6a95e6699d4b0b68d67b07af55b8310"
+  },
+  {
+   "path": "source/metadata/segments.json",
+   "size": 821,
+   "sha256": "e5f79bd3e0125f3a625dd1e67444f5390e6dbfcd8afc9033219950f8dd200090"
+  },
+  {
+   "path": "source/metadata/selection.json",
+   "size": 16242,
+   "sha256": "41d745a22dd70fbd0740eca0cc24216732c287ad4f22a8ffadab461112e8e7b7"
+  },
+  {
+   "path": "source/metadata/summary.json",
+   "size": 973,
+   "sha256": "3c8f648ea927c44a8707e8196c45c5739f9ef3d75dd5106ae94afd94caefe70e"
+  },
+  {
+   "path": "source/metadata/symbols.json",
+   "size": 5961192,
+   "sha256": "a8e810a88333b0b45f52e807217a9b165600529e1d4819806f7e122d1ac74310"
+  },
+  {
+   "path": "source/metadata/tables.json",
+   "size": 28216,
+   "sha256": "f23f557bf0a11adc3631389d11f19165270f8128475cc24bf7d088e04b41a24c"
+  },
+  {
+   "path": "spec/00-scope-and-terms.md",
+   "size": 3977,
+   "sha256": "c7ff684989870d31bb767c7c59cdb319a4deaa4bf1233c89cf55eb64b77827db"
+  },
+  {
+   "path": "spec/01-transport-binding.md",
+   "size": 7007,
+   "sha256": "5e8219016865168bf8484e778ac872f324697efb53cb779bc4b0c799bc794542"
+  },
+  {
+   "path": "spec/02-framing-and-checksum.md",
+   "size": 7694,
+   "sha256": "fcfbb192c9b16a6832fd8cf7620b730b2dda24de7c8d7b8c01af1fe619ac4a43"
+  },
+  {
+   "path": "spec/03-syn-negotiation.md",
+   "size": 7116,
+   "sha256": "0a83d25c55876f347bf78c5e6fc274a3fa222ff0400215b8b1959b56a8f74b8c"
+  },
+  {
+   "path": "spec/04-seq-ack-retransmit.md",
+   "size": 4547,
+   "sha256": "ef6cf5fe5855421c96c373e5209393f6b1eaa355fc390f3475b94c6b1ec51b7f"
+  },
+  {
+   "path": "spec/05-state-machine.md",
+   "size": 9865,
+   "sha256": "fad6d6d2dd40caec43d22554e6676a8742dd0e0f284a0ce7dc10073d4d41223a"
+  },
+  {
+   "path": "spec/06-identification-auth-session.md",
+   "size": 14137,
+   "sha256": "255cdba19726787b332703559059bf6a9b5a55678631040695892fdb1e694d98"
+  },
+  {
+   "path": "spec/07-errors-teardown.md",
+   "size": 3808,
+   "sha256": "2cafdc82521ff2bfc16e0cb01b7aa24cd5fab4be7419a837e38f84b534222755"
+  },
+  {
+   "path": "spec/08-conformance-checklist.md",
+   "size": 5970,
+   "sha256": "d0fbe2acb793c5ebbbfd43443d6e2c3032db9045714f9bf342bc3a4c9d348976"
+  },
+  {
+   "path": "spec/09-client-implementation-guide.md",
+   "size": 14206,
+   "sha256": "fa13889d3feed12fc0bcabbc455c2ea6127b7003d52ccef3b5ddeaa725197864"
+  },
+  {
+   "path": "tools/scan-callers.py",
+   "size": 4507,
+   "sha256": "1eacce450c3a8388a5c499221eb855dec310b345425bed819562e353f537439b"
+  },
+  {
+   "path": "verify.py",
+   "size": 18007,
+   "sha256": "7f0eac15025934afba7a1475cfea62d95957bea48cdef3ec1cdbeae0de90197e"
+  }
+ ]
+}

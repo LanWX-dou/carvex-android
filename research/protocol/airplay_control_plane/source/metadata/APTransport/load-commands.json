@@ -1,0 +1,237 @@
+[
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 1112,
+    "offset": 32,
+    "segname": "__TEXT",
+    "vmaddr": 9929535488,
+    "vmsize": 983040,
+    "fileoff": 0,
+    "filesize": 983040,
+    "maxprot": 5,
+    "initprot": 5,
+    "nsects": 13,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 872,
+    "offset": 1144,
+    "segname": "__DATA_CONST",
+    "vmaddr": 10355165864,
+    "vmsize": 32768,
+    "fileoff": 983040,
+    "filesize": 32768,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 10,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 552,
+    "offset": 2016,
+    "segname": "__AUTH_CONST",
+    "vmaddr": 10569253608,
+    "vmsize": 49152,
+    "fileoff": 1015808,
+    "filesize": 49152,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 6,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 232,
+    "offset": 2568,
+    "segname": "__AUTH",
+    "vmaddr": 10495984688,
+    "vmsize": 16384,
+    "fileoff": 1064960,
+    "filesize": 16384,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 2,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 312,
+    "offset": 2800,
+    "segname": "__DATA",
+    "vmaddr": 10442727200,
+    "vmsize": 16384,
+    "fileoff": 1081344,
+    "filesize": 16384,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 3,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 312,
+    "offset": 3112,
+    "segname": "__DATA_DIRTY",
+    "vmaddr": 10484478368,
+    "vmsize": 16384,
+    "fileoff": 1097728,
+    "filesize": 16384,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 3,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 72,
+    "offset": 3424,
+    "segname": "__LINKEDIT",
+    "vmaddr": 12300189696,
+    "vmsize": 491520,
+    "fileoff": 1114112,
+    "filesize": 479752,
+    "maxprot": 1,
+    "initprot": 1,
+    "nsects": 0,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_ID_DYLIB",
+    "cmdsize": 96,
+    "offset": 3496
+  },
+  {
+    "cmd": "0x80000033",
+    "cmdsize": 16,
+    "offset": 3592
+  },
+  {
+    "cmd": "LC_SYMTAB",
+    "cmdsize": 24,
+    "offset": 3608,
+    "symoff": 1141832,
+    "nsyms": 7975,
+    "stroff": 1276632,
+    "strsize": 317232
+  },
+  {
+    "cmd": "LC_DYSYMTAB",
+    "cmdsize": 80,
+    "offset": 3632
+  },
+  {
+    "cmd": "LC_UUID",
+    "cmdsize": 24,
+    "offset": 3712,
+    "uuid": "14228b3f-1df6-308b-97c4-b7574dbd7a97"
+  },
+  {
+    "cmd": "LC_BUILD_VERSION",
+    "cmdsize": 32,
+    "offset": 3736
+  },
+  {
+    "cmd": "LC_SOURCE_VERSION",
+    "cmdsize": 16,
+    "offset": 3768
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 88,
+    "offset": 3784
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 80,
+    "offset": 3872
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 96,
+    "offset": 3952
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 96,
+    "offset": 4048
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 104,
+    "offset": 4144
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 104,
+    "offset": 4248
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 88,
+    "offset": 4352
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 88,
+    "offset": 4440
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 104,
+    "offset": 4528
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 96,
+    "offset": 4632
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 88,
+    "offset": 4728
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 80,
+    "offset": 4816
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 96,
+    "offset": 4896
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 88,
+    "offset": 4992
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 88,
+    "offset": 5080
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 56,
+    "offset": 5168
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 56,
+    "offset": 5224
+  },
+  {
+    "cmd": "LC_FUNCTION_STARTS",
+    "cmdsize": 16,
+    "offset": 5280,
+    "dataoff": 1135160,
+    "datasize": 6672
+  },
+  {
+    "cmd": "LC_DATA_IN_CODE",
+    "cmdsize": 16,
+    "offset": 5296
+  }
+]

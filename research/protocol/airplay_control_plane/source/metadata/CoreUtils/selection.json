@@ -1,0 +1,155 @@
+{
+ "image": "CoreUtils",
+ "functions": [
+  {
+   "symbol": "HTTPMessageCreate",
+   "group": "HTTP",
+   "note": "HTTP message object creation"
+  },
+  {
+   "symbol": "HTTPMessageInitRequest",
+   "group": "HTTP",
+   "note": "request-line initialization (plain)"
+  },
+  {
+   "symbol": "HTTPHeader_InitRequestF",
+   "group": "HTTP",
+   "note": "request-line initialization with format"
+  },
+  {
+   "symbol": "HTTPHeader_InitRequestV",
+   "group": "HTTP",
+   "note": "request-line formatting core"
+  },
+  {
+   "symbol": "HTTPHeader_InitRequest",
+   "group": "HTTP",
+   "note": "request-line initialization wrapper"
+  },
+  {
+   "symbol": "HTTPHeader_SetField",
+   "group": "HTTP",
+   "note": "header field write"
+  },
+  {
+   "symbol": "HTTPHeader_Parse",
+   "group": "HTTP",
+   "note": "header field parse"
+  },
+  {
+   "symbol": "HTTPMessageReadMessageEx",
+   "group": "HTTP",
+   "note": "incremental RTSP/HTTP message reader"
+  },
+  {
+   "symbol": "HTTPMessageSetBody",
+   "group": "HTTP",
+   "note": "body attach; Content-Length source"
+  },
+  {
+   "symbol": "HTTPMessageGetHeaderField",
+   "group": "HTTP",
+   "note": "header lookup semantics"
+  },
+  {
+   "symbol": "HTTPMessageGetOrCopyFormVariable",
+   "group": "HTTP",
+   "note": "form/param variable extraction"
+  },
+  {
+   "symbol": "PairingSessionCreate",
+   "group": "PAIR",
+   "note": "pairing session factory (client/server, type)"
+  },
+  {
+   "symbol": "PairingSessionExchange",
+   "group": "PAIR",
+   "note": "TLV exchange -> HTTP request"
+  },
+  {
+   "symbol": "PairingSessionDeriveKey",
+   "group": "PAIR",
+   "note": "HKDF-based key derivation"
+  },
+  {
+   "symbol": "SetupClientExchange",
+   "group": "PAIR",
+   "note": "pair-setup client M1..M6"
+  },
+  {
+   "symbol": "VerifyClientExchange",
+   "group": "PAIR",
+   "note": "pair-verify client M1..M4"
+  },
+  {
+   "symbol": "SRPClientStart_libsrp",
+   "group": "PAIR",
+   "note": "SRP-6a client start"
+  },
+  {
+   "symbol": "SRPClientVerify_libsrp",
+   "group": "PAIR",
+   "note": "SRP-6a client proof check"
+  },
+  {
+   "symbol": "TLV8GetNext",
+   "group": "PAIR",
+   "note": "TLV8 iteration"
+  },
+  {
+   "symbol": "TLV8Get",
+   "group": "PAIR",
+   "note": "TLV8 single value"
+  },
+  {
+   "symbol": "TLV8GetBytes",
+   "group": "PAIR",
+   "note": "TLV8 value bytes"
+  },
+  {
+   "symbol": "TLV8BufferAppend",
+   "group": "PAIR",
+   "note": "TLV8 encode"
+  },
+  {
+   "symbol": "ChaCha20Poly1305EncryptMessage",
+   "group": "CRYPTO",
+   "note": "AEAD record encryption"
+  },
+  {
+   "symbol": "ChaCha20Poly1305DecryptMessage",
+   "group": "CRYPTO",
+   "note": "AEAD record decryption"
+  },
+  {
+   "symbol": "CryptoAEADCreate",
+   "group": "CRYPTO",
+   "note": "AEAD context"
+  },
+  {
+   "symbol": "_NetTransportChaCha20Poly1305Configure",
+   "group": "CRYPTO",
+   "note": "AEAD framing configuration"
+  },
+  {
+   "symbol": "_CryptoAEADEncryptMessage",
+   "group": "CRYPTO",
+   "note": "AEAD encrypt entry"
+  },
+  {
+   "symbol": "_ChaCha20Poly1305Initialize",
+   "group": "CRYPTO",
+   "note": "AEAD init"
+  },
+  {
+   "symbol": "_NetTransportWriteV",
+   "group": "CRYPTO",
+   "note": "transport write path"
+  },
+  {
+   "symbol": "_NetTransportRead",
+   "group": "CRYPTO",
+   "note": "transport read path (record framing)"
+  }
+ ]
+}

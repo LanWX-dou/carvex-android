@@ -1,0 +1,32 @@
+{
+ "image": "AirPlaySender",
+ "functions": [
+  {"symbol": "_APAuthenticationClientFairPlayCreate", "group": "F", "note": "FairPlay 认证客户端 vtable 构造"},
+  {"symbol": "_fpAuthentication_AuthenticateEndpoint", "group": "F", "note": "FairPlay 认证入口"},
+  {"symbol": "_fpAuthentication_CreateEncryptedKey", "group": "F", "note": "加密 master key（ekey）"},
+  {"symbol": "_fpAuthentication_GetAuthenticationType", "group": "F", "note": "认证类型"},
+  {"symbol": "_fpAuthentication_Finalize", "group": "F", "note": "析构"},
+  {"symbol": "_fpAuthentication_CopyDebugDescription", "group": "F", "note": "调试描述"},
+  {"symbol": "_APKeyHolderLegacyCreate", "group": "K", "note": "legacy keyholder 构造"},
+  {"symbol": "_legacyKeyHolder_CopyMasterAESKeyAndIV", "group": "K", "note": "取 master key/IV"},
+  {"symbol": "_legacyKeyHolder_CreateEncryptedMasterAESKeyAndIV", "group": "K", "note": "生成并加密 master key/IV"},
+  {"symbol": "_legacyKeyHolder_UpdateMasterAESKeyAfterSharing", "group": "K", "note": "共享后更新 master key"},
+  {"symbol": "_legacyKeyHolder_CreateDerivedAESKeyAndIVForLegacyStream", "group": "K", "note": "逐流派生 key/IV"},
+  {"symbol": "_legacyKeyHolder_CreateDerivedKey", "group": "K", "note": "派生键入口"},
+  {"symbol": "_legacyKeyHolder_createDerivedKeyLegacy", "group": "K", "note": "legacy 派生实现"},
+  {"symbol": "_legacyKeyHolder_GetAuthenticationType", "group": "K", "note": "认证类型"},
+  {"symbol": "_legacyKeyHolder_CopyProperty", "group": "K", "note": "属性读取"},
+  {"symbol": "_APKeyHolderSharedKeyCreate", "group": "K", "note": "shared keyholder 构造"},
+  {"symbol": "_sharedKeyHolder_CopyMasterAESKeyAndIV", "group": "K", "note": "取 master key/IV"},
+  {"symbol": "_sharedKeyHolder_CreateEncryptedMasterAESKeyAndIV", "group": "K", "note": "生成并加密 master key/IV"},
+  {"symbol": "_sharedKeyHolder_GetAuthenticationType", "group": "K", "note": "认证类型"},
+  {"symbol": "_APKeyHolderCoreUtilsCreate", "group": "K", "note": "coreutils keyholder 构造"},
+  {"symbol": "_coreUtilsKeyHolder_CreateDerivedKey", "group": "K", "note": "派生键"},
+  {"symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForStream", "group": "K", "note": "逐流密钥"},
+  {"symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForContext", "group": "K", "note": "逐上下文密钥"},
+  {"symbol": "_APSKeyHolderCreateEncryptionKeysForStream", "group": "K", "note": "对外逐流密钥接口"},
+  {"symbol": "_APSKeyHolderGetAuthenticationType", "group": "K", "note": "对外认证类型接口"},
+  {"symbol": "_apsession_ensureKeyHolderSetUp", "group": "K", "note": "会话装配 keyholder"},
+  {"symbol": "_apsession_createKeyHolder", "group": "K", "note": "创建 keyholder"}
+ ]
+}

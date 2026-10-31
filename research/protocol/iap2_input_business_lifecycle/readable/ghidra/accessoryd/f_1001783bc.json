@@ -1,0 +1,14 @@
+{
+  "address": "0x1001783bc",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "d303ae8b2c539b362c1d2a8c87962415d058b82c2a6c3e45ed4c29dbd856f6fb",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "d303ae8b2c539b362c1d2a8c87962415d058b82c2a6c3e45ed4c29dbd856f6fb",
+  "ghidra_name": "_iap2_navigation_startRoadObjectDetectionHandler",
+  "signature": "undefined _iap2_navigation_startRoadObjectDetectionHandler()",
+  "diagnostic": "
+Low-level Error: Cannot properly adjust input varnodes",
+  "c_file": "f_1001783bc.ghidra.c",
+  "c_sha256": "90b4c9288b87d76b29a5fc899edb4c0e40bb0d80bdcf0318fe10af1699766114",
+  "status": "DECOMPILE_FAILED"
+}

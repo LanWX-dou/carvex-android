@@ -1,0 +1,13 @@
+{
+  "address": "0x112be0",
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "202e555a1266ce3d9ce0c138c80f04e07927aad18e60c0ead0a65c50958bd501",
+  "ghidra_name": "packetProc",
+  "signature": "undefined packetProc(CIpodDevice * this, uchar * param_1, ushort param_2, bool param_3)",
+  "diagnostic": "",
+  "c_file": "f_112be0.ghidra.c",
+  "c_sha256": "e1658ad2a6af6014d8be2b4b46558b71257878269187244e71c39f07386cb753",
+  "status": "DECOMPILED_UNREVIEWED"
+}

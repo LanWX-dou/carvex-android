@@ -1,0 +1,130 @@
+; accessoryd 0x10006b878-0x10006ba74; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x10006b878:	pacibsp	
+0x10006b87c:	sub	sp, sp, #0x60
+0x10006b880:	stp	x26, x25, [sp, #0x10]
+0x10006b884:	stp	x24, x23, [sp, #0x20]
+0x10006b888:	stp	x22, x21, [sp, #0x30]
+0x10006b88c:	stp	x20, x19, [sp, #0x40]
+0x10006b890:	stp	x29, x30, [sp, #0x50]
+0x10006b894:	add	x29, sp, #0x50
+0x10006b898:	mov	x20, x3
+0x10006b89c:	mov	x19, x2
+0x10006b8a0:	mov	x23, x1
+0x10006b8a4:	mov	x21, x0
+0x10006b8a8:	adrp	x25, #0x10023f000
+0x10006b8ac:	ldr	x8, [x25, #0xa28]
+0x10006b8b0:	adrp	x24, #0x10023f000
+0x10006b8b4:	ldr	w9, [x24, #0xa30]
+0x10006b8b8:	cmp	x8, #0
+0x10006b8bc:	ccmp	w9, #0x16, #8, ne
+0x10006b8c0:	b.ge	#0x10006b8e0
+0x10006b8c4:	adrp	x8, #0x10023e000
+0x10006b8c8:	ldr	x8, [x8, #0x7d8]
+0x10006b8cc:	cmn	x8, #1
+0x10006b8d0:	b.ne	#0x10006ba64
+0x10006b8d4:	adrp	x22, #0x10022b000
+0x10006b8d8:	ldr	x22, [x22, #0xbb0]
+0x10006b8dc:	b	#0x10006b8e4
+0x10006b8e0:	ldr	x22, [x8, #0xa8]
+0x10006b8e4:	mov	x0, x22
+0x10006b8e8:	mov	w1, #2
+0x10006b8ec:	bl	#0x1001a2830
+0x10006b8f0:	cbnz	w0, #0x10006b9f4
+0x10006b8f4:	mov	w22, #0
+0x10006b8f8:	ldrb	w8, [x23, #1]
+0x10006b8fc:	cmp	w8, #1
+0x10006b900:	b.gt	#0x10006b924
+0x10006b904:	cbz	w8, #0x10006b948
+0x10006b908:	cmp	w8, #1
+0x10006b90c:	b.ne	#0x10006b95c
+0x10006b910:	mov	x0, x21
+0x10006b914:	mov	x1, x19
+0x10006b918:	mov	x2, x20
+0x10006b91c:	bl	#0x100183b8c
+0x10006b920:	b	#0x10006b958
+0x10006b924:	cmp	w8, #2
+0x10006b928:	b.eq	#0x10006b97c
+0x10006b92c:	cmp	w8, #4
+0x10006b930:	b.ne	#0x10006b95c
+0x10006b934:	mov	x0, x21
+0x10006b938:	mov	x1, x19
+0x10006b93c:	mov	x2, x20
+0x10006b940:	bl	#0x100136828
+0x10006b944:	b	#0x10006b958
+0x10006b948:	mov	x0, x21
+0x10006b94c:	mov	x1, x19
+0x10006b950:	mov	x2, x20
+0x10006b954:	bl	#0x10011d518
+0x10006b958:	mov	x22, x0
+0x10006b95c:	mov	x0, x22
+0x10006b960:	ldp	x29, x30, [sp, #0x50]
+0x10006b964:	ldp	x20, x19, [sp, #0x40]
+0x10006b968:	ldp	x22, x21, [sp, #0x30]
+0x10006b96c:	ldp	x24, x23, [sp, #0x20]
+0x10006b970:	ldp	x26, x25, [sp, #0x10]
+0x10006b974:	add	sp, sp, #0x60
+0x10006b978:	retab	
+0x10006b97c:	cmp	w20, #3
+0x10006b980:	b.lo	#0x10006b9d0
+0x10006b984:	mov	w8, w20
+0x10006b988:	ldrh	w9, [x19], #2
+0x10006b98c:	rev	w9, w9
+0x10006b990:	lsr	w20, w9, #0x10
+0x10006b994:	adrp	x9, #0x10022b000
+0x10006b998:	ldr	x9, [x9, #0xce0]
+0x10006b99c:	ldr	x0, [x9]
+0x10006b9a0:	sub	x2, x8, #2
+0x10006b9a4:	mov	x1, x19
+0x10006b9a8:	bl	#0x1001a1510
+0x10006b9ac:	mov	x19, x0
+0x10006b9b0:	mov	x0, x20
+0x10006b9b4:	mov	x1, x19
+0x10006b9b8:	bl	#0x1000b4204
+0x10006b9bc:	mov	x22, x0
+0x10006b9c0:	cbz	x19, #0x10006b95c
+0x10006b9c4:	mov	x0, x19
+0x10006b9c8:	bl	#0x1001a1820
+0x10006b9cc:	b	#0x10006b95c
+0x10006b9d0:	cmp	w20, #2
+0x10006b9d4:	b.ne	#0x10006ba04
+0x10006b9d8:	ldr	x8, [x25, #0xa28]
+0x10006b9dc:	cbz	x8, #0x10006ba0c
+0x10006b9e0:	ldr	w9, [x24, #0xa30]
+0x10006b9e4:	cmp	w9, #0x16
+0x10006b9e8:	b.lt	#0x10006ba0c
+0x10006b9ec:	ldr	x19, [x8, #0xa8]
+0x10006b9f0:	b	#0x10006ba24
+0x10006b9f4:	mov	x0, x23
+0x10006b9f8:	mov	x1, x22
+0x10006b9fc:	bl	#0x10013efe0
+0x10006ba00:	b	#0x10006b8f4
+0x10006ba04:	mov	w22, #0
+0x10006ba08:	b	#0x10006b95c
+0x10006ba0c:	adrp	x8, #0x10023e000
+0x10006ba10:	ldr	x8, [x8, #0x7d8]
+0x10006ba14:	cmn	x8, #1
+0x10006ba18:	b.ne	#0x10006ba6c
+0x10006ba1c:	adrp	x19, #0x10022b000
+0x10006ba20:	ldr	x19, [x19, #0xbb0]
+0x10006ba24:	mov	x0, x19
+0x10006ba28:	mov	w1, #0
+0x10006ba2c:	bl	#0x1001a2830
+0x10006ba30:	cbz	w0, #0x10006ba5c
+0x10006ba34:	strh	wzr, [sp]
+0x10006ba38:	adrp	x0, #0x100000000
+0x10006ba3c:	add	x0, x0, #0
+0x10006ba40:	adrp	x3, #0x1001e9000
+0x10006ba44:	add	x3, x3, #0x6c4
+0x10006ba48:	mov	x4, sp
+0x10006ba4c:	mov	x1, x19
+0x10006ba50:	mov	w2, #0
+0x10006ba54:	mov	w5, #2
+0x10006ba58:	bl	#0x1001a1fe0
+0x10006ba5c:	mov	w22, #1
+0x10006ba60:	b	#0x10006b95c
+0x10006ba64:	bl	#0x10013efcc
+0x10006ba68:	b	#0x10006b8d4
+0x10006ba6c:	bl	#0x10013f030
+0x10006ba70:	b	#0x10006ba1c

@@ -1,0 +1,53 @@
+; accessoryd 0x100025418-0x1000254e0; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x100025418:	pacibsp	
+0x10002541c:	sub	sp, sp, #0x70
+0x100025420:	stp	x22, x21, [sp, #0x40]
+0x100025424:	stp	x20, x19, [sp, #0x50]
+0x100025428:	stp	x29, x30, [sp, #0x60]
+0x10002542c:	add	x29, sp, #0x60
+0x100025430:	mov	x19, x4
+0x100025434:	mov	x20, x2
+0x100025438:	mov	x21, x0
+0x10002543c:	bl	#0x1001a2740
+0x100025440:	mov	x22, x0
+0x100025444:	bl	#0x1001a2690
+0x100025448:	mov	x19, x0
+0x10002544c:	mov	x8, sp
+0x100025450:	adrp	x16, #0x10022b000
+0x100025454:	ldr	x16, [x16, #0xb78]
+0x100025458:	mov	x17, x8
+0x10002545c:	movk	x17, #0x6ae1, lsl #48
+0x100025460:	pacda	x16, x17
+0x100025464:	str	x16, [sp]
+0x100025468:	adrp	x9, #0x1001b3000
+0x10002546c:	ldr	d0, [x9, #0x78]
+0x100025470:	str	d0, [sp, #8]
+0x100025474:	add	x8, x8, #0x10
+0x100025478:	adrp	x16, #0x100025000
+0x10002547c:	add	x16, x16, #0x4e0
+0x100025480:	pacia	x16, x8
+0x100025484:	adrp	x8, #0x100218000
+0x100025488:	add	x8, x8, #0x3f8
+0x10002548c:	stp	x16, x8, [sp, #0x10]
+0x100025490:	stp	x21, x0, [sp, #0x20]
+0x100025494:	stp	x22, x20, [sp, #0x30]
+0x100025498:	bl	#0x1001a26d0
+0x10002549c:	mov	x20, x0
+0x1000254a0:	bl	#0x1001a2690
+0x1000254a4:	mov	x19, x0
+0x1000254a8:	mov	x2, sp
+0x1000254ac:	mov	x0, x21
+0x1000254b0:	bl	#0x1001a3900
+0x1000254b4:	ldr	x8, [sp, #0x30]
+0x1000254b8:	bl	#0x1001a2610
+0x1000254bc:	ldr	x8, [sp, #0x28]
+0x1000254c0:	bl	#0x1001a2610
+0x1000254c4:	bl	#0x1001a2580
+0x1000254c8:	bl	#0x1001a2560
+0x1000254cc:	ldp	x29, x30, [sp, #0x60]
+0x1000254d0:	ldp	x20, x19, [sp, #0x50]
+0x1000254d4:	ldp	x22, x21, [sp, #0x40]
+0x1000254d8:	add	sp, sp, #0x70
+0x1000254dc:	retab	

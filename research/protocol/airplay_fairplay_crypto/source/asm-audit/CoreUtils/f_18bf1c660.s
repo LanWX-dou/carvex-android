@@ -1,0 +1,81 @@
+; CoreUtils 0x18bf1c660-0x18bf1c798; source SHA256 3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x18bf1c660:	pacibsp	
+0x18bf1c664:	sub	sp, sp, #0x40
+0x18bf1c668:	stp	x22, x21, [sp, #0x10]
+0x18bf1c66c:	stp	x20, x19, [sp, #0x20]
+0x18bf1c670:	stp	x29, x30, [sp, #0x30]
+0x18bf1c674:	add	x29, sp, #0x30
+0x18bf1c678:	mov	x19, x0
+0x18bf1c67c:	adrp	x8, #0x1e016a000
+0x18bf1c680:	ldr	x8, [x8, #0xf28]
+0x18bf1c684:	ldr	x8, [x8]
+0x18bf1c688:	str	x8, [sp, #8]
+0x18bf1c68c:	mov	x2, #0x8938
+0x18bf1c690:	movk	x2, #0xaf8e, lsl #16
+0x18bf1c694:	movk	x2, #0x40, lsl #32
+0x18bf1c698:	movk	x2, #0x10b, lsl #48
+0x18bf1c69c:	mov	w0, #1
+0x18bf1c6a0:	mov	w1, #0x78
+0x18bf1c6a4:	bl	#0x1900cc460
+0x18bf1c6a8:	cbz	x0, #0x18bf1c78c
+0x18bf1c6ac:	mov	x20, x0
+0x18bf1c6b0:	adrp	x8, #0x18bf71000
+0x18bf1c6b4:	ldr	d0, [x8, #0xf80]
+0x18bf1c6b8:	str	d0, [x0]
+0x18bf1c6bc:	movi	v0.2d, #0xffffffffffffffff
+0x18bf1c6c0:	stur	d0, [x0, #0xc]
+0x18bf1c6c4:	mov	x0, sp
+0x18bf1c6c8:	bl	#0x1900cffc0
+0x18bf1c6cc:	cbz	w0, #0x18bf1c6e8
+0x18bf1c6d0:	bl	#0x1900ce930
+0x18bf1c6d4:	ldr	w8, [x0]
+0x18bf1c6d8:	cbz	w8, #0x18bf1c750
+0x18bf1c6dc:	bl	#0x1900ce930
+0x18bf1c6e0:	ldr	w21, [x0]
+0x18bf1c6e4:	cbnz	w21, #0x18bf1c754
+0x18bf1c6e8:	ldp	w8, w0, [sp]
+0x18bf1c6ec:	stp	w0, w8, [x20, #0xc]
+0x18bf1c6f0:	mov	w1, #1
+0x18bf1c6f4:	bl	#0x18be5dc14
+0x18bf1c6f8:	ldr	w0, [x20, #0x10]
+0x18bf1c6fc:	mov	w1, #1
+0x18bf1c700:	bl	#0x18be5dc14
+0x18bf1c704:	mov	w21, #0
+0x18bf1c708:	adrp	x16, #0x18bf1c000
+0x18bf1c70c:	add	x16, x16, #0x798
+0x18bf1c710:	paciza	x16
+0x18bf1c714:	str	x16, [x20, #0x18]
+0x18bf1c718:	adrp	x16, #0x18bf1c000
+0x18bf1c71c:	add	x16, x16, #0x924
+0x18bf1c720:	paciza	x16
+0x18bf1c724:	str	x16, [x20, #0x20]
+0x18bf1c728:	adrp	x16, #0x18be48000
+0x18bf1c72c:	add	x16, x16, #0xf28
+0x18bf1c730:	paciza	x16
+0x18bf1c734:	str	x16, [x20, #0x28]
+0x18bf1c738:	adrp	x16, #0x18bf1c000
+0x18bf1c73c:	add	x16, x16, #0xa1c
+0x18bf1c740:	paciza	x16
+0x18bf1c744:	str	x16, [x20, #0x30]
+0x18bf1c748:	str	x20, [x19]
+0x18bf1c74c:	b	#0x18bf1c75c
+0x18bf1c750:	mov	w21, #-0x1a2c
+0x18bf1c754:	mov	x0, x20
+0x18bf1c758:	bl	#0x18bf1cec4
+0x18bf1c75c:	ldr	x8, [sp, #8]
+0x18bf1c760:	adrp	x9, #0x1e016a000
+0x18bf1c764:	ldr	x9, [x9, #0xf28]
+0x18bf1c768:	ldr	x9, [x9]
+0x18bf1c76c:	cmp	x9, x8
+0x18bf1c770:	b.ne	#0x18bf1c794
+0x18bf1c774:	mov	x0, x21
+0x18bf1c778:	ldp	x29, x30, [sp, #0x30]
+0x18bf1c77c:	ldp	x20, x19, [sp, #0x20]
+0x18bf1c780:	ldp	x22, x21, [sp, #0x10]
+0x18bf1c784:	add	sp, sp, #0x40
+0x18bf1c788:	retab	
+0x18bf1c78c:	mov	w21, #-0x1a48
+0x18bf1c790:	b	#0x18bf1c75c
+0x18bf1c794:	bl	#0x1900cc180

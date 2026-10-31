@@ -1,0 +1,86 @@
+{
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "ghidra_image_base": "0x100000",
+  "functions": [
+    {
+      "address": "0x11e818",
+      "end": "0x11e858",
+      "raw_sha256": "e282e309c2c5375d6cc79735d4275d113f4e6f7083746627949e6710758e1ac9"
+    },
+    {
+      "address": "0x11e7c0",
+      "end": "0x11e810",
+      "raw_sha256": "1d935ebb8d88cd5719863baf28208c502a3c027734a33e7f43a8a79a2c3dc298"
+    },
+    {
+      "address": "0x11e858",
+      "end": "0x11e860",
+      "raw_sha256": "18858c378811a12205d2a6111becf36cbdf3c57d799e6e4d3d42132a12d391c5"
+    },
+    {
+      "address": "0x11e810",
+      "end": "0x11e818",
+      "raw_sha256": "5815fa81ae0dfc292103586ff7fcade32cd0bb635d633fabefb1c25cf0d9ec6f"
+    },
+    {
+      "address": "0x11fa50",
+      "end": "0x11fa78",
+      "raw_sha256": "68750c9185a493035904619179f882bf5b478fb8f2676986167d2d082c5f5bba"
+    },
+    {
+      "address": "0x11f038",
+      "end": "0x11f698",
+      "raw_sha256": "d54bfc421e07972f03112a8ec6ef5dc51f7b08f80910dbc9c65d552cd0807c33"
+    },
+    {
+      "address": "0x11f698",
+      "end": "0x11f7e8",
+      "raw_sha256": "45f84e716f35b62e49b9b83bb382e1ee05d7754f99e3c05ffc24cf9f503dcc1d"
+    },
+    {
+      "address": "0x11ea88",
+      "end": "0x11ec10",
+      "raw_sha256": "9be0fb9a44434849e402187fc2ad948c53d9839cf3bfef3845e8ebd66d528f3c"
+    },
+    {
+      "address": "0x11f8b0",
+      "end": "0x11fa50",
+      "raw_sha256": "63a2fa32ec00e468a2947936174c575d2d426cf01a232b7586ce88f111cee1fd"
+    },
+    {
+      "address": "0x11fc30",
+      "end": "0x11fc90",
+      "raw_sha256": "57cd23e91d7e6ac3e2244254b461939bb96ca8ee87b8ba742621b6a9db643c78"
+    },
+    {
+      "address": "0x11fa78",
+      "end": "0x11fc30",
+      "raw_sha256": "b761a51199bbae3db4bc76ea13a9f3729db8dd3427de07378a0a66c437a058e0"
+    },
+    {
+      "address": "0x120010",
+      "end": "0x120498",
+      "raw_sha256": "d2776eba7b2483cc0834d2f4890bb8ac6c501af017bd090fb4779885204730ed"
+    },
+    {
+      "address": "0x112be0",
+      "end": "0x113838",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "address": "0x11e368",
+      "end": "0x11e738",
+      "raw_sha256": "af8601c40281c02a11f242d67f17331241d7e011d79ef74c6503a7af166bd0e9"
+    },
+    {
+      "address": "0x11e280",
+      "end": "0x11e288",
+      "raw_sha256": "2f3b6f6686fd51e88030785bd4646403cb57ac71a5cbf077e500a85bdf0afab3"
+    },
+    {
+      "address": "0x11f7e8",
+      "end": "0x11f8b0",
+      "raw_sha256": "216d4962aaf09a23cdf907f3488b0a32c985c2e0909ebde06dea3cd37685b60e"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "address": "0x100131c14",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "9c82e3abf3b091e0e2a7e419d227e39b9a6c7f9148665af77a76dc046f35c111",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "9c82e3abf3b091e0e2a7e419d227e39b9a6c7f9148665af77a76dc046f35c111",
+  "ghidra_name": "__CFDictionaryApplierFunction_releaseHIDComponents",
+  "signature": "undefined __CFDictionaryApplierFunction_releaseHIDComponents()",
+  "diagnostic": "",
+  "c_file": "f_100131c14.ghidra.c",
+  "c_sha256": "b2380ab93b4ca6bcc901df87bade84a917e1256ef07f371842ffa42c85c1162d",
+  "status": "DECOMPILED_UNREVIEWED"
+}

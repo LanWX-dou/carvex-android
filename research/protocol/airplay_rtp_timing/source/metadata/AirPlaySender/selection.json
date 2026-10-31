@@ -1,0 +1,116 @@
+{
+ "image": "AirPlaySender",
+ "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+ "functions": [
+  {
+   "symbol": "_APSRTPPacketHandlerComposeRTPPacketWithBBuf",
+   "group": "wire",
+   "note": "RTP 头装配：字段写入顺序与常量"
+  },
+  {
+   "symbol": "_APSRTPPacketHandlerReadExtendedHeader",
+   "group": "wire",
+   "note": "扩展头解析入口"
+  },
+  {
+   "symbol": "_APSRTPPacketHandlerGetSeqNumOfPacket",
+   "group": "wire",
+   "note": "序列号在包内的偏移"
+  },
+  {
+   "symbol": "_APSRTPPacketHandlerGetExtendedHeaderOfPacket",
+   "group": "wire",
+   "note": "扩展头在包内的偏移"
+  },
+  {
+   "symbol": "_APSRTPPacketHandlerCreate",
+   "group": "wire",
+   "note": "包处理器对象布局与缺省值"
+  },
+  {
+   "symbol": "_carAudioStream_getRTPPayloadType",
+   "group": "pt",
+   "note": "payload type 取值来源"
+  },
+  {
+   "symbol": "_APAudioZeroTimeStampProviderGetZeroTimeStamp",
+   "group": "clock",
+   "note": "零时刻（锚点）来源"
+  },
+  {
+   "symbol": "_APAudioZeroTimeStampProviderGetUpdateInterval",
+   "group": "clock",
+   "note": "锚点更新周期"
+  },
+  {
+   "symbol": "_endpoint_getCurrentRTPTime",
+   "group": "clock",
+   "note": "RTP 时间读取口径"
+  },
+  {
+   "symbol": "_jitterBuffer_SetProperty",
+   "group": "jitter",
+   "note": "抖动缓冲属性集合"
+  },
+  {
+   "symbol": "_jitterBuffer_CopyProperty",
+   "group": "jitter",
+   "note": "抖动缓冲属性读取"
+  },
+  {
+   "symbol": "_jitterBuffer_AcquireBuffer",
+   "group": "jitter",
+   "note": "缓冲写入接口"
+  },
+  {
+   "symbol": "_jitterBuffer_CommitBuffer",
+   "group": "jitter",
+   "note": "缓冲提交（水位）"
+  },
+  {
+   "symbol": "_jitterBuffer_ReadPackets",
+   "group": "jitter",
+   "note": "缓冲读出（播放侧）"
+  },
+  {
+   "symbol": "_APAudioSinkJitterBufferCreate",
+   "group": "jitter",
+   "note": "抖动缓冲创建与缺省参数"
+  },
+  {
+   "symbol": "_APSRTPPacketHandlerReadNewMessage",
+   "group": "wire",
+   "note": "接收侧：PT 门控与扩展元素扫描"
+  },
+  {
+   "symbol": "_APSRTPPacketHandlerGetNextPacket",
+   "group": "wire",
+   "note": "取下一个完整包：线序拼接点"
+  },
+  {
+   "symbol": "_APSRTPPacketHandlerReturnComposedBBuf",
+   "group": "wire",
+   "note": "装配完成后的归还路径"
+  },
+  {
+   "symbol": "_carAudioStreamHandleDataReady",
+   "group": "caller",
+   "note": "compose 的调用者：确认包头 12 字节与元素区的最终位置"
+  },
+  {
+   "symbol": "_carAudioStream_processOneInputDataMessage",
+   "group": "caller",
+   "note": "ReadNewMessage 的调用者：确认接收缓冲几何"
+  },
+  {
+   "symbol": "_APSRTPPacketHandlerDecryptCurrentMessage",
+   "group": "wire",
+   "note": "读/写包缓冲 +0x5c0：解密步骤，可能解释长度字段与头部偏移"
+  },
+  {
+   "symbol": "_APSRTPPacketHandlerFinalize",
+   "group": "clock",
+   "note": "向 +0x6a8 写 double：疑似时钟/速率字段"
+  }
+ ]
+}

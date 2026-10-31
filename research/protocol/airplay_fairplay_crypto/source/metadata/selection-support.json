@@ -1,0 +1,35 @@
+{
+ "image": "AirPlaySupport",
+ "functions": [
+  {
+   "symbol": "_APSEncryptionUtilsDeriveAESKeySHA512",
+   "group": "K",
+   "note": "SHA-512 \u6d3e\u751f AES \u5bc6\u94a5\uff08\u901a\u7528\uff09"
+  },
+  {
+   "symbol": "_APSEncryptionUtilsDeriveAESKeySHA512ForScreen",
+   "group": "K",
+   "note": "SHA-512 \u6d3e\u751f\u5c4f\u5e55 AES \u5bc6\u94a5"
+  },
+  {
+   "symbol": "_APSCryptorChaCha20Poly1305Create",
+   "group": "C",
+   "note": "ChaCha20-Poly1305 \u52a0\u89e3\u5bc6\u5668\u6784\u9020"
+  },
+  {
+   "symbol": "_APSCryptorCTRCreate",
+   "group": "C",
+   "note": "AES-CTR \u52a0\u89e3\u5bc6\u5668\u6784\u9020"
+  },
+  {
+   "symbol": "_APSCryptorCBCCreate",
+   "group": "C",
+   "note": "AES-CBC \u52a0\u89e3\u5bc6\u5668\u6784\u9020"
+  },
+  {
+   "symbol": "_APSCryptorGetNull",
+   "group": "C",
+   "note": "\u7a7a\u52a0\u89e3\u5bc6\u5668"
+  }
+ ]
+}

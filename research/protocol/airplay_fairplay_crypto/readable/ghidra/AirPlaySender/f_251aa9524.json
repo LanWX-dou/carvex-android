@@ -1,0 +1,13 @@
+{
+  "address": "0x251aa9524",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "21ae6df569a7470626cb46e02a68eaea8aa8f790756d1ebcca3d2377e4f42c81",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "21ae6df569a7470626cb46e02a68eaea8aa8f790756d1ebcca3d2377e4f42c81",
+  "ghidra_name": "_legacyKeyHolder_CreateEncryptedMasterAESKeyAndIV",
+  "signature": "undefined _legacyKeyHolder_CreateEncryptedMasterAESKeyAndIV()",
+  "diagnostic": "",
+  "c_file": "f_251aa9524.ghidra.c",
+  "c_sha256": "f1688ef94afc0af98782895d07833aab04c50a34ea3791667bada8705da83625",
+  "status": "DECOMPILED_UNREVIEWED"
+}

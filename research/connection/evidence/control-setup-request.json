@@ -1,0 +1,454 @@
+{
+  "schema": "control-setup-request-v1",
+  "build": "24A446",
+  "firmware_executed": false,
+  "sources": {
+    "AirPlaySender": {
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "functions": [
+        {
+          "address": "0x251a59708",
+          "end": "0x251a5a840",
+          "bytes": 4408,
+          "sha256": "69a7e75e50d440208102fe6f2152502e3ae9b34b7d0d6f21141b3733b19ac85c",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x251a59338",
+          "end": "0x251a59708",
+          "bytes": 976,
+          "sha256": "cd804eb83c75b9caca057829351be714919375d5da11cc38234baadedc381d14",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x251b5cfe0",
+          "end": "0x251b5d2ec",
+          "bytes": 780,
+          "sha256": "1d0d1fd2b6426e0a12a0cd5881e024f1c8b278e61e31e9acbbc801ab5165996c",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x2519c5858",
+          "end": "0x2519c69d0",
+          "bytes": 4472,
+          "sha256": "1348fc1e56decf58100df1cd4faa3f704857be71fd09a378566917502958d3c6",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x2519c4688",
+          "end": "0x2519c5858",
+          "bytes": 4560,
+          "sha256": "39ba76d1d5dc1266a8b7ddf7f70740edabec6ab97aa914faf68f3ed70e1c7deb",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x251a587a0",
+          "end": "0x251a5885c",
+          "bytes": 188,
+          "sha256": "400afcb299ac4cc3ac9a2bc497c9d22fccef823bdbede7654f8d8d3883a744cc",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x251a53780",
+          "end": "0x251a54530",
+          "bytes": 3504,
+          "sha256": "50df258f0e2b23456834fe44ae1cd97daab3149e8035cbd1d929b9ebe47bf088",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x251a58ddc",
+          "end": "0x251a59338",
+          "bytes": 1372,
+          "sha256": "a8ece47cf563d8eda926b03574d814812b4a93351d27844eb2a7bb92961f6234",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x251b5b358",
+          "end": "0x251b5b5f8",
+          "bytes": 672,
+          "sha256": "e22865f5612a238b695b574789c122715079843b7a46c561042bf9f9940ff19b",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x251a54d0c",
+          "end": "0x251a54e68",
+          "bytes": 348,
+          "sha256": "4191dc0e6b6bf095a6cf00f238ef63725645a83911f73db7804bf9a2b493527d",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        },
+        {
+          "address": "0x251a61ab0",
+          "end": "0x251a61bc0",
+          "bytes": 272,
+          "sha256": "3690092db54cee190f10fd56b222a378bee0a699ac39270944f7b4f35d913c8f",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": true
+        }
+      ]
+    },
+    "APTransport": {
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "functions": [
+        {
+          "address": "0x24fda8330",
+          "end": "0x24fda839c",
+          "bytes": 108,
+          "sha256": "c04b50e5bf0d462abef4c97fe8fa6a7ef92fd095867111599c36ba6632502e3b",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": false
+        },
+        {
+          "address": "0x24fda839c",
+          "end": "0x24fda858c",
+          "bytes": 496,
+          "sha256": "9eb68fba3c7f1662894a75f4dde12bde72a8947c314c8295c3a19eafaed304d1",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": false
+        },
+        {
+          "address": "0x24fe11400",
+          "end": "0x24fe115b4",
+          "bytes": 436,
+          "sha256": "3de69bc361d5051523721f649668b00e71fee2c546297efab60e50f02ff66f10",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": false
+        }
+      ]
+    },
+    "AirPlaySupport": {
+      "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+      "functions": [
+        {
+          "address": "0x226e65c24",
+          "end": "0x226e65db4",
+          "bytes": 400,
+          "sha256": "df6ecce61c8d24204c7e683582b2e842d66f9b1cc45622de4c14e65b11d513d3",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cached_fragment_present": false
+        }
+      ]
+    }
+  },
+  "keys": [
+    {
+      "address": "0x27612eff0",
+      "value": "updateSessionRequest"
+    },
+    {
+      "address": "0x27612f010",
+      "value": "k5lVWbXuiZHLA17KGiVUAA"
+    },
+    {
+      "address": "0x27612f030",
+      "value": "sessionCorrelationUUID"
+    },
+    {
+      "address": "0x27612f170",
+      "value": "timingPort"
+    },
+    {
+      "address": "0x27612f190",
+      "value": "isRemoteControlOnly"
+    },
+    {
+      "address": "0x27612f1b0",
+      "value": "isScreenMirroringSession"
+    },
+    {
+      "address": "0x27612f1d0",
+      "value": "isAuxiliaryScreenSession"
+    },
+    {
+      "address": "0x27612f1f0",
+      "value": "isSharedConnection"
+    },
+    {
+      "address": "0x27612f210",
+      "value": "diagnosticsAndUsage"
+    },
+    {
+      "address": "0x27612f230",
+      "value": "internalBuild"
+    },
+    {
+      "address": "0x27612f250",
+      "value": "osName"
+    },
+    {
+      "address": "0x27612f270",
+      "value": "osVersion"
+    },
+    {
+      "address": "0x27612f290",
+      "value": "keepAliveLowPower"
+    },
+    {
+      "address": "0x27612f2b0",
+      "value": "features"
+    },
+    {
+      "address": "0x27612f2d0",
+      "value": "modelCode"
+    },
+    {
+      "address": "0x27612f2f0",
+      "value": "udid"
+    },
+    {
+      "address": "0x27612f310",
+      "value": "timingProtocol"
+    },
+    {
+      "address": "0x27612efd0",
+      "value": "timingPeerInfo"
+    },
+    {
+      "address": "0x27612f330",
+      "value": "timingPeerList"
+    },
+    {
+      "address": "0x27612efb0",
+      "value": "asyncPTPClockConfig"
+    },
+    {
+      "address": "0x27612f610",
+      "value": "combinedGetInfoWithControlSetup"
+    },
+    {
+      "address": "0x27612f630",
+      "value": "qualifier"
+    },
+    {
+      "address": "0x27612eb70",
+      "value": "None"
+    },
+    {
+      "address": "0x27612eb90",
+      "value": "PTP"
+    },
+    {
+      "address": "0x27612ebb0",
+      "value": "NTP"
+    },
+    {
+      "address": "0x27612ecb0",
+      "value": "ptpReenableRedundantClusterLinks"
+    }
+  ],
+  "imports": [
+    {
+      "slot": "0x2680fbfc0",
+      "indirect": "0x269374f30",
+      "cfstring": "0x275fa3940",
+      "value": "TransportType"
+    },
+    {
+      "slot": "0x2680fbfc8",
+      "indirect": "0x269374f80",
+      "cfstring": "0x275fa3ae0",
+      "value": "UUID"
+    },
+    {
+      "slot": "0x2680fc050",
+      "indirect": "0x269378040",
+      "cfstring": "0x275fa81c0",
+      "value": "LocalMACAddress"
+    },
+    {
+      "slot": "0x268104060",
+      "indirect": "0x268a95300",
+      "cfstring": "0x273d51100",
+      "value": "PortLocal"
+    },
+    {
+      "slot": "0x268104070",
+      "indirect": "0x268a952e0",
+      "cfstring": "0x273d51080",
+      "value": "NetworkClock_Type"
+    },
+    {
+      "slot": "0x268104088",
+      "indirect": "0x268a952f8",
+      "cfstring": "0x273d510e0",
+      "value": "NetworkClockType_PTP"
+    },
+    {
+      "slot": "0x2680d3038",
+      "indirect": "0x1e0539f58",
+      "cfstring": "0x1e8e48510",
+      "value": "ProductName"
+    },
+    {
+      "slot": "0x2680d3050",
+      "indirect": "0x1e0539f68",
+      "cfstring": "0x1e8e581d0",
+      "value": "ProductVersion"
+    }
+  ],
+  "anchors": [
+    {
+      "address": "0x251a5995c",
+      "bytes": "1f150071",
+      "instruction": "cmp w8, #5"
+    },
+    {
+      "address": "0x251a59968",
+      "bytes": "00010054",
+      "instruction": "b.eq #0x251a59988"
+    },
+    {
+      "address": "0x251a59970",
+      "bytes": "28bf9a95",
+      "instruction": "bl #0x258109610"
+    },
+    {
+      "address": "0x251a599b8",
+      "bytes": "350c00b4",
+      "instruction": "cbz x21, #0x251a59b3c"
+    },
+    {
+      "address": "0x251a599bc",
+      "bytes": "130c00b5",
+      "instruction": "cbnz x19, #0x251a59b3c"
+    },
+    {
+      "address": "0x251a59d90",
+      "bytes": "82c380b9",
+      "instruction": "ldrsw x2, [x28, #0xc0]"
+    },
+    {
+      "address": "0x251a59d94",
+      "bytes": "a2000034",
+      "instruction": "cbz w2, #0x251a59da8"
+    },
+    {
+      "address": "0x251a59dec",
+      "bytes": "a1010054",
+      "instruction": "b.ne #0x251a59e20"
+    },
+    {
+      "address": "0x251a59ed8",
+      "bytes": "c0010034",
+      "instruction": "cbz w0, #0x251a59f10"
+    },
+    {
+      "address": "0x251a59f54",
+      "bytes": "8bc49a95",
+      "instruction": "bl #0x25810b180"
+    },
+    {
+      "address": "0x251a59f68",
+      "bytes": "86c49a95",
+      "instruction": "bl #0x25810b180"
+    },
+    {
+      "address": "0x251a59f84",
+      "bytes": "41030054",
+      "instruction": "b.ne #0x251a59fec"
+    },
+    {
+      "address": "0x251a59fa8",
+      "bytes": "a8430035",
+      "instruction": "cbnz w8, #0x251a5a81c"
+    },
+    {
+      "address": "0x251a59fac",
+      "bytes": "1f080071",
+      "instruction": "cmp w0, #2"
+    },
+    {
+      "address": "0x251a59fd0",
+      "bytes": "a20000b4",
+      "instruction": "cbz x2, #0x251a59fe4"
+    },
+    {
+      "address": "0x251a59fe8",
+      "bytes": "e1000014",
+      "instruction": "b #0x251a5a36c"
+    },
+    {
+      "address": "0x251a5908c",
+      "bytes": "e0c200b9",
+      "instruction": "str w0, [x23, #0xc0]"
+    },
+    {
+      "address": "0x2519c61ac",
+      "bytes": "410740f9",
+      "instruction": "ldr x1, [x26, #8]"
+    },
+    {
+      "address": "0x2519c61c8",
+      "bytes": "865b0694",
+      "instruction": "bl #0x251b5cfe0"
+    },
+    {
+      "address": "0x251a587cc",
+      "bytes": "f6d700a9",
+      "instruction": "stp x22, x21, [sp, #8]"
+    }
+  ],
+  "provider_symbols": [
+    {
+      "image": "/System/Library/PrivateFrameworks/AirPlaySupport.framework/AirPlaySupport",
+      "address": "0x226e65c24",
+      "names": [
+        "_APSCopyBootUUID"
+      ],
+      "nlist_sha256": "1b9bdebae3304f7c1e87ccd4f14529503cf66852ae8b6c936a4a7abf647bd785"
+    },
+    {
+      "image": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+      "address": "0x1806ba8d8",
+      "names": [
+        "__CFCopySystemVersionDictionary"
+      ],
+      "nlist_sha256": "9aac3935dd704bc93bd1f99ae3482a9d7d9519e750d4681b8259669ccb556c9e"
+    },
+    {
+      "image": "/System/Library/Frameworks/CoreMedia.framework/CoreMedia",
+      "address": "0x18efab8e0",
+      "names": [
+        "_FigCFDictionarySetValue"
+      ],
+      "nlist_sha256": "d02973b281dd0c67d2f6640aa169d0e2e2f4179ac15116c6d61be19d55bf80a1"
+    },
+    {
+      "image": "/usr/lib/system/libsystem_c.dylib",
+      "address": "0x187f0defc",
+      "names": [
+        "_sysctlbyname"
+      ],
+      "nlist_sha256": "2c4200530be1a29adeb7a8bbde7472d3fe0669369143ef5582002036bd598018"
+    }
+  ],
+  "boot_uuid_key": {
+    "address": "0x226f4e4b1",
+    "value": "kern.bootsessionuuid"
+  },
+  "scope": "Common control SETUP producer and kind5 early exit, timing/feature-input provenance. Not all higher-layer providers or runtime conformance."
+}

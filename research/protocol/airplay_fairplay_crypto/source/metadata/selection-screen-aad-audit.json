@@ -1,0 +1,7 @@
+{
+  "image": "AirPlayReceiver",
+  "functions": [
+    {"address": "0x251859c8c", "symbol": "___aprscreen_Start_block_invoke", "group": "screen-aad-audit"},
+    {"address": "0x25185b970", "symbol": "_aprscreen_ntpTimestamp", "group": "screen-aad-audit"}
+  ]
+}

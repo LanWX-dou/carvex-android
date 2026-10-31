@@ -1,0 +1,13 @@
+{
+  "address": "0x100003b28",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "62e660e3b33078677e756ef201631dacb87327b9060b54c797af3a6c6c65ef0a",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "62e660e3b33078677e756ef201631dacb87327b9060b54c797af3a6c6c65ef0a",
+  "ghidra_name": "keyForType:",
+  "signature": "ID keyForType:(ID param_1, SEL param_2, unsigned short param_3)",
+  "diagnostic": "",
+  "c_file": "f_100003b28.ghidra.c",
+  "c_sha256": "5c7849371abc57558cb0902907a10ac5e4dc370da65b8b5df62ee260f4b64ffb",
+  "status": "DECOMPILED_UNREVIEWED"
+}

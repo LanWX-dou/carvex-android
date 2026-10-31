@@ -1,0 +1,13 @@
+{
+  "address": "0x251aa93f4",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "4f10361b7a3671001699a60726446737970bf130d826b52c597bbbff5edfde70",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "4f10361b7a3671001699a60726446737970bf130d826b52c597bbbff5edfde70",
+  "ghidra_name": "_legacyKeyHolder_GetAuthenticationType",
+  "signature": "undefined _legacyKeyHolder_GetAuthenticationType()",
+  "diagnostic": "",
+  "c_file": "f_251aa93f4.ghidra.c",
+  "c_sha256": "3627e6080404f8c08f7f046549edbbf17e806121612817c41015b85f476fb247",
+  "status": "DECOMPILED_UNREVIEWED"
+}

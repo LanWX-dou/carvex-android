@@ -1,0 +1,9 @@
+{
+  "image": "AirPlaySender",
+  "functions": [
+    {"address": "0x251b80e54", "symbol": "_realTimeAudioEngine_tas_transcodeAndSendEntry", "group": "message-audit"},
+    {"address": "0x251aa7f38", "symbol": "audio-message-postprocess-audit", "group": "message-audit"},
+    {"address": "0x251a6f7c0", "symbol": "audio-message-delivery-audit", "group": "message-audit"},
+    {"address": "0x2519c2428", "symbol": "car-audio-send-callback-audit", "group": "message-audit"}
+  ]
+}

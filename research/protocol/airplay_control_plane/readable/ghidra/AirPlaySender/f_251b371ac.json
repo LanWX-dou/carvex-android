@@ -1,0 +1,13 @@
+{
+  "address": "0x251b371ac",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "86e170091c249079f4fc010a8020efdc7be8cce87ad494cef89e694f35790e9f",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "86e170091c249079f4fc010a8020efdc7be8cce87ad494cef89e694f35790e9f",
+  "ghidra_name": "_endpoint_setupStreams",
+  "signature": "undefined _endpoint_setupStreams()",
+  "diagnostic": "",
+  "c_file": "f_251b371ac.ghidra.c",
+  "c_sha256": "5bd1af799d73d76edb424fb68def785f382277e66825f22dbf2a381865f23688",
+  "status": "DECOMPILED_UNREVIEWED"
+}

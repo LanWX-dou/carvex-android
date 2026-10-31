@@ -1,0 +1,13 @@
+{
+  "address": "0x10088c824",
+  "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+  "raw_sha256": "6e03de627e81310b48e04802e1224ecff9ab4a7c1531e640dddaa866b0de2893",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "6e03de627e81310b48e04802e1224ecff9ab4a7c1531e640dddaa866b0de2893",
+  "ghidra_name": "phone_fn_10088c824",
+  "signature": "undefined phone_fn_10088c824(void)",
+  "diagnostic": "",
+  "c_file": "f_10088c824.ghidra.c",
+  "c_sha256": "39cca72e6701855a01ccde30eec7d5dc1e2d35f3c0daf108906a4cf2456abb3b",
+  "status": "DECOMPILED_UNREVIEWED"
+}

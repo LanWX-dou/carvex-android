@@ -1,0 +1,13 @@
+{
+  "address": "0x1001788f4",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "0339b313bc68d00ef68040b2dfbdbef87160290c2d3326bdb03842a573d0afd8",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "0339b313bc68d00ef68040b2dfbdbef87160290c2d3326bdb03842a573d0afd8",
+  "ghidra_name": "_iap2_navigation_stopRoadObjectDetectionHandler",
+  "signature": "undefined _iap2_navigation_stopRoadObjectDetectionHandler()",
+  "diagnostic": "",
+  "c_file": "f_1001788f4.ghidra.c",
+  "c_sha256": "61c1081274831ab027c4cdbdc98528cbb84260479e9b8b6c0690e815c1049f2f",
+  "status": "DECOMPILED_UNREVIEWED"
+}

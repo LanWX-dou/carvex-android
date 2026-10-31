@@ -1,0 +1,13 @@
+{
+  "address": "0x2519dc1c0",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "79a97c37b81c5404a28d31d313d3cbc87e5dc3ddf393a73b98b645e434653fe3",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "79a97c37b81c5404a28d31d313d3cbc87e5dc3ddf393a73b98b645e434653fe3",
+  "ghidra_name": "_NROcmM",
+  "signature": "undefined _NROcmM()",
+  "diagnostic": "",
+  "c_file": "f_2519dc1c0.ghidra.c",
+  "c_sha256": "e24c01ce4b56115c42ebb7119c8482cfeb49ece80f0999b4bc716c3836447d6e",
+  "status": "DECOMPILED_UNREVIEWED"
+}

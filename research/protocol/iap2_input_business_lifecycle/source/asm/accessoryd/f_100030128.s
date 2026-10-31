@@ -1,0 +1,64 @@
+; accessoryd 0x100030128-0x10003021c; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x100030128:	pacibsp	
+0x10003012c:	stp	x20, x19, [sp, #-0x20]!
+0x100030130:	stp	x29, x30, [sp, #0x10]
+0x100030134:	add	x29, sp, #0x10
+0x100030138:	cbz	x0, #0x100030214
+0x10003013c:	mov	x20, x1
+0x100030140:	cbz	x1, #0x100030218
+0x100030144:	mov	w8, #0x1d
+0x100030148:	strb	w8, [x20]
+0x10003014c:	ldr	x19, [x0, #0x10]
+0x100030150:	ldrb	w8, [x19, #0xd5]
+0x100030154:	strb	w8, [x19, #0xd6]
+0x100030158:	ldrb	w8, [x19, #0x19a]
+0x10003015c:	strb	w8, [x19, #0xd5]
+0x100030160:	mov	x0, x19
+0x100030164:	mov	w1, #0
+0x100030168:	mov	w2, #0
+0x10003016c:	bl	#0x1000346c8
+0x100030170:	add	x0, x19, #0x19a
+0x100030174:	bl	#0x1000328b0
+0x100030178:	add	x8, x19, #0x168
+0x10003017c:	ldr	x9, [x19, #0x160]
+0x100030180:	ldp	q1, q0, [x9, #0x10]
+0x100030184:	ldrh	w10, [x9, #0x30]
+0x100030188:	ldr	q2, [x9]
+0x10003018c:	strh	w10, [x19, #0x198]
+0x100030190:	stp	q1, q0, [x8, #0x10]
+0x100030194:	str	q2, [x8]
+0x100030198:	ldrb	w8, [x19, #0xd4]
+0x10003019c:	tbnz	w8, #5, #0x1000301c0
+0x1000301a0:	ldr	w8, [x19, #0x1d0]
+0x1000301a4:	cmp	w8, #0xb
+0x1000301a8:	b.lo	#0x1000301c0
+0x1000301ac:	mov	w8, #0x14
+0x1000301b0:	strb	w8, [x20]
+0x1000301b4:	ldp	x29, x30, [sp, #0x10]
+0x1000301b8:	ldp	x20, x19, [sp], #0x20
+0x1000301bc:	retab	
+0x1000301c0:	ldrb	w1, [x19, #0xbe]
+0x1000301c4:	mov	x0, x19
+0x1000301c8:	bl	#0x1001031f0
+0x1000301cc:	mov	x20, x0
+0x1000301d0:	ldr	w8, [x19, #0x248]
+0x1000301d4:	add	w8, w8, #1
+0x1000301d8:	str	w8, [x19, #0x248]
+0x1000301dc:	adrp	x3, #0x1001cc000
+0x1000301e0:	add	x3, x3, #0xc2a
+0x1000301e4:	mov	x0, x19
+0x1000301e8:	mov	x1, x20
+0x1000301ec:	mov	w2, #0
+0x1000301f0:	bl	#0x100031ef0
+0x1000301f4:	mov	x0, x20
+0x1000301f8:	ldp	x29, x30, [sp, #0x10]
+0x1000301fc:	ldp	x20, x19, [sp], #0x20
+0x100030200:	autibsp	
+0x100030204:	eor	x16, x30, x30, lsl #1
+0x100030208:	tbz	x16, #0x3e, #0x100030210
+0x10003020c:	brk	#0xc471
+0x100030210:	b	#0x100006174
+0x100030214:	bl	#0x100129220
+0x100030218:	bl	#0x1001291f8

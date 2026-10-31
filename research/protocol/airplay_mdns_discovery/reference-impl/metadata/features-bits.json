@@ -1,0 +1,22 @@
+{
+  "note": "features 位表的机器可读版本。只登记有指令证据的索引；其余索引不是“值为 0”，而是“本阶段没有证据”，一律 OPEN。位序（索引 0 对应 LSB 还是 MSB）未取证，因此 mask 仅供记录，不用于判断。",
+  "source": "firmware/extracted/24A446/binaries/APTransport/APTransport",
+  "consumer": "-[APBonjourCacheManager _deviceFound:altPairedInfo:recheck:event:]",
+  "order": "unknown",
+  "order_note": "0x2500ee040(值, 索引) 的桩被剥离；索引到位的映射（LSB/MSB）无证据，见 OPEN-MDNS-11",
+  "bits": [
+    {"index": 55, "mask": "0x0080000000000000",
+     "evidence": "0x24fd997a8 调用 0x2500ee040(v, 0x37)，结果参与分支",
+     "status": "读到了；语义 OPEN-MDNS-11",
+     "meaning": null},
+    {"index": 56, "mask": "0x0100000000000000",
+     "evidence": "0x24fd997b8 调用 0x2500ee040(v, 0x38)，结果存 w24 并与 psi/recheck 联合判断（0x24fd997c4、0x24fd997f4）",
+     "status": "读到了；语义 OPEN-MDNS-11",
+     "meaning": null}
+  ],
+  "not_evidenced": {
+    "range": "0-63 中除 55/56 外的所有索引",
+    "status": "OPEN-MDNS-11",
+    "reason": "没有逐位判断指令；网上流传的 AirPlay 位表不得作为依据（任务书 §5.1C）"
+  }
+}

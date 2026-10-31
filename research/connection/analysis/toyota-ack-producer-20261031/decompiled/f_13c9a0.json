@@ -1,0 +1,13 @@
+{
+  "address": "0x13c9a0",
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "raw_sha256": "6085fc56f9de574d486bce3eb6e634a4888ee5c6ff5f15a37c2dd1335620a845",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "6085fc56f9de574d486bce3eb6e634a4888ee5c6ff5f15a37c2dd1335620a845",
+  "ghidra_name": "disconnect",
+  "signature": "undefined disconnect(CIpodLib * this, int * param_1)",
+  "diagnostic": "",
+  "c_file": "f_13c9a0.ghidra.c",
+  "c_sha256": "bc4c174058e1d0fcf0bb4e7353c5bdab8d7211c8e71210718bfd042db53d24ce",
+  "status": "DECOMPILED_UNREVIEWED"
+}

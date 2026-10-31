@@ -1,0 +1,31 @@
+{
+ "image": "AirPlaySender",
+ "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+ "source_size": 4397312,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 2,
+ "functions": [
+  {
+   "symbol": "_APKeyHolderCoreUtilsCreate",
+   "address": "0x251a355d0",
+   "end": "0x251a356c8",
+   "size": 248,
+   "group": "KEYHOLDER",
+   "raw_sha256": "1e4a141e32092d1da5bef910a21db865eaab6e2c2f332cbb16974cb848381266",
+   "bin": "f_251a355d0.bin",
+   "asm": "f_251a355d0.s"
+  },
+  {
+   "symbol": "_coreUtilsKeyHolder_CreateDerivedKey",
+   "address": "0x2519bffc8",
+   "end": "0x2519c0148",
+   "size": 384,
+   "group": "KEYHOLDER",
+   "raw_sha256": "1af0b66a5395ef7848090e3cfecf4d06c4858157c1707ae31703eb6a8dd260d7",
+   "bin": "f_2519bffc8.bin",
+   "asm": "f_2519bffc8.s"
+  }
+ ],
+ "missing_symbols": []
+}

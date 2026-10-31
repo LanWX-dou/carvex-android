@@ -1,0 +1,233 @@
+{
+ "docset": "airplay_audio_mic_channel",
+ "build": "24A446",
+ "device": "iPhone18,1",
+ "scope": "AirPlay audio / microphone channel",
+ "source_images": [
+  "dyld_shared_cache_arm64e (AirPlaySender @0x2519xxxxx, APTransport @0x24fdxxxxx)",
+  "accessoryd (iAP2 side, only for boundary references)"
+ ],
+ "counts": {
+  "files": 38,
+  "analysis_docs": 14,
+  "spec_docs": 13,
+  "rules": 96,
+  "refimpl_files": 4,
+  "vectors": 33
+ },
+ "open_items": {
+  "OPEN-AUD-1": "spec/10-open-items.md",
+  "OPEN-AUD-2": "spec/10-open-items.md",
+  "OPEN-CODEC-1": "spec/10-open-items.md",
+  "OPEN-CODEC-2": "spec/10-open-items.md",
+  "OPEN-CODEC-3": "spec/10-open-items.md",
+  "OPEN-RED-1": "spec/10-open-items.md",
+  "OPEN-RED-2": "spec/10-open-items.md",
+  "OPEN-CRYPT-1": "spec/10-open-items.md",
+  "OPEN-CRYPT-2": "spec/10-open-items.md",
+  "OPEN-CRYPT-3": "spec/10-open-items.md",
+  "OPEN-PLAY-1": "spec/10-open-items.md",
+  "OPEN-PLAY-2": "spec/10-open-items.md",
+  "OPEN-PLAY-3": "spec/10-open-items.md",
+  "OPEN-MIC-1": "spec/10-open-items.md",
+  "OPEN-MIC-2": "spec/10-open-items.md",
+  "OPEN-MIC-3": "spec/10-open-items.md",
+  "OPEN-TEAR-1": "spec/10-open-items.md",
+  "OPEN-TEAR-2": "spec/10-open-items.md",
+  "OPEN-PORT-1": "spec/10-open-items.md",
+  "OPEN-RUNTIME-1": "spec/10-open-items.md"
+ },
+ "open_item_count": 20,
+ "files": [
+  {
+   "path": "STATUS.md",
+   "size": 5349,
+   "sha256": "9676db6aa2b4d7cb2aaf2a6bedbae113271d2ffffbf81319d8315d888ecd75a7"
+  },
+  {
+   "path": "TASK.md",
+   "size": 1418,
+   "sha256": "186827a08125c0aaf2667e9ee35036e8d8385b821062197e19a556b39ae8c31b"
+  },
+  {
+   "path": "analysis/00-method-and-environment.md",
+   "size": 4434,
+   "sha256": "8a3e273093154a330da8767ffefebbb1b139befcb21abe67dde1876bb08d5fa0"
+  },
+  {
+   "path": "analysis/01-audio-streams.md",
+   "size": 5232,
+   "sha256": "10a75a6a64412d29e9cb9744c3e6cf400b9c785dc1c508530ff0a300eb1c5317"
+  },
+  {
+   "path": "analysis/02-codecs-and-rtp.md",
+   "size": 9483,
+   "sha256": "768d8e3e1b669bf77f15c864c0a3caec7dc593ba916860f2ccecf0a56d5a4e87"
+  },
+  {
+   "path": "analysis/03-red.md",
+   "size": 4742,
+   "sha256": "933f7bd28e992c40e8680d3d1a26b99257082d6f5356a0e907098b9d1e854521"
+  },
+  {
+   "path": "analysis/04-decryption.md",
+   "size": 3811,
+   "sha256": "d2e4ca19c13f233d3a4fa5f83519b1dae441c6307a1f580d6c07d42789231907"
+  },
+  {
+   "path": "analysis/05-playback-and-mixing.md",
+   "size": 3308,
+   "sha256": "d26ee698c306e397330b42dcef10afc91eb83f3bb52233d76bfccc7bb27db399"
+  },
+  {
+   "path": "analysis/06-microphone-uplink.md",
+   "size": 4541,
+   "sha256": "1bde729a65175a3adaa90f9236a49d44849ce568f21911156100b50634623ce1"
+  },
+  {
+   "path": "analysis/07-teardown.md",
+   "size": 2494,
+   "sha256": "ab758810466ff97390543ab371a5d552e322d816bb99815760b112f0f5fbcbeb"
+  },
+  {
+   "path": "analysis/08-runtime-captures.md",
+   "size": 3124,
+   "sha256": "f68ba7b3bfa6b313f709f3fa582f19257169681a1c459ba5df883bd8da81425a"
+  },
+  {
+   "path": "analysis/09-message-coordinate-audit.md",
+   "size": 3475,
+   "sha256": "5c0108b214a873486c1660e7908af3ea520ae4a467aef1e999dcf878008fd37f"
+  },
+  {
+   "path": "analysis/10-config-field-audit.md",
+   "size": 4291,
+   "sha256": "001009eb9c85ac884d077258eac07ce627c94e27a444e9fa3a1307daa4ab197b"
+  },
+  {
+   "path": "analysis/11-format-id-map-audit.md",
+   "size": 6673,
+   "sha256": "f8268d19ad386289a2489fe166ccaa576093affb4b5132668ef35fd63d437aa2"
+  },
+  {
+   "path": "analysis/12-capability-policy-audit.md",
+   "size": 6541,
+   "sha256": "5eb016f4a6b37acdcd10ff8b30d16df36c26d3ddee730cf79b3261fbef42877e"
+  },
+  {
+   "path": "analysis/A-conclusions.md",
+   "size": 12946,
+   "sha256": "9d93aaac57d197c5ba28c04f7981ed43059bb49da7257e62317080de93d989ef"
+  },
+  {
+   "path": "reference-impl/audio_depacketizer.py",
+   "size": 6119,
+   "sha256": "9c203a57e49d2f0949686c3ec25c67179ed7842a6807d3b19cbb383fffe0a6e1"
+  },
+  {
+   "path": "reference-impl/gen_test_vectors.py",
+   "size": 11690,
+   "sha256": "d9d3b6a18a3e86891c8714173a0c9c727067529f6a047904894e3b44c1868401"
+  },
+  {
+   "path": "reference-impl/red_decoder.py",
+   "size": 4599,
+   "sha256": "4889c0389fa6ce484616d327ffe27ea75d6c7d5711dd13c0d7c04ead543ae386"
+  },
+  {
+   "path": "reference-impl/test_vectors.json",
+   "size": 11012,
+   "sha256": "cd2a08f436a9ec45e81de98c005778d123bc42094ee8f76eed4ef5eeefd0f30d"
+  },
+  {
+   "path": "runtime/README.md",
+   "size": 1062,
+   "sha256": "535ae66a107228fb1235d0420d3fb64493045fc25e4c30cf13a1f13a411d72b0"
+  },
+  {
+   "path": "spec/00-scope-and-terms.md",
+   "size": 2818,
+   "sha256": "098b922f8e7e6e2379830b24199fa30aafda4ce17246e2a5d7414feadc392657"
+  },
+  {
+   "path": "spec/01-audio-streams.md",
+   "size": 4231,
+   "sha256": "4b5fbde85b5b5db0140577ea433d4d25a219d0bd52b2ddbc18f13c4eb3d9e487"
+  },
+  {
+   "path": "spec/02-codecs.md",
+   "size": 8051,
+   "sha256": "d01e76479902d8a84c713ac241b2b536d64eade49710c755b2b263cf4a27d94d"
+  },
+  {
+   "path": "spec/03-red.md",
+   "size": 4433,
+   "sha256": "5319ec2c30ff7349cec67cc33548f7f1817e82e4be34b834d0f77ab579ae72fd"
+  },
+  {
+   "path": "spec/04-decryption.md",
+   "size": 4180,
+   "sha256": "3729b8b3f4eeb86c74c243ebea0a1ceafe9904d30d8d56838289dafc6eb4cf0c"
+  },
+  {
+   "path": "spec/05-playback-mixing.md",
+   "size": 3497,
+   "sha256": "897d46a98be3c744c30fe31b908f19ee72bf5ab71de21b8627b2f6d9b6e19f8d"
+  },
+  {
+   "path": "spec/06-microphone.md",
+   "size": 4617,
+   "sha256": "a29670f93569632f21ed8075aa6c79d61a3493784d45c60153bff978fcca02d5"
+  },
+  {
+   "path": "spec/07-teardown.md",
+   "size": 2455,
+   "sha256": "4cf10af8e2d90e473b4f9faabc4922004f602f6fa0463559f08eaadabd2b3afb"
+  },
+  {
+   "path": "spec/08-client-guide.md",
+   "size": 4949,
+   "sha256": "7836bd8106e88c2e21d2f59b432251ad215cd12a39dcc56d9f407a694e3cc4e7"
+  },
+  {
+   "path": "spec/09-conformance-checklist.md",
+   "size": 3965,
+   "sha256": "d45bc92df5b5df2688e4f135dd3c2254d4e942f756074f79ea300020051b9533"
+  },
+  {
+   "path": "spec/10-open-items.md",
+   "size": 5788,
+   "sha256": "f74e23a20c2df14c5117e75ae2f932b79a7fc783b7d5ada4e672ab9af52875f1"
+  },
+  {
+   "path": "spec/11-format-id-map.md",
+   "size": 7566,
+   "sha256": "996d31d2b4dceee56e4e60078b9592d8b1141e8ccd86a9965388bcbf4b1343a6"
+  },
+  {
+   "path": "spec/12-capability-selection.md",
+   "size": 3816,
+   "sha256": "f51c4e34b7d6a1b3bb5c75035e4f3fc1c135ecf4b435c576c9f69df48602d3b6"
+  },
+  {
+   "path": "tools/verify-capability-policy.py",
+   "size": 9078,
+   "sha256": "1d4490bd0c2a06eeefddcf65329260ab92c334457dce5b995bdee641021b596a"
+  },
+  {
+   "path": "tools/verify-config-fields.py",
+   "size": 5280,
+   "sha256": "9014b527c411cdec3ba26d5f82d0e2a8a162ea4ccaeb3a04b1f6674f62bc6632"
+  },
+  {
+   "path": "tools/verify-format-map.py",
+   "size": 10213,
+   "sha256": "46845dd7c215bd1a8dec39f1f128ff5da43fde869b09cebb50516065969f726e"
+  },
+  {
+   "path": "verify.py",
+   "size": 18054,
+   "sha256": "5918899d52b85a47ff63fa3b95e0fa2cd3c3793923d5201edd4da85d1b77ff07"
+  }
+ ]
+}

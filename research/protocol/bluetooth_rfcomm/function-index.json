@@ -1,0 +1,2138 @@
+{
+  "binary": "bluetoothd",
+  "build": "24A446",
+  "platform": "iPhone18,1",
+  "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+  "total_functions_in_binary": 37368,
+  "documented_functions": 96,
+  "coverage_note": "本套文档人工核对 96 / 37368 个函数起点（0.26%），不构成全栈覆盖。",
+  "status_legend": {
+    "DECOMPILED_UNREVIEWED": "Ghidra 自动输出，未人工确认",
+    "CONFIRMED_BY_ANALYSIS": "已在 analysis 中作为证据引用并人工核对汇编"
+  },
+  "functions": [
+    {
+      "address": "0x100035440",
+      "end": "0x100035530",
+      "size": 240,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "时间源：mach_absolute_time × timebase → {u32 微秒, u16 纳秒余数}"
+      ],
+      "asm": "source/asm/bluetoothd/f_100035440.s",
+      "raw": "source/asm/bluetoothd/f_100035440.bin",
+      "raw_sha256": "aa9674f4eff432972a1c7d9f15a570ce33b779bbb50112d3fa95db5c1d4280b3",
+      "assembly_sha256": "cbc37f9a84cf4f6106e8ba5232d5cf2000a693484418fa71b1da3843372d043b",
+      "decompiled": "readable/ghidra/bluetoothd/f_100035440.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1000609fc",
+      "end": "0x100060a70",
+      "size": 116,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "定时器取消 API（重装前先取消旧定时器）"
+      ],
+      "asm": "source/asm/bluetoothd/f_1000609fc.s",
+      "raw": "source/asm/bluetoothd/f_1000609fc.bin",
+      "raw_sha256": "0ecb5315c514a4e8f8e4d70736a8d02735ffd6d8693c799b1b27b1323422a8a9",
+      "assembly_sha256": "b869ca702b0249553703fb7d617e8a49bba430443f52ae39e0098c51d28ea5c7",
+      "decompiled": "readable/ghidra/bluetoothd/f_1000609fc.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x100060ff4",
+      "end": "0x1000610f0",
+      "size": 252,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "定时器线程：值按毫秒拆成 timespec（/1000 与 %1000×1e6）后 pthread_cond_timedwait"
+      ],
+      "asm": "source/asm/bluetoothd/f_100060ff4.s",
+      "raw": "source/asm/bluetoothd/f_100060ff4.bin",
+      "raw_sha256": "cff738266b93a0852ace977223949080e35a4d5f1e8823ac56758b6bdb1326a5",
+      "assembly_sha256": "c6ac55167f6ae09902f3ef81f5cec2300760e0c071301a8191bfad06a74c2ce6",
+      "decompiled": "readable/ghidra/bluetoothd/f_100060ff4.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x10006135c",
+      "end": "0x1000615dc",
+      "size": 640,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "定时器登记：拒绝 bit15 置位的超时值；表项步长 24，回调存在 +8"
+      ],
+      "asm": "source/asm/bluetoothd/f_10006135c.s",
+      "raw": "source/asm/bluetoothd/f_10006135c.bin",
+      "raw_sha256": "d67fe7461d9f34c5d4e6d6e57ce9b033c1be7834d6db265e8ce5914e17eecc3a",
+      "assembly_sha256": "9cf027045b62f093c34e6b1da9f85896482da6353fe743939a243069c06d35b7",
+      "decompiled": "readable/ghidra/bluetoothd/f_10006135c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1000615dc",
+      "end": "0x100061690",
+      "size": 180,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "计算到期时刻 now+timeout（16 位）并以 timeout*100 调用平台钩子"
+      ],
+      "asm": "source/asm/bluetoothd/f_1000615dc.s",
+      "raw": "source/asm/bluetoothd/f_1000615dc.bin",
+      "raw_sha256": "9a00b12b80d89d26129718d52bc9a87567bf8b0590833548cdadf05945c6047d",
+      "assembly_sha256": "5cef257daee4a11ac0e0945d19e94317297c6637db9b3c655df376ea223cabb9",
+      "decompiled": "readable/ghidra/bluetoothd/f_1000615dc.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x100061690",
+      "end": "0x1000616e8",
+      "size": 88,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "平台钩子本体：把 timeout*100 存入 0x100c25cc8 并唤醒定时器线程"
+      ],
+      "asm": "source/asm/bluetoothd/f_100061690.s",
+      "raw": "source/asm/bluetoothd/f_100061690.bin",
+      "raw_sha256": "9c329deb7c0af81b125e3516a9fcaef8df2480bcec6399442d620653fe66a5c6",
+      "assembly_sha256": "4a619419044d7806da9fcf0abfc68ede5ef457ce4bf87ea7320ee09588a158f9",
+      "decompiled": "readable/ghidra/bluetoothd/f_100061690.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1000b5e68",
+      "end": "0x1000b69a0",
+      "size": 2872,
+      "groups": [
+        "discovery"
+      ],
+      "why": [
+        "LE advertising report event decoding"
+      ],
+      "asm": "source/asm/bluetoothd/f_1000b5e68.s",
+      "raw": "source/asm/bluetoothd/f_1000b5e68.bin",
+      "raw_sha256": "185f76f22ba7d063e1b82b165f553d3fb6071444b5cc2fd8366da6814d452db8",
+      "assembly_sha256": "e7c9ae6bce365b32836c3a65eb02f3debc7952213940502da7c710598e48e0c5",
+      "decompiled": "readable/ghidra/bluetoothd/f_1000b5e68.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1000c7818",
+      "end": "0x1000c9730",
+      "size": 7960,
+      "groups": [
+        "discovery"
+      ],
+      "why": [
+        "advertising data dump/formatting"
+      ],
+      "asm": "source/asm/bluetoothd/f_1000c7818.s",
+      "raw": "source/asm/bluetoothd/f_1000c7818.bin",
+      "raw_sha256": "3fb93c535291d278dfcdae44b5c26b4b6d52bc4d1642b89c38e7593cca84195f",
+      "assembly_sha256": "4a98a9147b5fe0ae0401a8910b4227f36855b10dee19ca0118a1991d52bd0e00",
+      "decompiled": "readable/ghidra/bluetoothd/f_1000c7818.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1000eb4e8",
+      "end": "0x1000ebeb0",
+      "size": 2504,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'MAX buffer size for the RFCOMM Channel' write buffer accounting"
+      ],
+      "asm": "source/asm/bluetoothd/f_1000eb4e8.s",
+      "raw": "source/asm/bluetoothd/f_1000eb4e8.bin",
+      "raw_sha256": "0457a4ec3119498d8c7200ec6df68cfbeb1be41b16346073645ffd8c2c2cc623",
+      "assembly_sha256": "6a257a4c662f82ebc6ec184ac4b165cfb06c29275fd4e18deee4332fa632d426",
+      "decompiled": "readable/ghidra/bluetoothd/f_1000eb4e8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/05-rfcomm-data-path.md",
+        "analysis/07-boundary-and-pairing.md",
+        "spec/05-rfcomm-data-transfer.md"
+      ]
+    },
+    {
+      "address": "0x100137ee8",
+      "end": "0x10013867c",
+      "size": 1940,
+      "groups": [
+        "discovery"
+      ],
+      "why": [
+        "page scan / discoverability control (ScanCorePageScan, 'Disabling BT Page Scans')"
+      ],
+      "asm": "source/asm/bluetoothd/f_100137ee8.s",
+      "raw": "source/asm/bluetoothd/f_100137ee8.bin",
+      "raw_sha256": "0c13cf806986d5984a6e5cb23a8b974e1f136634a7170e0879dc77bca5dbcf74",
+      "assembly_sha256": "ff4d5befa42f6f90f9c20d6b54fa611ab81a2b1b8c30cfc4e374c67e00ba2e0f",
+      "decompiled": "readable/ghidra/bluetoothd/f_100137ee8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/01-discovery-and-eir.md",
+        "spec/01-discovery-and-identification.md"
+      ]
+    },
+    {
+      "address": "0x100139490",
+      "end": "0x100139ba0",
+      "size": 1808,
+      "groups": [
+        "device-identification"
+      ],
+      "why": [
+        "EIR vs SDP freshness decision ('EIR matched ... requesting SDP')"
+      ],
+      "asm": "source/asm/bluetoothd/f_100139490.s",
+      "raw": "source/asm/bluetoothd/f_100139490.bin",
+      "raw_sha256": "9a85fbc7f6d8eb2345b8121ba00b5b75e867f0de499948285541d2fb771a583d",
+      "assembly_sha256": "31767fe233d9e2ef9cb0f089c1a20768f8351eaf034d19d1df4e4fd30b23f067",
+      "decompiled": "readable/ghidra/bluetoothd/f_100139490.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x100139d70",
+      "end": "0x100139e90",
+      "size": 288,
+      "groups": [
+        "rfcomm-reconnect"
+      ],
+      "why": [
+        "页扫描定时器重设（秒），重连时用 60 s"
+      ],
+      "asm": "source/asm/bluetoothd/f_100139d70.s",
+      "raw": "source/asm/bluetoothd/f_100139d70.bin",
+      "raw_sha256": "0b9a6b415079267ea5ebb9ef9a54a006cee0b292a538c9f1ed723938b979b6eb",
+      "assembly_sha256": "be9338e8dcb763efe9cb1452580bc5df1c39fc7e8e83e3f5a7459d597d3d81ef",
+      "decompiled": "readable/ghidra/bluetoothd/f_100139d70.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x1001479fc",
+      "end": "0x1001487d0",
+      "size": 3540,
+      "groups": [
+        "discovery"
+      ],
+      "why": [
+        "scan-core page scan device set bookkeeping"
+      ],
+      "asm": "source/asm/bluetoothd/f_1001479fc.s",
+      "raw": "source/asm/bluetoothd/f_1001479fc.bin",
+      "raw_sha256": "1a23c91beeeb9fd9b178f8dc60439e8b0e938c5c0ecc324d61d7396fd376ce72",
+      "assembly_sha256": "9872da9e158acf9313d31564a0e46ec445d571424f1e39ed12228046df0345fb",
+      "decompiled": "readable/ghidra/bluetoothd/f_1001479fc.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/01-discovery-and-eir.md"
+      ]
+    },
+    {
+      "address": "0x1001a31f4",
+      "end": "0x1001a3760",
+      "size": 1388,
+      "groups": [
+        "pairing"
+      ],
+      "why": [
+        "classic SMP/BR-EDR pairing request gating"
+      ],
+      "asm": "source/asm/bluetoothd/f_1001a31f4.s",
+      "raw": "source/asm/bluetoothd/f_1001a31f4.bin",
+      "raw_sha256": "7d6191e0a5a7b8df7e0c756a044834ec412d0383dff245449272ee208c5006d2",
+      "assembly_sha256": "85547c273a57a455ef9909d77fae31113ec54439a6da75eadd9735fb945f84cf",
+      "decompiled": "readable/ghidra/bluetoothd/f_1001a31f4.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x100233530",
+      "end": "0x100233880",
+      "size": 848,
+      "groups": [
+        "pairing"
+      ],
+      "why": [
+        "accept/reject/cancel pairing agent commands"
+      ],
+      "asm": "source/asm/bluetoothd/f_100233530.s",
+      "raw": "source/asm/bluetoothd/f_100233530.bin",
+      "raw_sha256": "0db66f95d346b8124bc822aefffa7292e32c5cc160800f7ff7f80816da632acc",
+      "assembly_sha256": "f22ab86a2ee6d3899141f6a131f14de0c52e52c7099705bfdd45763acfd75c7c",
+      "decompiled": "readable/ghidra/bluetoothd/f_100233530.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/07-boundary-and-pairing.md"
+      ]
+    },
+    {
+      "address": "0x100296014",
+      "end": "0x10029614c",
+      "size": 312,
+      "groups": [
+        "rfcomm-client"
+      ],
+      "why": [
+        "'RFCOMM connection failed' connect-result path"
+      ],
+      "asm": "source/asm/bluetoothd/f_100296014.s",
+      "raw": "source/asm/bluetoothd/f_100296014.bin",
+      "raw_sha256": "e7531ab07d5dc010d135c1740fccf30a068964bfe3b3dae45c2ab23964c8c939",
+      "assembly_sha256": "5f07195de462e63f578c3f0dbca91c9015d1d7864a13314992308ff41070e9e6",
+      "decompiled": "readable/ghidra/bluetoothd/f_100296014.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x100296714",
+      "end": "0x10029697c",
+      "size": 616,
+      "groups": [
+        "connection-state"
+      ],
+      "why": [
+        "'RFCOMM_Disconnect failed - forcing disconnect!' teardown"
+      ],
+      "asm": "source/asm/bluetoothd/f_100296714.s",
+      "raw": "source/asm/bluetoothd/f_100296714.bin",
+      "raw_sha256": "3b6696650fe88219f57c653b6de20c92bee0d78f12881718a422c47c789cf6a5",
+      "assembly_sha256": "d60727037ad8d4f3684e8895cb44b83aef8d999bcc9ad9ab4f26aab60584aea3",
+      "decompiled": "readable/ghidra/bluetoothd/f_100296714.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "analysis/07-boundary-and-pairing.md"
+      ]
+    },
+    {
+      "address": "0x10029ead0",
+      "end": "0x10029eb64",
+      "size": 148,
+      "groups": [
+        "connection-state"
+      ],
+      "why": [
+        "'GetContextByRfcommHandle - context not found'"
+      ],
+      "asm": "source/asm/bluetoothd/f_10029ead0.s",
+      "raw": "source/asm/bluetoothd/f_10029ead0.bin",
+      "raw_sha256": "56eb0b2e9c91f591798f823d228cecd4dd3b572f76c00af800aa01652c08a0d0",
+      "assembly_sha256": "f5c598ac0b0e7b4f6950d34ffd4d3f47ab7d0ccad221dbec750c1c176d8125d3",
+      "decompiled": "readable/ghidra/bluetoothd/f_10029ead0.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1002f1300",
+      "end": "0x1002f15e0",
+      "size": 736,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "stack RFCOMM registration ('RFCOMM registration failed!')"
+      ],
+      "asm": "source/asm/bluetoothd/f_1002f1300.s",
+      "raw": "source/asm/bluetoothd/f_1002f1300.bin",
+      "raw_sha256": "95e07d8b14c0a055c11ac48a7c864c11357771839ffb82a74e2e4f87eaa8b30a",
+      "assembly_sha256": "59ff93e252101a2c00cef4e47734e635c2785c275bf4c8f9fccc71a37876cd85",
+      "decompiled": "readable/ghidra/bluetoothd/f_1002f1300.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/02-sdp-server-and-registration.md",
+        "spec/02-service-registration-and-sdp-server.md"
+      ]
+    },
+    {
+      "address": "0x1002f1798",
+      "end": "0x1002f1948",
+      "size": 432,
+      "groups": [
+        "iap2-boundary"
+      ],
+      "why": [
+        "OI_RFCOMM_Accept failure path used by profile servers"
+      ],
+      "asm": "source/asm/bluetoothd/f_1002f1798.s",
+      "raw": "source/asm/bluetoothd/f_1002f1798.bin",
+      "raw_sha256": "3bb8e309238004c89e450bfab5e621f141acdfc09a168d5852ef25d1d9732a3e",
+      "assembly_sha256": "dc623797356cd25df9e52ded00d812ae4e074963672b2520816badea2c764b1a",
+      "decompiled": "readable/ghidra/bluetoothd/f_1002f1798.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003010ac",
+      "end": "0x100301248",
+      "size": 412,
+      "groups": [
+        "iap2-boundary"
+      ],
+      "why": [
+        "OBEX server as a second RFCOMM consumer (accept/data/write error shapes)"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003010ac.s",
+      "raw": "source/asm/bluetoothd/f_1003010ac.bin",
+      "raw_sha256": "e6d03c1e3b6ba9f00db8e0c3e6de366593e7cc240b97ef567f280f63d99fb9d1",
+      "assembly_sha256": "dddf37f96204740e31a938acc8a8b6278ebc2383a6204598c212cc41744ef316",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003010ac.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x100312584",
+      "end": "0x1003129f0",
+      "size": 1132,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "定时器 init 包装：以第 2 参数接收平台钩子并下传给 0x1003d7f28"
+      ],
+      "asm": "source/asm/bluetoothd/f_100312584.s",
+      "raw": "source/asm/bluetoothd/f_100312584.bin",
+      "raw_sha256": "f8a051a219e74d627530feac9d7d75c08e040edc23e9142c8f880e3abbc9746c",
+      "assembly_sha256": "06d2924beaab90c1384122c35de20669247a6b69ee5f59d7a7d99ae1b400cb81",
+      "decompiled": "readable/ghidra/bluetoothd/f_100312584.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1003c136c",
+      "end": "0x1003c1404",
+      "size": 152,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "DLCI lookup in session"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c136c.s",
+      "raw": "source/asm/bluetoothd/f_1003c136c.bin",
+      "raw_sha256": "49afb425851e1a3d25ff11dd2e6a1b56860436d26e7a181f72a6dbc1626f1455",
+      "assembly_sha256": "f640aed7923a4f8b5503a415106713a3c7969eb4c9e2eeea8264935cce5743eb",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c136c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md"
+      ]
+    },
+    {
+      "address": "0x1003c1404",
+      "end": "0x1003c14dc",
+      "size": 216,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "DLCI allocation for incoming link"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c1404.s",
+      "raw": "source/asm/bluetoothd/f_1003c1404.bin",
+      "raw_sha256": "6ae0b7f481c9c7b33bf2ae33eb7f2f87cd399421e65cde606905dea107dc9b3b",
+      "assembly_sha256": "97795899f43fb72961b98f143676d3c7df2a90c6527ebbbda27eb230f396eb1b",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c1404.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/02-sdp-server-and-registration.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/02-service-registration-and-sdp-server.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1003c14dc",
+      "end": "0x1003c15f0",
+      "size": 276,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "connect: allocate DLCI for outgoing"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c14dc.s",
+      "raw": "source/asm/bluetoothd/f_1003c14dc.bin",
+      "raw_sha256": "b87bf9df4e59ccabb8a317003f8f6e59ad14c0d873553706ebf00641576cdd49",
+      "assembly_sha256": "627fe662136270f46b295cc52478bd8b3f2efb5f0e6f12c50c7d95887c4ca00e",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c14dc.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1003c16dc",
+      "end": "0x1003c1788",
+      "size": 172,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "link/session error response (sends DM)"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c16dc.s",
+      "raw": "source/asm/bluetoothd/f_1003c16dc.bin",
+      "raw_sha256": "798eb849a90f4fcf24469f42ff26b6ffb7c64d551c4d543c4a3a541371939740",
+      "assembly_sha256": "2c8f3ce5603809431ed22e55ba3c6833a7ba19153d473b5b413ece85bb2c1fb1",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c16dc.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x1003c18a4",
+      "end": "0x1003c1964",
+      "size": 192,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'OI_Rfcomm_GetSessionByCID'"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c18a4.s",
+      "raw": "source/asm/bluetoothd/f_1003c18a4.bin",
+      "raw_sha256": "e4aedeab291750887cf4652aa0c60b5040df7eb53a7e78a17e002eed4e37f9ed",
+      "assembly_sha256": "85d236218dfa3184681625c08b02c8ba8fee3abc4fc28a0758ab906a5ad46c3e",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c18a4.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003c1964",
+      "end": "0x1003c1a34",
+      "size": 208,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "connect: existing session lookup"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c1964.s",
+      "raw": "source/asm/bluetoothd/f_1003c1964.bin",
+      "raw_sha256": "0c1bb76aaac5341ff68284928e58abf1a83c789c17982e18258418e983a7c6bc",
+      "assembly_sha256": "656e4da4375a7177ef21423e8957061b69fe8f34e14141b207d6c9c94dd834e9",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c1964.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "address": "0x1003c1d40",
+      "end": "0x1003c1eac",
+      "size": 364,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "connect: set max frame size"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c1d40.s",
+      "raw": "source/asm/bluetoothd/f_1003c1d40.bin",
+      "raw_sha256": "39ac1c915195ca2b4b9cf2ca6930708af40b9a683e133ed8b53f22ed78c9303f",
+      "assembly_sha256": "5fb30d6e3b8706d1005c0b390838811e71a8795c93f2535e05aa1a7444928ecb",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c1d40.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md"
+      ]
+    },
+    {
+      "address": "0x1003c1eac",
+      "end": "0x1003c1f0c",
+      "size": 96,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "connect: reuse session branch"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c1eac.s",
+      "raw": "source/asm/bluetoothd/f_1003c1eac.bin",
+      "raw_sha256": "9c3c9486e45d5d56baebcc53e9127ca74c165c9ae8086897a1723eda5b3eaf20",
+      "assembly_sha256": "6e41ddd040d4c2cf81989ddf04ae1b5676733add8c64b6ddd0363fac20f6687b",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c1eac.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "address": "0x1003c1f78",
+      "end": "0x1003c20b8",
+      "size": 320,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "connect: session allocation"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c1f78.s",
+      "raw": "source/asm/bluetoothd/f_1003c1f78.bin",
+      "raw_sha256": "4815bd64a7d76b102a91267de4123cd30efb617dc0d9bff9903b8debb6c08c97",
+      "assembly_sha256": "ca3cbc71d94e8ee094d6a9d0c205f8cc2cbffff53aa8e294281004d9504a5a5e",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c1f78.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "address": "0x1003c20b8",
+      "end": "0x1003c21ac",
+      "size": 244,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "connect: start SABM"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c20b8.s",
+      "raw": "source/asm/bluetoothd/f_1003c20b8.bin",
+      "raw_sha256": "76346c66966ef09af6166edecedcf3ab27f013eb281350fe36b8d5922f23e14a",
+      "assembly_sha256": "e01d23b1ea434e428339045ceef210eac291c278c1a0d2d4a6d359df4951dbef",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c20b8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "address": "0x1003c2314",
+      "end": "0x1003c2394",
+      "size": 128,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "registered-server lookup/notify for incoming DLCI"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c2314.s",
+      "raw": "source/asm/bluetoothd/f_1003c2314.bin",
+      "raw_sha256": "d952eee6ecea7dc677a6bcfebd04c2bcd8a4fabf76abff8bd6cb61b6202669b9",
+      "assembly_sha256": "a25291dfb07bb8824404e3ce3d091392c421c1df3ac7393662995e6defd8a786",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c2314.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/00-method-and-environment.md",
+        "analysis/02-sdp-server-and-registration.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/02-service-registration-and-sdp-server.md"
+      ]
+    },
+    {
+      "address": "0x1003c2394",
+      "end": "0x1003c2434",
+      "size": 160,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "accept: link handle -> link record"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c2394.s",
+      "raw": "source/asm/bluetoothd/f_1003c2394.bin",
+      "raw_sha256": "50d7725247246ccd3e2b7aa9d005673cedb7b71a100ce29f9bec1edd0305cae9",
+      "assembly_sha256": "b040a7500d7020ed84340c26450b3e9fee127ca7fa218b06b2a7837300880aba",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c2394.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "address": "0x1003c2624",
+      "end": "0x1003c2790",
+      "size": 364,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "connect prologue check"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c2624.s",
+      "raw": "source/asm/bluetoothd/f_1003c2624.bin",
+      "raw_sha256": "3d865ebc3fca5d4ce2d4f54fdc3553ce527ca89631e9f6c20803b819d686142c",
+      "assembly_sha256": "bab67135d9264de9ba92ea0edd7d32dc40406834f23a99e31d52c5cea3d8e7df",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c2624.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003c2b00",
+      "end": "0x1003c2d6c",
+      "size": 620,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'OI_RFCOMM_Connect failed' outgoing connect"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c2b00.s",
+      "raw": "source/asm/bluetoothd/f_1003c2b00.bin",
+      "raw_sha256": "b0792e1c66fb6050501b6f10ac5bdde67a389ec8a9259f4ca428bb797ddca1d9",
+      "assembly_sha256": "0483950b3bc54929f56837768daff14158c300140c86654bccf46bd9cb82e3b4",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c2b00.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "analysis/07-boundary-and-pairing.md",
+        "spec/04-rfcomm-link-establishment.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x1003c2d6c",
+      "end": "0x1003c2df0",
+      "size": 132,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "connect: no-session branch"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c2d6c.s",
+      "raw": "source/asm/bluetoothd/f_1003c2d6c.bin",
+      "raw_sha256": "c477c7bfc0262cc71a156962f056a788784f8017d4e423a9171542a4a01a58bd",
+      "assembly_sha256": "8873a85783483f5c946b2f18b9026c50590291d55532d367c00ed3c56859e1b9",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c2d6c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "address": "0x1003c2df0",
+      "end": "0x1003c2f74",
+      "size": 388,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'OI_RFCOMM_Accept - linkhandle %d not found' incoming accept"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c2df0.s",
+      "raw": "source/asm/bluetoothd/f_1003c2df0.bin",
+      "raw_sha256": "ab36001783e4b468ab5a2faa15dc6f19e309bfaac8c25d849a463f8086a91a10",
+      "assembly_sha256": "1fab16c0610cd3d1709c59db0d519d4e82cce64ad64822315b95429dbf533a8e",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c2df0.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md"
+      ]
+    },
+    {
+      "address": "0x1003c33a8",
+      "end": "0x1003c3674",
+      "size": 716,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'OI_RFCOMM_createChannelForFastConnect'"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c33a8.s",
+      "raw": "source/asm/bluetoothd/f_1003c33a8.bin",
+      "raw_sha256": "5050227e84019dcb001a8b100bb4cc2e835318ba388d9efa7a8bfe4c2c7cebcf",
+      "assembly_sha256": "dd83c7e82c5592105f4cc3f6dae6cddcd2cd7ff83a1f5f168a8ec0a1e9d9e7bc",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c33a8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003c3c20",
+      "end": "0x1003c3fac",
+      "size": 908,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'RFCOMM Write failed' / orphaned MBUF on session loss"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c3c20.s",
+      "raw": "source/asm/bluetoothd/f_1003c3c20.bin",
+      "raw_sha256": "5c468306359a0a7b3c6c5cc3a905721d20cd7f694fb779c281b880f72c86e4b6",
+      "assembly_sha256": "4c762d936010ead2a6cfaf52ecea21d79a2e308b0ff800d1d86f05737c4f2abe",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c3c20.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/05-rfcomm-data-path.md",
+        "spec/05-rfcomm-data-transfer.md"
+      ]
+    },
+    {
+      "address": "0x1003c4c88",
+      "end": "0x1003c4d8c",
+      "size": 260,
+      "groups": [
+        "rfcomm-mux-commands"
+      ],
+      "why": [
+        "信用更新后触发发送（PN 设置初始信用后调用）"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c4c88.s",
+      "raw": "source/asm/bluetoothd/f_1003c4c88.bin",
+      "raw_sha256": "4c91605d8cf0fcb0e43917364b8c5af9f6c740eb2e568758096e75a45868f86b",
+      "assembly_sha256": "3781d79d8bf9d14577f20895ef0c6de069637dc90b94d79bf97c54a509e27e8b",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c4c88.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003c518c",
+      "end": "0x1003c5248",
+      "size": 188,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "RFCOMM 会话定时器启动/重装：登记回调 0x1003c5248 + 超时值"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c518c.s",
+      "raw": "source/asm/bluetoothd/f_1003c518c.bin",
+      "raw_sha256": "2049278bc4d8c6c96c63cbbb98c49d4d9ad0210a51bf3acee722dd79ad63f85f",
+      "assembly_sha256": "f6a30f2ce0dd14841b1f3df040dfb06c80cb71be9b2a6101e582a7d0a3a18597",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c518c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1003c5334",
+      "end": "0x1003c54f8",
+      "size": 452,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "frame sender used for UA/DM responses (0x63=UA,0x0f=DM)"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c5334.s",
+      "raw": "source/asm/bluetoothd/f_1003c5334.bin",
+      "raw_sha256": "e005ce73b34b7b91f4b5aa1bff31b3f461e2b8939a672d34ae14de250abe13fb",
+      "assembly_sha256": "e719311b4d90c8db2127f2e1be82ed263e561960b05ce86274282819aebc1c08",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c5334.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/00-method-and-environment.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "spec/04-rfcomm-link-establishment.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x1003c54f8",
+      "end": "0x1003c5674",
+      "size": 380,
+      "groups": [
+        "rfcomm-tx-closure"
+      ],
+      "why": [
+        "send frame on session (used by frame builder)"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c54f8.s",
+      "raw": "source/asm/bluetoothd/f_1003c54f8.bin",
+      "raw_sha256": "150ee03470f4e3632c0d871a2da1881e231af01de1038a7b43d71675bad8daf0",
+      "assembly_sha256": "6b5bcd6fba65789503f50888c64332024252b4ac902d5cea564c45c2461aa272",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c54f8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md"
+      ]
+    },
+    {
+      "address": "0x1003c5884",
+      "end": "0x1003c59a0",
+      "size": 284,
+      "groups": [
+        "rfcomm-mux-commands"
+      ],
+      "why": [
+        "复用器命令发送助手 (mux, direction, body, len) -> 组帧并发送"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c5884.s",
+      "raw": "source/asm/bluetoothd/f_1003c5884.bin",
+      "raw_sha256": "32565e93114728416cff1659f44630d733f6f89143980ea8ccc32fe2cb9c6fff",
+      "assembly_sha256": "503bac8aa205f4c1555d96135982042b54aa42b81f69b568f9f8d40637c6f2e5",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c5884.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003c59a0",
+      "end": "0x1003c5c70",
+      "size": 720,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'OI_Rfcomm_ReceiveFrame invalid frame length' receive entry"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c59a0.s",
+      "raw": "source/asm/bluetoothd/f_1003c59a0.bin",
+      "raw_sha256": "c43f625016a371b2ac6e22822acf3b6d0f6b99fc4ade9d27a8c836547d40c689",
+      "assembly_sha256": "6b4185b06b4147dabc98662bcdcf6211fef6edb51d5e47c8621b1cf6e4342846",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c59a0.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/00-method-and-environment.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/05-rfcomm-data-path.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "analysis/07-boundary-and-pairing.md",
+        "analysis/08-conflicts-and-baselines.md",
+        "spec/04-rfcomm-link-establishment.md",
+        "spec/05-rfcomm-data-transfer.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ],
+      "slice_end": "0x1003c6b60",
+      "slice_size": 4544,
+      "boundary_note": "切片按 Ghidra 反编译体导出（0x1003c59a0..0x1003c6b60）；LC_FUNCTION_STARTS 在该区间另有 5 个函数起点 0x1003c5c70 / 0x1003c5e80 / 0x1003c6180 / 0x1003c63f8 / 0x1003c6648，Ghidra 把整段识别为一个函数，二者差异见 analysis/09。"
+    },
+    {
+      "address": "0x1003c5c70",
+      "end": "0x1003c5e80",
+      "size": 528,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'No registered server on DLCI %d, rejecting incoming link'"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c5c70.s",
+      "raw": "source/asm/bluetoothd/f_1003c5c70.bin",
+      "raw_sha256": "33d872df966ea57bc18b314900808444f592696196fc0f1f320fead0f476847b",
+      "assembly_sha256": "4af0161a11dad653e0c3c12bf030bfc299dcd88025f7a938b3d570e1d27ab300",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c5c70.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/07-boundary-and-pairing.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1003c6180",
+      "end": "0x1003c63f8",
+      "size": 632,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'DLCI %d not found' + 'RFCOMM send command failed'"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c6180.s",
+      "raw": "source/asm/bluetoothd/f_1003c6180.bin",
+      "raw_sha256": "bf7b9c47e6e0d212da8f49f51cc058e2d7fd4205ea8f96b64a5b5ed7dbdb643f",
+      "assembly_sha256": "3203173970c21c7d8a3668dfda34f5c10bb4581ddf83d134631c2557e11221f4",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c6180.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003c6b60",
+      "end": "0x1003c6ba4",
+      "size": 68,
+      "groups": [
+        "rfcomm-tx-closure"
+      ],
+      "why": [
+        "append mux command / FCS (used by frame builder)"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c6b60.s",
+      "raw": "source/asm/bluetoothd/f_1003c6b60.bin",
+      "raw_sha256": "d7bef474797645439fb1863f093dc1ffea11d0e857552b935d7e88ac75bdeaaf",
+      "assembly_sha256": "08cf62515e45c07ba9cf36d78fa077dc4a8308688c3895000512a815bb7f7fde",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c6b60.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1003c6be4",
+      "end": "0x1003c6c18",
+      "size": 52,
+      "groups": [
+        "rfcomm-tx-closure"
+      ],
+      "why": [
+        "FCS verification helper used by RX"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c6be4.s",
+      "raw": "source/asm/bluetoothd/f_1003c6be4.bin",
+      "raw_sha256": "47eb60244d6e3989d412d8f570fa8f708ad68aa77f8d1155feab8b344fd989e2",
+      "assembly_sha256": "aa64a5ddc42b68de3609db3b28748ddfa00606ce590626a58f9a33904768285e",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c6be4.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/05-rfcomm-data-path.md"
+      ]
+    },
+    {
+      "address": "0x1003c6c18",
+      "end": "0x1003c6c8c",
+      "size": 116,
+      "groups": [
+        "rfcomm-tx-closure"
+      ],
+      "why": [
+        "post-send flush / tx kick"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c6c18.s",
+      "raw": "source/asm/bluetoothd/f_1003c6c18.bin",
+      "raw_sha256": "4bdca17f3ff94fd54fada8a0768a9e56c37d8b2e14b79ce6ea335c24e347d6df",
+      "assembly_sha256": "1514336a9c59ca99d639f3f4896bc32cb9bfe14ed42bde660f31a84691e57ac5",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c6c18.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "address": "0x1003c6db8",
+      "end": "0x1003c6df4",
+      "size": 60,
+      "groups": [
+        "rfcomm-mux-commands"
+      ],
+      "why": [
+        "DLCI 状态变化通知（TEST/FCON 路径使用）"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c6db8.s",
+      "raw": "source/asm/bluetoothd/f_1003c6db8.bin",
+      "raw_sha256": "ff5cabb3f15a0f683f7f8f32349e412135a05c772688dcef47cd64a8cc8317e5",
+      "assembly_sha256": "f63d9b74832edb6492da2104cc639c481f83eedaf4d483e07c1145b25f1c908e",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c6db8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003c6f94",
+      "end": "0x1003c7100",
+      "size": 364,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'OI_RfcommMux_TEST invalid size'"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c6f94.s",
+      "raw": "source/asm/bluetoothd/f_1003c6f94.bin",
+      "raw_sha256": "a62cb98b6ee9ec08681a1ea6ae6d275e531c5b71e2ca07bbc72ef0ad034e7946",
+      "assembly_sha256": "a560b996d85992b0a321637d0ba1653ecf31de41c5a32d489a850c1169fdcfe8",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c6f94.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003c71e8",
+      "end": "0x1003c7288",
+      "size": 160,
+      "groups": [
+        "rfcomm-mux-commands"
+      ],
+      "why": [
+        "MSC 命令发送器：构造 0xE1/0xE3 + 长度 0x05/0x07 + 地址字节 + 信号字节"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c71e8.s",
+      "raw": "source/asm/bluetoothd/f_1003c71e8.bin",
+      "raw_sha256": "99d8b2cd7d552a666078593c25fb19f15889d5038acdd8b952939c2e958f308c",
+      "assembly_sha256": "1d756e4522d411ecfc3b60391eb2f2fd60f1a487f2fdfc884d147d6253ac3d5e",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c71e8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1003c73f0",
+      "end": "0x1003c8464",
+      "size": 4212,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "mux command dispatch (PN/RPN/TEST, 'force disconnect the link')"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c73f0.s",
+      "raw": "source/asm/bluetoothd/f_1003c73f0.bin",
+      "raw_sha256": "cc129683eb1fee6d5963bb1ce5e404806d4be7fc1cf4657493e675e61e8a8229",
+      "assembly_sha256": "56a247314fd49c654f1c33d83bc579aaa672c4bb04eb71e0d8da2828dc3923c3",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c73f0.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/00-method-and-environment.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/05-rfcomm-data-path.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "analysis/08-conflicts-and-baselines.md",
+        "spec/04-rfcomm-link-establishment.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x1003c8464",
+      "end": "0x1003c8650",
+      "size": 492,
+      "groups": [
+        "rfcomm-core"
+      ],
+      "why": [
+        "'Could not find link for DLCI (%d)' mux->link resolution"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c8464.s",
+      "raw": "source/asm/bluetoothd/f_1003c8464.bin",
+      "raw_sha256": "61bdc0c4a1fd4bf24f0c1d8c2dbff2ebd721e1737631d4d0cc9acff19224faaa",
+      "assembly_sha256": "6cfd251766621769e85acf0a9fdd727ce40fd5e350f3870e0509650446532943",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c8464.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md"
+      ]
+    },
+    {
+      "address": "0x1003c9720",
+      "end": "0x1003c9a00",
+      "size": 736,
+      "groups": [
+        "sdp-client"
+      ],
+      "why": [
+        "'OI_STATUS OI_SDP_SearchReq(...)' client PDU builder"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c9720.s",
+      "raw": "source/asm/bluetoothd/f_1003c9720.bin",
+      "raw_sha256": "07e7b5a5e2da67a0fafa81621a5410d8cd88e08ed0b1ecd6846bca8ae6ec4d8b",
+      "assembly_sha256": "ed69a8972ac877a8f4630a6bdd3c6d60317070f4cde17ad6f830c9e7fb53600a",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c9720.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md",
+        "spec/03-sdp-client.md"
+      ]
+    },
+    {
+      "address": "0x1003c9ab8",
+      "end": "0x1003c9d1c",
+      "size": 612,
+      "groups": [
+        "sdp-client"
+      ],
+      "why": [
+        "'OI_STATUS OI_SDP_AttributeReq(...)' client PDU builder"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c9ab8.s",
+      "raw": "source/asm/bluetoothd/f_1003c9ab8.bin",
+      "raw_sha256": "64e7c427c2178a94d2c69ca9c2125b9c69ad64525a92ddbfa1014382b31cf8c6",
+      "assembly_sha256": "15ba0c3ddd5a2aca6412faf3770cacc1124e287fd9236a1dc66fe90ac6fa5761",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c9ab8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md",
+        "spec/03-sdp-client.md"
+      ]
+    },
+    {
+      "address": "0x1003c9dd8",
+      "end": "0x1003ca0a8",
+      "size": 720,
+      "groups": [
+        "sdp-client"
+      ],
+      "why": [
+        "'OI_STATUS OI_SDP_SearchAttributeReq(...)' client PDU builder"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003c9dd8.s",
+      "raw": "source/asm/bluetoothd/f_1003c9dd8.bin",
+      "raw_sha256": "6f0f94432f9d3923685cd6867edd0cf52e18eb73dfb42f88da14f1d3a5aff1ff",
+      "assembly_sha256": "304c7e8868b136b839c3b8415a585312f784d9ac5588688442fa0140ca1e9817",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003c9dd8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md",
+        "spec/03-sdp-client.md"
+      ]
+    },
+    {
+      "address": "0x1003ca1d8",
+      "end": "0x1003ca3f0",
+      "size": 536,
+      "groups": [
+        "sdp-server"
+      ],
+      "why": [
+        "'OI_STATUS ServiceRecordResponse(...)' response encoder"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003ca1d8.s",
+      "raw": "source/asm/bluetoothd/f_1003ca1d8.bin",
+      "raw_sha256": "ab5a503d7d5d7629bd833f5dc9f0f1ed714c08c2c11490716ddc67305e1891de",
+      "assembly_sha256": "28bd13e4fad05139e38b3eef50bb4ef820c5b4683663f3ea5310fb913b8922c2",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003ca1d8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/02-sdp-server-and-registration.md",
+        "spec/02-service-registration-and-sdp-server.md",
+        "spec/03-sdp-client.md"
+      ]
+    },
+    {
+      "address": "0x1003cbd74",
+      "end": "0x1003cc0b0",
+      "size": 828,
+      "groups": [
+        "service-registration"
+      ],
+      "why": [
+        "remote SDP record table add/update"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003cbd74.s",
+      "raw": "source/asm/bluetoothd/f_1003cbd74.bin",
+      "raw_sha256": "39631b0a90b17b15a9fa192d4f2314010fed4b66300a5309aa8f6af2a8cd9d28",
+      "assembly_sha256": "591e8c2300200ead732e68a938792f123b7a0d6827a169c6b91674a504d88187",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003cbd74.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003cd684",
+      "end": "0x1003cd8c8",
+      "size": 580,
+      "groups": [
+        "sdp-server"
+      ],
+      "why": [
+        "stalled incoming SDP request handling"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003cd684.s",
+      "raw": "source/asm/bluetoothd/f_1003cd684.bin",
+      "raw_sha256": "e0901aca9b159cb142f14d750ef6ae462e7c8eb6b50ffbc24180a7427f0c09de",
+      "assembly_sha256": "9d0fa9397067a4c12b4812cc5c63cd8f5f07f63d9dd25b3385d613d1fa9ea31a",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003cd684.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003ce304",
+      "end": "0x1003ce9c4",
+      "size": 1728,
+      "groups": [
+        "sdp-server"
+      ],
+      "why": [
+        "'OI_STATUS ServiceSearchRequest(...)' server request handler"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003ce304.s",
+      "raw": "source/asm/bluetoothd/f_1003ce304.bin",
+      "raw_sha256": "6c40020dbe3650711ad9c01523353ff159f63350e94088f620487016ff2f9da5",
+      "assembly_sha256": "91f10fd1dc96d54363209c019b561756483bf22320d947c338a0151d30ddb00d",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003ce304.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/02-sdp-server-and-registration.md",
+        "spec/02-service-registration-and-sdp-server.md"
+      ]
+    },
+    {
+      "address": "0x1003ce9c4",
+      "end": "0x1003cec64",
+      "size": 672,
+      "groups": [
+        "sdp-server"
+      ],
+      "why": [
+        "'OI_STATUS ServiceAttributeRequest(...)' server request handler"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003ce9c4.s",
+      "raw": "source/asm/bluetoothd/f_1003ce9c4.bin",
+      "raw_sha256": "856ffb6d0fc08ead7dafa88bbda9d68f3c9522ce8d9fc7349ae2f948c09c53f9",
+      "assembly_sha256": "c568c7fe48ae675f54f7916ccb9bf3da50613a8d6d10361a72d1295b9cdb8136",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003ce9c4.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/02-sdp-server-and-registration.md",
+        "spec/02-service-registration-and-sdp-server.md"
+      ]
+    },
+    {
+      "address": "0x1003cec64",
+      "end": "0x1003cef98",
+      "size": 820,
+      "groups": [
+        "sdp-server"
+      ],
+      "why": [
+        "'OI_STATUS ServiceSearchAttributeRequest(...)' server request handler"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003cec64.s",
+      "raw": "source/asm/bluetoothd/f_1003cec64.bin",
+      "raw_sha256": "9d183be0e7b01ea09188628654b26c4a3040353bfaf46362dc1d8bf33b1049b3",
+      "assembly_sha256": "8a300aa5d7d5238ccd253cc374c3446ae3a4de98e34df490debcee19a9711ca0",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003cec64.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/02-sdp-server-and-registration.md",
+        "spec/02-service-registration-and-sdp-server.md"
+      ]
+    },
+    {
+      "address": "0x1003d56fc",
+      "end": "0x1003d59f8",
+      "size": 764,
+      "groups": [
+        "service-registration"
+      ],
+      "why": [
+        "service name table Carplay/WiapGateWay/WiapSink used when publishing records"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003d56fc.s",
+      "raw": "source/asm/bluetoothd/f_1003d56fc.bin",
+      "raw_sha256": "c98e909e1aff89006691c1f23b35c163c8c5a542ebf25bbef934f3a334195302",
+      "assembly_sha256": "cbf9adf082d2c3e04541193051075b98cd292772be368e79ec08d941688e5e0b",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003d56fc.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/01-discovery-and-eir.md",
+        "spec/01-discovery-and-identification.md"
+      ]
+    },
+    {
+      "address": "0x1003d7a1c",
+      "end": "0x1003d7a60",
+      "size": 68,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "按 key(0x32=50) 取配置块；+0xa 的 16 位字段是 RFCOMM 超时参数"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003d7a1c.s",
+      "raw": "source/asm/bluetoothd/f_1003d7a1c.bin",
+      "raw_sha256": "fdc808ee9dd0f3717db089f702ada9e707698474461a96b05f500f130f5fb89a",
+      "assembly_sha256": "447e5040b91f7d0d0da98a77bd8ee60cfa2e380a1d226eb77a4b3f89854a9441",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003d7a1c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1003d7f28",
+      "end": "0x1003d8088",
+      "size": 352,
+      "groups": [
+        "rfcomm-timers"
+      ],
+      "why": [
+        "定时器模块 init：按配置项分配 24 字节槽表，把平台钩子写入 0x100c39fb8"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003d7f28.s",
+      "raw": "source/asm/bluetoothd/f_1003d7f28.bin",
+      "raw_sha256": "954560587790d06a818bd3f7c3777adae52ca427c595a0b1dde1280fd73ab758",
+      "assembly_sha256": "f0c4532c1e90b0a1fe1d72a6893ed2782b637158c57e033027770f54e27304cd",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003d7f28.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1003d8668",
+      "end": "0x1003d8774",
+      "size": 268,
+      "groups": [
+        "rfcomm-tx-closure"
+      ],
+      "why": [
+        "write frame buffer and send (used by frame builder)"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003d8668.s",
+      "raw": "source/asm/bluetoothd/f_1003d8668.bin",
+      "raw_sha256": "af02597f09985ba968a52340c559a1cdb26e8f6dce5dd9ad52af23ab9836d07f",
+      "assembly_sha256": "336a6ead25a5e0ca1c8b63a9dc51000944b14894f72adbbdeb337f861ed3e253",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003d8668.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/04-rfcomm-mux-link-setup.md"
+      ]
+    },
+    {
+      "address": "0x1003d8e5c",
+      "end": "0x1003d9004",
+      "size": 424,
+      "groups": [
+        "rfcomm-core-closure"
+      ],
+      "why": [
+        "accept: async completion helper"
+      ],
+      "asm": "source/asm/bluetoothd/f_1003d8e5c.s",
+      "raw": "source/asm/bluetoothd/f_1003d8e5c.bin",
+      "raw_sha256": "9eed6f4179cb06c23731cf9fb118a6da77be314dcfacbe6778e1aba7b38fc2b0",
+      "assembly_sha256": "ada7a7524921c880fa8cad0fe42843316fa0a7f5b9fbf965fbd081265bccd2ab",
+      "decompiled": "readable/ghidra/bluetoothd/f_1003d8e5c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x100407e38",
+      "end": "0x100407fd4",
+      "size": 412,
+      "groups": [
+        "connection-state"
+      ],
+      "why": [
+        "'handleOpenRFCOMMChannel' XPC open path"
+      ],
+      "asm": "source/asm/bluetoothd/f_100407e38.s",
+      "raw": "source/asm/bluetoothd/f_100407e38.bin",
+      "raw_sha256": "feaba5c02c59946769b590d4be3a39358920d46df402afde74637187cdb6d545",
+      "assembly_sha256": "2773961ec96a6077e6d20c0831f3f7b8e4f421b902d37070f27ba49d50adf608",
+      "decompiled": "readable/ghidra/bluetoothd/f_100407e38.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x100407fd4",
+      "end": "0x1004080f0",
+      "size": 284,
+      "groups": [
+        "connection-state"
+      ],
+      "why": [
+        "'handleCloseRFCOMMChannel' XPC close path"
+      ],
+      "asm": "source/asm/bluetoothd/f_100407fd4.s",
+      "raw": "source/asm/bluetoothd/f_100407fd4.bin",
+      "raw_sha256": "fddb6ba4d2095a2e47759c80c2ac5635968899cd47a2265d15db6d891cd25a7b",
+      "assembly_sha256": "56b91882db9ebee79915ad5f43723290d197cb4c760867bc8835e36e52cb7a00",
+      "decompiled": "readable/ghidra/bluetoothd/f_100407fd4.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1004080f0",
+      "end": "0x1004082c4",
+      "size": 468,
+      "groups": [
+        "connection-state"
+      ],
+      "why": [
+        "'handleRFCOMMPortConfiguration' line settings"
+      ],
+      "asm": "source/asm/bluetoothd/f_1004080f0.s",
+      "raw": "source/asm/bluetoothd/f_1004080f0.bin",
+      "raw_sha256": "fd0448ab67898609ffca6bc9e1940d19132941e0a7acd13dcaf178c3739b552e",
+      "assembly_sha256": "a879b5ff5e0ca0c6d30e8389a0f1b43a0d496935c387f8a5cdd6d3baa3613fa4",
+      "decompiled": "readable/ghidra/bluetoothd/f_1004080f0.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x10040b568",
+      "end": "0x10040bfa0",
+      "size": 2616,
+      "groups": [
+        "service-registration"
+      ],
+      "why": [
+        "'uint32_t XpcClassicConnection::addServiceDataToLocalSDP' - XPC service publish"
+      ],
+      "asm": "source/asm/bluetoothd/f_10040b568.s",
+      "raw": "source/asm/bluetoothd/f_10040b568.bin",
+      "raw_sha256": "5098af9801fb3dad37003e308f8dcaee077b77e12ddd768cd9c2a38f84962a3b",
+      "assembly_sha256": "af3d1853ab1d29c1cecf4086db12a819785642f5390d6caf92f579d241e3787e",
+      "decompiled": "readable/ghidra/bluetoothd/f_10040b568.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/02-sdp-server-and-registration.md",
+        "spec/02-service-registration-and-sdp-server.md"
+      ]
+    },
+    {
+      "address": "0x10040c934",
+      "end": "0x10040cbf0",
+      "size": 700,
+      "groups": [
+        "connection-state"
+      ],
+      "why": [
+        "channel connected callback ('incoming?: %d, sock: %x')"
+      ],
+      "asm": "source/asm/bluetoothd/f_10040c934.s",
+      "raw": "source/asm/bluetoothd/f_10040c934.bin",
+      "raw_sha256": "9e8d8aca18de597c17076dd1945b1cdbec124deb91c9d90a58d34c6d63a07c75",
+      "assembly_sha256": "532b00107066b3430fb09ef5b8049655c8f090931b0146a5c68325efb31e2338",
+      "decompiled": "readable/ghidra/bluetoothd/f_10040c934.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md",
+        "analysis/05-rfcomm-data-path.md",
+        "analysis/07-boundary-and-pairing.md",
+        "analysis/08-conflicts-and-baselines.md",
+        "spec/05-rfcomm-data-transfer.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x10040cbf8",
+      "end": "0x10040cd80",
+      "size": 392,
+      "groups": [
+        "connection-state"
+      ],
+      "why": [
+        "channel disconnected callback"
+      ],
+      "asm": "source/asm/bluetoothd/f_10040cbf8.s",
+      "raw": "source/asm/bluetoothd/f_10040cbf8.bin",
+      "raw_sha256": "6a6a382235a5ea8b89e10edfeed697db8e87c9dadef0db939047aa09003d02cd",
+      "assembly_sha256": "ee65a7b44ebd0ae0f60537dfc6ec38a0aa8a9ca0fdde3441d8f2d9dd8a70f6df",
+      "decompiled": "readable/ghidra/bluetoothd/f_10040cbf8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1004f20fc",
+      "end": "0x1004f25cc",
+      "size": 1232,
+      "groups": [
+        "service-registration"
+      ],
+      "why": [
+        "ServiceWiAP/ServiceWiAPSink/ServiceWirelessCarPlay selection"
+      ],
+      "asm": "source/asm/bluetoothd/f_1004f20fc.s",
+      "raw": "source/asm/bluetoothd/f_1004f20fc.bin",
+      "raw_sha256": "7df98ee7f27b0fa608b8b50e63f63d632cbbfbbf00a2ecc4cfe5f4dd794425e9",
+      "assembly_sha256": "3cc436fc9c899fd2dfea249d3bf94de7c5667991b18c859a7856783d5952d329",
+      "decompiled": "readable/ghidra/bluetoothd/f_1004f20fc.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1004f2730",
+      "end": "0x1004f2b40",
+      "size": 1040,
+      "groups": [
+        "service-registration"
+      ],
+      "why": [
+        "ServiceWiAP/ServiceWiAPSink/ServiceWirelessCarPlay selection (second site)"
+      ],
+      "asm": "source/asm/bluetoothd/f_1004f2730.s",
+      "raw": "source/asm/bluetoothd/f_1004f2730.bin",
+      "raw_sha256": "19f24f7d448655c0ece4ea06f2e707a718fbda02d7c41614d20c36f5489364f7",
+      "assembly_sha256": "fae6f2f3c1845381eab04adf3d3e76ff9d90da0e1aa4924dd6bca8365aaf53c2",
+      "decompiled": "readable/ghidra/bluetoothd/f_1004f2730.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1005e3ae0",
+      "end": "0x1005e6924",
+      "size": 11844,
+      "groups": [
+        "device-identification"
+      ],
+      "why": [
+        "CarPlayType / CarPlayEnabled device settings"
+      ],
+      "asm": "source/asm/bluetoothd/f_1005e3ae0.s",
+      "raw": "source/asm/bluetoothd/f_1005e3ae0.bin",
+      "raw_sha256": "76a6b0b6efca94e6e73a5a02558c4889efb40081900898961f28e5a58445b83c",
+      "assembly_sha256": "1043c0d8f6e855a845594224494a329455435e1682a3132759de2ec0e0ff734c",
+      "decompiled": "readable/ghidra/bluetoothd/f_1005e3ae0.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1005e6ce0",
+      "end": "0x1005e7a0c",
+      "size": 3372,
+      "groups": [
+        "rfcomm-client"
+      ],
+      "why": [
+        "'RFCOMM ServiceClass:' + RFCOMM CID mapping"
+      ],
+      "asm": "source/asm/bluetoothd/f_1005e6ce0.s",
+      "raw": "source/asm/bluetoothd/f_1005e6ce0.bin",
+      "raw_sha256": "b1fa782c518573d30a2f2690b6c7b1ef8d203d24ee12bf24b89ffb725646efcc",
+      "assembly_sha256": "b0d63de87a644431788f2fedd443b00a83125760d4f713190d526b96a4863604",
+      "decompiled": "readable/ghidra/bluetoothd/f_1005e6ce0.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md"
+      ]
+    },
+    {
+      "address": "0x1005faeec",
+      "end": "0x1005fb1c8",
+      "size": 732,
+      "groups": [
+        "device-identification"
+      ],
+      "why": [
+        "Apple EIR 3rd-party/ProxPairing rejection"
+      ],
+      "asm": "source/asm/bluetoothd/f_1005faeec.s",
+      "raw": "source/asm/bluetoothd/f_1005faeec.bin",
+      "raw_sha256": "e92123fb56a18b99af0dc2b02d9d5779ae2ea3ea4af8b761d14dd500f89f0eb1",
+      "assembly_sha256": "1b4dcd7aa3b43753bff87238ba299e66d25580f5a8731b15142bbab30cf2a1e1",
+      "decompiled": "readable/ghidra/bluetoothd/f_1005faeec.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1005fb1c8",
+      "end": "0x1005fb83c",
+      "size": 1652,
+      "groups": [
+        "device-identification"
+      ],
+      "why": [
+        "'bool BT::Device::setEIRData' - EIR parsing into device record"
+      ],
+      "asm": "source/asm/bluetoothd/f_1005fb1c8.s",
+      "raw": "source/asm/bluetoothd/f_1005fb1c8.bin",
+      "raw_sha256": "ab0e90473e22593d888b78677fa633183f114e53088461bd1b7b34055cdc5a63",
+      "assembly_sha256": "68a3698910552759323301771332634561df8c9c426aebe8aeadf448f458e471",
+      "decompiled": "readable/ghidra/bluetoothd/f_1005fb1c8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1005fbae8",
+      "end": "0x1005fbd8c",
+      "size": 676,
+      "groups": [
+        "device-identification"
+      ],
+      "why": [
+        "EIR manufacturer data extraction"
+      ],
+      "asm": "source/asm/bluetoothd/f_1005fbae8.s",
+      "raw": "source/asm/bluetoothd/f_1005fbae8.bin",
+      "raw_sha256": "c26766701ba6452eea5efa5447ee46f4249744fb2bb318b4cd07ea918cd17a5d",
+      "assembly_sha256": "d5d5b000f454a4226fc4f7c07656187c770bbda8f41249d38125cd63b0284816",
+      "decompiled": "readable/ghidra/bluetoothd/f_1005fbae8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1005fc024",
+      "end": "0x1005fc3fc",
+      "size": 984,
+      "groups": [
+        "rfcomm-client"
+      ],
+      "why": [
+        "RFCOMM ServiceClass second site"
+      ],
+      "asm": "source/asm/bluetoothd/f_1005fc024.s",
+      "raw": "source/asm/bluetoothd/f_1005fc024.bin",
+      "raw_sha256": "0dc4d58209be8a8adae018bff4535f9e3d119242d55979f077b38cbf2592ee22",
+      "assembly_sha256": "25cf64ed533b86474b3ef6faf4feaca8b05273ce160aa6666b8c36b264b59fe1",
+      "decompiled": "readable/ghidra/bluetoothd/f_1005fc024.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md"
+      ]
+    },
+    {
+      "address": "0x1005fcaf8",
+      "end": "0x1005fcb40",
+      "size": 72,
+      "groups": [
+        "rfcomm-reconnect"
+      ],
+      "why": [
+        "读设备重试计数（u8 @ dev+0x647），用于 5 次上限判定"
+      ],
+      "asm": "source/asm/bluetoothd/f_1005fcaf8.s",
+      "raw": "source/asm/bluetoothd/f_1005fcaf8.bin",
+      "raw_sha256": "2cd2ac3b45716899b77b2798482fd2a5e247cc2b3b99f332887e9b3e13e2a86d",
+      "assembly_sha256": "f94c855833c304662b95b8fce938799c917c470d5ca2fffa3e88572a260805b7",
+      "decompiled": "readable/ghidra/bluetoothd/f_1005fcaf8.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x1005fcb40",
+      "end": "0x1005fccfc",
+      "size": 444,
+      "groups": [
+        "rfcomm-reconnect"
+      ],
+      "why": [
+        "ScanCorePageScan 退避定时器：固定 300 s（0x45D964B800 ns → dispatch）"
+      ],
+      "asm": "source/asm/bluetoothd/f_1005fcb40.s",
+      "raw": "source/asm/bluetoothd/f_1005fcb40.bin",
+      "raw_sha256": "9abc94672eba5ac4984b0a04aa01270206c24cb43f747f0de015f6deba2d0ff1",
+      "assembly_sha256": "8743241972f49c4b1d7e2280fc10d775a35f05444d2234b7d1439aeaffbb7880",
+      "decompiled": "readable/ghidra/bluetoothd/f_1005fcb40.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x1005fcd8c",
+      "end": "0x1005fcf24",
+      "size": 408,
+      "groups": [
+        "rfcomm-reconnect"
+      ],
+      "why": [
+        "连接请求看门狗：秒参数 × 1e9 → dispatch 定时器"
+      ],
+      "asm": "source/asm/bluetoothd/f_1005fcd8c.s",
+      "raw": "source/asm/bluetoothd/f_1005fcd8c.bin",
+      "raw_sha256": "82007479d17f220673c0f2b12dc31b5ec1094888836572fbc07114d2eea73904",
+      "assembly_sha256": "96da601dd51a6c60e211d835864839b4c882897f59d4049a0e16b798d1cf0c8b",
+      "decompiled": "readable/ghidra/bluetoothd/f_1005fcd8c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x100631edc",
+      "end": "0x100632330",
+      "size": 1108,
+      "groups": [
+        "sdp-client"
+      ],
+      "why": [
+        "SDP client connect state"
+      ],
+      "asm": "source/asm/bluetoothd/f_100631edc.s",
+      "raw": "source/asm/bluetoothd/f_100631edc.bin",
+      "raw_sha256": "905d021d5dd3e6edbd69462b52dac371b4256a239e7553779c892ffb3693ba79",
+      "assembly_sha256": "72e90b1324f3139b1f11621e22ee286c165c6466706dddc436a5c13e846879d4",
+      "decompiled": "readable/ghidra/bluetoothd/f_100631edc.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x10063240c",
+      "end": "0x100632924",
+      "size": 1304,
+      "groups": [
+        "sdp-client"
+      ],
+      "why": [
+        "'Executing full SDP' state driver"
+      ],
+      "asm": "source/asm/bluetoothd/f_10063240c.s",
+      "raw": "source/asm/bluetoothd/f_10063240c.bin",
+      "raw_sha256": "0d82214fd2b41053a25667594176147dd62c8c92a596f95b549cf6fec59660be",
+      "assembly_sha256": "602fb37895990658cec265165140c5a6ce471ab7a8803141429d562dcbe30c44",
+      "decompiled": "readable/ghidra/bluetoothd/f_10063240c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x100632af4",
+      "end": "0x1006332cc",
+      "size": 2008,
+      "groups": [
+        "sdp-client"
+      ],
+      "why": [
+        "'Found %lu services supported RFCOMM, starting channel query'"
+      ],
+      "asm": "source/asm/bluetoothd/f_100632af4.s",
+      "raw": "source/asm/bluetoothd/f_100632af4.bin",
+      "raw_sha256": "a8e17a32d7b26cbdaf37bc842617884519971a44d32af9107a1dee33f255f822",
+      "assembly_sha256": "a820a3ea102e3725e5a1240564cab8974926f7359217257a5038c8c403b7cd4b",
+      "decompiled": "readable/ghidra/bluetoothd/f_100632af4.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md",
+        "spec/03-sdp-client.md"
+      ]
+    },
+    {
+      "address": "0x100633770",
+      "end": "0x100633a00",
+      "size": 656,
+      "groups": [
+        "sdp-client"
+      ],
+      "why": [
+        "SDP client disconnect/retry bookkeeping"
+      ],
+      "asm": "source/asm/bluetoothd/f_100633770.s",
+      "raw": "source/asm/bluetoothd/f_100633770.bin",
+      "raw_sha256": "9e49b51e9e7d7f0d2b580084cc274b1ffaf4ff54a5eaca33ac33c764e1af410e",
+      "assembly_sha256": "1ea656edff70726a7c7b7a5586ef06a308bdc875c0b93a3f9b57a479dde01733",
+      "decompiled": "readable/ghidra/bluetoothd/f_100633770.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1006347c0",
+      "end": "0x100634a24",
+      "size": 612,
+      "groups": [
+        "sdp-client"
+      ],
+      "why": [
+        "SDP client parser state machine (attribute/service-class/RFCOMM UUID states)"
+      ],
+      "asm": "source/asm/bluetoothd/f_1006347c0.s",
+      "raw": "source/asm/bluetoothd/f_1006347c0.bin",
+      "raw_sha256": "5c09eccbae67bd09114431e118d4fae237e88e91a9ea6ee83e4a64d17cb050f5",
+      "assembly_sha256": "23a08b2fd314884996b3001ac3e578d4eb18b37f213808a571e0f7406c938908",
+      "decompiled": "readable/ghidra/bluetoothd/f_1006347c0.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x100634b7c",
+      "end": "0x10063508c",
+      "size": 1296,
+      "groups": [
+        "sdp-client"
+      ],
+      "why": [
+        "'Querying RFCOMM Service' per-record channel extraction"
+      ],
+      "asm": "source/asm/bluetoothd/f_100634b7c.s",
+      "raw": "source/asm/bluetoothd/f_100634b7c.bin",
+      "raw_sha256": "6a11c2c3da546a5260036484fabeda733ebce035db6f82c2b59027d7231fbb8f",
+      "assembly_sha256": "8127be07f99f28eb0470eb8c8d25559f5b330e14ee55e97dec1d2acfda39c6cf",
+      "decompiled": "readable/ghidra/bluetoothd/f_100634b7c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md"
+      ]
+    },
+    {
+      "address": "0x10063791c",
+      "end": "0x100638010",
+      "size": 1780,
+      "groups": [
+        "service-registration"
+      ],
+      "why": [
+        "SDP query completion / mirroring hash"
+      ],
+      "asm": "source/asm/bluetoothd/f_10063791c.s",
+      "raw": "source/asm/bluetoothd/f_10063791c.bin",
+      "raw_sha256": "05602da28acbdbdcef06fb40314d709ea5e1ed2dd0a45c90dfa1d38281ea3093",
+      "assembly_sha256": "f922834a174f1c1b37506df620c234b276bd373eaa5d893fc89803dc96ed0357",
+      "decompiled": "readable/ghidra/bluetoothd/f_10063791c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x10063cea4",
+      "end": "0x10063d1e0",
+      "size": 828,
+      "groups": [
+        "pairing"
+      ],
+      "why": [
+        "pairing agent XPC message dispatch"
+      ],
+      "asm": "source/asm/bluetoothd/f_10063cea4.s",
+      "raw": "source/asm/bluetoothd/f_10063cea4.bin",
+      "raw_sha256": "534729da074c0ad3e320a163495a022d8d4d43a08b13ed724084e8859dc8f950",
+      "assembly_sha256": "73e08e30beff08f73441b01332ebf1cd7da62e5d5df1e187cab70c38a7c03bd5",
+      "decompiled": "readable/ghidra/bluetoothd/f_10063cea4.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x1006428ac",
+      "end": "0x100642eb8",
+      "size": 1548,
+      "groups": [
+        "rfcomm-reconnect"
+      ],
+      "why": [
+        "看门狗调用方：按条件取 8 s / 16 s 作为 stall 超时"
+      ],
+      "asm": "source/asm/bluetoothd/f_1006428ac.s",
+      "raw": "source/asm/bluetoothd/f_1006428ac.bin",
+      "raw_sha256": "b3b44e7197ef18f41375f68d0b9affa7b146635b34f60771eb110b39995d4fe3",
+      "assembly_sha256": "763a307ba07d5289dd968ca0099529adab2da0263ced5593535edec21e956e04",
+      "decompiled": "readable/ghidra/bluetoothd/f_1006428ac.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "spec/06-lifecycle-and-boundary.md"
+      ]
+    },
+    {
+      "address": "0x100653368",
+      "end": "0x10065420c",
+      "size": 3748,
+      "groups": [
+        "discovery"
+      ],
+      "why": [
+        "EIR/advertising service list and EIR length budget ('Advertising WiAP Sink and Classic CarPlay')"
+      ],
+      "asm": "source/asm/bluetoothd/f_100653368.s",
+      "raw": "source/asm/bluetoothd/f_100653368.bin",
+      "raw_sha256": "faba9099abf300d98325456b05f28f6088b29576673014b14bc1171c6066fee5",
+      "assembly_sha256": "72fb225e5940b9cf5f72347d4e4ffc06a11c9fcf48178fe86f581638b525a694",
+      "decompiled": "readable/ghidra/bluetoothd/f_100653368.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/01-discovery-and-eir.md",
+        "spec/01-discovery-and-identification.md"
+      ]
+    },
+    {
+      "address": "0x1007a3ba4",
+      "end": "0x1007a3f08",
+      "size": 868,
+      "groups": [
+        "rfcomm-client"
+      ],
+      "why": [
+        "'Initiating outgoing Wireless IAP connection request ... rfcomm channel', new/old WiAP UUID"
+      ],
+      "asm": "source/asm/bluetoothd/f_1007a3ba4.s",
+      "raw": "source/asm/bluetoothd/f_1007a3ba4.bin",
+      "raw_sha256": "bfb997ca07ae992fd0481edd812966b8ab437fd1e87c19b8990d3eec7ddb32c0",
+      "assembly_sha256": "b4fcb8001f70ec075f023f6ef12726252fbc950c3a2a85faa52ea13a86810b8f",
+      "decompiled": "readable/ghidra/bluetoothd/f_1007a3ba4.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "CONFIRMED_BY_ANALYSIS",
+      "cited_in": [
+        "analysis/03-sdp-client.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/07-boundary-and-pairing.md",
+        "spec/03-sdp-client.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "address": "0x1007e106c",
+      "end": "0x1007e4524",
+      "size": 13496,
+      "groups": [
+        "discovery"
+      ],
+      "why": [
+        "LE CarPlay connection scan interval/RSSI thresholds"
+      ],
+      "asm": "source/asm/bluetoothd/f_1007e106c.s",
+      "raw": "source/asm/bluetoothd/f_1007e106c.bin",
+      "raw_sha256": "ed29cb2eaa2474708528a1aab25ad563df5f0d77a2f266572a0f0340baa686cd",
+      "assembly_sha256": "59e305437eb2da999f1c7d2fdbc7d960eac843d9d922f42071cf3fa893d5bccb",
+      "decompiled": "readable/ghidra/bluetoothd/f_1007e106c.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x10087dbf0",
+      "end": "0x10087df54",
+      "size": 868,
+      "groups": [
+        "rfcomm-client"
+      ],
+      "why": [
+        "second WiAP connect site (UUID variant path)"
+      ],
+      "asm": "source/asm/bluetoothd/f_10087dbf0.s",
+      "raw": "source/asm/bluetoothd/f_10087dbf0.bin",
+      "raw_sha256": "556c1bbc393089c4aa2fbe1eb5d0195e57735b0d0c08467a84dd348e76ce38fd",
+      "assembly_sha256": "159fb1e4858f4717717f7afa7de39b264016846adb0d1b5fdf1f05e0bacc179b",
+      "decompiled": "readable/ghidra/bluetoothd/f_10087dbf0.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    },
+    {
+      "address": "0x10088c824",
+      "end": "0x100890a78",
+      "size": 16980,
+      "groups": [
+        "pairing"
+      ],
+      "why": [
+        "classic link key / bonding info read-write"
+      ],
+      "asm": "source/asm/bluetoothd/f_10088c824.s",
+      "raw": "source/asm/bluetoothd/f_10088c824.bin",
+      "raw_sha256": "6e03de627e81310b48e04802e1224ecff9ab4a7c1531e640dddaa866b0de2893",
+      "assembly_sha256": "6b400c93b520151232db13d647e3d0fcdd0d15d53653d56f95337b8b959d778f",
+      "decompiled": "readable/ghidra/bluetoothd/f_10088c824.ghidra.c",
+      "decompile_status": "DECOMPILED_UNREVIEWED",
+      "evidence_status": "SAMPLED_NOT_CITED",
+      "cited_in": []
+    }
+  ],
+  "count": 101
+}

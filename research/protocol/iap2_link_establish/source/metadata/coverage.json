@@ -1,0 +1,245 @@
+{
+ "docset": "iap2_link_establish",
+ "build": "24A446",
+ "note": "任务书第 5 节的 12 项覆盖要求逐项状态。证据强度：firmware+asm > firmware+dataflow > runtime-candidate。此文件是人工判定的登记表，manifest.json 会原样收录；verify.py 校验 12 项齐全且状态取值合法。",
+ "items": [
+  {
+   "no": 1,
+   "name": "传输绑定",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-1.1",
+    "R-1.6",
+    "R-1.8",
+    "analysis/01",
+    "analysis/02"
+   ],
+   "open": [
+    "OPEN-TX-1",
+    "OPEN-TX-2",
+    "OPEN-TX-3",
+    "OPEN-TX-4"
+   ],
+   "summary": "link→runloop→transport 三层与发送/接收路径已确认；平台传输（RFCOMM/os_channel/USB）到解析器的具体注册点未定位。"
+  },
+  {
+   "no": 2,
+   "name": "链路层初始化",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-1.2",
+    "R-1.3",
+    "R-5.10",
+    "analysis/02",
+    "analysis/06"
+   ],
+   "open": [
+    "OPEN-INIT-1",
+    "OPEN-INIT-2",
+    "OPEN-INIT-3",
+    "OPEN-INIT-4"
+   ],
+   "summary": "对象大小、创建顺序、run_once 事件位、FSM 启动事件已确认；运行循环的驱动源（线程/队列）未确认。"
+  },
+  {
+   "no": 3,
+   "name": "帧格式",
+   "status": "已确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-2.1",
+    "R-2.2",
+    "R-2.3",
+    "R-2.6",
+    "R-2.10",
+    "analysis/03"
+   ],
+   "open": [
+    "OPEN-FRAME-1",
+    "OPEN-FRAME-3",
+    "OPEN-FRAME-5",
+    "OPEN-FRAME-6"
+   ],
+   "summary": "头 8 字节、大端整帧长度、控制位、两种校验算法、传统帧结构与校验范围均已由指令证明；控制位 bit2–0 与 hdr[6]/[7] 语义未确认。"
+  },
+  {
+   "no": 4,
+   "name": "SYN 协商",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-3.1",
+    "R-3.2",
+    "R-3.4",
+    "R-3.7",
+    "R-3.9",
+    "analysis/04"
+   ],
+   "open": [
+    "OPEN-SYN-1",
+    "OPEN-SYN-2",
+    "OPEN-SYN-4",
+    "OPEN-SYN-5"
+   ],
+   "summary": "参数结构/线格式/合法性/协商顺序已确认；0x04 字段语义、扩展字节与特性条目编码、协商失败处置未全部确认。"
+  },
+  {
+   "no": 5,
+   "name": "序号/确认/重传",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-4.1",
+    "R-4.2",
+    "R-4.3",
+    "R-4.4",
+    "R-4.8",
+    "analysis/05"
+   ],
+   "open": [
+    "OPEN-SEQ-1",
+    "OPEN-SEQ-2",
+    "OPEN-SEQ-3",
+    "OPEN-SEQ-5"
+   ],
+   "summary": "8 位序号、初始序号派生、窗口缺省 1、ACK 判定、复位矩阵已确认；EAK 编码、重传策略、重复帧处理未确认。"
+  },
+  {
+   "no": 6,
+   "name": "链路状态机",
+   "status": "已确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-5.1",
+    "R-5.3",
+    "R-5.4",
+    "R-5.7",
+    "R-5.8",
+    "analysis/06"
+   ],
+   "open": [
+    "OPEN-FSM-1",
+    "OPEN-FSM-2",
+    "OPEN-FSM-3",
+    "OPEN-FSM-4"
+   ],
+   "summary": "8 状态、29 事件上限、完整迁移表、空 handler 不迁移、链式迁移、非法事件无副作用均已确认；事件名映射与部分触发点未确认。"
+  },
+  {
+   "no": 7,
+   "name": "IDPS 阶段",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-2.11",
+    "R-6.1",
+    "analysis/07"
+   ],
+   "open": [
+    "OPEN-IDPS-1",
+    "OPEN-IDPS-2",
+    "OPEN-IDPS-3",
+    "OPEN-IDPS-4"
+   ],
+   "summary": "Detect/DetectNACK/RequestIdentify 三种帧的字节与判定已确认，SendDetect 的步骤已逐条读出；IDPS 的状态查询/结果判定与门控未确认。"
+  },
+  {
+   "no": 8,
+   "name": "识别阶段",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-6.2",
+    "R-6.3",
+    "R-6.3.1",
+    "analysis/08"
+   ],
+   "open": [
+    "OPEN-ID-1",
+    "OPEN-ID-2",
+    "OPEN-ID-4",
+    "OPEN-ID-5"
+   ],
+   "summary": "3 条识别消息 + 参数级白名单（ID 0..0x22，18 个接受、其余拒绝）+ 6 个 transport component 编号与子参数 + 拒绝原因码已由分派器证明；发送顺序、必需集合、超时未确认。"
+  },
+  {
+   "no": 9,
+   "name": "认证阶段",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-6.6",
+    "R-6.6.1",
+    "R-6.6.2",
+    "R-6.6.3",
+    "R-6.6.6",
+    "R-6.6.7",
+    "R-6.6.8",
+    "analysis/09",
+    "analysis/14"
+   ],
+   "open": [
+    "OPEN-AUTH-1",
+    "OPEN-AUTH-2",
+    "OPEN-AUTH-5",
+    "OPEN-AUTH-6"
+   ],
+   "summary": "隧道封装、13 条协议消息、authType 分支、消息应答关系、失败回退阶梯（6 种类型）与 10 s 缺省超时已确认；同一类型内部时序仍 OPEN。"
+  },
+  {
+   "no": 10,
+   "name": "会话启动边界",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-6.8",
+    "R-6.9",
+    "analysis/10"
+   ],
+   "open": [
+    "OPEN-SES-1",
+    "OPEN-SES-2",
+    "OPEN-SES-3",
+    "OPEN-SES-4"
+   ],
+   "summary": "链路可用=FSM Connected、会话启动消息 0x4301 唯一、会话按服务号路由已确认；静态字段 schema 已在 control/spec/14 闭合，运行时平台交接与下游 CarPlay 结果仍 OPEN。"
+  },
+  {
+   "no": 11,
+   "name": "异常与清理",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "R-7.1",
+    "R-7.2",
+    "R-7.4",
+    "R-7.9",
+    "analysis/11"
+   ],
+   "open": [
+    "OPEN-ERR-1",
+    "OPEN-ERR-2",
+    "OPEN-ERR-3",
+    "OPEN-ERR-4"
+   ],
+   "summary": "detach/attach 顺序与幂等、Failed 的唯一入口、RST 前置顺序已确认；重试上限判定、销毁顺序、挂起期队列处理未确认。"
+  },
+  {
+   "no": 12,
+   "name": "差异与未知",
+   "status": "部分确认",
+   "strength": "firmware+asm",
+   "evidence": [
+    "spec/08",
+    "analysis/00",
+    "STATUS.md"
+   ],
+   "open": [
+    "OPEN-RUNTIME-1"
+   ],
+   "summary": "与公开文档的差异仅记录「校验范围不同」一项（传统帧不含 FF 55）；其余无证据点已全部登记为 OPEN，共 59 项。"
+  }
+ ]
+}

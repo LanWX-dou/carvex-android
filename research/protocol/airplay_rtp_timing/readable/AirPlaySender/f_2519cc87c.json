@@ -1,0 +1,13 @@
+{
+  "address": "0x2519cc87c",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "ccd5146711f671c5c23fc47d6b7a8c7a294bbca4d6b832cb5f908d4f47f7683e",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "ccd5146711f671c5c23fc47d6b7a8c7a294bbca4d6b832cb5f908d4f47f7683e",
+  "ghidra_name": "_APAudioSinkJitterBufferCreate",
+  "signature": "undefined _APAudioSinkJitterBufferCreate()",
+  "diagnostic": "",
+  "c_file": "f_2519cc87c.ghidra.c",
+  "c_sha256": "55982738c5768b1d7b34e2682b5cbc9821549dc9f44de1b6b61b485c35beaf93",
+  "status": "DECOMPILED_UNREVIEWED"
+}

@@ -1,0 +1,572 @@
+{
+  "schema": "screen-setup-request-v1",
+  "build": "24A446",
+  "firmware_executed": false,
+  "sources": {
+    "AirPlaySender": {
+      "path_relative_to_firmware": "extracted/24A446/binaries/AirPlaySender/AirPlaySender",
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "functions": [
+        {
+          "address": "0x2519bbf24",
+          "end": "0x2519bd5a8",
+          "symbols": [
+            "_apsession_setupStreamCreatingResponseInternal"
+          ],
+          "bytes": 5764,
+          "sha256": "2474956bad6630ee63b02d72eb56748aa49531735f5e4f3772422c313bb6655c",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        },
+        {
+          "address": "0x251bd65d8",
+          "end": "0x251bd72c0",
+          "symbols": [
+            "___screenstream_Resume_block_invoke"
+          ],
+          "bytes": 3304,
+          "sha256": "c484626c7eb384d7fe615ef6e949f0b284a148c4bbb79879b790375af1152202",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        },
+        {
+          "address": "0x251b40be8",
+          "end": "0x251b4290c",
+          "symbols": [
+            "_APEndpointStreamScreenCreate"
+          ],
+          "bytes": 7460,
+          "sha256": "6024da51820542c430e80e109c2632aa429be7d64fb9dad4700b7357a37d513b",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        },
+        {
+          "address": "0x251b443cc",
+          "end": "0x251b44ea0",
+          "symbols": [
+            "_screenstream_initDisplayInfo"
+          ],
+          "bytes": 2772,
+          "sha256": "8bffbec0c33fa30cb8200298f469c32633a8b099aad6631607ab1aad256faa81",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        },
+        {
+          "address": "0x251bd94ec",
+          "end": "0x251bd957c",
+          "symbols": [
+            "_screenstream_initDisplayInfo.cold.11"
+          ],
+          "bytes": 144,
+          "sha256": "f6ecc5c9738d02d0bebd3321ad4fd30f64e63c57a2e9965c6af8c98cdd3d11b4",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        },
+        {
+          "address": "0x251b43fc4",
+          "end": "0x251b43fcc",
+          "symbols": [
+            "___screenstream_ensureTransportStream_block_invoke"
+          ],
+          "bytes": 8,
+          "sha256": "c7a2034aadbfda8164c99c8a8b14f9ca96b760474906dd89faeff5cfc4ce44b7",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        },
+        {
+          "address": "0x2519b4600",
+          "end": "0x2519b4878",
+          "symbols": [
+            "_screenstream_SetProperty"
+          ],
+          "bytes": 632,
+          "sha256": "b3f4f72b812551485f5e08e60f1026b7d7f9b3960902484baa8fdf6a8f623eb9",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        },
+        {
+          "address": "0x251a9bcf0",
+          "end": "0x251a9be54",
+          "symbols": [
+            "_APEndpointDisplayDescriptionCopyProperty"
+          ],
+          "bytes": 356,
+          "sha256": "8552ebe9efa3dfbf73de7d19ee7f05869bbabfd2c34c0dc4214a72349e1f0f2b",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        },
+        {
+          "address": "0x251a9be54",
+          "end": "0x251a9c4ac",
+          "symbols": [
+            "___APEndpointDisplayDescriptionCopyProperty_block_invoke"
+          ],
+          "bytes": 1624,
+          "sha256": "8c4832255eb9180ecb183dca8338c58bac094767d871be495c378da6bc123b31",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": false
+        },
+        {
+          "address": "0x251b434e4",
+          "end": "0x251b43560",
+          "symbols": [
+            "_screenstream_copyOutputLatency"
+          ],
+          "bytes": 124,
+          "sha256": "85fb6dd791e9b4768b8c2e2638aaeb58732c30902a2d9147d42370b7a7bf4bb5",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        }
+      ]
+    },
+    "AirPlaySupport": {
+      "path_relative_to_firmware": "extracted/24A446/binaries/AirPlaySupport/AirPlaySupport",
+      "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+      "functions": [
+        {
+          "address": "0x226e64870",
+          "end": "0x226e6489c",
+          "symbols": [
+            "_APSCarPlayScreenLatencyMs"
+          ],
+          "bytes": 44,
+          "sha256": "5ca6fd30b16ab1df57c9ffefe4d2bd0f041719e8fa51390fe6e3b0c01c49e869",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": false
+        },
+        {
+          "address": "0x226e63f48",
+          "end": "0x226e63ff0",
+          "symbols": [
+            "_APSSettingsGetIntWithOverrideAndDefault"
+          ],
+          "bytes": 168,
+          "sha256": "be51dcdd28c8134e916958c2d14f09b4a54c9781d25ae79e25f4e389e73681b2",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": false
+        }
+      ]
+    },
+    "CoreUtils": {
+      "path_relative_to_firmware": "extracted/24A446/binaries/CoreUtils/CoreUtils",
+      "sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+      "functions": [
+        {
+          "address": "0x18be501d4",
+          "end": "0x18be5021c",
+          "symbols": [
+            "_UUIDGet"
+          ],
+          "bytes": 72,
+          "sha256": "5267052526d8eecdb8958a3acc2a0c892c1f7d27bdce9e5b5a8ef0960faa82ec",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": false
+        },
+        {
+          "address": "0x18be4320c",
+          "end": "0x18be4326c",
+          "symbols": [
+            "_CFDictionarySetInt64"
+          ],
+          "bytes": 96,
+          "sha256": "4f473db6e78b847b943c192595372d508f9dd58f2e72dc55c5a9b80e2e95ae56",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": true
+        }
+      ]
+    },
+    "CoreFoundation": {
+      "path_relative_to_firmware": "extracted/24A446/binaries/CoreFoundation/CoreFoundation",
+      "sha256": "28be8a1510b9c7b8211d196584d3cd502a2d8fd1c40ffd00e3db84466279d478",
+      "functions": [
+        {
+          "address": "0x18061fff0",
+          "end": "0x180620130",
+          "symbols": [
+            "_CFDictionaryAddValue"
+          ],
+          "bytes": 320,
+          "sha256": "22cfa7b4e8087f36c32497a8406658d44f01b448cc37028b87dd31cbe80ea3f7",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": false
+        }
+      ]
+    },
+    "CoreMedia": {
+      "path_relative_to_firmware": "extracted/24A446/binaries/CoreMedia/CoreMedia",
+      "sha256": "65775c5795c2696444037aaaa36ccda29f93fa59c25a05f19a0c53ed4db6724f",
+      "functions": [
+        {
+          "address": "0x18ee7d728",
+          "end": "0x18ee7d754",
+          "symbols": [
+            "_FigCFDictionarySetInt32"
+          ],
+          "bytes": 44,
+          "sha256": "40485dd1ab584f90a0b57ce6bdd2093268381137a6ed86dedb6739553711b2ed",
+          "original_dyld_equal": true,
+          "decoded_complete": true,
+          "cache_fragment_present": false
+        }
+      ]
+    }
+  },
+  "keys": [
+    {
+      "address": "0x27613fcb0",
+      "value": "latencyMs"
+    },
+    {
+      "address": "0x276131cf0",
+      "value": "uuid"
+    },
+    {
+      "address": "0x27612ff30",
+      "value": "timestampInfo"
+    },
+    {
+      "address": "0x27612ff50",
+      "value": "streams"
+    },
+    {
+      "address": "0x276136f70",
+      "value": "streamConnectionID"
+    },
+    {
+      "address": "0x27612fb30",
+      "value": "type"
+    },
+    {
+      "address": "0x27613fcd0",
+      "value": "DemoDeviceInfo"
+    },
+    {
+      "address": "0x27613b530",
+      "value": "ExtraStreamOptions"
+    },
+    {
+      "address": "0x2761339d0",
+      "value": "UUID"
+    },
+    {
+      "address": "0x276134f50",
+      "value": "IsCarPlay"
+    },
+    {
+      "address": "0x276134f70",
+      "value": "IsConnectedOverUSB"
+    },
+    {
+      "address": "0x273d50fa0",
+      "value": "screenLatencyCarPlayUSBMs"
+    },
+    {
+      "address": "0x273d50f40",
+      "value": "screenLatencyMs"
+    }
+  ],
+  "direct_stubs": [
+    {
+      "address": "0x25810d090",
+      "target": "0x226e64870",
+      "raw": "b06ae7f010c2219100021fd6",
+      "component": "AirPlaySupport",
+      "symbol": "_APSCarPlayScreenLatencyMs",
+      "symbol_resolved": true
+    },
+    {
+      "address": "0x25810bd60",
+      "target": "0x18be501d4",
+      "raw": "30ea99b01052079100021fd6",
+      "component": "CoreUtils",
+      "symbol": "_UUIDGet",
+      "symbol_resolved": true
+    },
+    {
+      "address": "0x25810a790",
+      "target": "0x18be4320c",
+      "raw": "d0e999b01032089100021fd6",
+      "component": "CoreUtils",
+      "symbol": "_CFDictionarySetInt64",
+      "symbol_resolved": true
+    },
+    {
+      "address": "0x258101810",
+      "target": "0x18061fff0",
+      "raw": "f02894d010c23f9100021fd6",
+      "component": "CoreFoundation",
+      "symbol": "_CFDictionaryAddValue",
+      "symbol_resolved": true
+    },
+    {
+      "address": "0x258102650",
+      "target": "0x18065b068",
+      "raw": "d02a94b010a2019100021fd6",
+      "component": "CoreFoundation",
+      "symbol": "_CFDictionaryCreateMutableCopy",
+      "symbol_resolved": true
+    },
+    {
+      "address": "0x258102680",
+      "target": "0x18060c0f8",
+      "raw": "502894d010e2039100021fd6",
+      "component": "CoreFoundation",
+      "symbol": "_CFDictionaryGetValue",
+      "symbol_resolved": true
+    },
+    {
+      "address": "0x2580f7000",
+      "target": "0x180622f64",
+      "raw": "502994f010923d9100021fd6",
+      "component": "CoreFoundation",
+      "symbol": "_CFDictionarySetValue",
+      "symbol_resolved": true
+    },
+    {
+      "address": "0x25810b140",
+      "target": "0x18ee7d728",
+      "raw": "906b9bd010a21c9100021fd6",
+      "component": "CoreMedia",
+      "symbol": "_FigCFDictionarySetInt32",
+      "symbol_resolved": true
+    },
+    {
+      "address": "0x25810f7c0",
+      "target": "0x196f5bca4",
+      "raw": "70729f901092329100021fd6",
+      "component": null,
+      "symbol": null,
+      "symbol_resolved": false
+    }
+  ],
+  "instruction_probes": [
+    {
+      "address": "0x251bd66c8",
+      "raw": "029f44b9",
+      "instruction": "ldr w2, [x24, #0x49c]"
+    },
+    {
+      "address": "0x251bd66d4",
+      "raw": "9bd29495",
+      "instruction": "bl #0x25810b140"
+    },
+    {
+      "address": "0x251bd66dc",
+      "raw": "c80300b4",
+      "instruction": "cbz x8, #0x251bd6754"
+    },
+    {
+      "address": "0x251bd66e4",
+      "raw": "68050034",
+      "instruction": "cbz w8, #0x251bd6790"
+    },
+    {
+      "address": "0x251bd66e8",
+      "raw": "029f40f9",
+      "instruction": "ldr x2, [x24, #0x138]"
+    },
+    {
+      "address": "0x251bd66f8",
+      "raw": "42829495",
+      "instruction": "bl #0x2580f7000"
+    },
+    {
+      "address": "0x251bd66fc",
+      "raw": "003f40f9",
+      "instruction": "ldr x0, [x24, #0x78]"
+    },
+    {
+      "address": "0x251bd674c",
+      "raw": "bdcf9495",
+      "instruction": "bl #0x25810a640"
+    },
+    {
+      "address": "0x251b43fc8",
+      "raw": "12f69615",
+      "instruction": "b #0x258101810"
+    },
+    {
+      "address": "0x251b41224",
+      "raw": "20174639",
+      "instruction": "ldrb w0, [x25, #0x185]"
+    },
+    {
+      "address": "0x251b41228",
+      "raw": "9a2f9795",
+      "instruction": "bl #0x25810d090"
+    },
+    {
+      "address": "0x251b41238",
+      "raw": "209f04b9",
+      "instruction": "str w0, [x25, #0x49c]"
+    },
+    {
+      "address": "0x226e64870",
+      "raw": "c0000034",
+      "instruction": "cbz w0, #0x226e64888"
+    },
+    {
+      "address": "0x226e64880",
+      "raw": "22038052",
+      "instruction": "mov w2, #0x19"
+    },
+    {
+      "address": "0x226e64894",
+      "raw": "62098052",
+      "instruction": "mov w2, #0x4b"
+    },
+    {
+      "address": "0x226e64898",
+      "raw": "acfdff17",
+      "instruction": "b #0x226e63f48"
+    },
+    {
+      "address": "0x251b447dc",
+      "raw": "680a4639",
+      "instruction": "ldrb w8, [x19, #0x182]"
+    },
+    {
+      "address": "0x251b447e0",
+      "raw": "88010035",
+      "instruction": "cbnz w8, #0x251b44810"
+    },
+    {
+      "address": "0x251b447fc",
+      "raw": "3d5dfd97",
+      "instruction": "bl #0x251a9bcf0"
+    },
+    {
+      "address": "0x251b44d90",
+      "raw": "680600b4",
+      "instruction": "cbz x8, #0x251b44e5c"
+    },
+    {
+      "address": "0x251bd9564",
+      "raw": "e82e8812",
+      "instruction": "mov w8, #-0x4178"
+    },
+    {
+      "address": "0x251a9beb4",
+      "raw": "c00e40f9",
+      "instruction": "ldr x0, [x22, #0x18]"
+    },
+    {
+      "address": "0x251a9bebc",
+      "raw": "21c03391",
+      "instruction": "add x1, x1, #0xcf0"
+    },
+    {
+      "address": "0x251a9bec0",
+      "raw": "2d000014",
+      "instruction": "b #0x251a9bf74"
+    },
+    {
+      "address": "0x251a9bf74",
+      "raw": "c3999995",
+      "instruction": "bl #0x258102680"
+    },
+    {
+      "address": "0x2519bc108",
+      "raw": "52199d95",
+      "instruction": "bl #0x258102650"
+    },
+    {
+      "address": "0x2519bc14c",
+      "raw": "91399d95",
+      "instruction": "bl #0x25810a790"
+    },
+    {
+      "address": "0x2519bc228",
+      "raw": "ce3e9d95",
+      "instruction": "bl #0x25810bd60"
+    },
+    {
+      "address": "0x2519bc230",
+      "raw": "020dc0da",
+      "instruction": "rev x2, x8"
+    },
+    {
+      "address": "0x2519bc248",
+      "raw": "52399d95",
+      "instruction": "bl #0x25810a790"
+    },
+    {
+      "address": "0x2519bc250",
+      "raw": "1f150071",
+      "instruction": "cmp w8, #5"
+    },
+    {
+      "address": "0x2519bc254",
+      "raw": "01060054",
+      "instruction": "b.ne #0x2519bc314"
+    },
+    {
+      "address": "0x2519bc25c",
+      "raw": "39000014",
+      "instruction": "b #0x2519bc340"
+    },
+    {
+      "address": "0x2519bc314",
+      "raw": "2b4d9d95",
+      "instruction": "bl #0x25810f7c0"
+    },
+    {
+      "address": "0x2519bc31c",
+      "raw": "200100b4",
+      "instruction": "cbz x0, #0x2519bc340"
+    },
+    {
+      "address": "0x2519bc330",
+      "raw": "34eb9c95",
+      "instruction": "bl #0x2580f7000"
+    }
+  ],
+  "pointer_bindings": [
+    {
+      "slot": "0x2693e7c38",
+      "target": "0x276136f70",
+      "value": "streamConnectionID"
+    },
+    {
+      "slot": "0x2693e7d08",
+      "target": "0x27612fb30",
+      "value": "type"
+    },
+    {
+      "slot": "0x2693e6ac8",
+      "target": "0x2761339d0",
+      "value": "UUID"
+    },
+    {
+      "slot": "0x2693e7168",
+      "target": "0x276134f50",
+      "value": "IsCarPlay"
+    },
+    {
+      "slot": "0x2693e7170",
+      "target": "0x276134f70",
+      "value": "IsConnectedOverUSB"
+    }
+  ],
+  "defaults": {
+    "CarPlay_wireless_latencyMs": 75,
+    "CarPlay_USB_latencyMs": 25,
+    "configurable_local_preferences": true
+  },
+  "scope": "Bounded screen request producer/defaults/UUID getter; excludes whole-session equivalence, generic timestamp payload, all extras callers and hardware acceptance"
+}

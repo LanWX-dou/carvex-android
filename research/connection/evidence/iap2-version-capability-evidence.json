@@ -1,0 +1,535 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-29",
+  "status": "BOUNDED_STATIC_AUDIT",
+  "source": {
+    "component": "accessoryd",
+    "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\System\\Library\\PrivateFrameworks\\CoreAccessories.framework\\Support\\accessoryd",
+    "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe"
+  },
+  "functions": [
+    {
+      "id": "IV01",
+      "address": "0x100103230",
+      "component": "accessoryd",
+      "raw_length": 396,
+      "raw_sha256": "d244b47ebb3982ff87b8a8a23224be3f2fc99d641efed1786d8de31c46fb05df",
+      "source_file_offset": 1061424,
+      "raw_matches_source": true,
+      "reviewed_scope": "SYN version and three-byte session descriptor parsing",
+      "symbols": [
+        "",
+        "_iAP2PacketParseSYNData",
+        "",
+        "_iAP2PacketParseSYNData"
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100103230.bin",
+          "sha256": "d244b47ebb3982ff87b8a8a23224be3f2fc99d641efed1786d8de31c46fb05df"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100103230.s",
+          "sha256": "264316b47e5b6500a77ceadf9686f1acf4dc4435b889063639a877098fb9663f"
+        }
+      ]
+    },
+    {
+      "id": "IV02",
+      "address": "0x100035154",
+      "component": "accessoryd",
+      "raw_length": 608,
+      "raw_sha256": "7f7a65c955d0970217dc74887fe841b58f2ac45b49224f71e248c42ccc2a0c5d",
+      "source_file_offset": 217428,
+      "raw_matches_source": true,
+      "reviewed_scope": "Local link version only lowered; copied peer session table",
+      "symbols": [
+        "",
+        "_iAP2LinkCheckNegotiation",
+        "",
+        "_iAP2LinkCheckNegotiation"
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100035154.bin",
+          "sha256": "7f7a65c955d0970217dc74887fe841b58f2ac45b49224f71e248c42ccc2a0c5d"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100035154.s",
+          "sha256": "fb81950949572d9b9e54253e442f81ee16fbee773ad28510bd4c9890df3d6cba"
+        }
+      ]
+    },
+    {
+      "id": "IV03",
+      "address": "0x10003009c",
+      "component": "accessoryd",
+      "raw_length": 140,
+      "raw_sha256": "616b3b1395be75a0990cf2e85f9ee365e615d18d8c4e09203869d295e55039ac",
+      "source_file_offset": 196764,
+      "raw_matches_source": true,
+      "reviewed_scope": "Commit negotiated working block before connected callback",
+      "symbols": [
+        "",
+        "_iAP2LinkDeviceActionNotifyConnection",
+        "",
+        "_iAP2LinkDeviceActionNotifyConnection"
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10003009c.bin",
+          "sha256": "616b3b1395be75a0990cf2e85f9ee365e615d18d8c4e09203869d295e55039ac"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10003009c.s",
+          "sha256": "f50d0aa01cfd94a886a6e26c05b1b04c3c3e686cf921d9d0fdefd9f912a9173a"
+        }
+      ]
+    },
+    {
+      "id": "IV04",
+      "address": "0x10011d4b8",
+      "component": "accessoryd",
+      "raw_length": 96,
+      "raw_sha256": "4150302e26bbe6238a211c0765baf7b555a3d80330a9d92cdea813dbcf3e01f8",
+      "source_file_offset": 1168568,
+      "raw_matches_source": true,
+      "reviewed_scope": "Control version fetched from session info byte2",
+      "symbols": [
+        "",
+        "_iap2_sessionControl_getVersion",
+        "",
+        "_iap2_sessionControl_getVersion"
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10011d4b8.bin",
+          "sha256": "4150302e26bbe6238a211c0765baf7b555a3d80330a9d92cdea813dbcf3e01f8"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10011d4b8.s",
+          "sha256": "d279abdd123d0c96ee91a41f4b0aeb883be573964c10c1169afb266e4497c48c"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10011d4b8.ghidra.c",
+          "sha256": "41136583e38c5bd710128a6f1ce45f14dd6aabaee91549a3cfcfbe3172053451"
+        }
+      ]
+    },
+    {
+      "id": "IV05",
+      "address": "0x1000ed1ac",
+      "component": "accessoryd",
+      "raw_length": 712,
+      "raw_sha256": "559c9960a0dc8a3ad227f2c29b0c8800f705dfd9e839f9b8133a64e6184a551d",
+      "source_file_offset": 971180,
+      "raw_matches_source": true,
+      "reviewed_scope": "Version-dependent authentication inheritance and AA00 serial request",
+      "symbols": [
+        "__startFeatureFromDevice",
+        "",
+        "__startFeatureFromDevice",
+        ""
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000ed1ac.bin",
+          "sha256": "559c9960a0dc8a3ad227f2c29b0c8800f705dfd9e839f9b8133a64e6184a551d"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000ed1ac.s",
+          "sha256": "15404f68b6a200cb3545809c230860c808cc985a2ea514e955f5427c1e6d9ec2"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000ed1ac.ghidra.c",
+          "sha256": "15d323c5f297cfc216d09dc34beddd54510b359ed7da2f435b999bbb0a78c4a7"
+        }
+      ]
+    },
+    {
+      "id": "IV06",
+      "address": "0x1000d4c94",
+      "component": "accessoryd",
+      "raw_length": 588,
+      "raw_sha256": "534f03bb40e30dac0ae51b30988878859aa20a803558cc2a0ce12436976ed30e",
+      "source_file_offset": 871572,
+      "raw_matches_source": true,
+      "reviewed_scope": "CMD version1 rejection; 0x54/0x55 dispatch to FSM9/10",
+      "symbols": [
+        "",
+        "_iAP2LinkProcessInOrderPacketCMD",
+        "",
+        "_iAP2LinkProcessInOrderPacketCMD"
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000d4c94.bin",
+          "sha256": "534f03bb40e30dac0ae51b30988878859aa20a803558cc2a0ce12436976ed30e"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000d4c94.s",
+          "sha256": "f05a79d66db18960b15718f37c4b3a9f9d6b0aadbddaed9b00d8fb415c0686e5"
+        }
+      ]
+    },
+    {
+      "id": "IV07",
+      "address": "0x10011d8dc",
+      "component": "accessoryd",
+      "raw_length": 408,
+      "raw_sha256": "b468c412dfb85739dce1ce9e7af9133382e2eaccbda790fa062c2b4f73f30174",
+      "source_file_offset": 1169628,
+      "raw_matches_source": true,
+      "reviewed_scope": "Auth/ID completion and conditional time-sync start",
+      "symbols": [
+        "__authAndIDComplete",
+        "",
+        "__authAndIDComplete",
+        ""
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10011d8dc.bin",
+          "sha256": "b468c412dfb85739dce1ce9e7af9133382e2eaccbda790fa062c2b4f73f30174"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10011d8dc.s",
+          "sha256": "9da8d7312bef0e64e7de87116db82448d9bfe00ece081fc4faf7abcfadc62b5d"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10011d8dc.ghidra.c",
+          "sha256": "6798871e40a8e44bd58ea5d466d118c5233a64edf839fff6e2c97cb3935e6fa4"
+        }
+      ]
+    },
+    {
+      "id": "IV08",
+      "address": "0x10013aed0",
+      "component": "accessoryd",
+      "raw_length": 788,
+      "raw_sha256": "e835c69acfc3c4c3f00ccdc99749477c7774a8c69ce635c4a0f69d9973e15a51",
+      "source_file_offset": 1289936,
+      "raw_matches_source": true,
+      "reviewed_scope": "Identification callback success added to required-success set",
+      "symbols": [
+        "",
+        "_iap2_identification_cbIdentificationInfoParams",
+        "",
+        "_iap2_identification_cbIdentificationInfoParams"
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013aed0.bin",
+          "sha256": "e835c69acfc3c4c3f00ccdc99749477c7774a8c69ce635c4a0f69d9973e15a51"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013aed0.s",
+          "sha256": "f67ab405af9a5d616578026eaabadc7ead754dfe563cab69bd82de5b1b769292"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013aed0.ghidra.c",
+          "sha256": "5a6912d47ba5d4d7d3eca98419ce168ff9e3396919dba0c733afce538f1271ef"
+        }
+      ]
+    },
+    {
+      "id": "IV09",
+      "address": "0x10013bc5c",
+      "component": "accessoryd",
+      "raw_length": 108,
+      "raw_sha256": "5f019f69600d421691b0af0263d9b228601fbda0ce4f960f3a9120709517ee39",
+      "source_file_offset": 1293404,
+      "raw_matches_source": true,
+      "reviewed_scope": "Missing required success creates rejection/error",
+      "symbols": [
+        "",
+        "__CFSetValidateRequiredIdentificationParamsApplierFunction",
+        "",
+        "__CFSetValidateRequiredIdentificationParamsApplierFunction"
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bc5c.bin",
+          "sha256": "5f019f69600d421691b0af0263d9b228601fbda0ce4f960f3a9120709517ee39"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bc5c.s",
+          "sha256": "5a5473d43ec5ca71e1f04fbca49b61be4144d9ca4fac3821b0866b884c8d816b"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bc5c.ghidra.c",
+          "sha256": "9d41e37a2f8d7d0660cdd131ecaa94796297147b16f89343fb7b46f5edcc8a9f"
+        }
+      ]
+    },
+    {
+      "id": "IV10",
+      "address": "0x10013b920",
+      "component": "accessoryd",
+      "raw_length": 432,
+      "raw_sha256": "c69aa1d97bf0b08c56be47455bb561f7f4bc2961c98c8a7fa3a3d0f35baec54c",
+      "source_file_offset": 1292576,
+      "raw_matches_source": true,
+      "reviewed_scope": "Required transport component checks",
+      "symbols": [
+        "",
+        "_iap2_identification_checkRequiredTransportComponentParam",
+        "",
+        "_iap2_identification_checkRequiredTransportComponentParam"
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013b920.bin",
+          "sha256": "c69aa1d97bf0b08c56be47455bb561f7f4bc2961c98c8a7fa3a3d0f35baec54c"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013b920.s",
+          "sha256": "f0dff627eefa6d2a4348806b519c77789cb66021d3ff5fb92d416affbf588ab0"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013b920.ghidra.c",
+          "sha256": "ea735eb190d0d5898629fad485fa4e33596854b2e7ebb9bcaeba9319aaadde67"
+        }
+      ]
+    },
+    {
+      "id": "IV11",
+      "address": "0x100050dcc",
+      "component": "accessoryd",
+      "raw_length": 648,
+      "raw_sha256": "20fbc1f5e49c6e8a23f378a65865ae6a3ea3d54d6fa5c37e2111cdf2f747cf84",
+      "source_file_offset": 331212,
+      "raw_matches_source": true,
+      "reviewed_scope": "Identification acceptance requires successful validation and callback",
+      "symbols": [
+        "___iap2_identification_identificationInfoHandler_block_invoke.76",
+        "",
+        "___iap2_identification_identificationInfoHandler_block_invoke.76",
+        ""
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050dcc.bin",
+          "sha256": "20fbc1f5e49c6e8a23f378a65865ae6a3ea3d54d6fa5c37e2111cdf2f747cf84"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050dcc.s",
+          "sha256": "fa0bec5c4f3393ffaa795861cf3381f7a86378cb904cdc846cac740174a715ae"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050dcc.ghidra.c",
+          "sha256": "261e2907d1e04d26547490bcdca2797a0447dd9e3e459f286fe00e54eeffe0c7"
+        }
+      ]
+    },
+    {
+      "id": "IV12",
+      "address": "0x10006a3e4",
+      "component": "accessoryd",
+      "raw_length": 556,
+      "raw_sha256": "f59443759e4dfebad8f79b4d8d98c73a6a3c071aa12b9bb5913c32367edda627",
+      "source_file_offset": 435172,
+      "raw_matches_source": true,
+      "reviewed_scope": "Identification registration table reader",
+      "symbols": [
+        "",
+        "_iap2_features_registerIdentificationParamHandlers",
+        "",
+        "_iap2_features_registerIdentificationParamHandlers"
+      ],
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10006a3e4.bin",
+          "sha256": "f59443759e4dfebad8f79b4d8d98c73a6a3c071aa12b9bb5913c32367edda627"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10006a3e4.s",
+          "sha256": "62dc0b87f05207081242b93b852d3c1f5ecc3408ff2eb5eb1bf8a8231c7b5a07"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10006a3e4.ghidra.c",
+          "sha256": "3af3fc0dee5020d09fe7eeaaca52caf9530d1d6f7f68279901dada9e030babac"
+        }
+      ]
+    }
+  ],
+  "required_registration_records": [
+    {
+      "address": "0x10021a810",
+      "id": 0,
+      "required": 1,
+      "raw_hex": "0000000000000000e8120500000018800100000000000000",
+      "sha256": "cf937fa868f1511c53f305506dcbf4c424c9cbf051a44d78ad1afb1e6dd379a8"
+    },
+    {
+      "address": "0x10021a828",
+      "id": 1,
+      "required": 1,
+      "raw_hex": "0100000000000000e8120500000018800100000000000000",
+      "sha256": "17078e86ed055ef6ed8e58375f4b57b6460ed86a383ffc204c73fbb59c33984a"
+    },
+    {
+      "address": "0x10021a840",
+      "id": 2,
+      "required": 1,
+      "raw_hex": "0200000000000000e8120500000018800100000000000000",
+      "sha256": "9ad336059dca5ca2b514dc6fb06f6483ce7a040a101004b065eb530846922fe0"
+    },
+    {
+      "address": "0x10021a858",
+      "id": 3,
+      "required": 1,
+      "raw_hex": "0300000000000000e8120500000018800100000000000000",
+      "sha256": "048a87315b88eb7655fe7e0a8c6960dc90c97992362080b4fb1d25b678a96474"
+    },
+    {
+      "address": "0x10021a870",
+      "id": 4,
+      "required": 1,
+      "raw_hex": "0400000000000000e8120500000018800100000000000000",
+      "sha256": "b178ce4b9889ea29525835ab869f3d1ff0ec756bf567e3b0ce7369a2a82ce41e"
+    },
+    {
+      "address": "0x10021a888",
+      "id": 5,
+      "required": 1,
+      "raw_hex": "0500000000000000e8120500000018800100000000000000",
+      "sha256": "a41a934b1bae9864187eb00c6c1ef7e1c10fe94460318532f1155154a52fd190"
+    },
+    {
+      "address": "0x10021a8a0",
+      "id": 6,
+      "required": 1,
+      "raw_hex": "0600000000000000e8120500000018800100000000000000",
+      "sha256": "ef5a599331705a9f4c4320d0cd261abe9d939be3a075c62b6bb5c47346a80c01"
+    },
+    {
+      "address": "0x10021a8b8",
+      "id": 7,
+      "required": 1,
+      "raw_hex": "0700000000000000e8120500000018800100000000000000",
+      "sha256": "0d8e193d0b86152b7b91d85a7e3e8360ff993ccf2cc987f0a1c7cacb19eaae70"
+    },
+    {
+      "address": "0x10021a8d0",
+      "id": 12,
+      "required": 1,
+      "raw_hex": "0c00000000000000e8120500000018800100000000000000",
+      "sha256": "711d3df2c38e71cedabbce3448d3f075620da7077c52d83d73683bf992888698"
+    },
+    {
+      "address": "0x10021a8e8",
+      "id": 13,
+      "required": 1,
+      "raw_hex": "0d00000000000000e8120500000018800100000000000000",
+      "sha256": "accd14cd52f66f25c5cc81f00a1f0461f3f42ce377a3ec8713e89e01726e5b28"
+    },
+    {
+      "address": "0x10021f1a8",
+      "id": 8,
+      "required": 1,
+      "raw_hex": "0800000000000000a8070c00000018800100000000000000",
+      "sha256": "547189dba4644a7314737431990a8f8421cf159164cda275b044801605760fe9"
+    },
+    {
+      "address": "0x10021f1c0",
+      "id": 9,
+      "required": 1,
+      "raw_hex": "0900000000000000a8070c00000018800100000000000000",
+      "sha256": "2dd232d1440fbd3580094c868140de5345322a4b7bab4f5efa12e2207baa914a"
+    }
+  ],
+  "android_sources": [
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\IapLink.kt",
+      "sha256": "d968222caaa2152015385074714b01466408119e1b1ae16ad9f06d6f1ecdaed9"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\IapStartupPolicy.kt",
+      "sha256": "67999f9f698c37c2bc8e9185aafd768e9945e7e96971c3a8a0ef861259df5165"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\Bootstrap.kt",
+      "sha256": "6d2b148cfc29cbef59bc00e63523105502a0f0a86ad994d1d981b3c07003f56c"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\IapAuthentication.kt",
+      "sha256": "0a655ed89e74f26589302b10d4f0075a9bce45f1238c07e42e6faae666bb0c7f"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\RuntimeIap.kt",
+      "sha256": "bc658777fb9edb303cdc5189c20aa30860d06ac8855659f756e1d01788f25fe5"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\AirSession.kt",
+      "sha256": "dfe3d7f818b204a7ed93048a1add292cd02a9d16a6110edd6f21cac775af23c7"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\sessioncore\\PeerNegotiationController.kt",
+      "sha256": "58f48b4cff010724bee1c594b196ab9c1b62ca3c8ba4fce3674a2dc3b9e0ac01"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\sessioncore\\IapIdentifyInfo.kt",
+      "sha256": "a54a8609c98f49009c7d71ad5c504324f874e8f4104cb09756b9cce13d03b2f1"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\DeviceAuthPolicy.kt",
+      "sha256": "4e23cde668e2b949d4cf34e2ecf872b1a27a7a58b82a0ab06e33b10480092af4"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\IapPeerProfile.kt",
+      "sha256": "056bbc2de1d34dfd8a4be99c01cfac24888faede46ead203e1cb0cab7393e070"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\IapMessageRouter.kt",
+      "sha256": "c965799a7a396be3c65b793a25d5c710174cfea0011a030eb8b864089c50ed3d"
+    }
+  ],
+  "tools": [
+    {
+      "path": "D:\\carvex-research\\research\connection\tools\\inspect_iap2_version_audit.py",
+      "sha256": "39f6637d9918ab07f124d7b3c709ef9c3d8b50b18075a34a5b18523efb0bd369"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\tools\\ipsw-research\\firmware_image.py",
+      "sha256": "642cb879df32e8974c6e59cce9339dc8deb1aa3c9867e38dfadd03967f01157b"
+    }
+  ],
+  "runtime_observed": false,
+  "firmware_executed": false,
+  "app_tests_executed": false,
+  "claims": [
+    {
+      "id": "IAV-01",
+      "priority": "P1",
+      "status": "CONFIRMED_STATIC",
+      "claim": "Android echoes control version >2 and commits link before Bootstrap rejects unsupported control versions."
+    },
+    {
+      "id": "IAV-02",
+      "priority": "P1",
+      "status": "CONFIRMED_STATIC",
+      "claim": "Android identification acceptance omits required IDs8/9 and validates presence rather than successful parsing for12/13; transport components are not checked on this acceptance path."
+    },
+    {
+      "id": "IAV-03",
+      "priority": "P2",
+      "status": "CONFIRMED_STATIC_BRANCH",
+      "claim": "Second SYNACK path parses a new proposal but commits first proposal's versions/session, using only second MTU and sequence."
+    },
+    {
+      "id": "IAV-04",
+      "priority": "P2",
+      "status": "PARTIAL_CANDIDATE",
+      "claim": "Link v2/v3 CMD54/55 is queued but Bootstrap discards null-fields command and AirSession runtime callback handles only NowPlaying; actual peer dependence/extension prerequisites remain unproven."
+    }
+  ],
+  "limits": [
+    "No audio causality established.",
+    "No exact iPhone local version/profile producer closure; do not force all links to1.",
+    "Reproduction vectors in chapter14 are proposed static paths, not executed tests.",
+    "No bypass of authentication or untrusted inheritance is recommended.",
+    "Source snapshots may differ from an installed APK; device build provenance not checked."
+  ]
+}
+

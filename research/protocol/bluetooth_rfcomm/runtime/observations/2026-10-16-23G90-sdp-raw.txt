@@ -1,0 +1,15 @@
+# pklg: bluetoothd-hci-latest.pklg  size=205582
+# 解析：pklg 记录 -> ACL 重组 -> L2CAP -> 按 UUID 字节匹配 -> SDP 元素按 [type:5][size:3] 解码
+# 记录数=4508 ACL包=148 L2CAP帧=148
+# L2CAP CID 分布: {'0x1': 28, '0x108': 11, '0x608': 5, '0x708': 54, '0x809': 7, '0x909': 6, '0xa09': 37}
+### cid=0x0608 handle=0xc 命中 WiapGateWay (BE)
+  PDU=2 tid=0x0001 paramlen=22 raw=020001001635111c00000000decafadedecadeafdecacafe004000
+   SearchPattern: SEQ[UUID128 00000000-deca-fade-deca-deafdecacafe]
+   MaxRecords: 64
+   Continuation: 00
+### cid=0x0108 handle=0xb 命中 WiapSink (BE)
+  PDU=5 tid=0x0007 paramlen=68 raw=0500070044004136003e0900000a0001000709000135111c00000000decafadedecadeafdecacaff090004350c350319010035051900030801090100250a5246434f4d4d2d53505000
+   AttributeListByteCount: 65
+   AttributeList: SEQ[UINT16 0, UINT32 65543, UINT16 1, SEQ[UUID128 00000000-deca-fade-deca-deafdecacaff], UINT16 4, SEQ[SEQ[UUID16 0100----], SEQ[UUID16 0003----, UINT8 1]], UINT16 256, TEXT "RFCOMM-SPP"]
+   Continuation: 00
+

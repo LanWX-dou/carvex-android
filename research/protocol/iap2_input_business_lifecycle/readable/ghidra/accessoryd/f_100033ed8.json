@@ -1,0 +1,13 @@
+{
+  "address": "0x100033ed8",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "0c6fea9d4958cb0a92934289129b57674f60c55d8eaf925119bfe8701777de6f",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "0c6fea9d4958cb0a92934289129b57674f60c55d8eaf925119bfe8701777de6f",
+  "ghidra_name": "_iAP2LinkGetBuffSize",
+  "signature": "undefined _iAP2LinkGetBuffSize()",
+  "diagnostic": "",
+  "c_file": "f_100033ed8.ghidra.c",
+  "c_sha256": "caca0a591c68c84959ef22465be54baa1f3b42d9227d9081b36bd77cabdca124",
+  "status": "DECOMPILED_UNREVIEWED"
+}

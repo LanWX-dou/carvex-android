@@ -1,0 +1,13 @@
+{
+  "address": "0x1000dc778",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "6faaef5af458165911c67e2fd677899a6d04a9f87881255442a52c09fc8846b4",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "6faaef5af458165911c67e2fd677899a6d04a9f87881255442a52c09fc8846b4",
+  "ghidra_name": "_platform_navigation_startRouteGuidance",
+  "signature": "undefined _platform_navigation_startRouteGuidance()",
+  "diagnostic": "",
+  "c_file": "f_1000dc778.ghidra.c",
+  "c_sha256": "896c0b8c51b02bf573aaf7f79219688f993c1c407ef26328f89e78a2733d67fb",
+  "status": "DECOMPILED_UNREVIEWED"
+}

@@ -1,0 +1,105 @@
+{
+ "image": "AirPlaySender",
+ "functions": [
+  {
+   "symbol": "coreUtilsPairing_PerformSetup",
+   "group": "PAIR",
+   "note": "client pair-setup entry"
+  },
+  {
+   "symbol": "coreUtilsPairing_performSetupInternal",
+   "group": "PAIR",
+   "note": "pair-setup state machine"
+  },
+  {
+   "symbol": "coreUtilsPairing_sendPairingRequest",
+   "group": "PAIR",
+   "note": "pairing request transport"
+  },
+  {
+   "symbol": "coreUtilsPairing_PerformVerification",
+   "group": "PAIR",
+   "note": "client pair-verify entry"
+  },
+  {
+   "symbol": "coreUtilsPairing_DeriveKey",
+   "group": "PAIR",
+   "note": "session key derivation"
+  },
+  {
+   "symbol": "coreUtilsPairing_createAirPlayPairingSession",
+   "group": "PAIR",
+   "note": "session type/flags"
+  },
+  {
+   "symbol": "coreUtilsPairing_validateMFiCertificate",
+   "group": "PAIR",
+   "note": "certificate validation"
+  },
+  {
+   "symbol": "coreUtilsPairing_IsPeerKnown",
+   "group": "PAIR",
+   "note": "known-peer gate"
+  },
+  {
+   "symbol": "coreUtilsKeyHolder_CreateEncryptionKeysForContext",
+   "group": "CRYPTO",
+   "note": "control/event key contexts"
+  },
+  {
+   "symbol": "coreUtilsKeyHolder_CreateEncryptionKeysForStream",
+   "group": "CRYPTO",
+   "note": "per-stream keys"
+  },
+  {
+   "symbol": "apsession_EnsureStarted",
+   "group": "SESSION",
+   "note": "session start"
+  },
+  {
+   "symbol": "apsession_PerformStage1StartTransaction",
+   "group": "SESSION",
+   "note": "stage 1 (info/pairing)"
+  },
+  {
+   "symbol": "apsession_PerformStage2StartTransaction",
+   "group": "SESSION",
+   "note": "stage 2 (setup)"
+  },
+  {
+   "symbol": "apsession_CreateTransportStreamWithID",
+   "group": "SESSION",
+   "note": "stream creation by ID"
+  },
+  {
+   "symbol": "APSenderSessionCreateStreamDescriptor",
+   "group": "SESSION",
+   "note": "stream descriptor / type"
+  },
+  {
+   "symbol": "_apsession_setupStreamCreatingResponseInternal",
+   "group": "SETUP",
+   "note": "SETUP response / streams[].type"
+  },
+  {
+   "symbol": "_endpoint_setupStreams",
+   "group": "SETUP",
+   "note": "endpoint-side stream setup"
+  },
+  {
+   "symbol": "_APSenderSessionCreateTransportStreamWithID",
+   "group": "SETUP",
+   "note": "stream creation (sender side)"
+  },
+  {
+   "symbol": "_apsession_CreateTransportStream",
+   "group": "SETUP",
+   "note": "stream creation (session side)"
+  },
+  {
+   "symbol": "_sdpsession_setupStreamCreatingResponseInternal",
+   "group": "SETUP",
+   "note": "SDP variant of SETUP response"
+  }
+ ]
+}

@@ -1,0 +1,864 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-10-29",
+  "baseline": "iPhone18,1 / iOS 27.0.1 / 24A446",
+  "status": "PARTIAL",
+  "runtime_observed": false,
+  "original_code_executed_this_round": false,
+  "full_identification_contract_complete": false,
+  "source": {
+    "component": "accessoryd",
+    "path": "D:/carvex-research/firmware/extracted/24A446/components/24A446__iPhone18,1/root/System/Library/PrivateFrameworks/CoreAccessories.framework/Support/accessoryd",
+    "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe"
+  },
+  "verification_method": "Read LC_SEGMENT_64 of current Mach-O, map VA to file offset, compare complete cached .bin slices and compute SHA256. Text-segment VA-to-offset relation also checked by mapped results. No original code, peer, CF runtime or vehicle executed.",
+  "functions": [
+    {
+      "address": "0x10013bcc8",
+      "source_file_offset": 1293512,
+      "raw_length": 1060,
+      "raw_sha256": "5265716a10600e7b85d22168a5ecca684497351484144f14d1069ce73deaad01",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013bcc8.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013bcc8.s",
+      "role": "IdentificationInfo state admission and main transaction"
+    },
+    {
+      "address": "0x1000512e8",
+      "source_file_offset": 332520,
+      "raw_length": 1160,
+      "raw_sha256": "1ffe2ab259762fcd0fccfa69489e707e34a58980a0405bf6b63fb1a05751bfb1",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000512e8.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000512e8.s",
+      "role": "core parameter dispatcher"
+    },
+    {
+      "address": "0x10013aed0",
+      "source_file_offset": 1289936,
+      "raw_length": 788,
+      "raw_sha256": "e835c69acfc3c4c3f00ccdc99749477c7774a8c69ce635c4a0f69d9973e15a51",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013aed0.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013aed0.s",
+      "role": "registered callback and required-success membership"
+    },
+    {
+      "address": "0x10013bc5c",
+      "source_file_offset": 1293404,
+      "raw_length": 108,
+      "raw_sha256": "5f019f69600d421691b0af0263d9b228601fbda0ce4f960f3a9120709517ee39",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013bc5c.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013bc5c.s",
+      "role": "required-success set check"
+    },
+    {
+      "address": "0x10013b920",
+      "source_file_offset": 1292576,
+      "raw_length": 432,
+      "raw_sha256": "c69aa1d97bf0b08c56be47455bb561f7f4bc2961c98c8a7fa3a3d0f35baec54c",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013b920.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013b920.s",
+      "role": "transport-kind conditional required fields"
+    },
+    {
+      "address": "0x100050dcc",
+      "source_file_offset": 331212,
+      "raw_length": 648,
+      "raw_sha256": "20fbc1f5e49c6e8a23f378a65865ae6a3ea3d54d6fa5c37e2111cdf2f747cf84",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050dcc.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050dcc.s",
+      "role": "authorization completion, 1D02 and state6"
+    },
+    {
+      "address": "0x10013b540",
+      "source_file_offset": 1291584,
+      "raw_length": 404,
+      "raw_sha256": "78ab8d2fadf956ba9ce2d9612b4fc67649538df1f378dadb8f023bb0eb2fc6bc",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013b540.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013b540.s",
+      "role": "1D03 submission and state3"
+    },
+    {
+      "address": "0x10004e91c",
+      "source_file_offset": 321820,
+      "raw_length": 288,
+      "raw_sha256": "622c3ba91c59d3b22c03f6d1d885cdbe5a5e5dedf0eb178355c34000576d6d84",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004e91c.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004e91c.s",
+      "role": "void rejection TLV; reason diagnostic only"
+    },
+    {
+      "address": "0x10004edcc",
+      "source_file_offset": 323020,
+      "raw_length": 252,
+      "raw_sha256": "74021282598490916cf2df7e4084d97798fefa99fb4e8cab033d262c2ca2ef05",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004edcc.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004edcc.s",
+      "role": "rejected message lists to params6/7"
+    },
+    {
+      "address": "0x10013adf0",
+      "source_file_offset": 1289712,
+      "raw_length": 224,
+      "raw_sha256": "af00bb6c1a449ef2269ff960cb230e74278fb35eea26fc43e0ac5fc697423cbd",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013adf0.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013adf0.s",
+      "role": "BE16 message sets"
+    },
+    {
+      "address": "0x10004f0d4",
+      "source_file_offset": 323796,
+      "raw_length": 384,
+      "raw_sha256": "f45b99031812ec27db340981cc8e87ed603680d1ee2aa10773485c5b115e951d",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004f0d4.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004f0d4.s",
+      "role": "string processing and replacement"
+    },
+    {
+      "address": "0x10006a3e4",
+      "source_file_offset": 435172,
+      "raw_length": 556,
+      "raw_sha256": "f59443759e4dfebad8f79b4d8d98c73a6a3c071aa12b9bb5913c32367edda627",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10006a3e4.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10006a3e4.s",
+      "role": "registration descriptor walk"
+    },
+    {
+      "address": "0x10011e1f0",
+      "source_file_offset": 1171952,
+      "raw_length": 476,
+      "raw_sha256": "eb9eac7ab29bc131e3816b8f9fd48f76644f3d2a698c3cf5ac41cb408a764d79",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10011e1f0.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10011e1f0.s",
+      "role": "identification authorization hook"
+    },
+    {
+      "address": "0x10004dd50",
+      "source_file_offset": 318800,
+      "raw_length": 556,
+      "raw_sha256": "fe222b8a97f3e1519d3c62c5659c1b128cb2fc2d2ebbf478ac1af0f99092869a",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004dd50.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004dd50.s",
+      "role": "state setter and accessory identity publication/clear"
+    },
+    {
+      "address": "0x100067ee4",
+      "source_file_offset": 425700,
+      "raw_length": 76,
+      "raw_sha256": "19f5f5bc9d08b6038e6324fb3898466959841e43484378da1d3c7e8f23753c62",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100067ee4.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100067ee4.s",
+      "role": "NUL string framing"
+    },
+    {
+      "address": "0x1000f2bac",
+      "source_file_offset": 994220,
+      "raw_length": 104,
+      "raw_sha256": "4a58903f0a603d259987c6acf25e94370dc121de3cfa51e1fa7bb1f00155106f",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f2bac.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f2bac.s",
+      "role": "CFString conversion boundary"
+    },
+    {
+      "address": "0x1000511d0",
+      "source_file_offset": 332240,
+      "raw_length": 280,
+      "raw_sha256": "da57aad399a01807a60aa1067ea9de4273015fb95a4f6dfcb280eea068b2b1ec",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000511d0.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000511d0.s",
+      "role": "StartIdentification sender"
+    },
+    {
+      "address": "0x10004ecec",
+      "source_file_offset": 322796,
+      "raw_length": 224,
+      "raw_sha256": "251bf80b9fcb5d437bcc518dd0e963dedc2013c7ea1d3acc306e28c8f2c2e0c5",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004ecec.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004ecec.s",
+      "role": "directional rejected message append"
+    },
+    {
+      "address": "0x100005138",
+      "source_file_offset": 20792,
+      "raw_length": 256,
+      "raw_sha256": "94aafd25c58232b89f16037ef27e2d71736a87f176bd3baf47a86a744333343b",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100005138.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100005138.s",
+      "role": "phone outgoing message gate"
+    },
+    {
+      "address": "0x100051054",
+      "source_file_offset": 331860,
+      "raw_length": 308,
+      "raw_sha256": "b3a26412fba38ef3918ef4848bcccfc1a390510d592580879ea25695b639b21d",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100051054.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100051054.s",
+      "role": "phone incoming message gate"
+    },
+    {
+      "address": "0x10004e73c",
+      "source_file_offset": 321340,
+      "raw_length": 480,
+      "raw_sha256": "c2f948d7e67f914d1a0531aeb1fb96dcb6cc86d3361988510e97faacf25bcc36",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004e73c.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004e73c.s",
+      "role": "parameter name switch"
+    },
+    {
+      "address": "0x1000c07a8",
+      "source_file_offset": 788392,
+      "raw_length": 1224,
+      "raw_sha256": "2e5b176f4024ecf638ddb417a85a44345f60ad6c8953544220f1449bd72392e2",
+      "raw_matches_source": true,
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000c07a8.bin",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000c07a8.s",
+      "role": "power field parser"
+    }
+  ],
+  "registration": {
+    "feature_table_address": "0x10021b550",
+    "feature_count": 29,
+    "feature_entry_size": 16,
+    "descriptor_parameter_table_offset": 24,
+    "descriptor_parameter_count_offset": 32,
+    "parameter_record_size": 24,
+    "parameter_id_offset": 0,
+    "callback_pointer_offset": 8,
+    "required_byte_offset": 16,
+    "pointer_decode": "nonzero raw => 0x100000000 + (raw & 0xffffffffff)",
+    "raw_records_read_this_round": true,
+    "field_count": 34,
+    "required_field_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      12,
+      13
+    ],
+    "required_definition": "Only successfully parsed registered callback return bit0=1 is added to info+0x78; not raw arrival/count.",
+    "fields": [
+      {
+        "feature": 1,
+        "record": "0x10021a810",
+        "id": 0,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "AccName"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a828",
+        "id": 1,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "AccModel"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a840",
+        "id": 2,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "AccManufacturer"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a858",
+        "id": 3,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "AccSerialNumber"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a870",
+        "id": 4,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "AccFirmwareVersion"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a888",
+        "id": 5,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "AccHardwareVersion"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a8a0",
+        "id": 6,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "MessagesSentByAccessory"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a8b8",
+        "id": 7,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "MessagesRcvdFromDevice"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a8d0",
+        "id": 12,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "CurrentLanguage"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a8e8",
+        "id": 13,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "diagnostic_name": "SupportedLanguage"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a900",
+        "id": 14,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "diagnostic_name": "SerialTransportComponent"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a918",
+        "id": 15,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "diagnostic_name": "USBDeviceTransportComponent"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a930",
+        "id": 16,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "diagnostic_name": "USBHostTransportComponent"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a948",
+        "id": 17,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "diagnostic_name": "BluetoothTransportComponent"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a960",
+        "id": 24,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "diagnostic_name": "WirelessCarPlayTransportComponent"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a978",
+        "id": 26,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "diagnostic_name": "BluetoothLETransportComponent"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a990",
+        "id": 19,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "diagnostic_name": "Reserved"
+      },
+      {
+        "feature": 1,
+        "record": "0x10021a9a8",
+        "id": 34,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "diagnostic_name": "PPID"
+      },
+      {
+        "feature": 16,
+        "record": "0x10021f1a8",
+        "id": 8,
+        "callback": "0x1000c07a8",
+        "required": 1,
+        "diagnostic_name": "PowerSourceType"
+      },
+      {
+        "feature": 16,
+        "record": "0x10021f1c0",
+        "id": 9,
+        "callback": "0x1000c07a8",
+        "required": 1,
+        "diagnostic_name": "MaximumCurrentDrawnFromDevice"
+      },
+      {
+        "feature": 16,
+        "record": "0x10021f1d8",
+        "id": 240,
+        "callback": "0x1000c07a8",
+        "required": 0,
+        "diagnostic_name": "not recovered in name switch audit"
+      },
+      {
+        "feature": 16,
+        "record": "0x10021f1f0",
+        "id": 241,
+        "callback": "0x1000c07a8",
+        "required": 0,
+        "diagnostic_name": "not recovered in name switch audit"
+      },
+      {
+        "feature": 16,
+        "record": "0x10021f208",
+        "id": 25,
+        "callback": "0x1000c07a8",
+        "required": 0,
+        "diagnostic_name": "MaximumSiphoningCurrent"
+      },
+      {
+        "feature": 11,
+        "record": "0x10021a0f0",
+        "id": 18,
+        "callback": "0x100043cc8",
+        "required": 0,
+        "diagnostic_name": "iAPHIDComponent"
+      },
+      {
+        "feature": 11,
+        "record": "0x10021a108",
+        "id": 23,
+        "callback": "0x100044124",
+        "required": 0,
+        "diagnostic_name": "USBHostHIDComponent"
+      },
+      {
+        "feature": 11,
+        "record": "0x10021a120",
+        "id": 29,
+        "callback": "0x1000446fc",
+        "required": 0,
+        "diagnostic_name": "NativeBTHIDComponent"
+      },
+      {
+        "feature": 10,
+        "record": "0x10021d278",
+        "id": 10,
+        "callback": "0x10009fba8",
+        "required": 0,
+        "diagnostic_name": "SupportedEAProtocol"
+      },
+      {
+        "feature": 10,
+        "record": "0x10021d290",
+        "id": 11,
+        "callback": "0x1000a02d0",
+        "required": 0,
+        "diagnostic_name": "PreferredAppBundleSeedID"
+      },
+      {
+        "feature": 20,
+        "record": "0x10021e270",
+        "id": 20,
+        "callback": "0x1001676f4",
+        "required": 0,
+        "diagnostic_name": "VehicleInfo"
+      },
+      {
+        "feature": 20,
+        "record": "0x10021e288",
+        "id": 21,
+        "callback": "0x1001676f4",
+        "required": 0,
+        "diagnostic_name": "VehicleStatus"
+      },
+      {
+        "feature": 12,
+        "record": "0x10021f780",
+        "id": 22,
+        "callback": "0x1000c97ac",
+        "required": 0,
+        "diagnostic_name": "LocationInfo"
+      },
+      {
+        "feature": 17,
+        "record": "0x10021f650",
+        "id": 30,
+        "callback": "0x1000c5704",
+        "required": 0,
+        "diagnostic_name": "Unknown"
+      },
+      {
+        "feature": 17,
+        "record": "0x10021f668",
+        "id": 33,
+        "callback": "0x1000c5704",
+        "required": 0,
+        "diagnostic_name": "Unknown"
+      },
+      {
+        "feature": 27,
+        "record": "0x1002219d8",
+        "id": 38,
+        "callback": "0x100103ab8",
+        "required": 0,
+        "diagnostic_name": "VehicleDigitalCarKeyInfo"
+      }
+    ]
+  },
+  "diagnostic_names": {
+    "function": "0x10004e73c",
+    "jump_table_address": "0x100018810",
+    "relative_branch_base": "0x10004e768",
+    "method": "Read signed i32 switch offsets, decode ADRP+ADD string addresses, read NUL strings from current Mach-O; default for ID0 preloaded AccName.",
+    "values": [
+      {
+        "id": 0,
+        "target": "0x10004e7a4",
+        "string_address": "0x1001cdfc1",
+        "name": "AccName"
+      },
+      {
+        "id": 1,
+        "target": "0x10004e774",
+        "string_address": "0x1001cdfc9",
+        "name": "AccModel"
+      },
+      {
+        "id": 2,
+        "target": "0x10004e874",
+        "string_address": "0x1001cdfd2",
+        "name": "AccManufacturer"
+      },
+      {
+        "id": 3,
+        "target": "0x10004e85c",
+        "string_address": "0x1001cdfe2",
+        "name": "AccSerialNumber"
+      },
+      {
+        "id": 4,
+        "target": "0x10004e880",
+        "string_address": "0x1001cdff2",
+        "name": "AccFirmwareVersion"
+      },
+      {
+        "id": 5,
+        "target": "0x10004e8c8",
+        "string_address": "0x1001ce005",
+        "name": "AccHardwareVersion"
+      },
+      {
+        "id": 6,
+        "target": "0x10004e844",
+        "string_address": "0x1001ce018",
+        "name": "MessagesSentByAccessory"
+      },
+      {
+        "id": 7,
+        "target": "0x10004e808",
+        "string_address": "0x1001ce030",
+        "name": "MessagesRcvdFromDevice"
+      },
+      {
+        "id": 8,
+        "target": "0x10004e7d8",
+        "string_address": "0x1001ce047",
+        "name": "PowerSourceType"
+      },
+      {
+        "id": 9,
+        "target": "0x10004e820",
+        "string_address": "0x1001ce057",
+        "name": "MaximumCurrentDrawnFromDevice"
+      },
+      {
+        "id": 10,
+        "target": "0x10004e7fc",
+        "string_address": "0x1001ce075",
+        "name": "SupportedEAProtocol"
+      },
+      {
+        "id": 11,
+        "target": "0x10004e8a4",
+        "string_address": "0x1001ce089",
+        "name": "PreferredAppBundleSeedID"
+      },
+      {
+        "id": 12,
+        "target": "0x10004e868",
+        "string_address": "0x1001ce0a2",
+        "name": "CurrentLanguage"
+      },
+      {
+        "id": 13,
+        "target": "0x10004e850",
+        "string_address": "0x1001ce0b2",
+        "name": "SupportedLanguage"
+      },
+      {
+        "id": 14,
+        "target": "0x10004e7cc",
+        "string_address": "0x1001ce0c4",
+        "name": "SerialTransportComponent"
+      },
+      {
+        "id": 15,
+        "target": "0x10004e814",
+        "string_address": "0x1001ce0dd",
+        "name": "USBDeviceTransportComponent"
+      },
+      {
+        "id": 16,
+        "target": "0x10004e8d4",
+        "string_address": "0x1001ce0f9",
+        "name": "USBHostTransportComponent"
+      },
+      {
+        "id": 17,
+        "target": "0x10004e82c",
+        "string_address": "0x1001ce113",
+        "name": "BluetoothTransportComponent"
+      },
+      {
+        "id": 18,
+        "target": "0x10004e898",
+        "string_address": "0x1001ce12f",
+        "name": "iAPHIDComponent"
+      },
+      {
+        "id": 19,
+        "target": "0x10004e88c",
+        "string_address": "0x1001ce13f",
+        "name": "Reserved"
+      },
+      {
+        "id": 20,
+        "target": "0x10004e7f0",
+        "string_address": "0x1001ce148",
+        "name": "VehicleInfo"
+      },
+      {
+        "id": 21,
+        "target": "0x10004e8bc",
+        "string_address": "0x1001ce154",
+        "name": "VehicleStatus"
+      },
+      {
+        "id": 22,
+        "target": "0x10004e8e0",
+        "string_address": "0x1001ce162",
+        "name": "LocationInfo"
+      },
+      {
+        "id": 23,
+        "target": "0x10004e7c0",
+        "string_address": "0x1001ce16f",
+        "name": "USBHostHIDComponent"
+      },
+      {
+        "id": 24,
+        "target": "0x10004e904",
+        "string_address": "0x1001ce183",
+        "name": "WirelessCarPlayTransportComponent"
+      },
+      {
+        "id": 25,
+        "target": "0x10004e7b4",
+        "string_address": "0x1001ce1a5",
+        "name": "MaximumSiphoningCurrent"
+      },
+      {
+        "id": 26,
+        "target": "0x10004e7a8",
+        "string_address": "0x1001ce1bd",
+        "name": "BluetoothLETransportComponent"
+      },
+      {
+        "id": 27,
+        "target": "0x10004e8f8",
+        "string_address": "0x1001ce21b",
+        "name": "MaximumPOIDataFormatVersion"
+      },
+      {
+        "id": 28,
+        "target": "0x10004e79c",
+        "string_address": "0x1001ccacd",
+        "name": "Unknown"
+      },
+      {
+        "id": 29,
+        "target": "0x10004e7e4",
+        "string_address": "0x1001ce1ec",
+        "name": "NativeBTHIDComponent"
+      },
+      {
+        "id": 30,
+        "target": "0x10004e79c",
+        "string_address": "0x1001ccacd",
+        "name": "Unknown"
+      },
+      {
+        "id": 31,
+        "target": "0x10004e79c",
+        "string_address": "0x1001ccacd",
+        "name": "Unknown"
+      },
+      {
+        "id": 32,
+        "target": "0x10004e838",
+        "string_address": "0x1001ce237",
+        "name": "ElectricVehicleChargingComponent"
+      },
+      {
+        "id": 33,
+        "target": "0x10004e79c",
+        "string_address": "0x1001ccacd",
+        "name": "Unknown"
+      },
+      {
+        "id": 34,
+        "target": "0x10004e8b0",
+        "string_address": "0x1001ce258",
+        "name": "PPID"
+      },
+      {
+        "id": 35,
+        "target": "0x10004e79c",
+        "string_address": "0x1001ccacd",
+        "name": "Unknown"
+      },
+      {
+        "id": 36,
+        "target": "0x10004e79c",
+        "string_address": "0x1001ccacd",
+        "name": "Unknown"
+      },
+      {
+        "id": 37,
+        "target": "0x10004e79c",
+        "string_address": "0x1001ccacd",
+        "name": "Unknown"
+      },
+      {
+        "id": 38,
+        "target": "0x10004e8ec",
+        "string_address": "0x1001ce25d",
+        "name": "VehicleDigitalCarKeyInfo"
+      }
+    ]
+  },
+  "claims": [
+    {
+      "id": "ID-01",
+      "functions": [
+        "0x1000511d0",
+        "0x10013bcc8"
+      ],
+      "statement": "StartIdentification constructs 1D00 only in raw state0; send result bit0=1 sets1. IdentificationInfo handler admits raw1 or3 only."
+    },
+    {
+      "id": "ID-02",
+      "functions": [
+        "0x10006a3e4",
+        "0x10013aed0",
+        "0x10013bc5c"
+      ],
+      "statement": "34 registry records, 12 required IDs; missing successful member adds void rejection field and marks info+0x90."
+    },
+    {
+      "id": "ID-03",
+      "functions": [
+        "0x1000512e8",
+        "0x100067ee4",
+        "0x1000f2bac",
+        "0x10004f0d4"
+      ],
+      "statement": "String framing >=5 total bytes and final NUL; repeated scalar strings replace previous; language duplicate rejected. No evidence for universal ASCII-only, nonempty or <=255 limit."
+    },
+    {
+      "id": "ID-04",
+      "functions": [
+        "0x1000512e8",
+        "0x10013adf0",
+        "0x100005138",
+        "0x100051054"
+      ],
+      "statement": "ID6 contains accessory-sent/phone-incoming BE16 IDs at info+0x60; ID7 contains accessory-received/phone-outgoing IDs at +0x68. Odd byte count rejected; repeated valid list replaces set."
+    },
+    {
+      "id": "ID-05",
+      "functions": [
+        "0x10013b920"
+      ],
+      "statement": "Raw transport-kind conditional presence: kind0->15; kind2/3->17; kind4->24; kind6->14; kind8->16. Numeric kinds retained; complete transport mapping not inferred."
+    },
+    {
+      "id": "ID-06",
+      "functions": [
+        "0x10011e1f0",
+        "0x100050dcc"
+      ],
+      "statement": "Authorization hook is separate from accessory cryptographic verification. Callback result0 makes no state/send action here; allowed and check0 sets2, constructs1D02; send bit0=1 sets6."
+    },
+    {
+      "id": "ID-07",
+      "functions": [
+        "0x10004e91c",
+        "0x10004ecec",
+        "0x10004edcc",
+        "0x10013b540"
+      ],
+      "statement": "Ordinary rejected field uses empty TLV with same outer ID; reasons are local diagnostics. Direction0/1 rejected lists use outer6/7; send nonzero sets3, unlike accept bit0 check."
+    },
+    {
+      "id": "ID-08",
+      "functions": [
+        "0x10013bcc8",
+        "0x10013b540",
+        "0x10004dd50"
+      ],
+      "statement": "Reject state3 permits a subsequent1D01 on this handler; state1/3 clear accessory info. Does not prove an unlimited retry policy or require Link reset."
+    }
+  ],
+  "open_items": [
+    "All 34 field value predicates, nested transport contracts and cross-feature validators",
+    "Actual platform authorization, cancellation and delayed-callback lifetimes",
+    "Real CF UTF8/NULL/equality behavior and send-adapter completion/ownership",
+    "All retry/timeout/cancel policies and 1D05/1D06 updated-identification flows",
+    "24A446 same-link accepted/rejected/re-identification runtime captures",
+    "Endpoint association, AirPlay and actual video display are not proved by identification"
+  ],
+  "prior_analysis_usage": "Existing analysis and bounded-emulation reports were used as navigation only. This round rechecked selected original code/data; prior PASS was not promoted to live/runtime proof."
+}

@@ -1,0 +1,65 @@
+; accessoryd 0x1001368ac-0x1001369a4; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x1001368ac:	pacibsp	
+0x1001368b0:	sub	sp, sp, #0x90
+0x1001368b4:	stp	x22, x21, [sp, #0x60]
+0x1001368b8:	stp	x20, x19, [sp, #0x70]
+0x1001368bc:	stp	x29, x30, [sp, #0x80]
+0x1001368c0:	add	x29, sp, #0x80
+0x1001368c4:	add	x8, sp, #0x40
+0x1001368c8:	stp	xzr, x8, [sp, #0x40]
+0x1001368cc:	adrp	x8, #0x1001b3000
+0x1001368d0:	ldr	d0, [x8, #0x260]
+0x1001368d4:	str	d0, [sp, #0x50]
+0x1001368d8:	strb	wzr, [sp, #0x58]
+0x1001368dc:	cbz	x0, #0x100136978
+0x1001368e0:	mov	x20, x1
+0x1001368e4:	cbz	x1, #0x100136978
+0x1001368e8:	ldr	x22, [x0, #0x20]
+0x1001368ec:	cbz	x22, #0x100136978
+0x1001368f0:	ldr	x8, [x22]
+0x1001368f4:	cbz	x8, #0x100136978
+0x1001368f8:	ldr	x0, [x8, #8]
+0x1001368fc:	cbz	x0, #0x100136978
+0x100136900:	mov	x19, x2
+0x100136904:	bl	#0x10003182c
+0x100136908:	cbz	x0, #0x100136978
+0x10013690c:	mov	x21, x0
+0x100136910:	ldr	x8, [x22]
+0x100136914:	ldr	x1, [x8, #8]
+0x100136918:	add	x8, sp, #8
+0x10013691c:	adrp	x16, #0x10022b000
+0x100136920:	ldr	x16, [x16, #0xb78]
+0x100136924:	mov	x17, x8
+0x100136928:	movk	x17, #0x6ae1, lsl #48
+0x10013692c:	pacda	x16, x17
+0x100136930:	str	x16, [sp, #8]
+0x100136934:	adrp	x9, #0x1001b3000
+0x100136938:	ldr	d0, [x9, #0x118]
+0x10013693c:	str	d0, [sp, #0x10]
+0x100136940:	add	x8, x8, #0x10
+0x100136944:	adrp	x16, #0x10004b000
+0x100136948:	add	x16, x16, #0x13c
+0x10013694c:	pacia	x16, x8
+0x100136950:	adrp	x8, #0x10021a000
+0x100136954:	add	x8, x8, #0x330
+0x100136958:	stp	x16, x8, [sp, #0x18]
+0x10013695c:	add	x8, sp, #0x40
+0x100136960:	stp	x8, x20, [sp, #0x28]
+0x100136964:	strh	w19, [sp, #0x38]
+0x100136968:	add	x2, sp, #8
+0x10013696c:	bl	#0x1000f7a8c
+0x100136970:	mov	x0, x21
+0x100136974:	bl	#0x1001a1820
+0x100136978:	ldr	x8, [sp, #0x48]
+0x10013697c:	ldrb	w19, [x8, #0x18]
+0x100136980:	add	x0, sp, #0x40
+0x100136984:	mov	w1, #8
+0x100136988:	bl	#0x1001a1f10
+0x10013698c:	mov	x0, x19
+0x100136990:	ldp	x29, x30, [sp, #0x80]
+0x100136994:	ldp	x20, x19, [sp, #0x70]
+0x100136998:	ldp	x22, x21, [sp, #0x60]
+0x10013699c:	add	sp, sp, #0x90
+0x1001369a0:	retab	

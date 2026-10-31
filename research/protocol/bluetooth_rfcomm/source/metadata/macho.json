@@ -1,0 +1,599 @@
+{
+  "file": "source/firmware/bluetoothd",
+  "size": 13092096,
+  "sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+  "macho": {
+    "magic": "0xfeedfacf",
+    "cputype": 16777228,
+    "cpusubtype": -2147483646,
+    "filetype": 2,
+    "ncmds": 132,
+    "sizeofcmds": 14432,
+    "flags": "0x210085",
+    "uuid": "8e49197be6bc3f3ba8d3df4bedd37f01",
+    "build_version": {
+      "platform": 2,
+      "minos": "27.0.0",
+      "sdk": "27.0.0",
+      "ntools": 1
+    },
+    "load_commands": [
+      "LC_SEGMENT_64",
+      "LC_SEGMENT_64",
+      "LC_SEGMENT_64",
+      "LC_SEGMENT_64",
+      "LC_SEGMENT_64",
+      "LC_DYLD_CHAINED_FIXUPS",
+      "0x80000033",
+      "0x37",
+      "0x38",
+      "LC_SYMTAB",
+      "LC_DYSYMTAB",
+      "0xe",
+      "LC_UUID",
+      "LC_BUILD_VERSION",
+      "LC_SOURCE_VERSION",
+      "LC_MAIN",
+      "0xc",
+      "0xc",
+      "0xc",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0xc",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0xc",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0xc",
+      "0xc",
+      "0xc",
+      "0x80000018",
+      "0xc",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0xc",
+      "0xc",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0x80000018",
+      "0xc",
+      "0xc",
+      "0x80000018",
+      "0x80000018",
+      "LC_FUNCTION_STARTS",
+      "0x29",
+      "LC_CODE_SIGNATURE"
+    ],
+    "has_chained_fixups": true,
+    "dyld_info_only": null
+  },
+  "segments": [
+    {
+      "name": "__PAGEZERO",
+      "vmaddr": "0x0",
+      "vmsize": 4294967296,
+      "fileoff": 0,
+      "filesize": 0,
+      "nsects": 0,
+      "flags": 0
+    },
+    {
+      "name": "__TEXT",
+      "vmaddr": "0x100000000",
+      "vmsize": 12173312,
+      "fileoff": 0,
+      "filesize": 12173312,
+      "nsects": 25,
+      "flags": 0
+    },
+    {
+      "name": "__DATA_CONST",
+      "vmaddr": "0x100b9c000",
+      "vmsize": 409600,
+      "fileoff": 12173312,
+      "filesize": 409600,
+      "nsects": 15,
+      "flags": 16
+    },
+    {
+      "name": "__DATA",
+      "vmaddr": "0x100c00000",
+      "vmsize": 720896,
+      "fileoff": 12582912,
+      "filesize": 147456,
+      "nsects": 8,
+      "flags": 0
+    },
+    {
+      "name": "__LINKEDIT",
+      "vmaddr": "0x100cb0000",
+      "vmsize": 376832,
+      "fileoff": 12730368,
+      "filesize": 361728,
+      "nsects": 0,
+      "flags": 0
+    }
+  ],
+  "sections": [
+    {
+      "segment": "__TEXT",
+      "name": "__text",
+      "addr": "0x100003a30",
+      "size": 9452608,
+      "offset": 14896,
+      "flags": "0x80000400"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__auth_stubs",
+      "addr": "0x100907670",
+      "size": 21088,
+      "offset": 9467504,
+      "flags": "0x80000408"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__objc_stubs",
+      "addr": "0x10090c8e0",
+      "size": 105376,
+      "offset": 9488608,
+      "flags": "0x80000400"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__init_offsets",
+      "addr": "0x100926480",
+      "size": 108,
+      "offset": 9593984,
+      "flags": "0x16"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__objc_methlist",
+      "addr": "0x1009264f0",
+      "size": 39780,
+      "offset": 9594096,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__const",
+      "addr": "0x100930060",
+      "size": 155280,
+      "offset": 9633888,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__gcc_except_tab",
+      "addr": "0x100955ef0",
+      "size": 461324,
+      "offset": 9789168,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__cstring",
+      "addr": "0x1009c6900",
+      "size": 819014,
+      "offset": 10250496,
+      "flags": "0x2"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__objc_classname",
+      "addr": "0x100a8e850",
+      "size": 2610,
+      "offset": 11069520,
+      "flags": "0x2"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__objc_methname",
+      "addr": "0x100a8f282",
+      "size": 128411,
+      "offset": 11072130,
+      "flags": "0x2"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__objc_methtype",
+      "addr": "0x100aae820",
+      "size": 23099,
+      "offset": 11200544,
+      "flags": "0x2"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__oslogstring",
+      "addr": "0x100ab425b",
+      "size": 789562,
+      "offset": 11223643,
+      "flags": "0x2"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__swift5_typeref",
+      "addr": "0x100b74e96",
+      "size": 338,
+      "offset": 12013206,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__swift5_capture",
+      "addr": "0x100b74fe8",
+      "size": 208,
+      "offset": 12013544,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__constg_swiftt",
+      "addr": "0x100b750b8",
+      "size": 80,
+      "offset": 12013752,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__swift5_fieldmd",
+      "addr": "0x100b75108",
+      "size": 16,
+      "offset": 12013832,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__swift5_types",
+      "addr": "0x100b75118",
+      "size": 4,
+      "offset": 12013848,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__swift_as_entry",
+      "addr": "0x100b7511c",
+      "size": 12,
+      "offset": 12013852,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__swift_as_ret",
+      "addr": "0x100b75128",
+      "size": 12,
+      "offset": 12013864,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__swift_as_cont",
+      "addr": "0x100b75134",
+      "size": 24,
+      "offset": 12013876,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__ustring",
+      "addr": "0x100b7514c",
+      "size": 52,
+      "offset": 12013900,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__dlopen_cstrs",
+      "addr": "0x100b75180",
+      "size": 212,
+      "offset": 12013952,
+      "flags": "0x2"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__info_plist",
+      "addr": "0x100b75254",
+      "size": 1055,
+      "offset": 12014164,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__unwind_info",
+      "addr": "0x100b75674",
+      "size": 156280,
+      "offset": 12015220,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__TEXT",
+      "name": "__eh_frame",
+      "addr": "0x100b9b8f0",
+      "size": 688,
+      "offset": 12171504,
+      "flags": "0x6800000b"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__const",
+      "addr": "0x100b9c000",
+      "size": 213808,
+      "offset": 12173312,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__cfstring",
+      "addr": "0x100bd0330",
+      "size": 161920,
+      "offset": 12387120,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_classlist",
+      "addr": "0x100bf7bb0",
+      "size": 760,
+      "offset": 12549040,
+      "flags": "0x10000000"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_catlist",
+      "addr": "0x100bf7ea8",
+      "size": 32,
+      "offset": 12549800,
+      "flags": "0x10000000"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_protolist",
+      "addr": "0x100bf7ec8",
+      "size": 232,
+      "offset": 12549832,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_imageinfo",
+      "addr": "0x100bf7fb0",
+      "size": 8,
+      "offset": 12550064,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_protorefs",
+      "addr": "0x100bf7fb8",
+      "size": 16,
+      "offset": 12550072,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_superrefs",
+      "addr": "0x100bf7fc8",
+      "size": 544,
+      "offset": 12550088,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_intobj",
+      "addr": "0x100bf81e8",
+      "size": 2688,
+      "offset": 12550632,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_arraydata",
+      "addr": "0x100bf8c68",
+      "size": 1064,
+      "offset": 12553320,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_dictobj",
+      "addr": "0x100bf9090",
+      "size": 760,
+      "offset": 12554384,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__objc_arrayobj",
+      "addr": "0x100bf9388",
+      "size": 480,
+      "offset": 12555144,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__auth_got",
+      "addr": "0x100bf9568",
+      "size": 10568,
+      "offset": 12555624,
+      "flags": "0x6"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__got",
+      "addr": "0x100bfbeb0",
+      "size": 3664,
+      "offset": 12566192,
+      "flags": "0x6"
+    },
+    {
+      "segment": "__DATA_CONST",
+      "name": "__auth_ptr",
+      "addr": "0x100bfcd00",
+      "size": 584,
+      "offset": 12569856,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA",
+      "name": "__objc_const",
+      "addr": "0x100c00000",
+      "size": 67784,
+      "offset": 12582912,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA",
+      "name": "__objc_selrefs",
+      "addr": "0x100c108c8",
+      "size": 30528,
+      "offset": 12650696,
+      "flags": "0x10000005"
+    },
+    {
+      "segment": "__DATA",
+      "name": "__objc_ivar",
+      "addr": "0x100c18008",
+      "size": 4536,
+      "offset": 12681224,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA",
+      "name": "__objc_data",
+      "addr": "0x100c191c0",
+      "size": 7712,
+      "offset": 12685760,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA",
+      "name": "__data",
+      "addr": "0x100c1afe0",
+      "size": 20264,
+      "offset": 12693472,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA",
+      "name": "__crash_info",
+      "addr": "0x100c1ff08",
+      "size": 328,
+      "offset": 12713736,
+      "flags": "0x0"
+    },
+    {
+      "segment": "__DATA",
+      "name": "__bss",
+      "addr": "0x100c20060",
+      "size": 486530,
+      "offset": 0,
+      "flags": "0x1"
+    },
+    {
+      "segment": "__DATA",
+      "name": "__common",
+      "addr": "0x100c96ce8",
+      "size": 97400,
+      "offset": 0,
+      "flags": "0x1"
+    }
+  ],
+  "function_starts": {
+    "lc": {
+      "dataoff": 12797568,
+      "datasize": 53136
+    },
+    "count": 37368,
+    "first": "0x100003a30",
+    "last": "0x100907644"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "address": "0x251a57ffc",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "3eb8c10150e916621e36532d96fdce2e9a2b6e2cd8e4a1966c8ea4d29fd15a95",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "3eb8c10150e916621e36532d96fdce2e9a2b6e2cd8e4a1966c8ea4d29fd15a95",
+  "ghidra_name": "_apsession_EnsureStarted",
+  "signature": "undefined _apsession_EnsureStarted()",
+  "diagnostic": "",
+  "c_file": "f_251a57ffc.ghidra.c",
+  "c_sha256": "b7ed64a6c29a9fa06eec90d6945559e44f58996b34254cfe89e0b8db506c9108",
+  "status": "DECOMPILED_UNREVIEWED"
+}

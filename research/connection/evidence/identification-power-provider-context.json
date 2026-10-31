@@ -1,0 +1,73 @@
+{
+  "schema": "identification-power-provider-context-v1",
+  "build": "24A446",
+  "device": "iPhone18,1",
+  "firmware_executed": false,
+  "scope": "bounded static producer/getter audit; Android runtime mapping not implemented",
+  "sources": {
+    "accessoryd": {
+      "path_relative_to_firmware": "extracted/24A446/components/24A446__iPhone18,1/root/System/Library/PrivateFrameworks/CoreAccessories.framework/Support/accessoryd",
+      "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+      "functions": [
+        {"address":"0x1000c0758","end":"0x1000c07a8","length":80,"sha256":"bc104f15c6418682dcc3b262aa7771df1f3d9bd25f4f16dbded4f6a83ed47e9a","decoded_complete":true},
+        {"address":"0x1000c07a8","end":"0x1000c0c70","length":1224,"sha256":"2e5b176f4024ecf638ddb417a85a44345f60ad6c8953544220f1449bd72392e2","decoded_complete":true},
+        {"address":"0x10018f128","end":"0x10018f134","length":12,"sha256":"e48960b4accdb2cfde152adc7165af383b11e06dc46a07d32e3c63036a555998","decoded_complete":true},
+        {"address":"0x1001939fc","end":"0x100193a38","length":60,"sha256":"60a0802d5acb4771801dce98469eb9bf379a053e19c68a1e4b0ca66a227a1120","decoded_complete":true},
+        {"address":"0x100016a64","end":"0x100016a70","length":12,"sha256":"fba680527a2f9c1524161c24b029bd150aeca70f2ef1eb64d65ea5e74f96ebf7","decoded_complete":true},
+        {"address":"0x10018f134","end":"0x10018f150","length":28,"sha256":"d63e7d08ec680047db28f387abbedc39d0a7afaa0f8ea0cc82d080638de2be3f","decoded_complete":true},
+        {"address":"0x10018f17c","end":"0x10018f1d0","length":84,"sha256":"b57dfe671e4c650a2fb69114a6c648a2b6c7015db8930d1468937363494271f7","decoded_complete":true},
+        {"address":"0x100191698","end":"0x100191a90","length":1016,"sha256":"f1bf940790eeb2a7a0323a1236aab35e990143bd9cc9dab8d049cf71425d715e","decoded_complete":true},
+        {"address":"0x10018a96c","end":"0x10018b020","length":1716,"sha256":"c1c0ce0469d88c1c83f424ffce1320fda469ff87656d2e2f1e804e5383989b29","decoded_complete":true},
+        {"address":"0x10019288c","end":"0x100192c24","length":920,"sha256":"e53a847cef0c3fd9281bb029b0165429d625e5ac04aaaf50c2fd5a582a56d6df","decoded_complete":true},
+        {"address":"0x1000f6094","end":"0x1000f6244","length":432,"sha256":"463300ccf3d3c4b814323b8d053ebb18da59358d23923502d766d301bb1c7eee","decoded_complete":true},
+        {"address":"0x1000cd970","end":"0x1000cdac4","length":340,"sha256":"75d50ca333a4a79d5dde27d1e08cb8de66e9c1408dfa4d55f408452c73fc5072","decoded_complete":true},
+        {"address":"0x1000fad70","end":"0x1000fad90","length":32,"sha256":"6b7a24a3ada6adb266900c136633b366e0bb8fb0a0c55a01752e6dc9276067de","decoded_complete":true},
+        {"address":"0x1000f5c18","end":"0x1000f5c38","length":32,"sha256":"b51cf7168bada1ddb8a3c877bf40d69ee8c2d809b29834c96456af22ec92fa14","decoded_complete":true}
+      ]
+    },
+    "bluetoothd": {
+      "path_relative_to_firmware":"extracted/24A446/components/24A446__iPhone18,1/root/usr/sbin/bluetoothd",
+      "sha256":"cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+      "functions":[{"address":"0x1007a4520","end":"0x1007a48d0","length":944,"sha256":"909cd305474f2596e55d55ddf5e7aad609652d1a54aa7878b7019111bc7b1e30","decoded_complete":true}]
+    },
+    "AirPlaySender": {
+      "path_relative_to_firmware":"extracted/24A446/binaries/AirPlaySender/AirPlaySender",
+      "sha256":"304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "functions":[
+        {"address":"0x251af5e58","end":"0x251af6050","length":504,"sha256":"60c883e583577106fa47ff889c7526e0f50eb480eb1f78f62c333ea758fec006","decoded_complete":true,"original_dyld_bytes_equal":true},
+        {"address":"0x251af6b08","end":"0x251af6e6c","length":868,"sha256":"c7bf0e1ef32b8131edda4e54148a3cc230512dae0f21d2ead860b948431c2a57","decoded_complete":true,"original_dyld_bytes_equal":true}
+      ]
+    },
+    "CoreAccessories": {
+      "path_relative_to_firmware":"extracted/24A446/binaries/CoreAccessories/CoreAccessories",
+      "sha256":"91069cd7279bdb0f4d813ef432d8865482452861e69a943d240b2bc772e0cb20",
+      "functions":[
+        {"address":"0x204415440","end":"0x2044154ac","length":108,"sha256":"9477f850392f2be7c676123ffcfb42292887ab20cb37c07c0b0c9796c2d97c14","decoded_complete":true,"original_dyld_bytes_equal":true},
+        {"address":"0x204415740","end":"0x204415864","length":292,"sha256":"f16371a1bc284addacd589ed1d814291a3d8d0fa4212934b29b42555b9320c75","decoded_complete":true,"original_dyld_bytes_equal":true}
+      ]
+    }
+  },
+  "tables": [
+    {"name":"_kACCConnection_Type_Strings","address":"0x26c2c8b08","length":96,"sha256":"8d27288f6392ea582c08a74fdb7033985669b2983100a5fed0dcf6f140ccf154","pointer_decoder":"original dyld v5 slide metadata; firmware_cache.Cache.ptr","selected_entries":[
+      {"index":2,"raw_u64":"0x10000084428ea7","target":"0x204428ea7","string":"Bluetooth"},
+      {"index":3,"raw_u64":"0x10000084428eb1","target":"0x204428eb1","string":"Smart Connector"},
+      {"index":5,"raw_u64":"0x10000084428ecb","target":"0x204428ecb","string":"IP"},
+      {"index":6,"raw_u64":"0x10000084428ece","target":"0x204428ece","string":"USB"},
+      {"index":11,"raw_u64":"0x200000844279b8","target":"0x2044279b8","string":"Unknown"}
+    ]},
+    {"name":"_kACCEndpoint_TransportType_Strings","address":"0x26c2c8e30","length":160,"sha256":"91f4b8a5c40317c45457dd946fd6eab740868fd0f803782c779fd8dc3ecc35ad","pointer_decoder":"original dyld v5 slide metadata; firmware_cache.Cache.ptr","selected_entries":[
+      {"index":0,"raw_u64":"0x1000008442acd9","target":"0x20442acd9","string":"USB Device Mode"},
+      {"index":2,"raw_u64":"0x1000008442acf3","target":"0x20442acf3","string":"Bluetooth Classic"},
+      {"index":3,"raw_u64":"0x1000008442ad05","target":"0x20442ad05","string":"Bluetooth LE"},
+      {"index":4,"raw_u64":"0x1000008442ad12","target":"0x20442ad12","string":"AirPlay"},
+      {"index":8,"raw_u64":"0x1000008442ad2f","target":"0x20442ad2f","string":"USB Host Mode"},
+      {"index":19,"raw_u64":"0x100000844279b8","target":"0x2044279b8","string":"Unknown"}
+    ]}
+  ],
+  "indirect_symbols": {
+    "accessoryd":{"0x10022b420":"_kACCConnection_Type_Strings","0x10022b438":"_kACCEndpoint_TransportType_Strings"},
+    "bluetoothd":{"0x100909f00":"_acc_transportClient_createConnection","0x100909f10":"_acc_transportClient_createEndpoint"}
+  },
+  "airplay_dynamic_symbol_strings":{"0x251bff4b1":"acc_transportClient_createConnection","0x251bff4d6":"acc_transportClient_createEndpoint"},
+  "open":["platform power mode4 provider","Android live transport-context mapping","all other connection/endpoint producers","real-vehicle equivalence"]
+}

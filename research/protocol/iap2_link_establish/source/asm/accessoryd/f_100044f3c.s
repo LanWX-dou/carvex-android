@@ -1,0 +1,61 @@
+; accessoryd 0x100044f3c-0x100045024; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x100044f3c:	pacibsp	
+0x100044f40:	stp	x22, x21, [sp, #-0x30]!
+0x100044f44:	stp	x20, x19, [sp, #0x10]
+0x100044f48:	stp	x29, x30, [sp, #0x20]
+0x100044f4c:	add	x29, sp, #0x20
+0x100044f50:	cbz	x0, #0x100044ff4
+0x100044f54:	mov	x19, x0
+0x100044f58:	ldrb	w8, [x0, #0x1e]
+0x100044f5c:	cmp	w8, #1
+0x100044f60:	b.eq	#0x100044ffc
+0x100044f64:	mov	x20, x1
+0x100044f68:	cbz	x1, #0x100045004
+0x100044f6c:	ldr	w8, [x19, #0xe0]
+0x100044f70:	cbnz	w8, #0x10004500c
+0x100044f74:	mov	x1, #0xafe2
+0x100044f78:	movk	x1, #0x66c3, lsl #16
+0x100044f7c:	movk	x1, #0x40, lsl #32
+0x100044f80:	movk	x1, #0x109, lsl #48
+0x100044f84:	mov	w0, #0x48
+0x100044f88:	bl	#0x1001a2370
+0x100044f8c:	str	x0, [x20]
+0x100044f90:	cbz	x0, #0x100045018
+0x100044f94:	ldrb	w21, [x19, #0xd0]
+0x100044f98:	ldr	x3, [x19, #0x10]
+0x100044f9c:	ldr	w4, [x19, #0x18]
+0x100044fa0:	mov	w22, #0x5115
+0x100044fa4:	mov	w1, #0
+0x100044fa8:	mov	w2, #0x5115
+0x100044fac:	mov	x5, #0
+0x100044fb0:	mov	x6, #0
+0x100044fb4:	bl	#0x100068004
+0x100044fb8:	ldr	x0, [x20]
+0x100044fbc:	cmp	w21, #2
+0x100044fc0:	mov	w8, #0x10
+0x100044fc4:	mov	w9, #0x21
+0x100044fc8:	csel	w4, w9, w8, eq
+0x100044fcc:	add	x3, x19, #0x2c0
+0x100044fd0:	mov	x1, #0
+0x100044fd4:	mov	w2, #0
+0x100044fd8:	bl	#0x100067d2c
+0x100044fdc:	mov	w0, #0
+0x100044fe0:	strh	w22, [x19, #0x1c]
+0x100044fe4:	ldp	x29, x30, [sp, #0x20]
+0x100044fe8:	ldp	x20, x19, [sp, #0x10]
+0x100044fec:	ldp	x22, x21, [sp], #0x30
+0x100044ff0:	retab	
+0x100044ff4:	bl	#0x10013420c
+0x100044ff8:	b	#0x100045010
+0x100044ffc:	bl	#0x1001341c0
+0x100045000:	b	#0x100045010
+0x100045004:	bl	#0x100134174
+0x100045008:	b	#0x100045010
+0x10004500c:	bl	#0x1001340dc
+0x100045010:	mov	w0, #1
+0x100045014:	b	#0x100044fe4
+0x100045018:	bl	#0x100134128
+0x10004501c:	mov	w0, #-1
+0x100045020:	b	#0x100044fe4

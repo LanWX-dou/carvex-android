@@ -1,0 +1,177 @@
+; AirPlaySender 0x2519c1234-0x2519c14ec; source SHA256 304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x2519c1234:	pacibsp	
+0x2519c1238:	sub	sp, sp, #0xc0
+0x2519c123c:	stp	x26, x25, [sp, #0x70]
+0x2519c1240:	stp	x24, x23, [sp, #0x80]
+0x2519c1244:	stp	x22, x21, [sp, #0x90]
+0x2519c1248:	stp	x20, x19, [sp, #0xa0]
+0x2519c124c:	stp	x29, x30, [sp, #0xb0]
+0x2519c1250:	add	x29, sp, #0xb0
+0x2519c1254:	mov	x24, x5
+0x2519c1258:	mov	x23, x4
+0x2519c125c:	mov	x25, x3
+0x2519c1260:	mov	x19, x2
+0x2519c1264:	mov	x20, x1
+0x2519c1268:	bl	#0x25810ac50
+0x2519c126c:	stp	xzr, xzr, [x29, #-0x50]
+0x2519c1270:	movi	v0.2d, #0000000000000000
+0x2519c1274:	stp	q0, q0, [sp, #0x40]
+0x2519c1278:	stp	q0, q0, [sp, #0x20]
+0x2519c127c:	stp	q0, q0, [sp]
+0x2519c1280:	ldrb	w8, [x0, #0x170]
+0x2519c1284:	cbz	w8, #0x2519c1458
+0x2519c1288:	mov	x21, x0
+0x2519c128c:	ldr	x0, [x0, #0xc8]
+0x2519c1290:	bl	#0x2519b9ad8
+0x2519c1294:	mov	x22, x0
+0x2519c1298:	mov	x0, x23
+0x2519c129c:	bl	#0x2519c1d5c
+0x2519c12a0:	mov	x2, x0
+0x2519c12a4:	mov	x0, x20
+0x2519c12a8:	mov	x1, x24
+0x2519c12ac:	bl	#0x2519c0c90
+0x2519c12b0:	cbnz	w0, #0x2519c14bc
+0x2519c12b4:	cbz	x25, #0x2519c12c8
+0x2519c12b8:	mov	x0, x20
+0x2519c12bc:	mov	x1, x25
+0x2519c12c0:	bl	#0x2519c0934
+0x2519c12c4:	cbnz	w0, #0x2519c14cc
+0x2519c12c8:	add	x1, sp, #0x40
+0x2519c12cc:	mov	x0, x20
+0x2519c12d0:	bl	#0x2519c14ec
+0x2519c12d4:	cbz	w0, #0x2519c1458
+0x2519c12d8:	mov	w23, w23
+0x2519c12dc:	ldr	d0, [sp]
+0x2519c12e0:	fcvtzu	x2, d0
+0x2519c12e4:	mov	w0, #0x908
+0x2519c12e8:	movk	w0, #0x2b8d, lsl #16
+0x2519c12ec:	mov	x1, x23
+0x2519c12f0:	mov	x3, #0
+0x2519c12f4:	mov	x4, #0
+0x2519c12f8:	bl	#0x2580f5a40
+0x2519c12fc:	mov	x0, x19
+0x2519c1300:	bl	#0x258109150
+0x2519c1304:	ldr	x16, [x0, #0x10]!
+0x2519c1308:	mov	x17, x0
+0x2519c130c:	movk	x17, #0xf5e6, lsl #48
+0x2519c1310:	autda	x16, x17
+0x2519c1314:	mov	x17, x16
+0x2519c1318:	xpacd	x17
+0x2519c131c:	cmp	x16, x17
+0x2519c1320:	b.eq	#0x2519c1328
+0x2519c1324:	brk	#0xc472
+0x2519c1328:	ldr	x9, [x16]
+0x2519c132c:	cmp	x9, #2
+0x2519c1330:	b.lo	#0x2519c1470
+0x2519c1334:	mov	x8, x16
+0x2519c1338:	ldr	x9, [x8, #0x28]!
+0x2519c133c:	cbz	x9, #0x2519c1460
+0x2519c1340:	movk	x8, #0x61fb, lsl #48
+0x2519c1344:	mov	x16, x9
+0x2519c1348:	mov	x17, x8
+0x2519c134c:	autia	x16, x17
+0x2519c1350:	mov	x17, x16
+0x2519c1354:	xpaci	x17
+0x2519c1358:	cmp	x16, x17
+0x2519c135c:	b.eq	#0x2519c1364
+0x2519c1360:	brk	#0xc470
+0x2519c1364:	paciza	x16
+0x2519c1368:	cbz	x16, #0x2519c1460
+0x2519c136c:	sub	x1, x29, #0x48
+0x2519c1370:	sub	x2, x29, #0x50
+0x2519c1374:	mov	x0, x19
+0x2519c1378:	blraa	x9, x8
+0x2519c137c:	cbnz	w0, #0x2519c14dc
+0x2519c1380:	ldur	x0, [x29, #-0x48]
+0x2519c1384:	ldp	x1, x2, [sp, #0x50]
+0x2519c1388:	bl	#0x2580f43e0
+0x2519c138c:	ldr	w8, [sp, #0x44]
+0x2519c1390:	rev	w8, w8
+0x2519c1394:	ucvtf	d0, w8
+0x2519c1398:	str	d0, [sp]
+0x2519c139c:	mov	w24, #1
+0x2519c13a0:	str	w24, [sp, #0x38]
+0x2519c13a4:	ldr	w8, [x22, #0x14]
+0x2519c13a8:	ldr	x25, [sp, #0x58]
+0x2519c13ac:	cmp	w8, #1
+0x2519c13b0:	b.hi	#0x2519c13bc
+0x2519c13b4:	ldr	w8, [x22, #0x10]
+0x2519c13b8:	udiv	w24, w25, w8
+0x2519c13bc:	ldur	x26, [x29, #-0x48]
+0x2519c13c0:	mov	x0, x19
+0x2519c13c4:	bl	#0x258109150
+0x2519c13c8:	ldr	x16, [x0, #0x10]!
+0x2519c13cc:	mov	x17, x0
+0x2519c13d0:	movk	x17, #0xf5e6, lsl #48
+0x2519c13d4:	autda	x16, x17
+0x2519c13d8:	ldr	x9, [x16]
+0x2519c13dc:	cmp	x9, #2
+0x2519c13e0:	b.lo	#0x2519c1484
+0x2519c13e4:	mov	x8, x16
+0x2519c13e8:	ldr	x9, [x8, #0x30]!
+0x2519c13ec:	cbz	x9, #0x2519c1468
+0x2519c13f0:	movk	x8, #0xaf40, lsl #48
+0x2519c13f4:	mov	x16, x9
+0x2519c13f8:	mov	x17, x8
+0x2519c13fc:	autia	x16, x17
+0x2519c1400:	mov	x17, x16
+0x2519c1404:	xpaci	x17
+0x2519c1408:	cmp	x16, x17
+0x2519c140c:	b.eq	#0x2519c1414
+0x2519c1410:	brk	#0xc470
+0x2519c1414:	paciza	x16
+0x2519c1418:	cbz	x16, #0x2519c1468
+0x2519c141c:	mov	x5, sp
+0x2519c1420:	mov	x0, x19
+0x2519c1424:	mov	x1, x26
+0x2519c1428:	mov	x2, x25
+0x2519c142c:	mov	x3, #0
+0x2519c1430:	mov	x4, x24
+0x2519c1434:	blraa	x9, x8
+0x2519c1438:	cbnz	w0, #0x2519c14e4
+0x2519c143c:	ldr	x0, [x21, #0x1a8]
+0x2519c1440:	ldp	x1, x2, [sp, #0x50]
+0x2519c1444:	bl	#0x25810cf50
+0x2519c1448:	add	x1, sp, #0x40
+0x2519c144c:	mov	x0, x20
+0x2519c1450:	bl	#0x2519c14ec
+0x2519c1454:	cbnz	w0, #0x2519c12dc
+0x2519c1458:	mov	w24, #0
+0x2519c145c:	b	#0x2519c149c
+0x2519c1460:	mov	w24, #-0x31ee
+0x2519c1464:	b	#0x2519c1474
+0x2519c1468:	mov	w24, #-0x31ee
+0x2519c146c:	b	#0x2519c1488
+0x2519c1470:	mov	w24, #-0x31ed
+0x2519c1474:	bl	#0x251a53250
+0x2519c1478:	mov	x0, x24
+0x2519c147c:	mov	w2, #0x760
+0x2519c1480:	b	#0x2519c1494
+0x2519c1484:	mov	w24, #-0x31ed
+0x2519c1488:	bl	#0x251a53250
+0x2519c148c:	mov	x0, x24
+0x2519c1490:	mov	w2, #0x76b
+0x2519c1494:	mov	w3, #0
+0x2519c1498:	bl	#0x258109a30
+0x2519c149c:	mov	x0, x24
+0x2519c14a0:	ldp	x29, x30, [sp, #0xb0]
+0x2519c14a4:	ldp	x20, x19, [sp, #0xa0]
+0x2519c14a8:	ldp	x22, x21, [sp, #0x90]
+0x2519c14ac:	ldp	x24, x23, [sp, #0x80]
+0x2519c14b0:	ldp	x26, x25, [sp, #0x70]
+0x2519c14b4:	add	sp, sp, #0xc0
+0x2519c14b8:	retab	
+0x2519c14bc:	mov	x24, x0
+0x2519c14c0:	bl	#0x251a53250
+0x2519c14c4:	mov	w2, #0x74e
+0x2519c14c8:	b	#0x2519c1494
+0x2519c14cc:	mov	x24, x0
+0x2519c14d0:	bl	#0x251a53250
+0x2519c14d4:	mov	w2, #0x755
+0x2519c14d8:	b	#0x2519c1494
+0x2519c14dc:	mov	x24, x0
+0x2519c14e0:	b	#0x2519c1474
+0x2519c14e4:	mov	x24, x0
+0x2519c14e8:	b	#0x2519c1488

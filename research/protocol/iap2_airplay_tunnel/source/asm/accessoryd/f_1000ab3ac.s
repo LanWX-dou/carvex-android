@@ -1,0 +1,61 @@
+; accessoryd 0x1000ab3ac-0x1000ab494; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x1000ab3ac:	pacibsp	
+0x1000ab3b0:	sub	sp, sp, #0x50
+0x1000ab3b4:	stp	x22, x21, [sp, #0x20]
+0x1000ab3b8:	stp	x20, x19, [sp, #0x30]
+0x1000ab3bc:	stp	x29, x30, [sp, #0x40]
+0x1000ab3c0:	add	x29, sp, #0x40
+0x1000ab3c4:	mov	x19, x2
+0x1000ab3c8:	mov	x21, x1
+0x1000ab3cc:	mov	x20, x0
+0x1000ab3d0:	adrp	x8, #0x10023f000
+0x1000ab3d4:	ldr	x8, [x8, #0xa28]
+0x1000ab3d8:	cbz	x8, #0x1000ab3f4
+0x1000ab3dc:	adrp	x9, #0x10023f000
+0x1000ab3e0:	ldr	w9, [x9, #0xa30]
+0x1000ab3e4:	cmp	w9, #0x3b
+0x1000ab3e8:	b.lt	#0x1000ab3f4
+0x1000ab3ec:	ldr	x22, [x8, #0x1d0]
+0x1000ab3f0:	b	#0x1000ab40c
+0x1000ab3f4:	adrp	x8, #0x10023e000
+0x1000ab3f8:	ldr	x8, [x8, #0xb40]
+0x1000ab3fc:	cmn	x8, #1
+0x1000ab400:	b.ne	#0x1000ab48c
+0x1000ab404:	adrp	x22, #0x10022b000
+0x1000ab408:	ldr	x22, [x22, #0xbb0]
+0x1000ab40c:	mov	x0, x22
+0x1000ab410:	mov	w1, #0
+0x1000ab414:	bl	#0x1001a2830
+0x1000ab418:	cbz	w0, #0x1000ab46c
+0x1000ab41c:	adrp	x8, #0x1001b3000
+0x1000ab420:	ldr	d0, [x8, #0x80]
+0x1000ab424:	str	s0, [sp]
+0x1000ab428:	adrp	x8, #0x1001d3000
+0x1000ab42c:	add	x8, x8, #0x90c
+0x1000ab430:	stur	x8, [sp, #4]
+0x1000ab434:	mov	w8, #0x840
+0x1000ab438:	strh	w8, [sp, #0xc]
+0x1000ab43c:	stur	x21, [sp, #0xe]
+0x1000ab440:	strh	w8, [sp, #0x16]
+0x1000ab444:	str	x19, [sp, #0x18]
+0x1000ab448:	adrp	x0, #0x100000000
+0x1000ab44c:	add	x0, x0, #0
+0x1000ab450:	adrp	x3, #0x1001fb000
+0x1000ab454:	add	x3, x3, #0xfdf
+0x1000ab458:	mov	x4, sp
+0x1000ab45c:	mov	x1, x22
+0x1000ab460:	mov	w2, #0
+0x1000ab464:	mov	w5, #0x20
+0x1000ab468:	bl	#0x1001a1fe0
+0x1000ab46c:	ldp	x0, x1, [x20, #0x20]
+0x1000ab470:	mov	x2, x19
+0x1000ab474:	bl	#0x10019d614
+0x1000ab478:	ldp	x29, x30, [sp, #0x40]
+0x1000ab47c:	ldp	x20, x19, [sp, #0x30]
+0x1000ab480:	ldp	x22, x21, [sp, #0x20]
+0x1000ab484:	add	sp, sp, #0x50
+0x1000ab488:	retab	
+0x1000ab48c:	bl	#0x100165308
+0x1000ab490:	b	#0x1000ab404

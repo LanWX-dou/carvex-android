@@ -1,0 +1,73 @@
+; AirPlaySender 0x251acea60-0x251aceb78; source SHA256 304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x251acea60:	pacibsp	
+0x251acea64:	sub	sp, sp, #0x60
+0x251acea68:	stp	x22, x21, [sp, #0x30]
+0x251acea6c:	stp	x20, x19, [sp, #0x40]
+0x251acea70:	stp	x29, x30, [sp, #0x50]
+0x251acea74:	add	x29, sp, #0x50
+0x251acea78:	mov	x19, x3
+0x251acea7c:	mov	x21, x2
+0x251acea80:	mov	x20, x1
+0x251acea84:	adrp	x8, #0x2681b4000
+0x251acea88:	ldr	x8, [x8, #0xee0]
+0x251acea8c:	ldr	x8, [x8]
+0x251acea90:	str	x8, [sp, #0x28]
+0x251acea94:	str	xzr, [sp, #0x10]
+0x251acea98:	str	wzr, [sp, #0xc]
+0x251acea9c:	bl	#0x25810ac50
+0x251aceaa0:	ldr	x8, [x0]
+0x251aceaa4:	cbz	x8, #0x251aceb44
+0x251aceaa8:	mov	x22, x0
+0x251aceaac:	add	x3, sp, #0x18
+0x251aceab0:	mov	x0, x20
+0x251aceab4:	mov	x1, #0
+0x251aceab8:	mov	w2, #0x10
+0x251aceabc:	bl	#0x258101800
+0x251aceac0:	ldr	x0, [x22]
+0x251aceac4:	add	x1, sp, #0x18
+0x251aceac8:	add	x3, sp, #0x10
+0x251aceacc:	add	x4, sp, #0xc
+0x251acead0:	mov	w2, #0x10
+0x251acead4:	bl	#0x2519dcb7c
+0x251acead8:	cbnz	w0, #0x251aceb54
+0x251aceadc:	ldr	x1, [sp, #0x10]
+0x251aceae0:	ldr	w2, [sp, #0xc]
+0x251aceae4:	mov	x0, x21
+0x251aceae8:	bl	#0x2580f6ff0
+0x251aceaec:	cbz	x0, #0x251aceb60
+0x251aceaf0:	mov	w20, #0
+0x251aceaf4:	str	x0, [x19]
+0x251aceaf8:	ldr	x0, [sp, #0x10]
+0x251aceafc:	bl	#0x2519fb3a4
+0x251aceb00:	add	x8, sp, #0x18
+0x251aceb04:	mov	x9, #-0x10
+0x251aceb08:	strb	wzr, [x8], #1
+0x251aceb0c:	adds	x9, x9, #1
+0x251aceb10:	b.lo	#0x251aceb08
+0x251aceb14:	ldr	x8, [sp, #0x28]
+0x251aceb18:	adrp	x9, #0x2681b4000
+0x251aceb1c:	ldr	x9, [x9, #0xee0]
+0x251aceb20:	ldr	x9, [x9]
+0x251aceb24:	cmp	x9, x8
+0x251aceb28:	b.ne	#0x251aceb74
+0x251aceb2c:	mov	x0, x20
+0x251aceb30:	ldp	x29, x30, [sp, #0x50]
+0x251aceb34:	ldp	x20, x19, [sp, #0x40]
+0x251aceb38:	ldp	x22, x21, [sp, #0x30]
+0x251aceb3c:	add	sp, sp, #0x60
+0x251aceb40:	retab	
+0x251aceb44:	mov	w20, #0xe785
+0x251aceb48:	movk	w20, #0xfffe, lsl #16
+0x251aceb4c:	bl	#0x251ba448c
+0x251aceb50:	b	#0x251aceaf8
+0x251aceb54:	mov	x20, x0
+0x251aceb58:	bl	#0x251ba4438
+0x251aceb5c:	b	#0x251aceaf8
+0x251aceb60:	bl	#0x251ba4460
+0x251aceb64:	mov	w8, #0xe785
+0x251aceb68:	movk	w8, #0xfffe, lsl #16
+0x251aceb6c:	add	w20, w8, #3
+0x251aceb70:	b	#0x251aceaf8
+0x251aceb74:	bl	#0x2580f4380

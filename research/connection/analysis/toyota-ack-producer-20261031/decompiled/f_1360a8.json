@@ -1,0 +1,13 @@
+{
+  "address": "0x1360a8",
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "raw_sha256": "b177fd810d71bb57b4228bc81691be042131843f98806554b2028bde022e6e4f",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "b177fd810d71bb57b4228bc81691be042131843f98806554b2028bde022e6e4f",
+  "ghidra_name": "CIpodIap2",
+  "signature": "undefined CIpodIap2(CIpodIap2 * this)",
+  "diagnostic": "",
+  "c_file": "f_1360a8.ghidra.c",
+  "c_sha256": "f2f3f45b544f64350b8895c633d6c6673a3b28fbf7cce574f955441a16ec0124",
+  "status": "DECOMPILED_UNREVIEWED"
+}

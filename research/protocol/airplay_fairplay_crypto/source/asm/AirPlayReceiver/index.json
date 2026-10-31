@@ -1,0 +1,163 @@
+{
+ "image": "AirPlayReceiver",
+ "source_sha256": "ad6eddbb9bedcb8f121699e7fc94702632c4acf30135564763a646ac472cc51a",
+ "source_size": 2453520,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 15,
+ "functions": [
+  {
+   "symbol": "_airplayReqProcessor_requestProcessFPSetup",
+   "address": "0x2518a50b4",
+   "end": "0x2518a5720",
+   "size": 1644,
+   "group": "R",
+   "raw_sha256": "54c1053516d86a4de1777f02474a34f3cd135a7be734cc0baf2e20e4a9e2edeb",
+   "bin": "f_2518a50b4.bin",
+   "asm": "f_2518a50b4.s"
+  },
+  {
+   "symbol": "_airplayReqProcessor_requestProcessFPSetup2",
+   "address": "0x2518a5720",
+   "end": "0x2518a5d1c",
+   "size": 1532,
+   "group": "R",
+   "raw_sha256": "833d016f8941622b1c923515e47499964c5895093ba180970b2bd8b79289b9ea",
+   "bin": "f_2518a5720.bin",
+   "asm": "f_2518a5720.s"
+  },
+  {
+   "symbol": "__FPSetup2ResponseCompletionHandler",
+   "address": "0x2518892fc",
+   "end": "0x2518895c4",
+   "size": 712,
+   "group": "R",
+   "raw_sha256": "05bb68e7cf9343b5c68c710345df6e7403e06e0e2b6d4d9e56352795e9fad6f6",
+   "bin": "f_2518892fc.bin",
+   "asm": "f_2518892fc.s"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperCreate",
+   "address": "0x2518336b8",
+   "end": "0x251833960",
+   "size": 680,
+   "group": "R",
+   "raw_sha256": "22c7996d3eeaeab7374ce4eabd6d16f194491e9a0d498f98d583f244cd82b8da",
+   "bin": "f_2518336b8.bin",
+   "asm": "f_2518336b8.s"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperProcessFPInfo",
+   "address": "0x251834678",
+   "end": "0x251834adc",
+   "size": 1124,
+   "group": "R",
+   "raw_sha256": "f1835e1a8f83eb50a6ee0033baa5da07af9e86100599d2e35ba15873b0bac130",
+   "bin": "f_251834678.bin",
+   "asm": "f_251834678.s"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperCopyAuthorizeItemResponseIntoBuffer",
+   "address": "0x251833a74",
+   "end": "0x251833c88",
+   "size": 532,
+   "group": "R",
+   "raw_sha256": "0ade0a4ea13fcda20dfa41276fffb3e0abc993ae4e52f708b8822b213c99e94f",
+   "bin": "f_251833a74.bin",
+   "asm": "f_251833a74.s"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperCopyAuthorizeItemResponseIntoDictionary",
+   "address": "0x251834500",
+   "end": "0x251834678",
+   "size": 376,
+   "group": "R",
+   "raw_sha256": "10a6a5f52685065270813e80d6e26d1e0dbdb23cfe2a13c931015a50747c1100",
+   "bin": "f_251834500.bin",
+   "asm": "f_251834500.s"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperRemoveAllFPSessions",
+   "address": "0x251833960",
+   "end": "0x251833a74",
+   "size": 276,
+   "group": "R",
+   "raw_sha256": "be33fc1ecaac4876c85f15625b83d78a7c39f3838b1344779eb75102e1af654e",
+   "bin": "f_251833960.bin",
+   "asm": "f_251833960.s"
+  },
+  {
+   "symbol": "_apReceiverFairPlayHelper_CopyPICResponseData",
+   "address": "0x251833c88",
+   "end": "0x251834500",
+   "size": 2168,
+   "group": "R",
+   "raw_sha256": "8836cd128c6b79e42000d833d2a089827238b48d047ba782fbbbc6a9e44806dc",
+   "bin": "f_251833c88.bin",
+   "asm": "f_251833c88.s"
+  },
+  {
+   "symbol": "_AirPlayReceiverSessionSetSecurityInfo",
+   "address": "0x2518d3704",
+   "end": "0x2518d3bdc",
+   "size": 1240,
+   "group": "S",
+   "raw_sha256": "5a042b3f44140c1375faf802d182a9dfc1cfb7a90ab75ec6e7e7c4ada80fae7b",
+   "bin": "f_2518d3704.bin",
+   "asm": "f_2518d3704.s"
+  },
+  {
+   "symbol": "__SetSecurityInfoAES",
+   "address": "0x2518d3bdc",
+   "end": "0x2518d3c74",
+   "size": 152,
+   "group": "S",
+   "raw_sha256": "0f604c269b06ae7229dade8089fe43173a53cefc5d42fe43658fa1363072071a",
+   "bin": "f_2518d3bdc.bin",
+   "asm": "f_2518d3bdc.s"
+  },
+  {
+   "symbol": "_aprscreen_SetSecurityInfoAES",
+   "address": "0x251859b8c",
+   "end": "0x251859c8c",
+   "size": 256,
+   "group": "S",
+   "raw_sha256": "ef26b2fcb090958f4e6a95d4d48fb9390d4fdb8844b01c0be68912fe3f1ab0f3",
+   "bin": "f_251859b8c.bin",
+   "asm": "f_251859b8c.s"
+  },
+  {
+   "symbol": "_aprscreen_SetSecurityInfoChaCha",
+   "address": "0x251859a60",
+   "end": "0x251859b8c",
+   "size": 300,
+   "group": "S",
+   "raw_sha256": "d72e408b258be98e49e1df91a062f8c95f3a48d36a6653d9dfbf3e63c0a09408",
+   "bin": "f_251859a60.bin",
+   "asm": "f_251859a60.s"
+  },
+  {
+   "symbol": "_aprscreen_decryptBuffer",
+   "address": "0x25185ba2c",
+   "end": "0x25185bc30",
+   "size": 516,
+   "group": "S",
+   "raw_sha256": "7ee000ab86fa7d211af601f71268556d770655ef00b8c15d2d357d115ba42837",
+   "bin": "f_25185ba2c.bin",
+   "asm": "f_25185ba2c.s"
+  },
+  {
+   "symbol": "(unnamed)",
+   "address": "0x2518d4338",
+   "end": "0x2518d7ba0",
+   "size": 14440,
+   "group": "X",
+   "raw_sha256": "c43c031ddc688773e405df85a301fce318c91719ad5624adf37fe112b9750117",
+   "bin": "f_2518d4338.bin",
+   "asm": "f_2518d4338.s"
+  }
+ ],
+ "missing_symbols": [
+  "_apReceiverFairPlayHelper_CopyPICRequest"
+ ]
+}

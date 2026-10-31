@@ -1,0 +1,437 @@
+{
+  "build": "24A446",
+  "scope": "X-Apple-ProtocolVersion producer and current Android header presence",
+  "method": "read original cache and extracted image; no firmware execution or vehicle test",
+  "images": [
+    {
+      "component": "APTransport",
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/APTransport/APTransport",
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d"
+    },
+    {
+      "component": "AirPlaySupport",
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/AirPlaySupport/AirPlaySupport",
+      "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15"
+    },
+    {
+      "component": "CoreUtils",
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/CoreUtils/CoreUtils",
+      "sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083"
+    }
+  ],
+  "route": {
+    "component": "APTransport",
+    "address": "0x24fda58ec",
+    "raw_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda58ec.bin",
+    "length": 4000,
+    "sha256": "6a4552591408d3fc25dabbd8cefce2cffffd6c0c8a308e338672b2df9d62ab5e",
+    "raw_matches_image_and_cache": true,
+    "reviewed_range": [
+      "0x24fda6330",
+      "0x24fda6388"
+    ],
+    "instructions": [
+      "0x24fda6330: cbnz w0, #0x24fda6818",
+      "0x24fda6334: mov x0, x20",
+      "0x24fda6338: bl #0x2500e5a60",
+      "0x24fda633c: ldr w8, [x0, #8]",
+      "0x24fda6340: mov w9, #0x7570",
+      "0x24fda6344: movk w9, #0x7374, lsl #16",
+      "0x24fda6348: cmp w8, w9",
+      "0x24fda634c: b.eq #0x24fda6360",
+      "0x24fda6350: mov w9, #0x666f",
+      "0x24fda6354: movk w9, #0x696e, lsl #16",
+      "0x24fda6358: cmp w8, w9",
+      "0x24fda635c: b.ne #0x24fda6388",
+      "0x24fda6360: ldr x23, [x0, #0x18]",
+      "0x24fda6364: bl #0x2500ee660",
+      "0x24fda6368: adrp x1, #0x24fe6d000",
+      "0x24fda636c: add x1, x1, #0x592",
+      "0x24fda6370: str x0, [sp]",
+      "0x24fda6374: adrp x2, #0x24fe4d000",
+      "0x24fda6378: add x2, x2, #0xb39",
+      "0x24fda637c: add x0, x23, #0x18",
+      "0x24fda6380: bl #0x2500ef110",
+      "0x24fda6384: cbnz w0, #0x24fda6820"
+    ]
+  },
+  "provider_trampoline": {
+    "address": "0x2500ee660",
+    "length": 16,
+    "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.47",
+    "cache_file_offset": 403040,
+    "sha256": "26b6c0dfb41a076fba3dcc5c413aca2ea12113ae86c37bcc0e1b9195149d7a5a",
+    "hex": "106febd01052229100021fd6200020d4",
+    "instructions": [
+      "adrp x16, #0x226ed0000",
+      "add x16, x16, #0x894",
+      "br x16",
+      "brk #1"
+    ],
+    "target": "0x226ed0894"
+  },
+  "provider": {
+    "address": "0x226ed0894",
+    "length": 188,
+    "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+    "cache_file_offset": 112003220,
+    "sha256": "87d38c15bb454a97e616a70d7fe60fea671a84f5787ceb73a7fe670fe1b64e1b",
+    "hex": "7f2303d5ffc300d1f44f01a9fd7b02a9fd830091c8af24f008b942f91f0500b121040054c8af24d008d14eb91f0d007113359f1ac8af24f008a943b91f7900718c0200541f05003180010054f30300f9c0af24f000a00e91e10300b021f42191e30300b0637c2291c20380520240a0721ff14a9407000014c0af24f000a00e91c10380520140a07265f24a9400feff35e00313aafd7b42a9f44f41a9ffc30091ff0f5fd6c0af24f000c015910174269021e01191c6bc4994dbffff17",
+    "component": "AirPlaySupport",
+    "symbols": [
+      "_APSSystemGetUserVersion"
+    ],
+    "matches_extracted_image": true,
+    "instructions": [
+      "0x226ed0894: pacibsp ",
+      "0x226ed0898: sub sp, sp, #0x30",
+      "0x226ed089c: stp x20, x19, [sp, #0x10]",
+      "0x226ed08a0: stp x29, x30, [sp, #0x20]",
+      "0x226ed08a4: add x29, sp, #0x20",
+      "0x226ed08a8: adrp x8, #0x2704cb000",
+      "0x226ed08ac: ldr x8, [x8, #0x570]",
+      "0x226ed08b0: cmn x8, #1",
+      "0x226ed08b4: b.ne #0x226ed0938",
+      "0x226ed08b8: adrp x8, #0x2704ca000",
+      "0x226ed08bc: ldr w8, [x8, #0xed0]",
+      "0x226ed08c0: cmp w8, #3",
+      "0x226ed08c4: csinc w19, w8, wzr, lo",
+      "0x226ed08c8: adrp x8, #0x2704cb000",
+      "0x226ed08cc: ldr w8, [x8, #0x3a8]",
+      "0x226ed08d0: cmp w8, #0x1e",
+      "0x226ed08d4: b.gt #0x226ed0924",
+      "0x226ed08d8: cmn w8, #1",
+      "0x226ed08dc: b.eq #0x226ed090c",
+      "0x226ed08e0: str x19, [sp]",
+      "0x226ed08e4: adrp x0, #0x2704cb000",
+      "0x226ed08e8: add x0, x0, #0x3a8",
+      "0x226ed08ec: adrp x1, #0x226f4d000",
+      "0x226ed08f0: add x1, x1, #0x87d",
+      "0x226ed08f4: adrp x3, #0x226f4d000",
+      "0x226ed08f8: add x3, x3, #0x89f",
+      "0x226ed08fc: mov w2, #0x1e",
+      "0x226ed0900: movk w2, #0x200, lsl #16",
+      "0x226ed0904: bl #0x22818cd80",
+      "0x226ed0908: b #0x226ed0924",
+      "0x226ed090c: adrp x0, #0x2704cb000",
+      "0x226ed0910: add x0, x0, #0x3a8",
+      "0x226ed0914: mov w1, #0x1e",
+      "0x226ed0918: movk w1, #0x200, lsl #16",
+      "0x226ed091c: bl #0x22818d2b0",
+      "0x226ed0920: cbnz w0, #0x226ed08e0",
+      "0x226ed0924: mov x0, x19",
+      "0x226ed0928: ldp x29, x30, [sp, #0x20]",
+      "0x226ed092c: ldp x20, x19, [sp, #0x10]",
+      "0x226ed0930: add sp, sp, #0x30",
+      "0x226ed0934: retab ",
+      "0x226ed0938: adrp x0, #0x2704cb000",
+      "0x226ed093c: add x0, x0, #0x570",
+      "0x226ed0940: adrp x1, #0x273d50000",
+      "0x226ed0944: add x1, x1, #0x478",
+      "0x226ed0948: bl #0x22813fc60",
+      "0x226ed094c: b #0x226ed08b8"
+    ]
+  },
+  "initializer": {
+    "block": {
+      "address": "0x273d50478",
+      "length": 32,
+      "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+      "cache_file_offset": 164136056,
+      "sha256": "8e6eeebcbd9513ccd0562d34d708e828a64f20803f538ebe7e0c6e3e1c359f46",
+      "hex": "58827f5685ab2d8000000050000000005009eda600001480d850a9e800001000"
+    },
+    "invoke_pointer_slot": "0x273d50488",
+    "invoke": {
+      "address": "0x226ed0950",
+      "length": 176,
+      "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+      "cache_file_offset": 112003408,
+      "sha256": "d46067da40b4507426e2bfac226f43e95294b1f4c15edcf75d68680243163228",
+      "hex": "7f2303d5ffc300d1f44f01a9fd7b02a9fd830091007426f000003d910174269021801d9102008012e6ef4a94d3af24d060d20eb91f08007108030054c8af24f008a943b91fc900718c0200541f05003180010054e00300f9c0af24f000a00e91e10300b021642091e30300b063202191420680520240a072eef04a9407000014c0af24f000a00e91410680520140a07234f24a94a0000035fd7b42a9f44f41a9ffc30091ff0f5fd660d24eb9eaffff17",
+      "symbols": [
+        "___APSSystemGetUserVersion_block_invoke"
+      ],
+      "matches_extracted_image": true,
+      "instructions": [
+        "0x226ed0950: pacibsp ",
+        "0x226ed0954: sub sp, sp, #0x30",
+        "0x226ed0958: stp x20, x19, [sp, #0x10]",
+        "0x226ed095c: stp x29, x30, [sp, #0x20]",
+        "0x226ed0960: add x29, sp, #0x20",
+        "0x226ed0964: adrp x0, #0x273d53000",
+        "0x226ed0968: add x0, x0, #0xf40",
+        "0x226ed096c: adrp x1, #0x273d50000",
+        "0x226ed0970: add x1, x1, #0x760",
+        "0x226ed0974: mov w2, #-1",
+        "0x226ed0978: bl #0x22818c910",
+        "0x226ed097c: adrp x19, #0x2704ca000",
+        "0x226ed0980: str w0, [x19, #0xed0]",
+        "0x226ed0984: cmp w0, #2",
+        "0x226ed0988: b.hi #0x226ed09e8",
+        "0x226ed098c: adrp x8, #0x2704cb000",
+        "0x226ed0990: ldr w8, [x8, #0x3a8]",
+        "0x226ed0994: cmp w8, #0x32",
+        "0x226ed0998: b.gt #0x226ed09e8",
+        "0x226ed099c: cmn w8, #1",
+        "0x226ed09a0: b.eq #0x226ed09d0",
+        "0x226ed09a4: str x0, [sp]",
+        "0x226ed09a8: adrp x0, #0x2704cb000",
+        "0x226ed09ac: add x0, x0, #0x3a8",
+        "0x226ed09b0: adrp x1, #0x226f4d000",
+        "0x226ed09b4: add x1, x1, #0x819",
+        "0x226ed09b8: adrp x3, #0x226f4d000",
+        "0x226ed09bc: add x3, x3, #0x848",
+        "0x226ed09c0: mov w2, #0x32",
+        "0x226ed09c4: movk w2, #0x200, lsl #16",
+        "0x226ed09c8: bl #0x22818cd80",
+        "0x226ed09cc: b #0x226ed09e8",
+        "0x226ed09d0: adrp x0, #0x2704cb000",
+        "0x226ed09d4: add x0, x0, #0x3a8",
+        "0x226ed09d8: mov w1, #0x32",
+        "0x226ed09dc: movk w1, #0x200, lsl #16",
+        "0x226ed09e0: bl #0x22818d2b0",
+        "0x226ed09e4: cbnz w0, #0x226ed09f8",
+        "0x226ed09e8: ldp x29, x30, [sp, #0x20]",
+        "0x226ed09ec: ldp x20, x19, [sp, #0x10]",
+        "0x226ed09f0: add sp, sp, #0x30",
+        "0x226ed09f4: retab ",
+        "0x226ed09f8: ldr w0, [x19, #0xed0]",
+        "0x226ed09fc: b #0x226ed09a4"
+      ]
+    },
+    "global_initial_bytes": {
+      "address": "0x2704caed0",
+      "length": 4,
+      "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+      "cache_file_offset": 104869584,
+      "sha256": "ad95131bc0b799c0b1af477fb14fcf26a6a9f76079e48bf090acb7e8367bfd0e",
+      "hex": "ffffffff"
+    },
+    "arguments": [
+      {
+        "address": "0x273d53f40",
+        "value": "UserVersion",
+        "header": {
+          "address": "0x273d53f40",
+          "length": 32,
+          "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+          "cache_file_offset": 164151104,
+          "sha256": "6110e625d70d876bd1ce203fb9234777eb88bd205db0bfcb5428563573719b48",
+          "hex": "c08bf06684ab2d80c8070000000000000dd8f4a6000020000b00000000000000"
+        },
+        "characters": {
+          "address": "0x226f4d80d",
+          "length": 12,
+          "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+          "cache_file_offset": 112515085,
+          "sha256": "8ebba2b01762464e25dc973544816ac369404796b2ff0bc8cf4f37e752472b60",
+          "hex": "5573657256657273696f6e00"
+        }
+      },
+      {
+        "address": "0x273d50760",
+        "value": "com.apple.airplay",
+        "header": {
+          "address": "0x273d50760",
+          "length": 32,
+          "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+          "cache_file_offset": 164136800,
+          "sha256": "bf1e6f7026b0b79dd0b8174baecb49e0b4978faaf7ba4338b92593f64b81dfb8",
+          "hex": "c08bf06684ab2d80c807000000000000c113f3a6000020001100000000000000"
+        },
+        "characters": {
+          "address": "0x226f313c1",
+          "length": 18,
+          "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+          "cache_file_offset": 112399297,
+          "sha256": "8617776ce9568faa966b107fafdb2af6ad741ef5ce2cec36efb37d62710e4c54",
+          "hex": "636f6d2e6170706c652e616972706c617900"
+        }
+      }
+    ],
+    "preference_reader": {
+      "address": "0x22818c910",
+      "length": 16,
+      "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.37",
+      "cache_file_offset": 346384,
+      "sha256": "295622562ae18ba7785f2265281eddac95a6cf1e5a76518340eb6efa8d2688e1",
+      "hex": "b067b3b01082169100021fd6200020d4",
+      "target": "0x18ee815a0",
+      "instructions": [
+        "adrp x16, #0x18ee81000",
+        "add x16, x16, #0x5a0",
+        "br x16",
+        "brk #1"
+      ],
+      "symbols": []
+    }
+  },
+  "strings": [
+    {
+      "address": "0x24fe6d592",
+      "length": 24,
+      "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.46",
+      "cache_file_offset": 128374162,
+      "sha256": "954a0809b142dadd0a2e329b21abf5763d66c07a75d354615d61416fa0a440de",
+      "hex": "582d4170706c652d50726f746f636f6c56657273696f6e00",
+      "value": "X-Apple-ProtocolVersion"
+    },
+    {
+      "address": "0x24fe4db39",
+      "length": 3,
+      "cache_path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.46",
+      "cache_file_offset": 128244537,
+      "sha256": "08de224b25f03e58891d3bb901715b147f0f3cef885186f33c9604a4c5fe1617",
+      "hex": "257500",
+      "value": "%u"
+    }
+  ],
+  "android_sources": [
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt",
+      "sha256": "dfe3d7f818b204a7ed93048a1add292cd02a9d16a6110edd6f21cac775af23c7",
+      "bytes": 100480,
+      "selected_lines": [
+        {
+          "line": 217,
+          "text": "// 以及 `X-Apple-ProtocolVersion`（父 SETUP 的版本）。"
+        },
+        {
+          "line": 230,
+          "text": "c.request(\"SETUP\",connectionPath?:\"/\","
+        },
+        {
+          "line": 232,
+          "text": "extra=mapOf(\"X-Apple-ProtocolVersion\" to \"1\"))"
+        },
+        {
+          "line": 431,
+          "text": "protocolVersion=metadata.protocolVersion,sourceVersion=metadata.sourceVersion,"
+        },
+        {
+          "line": 517,
+          "text": "var setupMessage=c.request(\"SETUP\",sessionPath,setupBody)"
+        },
+        {
+          "line": 521,
+          "text": "setupMessage=c.request(\"SETUP\",\"/setup\",setupBody)"
+        },
+        {
+          "line": 528,
+          "text": "val infoResponse=c.request(\"GET\",\"/info\",extra=mapOf(\"X-Apple-ProtocolVersion\" to \"1\"))"
+        },
+        {
+          "line": 536,
+          "text": "log(\"INFO peer versions protocolVersion=\"+(infoProtocol?:\"${\"missing\"}\")+\" sourceVersion=\"+(infoSource?:\"${\"missing\"}\")+"
+        },
+        {
+          "line": 545,
+          "text": "protocolVersion=infoProtocol,sourceVersion=infoSource,"
+        },
+        {
+          "line": 659,
+          "text": "val attempt=c.request(\"SETUP\",path,body)"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/Rtsp.kt",
+      "sha256": "d3e0020e3aa6ee7a3f3e3626f5c1e4fe866fea163761e2cae53ecac3820c9fa8",
+      "bytes": 23012,
+      "selected_lines": [
+        {
+          "line": 161,
+          "text": "val h=linkedMapOf(\"CSeq\" to id.toString(),\"User-Agent\" to CarPlaySourceIdentity.userAgent,\"Content-Type\" to type)"
+        },
+        {
+          "line": 162,
+          "text": "session?.let{h[\"Session\"]=it};h.putAll(extra)"
+        },
+        {
+          "line": 198,
+          "text": "val h=linkedMapOf(\"CSeq\" to id.toString(),\"User-Agent\" to CarPlaySourceIdentity.userAgent,\"Content-Type\" to type)"
+        },
+        {
+          "line": 199,
+          "text": "session?.let{h[\"Session\"]=it};h.putAll(extra)"
+        },
+        {
+          "line": 256,
+          "text": "val h=linkedMapOf(\"CSeq\" to id.toString(),\"User-Agent\" to CarPlaySourceIdentity.userAgent,\"Content-Type\" to type)"
+        },
+        {
+          "line": 257,
+          "text": "session?.let{h[\"Session\"]=it};h.putAll(extra)"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/CarPlaySourceIdentity.kt",
+      "sha256": "54af8e401dd47085bab6751cef4217626d48d34d25349c0b7ad2e306d294662d",
+      "bytes": 1222,
+      "selected_lines": [
+        {
+          "line": 5,
+          "text": "const val sourceVersion=\"320.17\""
+        },
+        {
+          "line": 15,
+          "text": "const val compatibilityOsBuildVersion=\"21A329\""
+        }
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "path": "/mnt/d/carvex-research/research/connection/tools/inspect_version_headers.py",
+      "sha256": "0192f0d70ad4d0b9740bd194618307467c13b56a72db9a1b7f53a9d3392215dd"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/tools/ipsw-research/firmware_cache.py",
+      "sha256": "2a4083dc30efce1c9df02ca64330e5279a142f4c08af22e14738bfa9bd1d0300"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/tools/ipsw-research/firmware_image.py",
+      "sha256": "642cb879df32e8974c6e59cce9339dc8deb1aa3c9867e38dfadd03967f01157b"
+    }
+  ],
+  "limits": [
+    "Static header construction only; no claim that any particular vehicle rejects a missing header.",
+    "Do not equate RTSP version, X-Apple-ProtocolVersion, sourceVersion or osBuildVersion.",
+    "Source snapshot is not an APK/runtime identity; other files may change independently.",
+    "The initializer reader target 0x18ee815a0 is resolved but its implementation is outside this bounded review. No claim about every preference error/default/coercion."
+  ],
+  "review_date": "2026-10-29",
+  "claims": [
+    {
+      "id": "VH-01",
+      "status": "CLOSED-STATIC",
+      "claim": "24A446 HTTP route appends X-Apple-ProtocolVersion for stup and info, formatted as unsigned integer from APSSystemGetUserVersion. The reviewed Android initial and video SETUP calls omit this extra header, while GET /info and update SETUP supply literal 1. This is a proven construction difference, not proof of vehicle rejection.",
+      "anchors": [
+        "0x24fda633c-0x24fda6380",
+        "AirSession.kt:230-232,517-528,659",
+        "Rtsp.kt:161-162,198-199"
+      ]
+    },
+    {
+      "id": "VH-02",
+      "status": "CLOSED-STATIC",
+      "claim": "Provider at 0x226ed0894 loads the initialized u32 UserVersion slot. Unsigned values <3 are returned unchanged (0/1/2), all other u32 values map to 1. An initialization block calls a reader with UserVersion, com.apple.airplay and w2=-1 then stores w0. The reader implementation and actual preferences were not audited; do not declare a universal on-wire literal or infer this is iOS major version.",
+      "anchors": [
+        "0x226ed08b8-0x226ed08c4",
+        "0x226ed0950-0x226ed0980"
+      ]
+    },
+    {
+      "id": "VH-03",
+      "status": "CLOSED-SOURCE",
+      "claim": "Current local sourceVersion 320.17 is shared by initial SETUP, User-Agent and local _carplay-ctrl._tcp srcvers; compatibility osBuildVersion 21A329 is a separate field. Internal string agreement does not prove the complete claimed capability profile or actual receiver decisions.",
+      "anchors": [
+        "CarPlaySourceIdentity.kt:5-18",
+        "AirSession.kt:497,982",
+        "Rtsp.kt:161,198"
+      ]
+    }
+  ]
+}

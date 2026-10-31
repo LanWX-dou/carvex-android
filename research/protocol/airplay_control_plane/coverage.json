@@ -1,0 +1,268 @@
+{
+ "docset": "airplay_control_plane",
+ "iteration": 2,
+ "build": "24A446 / iPhone18,1",
+ "items": [
+  {
+   "id": 1,
+   "title": "控制通道建立",
+   "status": "PARTIAL",
+   "answered": [
+    "TCP 单连接",
+    "状态门 +0x6c==5",
+    "CSeq 每连接独立"
+   ],
+   "evidence": [
+    "A01.1",
+    "A01.5"
+   ],
+   "open": [
+    "OPEN-AP-1",
+    "OPEN-AP-2",
+    "OPEN-AP-3"
+   ]
+  },
+  {
+   "id": 2,
+   "title": "RTSP 消息格式",
+   "status": "PARTIAL",
+   "answered": [
+    "请求行",
+    "CSeq/DACP-ID/Active-Remote/User-Agent",
+    "Content-Length/Content-Type",
+    "chunked 接收"
+   ],
+   "evidence": [
+    "A01.2",
+    "A01.4",
+    "A01.7",
+    "A01.8"
+   ],
+   "open": [
+    "OPEN-AP-5",
+    "OPEN-AP-6",
+    "OPEN-AP-7"
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Pair-Setup",
+   "status": "PARTIAL",
+   "answered": [
+    "POST /pair-setup + TLV8",
+    "M1/M2/M3/M4/M5/M6 字段",
+    "HKDF 标签",
+    "SRP 与 SPAKE2 双路径"
+   ],
+   "evidence": [
+    "A02.1",
+    "A02.2",
+    "A02.3",
+    "A02.4",
+    "A02.6"
+   ],
+   "open": [
+    "OPEN-AP-12",
+    "OPEN-AP-13",
+    "OPEN-AP-15",
+    "OPEN-AP-16"
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Pair-Verify",
+   "status": "PARTIAL",
+   "answered": [
+    "POST /pair-verify",
+    "M1 32B 公钥",
+    "M2 解密/验签/ACL",
+    "M3/M4 nonce",
+    "M1 ECDH标签生成私钥材料；M2 Encrypt标签派生TLV加密密钥",
+    "常规M2签名=peer临时公钥||peerID||local临时公钥",
+    "M4可选密文；ResumeSessionID派生8B恢复ID"
+   ],
+   "evidence": [
+    "A03.1",
+    "A03.2",
+    "A03.3",
+    "A03.4",
+    "A03.6",
+    "A03.7",
+    "A14.1",
+    "A14.2",
+    "A14.3",
+    "A14.4"
+   ],
+   "open": [
+    "OPEN-AP-18",
+    "OPEN-AP-19",
+    "OPEN-AP-20"
+   ]
+  },
+  {
+   "id": 5,
+   "title": "加密会话",
+   "status": "PARTIAL",
+   "answered": [
+    "ChaCha20-Poly1305",
+    "读写密钥独立且 >=32B",
+    "三类上下文密钥",
+    "记录=2B LE 长度+密文+16B 标签",
+    "长度两字节为 AAD；认证 pad16 与两个 LE64 长度",
+    "独立 nonce64；读验证后、写生成后递增；部分写续发缓存",
+    "Configure 本地读写槽位与参数对应",
+    "本构建读上限16384、写聚合1024",
+    "CoreUtils provider: IsServer角色交换Read/Write标签",
+    "CoreUtils派生门与HKDF-SHA512输入；共享秘密不混同TLV密钥"
+   ],
+   "missing": "目标CarPlay调用者的provider/角色/输入分支选择、加密切换、失败恢复及车机互通仍未闭合",
+   "evidence": [
+    "A04.1",
+    "A04.2",
+    "A04.3",
+    "A12.6",
+    "A13.1",
+    "A13.2",
+    "A13.3",
+    "A13.5",
+    "A15.1",
+    "A15.2",
+    "A15.3"
+   ],
+   "open": [
+    "OPEN-AP-22",
+    "OPEN-AP-23",
+    "OPEN-AP-40"
+    ,"OPEN-AP-42"
+   ]
+  },
+  {
+   "id": 6,
+   "title": "RTSP 方法集",
+   "status": "PARTIAL",
+   "answered": [
+    "4CC → (方法, URL, Content-Type) 表",
+    "未知类型不发包"
+   ],
+   "evidence": [
+    "A05.1",
+    "A05.2",
+    "A01.9"
+   ],
+   "open": [
+    "OPEN-AP-8",
+    "OPEN-AP-9",
+    "OPEN-AP-10",
+    "OPEN-AP-11"
+   ]
+  },
+  {
+   "id": 7,
+   "title": "SETUP 传输参数",
+   "status": "PARTIAL",
+   "answered": [
+    "SETUP 用 plist",
+    "X-Apple-ProtocolVersion 仅 stup/info",
+    "streams 键名表 20 项",
+    "连接子字典键名 9 项",
+    "已核分派11个处理值，非完整SDK枚举；112为错误路径"
+   ],
+   "evidence": [
+    "A06.1",
+    "A06.2",
+    "A12.2",
+    "A12.3",
+    "A12.4"
+   ],
+   "open": [
+    "OPEN-AP-25",
+    "OPEN-AP-26",
+    "OPEN-AP-27",
+    "OPEN-AP-41"
+   ]
+  },
+  {
+   "id": 8,
+   "title": "type=130 隧道交接",
+   "status": "PARTIAL",
+   "answered": [
+    "存在按流 ID 创建入口",
+    "type=130 与 120 同走不建 cryptor 分支"
+   ],
+   "evidence": [
+    "A06.4",
+    "A07.4",
+    "A12.4",
+    "A12.5"
+   ],
+   "open": [
+    "OPEN-AP-25",
+    "OPEN-AP-41"
+   ]
+  },
+  {
+   "id": 9,
+   "title": "错误与状态码",
+   "status": "PARTIAL",
+   "answered": [
+    "错误面清单",
+    "0xFFFFBEFD",
+    "M2 ACL失败分支的条件错误TLV"
+   ],
+   "evidence": [
+    "A08.1",
+    "A03.5"
+   ],
+   "open": [
+    "OPEN-AP-33"
+   ]
+  },
+  {
+   "id": 10,
+   "title": "超时与重试",
+   "status": "OPEN",
+   "answered": [
+    "重试需幂等（建议）"
+   ],
+   "evidence": [
+    "A08.3"
+   ],
+   "open": [
+    "OPEN-AP-31",
+    "OPEN-AP-32"
+   ]
+  },
+  {
+   "id": 11,
+   "title": "安全边界",
+   "status": "PARTIAL",
+   "answered": [
+    "三层密钥互不替代",
+    "M2 签名绑定双方公钥",
+    "MFi 校验存在"
+   ],
+   "evidence": [
+    "A09.1",
+    "A09.2",
+    "A09.3",
+    "A09.6"
+   ],
+   "open": [
+    "OPEN-AP-34",
+    "OPEN-AP-35",
+    "OPEN-AP-36"
+   ]
+  },
+  {
+   "id": 12,
+   "title": "版本与差异",
+   "status": "OPEN",
+   "answered": [],
+   "evidence": [],
+   "open": [
+    "OPEN-AP-4",
+    "OPEN-AP-37"
+   ]
+  }
+ ]
+}

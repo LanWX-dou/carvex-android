@@ -1,0 +1,13 @@
+{
+  "address": "0x251833960",
+  "source_sha256": "ad6eddbb9bedcb8f121699e7fc94702632c4acf30135564763a646ac472cc51a",
+  "raw_sha256": "be33fc1ecaac4876c85f15625b83d78a7c39f3838b1344779eb75102e1af654e",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "be33fc1ecaac4876c85f15625b83d78a7c39f3838b1344779eb75102e1af654e",
+  "ghidra_name": "_APReceiverFairPlayHelperRemoveAllFPSessions",
+  "signature": "undefined _APReceiverFairPlayHelperRemoveAllFPSessions()",
+  "diagnostic": "",
+  "c_file": "f_251833960.ghidra.c",
+  "c_sha256": "0739c8555e5ec5c2b668c820adcba7e25c69772d68dc4902839b66cfc6fb0400",
+  "status": "DECOMPILED_UNREVIEWED"
+}

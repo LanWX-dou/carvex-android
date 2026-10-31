@@ -1,0 +1,13 @@
+{
+  "address": "0x1282f0",
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "raw_sha256": "babba6dca1e94e2b9194c95172b8e091023086dcb1a74182e28b6a97385b7c16",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "babba6dca1e94e2b9194c95172b8e091023086dcb1a74182e28b6a97385b7c16",
+  "ghidra_name": "createLinkPacket",
+  "signature": "undefined createLinkPacket(CIpodIap2 * this, IAP2_CONTROL_BYTE param_1, uchar param_2, uchar param_3, uchar param_4, uchar * param_5, ushort param_6, IAP2_LINK_PACKET_OUT * param_7)",
+  "diagnostic": "",
+  "c_file": "f_1282f0.ghidra.c",
+  "c_sha256": "23513d5ae223eb0a2ae2e1ebe549883ac90a690f173516c88be1ba5ea87a82d0",
+  "status": "DECOMPILED_UNREVIEWED"
+}

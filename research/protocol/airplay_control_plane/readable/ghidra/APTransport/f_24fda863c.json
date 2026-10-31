@@ -1,0 +1,13 @@
+{
+  "address": "0x24fda863c",
+  "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+  "raw_sha256": "c892b3dca4109387374d9fbeb2c07b7d15d64d353c01f37abe7c5c5a94b2b00d",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "c892b3dca4109387374d9fbeb2c07b7d15d64d353c01f37abe7c5c5a94b2b00d",
+  "ghidra_name": "_APTransportStreamIDGetStreamCategory",
+  "signature": "undefined _APTransportStreamIDGetStreamCategory()",
+  "diagnostic": "",
+  "c_file": "f_24fda863c.ghidra.c",
+  "c_sha256": "d449abcd2e6e65e144c5053b6a68d85fa68ff7e43b9a343dbde87d03e06054d5",
+  "status": "DECOMPILED_UNREVIEWED"
+}

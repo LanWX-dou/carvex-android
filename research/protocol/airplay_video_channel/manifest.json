@@ -1,0 +1,696 @@
+{
+ "docset": "airplay_video_channel",
+ "build": "24A446",
+ "device": "iPhone18,1",
+ "source": {
+  "binary": "AirPlaySender",
+  "path": "source/firmware/AirPlaySender",
+  "size": 4397312,
+  "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "uuid": "2d49b39b-fb65-366b-9ab5-6995e5e0febf",
+  "function_starts": 11443,
+  "symbols": 14277
+ },
+ "counts": {
+  "files": 127,
+  "analysis_docs": 9,
+  "spec_docs": 9,
+  "asm_functions": 23,
+  "readable_c_files": 23,
+  "open_items": 14
+ },
+ "coverage": {
+  "CS-01": "部分确认",
+  "CS-02": "OPEN",
+  "CS-03": "部分确认",
+  "CS-04": "部分确认",
+  "CS-05": "部分确认",
+  "CS-06": "OPEN",
+  "CS-07": "部分确认",
+  "CS-08": "部分确认",
+  "CS-09": "部分确认",
+  "CS-10": "部分确认",
+  "CS-11": "OPEN",
+  "CS-12": "OPEN"
+ },
+ "coverage_summary": {
+  "total_items": 12,
+  "confirmed": 0,
+  "partial": 8,
+  "open": 4,
+  "open_ids": 14
+ },
+ "open_items": {
+  "OPEN-VID-14": "analysis/01-stream-identity-and-setup.md",
+  "OPEN-VID-1": "analysis/01-stream-identity-and-setup.md",
+  "OPEN-VID-8": "analysis/01-stream-identity-and-setup.md",
+  "OPEN-VID-9": "analysis/02-screen-record-format.md",
+  "OPEN-VID-2": "analysis/02-screen-record-format.md",
+  "OPEN-VID-5": "analysis/03-frame-encryption.md",
+  "OPEN-VID-12": "analysis/04-avc-payload.md",
+  "OPEN-VID-3": "analysis/04-avc-payload.md",
+  "OPEN-VID-6": "analysis/04-avc-payload.md",
+  "OPEN-VID-7": "analysis/04-avc-payload.md",
+  "OPEN-VID-10": "analysis/05-transport-timing-recovery.md",
+  "OPEN-VID-13": "spec/06-conformance-checklist.md",
+  "OPEN-VID-4": "spec/08-open-items.md",
+  "OPEN-VID-11": "spec/08-open-items.md"
+ },
+ "files": [
+  {
+   "path": "STATUS.md",
+   "size": 4629,
+   "sha256": "8d38d2207b485b6c6fb58804a504142fd8dea9e3df4ed4e63b1a1b232af9e69a"
+  },
+  {
+   "path": "TASK.md",
+   "size": 9536,
+   "sha256": "d942353448d8b7d7579ddcec64741281b40aa6f7f3df06db1e5acd1c128331a5"
+  },
+  {
+   "path": "analysis/00-method-and-environment.md",
+   "size": 4986,
+   "sha256": "7015c5b231c9ba0e45fd7d793a8a4450f5a7c690ee7ef9a91348e649f0fa3d31"
+  },
+  {
+   "path": "analysis/01-stream-identity-and-setup.md",
+   "size": 7651,
+   "sha256": "32acdbe5ba8e981e6c15d1ef2e57fbff43086ea3272137004fae80271782b2c8"
+  },
+  {
+   "path": "analysis/02-screen-record-format.md",
+   "size": 7135,
+   "sha256": "eb513e7303218c5c355f5702415a7a9d55e08d436c674d8a414e13cc5ddc211c"
+  },
+  {
+   "path": "analysis/03-frame-encryption.md",
+   "size": 5724,
+   "sha256": "acae3a898284a8c2899430d64971f4f2dc254ec4cd05ac9e08debcb9cb554673"
+  },
+  {
+   "path": "analysis/04-avc-payload.md",
+   "size": 6777,
+   "sha256": "1646368cd312103bc2cbd1666459bc2624614fb5c29c2b57c667fa2e4040b6b0"
+  },
+  {
+   "path": "analysis/05-transport-timing-recovery.md",
+   "size": 5999,
+   "sha256": "fab9c283ddaed8f22ea0a3b722dd09080391e6d09dfd71d0d8ddef20fc61ff88"
+  },
+  {
+   "path": "analysis/06-wrapper-and-header-audit.md",
+   "size": 4585,
+   "sha256": "811c55121c2baad6c25f404a2c34d71dcbeb782e2bbaf54beee42d7e3d37e75a"
+  },
+  {
+   "path": "analysis/07-codec-config-and-flags.md",
+   "size": 6022,
+   "sha256": "759bea0acdade69d8f9450ac32bac2659784ebabe59e873887f93ece26eaa5f3"
+  },
+  {
+   "path": "analysis/A-conclusions.md",
+   "size": 7758,
+   "sha256": "9cc66490b9b28840519be35bf96f4b7a2912da26342105edf559d1427e6cee3a"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519b0014.ghidra.c",
+   "size": 40384,
+   "sha256": "83c478401476bd7efee31d65cbb6a511c03e96d28254601c6e6bb1c996e09594"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519b0014.json",
+   "size": 358,
+   "sha256": "f3155c46f134e1e64f9778a3154616ff472411d583ce26fb523ecb35047d496a"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519b508c.ghidra.c",
+   "size": 3805,
+   "sha256": "8824df803a26516a0f0b6a3c6e8958576f0bef43208b5c225c62a22046c24efa"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519b508c.json",
+   "size": 332,
+   "sha256": "c3d872f157681b49c40c5f9e0c8665dd092363f60b62bd3be232e713dc1d424f"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519bbf24.ghidra.c",
+   "size": 29646,
+   "sha256": "f3f5682a3796aa9cb1605432860279ee6d21836a98796ce7051e99b2e9cef418"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519bbf24.json",
+   "size": 361,
+   "sha256": "9f0dd7621364c3375d4d1e6a7e3b7e7aace363e2f36e8903b63e9a0ab88d5335"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519bfecc.ghidra.c",
+   "size": 1752,
+   "sha256": "ca061958e153634b8b1b0da01ebecc4323444fc01d5cfa11a990565182d4d749"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519bfecc.json",
+   "size": 357,
+   "sha256": "8af5054ef61002a274895297e67de8cc9bb90a8b988b9f1d97dff51590a2f560"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519bffc8.ghidra.c",
+   "size": 1963,
+   "sha256": "200f9e8045f691a0e28f5e9e32c1690c82e408a10c21a898dfd82a08c3d243a6"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_2519bffc8.json",
+   "size": 344,
+   "sha256": "9517ee3a35e4a0c81e252812521ab819ef857236ac8d7ee013b5d2549680cdf9"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a356c8.ghidra.c",
+   "size": 585,
+   "sha256": "74acedea5a8679200ff7342e59bb3beabf1a78e41507332b3e5a284830284c07"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a356c8.json",
+   "size": 370,
+   "sha256": "311bfeb7d9ac404436629b19d44c34e109860d15a1529c26294cd401e42afce1"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a761d8.ghidra.c",
+   "size": 1077,
+   "sha256": "e089b8d4fece007601dd12d63e89ff8c4697dc958152689795a42a838965aeed"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a761d8.json",
+   "size": 349,
+   "sha256": "028c9ca27d4c319f5727cf5dc406f4b96ab4b4126573dc016bda4411fc9ea860"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a76374.ghidra.c",
+   "size": 3916,
+   "sha256": "9ffc796050f8e87445f9292715de711296062bd49be5b28450719d5f6ffee5ec"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a76374.json",
+   "size": 419,
+   "sha256": "803a0111ffbc4771261ed5a260b93fcab7e7517552268022500ae8fe810c3aa6"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a77178.ghidra.c",
+   "size": 1173,
+   "sha256": "e4c185a6887451030f86d77b7ada257cc16aa5b858ca3a0d6e6f2d695b717c01"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a77178.json",
+   "size": 394,
+   "sha256": "598747417dd35bb0a75ad87b6a1da43102de8827de8ac6a167e3e63fe1fde5bc"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a773c4.ghidra.c",
+   "size": 5630,
+   "sha256": "97790a50b7c0bb16728c9437ce9f98341e93d34f3cde918ebab51fe4b360cbe7"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a773c4.json",
+   "size": 418,
+   "sha256": "fa5bca7c57745ed9f3fbea5b1120f0a7e5d17040c3476940588f0114630f3f54"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a779d8.ghidra.c",
+   "size": 619,
+   "sha256": "5afc4201d08d43d3be1b339322bec1422a159af9eb4b630854f9982da723dbe3"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a779d8.json",
+   "size": 349,
+   "sha256": "31851b59f0e038c8c49699e20d208b7563d7932eef48af2cce0fd39de0048f65"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a9f364.ghidra.c",
+   "size": 7595,
+   "sha256": "97e653a4fa7fe171efcfdd2a552a8722d287865844c367bc7ab8fcb7bb3a40d2"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a9f364.json",
+   "size": 336,
+   "sha256": "69574b018e919e13593ffebc9c8edcaa2606cdf649a2e4fdaaad09eed9dff582"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a9fcec.ghidra.c",
+   "size": 2138,
+   "sha256": "fcf99740c06b62d20d62bcbfbcef6ea9f373d17a1840b96e45f640097b724824"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251a9fcec.json",
+   "size": 331,
+   "sha256": "da45b6883adb20c7b7d844ee97999568874ed35ed82c61c57dd01ea806cf35ab"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251aa97a0.ghidra.c",
+   "size": 2249,
+   "sha256": "84b7a357e5fc79034564b2fdeba104dce48bb88b8f7c7d5f379899da0eee4ae3"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251aa97a0.json",
+   "size": 364,
+   "sha256": "96acafa1f1c9541dcd4689a76a968b7a3e2835b4d58f7213c39ffdf2e0c4af47"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251aeda20.ghidra.c",
+   "size": 53210,
+   "sha256": "eadfa291affaaf55bfcdee211e07b69c2e8bd5fdf2d7a641ca1bf578ab2320ca"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251aeda20.json",
+   "size": 346,
+   "sha256": "f45fa4fd78478417d6f7acf345b8c50c78fccfaaa0b07f693a5368d2b201010d"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b371ac.ghidra.c",
+   "size": 16833,
+   "sha256": "ce64213286da8f164963651042e8c8c224f12744fd3bc544a061d73b67c9c510"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b371ac.json",
+   "size": 337,
+   "sha256": "a919b04038a1b5803794c972518b490ed8cbb6cfdf7b3794c95cc5f01dbd910c"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b3db28.ghidra.c",
+   "size": 3069,
+   "sha256": "4d3bb487e8f3c7c2b7888a97c90dbd247ea50a953899f1a03ae066545c710d4f"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b3db28.json",
+   "size": 342,
+   "sha256": "fd212a41208890377cba664b142eaba0e7361fd2e53c0e8e97c660156d5aea83"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b40be8.ghidra.c",
+   "size": 43127,
+   "sha256": "25381cbcfe19bc4052b3a7d9aff4d9fa8630a78a5d0cd78e2329ebee6f3f3871"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b40be8.json",
+   "size": 344,
+   "sha256": "9a9a159b6342aabaee51f0ec7b64563b11c71ed01029aac08d9585df463514d1"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b42e34.ghidra.c",
+   "size": 2930,
+   "sha256": "09e0a8486ff45c12f94905d8400c795a67a1ebeb728554866fbd94a2b5819322"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b42e34.json",
+   "size": 336,
+   "sha256": "cd86ff59c140f39141d9b017d65706553fa170e0af3cfd929b5246dd95c7e999"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b43140.ghidra.c",
+   "size": 2079,
+   "sha256": "f5a15c4eab87072222979a3951fa241418eb7f68706f7f05806c24cd99593323"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b43140.json",
+   "size": 345,
+   "sha256": "3ed2549e53dee9a9bb4f8ee0c186086e82b1265c4db516acac566c1b5318fccb"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b438e8.ghidra.c",
+   "size": 5174,
+   "sha256": "bc31d293b55fae542cc4f75e0592990c1c2f31176fd82e8120e189d62749edf1"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b438e8.json",
+   "size": 336,
+   "sha256": "5d96f101e419abdcd5b9d89d117d3ef393a3bb0ceff1ef4498e292a3016d2cdc"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b43fcc.ghidra.c",
+   "size": 4274,
+   "sha256": "a17e728c7619e53aa518c40a2af8dac3364cc039e35e750cf0d49ef1bdc63cb9"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b43fcc.json",
+   "size": 337,
+   "sha256": "784f83d6ddba146e59ec730d647e3b0bca265f314c9e66ce2c6489be3b7e3a86"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b443cc.ghidra.c",
+   "size": 16646,
+   "sha256": "bcf915d7f9e9e30d1217f257db3a51dcbb1c6be7d3a20cd8a99f9e97409d9f56"
+  },
+  {
+   "path": "readable/ghidra/airplaysender/f_251b443cc.json",
+   "size": 344,
+   "sha256": "a4b7c6b6f8de484dab93f65fa663c9f17d6b72b82caf07d0b79ce35a1a6c7dd4"
+  },
+  {
+   "path": "runtime/README.md",
+   "size": 1425,
+   "sha256": "44682008f702d7ebbe6083fbfa8c4b0fedb1f2e60da0d20c79517d0741b662f9"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519b0014.bin",
+   "size": 5520,
+   "sha256": "3294e357f7d3416ee6f60ad4285a9a8e85e4af770c0655cb4a90e27da2c0de9d"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519b0014.s",
+   "size": 42230,
+   "sha256": "2fc1c80adde6f0c60b5a44a15231dd7a9bf0aa2e5f342c75ae465daa4f300c54"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519b508c.bin",
+   "size": 608,
+   "sha256": "bf74ed3511dceffa8be66a9e35c94e18d9b3aba4922163b80dfc01f6f8c4aeae"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519b508c.s",
+   "size": 4719,
+   "sha256": "2dbf4932001a6a15c209aefe64fa75690a8713222cb72834933d4e10166a6704"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519bbf24.bin",
+   "size": 5764,
+   "sha256": "2474956bad6630ee63b02d72eb56748aa49531735f5e4f3772422c313bb6655c"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519bbf24.s",
+   "size": 43893,
+   "sha256": "f917ec37c98cf588f8aad68a7a5426c6ae2a629fb20d3e58eaaec114731005a0"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519bfecc.bin",
+   "size": 252,
+   "sha256": "cebfd84d456170ad006012b9c86fc3dcdd83df80e25dcb99399b0e02bbba8d31"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519bfecc.s",
+   "size": 2189,
+   "sha256": "5fd12da68917c77bb8e7d6c2f0cf5f1e07414c1d63558d6d51751882e597ea8f"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519bffc8.bin",
+   "size": 384,
+   "sha256": "1af0b66a5395ef7848090e3cfecf4d06c4858157c1707ae31703eb6a8dd260d7"
+  },
+  {
+   "path": "source/asm/airplaysender/f_2519bffc8.s",
+   "size": 3129,
+   "sha256": "b8f65abbdc1ba20e2d7234221693dafe7b5bd6d87b010edf2c7f6936c497a06f"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a356c8.bin",
+   "size": 48,
+   "sha256": "1537df06daa46ae69c6e0a286be4e91a882401de8e87e7897820e474cf3836eb"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a356c8.s",
+   "size": 638,
+   "sha256": "41e4c81f47128a835b572895380622ff303feb1eeccf1f6a48226b49e597aa1c"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a761d8.bin",
+   "size": 136,
+   "sha256": "374e8a9a76ddb4534157210e642b388473af60873191606a61189067b454c516"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a761d8.s",
+   "size": 1341,
+   "sha256": "880588119aaa5f0034320c6b2776a5b506c29bf79ab491c386786ceb90027fab"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a76374.bin",
+   "size": 700,
+   "sha256": "0bd5b09a419d7d3420d494a71d44d5f152768413ec1323eed39db53fdeba725f"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a76374.s",
+   "size": 5639,
+   "sha256": "222b86c348f54e24069fc7cf435e47b4e02ae66f17b0180a3e129d9c36cce43d"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a77178.bin",
+   "size": 144,
+   "sha256": "98dccc76e21906ec43e8d93139fbeae4ba41073f199fcf72e16b944ecedd31cd"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a77178.s",
+   "size": 1370,
+   "sha256": "448cd721fc95dec320b4662d0506d72fe91829ba1fea2d962fa67bf6393430e0"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a773c4.bin",
+   "size": 884,
+   "sha256": "438bc35cbaba311f7ee8fe710ead39cf6fe9dd7cb6613817706e0890fb47d621"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a773c4.s",
+   "size": 6877,
+   "sha256": "2c460cbe3a9389cdc0dd97d77842642b9276c92c224cb15359782d22d99b31ea"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a779d8.bin",
+   "size": 24,
+   "sha256": "70286e364ee0366da42b60202dd78645151f7a69b6634341ca259e59b8db3cb4"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a779d8.s",
+   "size": 447,
+   "sha256": "6f894fddc2fee16be6f998f9f8c94ec8c7f328917b384dd2b668b86c2150ccee"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a9f364.bin",
+   "size": 1308,
+   "sha256": "7bbd385cd064940885f094526c7ae6750b794ce7c11ab83ba39245aca94537ac"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a9f364.s",
+   "size": 10408,
+   "sha256": "ae8b67e9548b5133c1db2faa66c40cf486bcd3ad1acb7e74d63d97c76b85404a"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a9fcec.bin",
+   "size": 352,
+   "sha256": "8b98c9da4b8a5797dd26c02b2323dbb2cabce3d8f3ac98804e73ab141363e175"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251a9fcec.s",
+   "size": 2943,
+   "sha256": "a50559a059f6627e60806074454783e38860d56f83711adce42ba96bb854b3c0"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251aa97a0.bin",
+   "size": 348,
+   "sha256": "89035c4563a2f5d77b4451d5bf21eddc29a14363daabf17a604e81e8ae5c4c95"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251aa97a0.s",
+   "size": 2995,
+   "sha256": "8eaaa8a60e63cb43ab6c4862ff6976443b04f7f683ce0792ac91b9e0a4569be0"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251aeda20.bin",
+   "size": 7960,
+   "sha256": "0cc7e507acd3b022841daaaa668307b103a55bbe1784378d7705ee6b0662eabd"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251aeda20.s",
+   "size": 61376,
+   "sha256": "03747554be4e8a357b0f38b240b92749f689982b62e01126725f8b01d2fe637e"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b371ac.bin",
+   "size": 3144,
+   "sha256": "86e170091c249079f4fc010a8020efdc7be8cce87ad494cef89e694f35790e9f"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b371ac.s",
+   "size": 24251,
+   "sha256": "79f58d3b026fa7d3245fd1973b087d7d92ef0316c8afc6824a19bb27c9d61bbe"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b3db28.bin",
+   "size": 520,
+   "sha256": "5ddefbe7058ae44de4fce9d503e9cd32a01f7961d70caf2aec846a0bfac43982"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b3db28.s",
+   "size": 4252,
+   "sha256": "4c5cdc1113dc74e2142d297bd2d9e3ca42025a51efa1b5765d60a10f776a811c"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b40be8.bin",
+   "size": 7460,
+   "sha256": "6024da51820542c430e80e109c2632aa429be7d64fb9dad4700b7357a37d513b"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b40be8.s",
+   "size": 58054,
+   "sha256": "26d09a8a3766f1fd4588f804146753c7fc335bb37b0f2d397c1f4b62a705f3b1"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b42e34.bin",
+   "size": 416,
+   "sha256": "64e55eacf54aa82b5ed572e898e9c462a4868faf016036590269a04a772f9c07"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b42e34.s",
+   "size": 3601,
+   "sha256": "be513178bdc17c949fe0696f99fadca92e42200d5c61de2dca5a3fe7d91cd0e5"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b43140.bin",
+   "size": 364,
+   "sha256": "b5267327c0748bf692e967da725445b087bba55417c6893dffa04e594c912af6"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b43140.s",
+   "size": 3194,
+   "sha256": "af4b080e45422115cdd622758ee9d6fbcc327fe8d5c084ed6fb49c8d3800d977"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b438e8.bin",
+   "size": 892,
+   "sha256": "06b2a5663c5934436491f3c2653de50e23473b23ccb393a7461c006bf20a2ff2"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b438e8.s",
+   "size": 7536,
+   "sha256": "0b705628a57910a0784a44c13610c838a46a25e1bcd9056ad1ef9f004ce0e7b4"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b43fcc.bin",
+   "size": 820,
+   "sha256": "c706decdcd0e1212d9edf7b01eecf6e8e08fe728bfa95420288f8903a67ba38a"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b43fcc.s",
+   "size": 6485,
+   "sha256": "a62ce3bbb7ee44d2f2c21589ff378dee5f8fbe2e088f3a2061dd5f292a44f6a8"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b443cc.bin",
+   "size": 2772,
+   "sha256": "8bffbec0c33fa30cb8200298f469c32633a8b099aad6631607ab1aad256faa81"
+  },
+  {
+   "path": "source/asm/airplaysender/f_251b443cc.s",
+   "size": 22073,
+   "sha256": "5fe45c19fb6427a83f6049ec8e3cd74305af81c55a3027a46e6031f50f4e2b3b"
+  },
+  {
+   "path": "source/asm/airplaysender/index.json",
+   "size": 7422,
+   "sha256": "4608df43869f19df6e4faad8256aff5c8291b6cd3b1227aea8aa94ef6dc9f6df"
+  },
+  {
+   "path": "source/firmware/AirPlaySender",
+   "size": 4397312,
+   "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f"
+  },
+  {
+   "path": "source/metadata/coverage.json",
+   "size": 8239,
+   "sha256": "54581922cb1dbf18f404ca1fb2977580ddf846c024c417965535e6122aa95ecf"
+  },
+  {
+   "path": "source/metadata/function-starts.json",
+   "size": 171648,
+   "sha256": "02a6c37d15fc1dc96fc18a412508326cdbecbf587154fd07b0ea389d4bb677bd"
+  },
+  {
+   "path": "source/metadata/load-commands.json",
+   "size": 5229,
+   "sha256": "1680db890c67e10e25857f5d0c6f851406453da80a24a886bb518357f65ba788"
+  },
+  {
+   "path": "source/metadata/sections.json",
+   "size": 6825,
+   "sha256": "e5fe23b21df7d853f5a4165f024d297e691c4abe80886a00eb09f567d5f7c895"
+  },
+  {
+   "path": "source/metadata/segments.json",
+   "size": 1242,
+   "sha256": "e7e6b39b7746ca5de77eb16b8c1423a11fbbadca08feec07f6ee1b4959101930"
+  },
+  {
+   "path": "source/metadata/selection.json",
+   "size": 3620,
+   "sha256": "0122faed7a84ffe66d265036aab170813ea004aa635c007c296a41572499ec87"
+  },
+  {
+   "path": "source/metadata/summary.json",
+   "size": 892,
+   "sha256": "46f01acfacddac4a1ac3b53359ea35addf327c5a87e7c08c85cb296a9fdc920c"
+  },
+  {
+   "path": "source/metadata/symbols.json",
+   "size": 2030432,
+   "sha256": "a604f7674b3042fac09aade0e834ff4cbebd92269013bb4d34de4ffe2d5c1958"
+  },
+  {
+   "path": "spec/00-scope-and-terms.md",
+   "size": 2233,
+   "sha256": "93473963e47d197408677cf6e60f12d53bfeb5ca43ed06ae39eb79c6ebc508d3"
+  },
+  {
+   "path": "spec/01-stream-and-setup.md",
+   "size": 2935,
+   "sha256": "faf653c44ddd7337da766bf9ab0239a82358d23a20164bc1c0a684ff454bf88e"
+  },
+  {
+   "path": "spec/02-record-format.md",
+   "size": 3660,
+   "sha256": "0248b5c900aaccfcfcb64d53b908c69adeb2918813db5c24c19d544a2941f36d"
+  },
+  {
+   "path": "spec/03-encryption.md",
+   "size": 2787,
+   "sha256": "6f4ecc02f4b3d97c4031c9bdd1f730db5916bc0136a000e51b637841eeb67c9c"
+  },
+  {
+   "path": "spec/04-video-payload.md",
+   "size": 3193,
+   "sha256": "28607f2e079bf8899890a53d7546f8b8e009dd76ea9eb008108d8a77f3678dff"
+  },
+  {
+   "path": "spec/05-transport-timing-recovery.md",
+   "size": 2877,
+   "sha256": "bc9d56a5c81f5468283da2acc9b404073cc91c8b02159d3c8fda50a439727e73"
+  },
+  {
+   "path": "spec/06-conformance-checklist.md",
+   "size": 3178,
+   "sha256": "c45e5e1eb90124bfb1ec3438eac3837966e19a3373e3f6c638e1a92868faa9e5"
+  },
+  {
+   "path": "spec/07-client-implementation-guide.md",
+   "size": 3622,
+   "sha256": "fb5affb4342692e333feea091173badeb748f1dfab70092823c6dd2a7f98846c"
+  },
+  {
+   "path": "spec/08-open-items.md",
+   "size": 4665,
+   "sha256": "edf25f993c6959ae1ea3f2c2c737b651aaa13773ff9253ebd42722d9d5347c63"
+  },
+  {
+   "path": "tools/manifest.py",
+   "size": 2921,
+   "sha256": "4c5c9ab6fc48b4280c237ea5d1aa26eb0f64772e4f7e7421b6abcb14e7186f33"
+  },
+  {
+   "path": "tools/verify-codec-config.py",
+   "size": 11221,
+   "sha256": "b438e592d719890312dc04c60128e1d14a53852f94f2c975258b214c6936f81a"
+  },
+  {
+   "path": "tools/verify-wrapper.py",
+   "size": 9462,
+   "sha256": "b7f830751dabd0a1476f2f79ddcdba55e843e9f2dea097ae117bd22b89bc22f6"
+  },
+  {
+   "path": "verify.py",
+   "size": 15280,
+   "sha256": "d700740609047fb3b9a34bfffe8efffe6f02a019a2dfa32c4852b75074b279ec"
+  }
+ ]
+}

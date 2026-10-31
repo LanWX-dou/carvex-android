@@ -1,0 +1,13 @@
+{
+  "address": "0x1000f5c18",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "b51cf7168bada1ddb8a3c877bf40d69ee8c2d809b29834c96456af22ec92fa14",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "b51cf7168bada1ddb8a3c877bf40d69ee8c2d809b29834c96456af22ec92fa14",
+  "ghidra_name": "_acc_endpoint2_getTransportTypeStringWithTransportType",
+  "signature": "undefined _acc_endpoint2_getTransportTypeStringWithTransportType()",
+  "diagnostic": "",
+  "c_file": "f_1000f5c18.ghidra.c",
+  "c_sha256": "484b74c9c2d2c48176951d96a39fdc750d4cef6ba63b985b857311c8f09fb456",
+  "status": "DECOMPILED_UNREVIEWED"
+}

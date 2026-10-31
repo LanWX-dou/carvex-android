@@ -1,0 +1,13 @@
+{
+  "address": "0x251acea60",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "4eb6337a41569a3720404fee23caeb380c55f4d2b51ac9419b0f8725bb5bed49",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "4eb6337a41569a3720404fee23caeb380c55f4d2b51ac9419b0f8725bb5bed49",
+  "ghidra_name": "_fpAuthentication_CreateEncryptedKey",
+  "signature": "undefined _fpAuthentication_CreateEncryptedKey()",
+  "diagnostic": "",
+  "c_file": "f_251acea60.ghidra.c",
+  "c_sha256": "09a44cfffe8a83147afc64cb38e0edc29adcf2f748f9f3f2551434cf297530c4",
+  "status": "DECOMPILED_UNREVIEWED"
+}

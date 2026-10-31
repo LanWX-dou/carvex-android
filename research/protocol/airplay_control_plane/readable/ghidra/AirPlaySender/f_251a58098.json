@@ -1,0 +1,13 @@
+{
+  "address": "0x251a58098",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "697381aacf59b6b0afb33e26492af9a4f9b8be641e7278442b53401e7e93ea44",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "697381aacf59b6b0afb33e26492af9a4f9b8be641e7278442b53401e7e93ea44",
+  "ghidra_name": "_apsession_CreateTransportStream",
+  "signature": "undefined _apsession_CreateTransportStream()",
+  "diagnostic": "",
+  "c_file": "f_251a58098.ghidra.c",
+  "c_sha256": "3799af2c010924e44c3af0045b2fdc8e41388e75b6a11d8933d4ab52347b12e8",
+  "status": "DECOMPILED_UNREVIEWED"
+}

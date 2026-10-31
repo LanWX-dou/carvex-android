@@ -1,0 +1,87 @@
+; accessoryd 0x100024b18-0x100024c68; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x100024b18:	pacibsp	
+0x100024b1c:	sub	sp, sp, #0xa0
+0x100024b20:	stp	x22, x21, [sp, #0x70]
+0x100024b24:	stp	x20, x19, [sp, #0x80]
+0x100024b28:	stp	x29, x30, [sp, #0x90]
+0x100024b2c:	add	x29, sp, #0x90
+0x100024b30:	mov	x22, x4
+0x100024b34:	mov	x20, x3
+0x100024b38:	mov	x21, x0
+0x100024b3c:	bl	#0x1001a26a0
+0x100024b40:	mov	x19, x0
+0x100024b44:	bl	#0x1001a26b0
+0x100024b48:	mov	x20, x0
+0x100024b4c:	bl	#0x1001a26d0
+0x100024b50:	add	x8, sp, #0x40
+0x100024b54:	stp	xzr, x8, [sp, #0x40]
+0x100024b58:	adrp	x9, #0x1001b3000
+0x100024b5c:	ldr	d0, [x9, #0x70]
+0x100024b60:	str	d0, [sp, #0x50]
+0x100024b64:	add	x9, x8, #0x18
+0x100024b68:	adrp	x16, #0x100001000
+0x100024b6c:	add	x16, x16, #0x78c
+0x100024b70:	pacia	x16, x9
+0x100024b74:	str	x16, [sp, #0x58]
+0x100024b78:	add	x9, x8, #0x20
+0x100024b7c:	adrp	x16, #0x100001000
+0x100024b80:	add	x16, x16, #0xd7c
+0x100024b84:	pacia	x16, x9
+0x100024b88:	stp	x16, xzr, [sp, #0x60]
+0x100024b8c:	add	x9, sp, #8
+0x100024b90:	adrp	x16, #0x10022b000
+0x100024b94:	ldr	x16, [x16, #0xb78]
+0x100024b98:	mov	x17, x9
+0x100024b9c:	movk	x17, #0x6ae1, lsl #48
+0x100024ba0:	pacda	x16, x17
+0x100024ba4:	str	x16, [sp, #8]
+0x100024ba8:	adrp	x10, #0x1001b3000
+0x100024bac:	ldr	d0, [x10, #0x78]
+0x100024bb0:	str	d0, [sp, #0x10]
+0x100024bb4:	add	x9, x9, #0x10
+0x100024bb8:	adrp	x10, #0x100218000
+0x100024bbc:	add	x10, x10, #0x250
+0x100024bc0:	adrp	x16, #0x100024000
+0x100024bc4:	add	x16, x16, #0xc68
+0x100024bc8:	pacia	x16, x9
+0x100024bcc:	stp	x16, x10, [sp, #0x18]
+0x100024bd0:	str	x8, [sp, #0x38]
+0x100024bd4:	str	x21, [sp, #0x28]
+0x100024bd8:	bl	#0x1001a2630
+0x100024bdc:	mov	x22, x0
+0x100024be0:	str	x0, [sp, #0x30]
+0x100024be4:	add	x2, sp, #8
+0x100024be8:	mov	x0, x21
+0x100024bec:	bl	#0x1001a3900
+0x100024bf0:	ldr	x8, [sp, #0x48]
+0x100024bf4:	ldr	x5, [x8, #0x28]
+0x100024bf8:	mov	x0, x21
+0x100024bfc:	mov	x2, x19
+0x100024c00:	mov	x3, x20
+0x100024c04:	mov	x4, x22
+0x100024c08:	bl	#0x1001a9080
+0x100024c0c:	mov	x21, x0
+0x100024c10:	ldr	x8, [sp, #0x30]
+0x100024c14:	bl	#0x1001a2610
+0x100024c18:	add	x0, sp, #0x40
+0x100024c1c:	mov	w1, #8
+0x100024c20:	bl	#0x1001a1f10
+0x100024c24:	ldr	x8, [sp, #0x68]
+0x100024c28:	bl	#0x1001a2610
+0x100024c2c:	bl	#0x1001a25a0
+0x100024c30:	bl	#0x1001a2580
+0x100024c34:	bl	#0x1001a2560
+0x100024c38:	mov	x0, x21
+0x100024c3c:	ldp	x29, x30, [sp, #0x90]
+0x100024c40:	ldp	x20, x19, [sp, #0x80]
+0x100024c44:	ldp	x22, x21, [sp, #0x70]
+0x100024c48:	add	sp, sp, #0xa0
+0x100024c4c:	retab	
+0x100024c50:	mov	x19, x0
+0x100024c54:	add	x0, sp, #0x40
+0x100024c58:	mov	w1, #8
+0x100024c5c:	bl	#0x1001a1f10
+0x100024c60:	mov	x0, x19
+0x100024c64:	bl	#0x1001a1f30

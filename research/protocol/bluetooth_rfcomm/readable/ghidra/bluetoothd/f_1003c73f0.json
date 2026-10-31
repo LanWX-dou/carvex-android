@@ -1,0 +1,13 @@
+{
+  "address": "0x1003c73f0",
+  "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+  "raw_sha256": "cc129683eb1fee6d5963bb1ce5e404806d4be7fc1cf4657493e675e61e8a8229",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "cc129683eb1fee6d5963bb1ce5e404806d4be7fc1cf4657493e675e61e8a8229",
+  "ghidra_name": "FUN_1003c73f0",
+  "signature": "undefined FUN_1003c73f0(void)",
+  "diagnostic": "",
+  "c_file": "f_1003c73f0.ghidra.c",
+  "c_sha256": "3aa88318c2a99ae29280960871bf06e6a2573b43d827284e0c19b60a0051b707",
+  "status": "DECOMPILED_UNREVIEWED"
+}

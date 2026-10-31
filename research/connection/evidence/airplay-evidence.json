@@ -1,0 +1,776 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-10-29",
+  "scope": "AirPlay connection static evidence subset; not full protocol conformance",
+  "method": "Read-only SHA256 and Mach-O LC_SEGMENT_64 virtual-address slice comparison. CFString chain decoding checked on extracted binary with shared-cache base 0x180000000. Existing emulation/test PASS files were not rerun or claimed as new verification.",
+  "entries": [
+    {
+      "id": "AP-01",
+      "build": "24A446",
+      "image": "APTransport",
+      "address": "0x24fe01ea4",
+      "scope": "interface-scoped control service registration",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fe01ea4.bin",
+          "sha256": "114ea028323c332ad8edc4c3a5f7add8a30010054c70c57c6c87ee5e6ecc390f",
+          "bytes": 496
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fe01ea4.s",
+          "sha256": "9c8dac23508846fe44233f1f382a48bd6cb642bf00a08b7e6d8b7c2735f08f28",
+          "bytes": 5057
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fe01ea4.ghidra.c",
+          "sha256": "399b9bf8e5ae0a0e45ad5a53ff3262e8799a022689b31740e4de192c71d05f3c",
+          "bytes": 2629
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fe01ea4.json",
+          "sha256": "781f7bed059b3cb9160877473644c0883a47e72e190aa4c4bc21759b5aa16a3f",
+          "bytes": 652
+        }
+      ]
+    },
+    {
+      "id": "AP-02",
+      "build": "24A446",
+      "image": "APTransport",
+      "address": "0x24fe387fc",
+      "scope": "incoming invitation parsing and response",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fe387fc.bin",
+          "sha256": "793cc8f9cfb4da79b70dbdf7e7f60e39353efe8f06d7ab85be838a66c53f2f64",
+          "bytes": 568
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fe387fc.s",
+          "sha256": "df1d30a5c1ca07ab66034d3359be7d4367dbdeb2857d19e17ccf39e543a61f56",
+          "bytes": 5800
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fe387fc.ghidra.c",
+          "sha256": "0eac076c4c72b5010ddcd533dce9628991a5e0a5beff98ebb16d0c575539a0b2",
+          "bytes": 3062
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fe387fc.json",
+          "sha256": "4690c18a3ef732592cc80b3c0563290f4bf305bd8a7cd6cdf2299e48b6419ebf",
+          "bytes": 656
+        }
+      ]
+    },
+    {
+      "id": "AP-03",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a95354",
+      "scope": "connect invitation dispatch",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a95354.bin",
+          "sha256": "3071496bb951658cebd3229dee7cf14c7d48d881e7d473d2107e2f19915a128c",
+          "bytes": 580
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a95354.s",
+          "sha256": "cd7c416832a05f98f60e1a721fc92db98c90fb2800f60445580ac5e83e831b4e",
+          "bytes": 6041
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a95354.ghidra.c",
+          "sha256": "0fb157c68fefdc5f1317f219b1829dd74856d341911a3b272f843d044950bb4e",
+          "bytes": 3449
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a95354.json",
+          "sha256": "a23926ffd2dae7435ceac84780839ac39ff33b8a8e43b25db30c23a6d1dcc3a7",
+          "bytes": 654
+        }
+      ]
+    },
+    {
+      "id": "AP-04",
+      "build": "24A446",
+      "image": "APTransport",
+      "address": "0x24fda58ec",
+      "scope": "RTSP method path content-type",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda58ec.bin",
+          "sha256": "6a4552591408d3fc25dabbd8cefce2cffffd6c0c8a308e338672b2df9d62ab5e",
+          "bytes": 4000
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda58ec.s",
+          "sha256": "fdf01fa287504c05d400aa1558d4fcec89e2093fec1c84180c28dc64bde7b1ef",
+          "bytes": 39954
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda58ec.ghidra.c",
+          "sha256": "92dc47e8590dc113866b1e08047d6e7f99041e9fd8cf0ddaf40436fd9791f721",
+          "bytes": 18835
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda58ec.json",
+          "sha256": "59074aa346db6a08c10a68028dbc8080a1730019ba761e1c1c784c52673218b1",
+          "bytes": 656
+        }
+      ]
+    },
+    {
+      "id": "AP-05",
+      "build": "24A446",
+      "image": "APTransport",
+      "address": "0x24fda5468",
+      "scope": "CSeq production",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda5468.bin",
+          "sha256": "1c8273c1e14d43085939e0269ba6be2eeb9de2e4895175d5d12f1517f48b6c3c",
+          "bytes": 1156
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda5468.s",
+          "sha256": "c92a12843cb02416444407c24700172e2c4f5c7e76b44a6ca31138b5734f62bd",
+          "bytes": 11535
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda5468.ghidra.c",
+          "sha256": "57adb9cc675fbde2589fdc5ed36df3afdf1532594dfc892713d183c9454341ae",
+          "bytes": 6010
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda5468.json",
+          "sha256": "212cbfeaaed46566518d5753c4787c5eb5726eccb0cb8c2173934ee52069f525",
+          "bytes": 652
+        }
+      ]
+    },
+    {
+      "id": "AP-06",
+      "build": "24A446",
+      "image": "APTransport",
+      "address": "0x24fdaf86c",
+      "scope": "plist request/response wrapper",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fdaf86c.bin",
+          "sha256": "e13e842ff57d37314a9063bf594172c6d0093d54c4d4df9ae9fd67ac12f5ccaa",
+          "bytes": 572
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fdaf86c.s",
+          "sha256": "ac1de2cb570936dc107d9a53fb3df5e77a606b32f05148269b7b36c45fb48d48",
+          "bytes": 5632
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fdaf86c.ghidra.c",
+          "sha256": "13b958b56bf332efec8a281634bf76e57c3a512049b61ebff15561ba2bab5d15",
+          "bytes": 3310
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fdaf86c.json",
+          "sha256": "c03f6dfe96710fca1bf3b3c81dfc272536396ecf853bdcda2b9d6de6b16ae86b",
+          "bytes": 686
+        }
+      ]
+    },
+    {
+      "id": "AP-08",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a5b22c",
+      "scope": "control connect and pairing ordering",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5b22c.bin",
+          "sha256": "8c8967f28c79453c413aefebda19f2567be73913be0995adc70a2f39af9e3289",
+          "bytes": 11412
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5b22c.s",
+          "sha256": "ef22403695e87c540d6c364ca6aa0a29a53794c1b4ae93942f9dae4cc185ed3b",
+          "bytes": 112326
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5b22c.ghidra.c",
+          "sha256": "1981215862f5ad2f17740c0be364defaaac914ec8c7643a4ffdbef57dcb4331a",
+          "bytes": 75090
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5b22c.json",
+          "sha256": "3c0d797b9f513fd92032546a972639af45ca0e7858f2c10e58dcf5c4983badc1",
+          "bytes": 650
+        }
+      ]
+    },
+    {
+      "id": "AP-09",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a5e858",
+      "scope": "pairing selector",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5e858.bin",
+          "sha256": "a7692d1f7f22e14c7a22a3ddd9da428a302e245deed37e320c33a2750cc3fc36",
+          "bytes": 6728
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5e858.s",
+          "sha256": "aa6e23b9fc44980c0534999a7f1f0d013b93a6f037694e4a1b1b5cd86ef08ade",
+          "bytes": 66231
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5e858.ghidra.c",
+          "sha256": "05a0ce417834dffb4f7571a6bd2524cf15bd17f023665a6773482799ad5ae01a",
+          "bytes": 37701
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5e858.json",
+          "sha256": "03a4cf291e62c9558bbb166e4b5dcbbeb0a1ab24b3a97fbccdf7979e491411f6",
+          "bytes": 628
+        }
+      ]
+    },
+    {
+      "id": "AP-10",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a60f70",
+      "scope": "pairing identity and transport inputs",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a60f70.bin",
+          "sha256": "f4f24327a05aca9bd91c32b02333fea5c9710b92d5844cb59b693bfe5de4aa66",
+          "bytes": 1284
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a60f70.s",
+          "sha256": "9f48bf664a093bec93046e5959397e7f91ce7d7ed8aacc43ea9f264b68ab269b",
+          "bytes": 12891
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a60f70.ghidra.c",
+          "sha256": "647aa72ad9c02bbf0cdf024155709dd973a59e4da5ed38871d3aa75ab173621d",
+          "bytes": 6855
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a60f70.json",
+          "sha256": "1e628d42540bf9f086f8a01dc9d07cb3b4ac4fd47b524c39019d8ce6a1068c67",
+          "bytes": 642
+        }
+      ]
+    },
+    {
+      "id": "AP-11",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a61474",
+      "scope": "combined verification info",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a61474.bin",
+          "sha256": "833198d311294e4d07ab74fe3669bbeda2e5f5b13539b69de763abd197ef465e",
+          "bytes": 420
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a61474.s",
+          "sha256": "50245603e15d68560aefbaac757caaeb97e94ea2ee6b881f2b01d95419fd1165",
+          "bytes": 4279
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a61474.ghidra.c",
+          "sha256": "e5e8406663bcce4f29bc17d06a148a78e4022ef22f9df32753001772078455d6",
+          "bytes": 2362
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a61474.json",
+          "sha256": "a9a81c382968040c7176c05fff1c6195746687b9520e168d3ec335633119d1a9",
+          "bytes": 676
+        }
+      ]
+    },
+    {
+      "id": "AP-12",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a59338",
+      "scope": "control SETUP and combined response",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a59338.bin",
+          "sha256": "cd804eb83c75b9caca057829351be714919375d5da11cc38234baadedc381d14",
+          "bytes": 976
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a59338.s",
+          "sha256": "5daef28966c017e36f9f263ccb249f83f12f4d5558d16fcc3f22c70bedbdbea6",
+          "bytes": 9859
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a59338.ghidra.c",
+          "sha256": "1036d973226ca6d6fad6ce0b759ac0680683c940ffad531449cc457139db306d",
+          "bytes": 5632
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a59338.json",
+          "sha256": "df635774e5ec87d6762e04a5ac9d209d414d3d768d90e1b8060d389cf434c88b",
+          "bytes": 666
+        }
+      ]
+    },
+    {
+      "id": "AP-13",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a59708",
+      "scope": "SETUP field producer",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a59708.bin",
+          "sha256": "69a7e75e50d440208102fe6f2152502e3ae9b34b7d0d6f21141b3733b19ac85c",
+          "bytes": 4408
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a59708.s",
+          "sha256": "57164733328fa7d3c8857fd19acdbbdbc4aa88fa3b9f653a10a6117b7b916a82",
+          "bytes": 43435
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a59708.ghidra.c",
+          "sha256": "fdb332fd5fb41a5d3eb6b394f4b2c4b6b71129eb1303e454ef00f990f60365fd",
+          "bytes": 25832
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a59708.json",
+          "sha256": "f52bdc2e3549ef13d2101f93954f2e675d615474d8fb4bc94e7fc5aa97c0a6b0",
+          "bytes": 654
+        }
+      ]
+    },
+    {
+      "id": "AP-14",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251b5cfe0",
+      "scope": "control SETUP response consumer",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b5cfe0.bin",
+          "sha256": "1d0d1fd2b6426e0a12a0cd5881e024f1c8b278e61e31e9acbbc801ab5165996c",
+          "bytes": 780
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b5cfe0.s",
+          "sha256": "5e13411581cdd0fca497e7393e711257a1f1a0c02157529d99e8741848eaa8d7",
+          "bytes": 7892
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b5cfe0.ghidra.c",
+          "sha256": "b42e082ee8ff00305dbd73b6bdf2fa8293d58582be723ddf77d460d3d3436b3a",
+          "bytes": 5098
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b5cfe0.json",
+          "sha256": "aa86ce107eb5b5f2db24d4bd50a4a6e86f94a1e3c378ea20316259215a4b9c6e",
+          "bytes": 652
+        }
+      ]
+    },
+    {
+      "id": "AP-15",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a5dec0",
+      "scope": "event channel",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5dec0.bin",
+          "sha256": "da5c10872975888c24e5c5bddbc87e402597ba37cec60b7a3b8b6e08885f0ec8",
+          "bytes": 2456
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5dec0.s",
+          "sha256": "a94d7d8864c65ed192a3db5f2d7bf47f3043c86e31d0286b4d134d595c46408a",
+          "bytes": 24208
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5dec0.ghidra.c",
+          "sha256": "b24212970a2f03a82c695f6dd9582b62e8d301cd571a896f3107c89dc0ba7168",
+          "bytes": 13901
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5dec0.json",
+          "sha256": "e08e4ab34b6a92b74804cab2bb2f15682aa1f05ad6986ec98aa33613257eabea",
+          "bytes": 652
+        }
+      ]
+    },
+    {
+      "id": "AP-16",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x2519c69f0",
+      "scope": "conditional RECORD and Stage2 failure",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_2519c69f0.bin",
+          "sha256": "458362e5e51be43bbe1d9550800a5223dcb4e43beeabc2295664d32eeb0162cc",
+          "bytes": 5840
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_2519c69f0.s",
+          "sha256": "3c50c9ca1af8dbe26245ef95023bc8a4e52a93c8d7aa612c5a96bd791f7608d6",
+          "bytes": 57288
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_2519c69f0.ghidra.c",
+          "sha256": "70e20f751f3542596255fec477043cefd72d9ee485758f0f5004bd4cf0d33983",
+          "bytes": 50320
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_2519c69f0.json",
+          "sha256": "e723f7192a9833eb2785bcf7662b9d22cff771c6ac150bd9e10aff48e0780d57",
+          "bytes": 690
+        }
+      ]
+    },
+    {
+      "id": "AP-17",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a56e44",
+      "scope": "disconnect cleanup",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a56e44.bin",
+          "sha256": "f6721287112a17e386a29389d818b036c7d1eaa16dc320ff9907f41ef6c081e2",
+          "bytes": 224
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a56e44.s",
+          "sha256": "556265e75e8bb72dd6d7b865bb229000098459f275505fee754f376b575968b7",
+          "bytes": 2427
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a56e44.ghidra.c",
+          "sha256": "1c52031f7eb0e93dfd97b1194196b186bd417308b2fa0c9807efe13e37df3d10",
+          "bytes": 1699
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a56e44.json",
+          "sha256": "d89126f3c7e28004fe49f8e514c81712fba4e93a04f8b3af41da6505b4664214",
+          "bytes": 650
+        }
+      ]
+    },
+    {
+      "id": "AP-18",
+      "build": "24A446",
+      "image": "APTransport",
+      "address": "0x24fda68f8",
+      "scope": "reply wait and timeout",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda68f8.bin",
+          "sha256": "7537fc0bcd3df7b047d5adf75adf2ad4f6b230892fb414135e1ed0742cb873e6",
+          "bytes": 888
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda68f8.s",
+          "sha256": "06ea716486eff1db7c9217f52dd912f50d2301526b0ea1158903d493d9cbc615",
+          "bytes": 9214
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda68f8.ghidra.c",
+          "sha256": "1ee3887d1f9f041e4083ba9586ace9af2e45e3c72b93ac5c47c0ff4c3eb8cc0c",
+          "bytes": 5177
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\APTransport\\dcc06dc3316817912f6d\\functions\\f_24fda68f8.json",
+          "sha256": "a38496e581836de730f8322d315a5cd31a09411ccae549d3232b98d3491fe060",
+          "bytes": 646
+        }
+      ]
+    },
+    {
+      "id": "AP-19",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251b5db18",
+      "scope": "public info conditional",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b5db18.bin",
+          "sha256": "fc22dc7c9528c91b6dcf95cbe251d1e410090b5800671138feda7e8209f92e8c",
+          "bytes": 876
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b5db18.s",
+          "sha256": "38368648d0acb0488493c178a8f7c34079864ca6720f91de3674a7d86850c161",
+          "bytes": 8787
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b5db18.ghidra.c",
+          "sha256": "995fd0fb6dd9e6c428504e58074f41617ea177ec571dcb5f10f248f67f291834",
+          "bytes": 5564
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b5db18.json",
+          "sha256": "f669185e61db6bbf8781671b2b97313495dc10d0c944d8cca7321094308933cb",
+          "bytes": 650
+        }
+      ]
+    },
+    {
+      "id": "AP-20",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251a5af78",
+      "scope": "qualifier production",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5af78.bin",
+          "sha256": "0ff73704214886a27bf20bc985e1a63924ca6bed4327320905ac93370d07df56",
+          "bytes": 256
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5af78.s",
+          "sha256": "dba7f3dfe780cee1c69744c5c9257eb9700bca151180b37cb1960f450971b968",
+          "bytes": 2729
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5af78.ghidra.c",
+          "sha256": "8d71b52e164007edbbc04a439504c3bc57f8c12c69136ff86a42ee99d8e84ca5",
+          "bytes": 1579
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251a5af78.json",
+          "sha256": "5b393490267e4cb2c800fe42f34c235d85061f3473228c46f8444d24720ae71b",
+          "bytes": 648
+        }
+      ]
+    },
+    {
+      "id": "AP-21",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x2519bbf24",
+      "scope": "stream SETUP response guards",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_2519bbf24.bin",
+          "sha256": "2474956bad6630ee63b02d72eb56748aa49531735f5e4f3772422c313bb6655c",
+          "bytes": 5764
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_2519bbf24.s",
+          "sha256": "026c0975e8891bd4a7a6c74d28269a12cc2a4e9940c3894e4fa2238c74d47644",
+          "bytes": 56730
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_2519bbf24.ghidra.c",
+          "sha256": "f3f5682a3796aa9cb1605432860279ee6d21836a98796ce7051e99b2e9cef418",
+          "bytes": 29646
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_2519bbf24.json",
+          "sha256": "cf1a02d107fa0574728dd741c3a83943e61b14cacb82bd8eaaf4c31c63fee842",
+          "bytes": 674
+        }
+      ]
+    },
+    {
+      "id": "AP-24",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251b87acc",
+      "scope": "pair verify exchange conditional MFi validation",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b87acc.bin",
+          "sha256": "c702321d6e49b5069ec60ee5f962647119e04ae28a8f85bf7992688506216238",
+          "bytes": 2848
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b87acc.s",
+          "sha256": "21db86895cee2f14eaef45a9e71e3e6b7975b073c45afbd1941a60e59489e383",
+          "bytes": 28334
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b87acc.ghidra.c",
+          "sha256": "348729aae1e85e9e376d6aab2bf7e3c391d6f95411299eea1e390f46438c8dbf",
+          "bytes": 23500
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b87acc.json",
+          "sha256": "83a4d18af7e148be99a1883674eafb8339664685dcab69263f64db1d5c3af7b0",
+          "bytes": 656
+        }
+      ]
+    },
+    {
+      "id": "AP-25",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x251b88c94",
+      "scope": "pair setup exchange conditional MFi validation",
+      "evidence": "STATIC_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b88c94.bin",
+          "sha256": "e60abba36f6a976dfc10e710c4b62bc8ea5f6edb8c1033a452c52b778267dc0d",
+          "bytes": 1444
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b88c94.s",
+          "sha256": "581770e8e544734657aa6ed0cec72e8492de0bd67cdfa8f6a6421fc7f4956f9d",
+          "bytes": 14506
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b88c94.ghidra.c",
+          "sha256": "53aca740048c5d385013d4883d5003445be4c33000e98bddbba76e71f5029fcf",
+          "bytes": 11503
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\AirPlaySender\\934ec850a9ab7623f1d8\\functions\\f_251b88c94.json",
+          "sha256": "b7026aa28e89c52525d901f8731dbcb06f11abed01dc5f6420798c3492ebd3c4",
+          "bytes": 658
+        }
+      ]
+    },
+    {
+      "id": "AP-07",
+      "build": "24A446",
+      "image": "AirPlaySender",
+      "address": "0x2519c5858",
+      "scope": "Stage1 control sequence and auth dispatcher; decompilation FAILED; assembly reviewed",
+      "evidence": "STATIC_ASSEMBLY_REVIEWED_SUBSET",
+      "source_path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "raw_equals_extracted_macho": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\24A446\\kind5-setup-dictionary\\2519c5858.bin",
+          "sha256": "1348fc1e56decf58100df1cd4faa3f704857be71fd09a378566917502958d3c6",
+          "bytes": 4472
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\24A446\\kind5-setup-dictionary\\2519c5858.s",
+          "sha256": "99b7317a64665aabe2f40edf7cd685d18e7bfbd41c94a6cfa4952d2601ee0267",
+          "bytes": 44265
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\24A446\\kind5-setup-dictionary\\2519c5858.json",
+          "sha256": "f89b160089ec7af31a44c257de4e7159b607b8d53f33a5ec041322402f532bae",
+          "bytes": 740
+        }
+      ]
+    },
+    {
+      "id": "AP-22",
+      "scope": "current Android client, not Apple evidence",
+      "evidence": "IMPLEMENTATION_OBSERVED",
+      "source_path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\AirSession.kt",
+      "source_sha256": "dfe3d7f818b204a7ed93048a1add292cd02a9d16a6110edd6f21cac775af23c7"
+    },
+    {
+      "id": "AP-23",
+      "scope": "current Android identity policy, not Apple evidence",
+      "evidence": "IMPLEMENTATION_OBSERVED",
+      "source_path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\CarPlaySourceIdentity.kt",
+      "source_sha256": "54af8e401dd47085bab6751cef4217626d48d34d25349c0b7ad2e306d294662d"
+    }
+  ]
+}

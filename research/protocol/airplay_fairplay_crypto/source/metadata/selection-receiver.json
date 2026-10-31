@@ -1,0 +1,90 @@
+{
+ "image": "AirPlayReceiver",
+ "functions": [
+  {
+   "symbol": "_airplayReqProcessor_requestProcessFPSetup",
+   "group": "R",
+   "note": "/fp-setup \u8bf7\u6c42\u5904\u7406"
+  },
+  {
+   "symbol": "_airplayReqProcessor_requestProcessFPSetup2",
+   "group": "R",
+   "note": "/fp-setup2 \u8bf7\u6c42\u5904\u7406"
+  },
+  {
+   "symbol": "__FPSetup2ResponseCompletionHandler",
+   "group": "R",
+   "note": "fp-setup2 \u5916\u90e8\u54cd\u5e94\u56de\u8c03"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperCreate",
+   "group": "R",
+   "note": "FairPlay \u52a9\u624b\u6784\u9020"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperProcessFPInfo",
+   "group": "R",
+   "note": "\u5904\u7406 FPInfo\uff08ekey \u89e3\u5bc6\uff09"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperCopyAuthorizeItemResponseIntoBuffer",
+   "group": "R",
+   "note": "authorize-item \u54cd\u5e94\uff08\u5185\u5bb9 DRM \u8fb9\u754c\uff09"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperCopyAuthorizeItemResponseIntoDictionary",
+   "group": "R",
+   "note": "authorize-item \u54cd\u5e94\uff08\u5b57\u5178\u5f62\u6001\uff09"
+  },
+  {
+   "symbol": "_APReceiverFairPlayHelperRemoveAllFPSessions",
+   "group": "R",
+   "note": "\u6e05\u9664\u5168\u90e8 FP \u4f1a\u8bdd"
+  },
+  {
+   "symbol": "_apReceiverFairPlayHelper_CopyPICRequest",
+   "group": "R",
+   "note": "\u53d6 PIC \u8bf7\u6c42\uff08FPInfo \u8f7d\u4f53\uff09"
+  },
+  {
+   "symbol": "_apReceiverFairPlayHelper_CopyPICResponseData",
+   "group": "R",
+   "note": "\u53d6 PIC \u54cd\u5e94\u6570\u636e"
+  },
+  {
+   "symbol": "_AirPlayReceiverSessionSetSecurityInfo",
+   "group": "S",
+   "note": "\u4f1a\u8bdd\u7ea7\u5b89\u5168\u53c2\u6570\u8bbe\u7f6e"
+  },
+  {
+   "symbol": "__SetSecurityInfoAES",
+   "group": "S",
+   "note": "AES \u5b89\u5168\u53c2\u6570"
+  },
+  {
+   "symbol": "_aprscreen_SetSecurityInfoAES",
+   "group": "S",
+   "note": "\u5c4f\u5e55\u6d41 AES \u5b89\u5168\u53c2\u6570"
+  },
+  {
+   "symbol": "_aprscreen_SetSecurityInfoChaCha",
+   "group": "S",
+   "note": "\u5c4f\u5e55\u6d41 ChaCha \u5b89\u5168\u53c2\u6570"
+  },
+  {
+   "symbol": "_aprscreen_decryptBuffer",
+   "group": "S",
+   "note": "\u5c4f\u5e55\u6d41\u89e3\u5bc6\u8def\u5f84"
+  },
+  {
+   "address": "0x2518d4338",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251833960",
+   "group": "X",
+   "note": ""
+  }
+ ]
+}

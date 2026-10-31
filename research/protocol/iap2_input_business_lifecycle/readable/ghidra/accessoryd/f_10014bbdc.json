@@ -1,0 +1,13 @@
+{
+  "address": "0x10014bbdc",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "f136050614d3026c99e370b579c32ec0a08c6a8c52cce0e5d0081bf190d80d54",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "f136050614d3026c99e370b579c32ec0a08c6a8c52cce0e5d0081bf190d80d54",
+  "ghidra_name": "_iap2_assistiveTouch_stopAssistiveTouchHandler",
+  "signature": "undefined _iap2_assistiveTouch_stopAssistiveTouchHandler()",
+  "diagnostic": "",
+  "c_file": "f_10014bbdc.ghidra.c",
+  "c_sha256": "5b659725ee7d2aaf33bd5850753da2a1929af712b8d6407be2347c8143d59682",
+  "status": "DECOMPILED_UNREVIEWED"
+}

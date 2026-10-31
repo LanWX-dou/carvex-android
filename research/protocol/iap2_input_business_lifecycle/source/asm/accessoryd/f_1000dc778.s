@@ -1,0 +1,69 @@
+; accessoryd 0x1000dc778-0x1000dc880; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x1000dc778:	pacibsp	
+0x1000dc77c:	sub	sp, sp, #0x50
+0x1000dc780:	stp	x22, x21, [sp, #0x20]
+0x1000dc784:	stp	x20, x19, [sp, #0x30]
+0x1000dc788:	stp	x29, x30, [sp, #0x40]
+0x1000dc78c:	add	x29, sp, #0x40
+0x1000dc790:	mov	x19, x2
+0x1000dc794:	mov	x20, x1
+0x1000dc798:	mov	x21, x0
+0x1000dc79c:	adrp	x8, #0x10023f000
+0x1000dc7a0:	ldr	x8, [x8, #0xa28]
+0x1000dc7a4:	cbz	x8, #0x1000dc7c0
+0x1000dc7a8:	adrp	x9, #0x10023f000
+0x1000dc7ac:	ldr	w9, [x9, #0xa30]
+0x1000dc7b0:	cmp	w9, #0x32
+0x1000dc7b4:	b.lt	#0x1000dc7c0
+0x1000dc7b8:	ldr	x8, [x8, #0x188]
+0x1000dc7bc:	b	#0x1000dc7d8
+0x1000dc7c0:	adrp	x8, #0x10023e000
+0x1000dc7c4:	ldr	x8, [x8, #0xdb0]
+0x1000dc7c8:	cmn	x8, #1
+0x1000dc7cc:	b.ne	#0x1000dc878
+0x1000dc7d0:	adrp	x8, #0x10022b000
+0x1000dc7d4:	ldr	x8, [x8, #0xbb0]
+0x1000dc7d8:	bl	#0x1001a2790
+0x1000dc7dc:	mov	x22, x0
+0x1000dc7e0:	mov	w1, #0
+0x1000dc7e4:	bl	#0x1001a2830
+0x1000dc7e8:	cbz	w0, #0x1000dc838
+0x1000dc7ec:	adrp	x8, #0x1001b3000
+0x1000dc7f0:	ldr	d0, [x8, #0xf8]
+0x1000dc7f4:	str	s0, [sp]
+0x1000dc7f8:	stur	x21, [sp, #4]
+0x1000dc7fc:	mov	w8, #0x840
+0x1000dc800:	strh	w8, [sp, #0xc]
+0x1000dc804:	stur	x20, [sp, #0xe]
+0x1000dc808:	mov	w8, #0x800
+0x1000dc80c:	strh	w8, [sp, #0x16]
+0x1000dc810:	str	x19, [sp, #0x18]
+0x1000dc814:	adrp	x0, #0x100000000
+0x1000dc818:	add	x0, x0, #0
+0x1000dc81c:	adrp	x3, #0x100208000
+0x1000dc820:	add	x3, x3, #0x712
+0x1000dc824:	mov	x4, sp
+0x1000dc828:	mov	x1, x22
+0x1000dc82c:	mov	w2, #0
+0x1000dc830:	mov	w5, #0x20
+0x1000dc834:	bl	#0x1001a1fe0
+0x1000dc838:	bl	#0x1001a25a0
+0x1000dc83c:	adrp	x8, #0x10022a000
+0x1000dc840:	ldr	x0, [x8, #0xef8]
+0x1000dc844:	bl	#0x1001aadc0
+0x1000dc848:	bl	#0x1001a2490
+0x1000dc84c:	mov	x22, x0
+0x1000dc850:	mov	x2, x21
+0x1000dc854:	mov	x3, x20
+0x1000dc858:	mov	x4, x19
+0x1000dc85c:	bl	#0x1001a4220
+0x1000dc860:	bl	#0x1001a25a0
+0x1000dc864:	ldp	x29, x30, [sp, #0x40]
+0x1000dc868:	ldp	x20, x19, [sp, #0x30]
+0x1000dc86c:	ldp	x22, x21, [sp, #0x20]
+0x1000dc870:	add	sp, sp, #0x50
+0x1000dc874:	retab	
+0x1000dc878:	bl	#0x100182560
+0x1000dc87c:	b	#0x1000dc7d0

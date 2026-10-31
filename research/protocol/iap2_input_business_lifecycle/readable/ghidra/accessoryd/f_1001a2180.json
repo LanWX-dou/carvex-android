@@ -1,0 +1,13 @@
+{
+  "address": "0x1001a2180",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "fa4543870e9f9a76e81ffff4bad2b2fba3b82c40e977692bda7e020e3238550f",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "fa4543870e9f9a76e81ffff4bad2b2fba3b82c40e977692bda7e020e3238550f",
+  "ghidra_name": "_dispatch_release",
+  "signature": "void _dispatch_release(dispatch_object_t object)",
+  "diagnostic": "",
+  "c_file": "f_1001a2180.ghidra.c",
+  "c_sha256": "0874bac64f60faf45d64f1047ae79cb95d1823623161fe3ebed17a9f7ea835e7",
+  "status": "DECOMPILED_UNREVIEWED"
+}

@@ -1,0 +1,72 @@
+; AirPlayReceiver 0x251833960-0x251833a74; source SHA256 ad6eddbb9bedcb8f121699e7fc94702632c4acf30135564763a646ac472cc51a; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x251833960:	pacibsp	
+0x251833964:	sub	sp, sp, #0x70
+0x251833968:	stp	x28, x27, [sp, #0x10]
+0x25183396c:	stp	x26, x25, [sp, #0x20]
+0x251833970:	stp	x24, x23, [sp, #0x30]
+0x251833974:	stp	x22, x21, [sp, #0x40]
+0x251833978:	stp	x20, x19, [sp, #0x50]
+0x25183397c:	stp	x29, x30, [sp, #0x60]
+0x251833980:	add	x29, sp, #0x60
+0x251833984:	mov	x19, x0
+0x251833988:	ldr	x0, [x0, #0x10]
+0x25183398c:	cbz	x0, #0x251833a54
+0x251833990:	bl	#0x2581017d0
+0x251833994:	cmp	x0, #1
+0x251833998:	b.lt	#0x251833a44
+0x25183399c:	mov	x20, x0
+0x2518339a0:	mov	x21, #0
+0x2518339a4:	adrp	x22, #0x27610f000
+0x2518339a8:	add	x22, x22, #0x30
+0x2518339ac:	adrp	x27, #0x26e7bf000
+0x2518339b0:	adrp	x23, #0x26e7bf000
+0x2518339b4:	add	x23, x23, #0x860
+0x2518339b8:	adrp	x24, #0x251914000
+0x2518339bc:	add	x24, x24, #0x210
+0x2518339c0:	adrp	x25, #0x251914000
+0x2518339c4:	add	x25, x25, #0x25e
+0x2518339c8:	ldr	x0, [x19, #0x10]
+0x2518339cc:	mov	x1, x21
+0x2518339d0:	bl	#0x2581017e0
+0x2518339d4:	mov	x1, x22
+0x2518339d8:	mov	x2, #0
+0x2518339dc:	bl	#0x25810a6f0
+0x2518339e0:	mov	x26, x0
+0x2518339e4:	ldr	w8, [x27, #0x860]
+0x2518339e8:	cmp	w8, #0x1e
+0x2518339ec:	b.gt	#0x251833a2c
+0x2518339f0:	cmn	w8, #1
+0x2518339f4:	b.eq	#0x251833a18
+0x2518339f8:	str	x26, [sp]
+0x2518339fc:	mov	x0, x23
+0x251833a00:	mov	x1, x24
+0x251833a04:	mov	w2, #0x1e
+0x251833a08:	movk	w2, #0x200, lsl #16
+0x251833a0c:	mov	x3, x25
+0x251833a10:	bl	#0x258101eb0
+0x251833a14:	b	#0x251833a2c
+0x251833a18:	mov	x0, x23
+0x251833a1c:	mov	w1, #0x1e
+0x251833a20:	movk	w1, #0x200, lsl #16
+0x251833a24:	bl	#0x258101e40
+0x251833a28:	cbnz	w0, #0x2518339f8
+0x251833a2c:	cbz	x26, #0x251833a38
+0x251833a30:	mov	x0, x26
+0x251833a34:	bl	#0x2517d10e0
+0x251833a38:	add	x21, x21, #1
+0x251833a3c:	cmp	x20, x21
+0x251833a40:	b.ne	#0x2518339c8
+0x251833a44:	ldr	x0, [x19, #0x10]
+0x251833a48:	cbz	x0, #0x251833a54
+0x251833a4c:	bl	#0x2580f5830
+0x251833a50:	str	xzr, [x19, #0x10]
+0x251833a54:	ldp	x29, x30, [sp, #0x60]
+0x251833a58:	ldp	x20, x19, [sp, #0x50]
+0x251833a5c:	ldp	x22, x21, [sp, #0x40]
+0x251833a60:	ldp	x24, x23, [sp, #0x30]
+0x251833a64:	ldp	x26, x25, [sp, #0x20]
+0x251833a68:	ldp	x28, x27, [sp, #0x10]
+0x251833a6c:	add	sp, sp, #0x70
+0x251833a70:	retab	

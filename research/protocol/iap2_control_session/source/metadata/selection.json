@@ -1,0 +1,1003 @@
+{
+ "image": "accessoryd",
+ "note": "种子 = 上一阶段选函数表（按符号去重）；本阶段新增会话层函数",
+ "seed_count": 114,
+ "added_count": 85,
+ "functions": [
+  {
+   "symbol": "acc_protocolParser_iAP2_create",
+   "group": "T",
+   "note": "链路对象+传输绑定的创建入口"
+  },
+  {
+   "symbol": "acc_protocolParser_iAP2_reset",
+   "group": "T",
+   "note": "复位"
+  },
+  {
+   "symbol": "acc_protocolParser_iAP2_destroy",
+   "group": "T",
+   "note": "销毁"
+  },
+  {
+   "symbol": "acc_protocolParser_iAP2_run",
+   "group": "T",
+   "note": "解析器驱动/收包入口"
+  },
+  {
+   "symbol": "iAP2LinkDataReadyCB",
+   "group": "T",
+   "note": "数据就绪回调（上层注册）"
+  },
+  {
+   "symbol": "iAP2LinkSendPacketWaitCB",
+   "group": "T",
+   "note": "发送等待回调"
+  },
+  {
+   "symbol": "iAP2LinkConnectedCB",
+   "group": "T",
+   "note": "连接建立回调"
+  },
+  {
+   "symbol": "_appLinksiAP2LinkEventNotifyHandler",
+   "group": "T",
+   "note": "事件通知处理器"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopGetBuffSize",
+   "group": "L",
+   "note": "运行循环缓冲大小"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopCreate",
+   "group": "L",
+   "note": "运行循环创建"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopCreateDevice",
+   "group": "L",
+   "note": "设备侧运行循环创建"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopInitImplementation",
+   "group": "L",
+   "note": "实现初始化"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopRunOnce",
+   "group": "L",
+   "note": "运行循环单步"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopSignal",
+   "group": "L",
+   "note": "唤醒信号"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopTimeout",
+   "group": "L",
+   "note": "超时处理"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopAttached",
+   "group": "L",
+   "note": "attach"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopDelete",
+   "group": "L",
+   "note": "删除"
+  },
+  {
+   "symbol": "iAP2LinkGetBuffSize",
+   "group": "L",
+   "note": "链路对象大小"
+  },
+  {
+   "symbol": "iAP2LinkCreate",
+   "group": "L",
+   "note": "链路对象创建"
+  },
+  {
+   "symbol": "iAP2LinkStart",
+   "group": "L",
+   "note": "链路启动"
+  },
+  {
+   "symbol": "iAP2LinkAttached",
+   "group": "L",
+   "note": "传输 attach"
+  },
+  {
+   "symbol": "iAP2LinkGetMainTimer",
+   "group": "L",
+   "note": "主定时器"
+  },
+  {
+   "symbol": "iAP2LinkSetUseiAP2LinkRunLoop",
+   "group": "L",
+   "note": "运行循环开关"
+  },
+  {
+   "symbol": "iAP2PacketCreate",
+   "group": "F",
+   "note": "包对象创建"
+  },
+  {
+   "symbol": "iAP2PacketCreateEmptySendPacket",
+   "group": "F",
+   "note": "空发送包"
+  },
+  {
+   "symbol": "iAP2PacketCreateEmptyRecvPacket",
+   "group": "F",
+   "note": "空接收包"
+  },
+  {
+   "symbol": "iAP2PacketParseBuffer",
+   "group": "F",
+   "note": "帧解析（头部/长度/校验）"
+  },
+  {
+   "symbol": "iAP2PacketCalcChecksum",
+   "group": "F",
+   "note": "校验和算法"
+  },
+  {
+   "symbol": "iAP2PacketSetHdrChecksum",
+   "group": "F",
+   "note": "写头部校验"
+  },
+  {
+   "symbol": "iAP2PacketGetHdrChecksum",
+   "group": "F",
+   "note": "读头部校验"
+  },
+  {
+   "symbol": "iAP2PacketGenerateBuffer",
+   "group": "F",
+   "note": "序列化出帧"
+  },
+  {
+   "symbol": "iAP2PacketIsComplete",
+   "group": "F",
+   "note": "完整性判定"
+  },
+  {
+   "symbol": "iAP2PacketGetPayloadLen",
+   "group": "F",
+   "note": "载荷长度"
+  },
+  {
+   "symbol": "iAP2LinkCurPckHdrSize",
+   "group": "F",
+   "note": "当前头部长度"
+  },
+  {
+   "symbol": "iAP2LinkCurPckChksumSize",
+   "group": "F",
+   "note": "当前校验长度"
+  },
+  {
+   "symbol": "iAP2LinkGetMaxPayloadSize",
+   "group": "F",
+   "note": "最大载荷"
+  },
+  {
+   "symbol": "iAP2LinkGetMaxSendPayloadSize",
+   "group": "F",
+   "note": "最大发送载荷"
+  },
+  {
+   "symbol": "iAP2LinkGetMaxRecvPayloadSize",
+   "group": "F",
+   "note": "最大接收载荷"
+  },
+  {
+   "symbol": "iAP2LinkGetMaxSendPacketSize",
+   "group": "F",
+   "note": "最大发送包"
+  },
+  {
+   "symbol": "iAP2LinkGetMaxRecvPacketSize",
+   "group": "F",
+   "note": "最大接收包"
+  },
+  {
+   "symbol": "iAP2PacketName",
+   "group": "F",
+   "note": "包类型名（调试用，可据其判定控制字段）"
+  },
+  {
+   "symbol": "iAP2LinkSetDefaultSYNParam",
+   "group": "S",
+   "note": "SYN 缺省参数"
+  },
+  {
+   "symbol": "iAP2LinkIsValidSynParam",
+   "group": "S",
+   "note": "SYN 参数合法性"
+  },
+  {
+   "symbol": "iAP2LinkValidateSynParam",
+   "group": "S",
+   "note": "SYN 参数校验"
+  },
+  {
+   "symbol": "iAP2PacketCreateSYNPacket",
+   "group": "S",
+   "note": "构造 SYN"
+  },
+  {
+   "symbol": "iAP2PacketParseSYNData",
+   "group": "S",
+   "note": "解析 SYN 载荷"
+  },
+  {
+   "symbol": "iAP2LinkDeviceActionSendSYNACK",
+   "group": "S",
+   "note": "回 SYNACK"
+  },
+  {
+   "symbol": "iAP2LinkDeviceActionResendSYNACK",
+   "group": "S",
+   "note": "重发 SYNACK"
+  },
+  {
+   "symbol": "iAP2LinkCheckNegotiation",
+   "group": "S",
+   "note": "协商完成判定"
+  },
+  {
+   "symbol": "__iAP2LinkIsValidSynParamMaxOutstandingPackets",
+   "group": "S",
+   "note": "SYN 字段：最大未确认包数"
+  },
+  {
+   "symbol": "__iAP2LinkIsValidSynParamCumAckTimeout",
+   "group": "S",
+   "note": "SYN 字段：累积确认超时"
+  },
+  {
+   "symbol": "__iAP2LinkIsValidSynParamMaxRetransmissions",
+   "group": "S",
+   "note": "SYN 字段：最大重传次数"
+  },
+  {
+   "symbol": "__iAP2LinkIsValidSynParamMaxCumAck",
+   "group": "S",
+   "note": "SYN 字段：最大累积确认数"
+  },
+  {
+   "symbol": "iAP2LinkIsNoRetransmit",
+   "group": "S",
+   "note": "是否禁用重传"
+  },
+  {
+   "symbol": "iAP2LinkDeviceActionSendRSTWithNewChecksumEnabled",
+   "group": "S",
+   "note": "切换 16 位校验"
+  },
+  {
+   "symbol": "iAP2LinkDeviceActionSendResetSYNACK",
+   "group": "S",
+   "note": "复位 SYNACK"
+  },
+  {
+   "symbol": "iAP2PacketCreateACKPacket",
+   "group": "S",
+   "note": "ACK 包"
+  },
+  {
+   "symbol": "iAP2PacketCreateEAKPacket",
+   "group": "S",
+   "note": "EAK 包"
+  },
+  {
+   "symbol": "iAP2PacketCreateRSTPacket",
+   "group": "S",
+   "note": "RST 包"
+  },
+  {
+   "symbol": "iAP2PacketCreateSUSPacket",
+   "group": "S",
+   "note": "SUS 包"
+  },
+  {
+   "symbol": "iAP2LinkDeviceActionSendRST",
+   "group": "S",
+   "note": "发 RST"
+  },
+  {
+   "symbol": "iAP2LinkGetNewSeqNum",
+   "group": "Q",
+   "note": "序号生成"
+  },
+  {
+   "symbol": "iAP2LinkActionHandleACK",
+   "group": "Q",
+   "note": "处理 ACK"
+  },
+  {
+   "symbol": "iAP2LinkActionResendData",
+   "group": "Q",
+   "note": "重传"
+  },
+  {
+   "symbol": "iAP2LinkActionResendMissing",
+   "group": "Q",
+   "note": "补发缺失"
+  },
+  {
+   "symbol": "__iAP2LinkComparePacketSeq",
+   "group": "Q",
+   "note": "序号比较（回绕）"
+  },
+  {
+   "symbol": "iAP2PacketIsSeqACKd",
+   "group": "Q",
+   "note": "序号是否已确认"
+  },
+  {
+   "symbol": "iAP2PacketCalcSeqGap",
+   "group": "Q",
+   "note": "序号间距"
+  },
+  {
+   "symbol": "iAP2LinkResetSeqAck",
+   "group": "Q",
+   "note": "序号/确认复位"
+  },
+  {
+   "symbol": "iAP2LinkResetSend",
+   "group": "Q",
+   "note": "发送侧复位"
+  },
+  {
+   "symbol": "iAP2LinkHandleReadyPacket",
+   "group": "Q",
+   "note": "就绪包处理（分发）"
+  },
+  {
+   "symbol": "iAP2LinkProcessInOrderPacket",
+   "group": "Q",
+   "note": "按序处理"
+  },
+  {
+   "symbol": "iAP2PacketIsACKOnly",
+   "group": "Q",
+   "note": "纯 ACK 判定"
+  },
+  {
+   "symbol": "iAP2PacketIsEAK",
+   "group": "Q",
+   "note": "EAK 判定"
+  },
+  {
+   "symbol": "iAP2LinkDeviceActionHandleMaxRetries",
+   "group": "Q",
+   "note": "重试上限"
+  },
+  {
+   "symbol": "iAP2FSMCreate",
+   "group": "M",
+   "note": "状态机创建"
+  },
+  {
+   "symbol": "iAP2FSMGetBuffSize",
+   "group": "M",
+   "note": "状态机对象大小"
+  },
+  {
+   "symbol": "iAP2FSMHandleEvent",
+   "group": "M",
+   "note": "状态迁移核心"
+  },
+  {
+   "symbol": "iAP2LinkDeviceActionSendDetect",
+   "group": "A",
+   "note": "发 Detect（IDPS 入口）"
+  },
+  {
+   "symbol": "iAP2PacketCheckDetect",
+   "group": "A",
+   "note": "Detect 判定"
+  },
+  {
+   "symbol": "iAP2PacketCheckDetectNACK",
+   "group": "A",
+   "note": "DetectNACK 判定"
+  },
+  {
+   "symbol": "iAP2PacketCheckRequestIdentify",
+   "group": "A",
+   "note": "RequestIdentify 判定"
+  },
+  {
+   "symbol": "iAP2LinkSendDetectCB",
+   "group": "A",
+   "note": "Detect 发送完成"
+  },
+  {
+   "symbol": "iAP2LinkDetached",
+   "group": "E",
+   "note": "detach"
+  },
+  {
+   "symbol": "iAP2LinkDelete",
+   "group": "E",
+   "note": "删除/释放"
+  },
+  {
+   "symbol": "iAP2LinkActionDetach",
+   "group": "E",
+   "note": "动作：detach"
+  },
+  {
+   "symbol": "iAP2LinkShuttingDown",
+   "group": "E",
+   "note": "关闭中判定"
+  },
+  {
+   "symbol": "iAP2LinkRunLoopShuttingDown",
+   "group": "E",
+   "note": "运行循环关闭"
+  },
+  {
+   "symbol": "iAP2LinkHandleTimeout",
+   "group": "E",
+   "note": "超时"
+  },
+  {
+   "symbol": "iAP2LinkActionNotifyConnectionFail",
+   "group": "E",
+   "note": "连接失败通知"
+  },
+  {
+   "symbol": "iAP2LinkDeviceActionNotifyConnection",
+   "group": "E",
+   "note": "连接状态通知"
+  },
+  {
+   "symbol": "__iAP2LinkSendPacketCommon",
+   "group": "T",
+   "note": "发送公共路径（写传输）"
+  },
+  {
+   "symbol": "iAP2LinkSendPacket",
+   "group": "T",
+   "note": "发送入口"
+  },
+  {
+   "symbol": "iAP2LinkSendPacketCB",
+   "group": "T",
+   "note": "发送完成回调"
+  },
+  {
+   "symbol": "iap2_identification_identificationInfoHandler",
+   "group": "A",
+   "note": "0x1D01 IdentificationInformation 处理函数（识别消息主路径）"
+  },
+  {
+   "symbol": "iap2_identification_identificationInfoUpdateHandler",
+   "group": "A",
+   "note": "0x1D06 IdentificationInformationUpdate 处理函数"
+  },
+  {
+   "symbol": "iap2_identification_cancelIdentificationHandler",
+   "group": "A",
+   "note": "0x1D05 CancelIdentification 处理函数"
+  },
+  {
+   "symbol": "__parseIdentificationParams",
+   "group": "A",
+   "note": "18 个识别参数 ID 的公共解析器"
+  },
+  {
+   "symbol": "__parseIdentificationParamsPower",
+   "group": "A",
+   "note": "Power 参数解析"
+  },
+  {
+   "symbol": "__parseIdentificationSupportedEAProtocol",
+   "group": "A",
+   "note": "EA 协议列表解析"
+  },
+  {
+   "symbol": "__parseIdentificationPreferredBundleSeedID",
+   "group": "A",
+   "note": "PreferredBundleSeedID 解析"
+  },
+  {
+   "symbol": "iap2_identification_parseTransportComponent",
+   "group": "A",
+   "note": "识别：transport component 解析"
+  },
+  {
+   "symbol": "cbIdentificationInfoSerialTransportComponentParams",
+   "group": "A",
+   "note": "识别：串行 transport component 参数回调"
+  },
+  {
+   "symbol": "mfi4Auth_util_packIntoTunnelDataiAP2Msg",
+   "group": "A",
+   "note": "mfi4Auth：把认证消息封装进 iAP2 隧道数据"
+  },
+  {
+   "symbol": "mfi4Auth_util_unpackFromTunnelDataiAP2Msg",
+   "group": "A",
+   "note": "mfi4Auth：从 iAP2 隧道数据解出认证消息"
+  },
+  {
+   "symbol": "mfi4Auth_util_parseMessage",
+   "group": "A",
+   "note": "mfi4Auth：认证消息解析入口"
+  },
+  {
+   "symbol": "mfi4Auth_protocol_parse",
+   "group": "A",
+   "note": "mfi4Auth_protocol_parse：认证协议报文解析"
+  },
+  {
+   "symbol": "iap2_deviceAuthentication_RequestDeviceCertificate",
+   "group": "A",
+   "note": "0xAA10 RequestDeviceCertificate 处理函数"
+  },
+  {
+   "symbol": "iap2_deviceAuthentication_RequestDeviceChallengeResponse",
+   "group": "A",
+   "note": "0xAA12 RequestDeviceChallengeResponse 处理函数"
+  },
+  {
+   "symbol": "iap2_deviceAuthentication_DeviceAuthenticationFailed",
+   "group": "A",
+   "note": "0xAA14 DeviceAuthenticationFailed 处理函数"
+  },
+  {
+   "symbol": "iap2_deviceAuthentication_DeviceAuthenticationSucceeded",
+   "group": "A",
+   "note": "0xAA15 DeviceAuthenticationSucceeded 处理函数"
+  },
+  {
+   "symbol": "iap2_accAuthentication_certificate",
+   "group": "A",
+   "note": "0xAA01 AccAuthentication certificate 处理函数"
+  },
+  {
+   "symbol": "iap2_accAuthentication_challengeResponse",
+   "group": "A",
+   "note": "0xAA03 AccAuthentication challengeResponse 处理函数"
+  },
+  {
+   "symbol": "iap2_accAuthentication_certSerial",
+   "group": "A",
+   "note": "0xAA06 AccAuthentication certSerial 处理函数"
+  },
+  {
+   "symbol": "_iAP2LinkGetSessionForService",
+   "group": "X",
+   "note": "按服务号取会话对象"
+  },
+  {
+   "symbol": "_iAP2LinkGetSessionInfo",
+   "group": "X",
+   "note": "按服务号取会话信息（含 link+0x120/+0x128 遍历）"
+  },
+  {
+   "symbol": "_iap2_sessionRouter_processSessionData",
+   "group": "X",
+   "note": "会话路由器：把链路投递的数据分派到具体会话"
+  },
+  {
+   "symbol": "_acc_protocolRouter_routeIncomingData",
+   "group": "X",
+   "note": "协议路由器入口（iAP1/iAP2 选择）"
+  },
+  {
+   "symbol": "_acc_protocolRouter_initProtocolLayer",
+   "group": "X",
+   "note": "协议层初始化（注册解析器/处理器）"
+  },
+  {
+   "symbol": "_acc_protocolRouter_destroyProtocolLayer",
+   "group": "X",
+   "note": "协议层销毁（会话释放路径）"
+  },
+  {
+   "symbol": "_acc_endpoint2_processIncomingData",
+   "group": "X",
+   "note": "endpoint 收数据 → 协议路由器"
+  },
+  {
+   "symbol": "_acc_endpoint2_sendOutgoingData",
+   "group": "X",
+   "note": "endpoint 发数据（下行方向）"
+  },
+  {
+   "symbol": "_iAP2MsgInit",
+   "group": "X",
+   "note": "消息对象初始化（SOM/长度）"
+  },
+  {
+   "symbol": "_iAP2MsgGetMsgID",
+   "group": "X",
+   "note": "取消息 ID"
+  },
+  {
+   "symbol": "_iAP2MsgGetMsgLen",
+   "group": "X",
+   "note": "取消息长度"
+  },
+  {
+   "symbol": "_iAP2MsgCalcMessageLen",
+   "group": "X",
+   "note": "计算编码后长度"
+  },
+  {
+   "symbol": "_iAP2MsgSendControl",
+   "group": "X",
+   "note": "控制消息发送入口"
+  },
+  {
+   "symbol": "_iAP2MsgSendCtlDataWithSentCallback",
+   "group": "X",
+   "note": "带发送回调的控制消息发送（内含按服务号取会话）"
+  },
+  {
+   "symbol": "_iAP2MsgPreSendCtlProcess",
+   "group": "X",
+   "note": "发送前处理"
+  },
+  {
+   "symbol": "_iAP2MsgSendControlAndCallbackOnAck",
+   "group": "X",
+   "note": "ACK 后回调的控制消息发送"
+  },
+  {
+   "symbol": "_iAP2MsgSetCallbackOnSend",
+   "group": "X",
+   "note": "设置发送回调"
+  },
+  {
+   "symbol": "_iAP2MsgGetSom",
+   "group": "X",
+   "note": "取 SOM（0xFF/0x5A 之类）"
+  },
+  {
+   "symbol": "_iap2_sessionControl_init",
+   "group": "C",
+   "note": "控制会话初始化"
+  },
+  {
+   "symbol": "_iap2_sessionControl_cleanup",
+   "group": "C",
+   "note": "控制会话清理"
+  },
+  {
+   "symbol": "_iap2_sessionControl_start",
+   "group": "C",
+   "note": "控制会话启动"
+  },
+  {
+   "symbol": "_iap2_sessionControl_getVersion",
+   "group": "C",
+   "note": "版本查询"
+  },
+  {
+   "symbol": "_iap2_sessionControl_parseIncomingMessage",
+   "group": "C",
+   "note": "控制会话消息解析/分派"
+  },
+  {
+   "symbol": "_iap2_sessionControl_accAuthenticationStateChanged",
+   "group": "C",
+   "note": "认证状态变化 → 控制会话门控"
+  },
+  {
+   "symbol": "_iap2_sessionControl_identificationStateChanged",
+   "group": "C",
+   "note": "识别状态变化 → 控制会话门控"
+  },
+  {
+   "symbol": "_iap2_sessionControl_authorizationHook_authentication",
+   "group": "C",
+   "note": "认证授权钩子"
+  },
+  {
+   "symbol": "_iap2_sessionControl_authorizationHook_identification",
+   "group": "C",
+   "note": "识别授权钩子"
+  },
+  {
+   "symbol": "_iap2_sessionControl_sendOutgoingMessage",
+   "group": "C",
+   "note": "控制会话发消息"
+  },
+  {
+   "symbol": "_iap2_sessionControl_sendOutgoingMessageAndCallbackOnACK",
+   "group": "C",
+   "note": "控制会话发消息并在 ACK 后回调"
+  },
+  {
+   "symbol": "___iap2_sessionControl_cleanup_block_invoke",
+   "group": "C",
+   "note": "cleanup block 1"
+  },
+  {
+   "symbol": "___iap2_sessionControl_cleanup_block_invoke_2",
+   "group": "C",
+   "note": "cleanup block 2"
+  },
+  {
+   "symbol": "_iap2_CarPlayStartSession",
+   "group": "C",
+   "note": "0x4301 处理器（会话启动消息）"
+  },
+  {
+   "symbol": "_iAP2LinkActionHandleData",
+   "group": "X",
+   "note": "收到数据动作：查会话并调用 DataReadyCB 的地方"
+  },
+  {
+   "symbol": "_iAP2LinkQueueSendDataPacketInternal",
+   "group": "X",
+   "note": "发送队列（读会话表取会话号）"
+  },
+  {
+   "symbol": "_iAP2LinkProcessOutQueue",
+   "group": "X",
+   "note": "出队列处理（读会话表）"
+  },
+  {
+   "symbol": "_iAP2LinkQueueSendDataWithSentCallback",
+   "group": "X",
+   "note": "带回调的入队（读会话表）"
+  },
+  {
+   "symbol": "_iAP2LinkGetSessSendPckListCount",
+   "group": "X",
+   "note": "每会话待发包计数"
+  },
+  {
+   "symbol": "_iAP2LinkSendRST",
+   "group": "X",
+   "note": "RST：清会话表"
+  },
+  {
+   "symbol": "_iAP2LinkProcessInOrderPacketCMD",
+   "group": "X",
+   "note": "按消息 ID 分派（会话层消息入口）"
+  },
+  {
+   "symbol": "_iAP2LinkCommandIsFeatureSetValid",
+   "group": "X",
+   "note": "特性集校验"
+  },
+  {
+   "symbol": "_iAP2LinkCommandValidateFeatureSets",
+   "group": "X",
+   "note": "特性集校验"
+  },
+  {
+   "symbol": "_iap2_endpoint_create",
+   "group": "X",
+   "note": "iAP2 endpoint 对象创建"
+  },
+  {
+   "symbol": "_iap2_endpoint_setInitialized",
+   "group": "X",
+   "note": "endpoint 已初始化标志"
+  },
+  {
+   "symbol": "_iap2_features_registerMessageHandlers",
+   "group": "X",
+   "note": "全局消息处理器注册"
+  },
+  {
+   "symbol": "_iap2_features_createFeatures",
+   "group": "X",
+   "note": "特性创建"
+  },
+  {
+   "symbol": "_iap2_features_createFeature",
+   "group": "X",
+   "note": "单特性创建"
+  },
+  {
+   "symbol": "_iap2_features_startFeatureFromDevice",
+   "group": "X",
+   "note": "从设备侧启动特性（门控）"
+  },
+  {
+   "symbol": "_iap2_features_startFeaturesFromDevice",
+   "group": "X",
+   "note": "批量启动特性"
+  },
+  {
+   "symbol": "_iap2_feature_getFeature",
+   "group": "X",
+   "note": "查特性位（门控）"
+  },
+  {
+   "symbol": "_iap2_feature_getFeatureInfoEntries",
+   "group": "X",
+   "note": "取特性信息表"
+  },
+  {
+   "symbol": "_iap2_features_destroyFeatures",
+   "group": "X",
+   "note": "销毁特性（拆除路径）"
+  },
+  {
+   "symbol": "_iap2_sessionFileTransfer_init",
+   "group": "C",
+   "note": "文件传输会话 init"
+  },
+  {
+   "symbol": "_iap2_sessionFileTransfer_start",
+   "group": "C",
+   "note": "文件传输会话 start"
+  },
+  {
+   "symbol": "_iap2_sessionFileTransfer_getVersion",
+   "group": "C",
+   "note": "文件传输会话版本"
+  },
+  {
+   "symbol": "_iap2_sessionFileTransfer_cleanup",
+   "group": "C",
+   "note": "文件传输会话 cleanup"
+  },
+  {
+   "symbol": "_iap2_sessionFileTransfer_handleDatagram",
+   "group": "C",
+   "note": "文件传输会话收数据"
+  },
+  {
+   "symbol": "_iap2_sessionFileTransfer_findTransferEntry",
+   "group": "C",
+   "note": "文件传输条目查找"
+  },
+  {
+   "symbol": "_iap2_sessionLog_init",
+   "group": "C",
+   "note": "会话日志 init"
+  },
+  {
+   "symbol": "_iap2_sessionLog_start",
+   "group": "C",
+   "note": "会话日志 start"
+  },
+  {
+   "symbol": "_iap2_sessionLog_cleanup",
+   "group": "C",
+   "note": "会话日志 cleanup"
+  },
+  {
+   "symbol": "_iap2_sessionLog_parseIncomingMessage",
+   "group": "C",
+   "note": "会话日志收消息"
+  },
+  {
+   "symbol": "_iap2_sessionLog_sendOutgoingMessage",
+   "group": "C",
+   "note": "会话日志发消息"
+  },
+  {
+   "symbol": "__sendOutgoingMessage",
+   "group": "C",
+   "note": "会话发送实现（被两个 sessionControl_sendOutgoingMessage 尾调用）"
+  },
+  {
+   "symbol": "_iap2_messageHandlers_setHandler",
+   "group": "X",
+   "note": "全局消息处理器注册（msgID → handler）"
+  },
+  {
+   "symbol": "_iap2_messageHandlers_getHandler",
+   "group": "X",
+   "note": "全局消息处理器查找"
+  },
+  {
+   "symbol": "_iap2_identification_isIdentifiedForIncomingMessageID",
+   "group": "X",
+   "note": "入站消息的识别门控"
+  },
+  {
+   "symbol": "_iap2_identification_isIdentifiedForOutgoingMessageID",
+   "group": "X",
+   "note": "出站消息的识别门控"
+  },
+  {
+   "symbol": "_iap2_identification_isIdentifiedForFeature",
+   "group": "X",
+   "note": "按特性位的识别门控"
+  },
+  {
+   "symbol": "_iap2_identification_isIdentifiedForCarPlay",
+   "group": "X",
+   "note": "CarPlay 识别门控"
+  },
+  {
+   "symbol": "_iap2_features_registerIdentificationParamHandlers",
+   "group": "X",
+   "note": "识别参数处理器注册"
+  },
+  {
+   "symbol": "_iap2_endpoint_linkStateChanged",
+   "group": "X",
+   "note": "链路状态变化 → 会话启停（门控）"
+  },
+  {
+   "symbol": "_iap2_endpoint_processIncomingData",
+   "group": "X",
+   "note": "endpoint 收数据"
+  },
+  {
+   "symbol": "_iap2_endpoint_sendOutgoingData",
+   "group": "X",
+   "note": "endpoint 发数据"
+  },
+  {
+   "symbol": "_iap2_endpoint_destroy",
+   "group": "X",
+   "note": "endpoint 销毁（拆除）"
+  },
+  {
+   "symbol": "_iap2_endpoint_isInitialized",
+   "group": "X",
+   "note": "endpoint 初始化状态"
+  },
+  {
+   "symbol": "_iap2_endpoint_getMaxSendPayloadSize",
+   "group": "X",
+   "note": "最大发送载荷"
+  },
+  {
+   "symbol": "_iap2_endpoint_getLinkMaxCumAck",
+   "group": "X",
+   "note": "CumAck 参数"
+  },
+  {
+   "symbol": "_iAP2MsgGetParamID",
+   "group": "X",
+   "note": "取参数 ID"
+  },
+  {
+   "symbol": "_iAP2MsgGetParamValueLen",
+   "group": "X",
+   "note": "取参数值长度"
+  },
+  {
+   "symbol": "_iAP2MsgGetFirstParam",
+   "group": "X",
+   "note": "首个参数"
+  },
+  {
+   "symbol": "_iAP2MsgGetNextParam",
+   "group": "X",
+   "note": "下一参数"
+  },
+  {
+   "symbol": "_iAP2MsgInitParam",
+   "group": "X",
+   "note": "写参数头"
+  },
+  {
+   "symbol": "_iAP2MsgAddU8Param",
+   "group": "X",
+   "note": "加 U8 参数"
+  },
+  {
+   "symbol": "_iAP2MsgParserInit",
+   "group": "X",
+   "note": "消息解析器初始化（SOM 0x4040）"
+  },
+  {
+   "symbol": "_iAP2MsgParserConsumeByte",
+   "group": "X",
+   "note": "逐字节消息解析"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "image": "AirPlaySender",
+ "functions": [
+  {"symbol": "_NROcmM", "group": "FP", "note": "混淆名 FairPlay 辅助（12B，取地址用）"},
+  {"symbol": "_U4HBs", "group": "FP", "note": "混淆名：FairPlay 加密 master key 的实现体"},
+  {"symbol": "_Mib5yocT", "group": "FP", "note": "混淆名：FairPlay 握手状态机（请求/响应生成）"},
+  {"symbol": "_zxcm2Qme0x", "group": "FP", "note": "混淆名：FairPlay 辅助"},
+  {"symbol": "_IPaI1oem5iL", "group": "FP", "note": "混淆名：FairPlay 上下文销毁"},
+  {"symbol": "_cp2g1b9ro", "group": "FP", "note": "混淆名：FairPlay 上下文创建/装载"},
+  {"symbol": "_jEHf8Xzsv8K", "group": "FP", "note": "混淆名：释放 FairPlay 输出缓冲"},
+  {"symbol": "_OowSGu", "group": "FP", "note": "混淆名：FairPlay 辅助"}
+ ]
+}

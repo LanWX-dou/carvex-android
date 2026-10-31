@@ -1,0 +1,15 @@
+# pklg: bluetoothd-hci-latest.pklg  size=286777
+# 解析：pklg 记录 -> ACL 重组 -> L2CAP -> 按 UUID 字节匹配 -> SDP 元素按 [type:5][size:3] 解码
+# 记录数=4392 ACL包=250 L2CAP帧=250
+# L2CAP CID 分布: {'0x1': 68, '0x108': 11, '0x7': 3, '0x50b': 1, '0x208': 55, '0x309': 17, '0x80d': 1, '0x90e': 1, '0x40a': 9, '0x60b': 1, '0xa0b': 8, '0x70c': 8, '0xc0e': 1, '0xd0b': 1, '0xe0e': 1, '0xf0b': 63, '0x100e': 1}
+### cid=0x0108 handle=0xb 命中 WiapSink (BE)
+  PDU=5 tid=0x0008 paramlen=69 raw=0500080045004235400900000a0001000809000135111c00000000decafadedecadeafdecacaff090004350c350319010035051900030805090005350319100209010025046941503200
+   AttributeListByteCount: 66
+   AttributeList: SEQ[UINT16 0, UINT32 65544, UINT16 1, SEQ[UUID128 00000000-deca-fade-deca-deafdecacaff], UINT16 4, SEQ[SEQ[UUID16 0100----], SEQ[UUID16 0003----, UINT8 5]], UINT16 5, SEQ[UUID16 1002----], UINT16 256, TEXT "iAP2"]
+   Continuation: 00
+### cid=0x0108 handle=0xb 命中 Carplay (LE)
+  PDU=5 tid=0x0007 paramlen=69 raw=0500070045004235400900000a0001000709000135111cd31fbf505d572797a24041cd484388ec090004350c350319010035051900030804090005350319100209010025046941503200
+   AttributeListByteCount: 66
+   AttributeList: SEQ[UINT16 0, UINT32 65543, UINT16 1, SEQ[UUID128 d31fbf50-5d57-2797-a240-41cd484388ec], UINT16 4, SEQ[SEQ[UUID16 0100----], SEQ[UUID16 0003----, UINT8 4]], UINT16 5, SEQ[UUID16 1002----], UINT16 256, TEXT "iAP2"]
+   Continuation: 00
+

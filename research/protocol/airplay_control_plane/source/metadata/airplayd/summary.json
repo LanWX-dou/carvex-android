@@ -1,0 +1,38 @@
+{
+  "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\usr\\libexec\\airplayd",
+  "size": 89840,
+  "sha256": "22b44b6110d2f1a12993f7a8a1c262dd7cc1ee9219277aefb0d37a0897478195",
+  "magic": "0xfeedfacf",
+  "cputype": 16777228,
+  "cpusubtype": 2147483650,
+  "filetype": 2,
+  "ncmds": 34,
+  "sizeofcmds": 3208,
+  "flags": "0x200085",
+  "uuid": "5ad200ce-98dd-305d-88e4-d25deecc5e7d",
+  "encryption": null,
+  "entry": {
+    "entryoff": 3312,
+    "stacksize": 0
+  },
+  "segment_count": 5,
+  "section_count": 13,
+  "function_starts": 1,
+  "symtab": {
+    "symoff": 49816,
+    "nsyms": 25,
+    "stroff": 50384,
+    "strsize": 464
+  },
+  "symbol_count": 2,
+  "sect_create_date": null,
+  "text_section": {
+    "segment": "__TEXT",
+    "section": "__text",
+    "addr": 4294970608,
+    "size": 732,
+    "fileoff": 3312,
+    "align": 2,
+    "flags": 2147484672
+  }
+}

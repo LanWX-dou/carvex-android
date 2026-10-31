@@ -1,0 +1,6 @@
+[submodule "android"]
+	path = android
+	url = https://github.com/iamr0s/carvex-android.git
+[submodule "firmware"]
+	path = firmware
+	url = https://github.com/iamr0s/carvex-ios-firmware.git

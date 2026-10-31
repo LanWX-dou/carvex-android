@@ -1,0 +1,416 @@
+[
+  {
+    "segment": "__TEXT",
+    "section": "__text",
+    "addr": 4294977560,
+    "size": 610048,
+    "fileoff": 10264,
+    "align": 2,
+    "flags": 2147484672
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__auth_stubs",
+    "addr": 4295587608,
+    "size": 6352,
+    "fileoff": 620312,
+    "align": 2,
+    "flags": 2147484680
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__objc_stubs",
+    "addr": 4295593984,
+    "size": 71200,
+    "fileoff": 626688,
+    "align": 5,
+    "flags": 2147484672
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__objc_methlist",
+    "addr": 4295665184,
+    "size": 31644,
+    "fileoff": 697888,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__const",
+    "addr": 4295696832,
+    "size": 1810,
+    "fileoff": 729536,
+    "align": 4,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__gcc_except_tab__TEXT",
+    "addr": 4295698644,
+    "size": 6496,
+    "fileoff": 731348,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__cstring",
+    "addr": 4295705152,
+    "size": 26578,
+    "fileoff": 737856,
+    "align": 4,
+    "flags": 2
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__objc_methname",
+    "addr": 4295731744,
+    "size": 100996,
+    "fileoff": 764448,
+    "align": 4,
+    "flags": 2
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__oslogstring",
+    "addr": 4295832752,
+    "size": 71041,
+    "fileoff": 865456,
+    "align": 4,
+    "flags": 2
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__objc_classname__TEXT",
+    "addr": 4295903808,
+    "size": 4363,
+    "fileoff": 936512,
+    "align": 4,
+    "flags": 2
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__objc_methtype",
+    "addr": 4295908176,
+    "size": 18830,
+    "fileoff": 940880,
+    "align": 4,
+    "flags": 2
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__dlopen_cstrs",
+    "addr": 4295927006,
+    "size": 366,
+    "fileoff": 959710,
+    "align": 0,
+    "flags": 2
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__swift5_typeref__TEXT",
+    "addr": 4295927372,
+    "size": 458,
+    "fileoff": 960076,
+    "align": 1,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__constg_swiftt",
+    "addr": 4295927832,
+    "size": 332,
+    "fileoff": 960536,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__swift5_reflstr__TEXT",
+    "addr": 4295928176,
+    "size": 549,
+    "fileoff": 960880,
+    "align": 4,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__swift5_fieldmd__TEXT",
+    "addr": 4295928728,
+    "size": 340,
+    "fileoff": 961432,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__swift5_builtin__TEXT",
+    "addr": 4295929068,
+    "size": 20,
+    "fileoff": 961772,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__swift5_assocty__TEXT",
+    "addr": 4295929088,
+    "size": 24,
+    "fileoff": 961792,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__swift5_proto",
+    "addr": 4295929112,
+    "size": 12,
+    "fileoff": 961816,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__swift5_types",
+    "addr": 4295929124,
+    "size": 20,
+    "fileoff": 961828,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__swift5_capture__TEXT",
+    "addr": 4295929144,
+    "size": 272,
+    "fileoff": 961848,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__info_plist",
+    "addr": 4295929416,
+    "size": 1436,
+    "fileoff": 962120,
+    "align": 0,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__unwind_info",
+    "addr": 4295930852,
+    "size": 8712,
+    "fileoff": 963556,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__const",
+    "addr": 4295950336,
+    "size": 14192,
+    "fileoff": 983040,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__cfstring",
+    "addr": 4295964528,
+    "size": 32768,
+    "fileoff": 997232,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_classlist__DATA_CONST",
+    "addr": 4295997296,
+    "size": 680,
+    "fileoff": 1030000,
+    "align": 3,
+    "flags": 268435456
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_catlist",
+    "addr": 4295997976,
+    "size": 48,
+    "fileoff": 1030680,
+    "align": 3,
+    "flags": 268435456
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_protolist__DATA_CONST",
+    "addr": 4295998024,
+    "size": 640,
+    "fileoff": 1030728,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_imageinfo__DATA_CONST",
+    "addr": 4295998664,
+    "size": 8,
+    "fileoff": 1031368,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_protorefs__DATA_CONST",
+    "addr": 4295998672,
+    "size": 184,
+    "fileoff": 1031376,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_superrefs__DATA_CONST",
+    "addr": 4295998856,
+    "size": 480,
+    "fileoff": 1031560,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_intobj",
+    "addr": 4295999336,
+    "size": 2352,
+    "fileoff": 1032040,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_arraydata__DATA_CONST",
+    "addr": 4296001688,
+    "size": 3568,
+    "fileoff": 1034392,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_arrayobj",
+    "addr": 4296005256,
+    "size": 192,
+    "fileoff": 1037960,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_floatobj",
+    "addr": 4296005448,
+    "size": 16,
+    "fileoff": 1038152,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_dictobj",
+    "addr": 4296005464,
+    "size": 120,
+    "fileoff": 1038168,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__auth_got",
+    "addr": 4296005584,
+    "size": 3192,
+    "fileoff": 1038288,
+    "align": 3,
+    "flags": 6
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__got",
+    "addr": 4296008776,
+    "size": 2472,
+    "fileoff": 1041480,
+    "align": 3,
+    "flags": 6
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__auth_ptr",
+    "addr": 4296011248,
+    "size": 192,
+    "fileoff": 1043952,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA",
+    "section": "__objc_const",
+    "addr": 4296015872,
+    "size": 83960,
+    "fileoff": 1048576,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA",
+    "section": "__objc_selrefs",
+    "addr": 4296099832,
+    "size": 20648,
+    "fileoff": 1132536,
+    "align": 3,
+    "flags": 268435461
+  },
+  {
+    "segment": "__DATA",
+    "section": "__objc_ivar",
+    "addr": 4296120480,
+    "size": 1996,
+    "fileoff": 1153184,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA",
+    "section": "__objc_data",
+    "addr": 4296122480,
+    "size": 7432,
+    "fileoff": 1155184,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA",
+    "section": "__data",
+    "addr": 4296129920,
+    "size": 7792,
+    "fileoff": 1162624,
+    "align": 4,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA",
+    "section": "__bss",
+    "addr": 4296137712,
+    "size": 832,
+    "fileoff": 0,
+    "align": 4,
+    "flags": 1
+  },
+  {
+    "segment": "__DATA",
+    "section": "__common",
+    "addr": 4296138544,
+    "size": 48,
+    "fileoff": 0,
+    "align": 3,
+    "flags": 1
+  }
+]

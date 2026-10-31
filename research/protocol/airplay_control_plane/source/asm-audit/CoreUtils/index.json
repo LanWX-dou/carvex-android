@@ -1,0 +1,101 @@
+{
+ "image": "CoreUtils",
+ "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+ "source_size": 2232432,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 9,
+ "functions": [
+  {
+   "symbol": "_poly1305_update",
+   "address": "0x18be48df8",
+   "end": "0x18be48ef0",
+   "size": 248,
+   "group": "crypto-audit",
+   "raw_sha256": "a82d1271547eee1ed8a387108df55300f4f04df0f214cf654fdb8305a0279bc9",
+   "bin": "f_18be48df8.bin",
+   "asm": "f_18be48df8.s"
+  },
+  {
+   "symbol": "_chacha20_poly1305_add_aad",
+   "address": "0x18be48ef0",
+   "end": "0x18be48f28",
+   "size": 56,
+   "group": "crypto-audit",
+   "raw_sha256": "c586042fbdb8680d5a8131a728f8fcc603d88a181397d367fceea7ea2f29c5a0",
+   "bin": "f_18be48ef0.bin",
+   "asm": "f_18be48ef0.s"
+  },
+  {
+   "symbol": "_chacha20_poly1305_init_64x64",
+   "address": "0x18be4a104",
+   "end": "0x18be4a1f8",
+   "size": 244,
+   "group": "crypto-audit",
+   "raw_sha256": "8fd141c0f823aa3ab1ac8247ef3e9fb855aa0bf3cde5c3b261d1d5381cf7a684",
+   "bin": "f_18be4a104.bin",
+   "asm": "f_18be4a104.s"
+  },
+  {
+   "symbol": "_chacha20_poly1305_decrypt",
+   "address": "0x18be4b298",
+   "end": "0x18be4b330",
+   "size": 152,
+   "group": "crypto-audit",
+   "raw_sha256": "18f37485bdb997abaea996d7388068aaf8eaf5458398cfd5835a16b74e612d96",
+   "bin": "f_18be4b298.bin",
+   "asm": "f_18be4b298.s"
+  },
+  {
+   "symbol": "_chacha20_poly1305_verify",
+   "address": "0x18be4b330",
+   "end": "0x18be4b4c8",
+   "size": 408,
+   "group": "crypto-audit",
+   "raw_sha256": "4f5676d8432770961dc91030b079a88a5104be950db0bfa2a4eadcb6d6c58232",
+   "bin": "f_18be4b330.bin",
+   "asm": "f_18be4b330.s"
+  },
+  {
+   "symbol": "_chacha20_poly1305_final",
+   "address": "0x18be4d06c",
+   "end": "0x18be4d1f4",
+   "size": 392,
+   "group": "crypto-audit",
+   "raw_sha256": "4e0220d9a10152d0ace741ded83aef448416e3d57b7f71e968755767fb9771ab",
+   "bin": "f_18be4d06c.bin",
+   "asm": "f_18be4d06c.s"
+  },
+  {
+   "symbol": "_chacha20_poly1305_encrypt",
+   "address": "0x18be4d1f4",
+   "end": "0x18be4d298",
+   "size": 164,
+   "group": "crypto-audit",
+   "raw_sha256": "92efc4b904381a4cca02cc4c1593ff606b6277373fc675533541b3c437ddcd2c",
+   "bin": "f_18be4d1f4.bin",
+   "asm": "f_18be4d1f4.s"
+  },
+  {
+   "symbol": "__chacha20_poly1305_encrypt_all",
+   "address": "0x18be55eec",
+   "end": "0x18be560fc",
+   "size": 528,
+   "group": "crypto-audit",
+   "raw_sha256": "c25473177357ec3e4351a18d67340d645a87a3fb7339de6bb055e3848578ff8b",
+   "bin": "f_18be55eec.bin",
+   "asm": "f_18be55eec.s"
+  },
+  {
+   "symbol": "__chacha20_poly1305_decrypt_all",
+   "address": "0x18be578a4",
+   "end": "0x18be57b0c",
+   "size": 616,
+   "group": "crypto-audit",
+   "raw_sha256": "1450fc70cc9eb0bb82c3b5aa519e8e7b34e27dbd1d60def5e5b8c17851b2e3ee",
+   "bin": "f_18be578a4.bin",
+   "asm": "f_18be578a4.s"
+  }
+ ],
+ "missing_symbols": []
+}

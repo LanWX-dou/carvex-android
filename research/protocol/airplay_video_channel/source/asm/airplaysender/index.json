@@ -1,0 +1,241 @@
+{
+ "image": "airplaysender",
+ "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+ "source_size": 4397312,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 23,
+ "functions": [
+  {
+   "symbol": "_APEndpointStreamScreenCreate",
+   "address": "0x251b40be8",
+   "end": "0x251b4290c",
+   "size": 7460,
+   "group": "S",
+   "raw_sha256": "6024da51820542c430e80e109c2632aa429be7d64fb9dad4700b7357a37d513b",
+   "bin": "f_251b40be8.bin",
+   "asm": "f_251b40be8.s"
+  },
+  {
+   "symbol": "_carEndpoint_setupScreenStreams",
+   "address": "0x251aeda20",
+   "end": "0x251aef938",
+   "size": 7960,
+   "group": "S",
+   "raw_sha256": "0cc7e507acd3b022841daaaa668307b103a55bbe1784378d7705ee6b0662eabd",
+   "bin": "f_251aeda20.bin",
+   "asm": "f_251aeda20.s"
+  },
+  {
+   "symbol": "_endpoint_setupStreams",
+   "address": "0x251b371ac",
+   "end": "0x251b37df4",
+   "size": 3144,
+   "group": "S",
+   "raw_sha256": "86e170091c249079f4fc010a8020efdc7be8cce87ad494cef89e694f35790e9f",
+   "bin": "f_251b371ac.bin",
+   "asm": "f_251b371ac.s"
+  },
+  {
+   "symbol": "_endpoint_setupScreenStream",
+   "address": "0x251b3db28",
+   "end": "0x251b3dd30",
+   "size": 520,
+   "group": "S",
+   "raw_sha256": "5ddefbe7058ae44de4fce9d503e9cd32a01f7961d70caf2aec846a0bfac43982",
+   "bin": "f_251b3db28.bin",
+   "asm": "f_251b3db28.s"
+  },
+  {
+   "symbol": "_apsession_setupStreamCreatingResponseInternal",
+   "address": "0x2519bbf24",
+   "end": "0x2519bd5a8",
+   "size": 5764,
+   "group": "S",
+   "raw_sha256": "2474956bad6630ee63b02d72eb56748aa49531735f5e4f3772422c313bb6655c",
+   "bin": "f_2519bbf24.bin",
+   "asm": "f_2519bbf24.s"
+  },
+  {
+   "symbol": "_sdpsession_sendSetup",
+   "address": "0x251a9f364",
+   "end": "0x251a9f880",
+   "size": 1308,
+   "group": "S",
+   "raw_sha256": "7bbd385cd064940885f094526c7ae6750b794ce7c11ab83ba39245aca94537ac",
+   "bin": "f_251a9f364.bin",
+   "asm": "f_251a9f364.s"
+  },
+  {
+   "symbol": "_screenstream_dequeueAndProcessSampleBuffer",
+   "address": "0x2519b0014",
+   "end": "0x2519b15a4",
+   "size": 5520,
+   "group": "R",
+   "raw_sha256": "3294e357f7d3416ee6f60ad4285a9a8e85e4af770c0655cb4a90e27da2c0de9d",
+   "bin": "f_2519b0014.bin",
+   "asm": "f_2519b0014.s"
+  },
+  {
+   "symbol": "_sbpd_createConfigBBuf",
+   "address": "0x251b43fcc",
+   "end": "0x251b44300",
+   "size": 820,
+   "group": "R",
+   "raw_sha256": "c706decdcd0e1212d9edf7b01eecf6e8e08fe728bfa95420288f8903a67ba38a",
+   "bin": "f_251b43fcc.bin",
+   "asm": "f_251b43fcc.s"
+  },
+  {
+   "symbol": "_screenstream_initDisplayInfo",
+   "address": "0x251b443cc",
+   "end": "0x251b44ea0",
+   "size": 2772,
+   "group": "R",
+   "raw_sha256": "8bffbec0c33fa30cb8200298f469c32633a8b099aad6631607ab1aad256faa81",
+   "bin": "f_251b443cc.bin",
+   "asm": "f_251b443cc.s"
+  },
+  {
+   "symbol": "_sbpd_encryptBBuf",
+   "address": "0x2519b508c",
+   "end": "0x2519b52ec",
+   "size": 608,
+   "group": "E",
+   "raw_sha256": "bf74ed3511dceffa8be66a9e35c94e18d9b3aba4922163b80dfc01f6f8c4aeae",
+   "bin": "f_2519b508c.bin",
+   "asm": "f_2519b508c.s"
+  },
+  {
+   "symbol": "-[APEndpointStreamScreenAVCWrapper createVideoStreamConfig:withDirection:screenOptions:previousConfig:]",
+   "address": "0x251a773c4",
+   "end": "0x251a77738",
+   "size": 884,
+   "group": "V",
+   "raw_sha256": "438bc35cbaba311f7ee8fe710ead39cf6fe9dd7cb6613817706e0890fb47d621",
+   "bin": "f_251a773c4.bin",
+   "asm": "f_251a773c4.s"
+  },
+  {
+   "symbol": "-[APEndpointStreamScreenAVCWrapper getVideoResolutionFromOptions:width:height:]",
+   "address": "0x251a77178",
+   "end": "0x251a77208",
+   "size": 144,
+   "group": "V",
+   "raw_sha256": "98dccc76e21906ec43e8d93139fbeae4ba41073f199fcf72e16b944ecedd31cd",
+   "bin": "f_251a77178.bin",
+   "asm": "f_251a77178.s"
+  },
+  {
+   "symbol": "-[APEndpointStreamScreenAVCWrapper initializeNegotiatorWithMode:presentationMode:hdrMirroringSupported:]",
+   "address": "0x251a76374",
+   "end": "0x251a76630",
+   "size": 700,
+   "group": "V",
+   "raw_sha256": "0bd5b09a419d7d3420d494a71d44d5f152768413ec1323eed39db53fdeba725f",
+   "bin": "f_251a76374.bin",
+   "asm": "f_251a76374.s"
+  },
+  {
+   "symbol": "negotiationDataForPresentationMode",
+   "address": "0x251a779d8",
+   "end": "0x251a779f0",
+   "size": 24,
+   "group": "V",
+   "raw_sha256": "70286e364ee0366da42b60202dd78645151f7a69b6634341ca259e59b8db3cb4",
+   "bin": "f_251a779d8.bin",
+   "asm": "f_251a779d8.s"
+  },
+  {
+   "symbol": "_screenstream_Control",
+   "address": "0x251b438e8",
+   "end": "0x251b43c64",
+   "size": 892,
+   "group": "C",
+   "raw_sha256": "06b2a5663c5934436491f3c2653de50e23473b23ccb393a7461c006bf20a2ff2",
+   "bin": "f_251b438e8.bin",
+   "asm": "f_251b438e8.s"
+  },
+  {
+   "symbol": "_screenstream_handleFatalError",
+   "address": "0x251b43140",
+   "end": "0x251b432ac",
+   "size": 364,
+   "group": "C",
+   "raw_sha256": "b5267327c0748bf692e967da725445b087bba55417c6893dffa04e594c912af6",
+   "bin": "f_251b43140.bin",
+   "asm": "f_251b43140.s"
+  },
+  {
+   "symbol": "_screenstream_cleanup",
+   "address": "0x251b42e34",
+   "end": "0x251b42fd4",
+   "size": 416,
+   "group": "C",
+   "raw_sha256": "64e55eacf54aa82b5ed572e898e9c462a4868faf016036590269a04a772f9c07",
+   "bin": "f_251b42e34.bin",
+   "asm": "f_251b42e34.s"
+  },
+  {
+   "symbol": "_screenstreamudp_handleClearScreen",
+   "address": "0x251a761d8",
+   "end": "0x251a76260",
+   "size": 136,
+   "group": "C",
+   "raw_sha256": "374e8a9a76ddb4534157210e642b388473af60873191606a61189067b454c516",
+   "bin": "f_251a761d8.bin",
+   "asm": "f_251a761d8.s"
+  },
+  {
+   "symbol": "_coreUtilsKeyHolder_CreateDerivedKey",
+   "address": "0x2519bffc8",
+   "end": "0x2519c0148",
+   "size": 384,
+   "group": "E",
+   "raw_sha256": "1af0b66a5395ef7848090e3cfecf4d06c4858157c1707ae31703eb6a8dd260d7",
+   "bin": "f_2519bffc8.bin",
+   "asm": "f_2519bffc8.s"
+  },
+  {
+   "symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForStream",
+   "address": "0x2519bfecc",
+   "end": "0x2519bffc8",
+   "size": 252,
+   "group": "E",
+   "raw_sha256": "cebfd84d456170ad006012b9c86fc3dcdd83df80e25dcb99399b0e02bbba8d31",
+   "bin": "f_2519bfecc.bin",
+   "asm": "f_2519bfecc.s"
+  },
+  {
+   "symbol": "_APKeyHolderCoreUtilsEncryptionContextDataStreamCreateWithSeed",
+   "address": "0x251a356c8",
+   "end": "0x251a356f8",
+   "size": 48,
+   "group": "E",
+   "raw_sha256": "1537df06daa46ae69c6e0a286be4e91a882401de8e87e7897820e474cf3836eb",
+   "bin": "f_251a356c8.bin",
+   "asm": "f_251a356c8.s"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CreateDerivedAESKeyAndIVForLegacyStream",
+   "address": "0x251aa97a0",
+   "end": "0x251aa98fc",
+   "size": 348,
+   "group": "E",
+   "raw_sha256": "89035c4563a2f5d77b4451d5bf21eddc29a14363daabf17a604e81e8ae5c4c95",
+   "bin": "f_251aa97a0.bin",
+   "asm": "f_251aa97a0.s"
+  },
+  {
+   "symbol": "_sdpsession_copyCryptor",
+   "address": "0x251a9fcec",
+   "end": "0x251a9fe4c",
+   "size": 352,
+   "group": "E",
+   "raw_sha256": "8b98c9da4b8a5797dd26c02b2323dbb2cabce3d8f3ac98804e73ab141363e175",
+   "bin": "f_251a9fcec.bin",
+   "asm": "f_251a9fcec.s"
+  }
+ ],
+ "missing_symbols": []
+}

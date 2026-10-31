@@ -1,0 +1,1009 @@
+{
+  "docset": "airplay_rtp_timing",
+  "build": "24A446",
+  "device": "iPhone18,1",
+  "source": {
+    "binary": "AirPlaySender",
+    "path": "source/firmware/AirPlaySender",
+    "size": 4397312,
+    "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+    "uuid": "2d49b39b-fb65-366b-9ab5-6995e5e0febf",
+    "function_starts": 11443,
+    "text_window": [
+      "0x251997a78",
+      "0x251bdbb08"
+    ]
+  },
+  "counts": {
+    "files": 150,
+    "analysis_docs": 12,
+    "spec_docs": 10,
+    "asm_files": 22,
+    "readable_c_files": 15,
+    "exported_functions": 22,
+    "sampling": "22 / 11443 ≈ 0.19%",
+    "audit_asm_functions": 9
+  },
+  "coverage": [
+    {
+      "id": "RT-01",
+      "name": "RTP 头",
+      "status": "部分确认",
+      "evidence": "12 字节固定头、序列号 +2、时间戳 +4、PT +1、整段复制（A01.1/A01.2/A01.3/A01.8/A01.9）",
+      "missing": "第 0 字节语义、SSRC、marker、padding、CSRC",
+      "open": [
+        "OPEN-RTP-2",
+        "OPEN-RTP-3"
+      ],
+      "files": [
+        "analysis/01-rtp-header.md",
+        "spec/01-rtp-format.md"
+      ]
+    },
+    {
+      "id": "RT-02",
+      "name": "扩展头",
+      "status": "部分确认",
+      "evidence": "元素两态、双游标、正常计数C=n+1与4C−3=4n+1（A02/A07/A11.4）",
+      "missing": "音频数据基址B到网络包的映射、B7/L10跨profile语义与长度上限保证",
+      "open": [
+        "OPEN-RTP-4",
+        "OPEN-RTP-5"
+      ],
+      "files": [
+        "analysis/02-extended-header.md",
+        "spec/01-rtp-format.md"
+      ]
+    },
+    {
+      "id": "RT-03",
+      "name": "载荷类型",
+      "status": "部分确认",
+      "evidence": "四字符码→PT 8 项硬编码表、合并模式 PT 改写、接收侧门集合（A03.1–A03.4）",
+      "missing": "四字符码↔编解码器、PT 是否可协商",
+      "open": [
+        "OPEN-RTP-6",
+        "OPEN-RTP-9"
+      ],
+      "files": [
+        "analysis/03-payload-types.md",
+        "spec/01-rtp-format.md"
+      ]
+    },
+    {
+      "id": "RT-04",
+      "name": "序列号",
+      "status": "部分确认",
+      "evidence": "16 位大端、回绕截断、按子包递增（A01.2、A01.9）",
+      "missing": "重复/乱序判定规则、连续性检查的判据",
+      "open": [
+        "OPEN-RTP-8"
+      ],
+      "files": [
+        "analysis/01-rtp-header.md"
+      ]
+    },
+    {
+      "id": "RT-05",
+      "name": "时间戳",
+      "status": "部分确认",
+      "evidence": "32 位大端、子包时间戳 = 包头 − 14 位差值、末子包不减；接口层是 double，写入时 fcvtzu 截断（A01.8、A02.5、A05.5）",
+      "missing": "时钟频率、单位、回绕、与 NTP/网络时钟的关系",
+      "open": [
+        "OPEN-CLK-3",
+        "OPEN-CLK-5"
+      ],
+      "files": [
+        "analysis/01-rtp-header.md",
+        "analysis/05-clock-and-timestamps.md",
+        "spec/02-clock-and-timestamps.md"
+      ]
+    },
+    {
+      "id": "RT-06",
+      "name": "SSRC/流标识",
+      "status": "OPEN",
+      "evidence": "有头部整段复制包含pkt+8..11，未核字段生成/语义使用",
+      "missing": "SSRC语义、多流区分、冲突处理",
+      "open": [
+        "OPEN-RTP-2"
+      ],
+      "files": [
+        "analysis/01-rtp-header.md"
+      ]
+    },
+    {
+      "id": "RT-07",
+      "name": "NTP 同步",
+      "status": "部分确认",
+      "evidence": "内部64B记录/原子索引/double间隔；24B输出与state2门；首次首字段为0重算一次、第二次未检查，默认对象未解析（A05.1–A05.4、A10.3）",
+      "missing": "SR/时钟消息、漂移补偿、平滑算法、NTP/PTP 参与方式",
+      "open": [
+        "OPEN-CLK-4",
+        "OPEN-RUN-2"
+      ],
+      "files": [
+        "analysis/05-clock-and-timestamps.md",
+        "spec/02-clock-and-timestamps.md"
+      ]
+    },
+    {
+      "id": "RT-08",
+      "name": "抖动缓冲（发送缓冲）",
+      "status": "部分确认",
+      "evidence": "内部预留12B/容量1460、非零提交清持有字段；零提交未显式清；Read八参数、第5参为0、乘积u32（A06.1–A06.6、A10.1/A10.2）",
+      "missing": "目标延迟、水位、上下溢策略、池大小、零提交/失败后完整池生命周期",
+      "open": [
+        "OPEN-JIT-1",
+        "OPEN-JIT-2",
+        "OPEN-JIT-3",
+        "OPEN-JIT-4"
+      ],
+      "files": [
+        "analysis/06-jitter-buffer.md",
+        "spec/03-buffers.md"
+      ]
+    },
+    {
+      "id": "RT-09",
+      "name": "丢包处理",
+      "status": "部分确认",
+      "evidence": "环槽序列+1按16位回绕比较；不连续按0x1e日志门记录后返回既有状态，不单独证明网络丢包（A08.1–A08.4、A10.4）",
+      "missing": "丢包后的恢复（重传/插值）、检测窗口",
+      "open": [
+        "OPEN-RTP-12"
+      ],
+      "files": [
+        "analysis/08-loss-and-gaps.md",
+        "spec/04-loss.md"
+      ]
+    },
+    {
+      "id": "RT-10",
+      "name": "统计",
+      "status": "OPEN",
+      "evidence": "未取证",
+      "missing": "丢包率/乱序率/重复率/迟到率的定义与窗口",
+      "open": [
+        "OPEN-RUN-2"
+      ],
+      "files": [
+        "analysis/08-loss-and-gaps.md",
+        "spec/04-loss.md"
+      ]
+    },
+    {
+      "id": "RT-11",
+      "name": "流量控速",
+      "status": "OPEN",
+      "evidence": "未取证（合并数 obj+0x1c 与缓冲容量 1460 是两条相关线索）",
+      "missing": "发送节奏、令牌桶、背压",
+      "open": [
+        "OPEN-RTP-7",
+        "OPEN-JIT-1",
+        "OPEN-RTP-13"
+      ],
+      "files": [
+        "analysis/06-jitter-buffer.md",
+        "analysis/08-loss-and-gaps.md"
+      ]
+    },
+    {
+      "id": "RT-12",
+      "name": "异常与版本",
+      "status": "OPEN",
+      "evidence": "仅见 1481 字节上限、元素数上限、两个缓冲错误码、装配输出与解析布局不一致四条边界",
+      "missing": "断流、时钟跳变、车机差异",
+      "open": [
+        "OPEN-RTP-1",
+        "OPEN-RTP-10",
+        "OPEN-RTP-11",
+        "OPEN-RUN-1"
+      ],
+      "files": [
+        "analysis/01-rtp-header.md",
+        "analysis/06-jitter-buffer.md",
+        "analysis/07-compose-path.md"
+      ]
+    }
+  ],
+  "coverage_summary": {
+    "confirmed": 0,
+    "partial": 8,
+    "open": 4,
+    "open_ids": 23
+  },
+  "open_items": {
+    "OPEN-RTP-2": "STATUS.md",
+    "OPEN-RTP-3": "STATUS.md",
+    "OPEN-RTP-4": "STATUS.md",
+    "OPEN-RTP-5": "STATUS.md",
+    "OPEN-RTP-6": "STATUS.md",
+    "OPEN-RTP-9": "STATUS.md",
+    "OPEN-RTP-8": "STATUS.md",
+    "OPEN-CLK-3": "STATUS.md",
+    "OPEN-CLK-5": "STATUS.md",
+    "OPEN-CLK-4": "STATUS.md",
+    "OPEN-RUN-2": "STATUS.md",
+    "OPEN-JIT-1": "STATUS.md",
+    "OPEN-JIT-3": "STATUS.md",
+    "OPEN-RTP-12": "STATUS.md",
+    "OPEN-RTP-7": "STATUS.md",
+    "OPEN-RTP-1": "STATUS.md",
+    "OPEN-RUN-1": "STATUS.md",
+    "OPEN-RTP-10": "STATUS.md",
+    "OPEN-RTP-11": "STATUS.md",
+    "OPEN-JIT-2": "STATUS.md",
+    "OPEN-RTP-13": "STATUS.md",
+    "OPEN-JIT-4": "STATUS.md"
+  },
+  "open_item_count": 22,
+  "files": [
+    {
+      "path": "STATUS.md",
+      "size": 9606,
+      "sha256": "9ce0c491462b42eceec893bb5c84596e5f8b1457a17488ed40b664a423b9f95c"
+    },
+    {
+      "path": "TASK.md",
+      "size": 13882,
+      "sha256": "d27ce26e927dff342a05d13ae4c9d8004df648df3cc36a17db273558d66979b9"
+    },
+    {
+      "path": "analysis/00-method-and-environment.md",
+      "size": 7787,
+      "sha256": "5b39ea0a14e35a36e13fa37ce7e2db084bf2b30681f50933c4db0974829e7035"
+    },
+    {
+      "path": "analysis/01-rtp-header.md",
+      "size": 10275,
+      "sha256": "05bdde42941ff2271d00a44746be6fe867acb1129ce81fb17a59a90623735767"
+    },
+    {
+      "path": "analysis/02-extended-header.md",
+      "size": 7843,
+      "sha256": "862c242c16bc71282b4d039f4637565312fe3937e99331b386299e31d280bdc6"
+    },
+    {
+      "path": "analysis/03-payload-types.md",
+      "size": 4450,
+      "sha256": "ec06cce0edbb78f5419dd8d30b14339a297b87bf29572605746f590afbe1112b"
+    },
+    {
+      "path": "analysis/05-clock-and-timestamps.md",
+      "size": 5983,
+      "sha256": "c03917f8df1af10170521fb2c32478cb5bfcadd009ce07b7fcc1e75d8004d05c"
+    },
+    {
+      "path": "analysis/06-jitter-buffer.md",
+      "size": 6818,
+      "sha256": "8346ef72c5071bec1a6222f49a457fb62021bb59142afb226b7c0abba7621aff"
+    },
+    {
+      "path": "analysis/07-compose-path.md",
+      "size": 6021,
+      "sha256": "3102415d12ff17eef39b47af01291c5811d90e984eec369f049b6e7286fb5b0f"
+    },
+    {
+      "path": "analysis/08-loss-and-gaps.md",
+      "size": 4340,
+      "sha256": "7e0633721c22c98f998dd8cb78c0f5fcc9ef7622445a2164018f052a146e8cba"
+    },
+    {
+      "path": "analysis/09-decrypt-and-geometry.md",
+      "size": 5683,
+      "sha256": "02b4b780093f75470a938e400b7ac17590226fd7523a59f88b28266729676460"
+    },
+    {
+      "path": "analysis/10-buffer-clock-contract-audit.md",
+      "size": 3972,
+      "sha256": "a97fe3ef233657ed7738c7bb1e4276f892a2db9cd0e9c62fe3cbb60c2e8808f4"
+    },
+    {
+      "path": "analysis/11-audio-message-and-callers.md",
+      "size": 8020,
+      "sha256": "8b637020575199a2042049a5f3a2ee615dd02b89a2e37ac768c76e607d02628e"
+    },
+    {
+      "path": "analysis/A-conclusions.md",
+      "size": 16626,
+      "sha256": "04f523a9aa7c44b55894fcbff03ffeb89cc00fc2f900a5f572a2e6ac62df359f"
+    },
+    {
+      "path": "function-index.json",
+      "size": 8303,
+      "sha256": "2e9aeb12416471d04d1ad33536926c9b5f591ad16084c39445cd8ded8fcae4f7"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519bbf1c.ghidra.c",
+      "size": 617,
+      "sha256": "6e9df54595b98706ac3326ce5162420787fcabcbbbccd99c9dca6efec0576f8f"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519bbf1c.json",
+      "size": 670,
+      "sha256": "169257b01b484174814a94387d70613e5662c605c0688593e320d5a9baddaccd"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c0aec.ghidra.c",
+      "size": 1033,
+      "sha256": "e3f279dbc38a345f185b7c194100ffb1678afd21eb9f6778f45365cc63e3be14"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c0aec.json",
+      "size": 632,
+      "sha256": "ee4d54a24e9351fab763fc0f151e2b1a6bd85eabb4086b07ba92fdfeedc7b283"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c18f0.ghidra.c",
+      "size": 1347,
+      "sha256": "471a7714a870b40a14521078ef670317bbfc24987b9580235d953a4d858a30ff"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c18f0.json",
+      "size": 628,
+      "sha256": "1d5ac3001ffed7fb315135b9721093dc485790b4d8cff498ea5086b2e35a6f8d"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c19b4.ghidra.c",
+      "size": 1340,
+      "sha256": "67e0c6b222224cde61d93fad4eae0fb062d433ac719bd829ed9c7161b4ccb97b"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c19b4.json",
+      "size": 630,
+      "sha256": "75679ccf5c7c24d6727d85fdcfb95a52210ec70f2e4c0d0cac04d77c59deb5d3"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c1b94.ghidra.c",
+      "size": 1270,
+      "sha256": "620b0f6a922badf66820063545035159c7eb235ea1f010fdcdb0f143d2c0c8dd"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c1b94.json",
+      "size": 668,
+      "sha256": "b5068a0896add27b26fb8a36e2aa33a35e9a4d677008547279a64d43b25619f3"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c1d5c.ghidra.c",
+      "size": 1453,
+      "sha256": "0b2ed569007938f411eff65731612df17e3e30b5ff8eb8defe756c00d3a8dbc6"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c1d5c.json",
+      "size": 644,
+      "sha256": "4583d0dd9f2550a787039ba135a699274316af62a91e5febae09e9d0073873c1"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c348c.ghidra.c",
+      "size": 10922,
+      "sha256": "982ed2750d8b4fbd6768f403052d837060a9727cfd35b8c4446e2c5eef598b34"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c348c.json",
+      "size": 666,
+      "sha256": "8a8cb18b3069dc5a0eb52fcd3d8d7300a540b158d1c5d4836560c2d5c6e9db86"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c939c.ghidra.c",
+      "size": 1317,
+      "sha256": "2b99373da5900426943bb48614d66ca322b3d6352d3f5aff4a849e79a42c299e"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c939c.json",
+      "size": 628,
+      "sha256": "b7c9bb74f1d2af9363c6538221f961daa9bd7723a9e961e8a5280644fa1b24ee"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c9460.ghidra.c",
+      "size": 5150,
+      "sha256": "2aba62495f55165886651b3b6afbeff52597c10947b978119eb38b008771208e"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519c9460.json",
+      "size": 630,
+      "sha256": "8dd5cc0dc4161368bc4032704fab687711b591c54afc8cf7d83df88c59f466d3"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519cc764.ghidra.c",
+      "size": 2050,
+      "sha256": "72f1178cc900824410dacfbd789577f7c0ba95fa16490c10c96573e05963f673"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519cc764.json",
+      "size": 630,
+      "sha256": "588eded3d346ea183377e03fd45dd2c4b1d150f245538342b3127a45ec113787"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519cc87c.ghidra.c",
+      "size": 2248,
+      "sha256": "55982738c5768b1d7b34e2682b5cbc9821549dc9f44de1b6b61b485c35beaf93"
+    },
+    {
+      "path": "readable/AirPlaySender/f_2519cc87c.json",
+      "size": 638,
+      "sha256": "e87f2be79f83cb4e903d547a3144fb9ab1e4bd7829f5c719cc6788e341c69f4a"
+    },
+    {
+      "path": "readable/AirPlaySender/f_251ace454.ghidra.c",
+      "size": 1031,
+      "sha256": "dbf1f54cd9aa8d62b84444ec4b03c18b4f21151d3a2f74b33bb3e012fce24091"
+    },
+    {
+      "path": "readable/AirPlaySender/f_251ace454.json",
+      "size": 654,
+      "sha256": "bc03689073bcd924abaf00d18507db8e79b25f1e05b945c5ee8fc3825f8cb15d"
+    },
+    {
+      "path": "readable/AirPlaySender/f_251ace49c.ghidra.c",
+      "size": 851,
+      "sha256": "82ef266156b5c4483225c710fab1a24d37a3f3d2ae368b0183d0419c3e357000"
+    },
+    {
+      "path": "readable/AirPlaySender/f_251ace49c.json",
+      "size": 652,
+      "sha256": "e8cf2f507d6acde03f64899a5cd0f5c0ce98fa4189c4977a30e0e6ca262b15a2"
+    },
+    {
+      "path": "readable/AirPlaySender/f_251ace4e4.ghidra.c",
+      "size": 1086,
+      "sha256": "70bc0e0bf13a4be14e8870c0f7d4ee019366748d88ab4e3835b7bb6cdf0ba3af"
+    },
+    {
+      "path": "readable/AirPlaySender/f_251ace4e4.json",
+      "size": 668,
+      "sha256": "6cf0988677b9388811671951e395aa8b30825d1fe049edb99978cd4520765b2d"
+    },
+    {
+      "path": "readable/AirPlaySender/f_251bd0250.ghidra.c",
+      "size": 1654,
+      "sha256": "d4185f2068f0fd14caab3f0a0dd9c115eadeb453a159621f110b9f3affd587f0"
+    },
+    {
+      "path": "readable/AirPlaySender/f_251bd0250.json",
+      "size": 632,
+      "sha256": "6b3ae8cc1507567077c99134aac4ce73a1701ed6b961168c1034d9bfc22473f8"
+    },
+    {
+      "path": "reference-impl/README.md",
+      "size": 2923,
+      "sha256": "80c1c15078a0e14c5725c95cfab6fdd8d3ddc46e7043035bb67d18e2f5f0a7ef"
+    },
+    {
+      "path": "reference-impl/rtp_parser.py",
+      "size": 11162,
+      "sha256": "47e4ebf2efe920db46b3a23efb0e655ef62015dca1f291ccd157535ef66c98aa"
+    },
+    {
+      "path": "reference-impl/test_vectors.json",
+      "size": 1392,
+      "sha256": "1451f5a14fe07e8d054a99b13b63129ec647ca5261fa47a301b4bae0aad9a2f2"
+    },
+    {
+      "path": "reference-impl/verify_audio_message.py",
+      "size": 8574,
+      "sha256": "57d7ae42a00f60d342a66a057edbcd15f8efa9ff54a37418b99b5833ca3791bd"
+    },
+    {
+      "path": "reference-impl/verify_buffer_contract.py",
+      "size": 4741,
+      "sha256": "c369e235b3f42bf7ef3bd40896081111822d2fff38d23c5d4810401e1bfd57df"
+    },
+    {
+      "path": "reference-impl/verify_compose_layout.py",
+      "size": 8709,
+      "sha256": "330fbb4a5edb533d31e4c0768399554f6c93d892d8cb9f7ac518c83f969cb747"
+    },
+    {
+      "path": "runtime/README.md",
+      "size": 1082,
+      "sha256": "6a040890a413fc93fa37c62e6e4724127ec40112e1539cb96fd27c4b2b89420d"
+    },
+    {
+      "path": "runtime/captures/INDEX.md",
+      "size": 928,
+      "sha256": "f4dc6976da47fb4729be0a6c6279fdd172fb3eb341ac83cc0111e01a5bb1a1b3"
+    },
+    {
+      "path": "runtime/captures/README.md",
+      "size": 3653,
+      "sha256": "5f61eba7aa3d1139469085bb0b7bd19e029078dced9fc3ddc97984bdcdd92b6e"
+    },
+    {
+      "path": "runtime/replay/README.md",
+      "size": 780,
+      "sha256": "0dd8b904ab312002c0503c2d408b6faaccdb1b89852a3b67fc1c9ffa38953a99"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySender/f_2519c2428.bin",
+      "size": 644,
+      "sha256": "f26e7396bad202774a12327de0871043b5fc5ade15d5e1352cd609c1551bf35d"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySender/f_2519c2428.s",
+      "size": 5323,
+      "sha256": "d8afed4feefd3890d03d0fae6b2fd3763fb1a25c1cbea8a31ffb80446c6fa61c"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySender/f_251a6f7c0.bin",
+      "size": 488,
+      "sha256": "6a9e85b990870ffa4868a82d5fded1f8f66eaa208124505090f514a34799dbb8"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySender/f_251a6f7c0.s",
+      "size": 4067,
+      "sha256": "50872ca84d1a4c4b0a1b061eb952fc1da7362e63d003251767f5560012e67215"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySender/f_251aa7f38.bin",
+      "size": 580,
+      "sha256": "3dcb293cc188d917aa039a22fde6a809e3d35e6783f580e42e89a1b16df861a7"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySender/f_251aa7f38.s",
+      "size": 4605,
+      "sha256": "0ed0b300e202dc6c344c920c01e74400a9bd4408dd0dc2517266b43f33992d21"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySender/f_251b80e54.bin",
+      "size": 4812,
+      "sha256": "ae1b52c453574284a3179f29fe7d7b3acb1c4df8da7a4499948a1f90c2be75fd"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySender/f_251b80e54.s",
+      "size": 37120,
+      "sha256": "7226dc584d37605782b283c2aa3c005f8009e866f2f0a11ec974fa57f42b92cb"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySender/index.json",
+      "size": 1663,
+      "sha256": "c492f7e2e88a0b4e5fcffc1ca0dd60a23b6a5e6157548366070e2e68473f35dc"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226e689e0.bin",
+      "size": 168,
+      "sha256": "3f9b0d2466db44696a7563e2d90249165765bf97c87ec3f53b8c20e10ee4f821"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226e689e0.s",
+      "size": 1512,
+      "sha256": "470e66ac8535e940b92898efeb809217fbf4f2bd57ad3aae5353185fc518ef2f"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226e68af0.bin",
+      "size": 100,
+      "sha256": "696095a4e481749248fa9d8ceff5e0f229a24c58e79dfd1588e8c3c8d6a36ce3"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226e68af0.s",
+      "size": 998,
+      "sha256": "f1fd528ed1dea86b074be218dc289e70e721a0a247218885d4461a03d6cc6af6"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226e6a32c.bin",
+      "size": 84,
+      "sha256": "90db2fdb471953e6b22b8b48cbace781733bdbf2427f182e257703be3d6899d8"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226e6a32c.s",
+      "size": 899,
+      "sha256": "4e54ab02060e9816909949e1b5e512a59ae62511246879b37a881a9d27b5f890"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226f23d54.bin",
+      "size": 88,
+      "sha256": "3e4c9b3347d14196cf4c8216fe248b494235f02c00be6079dd984ea5c61c1d6b"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226f23d54.s",
+      "size": 927,
+      "sha256": "f4a86476141026b90650b328c92d6321d9372079bfb5d4fd929429443378c58c"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226f23f60.bin",
+      "size": 176,
+      "sha256": "1bd05aee60581528b7ed582c824c6c4ff9999019905d070b2e07251c64c40d00"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/f_226f23f60.s",
+      "size": 1562,
+      "sha256": "a774fa2361e63dc2ba147aab38d9d90ce538a3c96ebf6207bc810a65877b13cf"
+    },
+    {
+      "path": "source/asm-audit/AirPlaySupport/index.json",
+      "size": 2015,
+      "sha256": "75fbe40d7cf84c326d57371f7421d01fea08bb2e2299487187d53c24d0b93f2d"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519bbf1c.bin",
+      "size": 8,
+      "sha256": "746df51fc535a22786339edc5eca06ad9f3415878d9b4bd2727a1eb89186a6f9"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519bbf1c.s",
+      "size": 329,
+      "sha256": "1ade4e8935eec93b3d3adce049c84fe8b7235bcdeebecdf48416defc1e94a736"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c0934.bin",
+      "size": 440,
+      "sha256": "35fd7b27f1390a4ad4d2eecf02c8e881ea266deb31117fc274abdebbb54649c5"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c0934.s",
+      "size": 3604,
+      "sha256": "cc84440b927b4e025669022fbc090375607eff3605eced22e046b885e8f0b554"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c0aec.bin",
+      "size": 156,
+      "sha256": "79d858ab66a6b168284ce5fa75f22a028bcd3b1cb9f80c257b83fd3fac92c903"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c0aec.s",
+      "size": 1473,
+      "sha256": "f6d2a977c464fb95398d7df1ed04af9ce4f00f4dc9332d8b07f3738b69152aec"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c0c90.bin",
+      "size": 632,
+      "sha256": "686e7550f6cbf28d2ccf12a88c20541043f11b56c6e647303cfa85ab3561ae8b"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c0c90.s",
+      "size": 5173,
+      "sha256": "e1f453f74d6fc821e9f6abfdb457e0881b59966777d9bb15720fe510933af09b"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c1234.bin",
+      "size": 696,
+      "sha256": "2ac45185dfb8c86c864e2f553f9c26c4d998e809d71e710f765002519104e51d"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c1234.s",
+      "size": 5398,
+      "sha256": "af52f9c4fe838a92951b86d802ee04f72038be65fc75a41c9eb81fc59cbabfa0"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c14ec.bin",
+      "size": 896,
+      "sha256": "a942e015453b1d1c1dde33de48c189a0d78df5076a063de6d35c0d1b8efd3096"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c14ec.s",
+      "size": 7100,
+      "sha256": "94c44b971a76cd176d52c3080ebaa9dc8584f4c9b0546db28fead246aecdf592"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c18f0.bin",
+      "size": 196,
+      "sha256": "9d1bfefda338a82544a13ed9ff305b33535889fcfb232eecd9ffbee1cec949ed"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c18f0.s",
+      "size": 1772,
+      "sha256": "915d040a9f8a6a2b481cdbba48d44f74e0a7ce94b17aa21741fd3d4a40bfa656"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c19b4.bin",
+      "size": 176,
+      "sha256": "0e0392bbec1c028185de0182fb3766168d771ff73801a1a9eabd493969d5df78"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c19b4.s",
+      "size": 1617,
+      "sha256": "25a00a23343bdc24487c1c63fe03f9b0d4205d6a842bad1e561605062c0e37f4"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c1b94.bin",
+      "size": 36,
+      "sha256": "39dec1e48153cd60dc1a9772ee4060fba9971eb97a23ea80581e188d12614010"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c1b94.s",
+      "size": 566,
+      "sha256": "d1ad7eb56b207d154406b19bfd52fb75afe7f9c2f09e77e1ce879894a212ebe3"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c1d5c.bin",
+      "size": 344,
+      "sha256": "21c27b643c782c01575aa1002035d2b21702be9157d945268f417e6b5f7a2ac0"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c1d5c.s",
+      "size": 2901,
+      "sha256": "29fb77e90706c58af2956211d0286dd9cf5c58745cbfbeb403014b265aec9a36"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c2390.bin",
+      "size": 112,
+      "sha256": "f01fa2bf27ef2c95e33472aa7ab61056bfe0370d6cc00369b864b6ef1c97ddd8"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c2390.s",
+      "size": 1177,
+      "sha256": "3bef6d1232a38fb0ea65c28f3d47743eb3dc758c396b43cb910ffe3204351404"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c2770.bin",
+      "size": 1912,
+      "sha256": "4ecf73ee739289418fddae78a28fd9bf7f7af0df309f86654aba169811580632"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c2770.s",
+      "size": 14944,
+      "sha256": "f681546d84af435c6a05d5e36ebba172643128fb80e93ef5bc05d4e444e0d4bb"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c348c.bin",
+      "size": 1352,
+      "sha256": "a7b8d9332428672e2f99e64749eac347f047352358426c4d2a003dfb8c86199e"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c348c.s",
+      "size": 10621,
+      "sha256": "c21735be338a8174c2cde49daacd15aff0e3695faedbebe5a5105790e63cd53a"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c939c.bin",
+      "size": 196,
+      "sha256": "a8a6e13739871232b16be967c714b96079b2215c66f5f6de01035e110c00ea61"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c939c.s",
+      "size": 1777,
+      "sha256": "328f299ad4dc04d09d67a9cd57bbe932af7d43ac4c5813ac27c83c89f7581209"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c9460.bin",
+      "size": 812,
+      "sha256": "b2ea0e85f0e863a9d0c1e6a4e107e8413b993717b31f1234eda3772fb9084931"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519c9460.s",
+      "size": 6530,
+      "sha256": "e9904af7bc93c31caa2988d40ae4c9073effc0c6ce9797487eae9a030fe194c2"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519cc764.bin",
+      "size": 280,
+      "sha256": "63841b451cbae71a5dce6897869688578c8f68fc4ae70873b49e3657a0842873"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519cc764.s",
+      "size": 2420,
+      "sha256": "ab1bd44d802851e8f975bd7bd0ded0217ffe8ac85b4c6f897e4b78b5d9c46ea1"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519cc87c.bin",
+      "size": 276,
+      "sha256": "ccd5146711f671c5c23fc47d6b7a8c7a294bbca4d6b832cb5f908d4f47f7683e"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519cc87c.s",
+      "size": 2404,
+      "sha256": "88bc1037145c209274119faeb081689f0af1a627d113f2186c0764d42f1b0740"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519cde14.bin",
+      "size": 420,
+      "sha256": "5067c77c9f065d8358c067c572f84d774d7d83e735d01b0e235d5177a6595602"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_2519cde14.s",
+      "size": 3670,
+      "sha256": "f67dd3fa57cd4a88e5c07030f30b077d33df750186c4ac4cce852cfef988e860"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_251ace454.bin",
+      "size": 72,
+      "sha256": "886b483d09d3cca34b602e3da22b55719ae8f20e79cfc02822f1407ed90a7e07"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_251ace454.s",
+      "size": 804,
+      "sha256": "8fdb45194715d218f3435dfc6637974269772be57d40590f2ac94102467829f8"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_251ace49c.bin",
+      "size": 72,
+      "sha256": "57dd2c264ddbae4fe48afdc7774267bfbeda16cb193c43802b8f792a606f92ed"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_251ace49c.s",
+      "size": 808,
+      "sha256": "553bfe0977d6c06077daea7ecede692e5f7050fe738d8c19360ff4244335cbd1"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_251ace4e4.bin",
+      "size": 104,
+      "sha256": "baefb14e31dbf082d378c2282f7d894b4d3d516f419e5dfd31bab509229685c5"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_251ace4e4.s",
+      "size": 1048,
+      "sha256": "aed890efdcca0184ff7c0264786bb44e908852fc8d7da6e8b41e604f102df88d"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_251bd0250.bin",
+      "size": 176,
+      "sha256": "41625f04b82c232d659bff3651d271efef02c56a965d7b8d92c05483cc807f34"
+    },
+    {
+      "path": "source/asm/AirPlaySender/f_251bd0250.s",
+      "size": 1639,
+      "sha256": "b6a5a1efc7c4ca31bc9d7aa53a5faf49dabf64e7e66b4e632801b8c79a2a1f4b"
+    },
+    {
+      "path": "source/asm/AirPlaySender/index.json",
+      "size": 7042,
+      "sha256": "0eb2850a74aa232c73d757234a885373256668603ff4c2f20ffbf098599d5d4b"
+    },
+    {
+      "path": "source/firmware/AirPlaySender",
+      "size": 4397312,
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f"
+    },
+    {
+      "path": "source/metadata/APTransport/function-starts.json",
+      "size": 80508,
+      "sha256": "ae2fdfa74ab34db7340f07fdad8d2749efa7d9b936d862f1677d69818ecf82db"
+    },
+    {
+      "path": "source/metadata/APTransport/load-commands.json",
+      "size": 4254,
+      "sha256": "78cf4dccf871ff97e72cff71e9ebefcb3a66c637cf416105722c38d5783af0b3"
+    },
+    {
+      "path": "source/metadata/APTransport/sections.json",
+      "size": 6479,
+      "sha256": "e485e809e46b75708ab848c5aebe717cea588043119a1af1a5f2cb423820c710"
+    },
+    {
+      "path": "source/metadata/APTransport/segments.json",
+      "size": 1234,
+      "sha256": "0264050f41d73375c233460d3b916eeb2eeebdb7ac18caf815cc4ca8fcca1acd"
+    },
+    {
+      "path": "source/metadata/APTransport/summary.json",
+      "size": 884,
+      "sha256": "88acd26bcd3b5da7b7e37f6361ed244ba25bfd1f08a7462bced23e5eaf548c06"
+    },
+    {
+      "path": "source/metadata/APTransport/symbols.json",
+      "size": 997852,
+      "sha256": "cb72661ecdb0ecd4490dcba0dae8deb090c612fbf8a1848e1b7bb266068c97c9"
+    },
+    {
+      "path": "source/metadata/AirPlaySender/function-starts.json",
+      "size": 171648,
+      "sha256": "02a6c37d15fc1dc96fc18a412508326cdbecbf587154fd07b0ea389d4bb677bd"
+    },
+    {
+      "path": "source/metadata/AirPlaySender/ghidra-request.json",
+      "size": 2417,
+      "sha256": "44095978d85355c41bee9a0526ee9372d4790e31108f5434f7a9ce43c3ffe9e6"
+    },
+    {
+      "path": "source/metadata/AirPlaySender/load-commands.json",
+      "size": 5229,
+      "sha256": "1680db890c67e10e25857f5d0c6f851406453da80a24a886bb518357f65ba788"
+    },
+    {
+      "path": "source/metadata/AirPlaySender/rtp-symbols.txt",
+      "size": 19167,
+      "sha256": "d69d3438404130597e1f7b5fe84591fcd2d768b6542d2e71d8273fbafe74cd39"
+    },
+    {
+      "path": "source/metadata/AirPlaySender/sections.json",
+      "size": 6825,
+      "sha256": "e5fe23b21df7d853f5a4165f024d297e691c4abe80886a00eb09f567d5f7c895"
+    },
+    {
+      "path": "source/metadata/AirPlaySender/segments.json",
+      "size": 1242,
+      "sha256": "e7e6b39b7746ca5de77eb16b8c1423a11fbbadca08feec07f6ee1b4959101930"
+    },
+    {
+      "path": "source/metadata/AirPlaySender/selection.json",
+      "size": 3088,
+      "sha256": "55c5b45c58c514aa0d9c0592b85ca2ff0e03a92be1bf2e08ce507876fea4ac59"
+    },
+    {
+      "path": "source/metadata/AirPlaySender/summary.json",
+      "size": 892,
+      "sha256": "46f01acfacddac4a1ac3b53359ea35addf327c5a87e7c08c85cb296a9fdc920c"
+    },
+    {
+      "path": "source/metadata/AirPlaySender/symbols.json",
+      "size": 2030432,
+      "sha256": "a604f7674b3042fac09aade0e834ff4cbebd92269013bb4d34de4ffe2d5c1958"
+    },
+    {
+      "path": "source/metadata/coverage.json",
+      "size": 5426,
+      "sha256": "68be1e11c26764842c03de0f3c19d164136bd3e82746b8012792f41d1fab9136"
+    },
+    {
+      "path": "source/metadata/selection-message-audit-sender.json",
+      "size": 474,
+      "sha256": "b6d6427d51cda509630715826f8365abfb7d806d92a9f839f9d5b0be0dcd7291"
+    },
+    {
+      "path": "source/metadata/selection-message-audit-support.json",
+      "size": 626,
+      "sha256": "911efdeece223e1e0ff870153d81e88b77f89be9fa0ddfca9989aa3a32cdb9d0"
+    },
+    {
+      "path": "spec/00-scope-and-terms.md",
+      "size": 2407,
+      "sha256": "3c71de95f4f9a931a3785aabd38cac7446e880dfa5b0881085ec1e4656591ef7"
+    },
+    {
+      "path": "spec/01-rtp-format.md",
+      "size": 7254,
+      "sha256": "e1605e383721c57b6969f09b02b9aa696bd6632e24650fbd2ac5659748f1c6fa"
+    },
+    {
+      "path": "spec/02-clock-and-timestamps.md",
+      "size": 2783,
+      "sha256": "fcd88d2db75ebc2461ccc38f51d89a41c7997bda013994b69847bfd8f4315375"
+    },
+    {
+      "path": "spec/03-buffers.md",
+      "size": 4041,
+      "sha256": "93e698b3f309290d23d0ae17037700a540781609cae604a72e449c2b6c154b1b"
+    },
+    {
+      "path": "spec/04-loss.md",
+      "size": 2126,
+      "sha256": "332fc82131e85a0c5293e6352b965b495616be13fab713e9a61734b91d83e43a"
+    },
+    {
+      "path": "spec/05-statistics.md",
+      "size": 1190,
+      "sha256": "d1f0db25f2385f1794c2107fa3f2f69b4376c8825fdc3c76770bd82eb85c642c"
+    },
+    {
+      "path": "spec/06-pacing.md",
+      "size": 991,
+      "sha256": "451515784b1d396f5c77fd715486c10f31b3e531ec8934cee86f2229c5a2e6f7"
+    },
+    {
+      "path": "spec/07-conformance-checklist.md",
+      "size": 2578,
+      "sha256": "39be541e9b3fcaabca0c8ff759f0d2a1bd88b9c6c9abf38038faf1097af9e790"
+    },
+    {
+      "path": "spec/08-open-items.md",
+      "size": 6979,
+      "sha256": "a8c58483123087c216ea8ab3cf7c1b17b6fd64eef821b27cf6c4a5bf1103745b"
+    },
+    {
+      "path": "spec/09-payload-geometry.md",
+      "size": 4191,
+      "sha256": "90b26568e2654d845002a1b3a4faddfae4ab0e3c8818af08aac812206f70bab7"
+    },
+    {
+      "path": "verify.py",
+      "size": 21174,
+      "sha256": "fcef821f837143d32cc9ccd2867c6270a0f81c85a2817e4626e20fd36e8d83c4"
+    }
+  ],
+  "closed_items": {
+    "OPEN-RTP-14": "STATUS.md"
+  },
+  "closed_item_count": 1,
+  "audit_sources": [
+    {
+      "image": "AirPlaySender",
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "functions": 4
+    },
+    {
+      "image": "AirPlaySupport",
+      "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+      "functions": 5
+    }
+  ]
+}

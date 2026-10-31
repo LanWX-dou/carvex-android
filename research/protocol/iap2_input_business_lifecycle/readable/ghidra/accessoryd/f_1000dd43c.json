@@ -1,0 +1,13 @@
+{
+  "address": "0x1000dd43c",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "0dd31282487a3b24881dfd88766501490d176dbee6b28b3003750002db5419ce",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "0dd31282487a3b24881dfd88766501490d176dbee6b28b3003750002db5419ce",
+  "ghidra_name": "_platform_navigation_displayComponentAddLaneGuidanceDescriptionLength",
+  "signature": "undefined _platform_navigation_displayComponentAddLaneGuidanceDescriptionLength()",
+  "diagnostic": "",
+  "c_file": "f_1000dd43c.ghidra.c",
+  "c_sha256": "86ebb9d8a5278c54a2d916312c640659852dac853b138278e45109723379ddab",
+  "status": "DECOMPILED_UNREVIEWED"
+}

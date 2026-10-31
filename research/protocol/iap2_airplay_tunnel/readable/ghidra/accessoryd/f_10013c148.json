@@ -1,0 +1,13 @@
+{
+  "address": "0x10013c148",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "b10ec8d6c3ce2330268dd74cc99b0eeca9e8c956dd560d2e285ede6589713c9a",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "b10ec8d6c3ce2330268dd74cc99b0eeca9e8c956dd560d2e285ede6589713c9a",
+  "ghidra_name": "_iap2_identification_isIdentifiedForCarPlay",
+  "signature": "undefined _iap2_identification_isIdentifiedForCarPlay()",
+  "diagnostic": "",
+  "c_file": "f_10013c148.ghidra.c",
+  "c_sha256": "134c5626359257bab954c017219ae4eaf93d950fd1f1818d3d08b569d4d20b9c",
+  "status": "DECOMPILED_UNREVIEWED"
+}

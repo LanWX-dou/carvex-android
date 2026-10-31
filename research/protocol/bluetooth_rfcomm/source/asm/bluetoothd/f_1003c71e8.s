@@ -1,0 +1,42 @@
+; bluetoothd 0x1003c71e8..0x1003c7288; source SHA256 cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1; original firmware bytes
+; disassembly: Capstone 5.0.7 (ARM64, little endian, skipdata); no rewriting
+0x1003c71e8: 7f2303d5 pacibsp 
+0x1003c71ec: ffc300d1 sub sp, sp, #0x30
+0x1003c71f0: f44f01a9 stp x20, x19, [sp, #0x10]
+0x1003c71f4: fd7b02a9 stp x29, x30, [sp, #0x20]
+0x1003c71f8: fd830091 add x29, sp, #0x20
+0x1003c71fc: f30300aa mov x19, x0
+0x1003c7200: ff3f0039 strb wzr, [sp, #0xf]
+0x1003c7204: 3f000071 cmp w1, #0
+0x1003c7208: c8038012 mov w8, #-0x1f
+0x1003c720c: 89038012 mov w9, #-0x1d
+0x1003c7210: 2811881a csel w8, w9, w8, ne
+0x1003c7214: e82f0039 strb w8, [sp, #0xb]
+0x1003c7218: e4000034 cbz w4, #0x1003c7234
+0x1003c721c: 68008052 mov w8, #3
+0x1003c7220: 0811042a orr w8, w8, w4, lsl #4
+0x1003c7224: e83f0039 strb w8, [sp, #0xf]
+0x1003c7228: b4008052 mov w20, #5
+0x1003c722c: e8008052 mov w8, #7
+0x1003c7230: 04000014 b #0x1003c7240
+0x1003c7234: 63000032 orr w3, w3, #1
+0x1003c7238: 94008052 mov w20, #4
+0x1003c723c: a8008052 mov w8, #5
+0x1003c7240: e8330039 strb w8, [sp, #0xc]
+0x1003c7244: e33b0039 strb w3, [sp, #0xe]
+0x1003c7248: 68008052 mov w8, #3
+0x1003c724c: 0809022a orr w8, w8, w2, lsl #2
+0x1003c7250: e8370039 strb w8, [sp, #0xd]
+0x1003c7254: 61000034 cbz w1, #0x1003c7260
+0x1003c7258: e00313aa mov x0, x19
+0x1003c725c: a9feff97 bl #0x1003c6d00
+0x1003c7260: e22f0091 add x2, sp, #0xb
+0x1003c7264: e00313aa mov x0, x19
+0x1003c7268: 01008052 mov w1, #0
+0x1003c726c: e30314aa mov x3, x20
+0x1003c7270: 04008052 mov w4, #0
+0x1003c7274: 84f9ff97 bl #0x1003c5884
+0x1003c7278: fd7b42a9 ldp x29, x30, [sp, #0x20]
+0x1003c727c: f44f41a9 ldp x20, x19, [sp, #0x10]
+0x1003c7280: ffc30091 add sp, sp, #0x30
+0x1003c7284: ff0f5fd6 retab 

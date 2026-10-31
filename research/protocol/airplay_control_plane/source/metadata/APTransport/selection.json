@@ -1,0 +1,90 @@
+{
+ "image": "APTransport",
+ "functions": [
+  {
+   "symbol": "APTransportConnectionHTTPCreate",
+   "group": "TRANSPORT",
+   "note": "control channel connection factory"
+  },
+  {
+   "symbol": "httpconnection_connect",
+   "group": "TRANSPORT",
+   "note": "TCP connect path"
+  },
+  {
+   "symbol": "httpconnection_handleConnectionEstablished",
+   "group": "TRANSPORT",
+   "note": "post-connect state"
+  },
+  {
+   "symbol": "httpconnection_sendPackageInternal",
+   "group": "TRANSPORT",
+   "note": "request framing; CSeq"
+  },
+  {
+   "symbol": "httppackage_createWithHTTPMessage",
+   "group": "TRANSPORT",
+   "note": "HTTPMessage -> package"
+  },
+  {
+   "symbol": "APTransportPackageHTTPGetHTTPMessage",
+   "group": "TRANSPORT",
+   "note": "package -> HTTPMessage; type->method/URL"
+  },
+  {
+   "symbol": "APTransportPackageHTTPSetURL",
+   "group": "TRANSPORT",
+   "note": "URL/method set"
+  },
+  {
+   "symbol": "httppackage_matchIncomingMessageMethodAndURL",
+   "group": "TRANSPORT",
+   "note": "response correlation"
+  },
+  {
+   "symbol": "httpconnection_httpResponseReceived",
+   "group": "TRANSPORT",
+   "note": "response dispatch"
+  },
+  {
+   "symbol": "httpconnection_ConfigureEncryption",
+   "group": "TRANSPORT",
+   "note": "control channel encryption"
+  },
+  {
+   "symbol": "httpconnection_configureEncryptionInternal",
+   "group": "TRANSPORT",
+   "note": "encryption setup internals"
+  },
+  {
+   "symbol": "session_CreateStreamWithID",
+   "group": "TRANSPORT",
+   "note": "stream creation by ID"
+  },
+  {
+   "symbol": "APTransportStreamIDMake",
+   "group": "TRANSPORT",
+   "note": "stream ID construction"
+  },
+  {
+   "symbol": "APTransportStreamIDMakeWithPort",
+   "group": "TRANSPORT",
+   "note": "stream ID with port"
+  },
+  {
+   "symbol": "APTransportStreamIDGetStreamCategory",
+   "group": "TRANSPORT",
+   "note": "stream category accessor"
+  },
+  {
+   "symbol": "_httpconnection_handleConnectionEstablished",
+   "group": "TRANSPORT",
+   "note": "post-connect state"
+  },
+  {
+   "symbol": "_httpconnection_SendPackage",
+   "group": "TRANSPORT",
+   "note": "public send entry"
+  }
+ ]
+}

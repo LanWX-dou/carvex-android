@@ -1,0 +1,13 @@
+{
+  "address": "0x1000b5e68",
+  "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+  "raw_sha256": "185f76f22ba7d063e1b82b165f553d3fb6071444b5cc2fd8366da6814d452db8",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "185f76f22ba7d063e1b82b165f553d3fb6071444b5cc2fd8366da6814d452db8",
+  "ghidra_name": "phone_fn_1000b5e68",
+  "signature": "undefined phone_fn_1000b5e68(void)",
+  "diagnostic": "",
+  "c_file": "f_1000b5e68.ghidra.c",
+  "c_sha256": "ab90dd91437768f578170a41120f78bcc23afad7f9e0372f836f6568ddd23dbc",
+  "status": "DECOMPILED_UNREVIEWED"
+}

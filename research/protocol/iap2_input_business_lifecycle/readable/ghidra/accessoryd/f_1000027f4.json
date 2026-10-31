@@ -1,0 +1,13 @@
+{
+  "address": "0x1000027f4",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "712dda13112bbee0bcf7d6a5fbcdba43eb6b401de0513b58a09e721f878cd4de",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "712dda13112bbee0bcf7d6a5fbcdba43eb6b401de0513b58a09e721f878cd4de",
+  "ghidra_name": "_iap2_navigation_routeGuidanceUpdateHandler",
+  "signature": "undefined _iap2_navigation_routeGuidanceUpdateHandler()",
+  "diagnostic": "",
+  "c_file": "f_1000027f4.ghidra.c",
+  "c_sha256": "9d522314e3446ab5e9f550e329ef98af54bd839d5a94380184cac7ea71b3c508",
+  "status": "DECOMPILED_UNREVIEWED"
+}

@@ -1,0 +1,13 @@
+{
+  "address": "0x251ace720",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "866b82fb6649dcf0f7873c61006d47004b1074ea9b382227c4ab724c93f547f7",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "866b82fb6649dcf0f7873c61006d47004b1074ea9b382227c4ab724c93f547f7",
+  "ghidra_name": "_fpAuthentication_GetAuthenticationType",
+  "signature": "undefined _fpAuthentication_GetAuthenticationType()",
+  "diagnostic": "",
+  "c_file": "f_251ace720.ghidra.c",
+  "c_sha256": "dd5b9290de81eece4ba490827ebb8ae2a909e8ae0da095563d8d5d4ea65e2e66",
+  "status": "DECOMPILED_UNREVIEWED"
+}

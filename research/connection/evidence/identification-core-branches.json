@@ -1,0 +1,3064 @@
+{
+  "schema_version": 1,
+  "baseline": "iPhone18,1 / iOS 27.0.1 / 24A446",
+  "date": "2026-10-29",
+  "status": "BOUNDED_STATIC_REVIEW",
+  "source": {
+    "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\System\\Library\\PrivateFrameworks\\CoreAccessories.framework\\Support\\accessoryd",
+    "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe"
+  },
+  "functions": [
+    {
+      "address": "0x100067ee4",
+      "symbols": [
+        "",
+        "_iAP2MsgGetDataAsString",
+        "",
+        "_iAP2MsgGetDataAsString"
+      ],
+      "scope": "CString framing",
+      "semantic_table_rows": "IC-01",
+      "raw_path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067ee4.bin",
+      "length": 76,
+      "sha256": "19f5f5bc9d08b6038e6324fb3898466959841e43484378da1d3c7e8f23753c62",
+      "raw_matches_source": true,
+      "decoded_all_slice_bytes": true,
+      "conditional_branch_count": 1,
+      "conditional_value_count": 3,
+      "indirect_control_count": 0,
+      "flow_inventory": [
+        {
+          "address": "0x100067ef0",
+          "bytes": "e9279f1a",
+          "kind": "conditional_value",
+          "instruction": "cset w9, lo"
+        },
+        {
+          "address": "0x100067ef8",
+          "bytes": "62000054",
+          "kind": "conditional_branch",
+          "instruction": "b.hs #0x100067f04",
+          "target": "0x100067f04",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100067f20",
+          "bytes": "e8079f1a",
+          "kind": "conditional_value",
+          "instruction": "cset w8, ne"
+        },
+        {
+          "address": "0x100067f28",
+          "bytes": "e013899a",
+          "kind": "conditional_value",
+          "instruction": "csel x0, xzr, x9, ne"
+        }
+      ]
+    },
+    {
+      "address": "0x1000f2bac",
+      "symbols": [
+        "",
+        "_iAP2MsgCopyDataAsCFString",
+        "",
+        "_iAP2MsgCopyDataAsCFString"
+      ],
+      "scope": "CF string conversion wrapper",
+      "semantic_table_rows": "IC-02",
+      "raw_path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000f2bac.bin",
+      "length": 104,
+      "sha256": "4a58903f0a603d259987c6acf25e94370dc121de3cfa51e1fa7bb1f00155106f",
+      "raw_matches_source": true,
+      "decoded_all_slice_bytes": true,
+      "conditional_branch_count": 3,
+      "conditional_value_count": 0,
+      "indirect_control_count": 0,
+      "flow_inventory": [
+        {
+          "address": "0x1000f2bc0",
+          "bytes": "c9d4fd97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100067ee4",
+          "target": "0x100067ee4",
+          "target_symbols": [
+            "",
+            "_iAP2MsgGetDataAsString",
+            "",
+            "_iAP2MsgGetDataAsString"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000f2bc4",
+          "bytes": "600000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x1000f2bd0",
+          "target": "0x1000f2bd0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000f2bcc",
+          "bytes": "a8000034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w8, #0x1000f2be0",
+          "target": "0x1000f2be0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000f2c08",
+          "bytes": "5000f0b6",
+          "kind": "conditional_branch",
+          "instruction": "tbz x16, #0x3e, #0x1000f2c10",
+          "target": "0x1000f2c10",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000f2c10",
+          "bytes": "5cbb0214",
+          "kind": "direct_control",
+          "instruction": "b #0x1001a1980",
+          "target": "0x1001a1980",
+          "target_symbols": [],
+          "target_in_slice": false
+        }
+      ]
+    },
+    {
+      "address": "0x10004f0d4",
+      "symbols": [
+        "",
+        "_iap2_identification_processStringParam",
+        "",
+        "_iap2_identification_processStringParam"
+      ],
+      "scope": "String output ownership and status",
+      "semantic_table_rows": "IC-03",
+      "raw_path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004f0d4.bin",
+      "length": 384,
+      "sha256": "f45b99031812ec27db340981cc8e87ed603680d1ee2aa10773485c5b115e951d",
+      "raw_matches_source": true,
+      "decoded_all_slice_bytes": true,
+      "conditional_branch_count": 13,
+      "conditional_value_count": 0,
+      "indirect_control_count": 0,
+      "flow_inventory": [
+        {
+          "address": "0x10004f100",
+          "bytes": "84610094",
+          "kind": "direct_control",
+          "instruction": "bl #0x100067710",
+          "target": "0x100067710",
+          "target_symbols": [
+            "",
+            "_iAP2MsgGetParamID",
+            "",
+            "_iAP2MsgGetParamID"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f110",
+          "bytes": "a78e0294",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000f2bac",
+          "target": "0x1000f2bac",
+          "target_symbols": [
+            "",
+            "_iAP2MsgCopyDataAsCFString",
+            "",
+            "_iAP2MsgCopyDataAsCFString"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f114",
+          "bytes": "d40000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x20, #0x10004f12c",
+          "target": "0x10004f12c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f11c",
+          "bytes": "88000035",
+          "kind": "conditional_branch",
+          "instruction": "cbnz w8, #0x10004f12c",
+          "target": "0x10004f12c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f128",
+          "bytes": "2f000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10004f1e4",
+          "target": "0x10004f1e4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f12c",
+          "bytes": "400000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x10004f134",
+          "target": "0x10004f134",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f130",
+          "bytes": "bc490594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1820",
+          "target": "0x1001a1820",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f140",
+          "bytes": "f7fdff97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004e91c",
+          "target": "0x10004e91c",
+          "target_symbols": [
+            "",
+            "__addRejectParam",
+            "",
+            "__addRejectParam"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f14c",
+          "bytes": "540200b5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x20, #0x10004f194",
+          "target": "0x10004f194",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f154",
+          "bytes": "c80000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x8, #0x10004f16c",
+          "target": "0x10004f16c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f160",
+          "bytes": "6b000054",
+          "kind": "conditional_branch",
+          "instruction": "b.lt #0x10004f16c",
+          "target": "0x10004f16c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f168",
+          "bytes": "07000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10004f184",
+          "target": "0x10004f184",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f178",
+          "bytes": "a1060054",
+          "kind": "conditional_branch",
+          "instruction": "b.ne #0x10004f24c",
+          "target": "0x10004f24c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f18c",
+          "bytes": "a94d0594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a2830",
+          "target": "0x1001a2830",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f190",
+          "bytes": "40050035",
+          "kind": "conditional_branch",
+          "instruction": "cbnz w0, #0x10004f238",
+          "target": "0x10004f238",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f198",
+          "bytes": "73020034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w19, #0x10004f1e4",
+          "target": "0x10004f1e4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f1a0",
+          "bytes": "c80000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x8, #0x10004f1b8",
+          "target": "0x10004f1b8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f1ac",
+          "bytes": "6b000054",
+          "kind": "conditional_branch",
+          "instruction": "b.lt #0x10004f1b8",
+          "target": "0x10004f1b8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f1b4",
+          "bytes": "08000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10004f1d4",
+          "target": "0x10004f1d4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f1c4",
+          "bytes": "01040054",
+          "kind": "conditional_branch",
+          "instruction": "b.ne #0x10004f244",
+          "target": "0x10004f244",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f1dc",
+          "bytes": "954d0594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a2830",
+          "target": "0x1001a2830",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f1e0",
+          "bytes": "e0000035",
+          "kind": "conditional_branch",
+          "instruction": "cbnz w0, #0x10004f1fc",
+          "target": "0x10004f1fc",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f22c",
+          "bytes": "654b0594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1fc0",
+          "target": "0x1001a1fc0",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f234",
+          "bytes": "ecffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10004f1e4",
+          "target": "0x10004f1e4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f23c",
+          "bytes": "05b60394",
+          "kind": "direct_control",
+          "instruction": "bl #0x10013ca50",
+          "target": "0x10013ca50",
+          "target_symbols": [
+            "_iap2_identification_processStringParam.cold.2",
+            "",
+            "_iap2_identification_processStringParam.cold.2",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f240",
+          "bytes": "d5ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10004f194",
+          "target": "0x10004f194",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f244",
+          "bytes": "dab50394",
+          "kind": "direct_control",
+          "instruction": "bl #0x10013c9ac",
+          "target": "0x10013c9ac",
+          "target_symbols": [
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.1",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.2",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.3",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.4",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.5",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.6",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.7",
+            "_iap2_identification_processStringParam.cold.1",
+            "_iap2_identification_processStringParam.cold.3",
+            "_cbIdentificationInfoUSBHostTransportComponentParams.cold.1",
+            "_cbIdentificationInfoWirelessCarPlayTransportComponentParams.cold.1",
+            "___iap2_identification_identificationInfoHandler_block_invoke.76.cold.3",
+            "_iap2_identification_setIdentificationState.cold.1",
+            "",
+            "_iap2_identification_setIdentificationState.cold.1",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f248",
+          "bytes": "e0ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10004f1c8",
+          "target": "0x10004f1c8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10004f24c",
+          "bytes": "d8b50394",
+          "kind": "direct_control",
+          "instruction": "bl #0x10013c9ac",
+          "target": "0x10013c9ac",
+          "target_symbols": [
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.1",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.2",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.3",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.4",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.5",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.6",
+            "_iap2_identification_checkIdentificationInfoFeatures.cold.7",
+            "_iap2_identification_processStringParam.cold.1",
+            "_iap2_identification_processStringParam.cold.3",
+            "_cbIdentificationInfoUSBHostTransportComponentParams.cold.1",
+            "_cbIdentificationInfoWirelessCarPlayTransportComponentParams.cold.1",
+            "___iap2_identification_identificationInfoHandler_block_invoke.76.cold.3",
+            "_iap2_identification_setIdentificationState.cold.1",
+            "",
+            "_iap2_identification_setIdentificationState.cold.1",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10004f250",
+          "bytes": "cbffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10004f17c",
+          "target": "0x10004f17c",
+          "target_symbols": [],
+          "target_in_slice": true
+        }
+      ]
+    },
+    {
+      "address": "0x1000512e8",
+      "symbols": [
+        "__parseIdentificationParams",
+        "",
+        "__parseIdentificationParams",
+        ""
+      ],
+      "scope": "Core parameter switch and occurrence counter",
+      "semantic_table_rows": "IC-04/05/06",
+      "raw_path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000512e8.bin",
+      "length": 1160,
+      "sha256": "1ffe2ab259762fcd0fccfa69489e707e34a58980a0405bf6b63fb1a05751bfb1",
+      "raw_matches_source": true,
+      "decoded_all_slice_bytes": true,
+      "conditional_branch_count": 22,
+      "conditional_value_count": 2,
+      "indirect_control_count": 1,
+      "flow_inventory": [
+        {
+          "address": "0x100051308",
+          "bytes": "a02200b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x10005175c",
+          "target": "0x10005175c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051318",
+          "bytes": "c8cffe97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100005238",
+          "target": "0x100005238",
+          "target_symbols": [
+            "",
+            "_iap2_identification_getIdentificationInfo",
+            "",
+            "_iap2_identification_getIdentificationInfo"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10005131c",
+          "bytes": "002200b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x10005175c",
+          "target": "0x10005175c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051328",
+          "bytes": "fa580094",
+          "kind": "direct_control",
+          "instruction": "bl #0x100067710",
+          "target": "0x100067710",
+          "target_symbols": [
+            "",
+            "_iAP2MsgGetParamID",
+            "",
+            "_iAP2MsgGetParamID"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x100051334",
+          "bytes": "88090054",
+          "kind": "conditional_branch",
+          "instruction": "b.hi #0x100051464",
+          "target": "0x100051464",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051340",
+          "bytes": "10929f9a",
+          "kind": "conditional_value",
+          "instruction": "csel x16, x16, xzr, ls"
+        },
+        {
+          "address": "0x100051358",
+          "bytes": "00021fd6",
+          "kind": "indirect_control",
+          "instruction": "br x16"
+        },
+        {
+          "address": "0x100051364",
+          "bytes": "200300b5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x0, #0x1000513c8",
+          "target": "0x1000513c8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051368",
+          "bytes": "1a000014",
+          "kind": "direct_control",
+          "instruction": "b #0x1000513d0",
+          "target": "0x1000513d0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051390",
+          "bytes": "95000014",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515e4",
+          "target": "0x1000515e4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000513b8",
+          "bytes": "8b000014",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515e4",
+          "target": "0x1000515e4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000513c4",
+          "bytes": "600000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x1000513d0",
+          "target": "0x1000513d0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000513c8",
+          "bytes": "16410594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1820",
+          "target": "0x1001a1820",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000513dc",
+          "bytes": "3ef7ff97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004f0d4",
+          "target": "0x10004f0d4",
+          "target_symbols": [
+            "",
+            "_iap2_identification_processStringParam",
+            "",
+            "_iap2_identification_processStringParam"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000513e0",
+          "bytes": "82000014",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515e8",
+          "target": "0x1000515e8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051408",
+          "bytes": "77000014",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515e4",
+          "target": "0x1000515e4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051414",
+          "bytes": "a0fdffb5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x0, #0x1000513c8",
+          "target": "0x1000513c8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051418",
+          "bytes": "eeffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x1000513d0",
+          "target": "0x1000513d0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051424",
+          "bytes": "20fdffb5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x0, #0x1000513c8",
+          "target": "0x1000513c8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051428",
+          "bytes": "eaffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x1000513d0",
+          "target": "0x1000513d0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051450",
+          "bytes": "65000014",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515e4",
+          "target": "0x1000515e4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10005145c",
+          "bytes": "60fbffb5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x0, #0x1000513c8",
+          "target": "0x1000513c8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051460",
+          "bytes": "dcffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x1000513d0",
+          "target": "0x1000513d0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10005146c",
+          "bytes": "280e00b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x8, #0x100051630",
+          "target": "0x100051630",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10005147c",
+          "bytes": "ab0d0054",
+          "kind": "conditional_branch",
+          "instruction": "b.lt #0x100051630",
+          "target": "0x100051630",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051484",
+          "bytes": "71000014",
+          "kind": "direct_control",
+          "instruction": "b #0x100051648",
+          "target": "0x100051648",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051490",
+          "bytes": "c0f9ffb5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x0, #0x1000513c8",
+          "target": "0x1000513c8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051494",
+          "bytes": "cfffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x1000513d0",
+          "target": "0x1000513d0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000514a0",
+          "bytes": "a45a0094",
+          "kind": "direct_control",
+          "instruction": "bl #0x100067f30",
+          "target": "0x100067f30",
+          "target_symbols": [
+            "",
+            "_iAP2MsgGetDataAsData",
+            "",
+            "_iAP2MsgGetDataAsData"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000514a8",
+          "bytes": "88130034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w8, #0x100051718",
+          "target": "0x100051718",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000514d4",
+          "bytes": "13410594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1920",
+          "target": "0x1001a1920",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000514e0",
+          "bytes": "13000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10005152c",
+          "target": "0x10005152c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000514ec",
+          "bytes": "915a0094",
+          "kind": "direct_control",
+          "instruction": "bl #0x100067f30",
+          "target": "0x100067f30",
+          "target_symbols": [
+            "",
+            "_iAP2MsgGetDataAsData",
+            "",
+            "_iAP2MsgGetDataAsData"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000514f4",
+          "bytes": "28120034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w8, #0x100051738",
+          "target": "0x100051738",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051520",
+          "bytes": "00410594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1920",
+          "target": "0x1001a1920",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10005152c",
+          "bytes": "28f6ff97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004edcc",
+          "target": "0x10004edcc",
+          "target_symbols": [
+            "",
+            "_iap2_identification_addMsgListParamWithDirection",
+            "",
+            "_iap2_identification_addMsgListParamWithDirection"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x100051530",
+          "bytes": "2f000014",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515ec",
+          "target": "0x1000515ec",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051540",
+          "bytes": "56000014",
+          "kind": "direct_control",
+          "instruction": "b #0x100051698",
+          "target": "0x100051698",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051568",
+          "bytes": "1f000014",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515e4",
+          "target": "0x1000515e4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051580",
+          "bytes": "d5f6ff97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004f0d4",
+          "target": "0x10004f0d4",
+          "target_symbols": [
+            "",
+            "_iap2_identification_processStringParam",
+            "",
+            "_iap2_identification_processStringParam"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x100051588",
+          "bytes": "00090034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w0, #0x1000516a8",
+          "target": "0x1000516a8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051598",
+          "bytes": "e1f4ff97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004e91c",
+          "target": "0x10004e91c",
+          "target_symbols": [
+            "",
+            "__addRejectParam",
+            "",
+            "__addRejectParam"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10005159c",
+          "bytes": "14000014",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515ec",
+          "target": "0x1000515ec",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000515a8",
+          "bytes": "00f1ffb5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x0, #0x1000513c8",
+          "target": "0x1000513c8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000515ac",
+          "bytes": "89ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x1000513d0",
+          "target": "0x1000513d0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000515b8",
+          "bytes": "80f0ffb5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x0, #0x1000513c8",
+          "target": "0x1000513c8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000515bc",
+          "bytes": "85ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x1000513d0",
+          "target": "0x1000513d0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000515e4",
+          "bytes": "b1faff97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000500a8",
+          "target": "0x1000500a8",
+          "target_symbols": [
+            "",
+            "_iap2_identification_parseTransportComponent",
+            "",
+            "_iap2_identification_parseTransportComponent"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000515f8",
+          "bytes": "a9000054",
+          "kind": "conditional_branch",
+          "instruction": "b.ls #0x10005160c",
+          "target": "0x10005160c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051614",
+          "bytes": "e0179f1a",
+          "kind": "conditional_value",
+          "instruction": "cset w0, eq"
+        },
+        {
+          "address": "0x10005163c",
+          "bytes": "61090054",
+          "kind": "conditional_branch",
+          "instruction": "b.ne #0x100051768",
+          "target": "0x100051768",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051650",
+          "bytes": "78440594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a2830",
+          "target": "0x1001a2830",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x100051654",
+          "bytes": "c0010034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w0, #0x10005168c",
+          "target": "0x10005168c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051688",
+          "bytes": "56420594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1fe0",
+          "target": "0x1001a1fe0",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10005169c",
+          "bytes": "a0f4ff97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004e91c",
+          "target": "0x10004e91c",
+          "target_symbols": [
+            "",
+            "__addRejectParam",
+            "",
+            "__addRejectParam"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000516a4",
+          "bytes": "d2ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515ec",
+          "target": "0x1000515ec",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000516ac",
+          "bytes": "200100b5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x0, #0x1000516d0",
+          "target": "0x1000516d0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000516c8",
+          "bytes": "7a400594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a18b0",
+          "target": "0x1001a18b0",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000516d8",
+          "bytes": "6e400594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1890",
+          "target": "0x1001a1890",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000516dc",
+          "bytes": "00010034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w0, #0x1000516fc",
+          "target": "0x1000516fc",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x1000516ec",
+          "bytes": "8cf4ff97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004e91c",
+          "target": "0x10004e91c",
+          "target_symbols": [
+            "",
+            "__addRejectParam",
+            "",
+            "__addRejectParam"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x1000516f8",
+          "bytes": "04000014",
+          "kind": "direct_control",
+          "instruction": "b #0x100051708",
+          "target": "0x100051708",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051704",
+          "bytes": "5b400594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1870",
+          "target": "0x1001a1870",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x100051708",
+          "bytes": "35f7ffb4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x21, #0x1000515ec",
+          "target": "0x1000515ec",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051710",
+          "bytes": "44400594",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1820",
+          "target": "0x1001a1820",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x100051714",
+          "bytes": "b6ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515ec",
+          "target": "0x1000515ec",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051720",
+          "bytes": "00580094",
+          "kind": "direct_control",
+          "instruction": "bl #0x100067720",
+          "target": "0x100067720",
+          "target_symbols": [
+            "",
+            "_iAP2MsgGetParamValueLen",
+            "",
+            "_iAP2MsgGetParamValueLen"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x100051734",
+          "bytes": "08000014",
+          "kind": "direct_control",
+          "instruction": "b #0x100051754",
+          "target": "0x100051754",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051740",
+          "bytes": "f8570094",
+          "kind": "direct_control",
+          "instruction": "bl #0x100067720",
+          "target": "0x100067720",
+          "target_symbols": [
+            "",
+            "_iAP2MsgGetParamValueLen",
+            "",
+            "_iAP2MsgGetParamValueLen"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x100051754",
+          "bytes": "a7a50394",
+          "kind": "direct_control",
+          "instruction": "bl #0x10013adf0",
+          "target": "0x10013adf0",
+          "target_symbols": [
+            "",
+            "_iap2_identification_processMessagesSet",
+            "",
+            "_iap2_identification_processMessagesSet"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x100051758",
+          "bytes": "a4ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x1000515e8",
+          "target": "0x1000515e8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051764",
+          "bytes": "aaffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10005160c",
+          "target": "0x10005160c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x100051768",
+          "bytes": "97ac0394",
+          "kind": "direct_control",
+          "instruction": "bl #0x10013c9c4",
+          "target": "0x10013c9c4",
+          "target_symbols": [
+            "__addRejectParam.cold.1",
+            "__iap2_identification_cleanupRejectMsg.cold.1",
+            "_iap2_identification_rejectMsgID.cold.1",
+            "_iap2_identification_acceptMsgID.cold.1",
+            "_cbIdentificationInfoSerialTransportComponentParams.cold.1",
+            "_cbIdentificationInfoUSBDeviceTransportComponentParams.cold.1",
+            "_cbIdentificationInfoUSBHostTransportComponentParams.cold.3",
+            "_cbIdentificationInfoBluetoothTransportComponentParams.cold.1",
+            "_cbIdentificationInfoWirelessCarPlayTransportComponentParams.cold.3",
+            "_cbIdentificationInfoBluetoothLETransportComponentParams.cold.1",
+            "_iap2_identification_releaseRejectMessage.cold.1",
+            "_iap2_identification_cbIdentificationInfoUpdateParams.cold.1",
+            "_iap2_identification_cbIdentificationInfoUpdateParams.cold.2",
+            "_iap2_identification_identificationInfoUpdateHandler.cold.1",
+            "_iap2_identification_identificationInfoUpdateHandler.cold.2",
+            "___iap2_identification_identificationInfoHandler_block_invoke.76.cold.1",
+            "___iap2_identification_identificationInfoHandler_block_invoke.76.cold.2",
+            "__startFeatureFromDevice.cold.1",
+            "__parseIdentificationParams.cold.1",
+            "_iap2_identification_releaseIdentInfo.cold.1",
+            "",
+            "_iap2_identification_releaseIdentInfo.cold.1",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10005176c",
+          "bytes": "b5ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x100051640",
+          "target": "0x100051640",
+          "target_symbols": [],
+          "target_in_slice": true
+        }
+      ]
+    },
+    {
+      "address": "0x100067f30",
+      "symbols": [
+        "",
+        "_iAP2MsgGetDataAsData",
+        "",
+        "_iAP2MsgGetDataAsData"
+      ],
+      "scope": "Raw data getter",
+      "semantic_table_rows": "IC-07",
+      "raw_path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067f30.bin",
+      "length": 12,
+      "sha256": "c150d6a74c58f290a0965f135ff4960ebfe4daa94672850ee0d5e062e761d931",
+      "raw_matches_source": true,
+      "decoded_all_slice_bytes": true,
+      "conditional_branch_count": 0,
+      "conditional_value_count": 0,
+      "indirect_control_count": 0,
+      "flow_inventory": []
+    },
+    {
+      "address": "0x10013adf0",
+      "symbols": [
+        "",
+        "_iap2_identification_processMessagesSet",
+        "",
+        "_iap2_identification_processMessagesSet"
+      ],
+      "scope": "Direction-specific message set replacement",
+      "semantic_table_rows": "IC-07",
+      "raw_path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013adf0.bin",
+      "length": 224,
+      "sha256": "af00bb6c1a449ef2269ff960cb230e74278fb35eea26fc43e0ac5fc697423cbd",
+      "raw_matches_source": true,
+      "decoded_all_slice_bytes": true,
+      "conditional_branch_count": 7,
+      "conditional_value_count": 1,
+      "indirect_control_count": 0,
+      "flow_inventory": [
+        {
+          "address": "0x10013adf0",
+          "bytes": "c00600b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x10013aec8",
+          "target": "0x10013aec8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013ae18",
+          "bytes": "22030037",
+          "kind": "conditional_branch",
+          "instruction": "tbnz w2, #0, #0x10013ae7c",
+          "target": "0x10013ae7c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013ae24",
+          "bytes": "341bfb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100001af4",
+          "target": "0x100001af4",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_43",
+            "_OUTLINED_FUNCTION_45",
+            "_OUTLINED_FUNCTION_27",
+            "_OUTLINED_FUNCTION_45",
+            "_OUTLINED_FUNCTION_24",
+            "_OUTLINED_FUNCTION_8",
+            "",
+            "_OUTLINED_FUNCTION_8",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013ae30",
+          "bytes": "a09a0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a18b0",
+          "target": "0x1001a18b0",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013ae38",
+          "bytes": "58010034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w24, #0x10013ae60",
+          "target": "0x10013ae60",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013ae50",
+          "bytes": "889a0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1870",
+          "target": "0x1001a1870",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013ae5c",
+          "bytes": "21ffff54",
+          "kind": "conditional_branch",
+          "instruction": "b.ne #0x10013ae40",
+          "target": "0x10013ae40",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013ae60",
+          "bytes": "f5010036",
+          "kind": "conditional_branch",
+          "instruction": "tbz w21, #0, #0x10013ae9c",
+          "target": "0x10013ae9c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013ae68",
+          "bytes": "400000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x10013ae70",
+          "target": "0x10013ae70",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013ae6c",
+          "bytes": "6d9a0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1820",
+          "target": "0x1001a1820",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013ae78",
+          "bytes": "0e000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10013aeb0",
+          "target": "0x10013aeb0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013ae84",
+          "bytes": "0115881a",
+          "kind": "conditional_value",
+          "instruction": "cinc w1, w8, eq"
+        },
+        {
+          "address": "0x10013ae90",
+          "bytes": "a34efc97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004e91c",
+          "target": "0x10004e91c",
+          "target_symbols": [
+            "",
+            "__addRejectParam",
+            "",
+            "__addRejectParam"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013ae98",
+          "bytes": "06000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10013aeb0",
+          "target": "0x10013aeb0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013aea0",
+          "bytes": "400000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x10013aea8",
+          "target": "0x10013aea8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013aea4",
+          "bytes": "5f9a0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1820",
+          "target": "0x1001a1820",
+          "target_symbols": [],
+          "target_in_slice": false
+        }
+      ]
+    },
+    {
+      "address": "0x10013aed0",
+      "symbols": [
+        "",
+        "_iap2_identification_cbIdentificationInfoParams",
+        "",
+        "_iap2_identification_cbIdentificationInfoParams"
+      ],
+      "scope": "Registered callback and required-success insertion",
+      "semantic_table_rows": "IC-08",
+      "raw_path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013aed0.bin",
+      "length": 788,
+      "sha256": "e835c69acfc3c4c3f00ccdc99749477c7774a8c69ce635c4a0f69d9973e15a51",
+      "raw_matches_source": true,
+      "decoded_all_slice_bytes": true,
+      "conditional_branch_count": 30,
+      "conditional_value_count": 0,
+      "indirect_control_count": 1,
+      "flow_inventory": [
+        {
+          "address": "0x10013aed8",
+          "bytes": "965efb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100012930",
+          "target": "0x100012930",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_20",
+            "_OUTLINED_FUNCTION_45",
+            "_OUTLINED_FUNCTION_28",
+            "",
+            "_OUTLINED_FUNCTION_28",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013aeec",
+          "bytes": "001300b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x10013b14c",
+          "target": "0x10013b14c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013aef4",
+          "bytes": "c21200b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x2, #0x10013b14c",
+          "target": "0x10013b14c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013aefc",
+          "bytes": "831200b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x3, #0x10013b14c",
+          "target": "0x10013b14c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013af08",
+          "bytes": "02b2fc97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100067710",
+          "target": "0x100067710",
+          "target_symbols": [
+            "",
+            "_iAP2MsgGetParamID",
+            "",
+            "_iAP2MsgGetParamID"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013af20",
+          "bytes": "a80000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x8, #0x10013af34",
+          "target": "0x10013af34",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013af24",
+          "bytes": "b36dfb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000165f0",
+          "target": "0x1000165f0",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_16",
+            "",
+            "_OUTLINED_FUNCTION_16",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013af28",
+          "bytes": "6b000054",
+          "kind": "conditional_branch",
+          "instruction": "b.lt #0x10013af34",
+          "target": "0x10013af34",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013af30",
+          "bytes": "05000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10013af44",
+          "target": "0x10013af44",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013af34",
+          "bytes": "1924fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100003f98",
+          "target": "0x100003f98",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_21",
+            "",
+            "_OUTLINED_FUNCTION_21",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013af38",
+          "bytes": "c1130054",
+          "kind": "conditional_branch",
+          "instruction": "b.ne #0x10013b1b0",
+          "target": "0x10013b1b0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013af4c",
+          "bytes": "399e0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a2830",
+          "target": "0x1001a2830",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013af54",
+          "bytes": "40010034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w0, #0x10013af7c",
+          "target": "0x10013af7c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013af5c",
+          "bytes": "9c39fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000095cc",
+          "target": "0x1000095cc",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_4",
+            "",
+            "_OUTLINED_FUNCTION_4",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013af78",
+          "bytes": "1a9c0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1fe0",
+          "target": "0x1001a1fe0",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013af80",
+          "bytes": "99000094",
+          "kind": "direct_control",
+          "instruction": "bl #0x10013b1e4",
+          "target": "0x10013b1e4",
+          "target_symbols": [
+            "",
+            "_iap2_identification_getParamHandler",
+            "",
+            "_iap2_identification_getParamHandler"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013af84",
+          "bytes": "400400b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x10013b00c",
+          "target": "0x10013b00c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013af98",
+          "bytes": "1f093fd6",
+          "kind": "indirect_control",
+          "instruction": "blraaz x8"
+        },
+        {
+          "address": "0x10013af9c",
+          "bytes": "40040036",
+          "kind": "conditional_branch",
+          "instruction": "tbz w0, #0, #0x10013b024",
+          "target": "0x10013b024",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013afb0",
+          "bytes": "fc990194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a17a0",
+          "target": "0x1001a17a0",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013afc4",
+          "bytes": "27990194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1460",
+          "target": "0x1001a1460",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013afcc",
+          "bytes": "0c27fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100004bfc",
+          "target": "0x100004bfc",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_14",
+            "_OUTLINED_FUNCTION_20",
+            "_OUTLINED_FUNCTION_100",
+            "_OUTLINED_FUNCTION_55",
+            "_OUTLINED_FUNCTION_63",
+            "",
+            "_OUTLINED_FUNCTION_63",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013afd4",
+          "bytes": "0f990194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1410",
+          "target": "0x1001a1410",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013afd8",
+          "bytes": "80090034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w0, #0x10013b108",
+          "target": "0x10013b108",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013afe0",
+          "bytes": "9628fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100005238",
+          "target": "0x100005238",
+          "target_symbols": [
+            "",
+            "_iap2_identification_getIdentificationInfo",
+            "",
+            "_iap2_identification_getIdentificationInfo"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013afe4",
+          "bytes": "a00e00b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x0, #0x10013b1b8",
+          "target": "0x10013b1b8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013aff0",
+          "bytes": "209a0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1870",
+          "target": "0x1001a1870",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013aff8",
+          "bytes": "a80700b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x8, #0x10013b0ec",
+          "target": "0x10013b0ec",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013affc",
+          "bytes": "7d6dfb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000165f0",
+          "target": "0x1000165f0",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_16",
+            "",
+            "_OUTLINED_FUNCTION_16",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b000",
+          "bytes": "6b070054",
+          "kind": "conditional_branch",
+          "instruction": "b.lt #0x10013b0ec",
+          "target": "0x10013b0ec",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b008",
+          "bytes": "3c000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b0f8",
+          "target": "0x10013b0f8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b010",
+          "bytes": "680100b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x8, #0x10013b03c",
+          "target": "0x10013b03c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b014",
+          "bytes": "776dfb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000165f0",
+          "target": "0x1000165f0",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_16",
+            "",
+            "_OUTLINED_FUNCTION_16",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b018",
+          "bytes": "2b010054",
+          "kind": "conditional_branch",
+          "instruction": "b.lt #0x10013b03c",
+          "target": "0x10013b03c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b020",
+          "bytes": "0a000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b048",
+          "target": "0x10013b048",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b028",
+          "bytes": "880400b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x8, #0x10013b0b8",
+          "target": "0x10013b0b8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b02c",
+          "bytes": "716dfb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000165f0",
+          "target": "0x1000165f0",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_16",
+            "",
+            "_OUTLINED_FUNCTION_16",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b030",
+          "bytes": "4b040054",
+          "kind": "conditional_branch",
+          "instruction": "b.lt #0x10013b0b8",
+          "target": "0x10013b0b8",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b038",
+          "bytes": "23000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b0c4",
+          "target": "0x10013b0c4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b03c",
+          "bytes": "d723fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100003f98",
+          "target": "0x100003f98",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_21",
+            "",
+            "_OUTLINED_FUNCTION_21",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b040",
+          "bytes": "210c0054",
+          "kind": "conditional_branch",
+          "instruction": "b.ne #0x10013b1c4",
+          "target": "0x10013b1c4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b044",
+          "bytes": "e11cfb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000023c8",
+          "target": "0x1000023c8",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_26",
+            "_OUTLINED_FUNCTION_13",
+            "_OUTLINED_FUNCTION_23",
+            "_OUTLINED_FUNCTION_38",
+            "_OUTLINED_FUNCTION_34",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_92",
+            "_OUTLINED_FUNCTION_33",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_33",
+            "_OUTLINED_FUNCTION_40",
+            "_OUTLINED_FUNCTION_20",
+            "_OUTLINED_FUNCTION_14",
+            "_OUTLINED_FUNCTION_29",
+            "",
+            "_OUTLINED_FUNCTION_29",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b050",
+          "bytes": "f89d0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a2830",
+          "target": "0x1001a2830",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b054",
+          "bytes": "40020034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w0, #0x10013b09c",
+          "target": "0x10013b09c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b05c",
+          "bytes": "ba26fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100004b44",
+          "target": "0x100004b44",
+          "target_symbols": [
+            "",
+            "_iAP2MsgGetMsgID",
+            "",
+            "_iAP2MsgGetMsgID"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b07c",
+          "bytes": "fe20fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100003474",
+          "target": "0x100003474",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_12",
+            "_OUTLINED_FUNCTION_18",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_1",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_5",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_5",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_14",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_26",
+            "_OUTLINED_FUNCTION_23",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_5",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_19",
+            "_OUTLINED_FUNCTION_19",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_22",
+            "_OUTLINED_FUNCTION_1",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_1",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_12",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_19",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_1",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_12",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_2",
+            "",
+            "_OUTLINED_FUNCTION_2",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b098",
+          "bytes": "d29b0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1fe0",
+          "target": "0x1001a1fe0",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0a0",
+          "bytes": "6628fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100005238",
+          "target": "0x100005238",
+          "target_symbols": [
+            "",
+            "_iap2_identification_getIdentificationInfo",
+            "",
+            "_iap2_identification_getIdentificationInfo"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0b0",
+          "bytes": "1b4efc97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004e91c",
+          "target": "0x10004e91c",
+          "target_symbols": [
+            "",
+            "__addRejectParam",
+            "",
+            "__addRejectParam"
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0b4",
+          "bytes": "26000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b14c",
+          "target": "0x10013b14c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b0b8",
+          "bytes": "b823fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100003f98",
+          "target": "0x100003f98",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_21",
+            "",
+            "_OUTLINED_FUNCTION_21",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0bc",
+          "bytes": "81080054",
+          "kind": "conditional_branch",
+          "instruction": "b.ne #0x10013b1cc",
+          "target": "0x10013b1cc",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b0c0",
+          "bytes": "0021fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000034c0",
+          "target": "0x1000034c0",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_27",
+            "_OUTLINED_FUNCTION_16",
+            "_OUTLINED_FUNCTION_11",
+            "_OUTLINED_FUNCTION_28",
+            "_OUTLINED_FUNCTION_23",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_40",
+            "_OUTLINED_FUNCTION_29",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_22",
+            "_OUTLINED_FUNCTION_11",
+            "_OUTLINED_FUNCTION_13",
+            "_OUTLINED_FUNCTION_39",
+            "_OUTLINED_FUNCTION_43",
+            "_OUTLINED_FUNCTION_14",
+            "_OUTLINED_FUNCTION_13",
+            "_OUTLINED_FUNCTION_28",
+            "_OUTLINED_FUNCTION_31",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_22",
+            "_OUTLINED_FUNCTION_5",
+            "",
+            "_OUTLINED_FUNCTION_5",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0c4",
+          "bytes": "aa38fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10000936c",
+          "target": "0x10000936c",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_35",
+            "_OUTLINED_FUNCTION_71",
+            "_OUTLINED_FUNCTION_34",
+            "",
+            "_OUTLINED_FUNCTION_34",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0c8",
+          "bytes": "e0000034",
+          "kind": "conditional_branch",
+          "instruction": "cbz w0, #0x10013b0e4",
+          "target": "0x10013b0e4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b0d0",
+          "bytes": "3f39fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000095cc",
+          "target": "0x1000095cc",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_4",
+            "",
+            "_OUTLINED_FUNCTION_4",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0dc",
+          "bytes": "a138fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100009360",
+          "target": "0x100009360",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_44",
+            "_OUTLINED_FUNCTION_37",
+            "_OUTLINED_FUNCTION_29",
+            "_OUTLINED_FUNCTION_5",
+            "_OUTLINED_FUNCTION_34",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_46",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_12",
+            "",
+            "_OUTLINED_FUNCTION_12",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0e0",
+          "bytes": "eb20fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10000348c",
+          "target": "0x10000348c",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_32",
+            "_OUTLINED_FUNCTION_6",
+            "",
+            "_OUTLINED_FUNCTION_6",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0e8",
+          "bytes": "19000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b14c",
+          "target": "0x10013b14c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b0ec",
+          "bytes": "ab23fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100003f98",
+          "target": "0x100003f98",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_21",
+            "",
+            "_OUTLINED_FUNCTION_21",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b0f0",
+          "bytes": "21070054",
+          "kind": "conditional_branch",
+          "instruction": "b.ne #0x10013b1d4",
+          "target": "0x10013b1d4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b0f4",
+          "bytes": "f320fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000034c0",
+          "target": "0x1000034c0",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_27",
+            "_OUTLINED_FUNCTION_16",
+            "_OUTLINED_FUNCTION_11",
+            "_OUTLINED_FUNCTION_28",
+            "_OUTLINED_FUNCTION_23",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_40",
+            "_OUTLINED_FUNCTION_29",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_22",
+            "_OUTLINED_FUNCTION_11",
+            "_OUTLINED_FUNCTION_13",
+            "_OUTLINED_FUNCTION_39",
+            "_OUTLINED_FUNCTION_43",
+            "_OUTLINED_FUNCTION_14",
+            "_OUTLINED_FUNCTION_13",
+            "_OUTLINED_FUNCTION_28",
+            "_OUTLINED_FUNCTION_31",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_22",
+            "_OUTLINED_FUNCTION_5",
+            "",
+            "_OUTLINED_FUNCTION_5",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b100",
+          "bytes": "cc9d0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a2830",
+          "target": "0x1001a2830",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b104",
+          "bytes": "00030035",
+          "kind": "conditional_branch",
+          "instruction": "cbnz w0, #0x10013b164",
+          "target": "0x10013b164",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b10c",
+          "bytes": "750000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x21, #0x10013b118",
+          "target": "0x10013b118",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b114",
+          "bytes": "c3990194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1820",
+          "target": "0x1001a1820",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b118",
+          "bytes": "94010037",
+          "kind": "conditional_branch",
+          "instruction": "tbnz w20, #0, #0x10013b148",
+          "target": "0x10013b148",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b120",
+          "bytes": "a80000b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x8, #0x10013b134",
+          "target": "0x10013b134",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b124",
+          "bytes": "336dfb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000165f0",
+          "target": "0x1000165f0",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_16",
+            "",
+            "_OUTLINED_FUNCTION_16",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b128",
+          "bytes": "6b000054",
+          "kind": "conditional_branch",
+          "instruction": "b.lt #0x10013b134",
+          "target": "0x10013b134",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b130",
+          "bytes": "04000014",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b140",
+          "target": "0x10013b140",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b134",
+          "bytes": "9923fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100003f98",
+          "target": "0x100003f98",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_21",
+            "",
+            "_OUTLINED_FUNCTION_21",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b138",
+          "bytes": "21050054",
+          "kind": "conditional_branch",
+          "instruction": "b.ne #0x10013b1dc",
+          "target": "0x10013b1dc",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b13c",
+          "bytes": "e120fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000034c0",
+          "target": "0x1000034c0",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_27",
+            "_OUTLINED_FUNCTION_16",
+            "_OUTLINED_FUNCTION_11",
+            "_OUTLINED_FUNCTION_28",
+            "_OUTLINED_FUNCTION_23",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_40",
+            "_OUTLINED_FUNCTION_29",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_22",
+            "_OUTLINED_FUNCTION_11",
+            "_OUTLINED_FUNCTION_13",
+            "_OUTLINED_FUNCTION_39",
+            "_OUTLINED_FUNCTION_43",
+            "_OUTLINED_FUNCTION_14",
+            "_OUTLINED_FUNCTION_13",
+            "_OUTLINED_FUNCTION_28",
+            "_OUTLINED_FUNCTION_31",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_22",
+            "_OUTLINED_FUNCTION_5",
+            "",
+            "_OUTLINED_FUNCTION_5",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b140",
+          "bytes": "8b38fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10000936c",
+          "target": "0x10000936c",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_35",
+            "_OUTLINED_FUNCTION_71",
+            "_OUTLINED_FUNCTION_34",
+            "",
+            "_OUTLINED_FUNCTION_34",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b144",
+          "bytes": "80020035",
+          "kind": "conditional_branch",
+          "instruction": "cbnz w0, #0x10013b194",
+          "target": "0x10013b194",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b158",
+          "bytes": "b05dfb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100012818",
+          "target": "0x100012818",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_19",
+            "_OUTLINED_FUNCTION_46",
+            "_OUTLINED_FUNCTION_29",
+            "",
+            "_OUTLINED_FUNCTION_29",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b174",
+          "bytes": "c020fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100003474",
+          "target": "0x100003474",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_12",
+            "_OUTLINED_FUNCTION_18",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_1",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_5",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_5",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_9",
+            "_OUTLINED_FUNCTION_14",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_26",
+            "_OUTLINED_FUNCTION_23",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_5",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_19",
+            "_OUTLINED_FUNCTION_19",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_22",
+            "_OUTLINED_FUNCTION_1",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_1",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_7",
+            "_OUTLINED_FUNCTION_12",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_19",
+            "_OUTLINED_FUNCTION_3",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_8",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_1",
+            "_OUTLINED_FUNCTION_6",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_12",
+            "_OUTLINED_FUNCTION_4",
+            "_OUTLINED_FUNCTION_2",
+            "",
+            "_OUTLINED_FUNCTION_2",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b180",
+          "bytes": "7838fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100009360",
+          "target": "0x100009360",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_44",
+            "_OUTLINED_FUNCTION_37",
+            "_OUTLINED_FUNCTION_29",
+            "_OUTLINED_FUNCTION_5",
+            "_OUTLINED_FUNCTION_34",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_46",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_12",
+            "",
+            "_OUTLINED_FUNCTION_12",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b18c",
+          "bytes": "899b0194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1fb0",
+          "target": "0x1001a1fb0",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b190",
+          "bytes": "deffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b108",
+          "target": "0x10013b108",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b198",
+          "bytes": "0d39fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x1000095cc",
+          "target": "0x1000095cc",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_4",
+            "",
+            "_OUTLINED_FUNCTION_4",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b1a4",
+          "bytes": "6f38fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x100009360",
+          "target": "0x100009360",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_44",
+            "_OUTLINED_FUNCTION_37",
+            "_OUTLINED_FUNCTION_29",
+            "_OUTLINED_FUNCTION_5",
+            "_OUTLINED_FUNCTION_34",
+            "_OUTLINED_FUNCTION_10",
+            "_OUTLINED_FUNCTION_46",
+            "_OUTLINED_FUNCTION_15",
+            "_OUTLINED_FUNCTION_12",
+            "",
+            "_OUTLINED_FUNCTION_12",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b1a8",
+          "bytes": "b920fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10000348c",
+          "target": "0x10000348c",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_32",
+            "_OUTLINED_FUNCTION_6",
+            "",
+            "_OUTLINED_FUNCTION_6",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b1ac",
+          "bytes": "e7ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b148",
+          "target": "0x10013b148",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b1b0",
+          "bytes": "1a44fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10000c218",
+          "target": "0x10000c218",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_1",
+            "",
+            "_OUTLINED_FUNCTION_1",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b1b4",
+          "bytes": "62ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10013af3c",
+          "target": "0x10013af3c",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b1bc",
+          "bytes": "b5faffb5",
+          "kind": "conditional_branch",
+          "instruction": "cbnz x21, #0x10013b110",
+          "target": "0x10013b110",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b1c0",
+          "bytes": "d6ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b118",
+          "target": "0x10013b118",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b1c4",
+          "bytes": "1544fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10000c218",
+          "target": "0x10000c218",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_1",
+            "",
+            "_OUTLINED_FUNCTION_1",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b1c8",
+          "bytes": "9fffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b044",
+          "target": "0x10013b044",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b1cc",
+          "bytes": "1344fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10000c218",
+          "target": "0x10000c218",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_1",
+            "",
+            "_OUTLINED_FUNCTION_1",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b1d0",
+          "bytes": "bcffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b0c0",
+          "target": "0x10013b0c0",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b1d4",
+          "bytes": "1144fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10000c218",
+          "target": "0x10000c218",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_1",
+            "",
+            "_OUTLINED_FUNCTION_1",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b1d8",
+          "bytes": "c7ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b0f4",
+          "target": "0x10013b0f4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013b1dc",
+          "bytes": "0f44fb97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10000c218",
+          "target": "0x10000c218",
+          "target_symbols": [
+            "_OUTLINED_FUNCTION_1",
+            "",
+            "_OUTLINED_FUNCTION_1",
+            ""
+          ],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013b1e0",
+          "bytes": "d7ffff17",
+          "kind": "direct_control",
+          "instruction": "b #0x10013b13c",
+          "target": "0x10013b13c",
+          "target_symbols": [],
+          "target_in_slice": true
+        }
+      ]
+    },
+    {
+      "address": "0x10013bc5c",
+      "symbols": [
+        "",
+        "__CFSetValidateRequiredIdentificationParamsApplierFunction",
+        "",
+        "__CFSetValidateRequiredIdentificationParamsApplierFunction"
+      ],
+      "scope": "Required-success membership check",
+      "semantic_table_rows": "IC-09",
+      "raw_path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bc5c.bin",
+      "length": 108,
+      "sha256": "5f019f69600d421691b0af0263d9b228601fbda0ce4f960f3a9120709517ee39",
+      "raw_matches_source": true,
+      "decoded_all_slice_bytes": true,
+      "conditional_branch_count": 2,
+      "conditional_value_count": 0,
+      "indirect_control_count": 0,
+      "flow_inventory": [
+        {
+          "address": "0x10013bc5c",
+          "bytes": "410300b4",
+          "kind": "conditional_branch",
+          "instruction": "cbz x1, #0x10013bcc4",
+          "target": "0x10013bcc4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013bc88",
+          "bytes": "ce960194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a17c0",
+          "target": "0x1001a17c0",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013bc94",
+          "bytes": "ff960194",
+          "kind": "direct_control",
+          "instruction": "bl #0x1001a1890",
+          "target": "0x1001a1890",
+          "target_symbols": [],
+          "target_in_slice": false
+        },
+        {
+          "address": "0x10013bc98",
+          "bytes": "e0000035",
+          "kind": "conditional_branch",
+          "instruction": "cbnz w0, #0x10013bcb4",
+          "target": "0x10013bcb4",
+          "target_symbols": [],
+          "target_in_slice": true
+        },
+        {
+          "address": "0x10013bca8",
+          "bytes": "1d4bfc97",
+          "kind": "direct_control",
+          "instruction": "bl #0x10004e91c",
+          "target": "0x10004e91c",
+          "target_symbols": [
+            "",
+            "__addRejectParam",
+            "",
+            "__addRejectParam"
+          ],
+          "target_in_slice": false
+        }
+      ]
+    }
+  ],
+  "core_switch": {
+    "table": "0x1000188e0",
+    "relative_base": "0x100051350",
+    "sha256": "c288975fbede85301f5d0c32f31491ba6db39fced1e0ecb81bb6204373408de4",
+    "entries": [
+      {
+        "id": 0,
+        "target": "0x10005135c"
+      },
+      {
+        "id": 1,
+        "target": "0x10005140c"
+      },
+      {
+        "id": 2,
+        "target": "0x100051488"
+      },
+      {
+        "id": 3,
+        "target": "0x100051454"
+      },
+      {
+        "id": 4,
+        "target": "0x1000513bc"
+      },
+      {
+        "id": 5,
+        "target": "0x10005141c"
+      },
+      {
+        "id": 6,
+        "target": "0x100051498"
+      },
+      {
+        "id": 7,
+        "target": "0x1000514e4"
+      },
+      {
+        "id": 8,
+        "target": "0x100051464"
+      },
+      {
+        "id": 9,
+        "target": "0x100051464"
+      },
+      {
+        "id": 10,
+        "target": "0x100051464"
+      },
+      {
+        "id": 11,
+        "target": "0x100051464"
+      },
+      {
+        "id": 12,
+        "target": "0x1000515a0"
+      },
+      {
+        "id": 13,
+        "target": "0x10005156c"
+      },
+      {
+        "id": 14,
+        "target": "0x100051394"
+      },
+      {
+        "id": 15,
+        "target": "0x10005142c"
+      },
+      {
+        "id": 16,
+        "target": "0x1000513e4"
+      },
+      {
+        "id": 17,
+        "target": "0x10005136c"
+      },
+      {
+        "id": 18,
+        "target": "0x100051464"
+      },
+      {
+        "id": 19,
+        "target": "0x100051534"
+      },
+      {
+        "id": 20,
+        "target": "0x100051464"
+      },
+      {
+        "id": 21,
+        "target": "0x100051464"
+      },
+      {
+        "id": 22,
+        "target": "0x100051464"
+      },
+      {
+        "id": 23,
+        "target": "0x100051464"
+      },
+      {
+        "id": 24,
+        "target": "0x100051544"
+      },
+      {
+        "id": 25,
+        "target": "0x100051464"
+      },
+      {
+        "id": 26,
+        "target": "0x1000515c0"
+      },
+      {
+        "id": 27,
+        "target": "0x100051464"
+      },
+      {
+        "id": 28,
+        "target": "0x100051464"
+      },
+      {
+        "id": 29,
+        "target": "0x100051464"
+      },
+      {
+        "id": 30,
+        "target": "0x100051464"
+      },
+      {
+        "id": 31,
+        "target": "0x100051464"
+      },
+      {
+        "id": 32,
+        "target": "0x100051464"
+      },
+      {
+        "id": 33,
+        "target": "0x100051464"
+      },
+      {
+        "id": 34,
+        "target": "0x1000515b0"
+      }
+    ]
+  },
+  "android_sources": [
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\sessioncore\\IapIdentifyInfo.kt",
+      "sha256": "a54a8609c98f49009c7d71ad5c504324f874e8f4104cb09756b9cce13d03b2f1"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\Wire.kt",
+      "sha256": "6b64f7c7c930e17161bd3bb6c3e1599a2377292fcd30ee67cbd02ae1c1d9a065"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\Bootstrap.kt",
+      "sha256": "c90fbfb9165ee8e796dbc573ba4ffd20fcdaed1804056a7c097255c6503a89a0"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\test\\java\\io\\github\\iamr0s\\carvex\\sessioncore\\IapIdentifyInfoTest.kt",
+      "sha256": "01fd3d18c0e46cf75800b35bce6bb741fdfd815de28f5d54810989aac9c7361c"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\test\\java\\io\\github\\iamr0s\\carvex\\carplay\\BootstrapNegotiationTest.kt",
+      "sha256": "0d8fea0779aeb3d3ee055a6a5044cafad2c9514bc653e2e06d3f03559daa1993"
+    }
+  ],
+  "tool": {
+    "path": "D:\\carvex-research\\research\connection\tools\\inspect_identification_core_branches.py",
+    "sha256": "520644118897b41f7f8fa9607d9b8ba3f677233c758c7824a177179074e16d8b",
+    "capstone_version": "5.0.7"
+  },
+  "limits": [
+    "Branches and calls are an inventory, not a coverage percentage.",
+    "Semantic review is recorded separately in chapter18, including OPEN dependencies.",
+    "Calls, allocation failure, CF conversion/equality and all platform dependencies are not fully closed.",
+    "No firmware execution or vehicle observation; no end-to-end compatibility claim."
+  ]
+}

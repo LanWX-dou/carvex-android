@@ -1,0 +1,1154 @@
+{
+  "schema": 1,
+  "record_date": "2026-10-29",
+  "target": "iPhone18,1 / iOS 27.0.1 / 24A446",
+  "scope": "Android Identification lifecycle batch2; not firmware execution or headunit interoperability",
+  "source_root": "D:\\carvex-research\\android",
+  "source_files": [
+    {
+      "relative_path": "core/src/main/java/io/github/iamr0s/carvex/sessioncore/Connection.kt",
+      "sha256": "737edf4135d0d82d2ad2776d79ffd858216a48d1130b55654ca048a57c34922e",
+      "bytes": 7607
+    },
+    {
+      "relative_path": "bridge/src/main/java/io/github/iamr0s/carvex/session/SessionController.kt",
+      "sha256": "74a9b478d19f1ce9f1f059ab73767cc78e64e59772e10c5e6692fe57182cc40c",
+      "bytes": 72085
+    },
+    {
+      "relative_path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/Bootstrap.kt",
+      "sha256": "4f0c880d34ca467174bdc10ab61cae5542413e2192f45fe165106bd072e19667",
+      "bytes": 74041
+    },
+    {
+      "relative_path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt",
+      "sha256": "50df3c8552ad73405e3adb73782ffbd3e080a75f8d232dd96a939c157c65cf5a",
+      "bytes": 100622
+    },
+    {
+      "relative_path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/RuntimeIap.kt",
+      "sha256": "6f3135414f2160feb1b66c51fc30376299673b275c036309c1ce1ead36100adb",
+      "bytes": 8087
+    },
+    {
+      "relative_path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/Wire.kt",
+      "sha256": "eb2d0ad35e070664b61a025726f95852dc23e1c47e7023599e2b110998a1dba3",
+      "bytes": 11732
+    },
+    {
+      "relative_path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/sessioncore/PeerNegotiationController.kt",
+      "sha256": "ae949df1bc020e6e9ec258c020307e03a21fe3e6fbe4e656babaf52145230ac0",
+      "bytes": 8544
+    },
+    {
+      "relative_path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/sessioncore/IapIdentificationUpdate.kt",
+      "sha256": "4a041a9e7943b689093f7b325b0631baeedb5984a1edb9dbab57e858b357e9da",
+      "bytes": 1894
+    },
+    {
+      "relative_path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/sessioncore/AcceptedIdentification.kt",
+      "sha256": "733b290d58837608b0b0c71272a1ec1ac07db01c7b2a0220d7cd645a3da9467a",
+      "bytes": 2483
+    },
+    {
+      "relative_path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/sessioncore/PeerNegotiationControllerTest.kt",
+      "sha256": "dce47b8eddc867259456959b4d2281cd963d45734e0e6ada1ff7c5dd60f44873",
+      "bytes": 15560
+    },
+    {
+      "relative_path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/sessioncore/IapIdentificationUpdateTest.kt",
+      "sha256": "adf50feafecbd819c33355d0f3cd4ad7e8e338afadae294c41092f41a33de159",
+      "bytes": 5043
+    },
+    {
+      "relative_path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/sessioncore/AcceptedIdentificationTest.kt",
+      "sha256": "d50cfa2bfd7b0adb30cc06c0b24dd2a90ac8dad1156fb7551a1bb34c318edc3e",
+      "bytes": 6599
+    },
+    {
+      "relative_path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/BootstrapNegotiationTest.kt",
+      "sha256": "d5f6dab813722c2cee11841d114a3d20f3d1f82cfa34f7d21212d0fabdbe8463",
+      "bytes": 54256
+    },
+    {
+      "relative_path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/core/RuntimeIapTest.kt",
+      "sha256": "c26b2289354bcef9d9dda5788b4e4432d5f1bba9b6cbc4200aef9260147d2531",
+      "bytes": 18753
+    }
+  ],
+  "test_modules": [
+    {
+      "module": "protocol-carplay",
+      "suites": 103,
+      "tests": 713,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reports": [
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.AudioOutputIsolationTest.xml",
+          "sha256": "14b0352d5582bdc682b08c3e5180c1cb6d6329c3ebf835d67cfd2b6a4e4337f3",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:06:51.399Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.AudioResourceOutputTest.xml",
+          "sha256": "32aca818e5f33dae84d277e66466e0f163b01580c13107980a863a9d5cc4cb23",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:06:52.995Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.BootstrapConfigTest.xml",
+          "sha256": "93e710dab46ffbd978aa50487192b4ecfe24454ef27b0cbf6d2c996ebd14d22f",
+          "tests": 25,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:06:53.552Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.BootstrapNegotiationTest.xml",
+          "sha256": "869ff038d8e40bf6690414d973709abc4427dcdf0ac2e8f4cb318af3dd9328ac",
+          "tests": 45,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:06:53.658Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.BootstrapSecurityTest.xml",
+          "sha256": "f4302ac4a4a1d29caaa3a98c0974e89b12d719275b37520585c701f4402425f4",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.182Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.CompressedAudioTimestampTest.xml",
+          "sha256": "772038e295a2f339f5051c2bc0080528bb6e76f4f8ef30f9132405e6f8d68321",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.227Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AacConfigurationTest.xml",
+          "sha256": "bee78fb30bb51cd2b0693a79acbb3f2f232d500be55aeb44bc58b0fbdccc9ac9",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.485Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AccessoryChallengeTest.xml",
+          "sha256": "f0b8ce97608997a3abf0887c861c521707174736793a767f15e26e278c2f6d15",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.493Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AirPlayFeaturesTest.xml",
+          "sha256": "898552518abe935f4be4723258cfaab00f8b2064c5f9aacb41eb80a4dfcc5a0a",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.647Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AppleAccessoryTrustTest.xml",
+          "sha256": "735c33f6eaed887e914c637546909df805e3d3846b34de7c4060bbdb587ebd9f",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.658Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioCapabilitiesTest.xml",
+          "sha256": "2bc5a0d7bdad1c1c730ff828da737ccc2e456e4a83a685be211e7bac63a76a48",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.716Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioEncoderInputTest.xml",
+          "sha256": "141af0339528e5abb55772f5873e9a31468a0982e1cf9f70e6c53bf4d17def97",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.725Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioEncoderOutputTest.xml",
+          "sha256": "a4aeaecfb1299c866c8121c5f0b7e924b7a6c98bfd92451e8f9729ad25bcd24a",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.734Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioLatencyCapabilitiesTest.xml",
+          "sha256": "c6841335de1bc403f4aa724e0d12a1c609d24898dd143abd309eec14e93539f3",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.739Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioOutputDiagnosticTest.xml",
+          "sha256": "e3345d976a95236ba43d69774010870a9dc555a14b057012e94098d868faf75b",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.753Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioPipelineTimingTest.xml",
+          "sha256": "ba225aa10cf5115d169fc6bf18b25ff52d32705751be0f6171bae1a1e3d95205",
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.777Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRedDiagnosticTest.xml",
+          "sha256": "f70acb4cb85850a140501241e809e2b54b7447edd820e64bf0b69766e95a723a",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.809Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRedundancyPolicyTest.xml",
+          "sha256": "7c6cb384169afd444b164fe9e72d1abf3c1b7807e158aaa38c8f8ef3703d2248",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.817Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRetransmitProtocolTest.xml",
+          "sha256": "2fc51c18052d520ebc03c925c657043f802288f4bbff9012049ab91183dc15b8",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.822Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRtpInputTest.xml",
+          "sha256": "47214a8df2f5b18ca2e340e298173482ccd499ea085677e9bd58da4e6ebc0f35",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.828Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRtpTimestampClockTest.xml",
+          "sha256": "311028ca115e14073c9e43ebc0a427724df4500cb72adf0ca6c02d9de3c63a1f",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.841Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioSetupDescriptionTest.xml",
+          "sha256": "97073f2cc0c767254e4b1e6726e5c5fdcb43f8a9c45c4dc8097de65bdae6e179",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.868Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioStreamLifecycleTest.xml",
+          "sha256": "63510d454811f568efa06cc3c55dbe358bd44f12768697b8ba801fee7dd04c73",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.882Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioTeardownDescriptorTest.xml",
+          "sha256": "f618563c69ce05d3e373ac3230d21f75a396d7d30b6d42b243bb259102dc605b",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.902Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AuthTrustTest.xml",
+          "sha256": "d18f9c721e996ba41227748758a50854665f275492905ff1342d9312d60a9fe3",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.905Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AvcRecoveryConfigTest.xml",
+          "sha256": "e75a0ad4ee98a82c3986385764bcb95a7b54067c060c93a2184ab5defc68c179",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.941Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.CarPlayAudioPlanTest.xml",
+          "sha256": "4ddefcaff0bd0ae37511b56374ea03745f215cff986a694d8616f9e599fc53b0",
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.949Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.CarPlaySourceIdentityTest.xml",
+          "sha256": "b0c5d2177bfbc9a2802786906d143129a431eef81175c50713585329fef08bcc",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.976Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.CarPlayTimingTest.xml",
+          "sha256": "82637535e76948b19b1eefa9381f121de1f19163983320f0cbd5084216837104",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.987Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.CompressedAudioContractTest.xml",
+          "sha256": "bb77a323bd1bf217eb7ee5e215f24375535838fa1b762bf3e80a239509870943",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.992Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ControlReadDiagnosticsTest.xml",
+          "sha256": "f0ddea919a75a57682c959a83160187571572018a59e6951b5074ce7acb34847",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ControlRecordBoundaryTest.xml",
+          "sha256": "f488f632a3881a27b4b4bc425bd74258113572585cc99821b8826fd3268227ee",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.065Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.DigitalAudioAndDestinationTest.xml",
+          "sha256": "e52b25f6595eeff8ba908ceb9dd04fbde82382acc2dcb941677af479d4296f5f",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.077Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.DisplayCapabilitiesTest.xml",
+          "sha256": "b22ae5fc74e372c4d6ab302ac2c9024b8c92996322d21771d65a04d9354c5bf4",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.086Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.EaSessionPolicyTest.xml",
+          "sha256": "2ead4c5c78c6bb122bc6d59a9618ad4f025c1cfae67d3acd9689b53faec9c9c6",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.109Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ExperimentalAaPolicyTest.xml",
+          "sha256": "f6d9a750562b4ad68a8a66db04acb73272f218be7aebb3c245e7a9f81ce392cd",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.114Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ExperimentalHapV11Test.xml",
+          "sha256": "6b0ebf49f2839c8c2bebd306fccebc91d0d988a1afc57c3fa0406c7ae5ca88fc",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.374Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.FidTokenTest.xml",
+          "sha256": "e2bb12d7ca58790c0517cec9e04a049146fdc81cee2b6d1aed8ec8d5342042c5",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.451Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidMediaKeysTest.xml",
+          "sha256": "6dd35e1fa7b8618bcd4a79dcc8a248b96ef6644d87c7e0b782332bb2d8199c87",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.462Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidMixedPageTest.xml",
+          "sha256": "5c18823880ab5ed200a61a94549ca9ddbb31a6bd21c5c6476006f8cadbfbd0ff",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.467Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidTouchCompositeTest.xml",
+          "sha256": "60120ec842cb7a2190fbefc6da509eaa1507b3fc9660f93c943b9a3579da4216",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.472Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidUsagesTest.xml",
+          "sha256": "48a557f429c680987a0ce79526033d75096bcd0e7f44cf384a893a5a6c4a8ef9",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.481Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidUsagesVendorDescriptorTest.xml",
+          "sha256": "844747f6294796c1fd3e8532ddf4edb13b98cb163c6b79bf03667a7599e07e1b",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.486Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HomeKitBoundaryTest.xml",
+          "sha256": "258ae27f567b6d2254738752dbfbec5e2ea3a4e349528af5a2d7b3c518d5eb9a",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.489Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapAuthenticationTest.xml",
+          "sha256": "a4599a124b4800996ebd7029d70f6c34d81bc26d25a7f6fa02bba9aea8f4d736",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.545Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapCertificateTransactionTest.xml",
+          "sha256": "78c907f2b71ada739f8ea4512d7fff58c06fddeb520250caba29313096068063",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.552Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapFrameReaderTest.xml",
+          "sha256": "3539db74c5ab2f4885c7a9ba122129b8439bb1645988b137c5535a9e11eb22c8",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:03.588Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapLingoCatalogTest.xml",
+          "sha256": "11352cf1e20b8308ae61b432d356d785c32b248440d8ed2833a4091f9ed3478d",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:04.207Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapLingoTest.xml",
+          "sha256": "f87280fed155051f2105485399b8a08cdb8830df9f63056bee008d20ca3357cc",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:04.222Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapLinkRestartTest.xml",
+          "sha256": "a23c3e897a46c46c89042404ee8c576d09ecfde3ebcd58c8e68f85ba97aa4359",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:04.240Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapLinkSynchronizationTest.xml",
+          "sha256": "40d5b6fc39c4c2c9772e0287b33d8b3b72d5c651d43f04101ffac983a4ebf5bb",
+          "tests": 51,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:04.297Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapMessageRouterTest.xml",
+          "sha256": "47598f6db55a6e2288a79d16c99b30335644297980a32fd6f56660206a228040",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.372Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapPeerProfileTest.xml",
+          "sha256": "dfd4f30b6418e8628ea1c8213509d44b3b980fc127d13af1c1ad0c9cec2b28ce",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.392Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapStartupPolicyTest.xml",
+          "sha256": "36953cd63d66d5898d0cd5f843248e44547fab2be4d9367ae2e79a9a1c920a5f",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.413Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapTunnelTest.xml",
+          "sha256": "9ecb565c9efc20fb1c6e6e474c83f1628a01983bc616e15e7d94ff3fe12980b5",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.434Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapWirelessPairingTest.xml",
+          "sha256": "d34f8381e70712033b2e2a786da4a9c08746cf24afc9f87e4f2ab07150744dfc",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.466Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.InvitationIdentityTest.xml",
+          "sha256": "350704cf8143b1cb9fd1078cc1f809fab857f5817223b86cb637465d76073dfe",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.485Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IpLiteralTest.xml",
+          "sha256": "ddc2d85ca161f234fb8a488f9f738ad41e5f15ecd4ef66335f678b201da04a1a",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.506Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.LocationNmeaTest.xml",
+          "sha256": "5ac7a5c41b16b96880dccddb7d68b52bc36530774fe03d775ed7245fa0f28cec",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.544Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MainAudioResourceModesTest.xml",
+          "sha256": "888a7dfd295aebacd3f454cb8308be3a8352be80127757e1da88b39ba27203e7",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.574Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MediaAudioPacketsTest.xml",
+          "sha256": "edd44d2b87ff770537fa3903a73f7359998c9917240c7868b73b250b17d31c2d",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.593Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MediaLibraryTest.xml",
+          "sha256": "1ae3a02cb159b32d822da2765b8eed677674d4475b7b3cf0f0c21538b00fd949",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.630Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MfiSignatureTest.xml",
+          "sha256": "15ca2011c51311a24e5b615ca4c7a8d3586573e95adc4764064a71ad4123a2a7",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.656Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MicrophoneCodecPolicyTest.xml",
+          "sha256": "e7861818ba65248f833a1215dcafa7f57be28eac7cf1d3d1e6944fc12d97d0df",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.843Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.NavigationGuidanceTest.xml",
+          "sha256": "2138a864166944bcbc598bc3dd16aa58b299e147786333ee0d9ac1d2b7b75be1",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.846Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.NowPlayingUpdateTest.xml",
+          "sha256": "be32076fd566875f9c2400a9a2c828ba36ad73f8b296ffb7cfedef3ff4e5ea91",
+          "tests": 13,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.853Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PairAliasTest.xml",
+          "sha256": "f658b9f29ee716158505c4f33cfda128bc27bedab911c25987326de09b557e54",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.865Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PairingResponsesTest.xml",
+          "sha256": "961fb3299fab4ebe5a687462a4a118105d8e1f022b880241652ec5aff8478f85",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.970Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PairRecordsTest.xml",
+          "sha256": "bdb3b7176b191b69c54d94dfcfc784364ae1f2b50c23e26da9fcd8a93138ad4a",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.868Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PairSetupSrpTest.xml",
+          "sha256": "9fbe8d6c15b09a8b80ac66d49a535d8df539a659efaeba1045d269a48359ec53",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.875Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PhoneSubscriptionsTest.xml",
+          "sha256": "a57ca99ba107dca6c5579e15934a230a34f6e9e2df95770aca8e2f7f4d4a3e2e",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.990Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ProjectionGeometryTest.xml",
+          "sha256": "29bd218529aa53fc73820110765482a12119fabd08b1a08a0a45a1aed4672295",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:06.997Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ProtocolCompatibilityTest.xml",
+          "sha256": "252fe340be46c20dfcb30b2437677ad072b0fd343a0708faff348a756b884aa4",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.001Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.RtspClientTest.xml",
+          "sha256": "65c1e18816b93f2bfa1edb4c7cc356318ef5a5db74d832b89dea28f928ffdc62",
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.007Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.RuntimeIapTest.xml",
+          "sha256": "b53fc4a2cf3eeaba6eaa001562373d1282afcb8618867fbc0f8739f53e2bc33c",
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.167Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ScreenResourceModesTest.xml",
+          "sha256": "2b32d34a3bc13f9170b1575ed6a3e56cbe86b9ada967cc50e646b633244a0242",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.251Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SecurityRoutingTest.xml",
+          "sha256": "c3ac24eb120d9b8081c4f363f4229210ed4c1759270a3a88faca60fdec364901",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.258Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SessionEventGateTest.xml",
+          "sha256": "ec8c49faca6f0ca72695ec454271a62a8f7e5d493ad8a81bd7c446631e26b662",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.272Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SiriRequestsTest.xml",
+          "sha256": "63cd01ccc3e7d6e429bffb43031251c04217d63c748bb0d20e9bff16eaf7b939",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.284Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SpeechPcmDiagnosticTest.xml",
+          "sha256": "b2e22d1fe642327f8b95c9ce656de10104a4f44423c05f6317f962901e9f2b91",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.299Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SurfaceFrameTimelineTest.xml",
+          "sha256": "07f45335bce86eca45da906210176a3c8768d724dd1684b07f87b33a9778825b",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.302Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.U2iwHidReportCodecTest.xml",
+          "sha256": "0ecc05711effd7145a50cdc6d412d720c644b249c34d175977e07d539c400cba",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.306Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.UsbEp0RolePolicyTest.xml",
+          "sha256": "5ea9ce9e6eeca75ac7c33593d030cdb71f4cda6ff3aa1d8ac06d3c50f2590e73",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.313Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VehicleRegressionTest.xml",
+          "sha256": "9dcae1a6160c55035b7b1e5b86af65be0e3f5b0428f0be6b593d237af3abe3f4",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.319Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoDeliveryGateTest.xml",
+          "sha256": "63de3e09844ea7634cf4e7e3f7ab2816ae175b0d3b4f7e84ec3ea26983b3bb68",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.323Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoDiagnosticLogTest.xml",
+          "sha256": "93ffd272dd3531b7bb00b6abf818fdefff36d11777a9eafd22cce76485de6c80",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.325Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoIdleHeartbeatTest.xml",
+          "sha256": "e1e188374e3c62bcf9f41b92e035effced1d6d38451daf4adc147db35d3c95af",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.327Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoRatePolicyTest.xml",
+          "sha256": "804ac737a459966198336de477e7e3df575bc55314e39d1118e7c0d142e220f1",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.329Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoSendDiagnosticsTest.xml",
+          "sha256": "f36fed9c1e85318aa5439a3a7709e7c0cdf46d85aa9bbebf173b34a65c5ba9fe",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.333Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoTcp128Test.xml",
+          "sha256": "b5031053482440483e554b5b9672e44ae7a024343427f1bc0fc9b514bfcc2fde",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.364Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.WifiAnnouncementTest.xml",
+          "sha256": "9fa111936a6faa471bc8c5d3daa5887fcd4d9cd8fda12b724ec536e739304254",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.368Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.WireTest.xml",
+          "sha256": "c30ce319ccb5c851fefd160d24000006893c12e59593f9c7cc4d703e4275f1b1",
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.376Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.WriteDeadlineTest.xml",
+          "sha256": "4d777931791be8aaa5fdff8d53baad558a98935d4306e3dc2e0790c6b33b26d4",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.816Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.ExperimentalHapDiscoveryTest.xml",
+          "sha256": "bd430892d3bacb7e828f4c3834f6b0fcccb30855bf37421695f6b0fdf983b2ef",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.428Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.HidKeyRegistryTest.xml",
+          "sha256": "d032f1e73a8a3cb42e334d83bc2bd58dbd9e0d75acd6d2d56b24d9be10c1c20b",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.437Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.NetworkAddressCandidatesTest.xml",
+          "sha256": "234981c613d8fdf337c2a80670b51c2dacb0baf4391ec9873f3f0c2428709d24",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.460Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.NetworkBindingTest.xml",
+          "sha256": "10c3f71db238e2928313b6c182c53060ad81d5a0d5043f7b55d93860240fef2a",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.472Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.ReceiverDiscoveryScopeTest.xml",
+          "sha256": "4ee1ea9bbf52c65ea45801f4269388e68125e7825f3faaf89283a02a643d7ec8",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:02.481Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.AcceptedIdentificationTest.xml",
+          "sha256": "a662a85dc5a11c1d8968a54c55e0c953250bf39ed533f79310cba38378fb67b1",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.823Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.AudioDemandGateTest.xml",
+          "sha256": "3c609d1bb9878de79792416e9ad0a1d10aa3dc9b12028816d830d592f63e017d",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.912Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.IapIdentificationUpdateTest.xml",
+          "sha256": "f7d9df141ae689df709b2cc5d78661ff47968b14924d3331910342d737ce9f0c",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.949Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.IapIdentifyInfoTest.xml",
+          "sha256": "3ddba4fe955d73ba2a6691c77ee4329b6924916125b787f0a9f93c02221be97e",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.959Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.PeerNegotiationControllerTest.xml",
+          "sha256": "6391158894132c1b1a2ce9c06420474daffb1ea51eed84e4196b76766cf75d75",
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:07:07.963Z"
+        }
+      ]
+    },
+    {
+      "module": "core",
+      "suites": 12,
+      "tests": 79,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reports": [
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.BluetoothAddressCaseTest.xml",
+          "sha256": "3bf91a398d89c9968436d45c19335e349c89fc7da72d470d566afb53de0c5c20",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:07.345Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.ConnectionModeTest.xml",
+          "sha256": "246e0c4cc3b2806fcec9352be2cd957aef8f389cd0d401280cfad9efa075995d",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:07.400Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.DeviceNameResolutionTest.xml",
+          "sha256": "1ef764b31a8afcf33c4afcde8e3996a08af625728b19a8ad8d374010c2f4d19b",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:07.420Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.DiagnosticLogTextTest.xml",
+          "sha256": "f4ef6fd11c3850a16efa47a00bedc72528ed77270677dbeeb2799a27c4c7a13e",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:07.457Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.HandoffSupervisorTest.xml",
+          "sha256": "5567ce9deca5d282f5df7eafaefc9dd66b97fbda2885148e6728a86959d16904",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:08.156Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.HostAudioBridgeTest.xml",
+          "sha256": "df59ad89eb90f4fd99132f0a34c4545f3b62f9c209fe44c4fdc48406db43e389",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:08.247Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.MainAudioOwnershipTest.xml",
+          "sha256": "dd917cb74f6518b3c09fc1a63c9119bad6e21eea9282ae1aa406d73f71f53bfb",
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:08.823Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.ProtocolTraceTest.xml",
+          "sha256": "b86b1b530a973d2db53ed411aff74f41f6da380ad21afa6438a5717b4eebf4c9",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:08.863Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.ResourcesTest.xml",
+          "sha256": "b46d1dc1a79e92317bbe7c0a3d76e01918ace71a16011be08cdc3e35ac95cf03",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:08.881Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.SpeechOutputOptionsTest.xml",
+          "sha256": "49e6bb5a2ea9328a8805b2c96653ec0becc839d242cc24e09d8e77c2f62b9152",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:08.885Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.UsbPhoneHostAdapterTest.xml",
+          "sha256": "2322b2786b92e97c26975ab3e0194a0a0aebd4eddf7bb98aec42a3d48dba3dd9",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:08.895Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.VoiceButtonToggleTest.xml",
+          "sha256": "318dccba2b6c7ef39f120fc5e0dc9fb150b7f1e2be7499a79eb9ef7a37505825",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T08:01:08.913Z"
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "full_command": ".\\gradlew.bat :protocol-carplay:testDebugUnitTest :core:testDebugUnitTest :app:compileXiaomiDebugKotlin --no-configuration-cache",
+    "result": "BUILD SUCCESSFUL",
+    "execution_notes": "Both module tests and app Kotlin compilation actually executed during this batch. Final test-only refinements reran protocol tests; unchanged core tests/app compilation were UP-TO-DATE on that final invocation.",
+    "total_tests": 792,
+    "compile_xiaomi_debug_kotlin": "PASS",
+    "git_diff_check": "PASS; preexisting CRLF normalization warnings",
+    "packaging": "NOT_RUN",
+    "installation": "NOT_RUN",
+    "headunit": "NOT_RUN",
+    "limitations": [
+      "Initial 1D01 ordered/core/feature validation, required-success for 8/9 and platform providers remain deferred.",
+      "Runtime integration fixture supplies synthetic accepted AA/Identification result; does not execute Apple authentication.",
+      "JVM UTF-8 semantics not demonstrated equivalent to CFString conversion.",
+      "No full Apple authorization/cancellation/platform/feature-cleanup equivalence claim.",
+      "Original source snapshots in earlier evidence files are preserved; these hashes describe the current dirty checkout, not a clean isolated batch diff."
+    ]
+  }
+}

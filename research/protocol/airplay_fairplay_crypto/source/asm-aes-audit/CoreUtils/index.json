@@ -1,0 +1,71 @@
+{
+ "image": "CoreUtils",
+ "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+ "source_size": 2232432,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 6,
+ "functions": [
+  {
+   "symbol": "_AES_CTR_Init",
+   "address": "0x18be628bc",
+   "end": "0x18be62914",
+   "size": 88,
+   "group": "aes-state-audit",
+   "raw_sha256": "a38880e71155922d3da1e6aa81ab04957a5fc83b1277cbe6d55f9cd88bd72eaf",
+   "bin": "f_18be628bc.bin",
+   "asm": "f_18be628bc.s"
+  },
+  {
+   "symbol": "_AES_CTR_Update",
+   "address": "0x18be62914",
+   "end": "0x18be62afc",
+   "size": 488,
+   "group": "aes-state-audit",
+   "raw_sha256": "608c2fb11371667dcb6609f0fd8ae5a9c73899becd2410aa2e1e4de5455913b2",
+   "bin": "f_18be62914.bin",
+   "asm": "f_18be62914.s"
+  },
+  {
+   "symbol": "_AES_CTR_Final",
+   "address": "0x18be62afc",
+   "end": "0x18be62b48",
+   "size": 76,
+   "group": "aes-state-audit",
+   "raw_sha256": "3bccc6533b83f4111430942ae7e8bf81210c51da3a5fc22bdb2c86adbd5c6bb1",
+   "bin": "f_18be62afc.bin",
+   "asm": "f_18be62afc.s"
+  },
+  {
+   "symbol": "_AES_CBCFrame_Init",
+   "address": "0x18be62b48",
+   "end": "0x18be62ba4",
+   "size": 92,
+   "group": "aes-state-audit",
+   "raw_sha256": "bef7a3a68507beb356f68b17308236f270564b8bc2380ea546db5478352abed3",
+   "bin": "f_18be62b48.bin",
+   "asm": "f_18be62b48.s"
+  },
+  {
+   "symbol": "_AES_CBCFrame_Update",
+   "address": "0x18be62ba4",
+   "end": "0x18be62c50",
+   "size": 172,
+   "group": "aes-state-audit",
+   "raw_sha256": "8eb8b682097e25d9eeeb0d1bdb5d9e50cb39e2cee8eb5b28a939e99e42bdabdd",
+   "bin": "f_18be62ba4.bin",
+   "asm": "f_18be62ba4.s"
+  },
+  {
+   "symbol": "_AES_CBCFrame_Final",
+   "address": "0x18be62c50",
+   "end": "0x18be62c9c",
+   "size": 76,
+   "group": "aes-state-audit",
+   "raw_sha256": "3a1b6ad2e14dfbc285947cf02e3935eace469e34619e1ec849285bd28c9c0fb0",
+   "bin": "f_18be62c50.bin",
+   "asm": "f_18be62c50.s"
+  }
+ ],
+ "missing_symbols": []
+}

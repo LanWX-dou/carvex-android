@@ -1,0 +1,64 @@
+; accessoryd 0x100036ce0-0x100036dd4; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x100036ce0:	pacibsp	
+0x100036ce4:	sub	sp, sp, #0x50
+0x100036ce8:	stp	x22, x21, [sp, #0x20]
+0x100036cec:	stp	x20, x19, [sp, #0x30]
+0x100036cf0:	stp	x29, x30, [sp, #0x40]
+0x100036cf4:	add	x29, sp, #0x40
+0x100036cf8:	mov	x19, x1
+0x100036cfc:	mov	x20, x0
+0x100036d00:	adrp	x8, #0x10023f000
+0x100036d04:	ldr	x8, [x8, #0xa28]
+0x100036d08:	cbz	x8, #0x100036d24
+0x100036d0c:	adrp	x9, #0x10023f000
+0x100036d10:	ldr	w9, [x9, #0xa30]
+0x100036d14:	cmp	w9, #0x26
+0x100036d18:	b.lt	#0x100036d24
+0x100036d1c:	ldr	x8, [x8, #0x128]
+0x100036d20:	b	#0x100036d3c
+0x100036d24:	adrp	x8, #0x10023e000
+0x100036d28:	ldr	x8, [x8, #0x598]
+0x100036d2c:	cmn	x8, #1
+0x100036d30:	b.ne	#0x100036dcc
+0x100036d34:	adrp	x8, #0x10022b000
+0x100036d38:	ldr	x8, [x8, #0xbb0]
+0x100036d3c:	bl	#0x1001a2790
+0x100036d40:	mov	x21, x0
+0x100036d44:	mov	w1, #1
+0x100036d48:	bl	#0x1001a2830
+0x100036d4c:	cbz	w0, #0x100036d90
+0x100036d50:	adrp	x8, #0x1001b3000
+0x100036d54:	ldr	d0, [x8, #0xf0]
+0x100036d58:	str	s0, [sp]
+0x100036d5c:	stur	x20, [sp, #4]
+0x100036d60:	mov	w8, #0x400
+0x100036d64:	strh	w8, [sp, #0xc]
+0x100036d68:	stur	w19, [sp, #0xe]
+0x100036d6c:	adrp	x0, #0x100000000
+0x100036d70:	add	x0, x0, #0
+0x100036d74:	adrp	x3, #0x1001df000
+0x100036d78:	add	x3, x3, #0x326
+0x100036d7c:	mov	x4, sp
+0x100036d80:	mov	x1, x21
+0x100036d84:	mov	w2, #1
+0x100036d88:	mov	w5, #0x12
+0x100036d8c:	bl	#0x1001a1fe0
+0x100036d90:	bl	#0x1001a2590
+0x100036d94:	adrp	x8, #0x10022a000
+0x100036d98:	ldr	x0, [x8, #0xea0]
+0x100036d9c:	bl	#0x1001aadc0
+0x100036da0:	bl	#0x1001a2490
+0x100036da4:	mov	x21, x0
+0x100036da8:	mov	x2, x20
+0x100036dac:	mov	x3, x19
+0x100036db0:	bl	#0x1001aa260
+0x100036db4:	bl	#0x1001a2590
+0x100036db8:	ldp	x29, x30, [sp, #0x40]
+0x100036dbc:	ldp	x20, x19, [sp, #0x30]
+0x100036dc0:	ldp	x22, x21, [sp, #0x20]
+0x100036dc4:	add	sp, sp, #0x50
+0x100036dc8:	retab	
+0x100036dcc:	bl	#0x10012db24
+0x100036dd0:	b	#0x100036d34

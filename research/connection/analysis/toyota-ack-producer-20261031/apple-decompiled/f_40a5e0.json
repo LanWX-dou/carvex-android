@@ -1,0 +1,13 @@
+{
+  "address": "0x40a5e0",
+  "source_sha256": "bb8a5b0d9fa57eafa8a9358341db3c9661d210ec778620e52e8d3b9fa4fd9f5e",
+  "raw_sha256": "c62694ab1a5882ea3c33f263d219f89d870534ba2f79a23ba2bb815017be82ef",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "c62694ab1a5882ea3c33f263d219f89d870534ba2f79a23ba2bb815017be82ef",
+  "ghidra_name": "_CarPlayAvailability",
+  "signature": "undefined _CarPlayAvailability()",
+  "diagnostic": "",
+  "c_file": "f_40a5e0.ghidra.c",
+  "c_sha256": "dc5e1c836ae9fe1a060a0bbba8047fe0236a5ffb8ca3ea86cbb856349f879a26",
+  "status": "DECOMPILED_UNREVIEWED"
+}

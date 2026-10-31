@@ -1,0 +1,13 @@
+{
+  "address": "0x1001499f0",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "2f269c679f98bfc091cc7987151dd74bbd2dd3c337e660304e0922088a4f3465",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "2f269c679f98bfc091cc7987151dd74bbd2dd3c337e660304e0922088a4f3465",
+  "ghidra_name": "__startNowPlayingUpdatesHandler",
+  "signature": "undefined __startNowPlayingUpdatesHandler()",
+  "diagnostic": "",
+  "c_file": "f_1001499f0.ghidra.c",
+  "c_sha256": "8ad048462b9d391210b282a0349b87b3fe5880738f7cfca7d743a659992333f9",
+  "status": "DECOMPILED_UNREVIEWED"
+}

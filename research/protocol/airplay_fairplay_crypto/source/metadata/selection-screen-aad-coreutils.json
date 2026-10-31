@@ -1,0 +1,8 @@
+{
+  "image": "CoreUtils",
+  "functions": [
+    {"address": "0x18bf1c660", "symbol": "_NetSocket_Create", "group": "screen-aad-audit"},
+    {"address": "0x18bf1c798", "symbol": "_NetSocket_ReadInternal", "group": "screen-aad-audit"},
+    {"address": "0x18bf1cfb0", "symbol": "_NetSocket_CreateWithNative", "group": "screen-aad-audit"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "address": "0x18be560fc",
+  "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+  "raw_sha256": "03b3fef5f54d4f3a87fcb91d3ab357ca0bca1525f37cda3c75c05df4e99bddc5",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "03b3fef5f54d4f3a87fcb91d3ab357ca0bca1525f37cda3c75c05df4e99bddc5",
+  "ghidra_name": "__ChaCha20Poly1305EncryptMessage",
+  "signature": "undefined __ChaCha20Poly1305EncryptMessage()",
+  "diagnostic": "",
+  "c_file": "f_18be560fc.ghidra.c",
+  "c_sha256": "4771e320c61661e8aaa501a661a9fe6d183d2aa13ed329774c140a07085f68f6",
+  "status": "DECOMPILED_UNREVIEWED"
+}

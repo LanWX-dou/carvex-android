@@ -1,0 +1,13 @@
+{
+  "address": "0x40d640",
+  "source_sha256": "bb8a5b0d9fa57eafa8a9358341db3c9661d210ec778620e52e8d3b9fa4fd9f5e",
+  "raw_sha256": "7c875703d60c3be1ca7b1416e356a68c2ed09b1804fbeffc1604161ae0b27425",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "7c875703d60c3be1ca7b1416e356a68c2ed09b1804fbeffc1604161ae0b27425",
+  "ghidra_name": "_getBluetoothAddress",
+  "signature": "undefined _getBluetoothAddress()",
+  "diagnostic": "",
+  "c_file": "f_40d640.ghidra.c",
+  "c_sha256": "d062149a0151b30b26dbee1b3ead9ecda48dd9b9ffc59b6f5e64e1bfb7bf1c87",
+  "status": "DECOMPILED_UNREVIEWED"
+}

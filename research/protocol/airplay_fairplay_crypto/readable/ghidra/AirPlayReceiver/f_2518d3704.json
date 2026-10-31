@@ -1,0 +1,13 @@
+{
+  "address": "0x2518d3704",
+  "source_sha256": "ad6eddbb9bedcb8f121699e7fc94702632c4acf30135564763a646ac472cc51a",
+  "raw_sha256": "5a042b3f44140c1375faf802d182a9dfc1cfb7a90ab75ec6e7e7c4ada80fae7b",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "5a042b3f44140c1375faf802d182a9dfc1cfb7a90ab75ec6e7e7c4ada80fae7b",
+  "ghidra_name": "_AirPlayReceiverSessionSetSecurityInfo",
+  "signature": "undefined _AirPlayReceiverSessionSetSecurityInfo()",
+  "diagnostic": "",
+  "c_file": "f_2518d3704.ghidra.c",
+  "c_sha256": "aae14c6adcac00141a2f8834c42b9bb5acdd7983e1b592b0047362022f57f368",
+  "status": "DECOMPILED_UNREVIEWED"
+}

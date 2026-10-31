@@ -1,0 +1,364 @@
+{
+ "schema": 2,
+ "scope": "标准RTP检查与10B内部消息分离；合成结构向量，不含密码执行/网络映射/真实抓包",
+ "rtp_header_len": 12,
+ "audio_message_header_len": 10,
+ "trailer_layouts": {
+  "tag16_nonce8": [
+   16,
+   8
+  ],
+  "tag16": [
+   16,
+   0
+  ]
+ },
+ "receive_mask": 15635,
+ "cases": [
+  {
+   "name": "rtp_basic_main",
+   "kind": "rtp",
+   "note": "PT100=main，普通 12 字节头 + 8 字节负载",
+   "hex": "806412340000beef112233440001020304050607",
+   "expect": {
+    "pt": 100,
+    "name": "main",
+    "seq": 4660,
+    "timestamp": 48879,
+    "ssrc": 287454020,
+    "marker": 0,
+    "version": 2
+   }
+  },
+  {
+   "name": "rtp_marker_ignored_for_pt",
+   "kind": "rtp",
+   "note": "第二字节 0xE4：M=1 且 PT=100，查表用低 7 位",
+   "hex": "80e400010000000211223344",
+   "expect": {
+    "pt": 100,
+    "marker": 1
+   }
+  },
+  {
+   "name": "rtp_bad_version_byte",
+   "kind": "rtp_reject",
+   "note": "首字节 0xC0 超出 0x80..0xBF",
+   "hex": "c06400000000000000000000",
+   "expect_error": "BAD_VERSION_BYTE"
+  },
+  {
+   "name": "rtp_sendonly_pt_101",
+   "kind": "rtp_reject",
+   "note": "PT101=alt 只发送，接收掩码不含 bit5",
+   "hex": "806500010000000211223344",
+   "expect_error": "PT_NOT_RECEIVABLE"
+  },
+  {
+   "name": "rtp_sendonly_pt_105",
+   "kind": "rtp_reject",
+   "note": "PT105=ared 只发送",
+   "hex": "806900010000000211223344",
+   "expect_error": "PT_NOT_RECEIVABLE"
+  },
+  {
+   "name": "rtp_unknown_pt_110",
+   "kind": "rtp_reject",
+   "note": "PT110 不在表内",
+   "hex": "806e00010000000211223344",
+   "expect_error": "UNKNOWN_PT"
+  },
+  {
+   "name": "record_split_main",
+   "kind": "record",
+   "note": "合成M消息：10B头+10B密文+tag16+nonce8；非网络包或真实加密向量",
+   "hex": "00070000000811223344deadbeef00112233aabb000102030405060708090a0b0c0d0e0f0102030405060708",
+   "span": 0,
+   "trailer_layout": "tag16_nonce8",
+   "expect": {
+    "ciphertext": "deadbeef00112233aabb",
+    "tag": "000102030405060708090a0b0c0d0e0f",
+    "nonce": "0102030405060708",
+    "aad": "0000000811223344",
+    "overhead": 24
+   }
+  },
+  {
+   "name": "record_short",
+   "kind": "record_reject",
+   "note": "剩余 24 字节全部是开销，密文为空",
+   "hex": "00010000000100000000000000000000000000000000000000000000000000000000",
+   "span": 0,
+   "trailer_layout": "tag16_nonce8",
+   "expect_error": "SHORT_RECORD"
+  },
+  {
+   "name": "red_two_blocks",
+   "kind": "red",
+   "note": "冗余块 delta=5 len=3，主块 len=4，outerSeq=0x0010",
+   "payload": "e4001403646162637778797a",
+   "outer_seq": 16,
+   "outer_ts": 65536,
+   "expect": {
+    "span": 5,
+    "blocks": 2,
+    "seqs": [
+     15,
+     16
+    ],
+    "timestamps": [
+     65531,
+     65536
+    ],
+    "lengths": [
+     3,
+     4
+    ],
+    "primary_index": 1
+   }
+  },
+  {
+   "name": "red_four_blocks_seq_wrap",
+   "kind": "red",
+   "note": "outerSeq=2，四块推导 0xFFFF,0x0000,0x0001,0x0002",
+   "payload": "e4002802e4002002e4001002640000000000000000",
+   "outer_seq": 2,
+   "outer_ts": 1000,
+   "expect": {
+    "span": 13,
+    "blocks": 4,
+    "seqs": [
+     65535,
+     0,
+     1,
+     2
+    ],
+    "primary_index": 3
+   }
+  },
+  {
+   "name": "red_timestamp_wrap",
+   "kind": "red",
+   "note": "outerTs=1，delta=5 -> 0xFFFFFFFC",
+   "payload": "e4001401640000",
+   "outer_seq": 9,
+   "outer_ts": 1,
+   "expect": {
+    "span": 5,
+    "blocks": 2,
+    "timestamps": [
+     4294967292,
+     1
+    ]
+   }
+  },
+  {
+   "name": "red_field_maxima",
+   "kind": "red",
+   "note": "delta 14 位全 1、length 10 位全 1，且允许 0 长块",
+   "payload": "e4fffc00e4ffffff64000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+   "outer_seq": 0,
+   "outer_ts": 4294967295,
+   "expect": {
+    "span": 9,
+    "blocks": 3,
+    "deltas": [
+     16383,
+     16383,
+     0
+    ],
+    "lengths": [
+     0,
+     1023,
+     0
+    ]
+   }
+  },
+  {
+   "name": "red_truncated_header",
+   "kind": "red_reject",
+   "note": "F=1 头不足 4 字节",
+   "payload": "806400",
+   "outer_seq": 1,
+   "outer_ts": 1,
+   "expect_error": "RED_TRUNCATED_HEADER"
+  },
+  {
+   "name": "red_length_mismatch",
+   "kind": "red_reject",
+   "note": "冗余块声明 6 字节，实际只剩 5 字节（主块取余量）",
+   "payload": "e4000406640000000000",
+   "outer_seq": 1,
+   "outer_ts": 1,
+   "expect_error": "RED_LENGTH_MISMATCH"
+  },
+  {
+   "name": "red_too_many_blocks",
+   "kind": "red_reject",
+   "note": "本地上限 16 块",
+   "payload": "e4000000e4000400e4000800e4000c00e4001000e4001400e4001800e4001c00e4002000e4002400e4002800e4002c00e4003000e4003400e4003800e4003c0064",
+   "outer_seq": 1,
+   "outer_ts": 1,
+   "expect_error": "RED_TOO_MANY_BLOCKS"
+  },
+  {
+   "name": "red_then_record",
+   "kind": "full",
+   "note": "仅合成消息坐标/描述符/显式尾布局联动；不解密，不把密文切为可播放块",
+   "hex": "02000000020011223344e4001802646162636465000102030405060708090a0b0c0d0e0f0a0b0c0d0e0f1011",
+   "trailer_layout": "tag16_nonce8",
+   "outer_seq": 512,
+   "outer_ts": 512,
+   "expect": {
+    "span": 5,
+    "blocks": 2,
+    "ciphertext": "6162636465",
+    "aad": "0000020011223344",
+    "authenticated": false
+   }
+  },
+  {
+   "name": "message_literal_header",
+   "kind": "message",
+   "hex": "123401020304a1b2c3d4abcd",
+   "expect": {
+    "seq": 4660,
+    "timestamp": 16909060,
+    "second_word": 2712847316,
+    "header_len": 10,
+    "aad": "01020304a1b2c3d4"
+   }
+  },
+  {
+   "name": "message_invalid_span_-1",
+   "kind": "record_reject",
+   "hex": "0000000000000000000078000000000000000000000000000000000000000000000000",
+   "span": -1,
+   "trailer_layout": "tag16_nonce8",
+   "expect_error": "BAD_SPAN"
+  },
+  {
+   "name": "message_invalid_span_True",
+   "kind": "record_reject",
+   "hex": "0000000000000000000078000000000000000000000000000000000000000000000000",
+   "span": true,
+   "trailer_layout": "tag16_nonce8",
+   "expect_error": "BAD_SPAN"
+  },
+  {
+   "name": "message_invalid_span_100",
+   "kind": "record_reject",
+   "hex": "0000000000000000000078000000000000000000000000000000000000000000000000",
+   "span": 100,
+   "trailer_layout": "tag16_nonce8",
+   "expect_error": "SHORT_BODY"
+  },
+  {
+   "name": "message_unknown_layout",
+   "kind": "record_reject",
+   "hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000",
+   "trailer_layout": "auto",
+   "expect_error": "UNKNOWN_TRAILER_LAYOUT"
+  },
+  {
+   "name": "message_header_short",
+   "kind": "record_reject",
+   "hex": "000000000000000000",
+   "trailer_layout": "tag16",
+   "expect_error": "SHORT_MESSAGE_HEADER"
+  },
+  {
+   "name": "message_tag_only_layout",
+   "kind": "record",
+   "hex": "000000000000000000007800000000000000000000000000000000",
+   "trailer_layout": "tag16",
+   "expect": {
+    "ciphertext": "78",
+    "tag": "00000000000000000000000000000000",
+    "nonce": "",
+    "nonce_source": "external_state_required",
+    "overhead": 16,
+    "authenticated": false
+   }
+  },
+  {
+   "name": "rtp_csrc",
+   "kind": "rtp",
+   "hex": "8164000100000002112233440102030478",
+   "expect": {
+    "header_len": 16,
+    "csrcs": [
+     16909060
+    ],
+    "payload": "78"
+   }
+  },
+  {
+   "name": "rtp_csrc_short",
+   "kind": "rtp_reject",
+   "hex": "816400010000000211223344",
+   "expect_error": "SHORT_CSRC"
+  },
+  {
+   "name": "rtp_extension",
+   "kind": "rtp",
+   "hex": "906400010000000211223344bede00016162636478",
+   "expect": {
+    "header_len": 20,
+    "extension_profile": 48862,
+    "extension_data": "61626364",
+    "payload": "78"
+   }
+  },
+  {
+   "name": "rtp_extension_header_short",
+   "kind": "rtp_reject",
+   "hex": "9064000100000002112233446162",
+   "expect_error": "SHORT_EXTENSION_HEADER"
+  },
+  {
+   "name": "rtp_extension_data_short",
+   "kind": "rtp_reject",
+   "hex": "906400010000000211223344bede00016162",
+   "expect_error": "SHORT_EXTENSION_DATA"
+  },
+  {
+   "name": "rtp_padding",
+   "kind": "rtp",
+   "hex": "a06400010000000211223344780002",
+   "expect": {
+    "payload": "78",
+    "padding_len": 2,
+    "payload_end": 13
+   }
+  },
+  {
+   "name": "rtp_padding_zero",
+   "kind": "rtp_reject",
+   "hex": "a0640001000000021122334400",
+   "expect_error": "BAD_PADDING"
+  },
+  {
+   "name": "rtp_padding_too_long",
+   "kind": "rtp_reject",
+   "hex": "a0640001000000021122334402",
+   "expect_error": "BAD_PADDING"
+  },
+  {
+   "name": "rtp_padding_no_body",
+   "kind": "rtp_reject",
+   "hex": "a06400010000000211223344",
+   "expect_error": "BAD_PADDING"
+  },
+  {
+   "name": "rtp_extension_empty",
+   "kind": "rtp",
+   "hex": "90640001000000021122334400000000",
+   "expect": {
+    "header_len": 16,
+    "payload": "",
+    "extension_data": ""
+   }
+  }
+ ]
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-10-29",
+  "baseline": "iPhone18,1 / 24A446",
+  "runtime_proof": false,
+  "scope": "Static state-table, Detection, SYN negotiation and retransmission ownership review. No code or headunit was modified.",
+  "source": {
+    "component": "accessoryd",
+    "path": "D:/carvex-research/firmware/extracted/24A446/components/24A446__iPhone18,1/root/System/Library/PrivateFrameworks/CoreAccessories.framework/Support/accessoryd",
+    "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe"
+  },
+  "state_table": {
+    "address": "0x100219600",
+    "raw_length": 128,
+    "raw_sha256": "d841f9404b1f2a4af4367444666ba97e43f0e811ab849729ae0f612edc468fdd",
+    "entry_size": 16,
+    "state_count": 8,
+    "event_table_pointers": [
+      "0x100219030", "0x100219040", "0x100219060", "0x100219230",
+      "0x100219330", "0x100219400", "0x100219500", "0x1002195c0"
+    ],
+    "event_counts": [1, 2, 29, 16, 13, 16, 12, 4],
+    "state_names": {
+      "0": "numeric only / initial",
+      "1": "numeric only / detached or attach-wait",
+      "2": "numeric only / Detection dispatch state",
+      "3": "numeric only / SYNACK path",
+      "4": "numeric only / pending SYNACK or negotiation",
+      "5": "numeric only / post-connection path",
+      "6": "numeric only / follow-up path",
+      "7": "numeric only / terminal or failure path"
+    },
+    "state_names_are_not_wire_claims": true
+  },
+  "detection": {
+    "constant_address": "0x1001b3378",
+    "constant_raw_length": 10,
+    "constant_raw_hex": "ff550200ee1000000600",
+    "sent_length_address": "0x1001b3380",
+    "sent_length": 6,
+    "sent_length_endianness": "little (local u16 metadata, not part of wire payload)",
+    "sent_length_load_instruction": "0x10019c1a0: ldrh w2, [x8]",
+    "wire_frame_hex": "ff550200ee10",
+    "send_callback": "0x10019c124",
+    "send_callback_sha256": "916deec9e75a34d247c75aa2f939b01bb1264d860719fd27331c4afcc4e72a9e",
+    "send_detect_action": "0x10002fac8",
+    "attach_action": "0x10002f8dc",
+    "attach_claim": "writes event 0x1d and invokes default SYN parameter initialization; no direct Detection send in this function",
+    "runtime_direction": "OPEN"
+  },
+  "detection_state_events": [
+    {"state": 2, "event": "0x02", "handler": "0x10002f920", "next_state": 4},
+    {"state": 2, "event": "0x0e", "handler": "0x100031c7c", "next_state": 1},
+    {"state": 2, "event": "0x17", "handler": "0x10002fac8", "next_state": 3},
+    {"state": 2, "event": "0x19", "handler": "0x10002fb54", "next_state": 3},
+    {"state": 2, "event": "0x0f", "handler": "0x10002fb54", "next_state": 3},
+    {"state": 2, "null_handler_slots": 24, "note": "event table count is 29; null slots are not inferred actions"}
+  ],
+  "syn_parser": {
+    "address": "0x100103230",
+    "raw_length": 396,
+    "raw_sha256": "d244b47ebb3982ff87b8a8a23224be3f2fc99d641efed1786d8de31c46fb05df",
+    "minimum_payload_length": 10,
+    "field_offsets": [
+      {"wire_offset": 0, "width": 1, "work_offset": 0},
+      {"wire_offset": 1, "width": 1, "work_offset": 1, "name": "MaxOutstandingPackets", "validation_entry": "0x100033114"},
+      {"wire_offset": 2, "width": 2, "endianness": "big", "work_offset": 4},
+      {"wire_offset": 4, "width": 2, "endianness": "big", "work_offset": 6},
+      {"wire_offset": 6, "width": 2, "endianness": "big", "work_offset": 8},
+      {"wire_offset": 8, "width": 1, "work_offset": 2},
+      {"wire_offset": 9, "width": 1, "work_offset": 3},
+      {"wire_offset": 10, "width": "variable", "work_offset": 24}
+    ],
+    "extension_entry_width": 3,
+    "extension_entry_count_cap": 5,
+    "full_profile_semantics": "OPEN"
+  },
+  "functions": [
+    {"address": "0x10002f8dc", "role": "Attach; writes event 0x1d; initializes default SYN parameters", "source_asm": "D:/carvex-research/firmware/analysis/24A446/iap2-inherited/baseline/analysis/24A446/iap2-supervisor/assembly/accessoryd.10002f8dc.s"},
+    {"address": "0x10002fac8", "role": "SendDetect action; calls SendDetectCB with callback argument 0", "source_asm": "D:/carvex-research/firmware/analysis/24A446/iap2-inherited/baseline/analysis/24A446/iap2-supervisor/assembly/accessoryd.10002fac8.s", "raw_sha256": "86c0ee14fee66262143ba8409e2e167857dfaf9c6d0df4cc41c5a21655e0eac7"},
+    {"address": "0x10002f920", "role": "ResetSYNACK; reset/restore, parse and negotiate peer SYN, construct/send SYNACK", "source_asm": "D:/carvex-research/firmware/analysis/24A446/iap2-inherited/baseline/analysis/24A446/iap2-supervisor/assembly/accessoryd.10002f920.s", "raw_sha256": "2351a8e9ede055cea604c1bbe391937bbdbb00508eccf511e1e0effc0ec827d6"},
+    {"address": "0x10002fcd4", "role": "SendSYNACK; existing work block, construct/send and increment send counters", "source_asm": "D:/carvex-research/firmware/analysis/24A446/iap2-inherited/baseline/analysis/24A446/iap2-supervisor/assembly/accessoryd.10002fcd4.s", "raw_sha256": "1acc6ed15a8523c36882bde87af30dbd78a8fd9bc4aca0e9ac1d0484ffe3dff8"},
+    {"address": "0x10002feb0", "role": "ResendSYNACK; compares counter at link+0x1d8 with limit at link+0x19c", "source_asm": "D:/carvex-research/firmware/analysis/24A446/iap2-inherited/baseline/analysis/24A446/iap2-supervisor/assembly/accessoryd.10002feb0.s", "raw_sha256": "2913796d158dd6965c9e4247715328638569a5d69b3a3fe5f548d183811d9e3b8"},
+    {"address": "0x10003009c", "role": "NotifyConnection; commits work block and invokes connected callback", "source_asm": "D:/carvex-research/firmware/analysis/24A446/iap2-inherited/baseline/analysis/24A446/iap2-supervisor/assembly/accessoryd.10003009c.s", "raw_sha256": "616b3b1395be75a0990cf2e85f9ee365e615d18d8c4e09203869d295e55039ac"},
+    {"address": "0x100007914", "role": "send common; ACK-bit timer cancel and reliable-packet timer creation", "source_asm": "D:/carvex-research/research/protocol/iap2_link_establish/source/asm/accessoryd/f_100007914.s", "raw_sha256": "fcded225f787a147e02309452042a5faf85f5b529baed4e4564f9bc5ec091944"},
+    {"address": "0x1000346c8", "role": "ResetSeqAck; clears sequence/ACK-related state and selected counters on reset", "source_asm": "D:/carvex-research/firmware/analysis/24A446/iap2-inherited/baseline/analysis/24A446/iap2-supervisor/assembly/accessoryd.1000346c8.s", "raw_sha256": "bcd355c846e466c7ca8163474ee190f8f7831dc356fb446d64f34466d486a834"}
+  ],
+  "claims_not_closed": [
+    "runtime caller and timing of event 0x17 Detection",
+    "complete SYN profile names and extension semantics",
+    "which ACK confirms which pending packet in all duplicate/late cases",
+    "all transport migration and connection-generation behavior",
+    "headunit acceptance and subsequent identification/authentication"
+  ]
+}

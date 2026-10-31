@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-30",
+  "baseline": "24A446 / iPhone18,1",
+  "production_changes": [
+    "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/IapLink.kt",
+    "D:/carvex-research/android/protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/core/IapLinkSynchronizationTest.kt",
+    "D:/carvex-research/android/protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/core/IapPendingSynchronizationTest.kt"
+  ],
+  "sha256": {
+    "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/IapLink.kt": "f5960f4672d34e0a40b050ccb888fc9908b5936d778f9187df22c3a2693830df",
+    "D:/carvex-research/android/protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/core/IapLinkSynchronizationTest.kt": "d1578d6bf508374b2cc67a06fe5ac8bc39e12a55875e614856b1dea324eab975",
+    "D:/carvex-research/android/protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/core/IapPendingSynchronizationTest.kt": "9d14314af9ff689601693bd8010d65118620f7c8143c6b5b5c627fe4e68e220b"
+  },
+  "native_evidence": {
+    "source": "D:/carvex-research/research/connection/evidence/iap2-startup-initiation.json",
+    "fresh_syn_action": "0x10002f920",
+    "resend_synack_action": "0x10002feb0",
+    "active_default_action": "0x1000328b0",
+    "feature_set_validator": "0x1000d4ee0",
+    "state4_timer_event": 12,
+    "state4_fresh_syn_event": 2
+  },
+  "implemented": {
+    "fresh_pending_syn_resynchronization": true,
+    "pending_synack_timer": true,
+    "active_budget_separated_from_peer_proposal": true,
+    "extension_54_55_validation": true,
+    "duplicate_extensions_rejected": true
+  },
+  "tests": {
+    "targeted_command": "gradlew.bat :protocol-carplay:testDebugUnitTest --tests io.github.iamr0s.carvex.carplay.core.IapPendingSynchronizationTest --tests io.github.iamr0s.carvex.carplay.core.IapLinkSynchronizationTest --no-configuration-cache",
+    "targeted_tests": 67,
+    "targeted_failures": 0,
+    "targeted_errors": 0,
+    "targeted_skipped": 0,
+    "full_module_after_final_patch": {
+      "command": "gradlew.bat :protocol-carplay:testDebugUnitTest --no-configuration-cache",
+      "suites": 116,
+      "tests": 872,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "subsequent_erratum_76": {
+    "date": "2026-10-30",
+    "evidence": "iap2-xpc-handoff-hid.json",
+    "issue": "The historical size==2 extension gate is stricter than native IsFeatureSetValid, which folds 54/55 with OR and accepts repeated members when both are present.",
+    "historical_code_and_test_counts_preserved": true,
+    "native_equivalence_of_duplicate_rejection": false,
+    "production_corrected_in_static_audit": false
+  },
+  "not_proven": [
+    "Apple firmware was not executed.",
+    "No Bluetooth, head-unit, APK packaging, installation, or end-to-end display test was run.",
+    "Cross-process endpoint handoff and all upper-layer timeout owners remain partial.",
+    "Second SYNACK full renegotiation and complete session/profile contracts remain open."
+  ]
+}

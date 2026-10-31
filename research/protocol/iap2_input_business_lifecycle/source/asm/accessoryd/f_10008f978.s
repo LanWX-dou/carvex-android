@@ -1,0 +1,99 @@
+; accessoryd 0x10008f978-0x10008faf8; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x10008f978:	pacibsp	
+0x10008f97c:	sub	sp, sp, #0x120
+0x10008f980:	stp	x28, x27, [sp, #0x100]
+0x10008f984:	stp	x29, x30, [sp, #0x110]
+0x10008f988:	add	x29, sp, #0x110
+0x10008f98c:	adrp	x8, #0x10021c000
+0x10008f990:	add	x8, x8, #0x478
+0x10008f994:	adrp	x9, #0x10022b000
+0x10008f998:	ldr	x9, [x9, #0xb80]
+0x10008f99c:	ldr	x9, [x9]
+0x10008f9a0:	stur	x9, [x29, #-0x18]
+0x10008f9a4:	ldr	x8, [x8]
+0x10008f9a8:	adrp	x9, #0x10022a000
+0x10008f9ac:	add	x9, x9, #0x180
+0x10008f9b0:	adrp	x10, #0x10021c000
+0x10008f9b4:	add	x10, x10, #0x480
+0x10008f9b8:	ldr	x10, [x10]
+0x10008f9bc:	stp	x8, x10, [sp, #8]
+0x10008f9c0:	adrp	x8, #0x10022a000
+0x10008f9c4:	add	x8, x8, #0x168
+0x10008f9c8:	stp	x9, x8, [sp, #0x80]
+0x10008f9cc:	adrp	x10, #0x10021c000
+0x10008f9d0:	add	x10, x10, #0x488
+0x10008f9d4:	ldr	x10, [x10]
+0x10008f9d8:	adrp	x11, #0x10021c000
+0x10008f9dc:	add	x11, x11, #0x490
+0x10008f9e0:	ldr	x11, [x11]
+0x10008f9e4:	stp	x10, x11, [sp, #0x18]
+0x10008f9e8:	adrp	x10, #0x10021c000
+0x10008f9ec:	add	x10, x10, #0x498
+0x10008f9f0:	stp	x8, x8, [sp, #0x90]
+0x10008f9f4:	ldr	x10, [x10]
+0x10008f9f8:	adrp	x11, #0x10021c000
+0x10008f9fc:	add	x11, x11, #0x4a0
+0x10008fa00:	ldr	x11, [x11]
+0x10008fa04:	stp	x10, x11, [sp, #0x28]
+0x10008fa08:	stp	x8, x9, [sp, #0xa0]
+0x10008fa0c:	adrp	x10, #0x10021c000
+0x10008fa10:	add	x10, x10, #0x4a8
+0x10008fa14:	ldr	x10, [x10]
+0x10008fa18:	adrp	x11, #0x10021c000
+0x10008fa1c:	add	x11, x11, #0x4b0
+0x10008fa20:	ldr	x11, [x11]
+0x10008fa24:	adrp	x12, #0x100222000
+0x10008fa28:	add	x12, x12, #0x3b8
+0x10008fa2c:	stp	x10, x11, [sp, #0x38]
+0x10008fa30:	stp	x9, x12, [sp, #0xb0]
+0x10008fa34:	adrp	x9, #0x100219000
+0x10008fa38:	add	x9, x9, #0x9d8
+0x10008fa3c:	ldr	x9, [x9]
+0x10008fa40:	adrp	x10, #0x10021c000
+0x10008fa44:	add	x10, x10, #0x4b8
+0x10008fa48:	ldr	x10, [x10]
+0x10008fa4c:	adrp	x11, #0x10022b000
+0x10008fa50:	ldr	x11, [x11, #0xcd0]
+0x10008fa54:	stp	x9, x10, [sp, #0x48]
+0x10008fa58:	stp	x12, x11, [sp, #0xc0]
+0x10008fa5c:	adrp	x9, #0x10021c000
+0x10008fa60:	add	x9, x9, #0x4c0
+0x10008fa64:	ldr	x9, [x9]
+0x10008fa68:	adrp	x10, #0x10021c000
+0x10008fa6c:	add	x10, x10, #0x4d0
+0x10008fa70:	ldr	x10, [x10]
+0x10008fa74:	stp	x9, x10, [sp, #0x58]
+0x10008fa78:	stp	x12, x8, [sp, #0xd0]
+0x10008fa7c:	adrp	x9, #0x10021c000
+0x10008fa80:	add	x9, x9, #0x4d8
+0x10008fa84:	ldr	x9, [x9]
+0x10008fa88:	adrp	x10, #0x10021c000
+0x10008fa8c:	add	x10, x10, #0x4e0
+0x10008fa90:	ldr	x10, [x10]
+0x10008fa94:	stp	x9, x10, [sp, #0x68]
+0x10008fa98:	adrp	x9, #0x10021c000
+0x10008fa9c:	add	x9, x9, #0x4e8
+0x10008faa0:	stp	x8, x11, [sp, #0xe0]
+0x10008faa4:	ldr	x8, [x9]
+0x10008faa8:	str	x8, [sp, #0x78]
+0x10008faac:	str	x12, [sp, #0xf0]
+0x10008fab0:	adrp	x8, #0x10022b000
+0x10008fab4:	ldr	x0, [x8, #0xc48]
+0x10008fab8:	add	x2, sp, #0x80
+0x10008fabc:	add	x3, sp, #8
+0x10008fac0:	mov	w4, #0xf
+0x10008fac4:	bl	#0x1001a61e0
+0x10008fac8:	bl	#0x1001a2490
+0x10008facc:	ldur	x8, [x29, #-0x18]
+0x10008fad0:	adrp	x9, #0x10022b000
+0x10008fad4:	ldr	x9, [x9, #0xb80]
+0x10008fad8:	ldr	x9, [x9]
+0x10008fadc:	cmp	x9, x8
+0x10008fae0:	b.ne	#0x10008faf4
+0x10008fae4:	ldp	x29, x30, [sp, #0x110]
+0x10008fae8:	ldp	x28, x27, [sp, #0x100]
+0x10008faec:	add	sp, sp, #0x120
+0x10008faf0:	retab	
+0x10008faf4:	bl	#0x1001a1f90

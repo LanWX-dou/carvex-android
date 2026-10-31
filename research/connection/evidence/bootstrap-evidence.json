@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-10-29",
+  "baseline": "iPhone18,1 / 24A446",
+  "runtime_proof": false,
+  "original_function_execution_performed": false,
+  "assembly_spot_checks": [
+    "B01: 0x1007a3c00-0x1007a3c78 SDP descriptor selection and shape; 0x1007a3d94-0x1007a3da4 dynamic channel call",
+    "B02: original named assembly iAP2LinkDeviceActionSendSYNACK, handshake parameter and sequence handling",
+    "B03: original named assembly iAP2LinkDeviceActionNotifyConnection, entire small function",
+    "B12: 0x10016d43c message ID; 0x10016d9f0 empty-field path; 0x10016db44-0x10016db74 platform call",
+    "B13: 0x10016cb78-0x10016cc5c 4E0D and transport identifier guards",
+    "B17/B18/B19/B20: entire typed getter assembly"
+  ],
+  "validation_method": "Read-only Python byte reader: parse little-endian Mach-O LC_SEGMENT_64 (vmaddr,vmsize,fileoff,filesize); map function VA; compare full cached .bin against original component bytes; SHA256 cached raw. This verifies byte provenance, not correctness of decompilation.",
+  "components": {
+    "accessoryd": {
+      "source_path": "D:/carvex-research/firmware/extracted/24A446/components/24A446__iPhone18,1/root/System/Library/PrivateFrameworks/CoreAccessories.framework/Support/accessoryd",
+      "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe"
+    },
+    "bluetoothd": {
+      "source_path": "D:/carvex-research/firmware/extracted/24A446/components/24A446__iPhone18,1/root/usr/sbin/bluetoothd",
+      "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1"
+    },
+    "WiFiSharing": {
+      "source_path": "D:/carvex-research/firmware/extracted/24A446/binaries/WiFiSharing/WiFiSharing",
+      "source_sha256": "0b7d4e282385cf8545b1812dc9e2d1f1fe9a29366eaeb2d0d495a802737b3c9a"
+    }
+  },
+  "artifact_suffixes": {
+    "decompilation": ".ghidra.c",
+    "assembly": ".s",
+    "raw": ".bin",
+    "cache_metadata": ".json"
+  },
+  "functions": [
+    {
+      "id": "B01",
+      "kind": "static",
+      "component": "bluetoothd",
+      "address": "0x1007a3ba4",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/bluetoothd/c98ecfbc6d67966e54f7/functions/f_1007a3ba4",
+      "raw_sha256": "bfb997ca07ae992fd0481edd812966b8ab437fd1e87c19b8990d3eec7ddb32c0",
+      "raw_matches_source": true,
+      "claim": "动态RFCOMM channel从SDP属性4取出后送连接函数；UUID线表示未闭合",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B02",
+      "kind": "static",
+      "decompilation_available": false,
+      "component": "accessoryd",
+      "address": "0x10002fcd4",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10002fcd4",
+      "raw_sha256": "1acc6ed15a8523c36882bde87af30dbd78a8fd9bc4aca0e9ac1d0484ffe3dff8",
+      "raw_matches_source": true,
+      "claim": "SYN参数解析协商、缓存seq、SYNACK发送；完整计时状态机未闭合",
+      "review_scope": "已读原汇编，未读取不存在的.ghidra.c。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表完整函数全部语义或运行行为已证明。"
+    },
+    {
+      "id": "B03",
+      "kind": "static",
+      "decompilation_available": false,
+      "component": "accessoryd",
+      "address": "0x10003009c",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10003009c",
+      "raw_sha256": "616b3b1395be75a0990cf2e85f9ee365e615d18d8c4e09203869d295e55039ac",
+      "raw_matches_source": true,
+      "claim": "NotifyConnection保存协商参数、ConnectedCB true",
+      "review_scope": "已读原汇编，未读取不存在的.ghidra.c。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表完整函数全部语义或运行行为已证明。"
+    },
+    {
+      "id": "B04",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x1000511d0",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000511d0",
+      "raw_sha256": "da57aad399a01807a60aa1067ea9de4273015fb95a4f6dfcb280eea068b2b1ec",
+      "raw_matches_source": true,
+      "claim": "state0发送1D00，send成功后state1",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B05",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x100050dcc",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050dcc",
+      "raw_sha256": "20fbc1f5e49c6e8a23f378a65865ae6a3ea3d54d6fa5c37e2111cdf2f747cf84",
+      "raw_matches_source": true,
+      "claim": "校验后1D02发送成功才设置identification state6",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B06",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x100051054",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100051054",
+      "raw_sha256": "b3a26412fba38ef3918ef4848bcccfc1a390510d592580879ea25695b639b21d",
+      "raw_matches_source": true,
+      "claim": "普通incoming业务需auth2、ID6、声明消息集合；引导消息例外",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B07",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x1000ed1ac",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000ed1ac",
+      "raw_sha256": "559c9960a0dc8a3ad227f2c29b0c8800f705dfd9e839f9b8133a64e6184a551d",
+      "raw_matches_source": true,
+      "claim": "AA00及认证继承/session-version分支；debug override不是建议",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B08",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x1000ed014",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000ed014",
+      "raw_sha256": "e9f98a6701dfa4ae495dd1c123b1416053c7543c05dff0a28b48e23f915de53e",
+      "raw_matches_source": true,
+      "claim": "AA02参数0nonce及callback/prepared条件",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B09",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x100185bb4",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100185bb4",
+      "raw_sha256": "0894af43f42c982660bd31bf033ff68f08f60db54ccf062f21bdbb7c6d51ae08",
+      "raw_matches_source": true,
+      "claim": "AA04/AA05以及auth state1/2；不检查enqueue返回",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B10",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x100185d6c",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100185d6c",
+      "raw_sha256": "16f9d5528a1b6c83f3bf88cbaf2eb87f18dbd88d5619e6ec221dd7498af62fba",
+      "raw_matches_source": true,
+      "claim": "签名响应参数0及verifyNonceSignature",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B11",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x10011d8dc",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10011d8dc",
+      "raw_sha256": "b468c412dfb85739dce1ce9e7af9133382e2eaccbda790fa062c2b4f73f30174",
+      "raw_matches_source": true,
+      "claim": "authAndIDComplete后features和wireless bridge关联",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B12",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x10016d3ac",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10016d3ac",
+      "raw_sha256": "7d5db2d7d7b9c2cebd668e773346c3fbba78a4ec697eb1ca6d877fe1eaa98b04",
+      "raw_matches_source": true,
+      "claim": "4301接收、14字段、空参数路径、平台交接",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B13",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x10016ca08",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10016ca08",
+      "raw_sha256": "f2a7ffb4dae0320d7c0628dae601230ee56b0532b58701c505c9b10da4d0e188",
+      "raw_matches_source": true,
+      "claim": "无线允许、CarPlay paired、4E0D和transport identifiers gate",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B14",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x10016e004",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10016e004",
+      "raw_sha256": "dc6197dd473d95ee34b32b1c75a331a640947c5f76b58ceaa56766ab9140838e",
+      "raw_matches_source": true,
+      "claim": "4300三个group的presence和平台值来源",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B15",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x100170bb0",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100170bb0",
+      "raw_sha256": "a8eb750d0605393cce1256a02e5abc4c1d572450810f49bd20967dc08aa9ec8b",
+      "raw_matches_source": true,
+      "claim": "5702 required-message-list gate",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B16",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x1001703cc",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1001703cc",
+      "raw_sha256": "2d7a542f1e6d1bcd3fc02248aadaea628b15114926405d6eb8563491673c2cbb",
+      "raw_matches_source": true,
+      "claim": "5703参数0..4、忽略5/6、异步平台交接",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B17",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x100067df0",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100067df0",
+      "raw_sha256": "ef5325caf3f40323e671ca53c8a3fe8de5266954ce9a73e0a361cdf50aa332e8",
+      "raw_matches_source": true,
+      "claim": "U32总长8、大端",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B18",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x100067e4c",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100067e4c",
+      "raw_sha256": "b88854d880d67d4b43e346414807565faad8b9a7c3c6130c3bbac177398cfcd4",
+      "raw_matches_source": true,
+      "claim": "U8总长5",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B19",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x100067e74",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100067e74",
+      "raw_sha256": "2416afce229b24c2351d81355bee58b3a097601f0152c3c593f94d4b8b88136b",
+      "raw_matches_source": true,
+      "claim": "Bool总长5且0/1",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B20",
+      "kind": "static",
+      "component": "accessoryd",
+      "address": "0x100067ee4",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100067ee4",
+      "raw_sha256": "19f5f5bc9d08b6038e6324fb3898466959841e43484378da1d3c7e8f23753c62",
+      "raw_matches_source": true,
+      "claim": "string总长至少5且末尾NUL",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    },
+    {
+      "id": "B21",
+      "kind": "static",
+      "component": "WiFiSharing",
+      "address": "0x2431186ac",
+      "artifact_prefix": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/WiFiSharing/daf85b4040f95838b28e/functions/f_2431186ac",
+      "raw_sha256": "ba844fb9ab1126ded448e0dde553b9121e56ef6a8b073dfbc0ac536d230bc2a2",
+      "raw_matches_source": true,
+      "claim": "SSID=nil或有pass对象却security0不配置；>=3不等于立即return",
+      "review_scope": "已读反编译；不宣称全部控制流逐条汇编复核。原.bin逐字节按Mach-O LC_SEGMENT_64映射与source对比；不代表反编译语义或运行行为已完全证明。"
+    }
+  ],
+  "raw_data": [
+    {
+      "id": "B22",
+      "component": "bluetoothd",
+      "claim": "WiAP lookup descriptor source bytes only; v2 wire UUID representation unresolved",
+      "slices": [
+        {
+          "address": "0x100bca678",
+          "length": 32,
+          "hex": "030010000000000090519500000010000300100000000000b051950000001800",
+          "sha256": "950534ddc6ac1acb1849d0539dff385ad270ae38447a6b26641843eb5d6f32be"
+        },
+        {
+          "address": "0x100955190",
+          "length": 16,
+          "hex": "00000000decafadedecadeafdecacaff",
+          "sha256": "8fe595e96dd8c856e44d70a56f3ebd68bd0434540754e1ccd4c8746368ddefa3"
+        },
+        {
+          "address": "0x1009551b0",
+          "length": 16,
+          "hex": "020303021d19415f86f222a2106a0a78",
+          "sha256": "ab2f772f4836bc2e4171e7a581560ca0eb3f1eaaed0eb46a4c0cb6d4d31d740c"
+        }
+      ]
+    },
+    {
+      "id": "B23",
+      "component": "accessoryd",
+      "claim": "Incoming handler dispatch table entries reread directly from original Mach-O; no invented message semantics",
+      "entry_layout": "u32 message ID, u32 reserved, u64 chained pointer; observed pointer target = 0x100000000 + (pointer & 0xffffffffff)",
+      "slices": [
+        {
+          "address": "0x1002205d8",
+          "length": 48,
+          "sha256": "a4198a3bab3ca251745ead932e3558cfc39d42263ee7b51026f1dd63bab6ae31",
+          "entries": [
+            {
+              "message": "0xAA01",
+              "handler": "0x1001850bc"
+            },
+            {
+              "message": "0xAA03",
+              "handler": "0x100185d6c"
+            },
+            {
+              "message": "0xAA06",
+              "handler": "0x1001860d4"
+            }
+          ]
+        },
+        {
+          "address": "0x10021a7e0",
+          "length": 48,
+          "sha256": "b094e6e1d58e96c5c3cfed39e8399225faa1e0c45fb75af34c8b412b3e4dd43e",
+          "entries": [
+            {
+              "message": "0x1D01",
+              "handler": "0x10013bcc8"
+            },
+            {
+              "message": "0x1D06",
+              "handler": "0x100050934"
+            },
+            {
+              "message": "0x1D05",
+              "handler": "0x10013b28c"
+            }
+          ]
+        },
+        {
+          "address": "0x10021f2f0",
+          "length": 32,
+          "sha256": "23ce0dbf26064b768d96e6efb63997dc6b92a40753d1ad0784b8996c82c55de2",
+          "entries": [
+            {
+              "message": "0x5700",
+              "handler": "0x10017020c"
+            },
+            {
+              "message": "0x5703",
+              "handler": "0x1001703cc"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "additional_reviewed_cache_not_in_raw_provenance_set": [
+    {
+      "address": "0x10013ac30",
+      "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013ac30.ghidra.c",
+      "claim": "构造1D03拒绝消息；完整错误字段待审计"
+    },
+    {
+      "address": "0x10013bcc8",
+      "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013bcc8.ghidra.c",
+      "claim": "IdentificationInfo handler入口state检查；未审全部字段"
+    },
+    {
+      "address": "0x10011da74",
+      "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10011da74.ghidra.c",
+      "claim": "identification state6之后与auth state汇合；USB段不并入无线主线"
+    },
+    {
+      "address": "0x100050c2c",
+      "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050c2c.ghidra.c",
+      "claim": "required message集合检查"
+    },
+    {
+      "address": "0x100170cb8",
+      "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100170cb8.ghidra.c",
+      "claim": "WiFiSharing feature启动触发配置请求"
+    }
+  ],
+  "open_items": [
+    "B-OPEN-01",
+    "B-OPEN-02",
+    "B-OPEN-03",
+    "B-OPEN-04",
+    "B-OPEN-05",
+    "B-OPEN-06",
+    "B-OPEN-07"
+  ]
+}

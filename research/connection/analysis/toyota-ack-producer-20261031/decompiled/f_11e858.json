@@ -1,0 +1,13 @@
+{
+  "address": "0x11e858",
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "raw_sha256": "18858c378811a12205d2a6111becf36cbdf3c57d799e6e4d3d42132a12d391c5",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "18858c378811a12205d2a6111becf36cbdf3c57d799e6e4d3d42132a12d391c5",
+  "ghidra_name": "IpodPacket",
+  "signature": "undefined IpodPacket(IpodPacket * this)",
+  "diagnostic": "",
+  "c_file": "f_11e858.ghidra.c",
+  "c_sha256": "03cb43dcdc93bf078c9f3352352f8bbb6e544ac77d242b38aaf4a76837e886a5",
+  "status": "DECOMPILED_UNREVIEWED"
+}

@@ -1,0 +1,13 @@
+{
+  "address": "0x100233530",
+  "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+  "raw_sha256": "0db66f95d346b8124bc822aefffa7292e32c5cc160800f7ff7f80816da632acc",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "0db66f95d346b8124bc822aefffa7292e32c5cc160800f7ff7f80816da632acc",
+  "ghidra_name": "pairingContinueWithPairingInfo:error:",
+  "signature": "bool pairingContinueWithPairingInfo:error:(ID param_1, SEL param_2, ID param_3, ID * param_4)",
+  "diagnostic": "",
+  "c_file": "f_100233530.ghidra.c",
+  "c_sha256": "7e65bffaf56c272fdf73c7a808056cc9cde491c0bb036ad5d904e838f905341b",
+  "status": "DECOMPILED_UNREVIEWED"
+}

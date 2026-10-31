@@ -1,0 +1,13 @@
+{
+  "address": "0x10063cea4",
+  "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+  "raw_sha256": "534729da074c0ad3e320a163495a022d8d4d43a08b13ed724084e8859dc8f950",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "534729da074c0ad3e320a163495a022d8d4d43a08b13ed724084e8859dc8f950",
+  "ghidra_name": "phone_fn_10063cea4",
+  "signature": "undefined phone_fn_10063cea4(void)",
+  "diagnostic": "",
+  "c_file": "f_10063cea4.ghidra.c",
+  "c_sha256": "58f2f68d5fab090e507487e1810b9f1d7ff2c1adca28a6c39c67350d6dcfbdd7",
+  "status": "DECOMPILED_UNREVIEWED"
+}

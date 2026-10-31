@@ -1,0 +1,41 @@
+{
+ "image": "CoreUtils",
+ "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+ "source_size": 2232432,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 3,
+ "functions": [
+  {
+   "symbol": "_NetSocket_Create",
+   "address": "0x18bf1c660",
+   "end": "0x18bf1c798",
+   "size": 312,
+   "group": "screen-aad-audit",
+   "raw_sha256": "a4ea51df09a0db256828e34a520a072eaf70fb7f1f636412ba83ae8bb46c16d8",
+   "bin": "f_18bf1c660.bin",
+   "asm": "f_18bf1c660.s"
+  },
+  {
+   "symbol": "_NetSocket_ReadInternal",
+   "address": "0x18bf1c798",
+   "end": "0x18bf1c924",
+   "size": 396,
+   "group": "screen-aad-audit",
+   "raw_sha256": "62cd905123043aff1f1cc5ccb9501e5d8deafeeadc2215ef903f9ed000101fc7",
+   "bin": "f_18bf1c798.bin",
+   "asm": "f_18bf1c798.s"
+  },
+  {
+   "symbol": "_NetSocket_CreateWithNative",
+   "address": "0x18bf1cfb0",
+   "end": "0x18bf1d008",
+   "size": 88,
+   "group": "screen-aad-audit",
+   "raw_sha256": "ed5edd64f7953fa2dd9ea92f9f0aa758328366d8410889f759b25fa079acdd31",
+   "bin": "f_18bf1cfb0.bin",
+   "asm": "f_18bf1cfb0.s"
+  }
+ ],
+ "missing_symbols": []
+}

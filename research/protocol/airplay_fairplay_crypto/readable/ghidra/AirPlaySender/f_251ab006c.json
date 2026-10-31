@@ -1,0 +1,13 @@
+{
+  "address": "0x251ab006c",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "2ea17e4c0c96282d92fd1ae742861e5e9bc0f8de2d0e11932ecd87df34d9114a",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "2ea17e4c0c96282d92fd1ae742861e5e9bc0f8de2d0e11932ecd87df34d9114a",
+  "ghidra_name": "_sharedKeyHolder_GetAuthenticationType",
+  "signature": "undefined _sharedKeyHolder_GetAuthenticationType()",
+  "diagnostic": "",
+  "c_file": "f_251ab006c.ghidra.c",
+  "c_sha256": "08de2747bffae2eebc0257d3ce3638903e8b8d7da6ee2e6f756d25f8bf506780",
+  "status": "DECOMPILED_UNREVIEWED"
+}

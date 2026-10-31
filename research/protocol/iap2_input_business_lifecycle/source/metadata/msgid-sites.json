@@ -1,0 +1,93 @@
+{
+ "count": 11,
+ "sites": [
+  {
+   "func": "0x100022398",
+   "name": "",
+   "insn": "0x100022440",
+   "imm": 21763,
+   "kind": "compare",
+   "call": "0x100022444"
+  },
+  {
+   "func": "0x100022398",
+   "name": "",
+   "insn": "0x10002244c",
+   "imm": 21761,
+   "kind": "compare",
+   "call": "0x100022450"
+  },
+  {
+   "func": "0x100085034",
+   "name": "",
+   "insn": "0x1000850d4",
+   "imm": 21763,
+   "kind": "compare",
+   "call": "0x1000850d8"
+  },
+  {
+   "func": "0x1000ed624",
+   "name": "",
+   "insn": "0x1000ed688",
+   "imm": 17154,
+   "kind": "compare",
+   "call": "0x1000ed68c"
+  },
+  {
+   "func": "0x100130444",
+   "name": "",
+   "insn": "0x1001304b8",
+   "imm": 26624,
+   "kind": "compare",
+   "call": "0x1001304bc"
+  },
+  {
+   "func": "0x100130cf0",
+   "name": "",
+   "insn": "0x100130d48",
+   "imm": 26626,
+   "kind": "compare",
+   "call": "0x100130d4c"
+  },
+  {
+   "func": "0x10013101c",
+   "name": "",
+   "insn": "0x100131060",
+   "imm": 26629,
+   "kind": "compare",
+   "call": "0x100131064"
+  },
+  {
+   "func": "0x1001313dc",
+   "name": "",
+   "insn": "0x100131420",
+   "imm": 26627,
+   "kind": "compare",
+   "call": "0x100131424"
+  },
+  {
+   "func": "0x10016d3ac",
+   "name": "",
+   "insn": "0x10016d43c",
+   "imm": 17153,
+   "kind": "compare",
+   "call": "0x10016d440"
+  },
+  {
+   "func": "0x10017020c",
+   "name": "",
+   "insn": "0x10017024c",
+   "imm": 22272,
+   "kind": "compare",
+   "call": "0x100170250"
+  },
+  {
+   "func": "0x1001703cc",
+   "name": "",
+   "insn": "0x100170410",
+   "imm": 22275,
+   "kind": "compare",
+   "call": "0x100170414"
+  }
+ ]
+}

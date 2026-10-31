@@ -1,0 +1,13 @@
+{
+  "address": "0x10017a64c",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "a58b7b291f1260712f9c3fc264ee47a61eacd54e487b7b2464f53128872affca",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "a58b7b291f1260712f9c3fc264ee47a61eacd54e487b7b2464f53128872affca",
+  "ghidra_name": "_acc_protocolRouter_routeOutgoingSecureTunnelDataForClient",
+  "signature": "undefined _acc_protocolRouter_routeOutgoingSecureTunnelDataForClient()",
+  "diagnostic": "",
+  "c_file": "f_10017a64c.ghidra.c",
+  "c_sha256": "2c72b80c533f4b2b1e75b73b44887be3d62a94f3f036451423b3a6721649968a",
+  "status": "DECOMPILED_UNREVIEWED"
+}

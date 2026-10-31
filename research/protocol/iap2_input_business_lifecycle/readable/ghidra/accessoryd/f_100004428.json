@@ -1,0 +1,13 @@
+{
+  "address": "0x100004428",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "38f67bf829b980f89ed6062e648b023b2417b5224bcbe546e146fd0ece58c391",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "38f67bf829b980f89ed6062e648b023b2417b5224bcbe546e146fd0ece58c391",
+  "ghidra_name": "__convertRouteGuidanceStateTypeForFunc",
+  "signature": "undefined __convertRouteGuidanceStateTypeForFunc()",
+  "diagnostic": "",
+  "c_file": "f_100004428.ghidra.c",
+  "c_sha256": "3a118091a853fca88c223cd4dcf12337759fa3c175c3d67072af262e10c191f9",
+  "status": "DECOMPILED_UNREVIEWED"
+}

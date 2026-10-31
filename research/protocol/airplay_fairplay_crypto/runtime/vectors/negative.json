@@ -1,0 +1,38 @@
+{
+ "spec": "spec/07 R-7.5 / spec/08 R-8.2",
+ "vectors": [
+  {
+   "id": "neg-1-wrong-key",
+   "kind": "wrong_key",
+   "key_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+   "nonce_hex": "0000000000000000",
+   "frame_hex": "76dd2550d98fd0b433153912db633e4681dd9c948562f0dcfc63ade044422e5afe70f8c273",
+   "expect": "auth_fail"
+  },
+  {
+   "id": "neg-2-wrong-nonce",
+   "kind": "wrong_nonce",
+   "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+   "nonce_hex": "0100000000000000",
+   "frame_hex": "76dd2550d98fd0b433153912db633e4681dd9c948562f0dcfc63ade044422e5afe70f8c273",
+   "expect": "auth_fail"
+  },
+  {
+   "id": "neg-3-tampered-tag",
+   "kind": "tampered_tag",
+   "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+   "nonce_hex": "0000000000000000",
+   "frame_hex": "76dd2550d98fd0b433153912db633e4681dd9c948562f0dcfc63ade044422e5afe70f8c2f3",
+   "expect": "auth_fail"
+  },
+  {
+   "id": "neg-4-short-frame",
+   "kind": "short_frame",
+   "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+   "nonce_hex": "0000000000000000",
+   "frame_hex": "76dd2550d98fd0b433153912",
+   "expect": "discard"
+  }
+ ],
+ "note": "auth_fail为本地结果，不映射固定OSStatus；短段拒绝为本地安全策略，固件原函数返回0但未认证"
+}

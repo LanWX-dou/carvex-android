@@ -1,0 +1,358 @@
+{
+  "schema": "airplay-security-branches-v1",
+  "build": "24A446",
+  "device": "iPhone18,1",
+  "firmware_executed": false,
+  "real_vehicle_verified": false,
+  "sources": [
+    {
+      "component": "AirPlaySender",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "functions": [
+        {
+          "address": "0x251999fec",
+          "end": "0x25199a364",
+          "bytes": 888,
+          "sha256": "f3fa29f50458a9752f966d6bf5a31c62976d17f9d40205bd49be36985fe43e5d",
+          "names": [
+            "_airPlayDescription_copyFeaturesInternal"
+          ],
+          "reviewed_scope": "FeaturesEx preference, compression/encryption fallback, version filter",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x25199a4fc",
+          "end": "0x25199a588",
+          "bytes": 140,
+          "sha256": "646c61aecc05f2aa6c9f2337ddb492f2d1819f8cace46340c32b0c9edf160892",
+          "names": [
+            "_airPlayDescription_hasFeatureInternal"
+          ],
+          "reviewed_scope": "feature-copy error becomes false, otherwise bit query",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x25199a588",
+          "end": "0x25199cd5c",
+          "bytes": 10196,
+          "sha256": "5df0d5a7fad1d944d75e4454ae0b4525b31e0d4ef17ee83dde110e6389df8784",
+          "names": [
+            "_airPlayDescription_copyPropertyInternal"
+          ],
+          "reviewed_scope": "bounded security property dispatcher only: CU, legacy, HK, system, unified, auth, one-time, access",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x2519bd6fc",
+          "end": "0x2519bd76c",
+          "bytes": 112,
+          "sha256": "92833e5c1b2250debeb9b1d53bac9597155fed2eaaaea15f9dfebf06a5799bcc",
+          "names": [
+            "_airPlayDescription_supportsCUPairingAndEncryption"
+          ],
+          "reviewed_scope": "CU OR terms: 38, 46, 43, 48",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x2519ca804",
+          "end": "0x2519ca900",
+          "bytes": 252,
+          "sha256": "21ef4ec087de4d1e2d67f6caa57141ae930048a0e2ddd913499f0aa457db5e5e",
+          "names": [
+            "_airPlayDescription_copyAuthenticationType"
+          ],
+          "reviewed_scope": "complete AuthenticationType priority and no-feature failure",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x2519a3d44",
+          "end": "0x2519a3dc0",
+          "bytes": 124,
+          "sha256": "de528ab09cf0e91215e9e19697db82fd547b91cfdc5632038358e19c76a5356f",
+          "names": [
+            "_airPlayDescription_copyOneTimePairingRequired"
+          ],
+          "reviewed_scope": "one-time pairing from systemFlags bit9",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x2519a3dc0",
+          "end": "0x2519a3eb0",
+          "bytes": 240,
+          "sha256": "1e5c593f8a4836601843278371156fcaf5305677f8b025ce66d9e06407bb104f",
+          "names": [
+            "_airPlayDescription_getAccessControlType"
+          ],
+          "reviewed_scope": "accessControlType primary and level/status fallback",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x2519a6020",
+          "end": "0x2519a60c0",
+          "bytes": 160,
+          "sha256": "de34300d81c4d2d5da8d6641d8c42e35f440960f4769004690ace0cb05fb4ec8",
+          "names": [
+            "_airPlayDescription_copyIsHKAccessControlEnabled"
+          ],
+          "reviewed_scope": "HK access enabled: feature46 AND systemFlags bit10",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x251a5e858",
+          "end": "0x251a602a0",
+          "bytes": 6728,
+          "sha256": "a7692d1f7f22e14c7a22a3ddd9da428a302e245deed37e320c33a2750cc3fc36",
+          "names": [
+            "_apsession_ensurePaired"
+          ],
+          "reviewed_scope": "bounded no-pair/broker prerequisite prefix, not complete pairing retry engine",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x251a60f70",
+          "end": "0x251a61474",
+          "bytes": 1284,
+          "sha256": "f4f24327a05aca9bd91c32b02333fea5c9710b92d5844cb59b693bfe5de4aa66",
+          "names": [
+            "_apsession_createPairingClient"
+          ],
+          "reviewed_scope": "bounded kind5 CU peer identifier and authentication input creation",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        }
+      ]
+    },
+    {
+      "component": "AirPlaySupport",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySupport\\AirPlaySupport",
+      "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+      "functions": [
+        {
+          "address": "0x226f078a0",
+          "end": "0x226f07938",
+          "bytes": 152,
+          "sha256": "76022ff79cff8eacc3c85c11fc30e8ceb1f7b47f75de0816048a12b370fdb5f7",
+          "names": [
+            "_APSFeaturesHasFeature"
+          ],
+          "reviewed_scope": "APSFeaturesHasFeature null/data/length handling and bit indexing",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x226f0776c",
+          "end": "0x226f07828",
+          "bytes": 188,
+          "sha256": "35fc5fdd51a5b882a6af103ec9d665955f6465df5c7345b1264085d3b339e3cd",
+          "names": [
+            "_APSFeaturesCreateFromEndpointInfoFeatureRepresentations"
+          ],
+          "reviewed_scope": "extended representation preferred over legacy flags",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x226f07ae8",
+          "end": "0x226f07b50",
+          "bytes": 104,
+          "sha256": "918be512f6fb0f06a5123b81d3cbf126ecfb26268a0634e8630a1e09b880435a",
+          "names": [
+            "_APSFeaturesClearFeature"
+          ],
+          "reviewed_scope": "clear bit helper used by sourceVersion filter",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        }
+      ]
+    },
+    {
+      "component": "APTransport",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "functions": [
+        {
+          "address": "0x24fd94564",
+          "end": "0x24fd945f8",
+          "bytes": 148,
+          "sha256": "6e0c78986eb06a58a795662a341e7fe8c5fc919c862a70926d18985bbf84c95c",
+          "names": [
+            "_APAdvertiserInfoCopyProperty"
+          ],
+          "reviewed_scope": "advertiser missing property returns null/error",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        }
+      ]
+    },
+    {
+      "component": "CoreUtils",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\CoreUtils\\CoreUtils",
+      "sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+      "functions": [
+        {
+          "address": "0x18be3f804",
+          "end": "0x18be3f848",
+          "bytes": 68,
+          "sha256": "b7d15caf8727b35b3530d7f1a6df37fa43336f8261525f6958a8a2f7e3757ac4",
+          "names": [
+            "_CFObjectGetPropertyInt64Sync"
+          ],
+          "reviewed_scope": "sync integer getter returns zero on null property",
+          "original_cache_equal": true,
+          "decoded_complete": true
+        }
+      ]
+    },
+    {
+      "component": "CoreFoundation",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\CoreFoundation\\CoreFoundation",
+      "sha256": "28be8a1510b9c7b8211d196584d3cd502a2d8fd1c40ffd00e3db84466279d478",
+      "functions": []
+    }
+  ],
+  "dyld_v5_pointer_slots": [
+    {
+      "slot": "0x2680fbae8",
+      "target": "0x269375548",
+      "symbol": "_kAPAdvertiserInfoProperty_FeaturesEx",
+      "raw_sha256": "c3db0f00d856d9352c1b6c339260bc9ebc1d7a4ed9120d928c2a50bf7572edc0"
+    },
+    {
+      "slot": "0x2680fba50",
+      "target": "0x24fd94564",
+      "symbol": "_APAdvertiserInfoCopyProperty",
+      "raw_sha256": "8bb3aa57172e0dd475a77b71d8231c2c16b509c56baacf60ce09a44a62277132"
+    },
+    {
+      "slot": "0x2680fbba0",
+      "target": "0x269375628",
+      "symbol": "_kAPAdvertiserInfoProperty_SystemFlags",
+      "raw_sha256": "fdc25bbe2c5b510715771c783e9a4cd9e8dfa06510e128c1e41170744bf0f475"
+    },
+    {
+      "slot": "0x2680fba78",
+      "target": "0x2693754d0",
+      "symbol": "_kAPAdvertiserInfoProperty_AccessControlType",
+      "raw_sha256": "e7ba45ddc03979c861c3ce01ef3fd9614af40721119be19ec085abd34c7aa73e"
+    },
+    {
+      "slot": "0x2680fba70",
+      "target": "0x2693754c8",
+      "symbol": "_kAPAdvertiserInfoProperty_AccessControlLevelHK",
+      "raw_sha256": "bd2289ccf542c13ae718acee9b05f51313bdebd9fdb27839246c4b1e82f49a6b"
+    },
+    {
+      "slot": "0x2680fbaa0",
+      "target": "0x269375500",
+      "symbol": "_kAPAdvertiserInfoProperty_CompressionTypes",
+      "raw_sha256": "e2ab1e6855e0e7a44bc7155e88fe0a3f1b3df1ad63b35155ef71e067966255ab"
+    },
+    {
+      "slot": "0x2680fbae0",
+      "target": "0x269375510",
+      "symbol": "_kAPAdvertiserInfoProperty_EncryptionTypes",
+      "raw_sha256": "a7c2f26f43e3918ba11c57e1cae44117bbd96418ebd354542a19d1841b88c24f"
+    },
+    {
+      "slot": "0x2680d3188",
+      "target": "0x1e053a5a8",
+      "symbol": "_kCFBooleanFalse",
+      "raw_sha256": "624339508c0fa05600e29b8702159530df2c843ac6698f10c0d8e94bcc7a9ee5"
+    },
+    {
+      "slot": "0x2680d3198",
+      "target": "0x1e053a5a0",
+      "symbol": "_kCFBooleanTrue",
+      "raw_sha256": "a74172775d1eb770fb2d24cae2f5066090b9bcac710c921b12b22973032ec962"
+    }
+  ],
+  "original_trampolines": [
+    {
+      "address": "0x25810a8d0",
+      "target": "0x18be3f804",
+      "symbol": "_CFObjectGetPropertyInt64Sync",
+      "sha256": "4b945d48695964d23cb1f3c3bd3bc8f5fa21fffe3ed423d91c7ede442d899279"
+    },
+    {
+      "address": "0x25810c6f0",
+      "target": "0x24fd94564",
+      "symbol": "_APAdvertiserInfoCopyProperty",
+      "sha256": "79f9b3fc87e0aa8a5e9df860bf2ccdade6d2027836f987ba70bef41eca88223a"
+    },
+    {
+      "address": "0x2581097c0",
+      "target": "0x226f078a0",
+      "symbol": "_APSFeaturesHasFeature",
+      "sha256": "2632be89beb8c68fc23338b3495ac5e724e01f85c5694aab4484d56db30409a9"
+    },
+    {
+      "address": "0x25810d430",
+      "target": "0x226f07ae8",
+      "symbol": "_APSFeaturesClearFeature",
+      "sha256": "857c7d104f24363ce3442ced1d72c0dc2a56438832afc6308dd988d4334d7f56"
+    },
+    {
+      "address": "0x25810d440",
+      "target": "0x226f0776c",
+      "symbol": "_APSFeaturesCreateFromEndpointInfoFeatureRepresentations",
+      "sha256": "312f7c9b605ee5399c3d04abfae8bcb966e42d755bcd51b8740cbcefa3ff05c1"
+    }
+  ],
+  "closed_static": {
+    "cu_feature_or": [
+      38,
+      46,
+      43,
+      48
+    ],
+    "legacy": 27,
+    "hk_access": 46,
+    "system": 43,
+    "unified_mfi": 51,
+    "one_time_system_flags_bit": 9,
+    "hk_access_system_flags_bit": 10,
+    "authentication_priority": [
+      [
+        80,
+        32
+      ],
+      [
+        [
+          26,
+          51
+        ],
+        8
+      ],
+      [
+        14,
+        4
+      ],
+      [
+        23,
+        1
+      ],
+      [
+        31,
+        16
+      ]
+    ],
+    "no_authentication_feature_status_u32": "0xfffee7b6"
+  },
+  "open": [
+    "complete TXT/4301 provenance and override for each endpoint",
+    "extended feature80 wire input in Android",
+    "complete CU/HK/system/transient pairing transaction and trust validation",
+    "unified MFi transcript, SAP signature contract and trust material",
+    "iAP2 AA trust/AA06/inheritance and real first/reconnection coverage"
+  ]
+}

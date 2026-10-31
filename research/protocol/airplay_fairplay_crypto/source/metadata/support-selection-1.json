@@ -1,0 +1,11 @@
+{
+ "image": "AirPlaySupport",
+ "functions": [
+  {"symbol": "_APSEncryptionUtilsDeriveAESKeySHA512", "group": "K", "note": "SHA-512 派生 AES 密钥（通用）"},
+  {"symbol": "_APSEncryptionUtilsDeriveAESKeySHA512ForScreen", "group": "K", "note": "SHA-512 派生屏幕 AES 密钥"},
+  {"symbol": "_APSCryptorChaCha20Poly1305Create", "group": "C", "note": "ChaCha20-Poly1305 加解密器构造"},
+  {"symbol": "_APSCryptorCTRCreate", "group": "C", "note": "AES-CTR 加解密器构造"},
+  {"symbol": "_APSCryptorCBCCreate", "group": "C", "note": "AES-CBC 加解密器构造"},
+  {"symbol": "_APSCryptorGetNull", "group": "C", "note": "空加解密器"}
+ ]
+}

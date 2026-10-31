@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-30",
+  "scope": "Android phone normal in-app disconnect; no head-unit changes or APK packaging",
+  "phone_root": "D:/carvex-research/android",
+  "backup": "D:/carvex-research/local-backups/normal-disconnect-20261030-182650",
+  "firmware_baseline": "iPhone18,1 / 24A446",
+  "firmware_evidence": ["disconnect-evidence.json", "reconnect-lifecycle-audit.json"],
+  "firmware_contract": {
+    "ensure_stopped": "0x251b5e7c4",
+    "teardown_helper": "0x2519ce5c4",
+    "streams": "absent for NULL streamDescArray",
+    "teardownType": "absent in our non-connection-sharing profile",
+    "body": "binary plist empty dictionary",
+    "local_total_control_budget_ms": 5000,
+    "budget_and_failure_cleanup_are_local_policy": true
+  },
+  "source_snapshot": [
+    {"path": "core/src/main/java/io/github/iamr0s/carvex/sessioncore/SessionTermination.kt", "sha256": "f2851c59bfe944cd20dcff6a30931183b6ced4235bbc9d7b7f490606bd667dc6"},
+    {"path": "core/src/test/java/io/github/iamr0s/carvex/sessioncore/SessionTerminationTest.kt", "sha256": "6e6546044e0bb4ddfc4c03ad58a546940e8dcdbb2bf0faaff3f3919b3c617042"},
+    {"path": "bridge/src/main/java/io/github/iamr0s/carvex/session/SessionController.kt", "sha256": "7ef9099c4c6121e34b3c927859bbc60f875e390573cafb1f7953bbb841638c90"},
+    {"path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt", "sha256": "a1ec2038539f663686bc315a45991407a505dd8923e744439f9f42316b25ba8d"},
+    {"path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/Rtsp.kt", "sha256": "936624fa11368d735c348a96f1bc3f79bc19dcde03852eb188fc9305e77c3c6a"},
+    {"path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/AirPlaySetupSession.kt", "sha256": "b1f23252c5e5baa0ed4a60e5ba362269ccb25cbec50b3f2d4d141660359b9814"},
+    {"path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/core/RtspNormalStopTest.kt", "sha256": "e1cd8875b6adcaa3fd284dc6d5317786822e6d9598152ce5a8ef16015bd163e3"},
+    {"path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/core/AirPlaySetupSessionTest.kt", "sha256": "f6d861789bedf825932b0f9c86f9bbd61649642c9fc84b997f0ba573b5d83a8d"},
+    {"path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/BootstrapNegotiationTest.kt", "sha256": "3c8551eb719e6de3a2b1facd3df6abbda64fec9e5ce555fbf4bb9f9e2c2238e5"}
+  ],
+  "validation": {
+    "command": ".\\gradlew.bat :protocol-carplay:testDebugUnitTest :core:testDebugUnitTest :app:compileXiaomiDebugKotlin --console=plain",
+    "final_build": "SUCCESSFUL",
+    "protocol_carplay": {"suites": 126, "tests": 1021, "failures": 0, "errors": 0, "skipped": 0},
+    "core": {"suites": 13, "tests": 81, "failures": 0, "errors": 0, "skipped": 0, "final_run_status": "UP-TO-DATE; full module executed successfully earlier in this batch"},
+    "compile_xiaomi_debug_kotlin": "passed earlier in batch; final command UP-TO-DATE",
+    "new_tests": {"RtspNormalStopTest": 13, "SessionTerminationTest": 5, "AirPlaySetupSessionTest": 2, "BootstrapNegotiationTest": 1},
+    "intermediate_failures": [
+      "New integration test had a non-Unit return type; fixed JUnit declaration and reran.",
+      "Existing nextRaw test helper misread a delayed session0 ACK as session17 CSM. Isolated 86-test rerun passed; then fixed helper to skip only pure ACK and added deterministic regression. No iAP2 production change."
+    ],
+    "vehicle_tested": false,
+    "apk_built": false,
+    "installed": false
+  },
+  "open": [
+    "Vehicle confirmation of leaving projection and reconnecting after App disconnect",
+    "Causal relationship between incomplete normal stop and seven ACK-only / NO_SYN failures",
+    "Android force-stop cannot guarantee normal TEARDOWN execution",
+    "No claim of complete 24A446 lifecycle equivalence or all-car compatibility"
+  ]
+}

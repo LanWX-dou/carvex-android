@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "build": "24A446",
+  "runtime_observed": false,
+  "method": "Mach-O virtual-address byte comparison plus bounded C/ASM review; no original-function execution",
+  "images": [
+    {
+      "component": "accessoryd",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\System\\Library\\PrivateFrameworks\\CoreAccessories.framework\\Support\\accessoryd",
+      "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe"
+    },
+    {
+      "component": "WiFiSharing",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\WiFiSharing\\WiFiSharing",
+      "sha256": "0b7d4e282385cf8545b1812dc9e2d1f1fe9a29366eaeb2d0d495a802737b3c9a"
+    }
+  ],
+  "functions": [
+    {
+      "id": "NH01",
+      "component": "accessoryd",
+      "address": "0x10016d3ac",
+      "raw_length": 3160,
+      "raw_matches_source": true,
+      "reviewed_scope": "ordered 4301 groups/scalars, getter failure exits before platform dispatch",
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10016d3ac.bin",
+          "sha256": "7d5db2d7d7b9c2cebd668e773346c3fbba78a4ec697eb1ca6d877fe1eaa98b04"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10016d3ac.s",
+          "sha256": "c4e2722f7c80005bc9d35b235ad0940a4d61d891ea597be5c3012e4a7b494fba"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10016d3ac.ghidra.c",
+          "sha256": "f9b065cc26f65416c6c830fd658af216a951b093399a5956f89997b16a517541"
+        }
+      ]
+    },
+    {
+      "id": "NH02",
+      "component": "accessoryd",
+      "address": "0x1001703cc",
+      "raw_length": 1308,
+      "raw_matches_source": true,
+      "reviewed_scope": "5703 ordered scalar slots, arbitrary BSSID length, unknown/5/6 ignored, async dispatch",
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1001703cc.bin",
+          "sha256": "2d7a542f1e6d1bcd3fc02248aadaea628b15114926405d6eb8563491673c2cbb"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1001703cc.s",
+          "sha256": "7113ab518e20c2e4bbe8f57e3f09cf90a6a7664b9274add98c46c328eb14a650"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1001703cc.ghidra.c",
+          "sha256": "a0663af5102affcf4943a153d368bcb8c915fd184da1207f24e3555b74ea4736"
+        }
+      ]
+    },
+    {
+      "id": "NH03",
+      "component": "accessoryd",
+      "address": "0x100067ee4",
+      "raw_length": 76,
+      "raw_matches_source": true,
+      "reviewed_scope": "CString total length >=5 and final byte NUL",
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067ee4.bin",
+          "sha256": "19f5f5bc9d08b6038e6324fb3898466959841e43484378da1d3c7e8f23753c62"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067ee4.s",
+          "sha256": "203b9188fd947da2749839cbbff5cfbfc25b9d454550d0a0f14a80af51294758"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067ee4.ghidra.c",
+          "sha256": "2d2541d06012b07e67a19e6b3fadc6bc02cdbfcf730f661db5fb31fc3774ef36"
+        }
+      ]
+    },
+    {
+      "id": "NH04",
+      "component": "accessoryd",
+      "address": "0x100067e4c",
+      "raw_length": 40,
+      "raw_matches_source": true,
+      "reviewed_scope": "U8 total length 5",
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e4c.bin",
+          "sha256": "b88854d880d67d4b43e346414807565faad8b9a7c3c6130c3bbac177398cfcd4"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e4c.s",
+          "sha256": "0764f595bb67398a220f338b7af01098c3929040b818bc7cc2494ca643acb763"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e4c.ghidra.c",
+          "sha256": "1c2d7bf8adb0f7411c7411fef6637b989ffc1ea7e43209a8d16b07be6e3f9c77"
+        }
+      ]
+    },
+    {
+      "id": "NH05",
+      "component": "accessoryd",
+      "address": "0x100067df0",
+      "raw_length": 44,
+      "raw_matches_source": true,
+      "reviewed_scope": "U32 total length 8, big endian",
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067df0.bin",
+          "sha256": "ef5325caf3f40323e671ca53c8a3fe8de5266954ce9a73e0a361cdf50aa332e8"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067df0.s",
+          "sha256": "66d74f5f9ae2289a60f82e9941a5bdb73ffb377099e8f0ff8d4c1616ae4bbb85"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067df0.ghidra.c",
+          "sha256": "64c6a517691800f68f1309d335f902fa450669b2a3d20f959221f66996735799"
+        }
+      ]
+    },
+    {
+      "id": "NH06",
+      "component": "accessoryd",
+      "address": "0x100067e74",
+      "raw_length": 40,
+      "raw_matches_source": true,
+      "reviewed_scope": "Bool total length 5, value 0 or 1",
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e74.bin",
+          "sha256": "2416afce229b24c2351d81355bee58b3a097601f0152c3c593f94d4b8b88136b"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e74.s",
+          "sha256": "6eb07a7e303f10be70ab42c14ed4e0ee92f20d252144d115b77452b5e28cee1d"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e74.ghidra.c",
+          "sha256": "9a3704c0c6d40200026e96cfd9eca150d37422b99442db54e952381aad056c9b"
+        }
+      ]
+    },
+    {
+      "id": "NH07",
+      "component": "WiFiSharing",
+      "address": "0x2431186ac",
+      "raw_length": 1056,
+      "raw_matches_source": true,
+      "reviewed_scope": "SSID nil/present password with security0 guard; mapping remains unresolved here",
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\WiFiSharing\\daf85b4040f95838b28e\\functions\\f_2431186ac.bin",
+          "sha256": "ba844fb9ab1126ded448e0dde553b9121e56ef6a8b073dfbc0ac536d230bc2a2"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\WiFiSharing\\daf85b4040f95838b28e\\functions\\f_2431186ac.s",
+          "sha256": "eab048728e9d905a738c217f7cd980eaa19a15103ea7e8a558a18552c00c1565"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\WiFiSharing\\daf85b4040f95838b28e\\functions\\f_2431186ac.ghidra.c",
+          "sha256": "f4c55dfbb7cb99911f7d656f27c5b5c8b46725f15c86788599b952161d8e8a83"
+        }
+      ]
+    }
+  ],
+  "open": [
+    "Wi-Fi security enum/platform credential lifecycle",
+    "CF conversion/allocation equivalence",
+    "4301/Bonjour/invitation identity and candidate fusion",
+    "full first-connect/reconnect platform timeline"
+  ],
+  "local_design": [
+    "normalization into grouped IapFields",
+    "Android SSID/passphrase/port/address constraints",
+    "unchanged bounded wait before 5703-only fallback",
+    "partial 5703 waits for usable credentials within original deadline",
+    "same local readiness predicate on reused/new Android networks"
+  ]
+}

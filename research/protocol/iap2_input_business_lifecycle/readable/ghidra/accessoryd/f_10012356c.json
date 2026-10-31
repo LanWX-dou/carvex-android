@@ -1,0 +1,13 @@
+{
+  "address": "0x10012356c",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "f7c12460c6f51926e47ae5ea925686dceefd1e063afa44bb77c870b093a1101b",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "f7c12460c6f51926e47ae5ea925686dceefd1e063afa44bb77c870b093a1101b",
+  "ghidra_name": "_iap2_deviceAuthentication_DeviceAuthenticationFailed",
+  "signature": "undefined _iap2_deviceAuthentication_DeviceAuthenticationFailed()",
+  "diagnostic": "",
+  "c_file": "f_10012356c.ghidra.c",
+  "c_sha256": "4cee6218ef94f2cc7824748b316604eb79ff18a644dc959a2634484096a7b8f6",
+  "status": "DECOMPILED_UNREVIEWED"
+}

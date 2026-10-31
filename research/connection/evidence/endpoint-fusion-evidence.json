@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-10-29",
+  "baseline": {
+    "device": "iPhone18,1",
+    "ios": "27.0.1",
+    "build": "24A446",
+    "ipsw_sha256": "7ee7aaa896ef257e26aa54edb2a4ac7f6f6e8e5c20279b124bee38b809c2a6a5"
+  },
+  "runtime_observed": false,
+  "endpoint_transaction_complete": false,
+  "network_association_observed": false,
+  "dns_or_bonjour_runtime_observed": false,
+  "airplay_control_observed": false,
+  "display_observed": false,
+  "artifacts": [
+    {
+      "id": "EF-AP-SESSION",
+      "component": "APTransport",
+      "address": "0x24fd9c6b8",
+      "symbol": "_carPlayHelperSession_updateNetworkAndSessionState",
+      "source_path": "D:/carvex-research/firmware/extracted/24A446/binaries/APTransport/APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fd9c6b8.bin",
+      "raw_sha256": "73e32fa0e18fd19086245123a5f854932a740ffa656f94b7e03c0dd2f81d1177",
+      "raw_matches_source": true,
+      "c_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fd9c6b8.ghidra.c",
+      "c_sha256": "bf8ef8b1b27d653aa1b3b44aebe1c21c3873eb14b74afff7aa6abce0d6b44c1d",
+      "assembly_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fd9c6b8.s",
+      "assembly_sha256": "91bc84f775b0235f8a970d28ff65572a69994fd32e2c260d3075cc0d82fa9ef1",
+      "claim": "After network/session/interface/address gates, constructs AdvertiserInfo and APSNetworkAddress, then posts an internal StartSessionEvent containing address/interface/display configuration.",
+      "limitations": [
+        "Ghidra C is not a complete semantic proof.",
+        "Bounded prior harness used substitutions and did not emit peer packets.",
+        "Role of local versus remote endpoint and downstream event consumer remain open."
+      ]
+    },
+    {
+      "id": "EF-ADDRESS-FILTER",
+      "component": "APTransport",
+      "address": "0x24fe06c24",
+      "symbol": "___carPlayHelperSession_IPv4InterfaceAddressesChanged_block_invoke",
+      "source_path": "D:/carvex-research/firmware/extracted/24A446/binaries/APTransport/APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fe06c24.bin",
+      "raw_sha256": "1edb42bbd1da4c32e60d4ed626a8e2ca3c94cbe2dbda80d6662ed965062a9a50",
+      "raw_matches_source": true,
+      "c_sha256": "83d4444d86972c09d994e013d68f00fad29573f1ea5dcd0a4132424b418d4394",
+      "assembly_sha256": "2552b53dcc785ece43b1afdecb90a1e77316651ab03ad7c075e6d4ec77db3a75",
+      "claim": "In the ConnectivityHelper local-interface update pipeline, on successful parse rejects IPv4 169.254/16 and 127.0.0.1 and exact IPv6 ::1.",
+      "caller_evidence": {
+        "address": "0x24fd9b168",
+        "c_path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fd9b168.ghidra.c",
+        "c_sha256": "1166f908effefd06cf99b1bb85a9e7b402494b10984292c501cd6f44bbd35730",
+        "c_lines": "303-339",
+        "scope": "Event 10 reads NetworkInterfaceName and IPv4Addresses, enumerates with the filter, then calls updateIPAddresses with interfaceName, filteredArray and family selector 4.",
+        "evidence_level": "STATIC_DECOMPILATION_CALLER_CONTEXT"
+      },
+      "limitations": [
+        "Not a rejection rule for remote 4301 wifiIP candidates.",
+        "Does not prove route, scope, service, trust or readiness.",
+        "Underlying operating-system provider contract remains open."
+      ]
+    },
+    {
+      "id": "EF-BONJOUR-DEVICE-ID",
+      "component": "APTransport",
+      "address": "0x24fd9a298",
+      "symbol": "_APBrowserCopyDeviceIDFromBonjourInfo",
+      "source_path": "D:/carvex-research/firmware/extracted/24A446/binaries/APTransport/APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_sha256": "182d195e438b975b0df8e106ff95879592f5bc938e1f8c22261aea74422ca142",
+      "claim": "Calls CoreUtils Bonjour device-ID extraction and copies the result when parsing succeeds."
+    },
+    {
+      "id": "EF-BONJOUR-ADVERTISER",
+      "component": "APTransport",
+      "address": "0x24fd9842c",
+      "symbol": "_APBrowserCreateAdvertiserInfoForDevice",
+      "source_path": "D:/carvex-research/firmware/extracted/24A446/binaries/APTransport/APTransport",
+      "source_sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "raw_sha256": "550772b9cb219a6246bfb2ca38aaf3666b8658405014940ff8ed0fdd0df8c9a9",
+      "claim": "Advertiser construction entry; associated discovery key indexes include deviceInfo, featuresEx and deviceID. This is not a claim that this one function directly reads every indexed key."
+    },
+    {
+      "id": "EF-BONJOUR-COREUTILS",
+      "component": "CoreUtils",
+      "address": "0x18be43bbc",
+      "symbol": "_BonjourDevice_GetDeviceID",
+      "source_path": "D:/carvex-research/firmware/extracted/24A446/binaries/CoreUtils/CoreUtils",
+      "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+      "raw_sha256": "ac20a8406c21dd9d5217e872f54737d525f8deb3d651cce2887ecb23c8ea830e",
+      "claim": "Parses a Bonjour device-id representation and returns an ID/status pair; exact wire TXT contract is not inferred here."
+    }
+  ],
+  "message_evidence": [
+    {
+      "message": "0x5703",
+      "handler_address": "0x1001703cc",
+      "source_component": "accessoryd",
+      "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+      "claim": "Parses parameter IDs 0..4, skips 5/6, and asynchronously hands values to the platform.",
+      "reference": "bootstrap-evidence.json:B16"
+    },
+    {
+      "message": "0x4301",
+      "handler_address": "0x10016d3ac",
+      "source_component": "accessoryd",
+      "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+      "claim": "Parses nested wireless/session fields and calls platform_CarPlay_startSession at 0x100063fd0.",
+      "reference": "bootstrap-evidence.json:B12"
+    }
+  ],
+  "supporting_analysis": [
+    {
+      "path": "D:/carvex-research/firmware/analysis/24A446/network-discovery/handoff/partial-status.json",
+      "sha256": "b63abc4544123767a9b0ba405d0b318100bbb0b268ab0c78516c07124d65a815",
+      "scope": "24 bounded executions with substitutions; no network or packet emission",
+      "use": "Documents internal event contents, address selection observations and open role/provider boundaries."
+    },
+    {
+      "path": "D:/carvex-research/firmware/analysis/24A446/network-endpoint/address-filter-rules.json",
+      "sha256": "2a1b0f8bf0de27a1f79381a59267f8b089c70854b22427e65a9986d1346c10fa",
+      "use": "Bounded address-filter rule and explicit limits."
+    },
+    {
+      "path": "D:/carvex-research/firmware/analysis/24A446/network-endpoint/transaction-table.json",
+      "sha256": "37153e54b760330af167d5db94caa4759bf10c151fa19ad6b8c9c4bab7bf9467",
+      "use": "Static address/UUID update and reassessment boundaries; complete=false."
+    },
+    {
+      "path": "D:/carvex-research/firmware/analysis/24A446/peer-discovery-contract/discovery-inputs.json",
+      "sha256": "43a56a3a274a4cfc81d3af2b8a39d1103097d4e413e621f4d01b1e7a7817c42f",
+      "use": "Bonjour advertiser/device-ID static call paths; no DNS runtime."
+    },
+    {
+      "path": "D:/carvex-research/firmware/analysis/24A446/peer-discovery-txt/txt-fields.json",
+      "sha256": "9ede07e01d21bdfc010e3638ff4da77ff2bcd19ec9ee9c3aa0320214df3d2a27",
+      "use": "TXT keys and feature parsing API inventory."
+    }
+  ],
+  "open_items": [
+    "AP-U01: 4301, Bonjour and AirPlay advertiser identity matching and endpoint provenance.",
+    "B-OPEN-06: downstream field combinations, address priority, interface/scope binding, and fusion with invitation entry.",
+    "No strict 5703-to-4301 ordering proven.",
+    "No association success, DNS-SD runtime, control socket, authentication or display proof."
+  ]
+}

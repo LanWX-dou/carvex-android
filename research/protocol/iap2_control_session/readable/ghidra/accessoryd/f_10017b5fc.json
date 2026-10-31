@@ -1,0 +1,13 @@
+{
+  "address": "0x10017b5fc",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "64df48190b7fd9e3d9860e918d925f41792bd7304feeb0b2cd64181cddc2749a",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "64df48190b7fd9e3d9860e918d925f41792bd7304feeb0b2cd64181cddc2749a",
+  "ghidra_name": "_acc_protocolParser_iAP2_create",
+  "signature": "undefined _acc_protocolParser_iAP2_create(void)",
+  "diagnostic": "",
+  "c_file": "f_10017b5fc.ghidra.c",
+  "c_sha256": "0d1769037bc125f4de71de5bf730303e5b61d1a0c14061f72d2c89c5e376bec2",
+  "status": "DECOMPILED_UNREVIEWED"
+}

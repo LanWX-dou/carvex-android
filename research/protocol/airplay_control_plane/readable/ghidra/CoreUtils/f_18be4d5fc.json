@@ -1,0 +1,13 @@
+{
+  "address": "0x18be4d5fc",
+  "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+  "raw_sha256": "774b89947adb42b3068c398f2f93242eeb33143908600b0bf80c49f0cab68cc7",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "774b89947adb42b3068c398f2f93242eeb33143908600b0bf80c49f0cab68cc7",
+  "ghidra_name": "__NetTransportWriteV",
+  "signature": "undefined __NetTransportWriteV()",
+  "diagnostic": "",
+  "c_file": "f_18be4d5fc.ghidra.c",
+  "c_sha256": "1f4d77ec8e6f59f8265e60c3fd5e1254d4f7e25cb262e43c3623734cace96b74",
+  "status": "DECOMPILED_UNREVIEWED"
+}

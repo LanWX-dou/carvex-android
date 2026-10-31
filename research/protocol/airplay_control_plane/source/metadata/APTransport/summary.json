@@ -1,0 +1,35 @@
+{
+  "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+  "size": 1593864,
+  "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+  "magic": "0xfeedfacf",
+  "cputype": 16777228,
+  "cpusubtype": 2147483650,
+  "filetype": 6,
+  "ncmds": 33,
+  "sizeofcmds": 5280,
+  "flags": "0x2100085",
+  "uuid": "14228b3f-1df6-308b-97c4-b7574dbd7a97",
+  "encryption": null,
+  "entry": null,
+  "segment_count": 7,
+  "section_count": 37,
+  "function_starts": 5367,
+  "symtab": {
+    "symoff": 1141832,
+    "nsyms": 7975,
+    "stroff": 1276632,
+    "strsize": 317232
+  },
+  "symbol_count": 7013,
+  "sect_create_date": null,
+  "text_section": {
+    "segment": "__TEXT",
+    "section": "__text",
+    "addr": 9929540912,
+    "size": 747500,
+    "fileoff": 5424,
+    "align": 2,
+    "flags": 2147484672
+  }
+}

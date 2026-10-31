@@ -1,0 +1,13 @@
+{
+  "address": "0x1000070fc",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "e5ba706b71f1495090c5714424f587d717640259cb261170eeea0102cd4bdd64",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "e5ba706b71f1495090c5714424f587d717640259cb261170eeea0102cd4bdd64",
+  "ghidra_name": "_iAP2LinkGetMaxPayloadSize",
+  "signature": "undefined _iAP2LinkGetMaxPayloadSize(void)",
+  "diagnostic": "",
+  "c_file": "f_1000070fc.ghidra.c",
+  "c_sha256": "09af197548a6fc0dd6492b6081972ba177cab90582bd789935b317129b75e653",
+  "status": "DECOMPILED_UNREVIEWED"
+}

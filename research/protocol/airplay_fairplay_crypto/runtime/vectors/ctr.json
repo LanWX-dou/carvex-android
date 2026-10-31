@@ -1,0 +1,20 @@
+{
+ "spec": "spec/06-frame-crypto-aes.md R-6.1",
+ "note": "A-41已证128位大端+1；多次Update须保留未消费密钥流，不能每帧新建上下文；这些是合成向量",
+ "vectors": [
+  {
+   "id": "ctr-1",
+   "key_hex": "000102030405060708090a0b0c0d0e0f",
+   "iv_hex": "101112131415161718191a1b1c1d1e1f",
+   "plaintext_hex": "30313233343536373839616263646566",
+   "ciphertext_hex": "37cfdd47d5e03559a8378f73edf0f7f5"
+  },
+  {
+   "id": "ctr-2",
+   "key_hex": "000102030405060708090a0b0c0d0e0f",
+   "iv_hex": "101112131415161718191a1b1c1d1e1f",
+   "plaintext_hex": "00050a0f14191e23282d32373c41464b50555a5f64696e73787d82878c91969ba0a5aaafb4b9bec3c8cdd2d7dce1e6ebf0f5faff04090e13181d22272c31363b40454a4f5459",
+   "ciphertext_hex": "07fbe57bf5cc1d4db823dc26b2d5d4d8c2979f5bbc65ec713e04ffe5076848936a8492c8815c4668ad5b58fb7d34db91a0079c4b5f4bb366348e1725e23de7337641b48bca76"
+  }
+ ]
+}

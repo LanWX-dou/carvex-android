@@ -1,0 +1,10 @@
+{
+  "image": "AirPlaySupport",
+  "functions": [
+    {"address": "0x226e6a32c", "symbol": "_APSTransportMessageGetAudioDataPointer", "group": "message-audit"},
+    {"address": "0x226f23d54", "symbol": "_APSTransportMessageCreateReferencingBBufWithAudioDataLength", "group": "message-audit"},
+    {"address": "0x226f23f60", "symbol": "_APSTransportMessageSetAudioDataHeader", "group": "message-audit"},
+    {"address": "0x226e689e0", "symbol": "_APSTransportMessageGetAudioDataHeader", "group": "message-audit"},
+    {"address": "0x226e68af0", "symbol": "_APSTransportMessageGetAudioAADPointer", "group": "message-audit"}
+  ]
+}

@@ -1,0 +1,536 @@
+{
+  "schema_version": 1,
+  "build": "24A446",
+  "runtime_observed": false,
+  "method": "Mach-O LC_SEGMENT_64 VA mapping, exact byte comparison; bounded source review, no original-function execution",
+  "images": [
+    {
+      "component": "APTransport",
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/APTransport/APTransport",
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d"
+    },
+    {
+      "component": "CoreUtils",
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/CoreUtils/CoreUtils",
+      "sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083"
+    }
+  ],
+  "functions": [
+    {
+      "id": "CW01",
+      "component": "APTransport",
+      "address": "0x24fda5468",
+      "raw_length": 1156,
+      "raw_sha256": "1c8273c1e14d43085939e0269ba6be2eeb9de2e4895175d5d12f1517f48b6c3c",
+      "source_file_offset": 107624,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "CSeq old-value argument, URL/context, state=5 send gate",
+      "symbols": [
+        "_httpconnection_sendPackageInternal"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda5468.bin",
+          "sha256": "1c8273c1e14d43085939e0269ba6be2eeb9de2e4895175d5d12f1517f48b6c3c"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda5468.s",
+          "sha256": "c92a12843cb02416444407c24700172e2c4f5c7e76b44a6ca31138b5734f62bd"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda5468.ghidra.c",
+          "sha256": "57adb9cc675fbde2589fdc5ed36df3afdf1532594dfc892713d183c9454341ae"
+        }
+      ]
+    },
+    {
+      "id": "CW02",
+      "component": "APTransport",
+      "address": "0x24fda58ec",
+      "raw_length": 4000,
+      "raw_sha256": "6a4552591408d3fc25dabbd8cefce2cffffd6c0c8a308e338672b2df9d62ab5e",
+      "source_file_offset": 108780,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Selected method/path/MIME mapping, RTSP/1.0, conditional body",
+      "symbols": [
+        "_APTransportPackageHTTPGetHTTPMessage"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda58ec.bin",
+          "sha256": "6a4552591408d3fc25dabbd8cefce2cffffd6c0c8a308e338672b2df9d62ab5e"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda58ec.s",
+          "sha256": "fdf01fa287504c05d400aa1558d4fcec89e2093fec1c84180c28dc64bde7b1ef"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda58ec.ghidra.c",
+          "sha256": "92dc47e8590dc113866b1e08047d6e7f99041e9fd8cf0ddaf40436fd9791f721"
+        }
+      ]
+    },
+    {
+      "id": "CW03",
+      "component": "APTransport",
+      "address": "0x24fdaf86c",
+      "raw_length": 572,
+      "raw_sha256": "e13e842ff57d37314a9063bf594172c6d0093d54c4d4df9ae9fd67ac12f5ccaa",
+      "source_file_offset": 149612,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Non-null plist format=200; optional reply must decode to dictionary",
+      "symbols": [
+        "_APTransportStreamSendPlistMessageCreatingPlistReply"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fdaf86c.bin",
+          "sha256": "e13e842ff57d37314a9063bf594172c6d0093d54c4d4df9ae9fd67ac12f5ccaa"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fdaf86c.s",
+          "sha256": "ac1de2cb570936dc107d9a53fb3df5e77a606b32f05148269b7b36c45fb48d48"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fdaf86c.ghidra.c",
+          "sha256": "13b958b56bf332efec8a281634bf76e57c3a512049b61ebff15561ba2bab5d15"
+        }
+      ]
+    },
+    {
+      "id": "CW04",
+      "component": "APTransport",
+      "address": "0x24fda4b28",
+      "raw_length": 1228,
+      "raw_sha256": "c218b2d1afd50277f39056fe007b8fc11d8410631dfadf52fc7a82487b59171f",
+      "source_file_offset": 105256,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Original request context; status 100..599 dispatch, not success",
+      "symbols": [
+        "_httpconnection_httpResponseReceived"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda4b28.bin",
+          "sha256": "c218b2d1afd50277f39056fe007b8fc11d8410631dfadf52fc7a82487b59171f"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda4b28.s",
+          "sha256": "6396683dd0b58c18172d5222855650983c02bd404bdc724d28cfefd06350b0f7"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda4b28.ghidra.c",
+          "sha256": "163cc2e9736fcb9b1372742b7d7caf15d275a2290cd95e6df4b4236f9c1191cb"
+        }
+      ]
+    },
+    {
+      "id": "CW05",
+      "component": "APTransport",
+      "address": "0x24fda6e0c",
+      "raw_length": 52,
+      "raw_sha256": "bd004f20633634f1506af8653ffa88dbd128ef4a4e00864cf0c5164a1f1c62d4",
+      "source_file_offset": 114188,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Header status 200..299 maps to zero, otherwise status+200000",
+      "symbols": [
+        "_httppackage_GetErrorFromHeader"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda6e0c.bin",
+          "sha256": "bd004f20633634f1506af8653ffa88dbd128ef4a4e00864cf0c5164a1f1c62d4"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda6e0c.s",
+          "sha256": "aa2daa4f9d2b6e373ee06abee7ed5000a8b0d079da7285d0afef89c2c50969e0"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda6e0c.ghidra.c",
+          "sha256": "0c625ac9d92548d392e5df9ad375f9a66c4e3f54c8cee0936bf44464a28b812f"
+        }
+      ]
+    },
+    {
+      "id": "CW06",
+      "component": "APTransport",
+      "address": "0x24fda68f8",
+      "raw_length": 888,
+      "raw_sha256": "7537fc0bcd3df7b047d5adf75adf2ad4f6b230892fb414135e1ed0742cb873e6",
+      "source_file_offset": 112888,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Reply wait seconds to nanoseconds, zero infinite, timeout invalidates",
+      "symbols": [
+        "_stream_SendMessageCreatingReply"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda68f8.bin",
+          "sha256": "7537fc0bcd3df7b047d5adf75adf2ad4f6b230892fb414135e1ed0742cb873e6"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda68f8.s",
+          "sha256": "06ea716486eff1db7c9217f52dd912f50d2301526b0ea1158903d493d9cbc615"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda68f8.ghidra.c",
+          "sha256": "1ee3887d1f9f041e4083ba9586ace9af2e45e3c72b93ac5c47c0ff4c3eb8cc0c"
+        }
+      ]
+    },
+    {
+      "id": "CW07",
+      "component": "APTransport",
+      "address": "0x24fda444c",
+      "raw_length": 368,
+      "raw_sha256": "8644004efaf59954578b2a203f64590cab5e8892e22183a09a0ce28fd10e5f6c",
+      "source_file_offset": 103500,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "One pending waiter, timeout loaded from stream+0xb0",
+      "symbols": [
+        "___stream_SendMessageCreatingReply_block_invoke"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-reply-contract/f_24fda444c.bin",
+          "sha256": "8644004efaf59954578b2a203f64590cab5e8892e22183a09a0ce28fd10e5f6c"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-reply-contract/f_24fda444c.s",
+          "sha256": "677435ef4ad024bf43198d8568090d53272a00aa21b43e9c69ba3e204289d067"
+        }
+      ]
+    },
+    {
+      "id": "CW08",
+      "component": "APTransport",
+      "address": "0x24fda3ed0",
+      "raw_length": 160,
+      "raw_sha256": "d35174967270033e5df442d72f27a9f0aed999c31b9b9f7f0b3d63e500ef0f1c",
+      "source_file_offset": 102096,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Completion status/body publication and waiter release",
+      "symbols": [
+        "___stream_SendMessageCreatingReply_block_invoke_2"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-reply-contract/f_24fda3ed0.bin",
+          "sha256": "d35174967270033e5df442d72f27a9f0aed999c31b9b9f7f0b3d63e500ef0f1c"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-reply-contract/f_24fda3ed0.s",
+          "sha256": "63616d81d4dac807b1ab0e4630fd1e5b63b91d720e99493837845cce8644a959"
+        }
+      ]
+    },
+    {
+      "id": "CW09",
+      "component": "APTransport",
+      "address": "0x24fda2b9c",
+      "raw_length": 3080,
+      "raw_sha256": "326d6c57d863e980ca410943b53076ab97bc96167631446bb90eee9dd8b4e62b",
+      "source_file_offset": 97180,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "rply branch compares package token before recording status/body",
+      "symbols": [
+        "___stream_handleEventFromConnection_block_invoke"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda2b9c.bin",
+          "sha256": "326d6c57d863e980ca410943b53076ab97bc96167631446bb90eee9dd8b4e62b"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda2b9c.s",
+          "sha256": "5908d7d9d1984805aa1387e3d8fd4912841ab060234639c56b285d4fcd0c5b2c"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda2b9c.ghidra.c",
+          "sha256": "883ba6ad9dc2c9933fea19f6b9f72fd8ab3e090f3515b34c2533dced20ca0a6a"
+        }
+      ]
+    },
+    {
+      "id": "CW10",
+      "component": "CoreUtils",
+      "address": "0x18be4da90",
+      "raw_length": 196,
+      "raw_sha256": "b99674978f7ee898195a283a4c613af9a7d7ae4fb1ac707363ca8ede8663c8c2",
+      "source_file_offset": 117392,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "SetBody explicit byte length and optional MIME; sticky allocation error",
+      "symbols": [
+        "_HTTPMessageSetBody"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/CoreUtils/8792f09ecc40428a5f65/functions/f_18be4da90.bin",
+          "sha256": "b99674978f7ee898195a283a4c613af9a7d7ae4fb1ac707363ca8ede8663c8c2"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/CoreUtils/8792f09ecc40428a5f65/functions/f_18be4da90.s",
+          "sha256": "a8ab1fb8b36a383b485a8c0e7a718cb5dea195d4f0285c3523195c729da362d6"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/CoreUtils/8792f09ecc40428a5f65/functions/f_18be4da90.ghidra.c",
+          "sha256": "639a3f8453cd3e2dfdaff25aaea44566892aa978d55ffd68a364abf3795e3929"
+        }
+      ]
+    },
+    {
+      "id": "CW11",
+      "component": "CoreUtils",
+      "address": "0x18be4f198",
+      "raw_length": 228,
+      "raw_sha256": "ede101fc91323a1b1223dd776a4249a3df1a781589c26197be40a256bee1255b",
+      "source_file_offset": 123288,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Header commit and header/body iovecs before enqueue",
+      "symbols": [
+        "_HTTPClientSendMessage"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/http-request-association/f_18be4f198.bin",
+          "sha256": "ede101fc91323a1b1223dd776a4249a3df1a781589c26197be40a256bee1255b"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/http-request-association/f_18be4f198.s",
+          "sha256": "120936482cc2485ad77e3ae23366f0f318258eeeec3cd16c5cd45fc21b6b8e50"
+        }
+      ]
+    },
+    {
+      "id": "CW12",
+      "component": "CoreUtils",
+      "address": "0x18be4d478",
+      "raw_length": 120,
+      "raw_sha256": "4b77085ebc14ddd10fadfabd74c10cc4bb6721e26d23715e664eda3a687e83f4",
+      "source_file_offset": 115832,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Text header CRLF and local NUL; one-shot commit marker",
+      "symbols": [
+        "_HTTPHeader_Commit"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-header-finalization/f_18be4d478.bin",
+          "sha256": "4b77085ebc14ddd10fadfabd74c10cc4bb6721e26d23715e664eda3a687e83f4"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-header-finalization/f_18be4d478.s",
+          "sha256": "e1969505c8a9b964fe950a056ad7d1df24a9761c5f9a6b781dec43186eb4e164"
+        }
+      ]
+    },
+    {
+      "id": "CW13",
+      "component": "CoreUtils",
+      "address": "0x18be49f60",
+      "raw_length": 420,
+      "raw_sha256": "bf6791f30fb03132b1ee20010f7e8f18f1f9a692c50ad0e608c698cec121edc5",
+      "source_file_offset": 102240,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "8192-byte header scanner, blank line, preserved over-read",
+      "symbols": [
+        "_HTTPReadHeader"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-header-framing/f_18be49f60.bin",
+          "sha256": "bf6791f30fb03132b1ee20010f7e8f18f1f9a692c50ad0e608c698cec121edc5"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-header-framing/f_18be49f60.s",
+          "sha256": "aa8af4578354bfb667b7b8afb360252141d501bd28180b32b1750a6bbfc346ee"
+        }
+      ]
+    },
+    {
+      "id": "CW14",
+      "component": "CoreUtils",
+      "address": "0x18be49060",
+      "raw_length": 2312,
+      "raw_sha256": "67c1337427d5463e64978ebba462e58f5c54825e27d9803de04f74de4422f3e6",
+      "source_file_offset": 98400,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Selected fixed-body length completion and chunked branch existence",
+      "symbols": [
+        "_HTTPMessageReadMessageEx"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-header-framing/f_18be49060.bin",
+          "sha256": "67c1337427d5463e64978ebba462e58f5c54825e27d9803de04f74de4422f3e6"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/control-header-framing/f_18be49060.s",
+          "sha256": "1c8e03b37bacf474c1bcb43227d50512bb7a341308bcddd8b77c9a1ff6b0e527"
+        }
+      ]
+    },
+    {
+      "id": "CW15",
+      "component": "APTransport",
+      "address": "0x24fda1e78",
+      "raw_length": 828,
+      "raw_sha256": "192ea847dfdeb966c160445028f2f7d8c37035e4c64fe1ab3cbe4a53157538f3",
+      "source_file_offset": 93816,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Response package constructor preserves HTTPMessage reply-token storage",
+      "symbols": [
+        "_httppackage_createWithHTTPMessage"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda1e78.bin",
+          "sha256": "192ea847dfdeb966c160445028f2f7d8c37035e4c64fe1ab3cbe4a53157538f3"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda1e78.s",
+          "sha256": "a1d03fb0cabda4e4f1be9064def7c180dabe7650fc4322548665ba4e5813a7a1"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda1e78.ghidra.c",
+          "sha256": "03931d4171f8ab057ca0523792f3777e55981f1a5763e5c44d9e10d0b3638916"
+        }
+      ]
+    },
+    {
+      "id": "CW16",
+      "component": "APTransport",
+      "address": "0x24fda256c",
+      "raw_length": 56,
+      "raw_sha256": "d4f7f33b55d9ce3130e6a0c72fe189a866db8b14f627419d698b551e9205cfc8",
+      "source_file_offset": 95596,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Reply-token setter splits high/low32 into HTTPMessage+0x25d0/+0x25d8",
+      "symbols": [
+        "_httppackage_SetReplyToken"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda256c.bin",
+          "sha256": "d4f7f33b55d9ce3130e6a0c72fe189a866db8b14f627419d698b551e9205cfc8"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda256c.s",
+          "sha256": "55126db5b3685050aec45c4652f82b37c3242bdbaeb19ffc45c33fafddc48dcd"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda256c.ghidra.c",
+          "sha256": "dd1ce661d6150fd6b2213b3b299605f634d4b294605b03cbfa060253a1b91555"
+        }
+      ]
+    },
+    {
+      "id": "CW17",
+      "component": "APTransport",
+      "address": "0x24fda16a4",
+      "raw_length": 40,
+      "raw_sha256": "0de55e7e5f7f16dcd139cf6b7c4bcd3839fdc4879f7190d2ee7b6e402430bb39",
+      "source_file_offset": 91812,
+      "segment": "__TEXT",
+      "raw_matches_source": true,
+      "reviewed_scope": "Reply-token getter recombines stored halves",
+      "symbols": [
+        "_httppackage_GetReplyToken"
+      ],
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/http-request-association/f_24fda16a4.bin",
+          "sha256": "0de55e7e5f7f16dcd139cf6b7c4bcd3839fdc4879f7190d2ee7b6e402430bb39"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/24A446/http-request-association/f_24fda16a4.s",
+          "sha256": "1c13b658ca75fda2ab95b47cb560743845a47ebf4759ed36675699ffc1b17a43"
+        }
+      ]
+    }
+  ],
+  "strings": [
+    {
+      "component": "APTransport",
+      "address": "0x24fe4db34",
+      "value": "CSeq"
+    },
+    {
+      "component": "APTransport",
+      "address": "0x24fe4db39",
+      "value": "%u"
+    },
+    {
+      "component": "CoreUtils",
+      "address": "0x18bf69ce1",
+      "value": "Content-Length"
+    },
+    {
+      "component": "CoreUtils",
+      "address": "0x18bf69b12",
+      "value": "%zu"
+    },
+    {
+      "component": "CoreUtils",
+      "address": "0x18bf69b05",
+      "value": "Content-Type"
+    },
+    {
+      "component": "CoreUtils",
+      "address": "0x18bf69cf0",
+      "value": "Transfer-Encoding"
+    },
+    {
+      "component": "CoreUtils",
+      "address": "0x18bf69d02",
+      "value": "chunked"
+    }
+  ],
+  "android_sources": [
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/Rtsp.kt",
+      "sha256": "d3e0020e3aa6ee7a3f3e3626f5c1e4fe866fea163761e2cae53ecac3820c9fa8",
+      "bytes": 23012,
+      "evidence_level": "ANDROID_NOW_STATIC_SOURCE_ONLY"
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt",
+      "sha256": "dfe3d7f818b204a7ed93048a1add292cd02a9d16a6110edd6f21cac775af23c7",
+      "bytes": 100480,
+      "evidence_level": "ANDROID_NOW_STATIC_SOURCE_ONLY"
+    }
+  ],
+  "tools": [
+    {
+      "path": "/mnt/d/carvex-research/research/connection/tools/inspect_control_wire.py",
+      "sha256": "5c87bffb4c9f52079feed655ad2ee1331014db466cc5c060b316b94776884e24"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/tools/ipsw-research/firmware_image.py",
+      "sha256": "642cb879df32e8974c6e59cce9339dc8deb1aa3c9867e38dfadd03967f01157b"
+    }
+  ],
+  "limits": [
+    "Does not establish the initial CSeq value or all reconnect/allocation paths.",
+    "Per-message object context and local token checks do not prove all lower HTTP CSeq filters or late-reply safety.",
+    "Header scanner size is not a global response-body maximum.",
+    "Generic chunked reader presence is not proof of CarPlay runtime use or all framing-conflict handling.",
+    "No claim about vehicle acceptance, display, cryptographic validity or end-to-end reconnection."
+  ]
+}

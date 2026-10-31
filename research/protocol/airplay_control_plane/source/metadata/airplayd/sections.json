@@ -1,0 +1,119 @@
+[
+  {
+    "segment": "__TEXT",
+    "section": "__text",
+    "addr": 4294970608,
+    "size": 732,
+    "fileoff": 3312,
+    "align": 2,
+    "flags": 2147484672
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__auth_stubs",
+    "addr": 4294971340,
+    "size": 304,
+    "fileoff": 4044,
+    "align": 2,
+    "flags": 2147484680
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__objc_stubs",
+    "addr": 4294971648,
+    "size": 64,
+    "fileoff": 4352,
+    "align": 5,
+    "flags": 2147484672
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__cstring",
+    "addr": 4294971712,
+    "size": 827,
+    "fileoff": 4416,
+    "align": 0,
+    "flags": 2
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__info_plist",
+    "addr": 4294972539,
+    "size": 1280,
+    "fileoff": 5243,
+    "align": 0,
+    "flags": 0
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__objc_methname",
+    "addr": 4294973819,
+    "size": 19,
+    "fileoff": 6523,
+    "align": 0,
+    "flags": 2
+  },
+  {
+    "segment": "__TEXT",
+    "section": "__unwind_info",
+    "addr": 4294973840,
+    "size": 88,
+    "fileoff": 6544,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__cfstring",
+    "addr": 4294983680,
+    "size": 32,
+    "fileoff": 16384,
+    "align": 3,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__objc_imageinfo__DATA_CONST",
+    "addr": 4294983712,
+    "size": 8,
+    "fileoff": 16416,
+    "align": 2,
+    "flags": 0
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__auth_got",
+    "addr": 4294983720,
+    "size": 160,
+    "fileoff": 16424,
+    "align": 3,
+    "flags": 6
+  },
+  {
+    "segment": "__DATA_CONST",
+    "section": "__got",
+    "addr": 4294983880,
+    "size": 16,
+    "fileoff": 16584,
+    "align": 3,
+    "flags": 6
+  },
+  {
+    "segment": "__DATA",
+    "section": "__objc_selrefs",
+    "addr": 4295000064,
+    "size": 16,
+    "fileoff": 32768,
+    "align": 3,
+    "flags": 268435461
+  },
+  {
+    "segment": "__DATA",
+    "section": "__data",
+    "addr": 4295000080,
+    "size": 112,
+    "fileoff": 32784,
+    "align": 3,
+    "flags": 0
+  }
+]

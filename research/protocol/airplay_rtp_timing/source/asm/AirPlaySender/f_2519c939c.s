@@ -1,0 +1,52 @@
+; AirPlaySender 0x2519c939c-0x2519c9460; source SHA256 304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x2519c939c:	pacibsp	
+0x2519c93a0:	sub	sp, sp, #0x40
+0x2519c93a4:	stp	x22, x21, [sp, #0x10]
+0x2519c93a8:	stp	x20, x19, [sp, #0x20]
+0x2519c93ac:	stp	x29, x30, [sp, #0x30]
+0x2519c93b0:	add	x29, sp, #0x30
+0x2519c93b4:	mov	x20, x2
+0x2519c93b8:	mov	x21, x1
+0x2519c93bc:	str	wzr, [sp, #0xc]
+0x2519c93c0:	bl	#0x25810ac50
+0x2519c93c4:	mov	x19, x0
+0x2519c93c8:	adrp	x8, #0x2680d4000
+0x2519c93cc:	ldr	x8, [x8, #0x870]
+0x2519c93d0:	ldr	x1, [x8]
+0x2519c93d4:	mov	x0, x21
+0x2519c93d8:	bl	#0x258101830
+0x2519c93dc:	cbz	w0, #0x2519c9400
+0x2519c93e0:	add	x1, sp, #0xc
+0x2519c93e4:	mov	x0, x20
+0x2519c93e8:	bl	#0x25810a7d0
+0x2519c93ec:	str	w0, [x19, #0x10]
+0x2519c93f0:	ldr	w0, [sp, #0xc]
+0x2519c93f4:	cbz	w0, #0x2519c9448
+0x2519c93f8:	bl	#0x251bcc324
+0x2519c93fc:	b	#0x2519c9448
+0x2519c9400:	adrp	x8, #0x2680d4000
+0x2519c9404:	ldr	x8, [x8, #0x878]
+0x2519c9408:	ldr	x1, [x8]
+0x2519c940c:	mov	x0, x21
+0x2519c9410:	bl	#0x258101830
+0x2519c9414:	cbz	w0, #0x2519c9440
+0x2519c9418:	add	x1, sp, #0xc
+0x2519c941c:	mov	x0, x20
+0x2519c9420:	bl	#0x25810a7d0
+0x2519c9424:	cmp	x0, #0
+0x2519c9428:	cset	w8, ne
+0x2519c942c:	strb	w8, [x19, #0x70]
+0x2519c9430:	ldr	w0, [sp, #0xc]
+0x2519c9434:	cbz	w0, #0x2519c9448
+0x2519c9438:	bl	#0x251bcc34c
+0x2519c943c:	b	#0x2519c9448
+0x2519c9440:	mov	w8, #-0x31f0
+0x2519c9444:	str	w8, [sp, #0xc]
+0x2519c9448:	ldr	w0, [sp, #0xc]
+0x2519c944c:	ldp	x29, x30, [sp, #0x30]
+0x2519c9450:	ldp	x20, x19, [sp, #0x20]
+0x2519c9454:	ldp	x22, x21, [sp, #0x10]
+0x2519c9458:	add	sp, sp, #0x40
+0x2519c945c:	retab	

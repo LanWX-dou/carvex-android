@@ -1,0 +1,129 @@
+{
+  "note": "本文件是编码自测向量：由 reference-impl/input_codec.py 按固件消息头/参数头结构生成，不是抓包。",
+  "vectors": [
+    {
+      "name": "start_hid_min",
+      "msg_id": "0x6800",
+      "params": [
+        {
+          "id": 0,
+          "type": "u16",
+          "value": 1
+        },
+        {
+          "id": 3,
+          "type": "u8",
+          "value": 1
+        }
+      ],
+      "hex": "4040001168000006000000010005000301",
+      "note": "0x6800 参数 0(U16)+参数 3(U8)"
+    },
+    {
+      "name": "hid_input_report",
+      "msg_id": "0x6802",
+      "params": [
+        {
+          "id": 0,
+          "type": "u16",
+          "value": 1
+        },
+        {
+          "id": 1,
+          "type": "data",
+          "value": "0102"
+        }
+      ],
+      "hex": "404000126802000600000001000600010102",
+      "note": "0x6802 组件 ID + 报告数据"
+    },
+    {
+      "name": "hid_get_report_request",
+      "msg_id": "0x6804",
+      "params": [
+        {
+          "id": 0,
+          "type": "u16",
+          "value": 2
+        },
+        {
+          "id": 1,
+          "type": "u8",
+          "value": 3
+        }
+      ],
+      "hex": "4040001168040006000000020005000103",
+      "note": "0x6804 组件 ID + 报告类型"
+    },
+    {
+      "name": "start_now_playing",
+      "msg_id": "0x5000",
+      "params": [
+        {
+          "id": 0,
+          "type": "data",
+          "value": "00040001"
+        }
+      ],
+      "hex": "4040000e50000008000000040001",
+      "note": "合成0x5000参数0，包含ID1的4字节空值子项；不声称完整业务语义/互通"
+    },
+    {
+      "name": "stop_now_playing",
+      "msg_id": "0x5002",
+      "params": [],
+      "hex": "404000065002",
+      "note": "0x5002 无参数"
+    },
+    {
+      "name": "start_route_guidance",
+      "msg_id": "0x5200",
+      "params": [
+        {
+          "id": 0,
+          "type": "u16",
+          "value": 1
+        }
+      ],
+      "hex": "4040000c5200000600000001",
+      "note": "0x5200 组件 ID"
+    },
+    {
+      "name": "assistive_touch_start",
+      "msg_id": "0x5400",
+      "params": [],
+      "hex": "404000065400",
+      "note": "0x5400 无参数"
+    }
+  ],
+  "negative": [
+    {
+      "name": "u16_param_too_short",
+      "type": "u16",
+      "wire": "0005000001",
+      "expect_ok": false,
+      "note": "U16 值必须使参数总长=6"
+    },
+    {
+      "name": "u8_param_too_long",
+      "type": "u8",
+      "wire": "000600000100",
+      "expect_ok": false,
+      "note": "U8 值必须使参数总长=5"
+    },
+    {
+      "name": "data_param_empty",
+      "type": "data",
+      "wire": "00040000",
+      "expect_ok": true,
+      "note": "通用数据参数可空；具体消息语义另验"
+    },
+    {
+      "name": "data_param_ok",
+      "type": "data",
+      "wire": "00050000aa",
+      "expect_ok": true,
+      "note": "总长=5 合法"
+    }
+  ]
+}

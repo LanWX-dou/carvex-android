@@ -1,0 +1,13 @@
+{
+  "address": "0x10006baac",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "5d28bc6b39e78140aaf020b45c6bf870ed4f305e3331173d5d13635eedcd1d11",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "5d28bc6b39e78140aaf020b45c6bf870ed4f305e3331173d5d13635eedcd1d11",
+  "ghidra_name": "_iAP2FSMCreate",
+  "signature": "undefined _iAP2FSMCreate()",
+  "diagnostic": "",
+  "c_file": "f_10006baac.ghidra.c",
+  "c_sha256": "365a81926baea6f0b9c03a88b05ac9dc23019092837d35e9fe18d09841203a0d",
+  "status": "DECOMPILED_UNREVIEWED"
+}

@@ -1,0 +1,1077 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "status": "BOUNDED_BRANCH_AUDIT",
+  "source": {
+    "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\System\\Library\\PrivateFrameworks\\CoreAccessories.framework\\Support\\accessoryd",
+    "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe"
+  },
+  "functions": [
+    {
+      "address": "0x1000c07a8",
+      "symbols": [
+        "__parseIdentificationParamsPower"
+      ],
+      "source_file_offset": 788392,
+      "raw_length": 1224,
+      "raw_sha256": "2e5b176f4024ecf638ddb417a85a44345f60ad6c8953544220f1449bd72392e2",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c07a8.bin",
+          "sha256": "2e5b176f4024ecf638ddb417a85a44345f60ad6c8953544220f1449bd72392e2"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c07a8.s",
+          "sha256": "5c3b021d9104a83e1ef6b000527ab1d0f94f27000323f37cb57e2dd2bfd6bee2"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c07a8.ghidra.c",
+          "sha256": "f74ba46ddabe8645bf9f0acb519e8831155d88121fda930e460ab05bb025bcdf"
+        }
+      ]
+    },
+    {
+      "address": "0x1000c0758",
+      "symbols": [
+        "__maximumCurrentAvailableFromDevice"
+      ],
+      "source_file_offset": 788312,
+      "raw_length": 80,
+      "raw_sha256": "bc104f15c6418682dcc3b262aa7771df1f3d9bd25f4f16dbded4f6a83ed47e9a",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c0758.bin",
+          "sha256": "bc104f15c6418682dcc3b262aa7771df1f3d9bd25f4f16dbded4f6a83ed47e9a"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c0758.s",
+          "sha256": "9e6b2d7eff51aaaf836c97b5dfa054312075bfca9d623759a5688c4670d9fcf9"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c0758.ghidra.c",
+          "sha256": "10977cfe8e87e47030392bba266d80946cfbe7259ef7c46dff4b97643786f740"
+        }
+      ]
+    },
+    {
+      "address": "0x10002a650",
+      "symbols": [
+        "_platform_power_getUltraHighPowerModeCurrentLimit"
+      ],
+      "source_file_offset": 173648,
+      "raw_length": 84,
+      "raw_sha256": "3126fac5d8e68c9a66d4cc641c29ccb57aa847a083cc43797043de9174abb2c5",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10002a650.bin",
+          "sha256": "3126fac5d8e68c9a66d4cc641c29ccb57aa847a083cc43797043de9174abb2c5"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10002a650.s",
+          "sha256": "0e20d06c53968925c43c5d0e566106fdbe6bffa81524ba8e098d988f749cc912"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10002a650.ghidra.c",
+          "sha256": "7bda68abc1bb5411133f206c5f8e3aea5fb5599427ac6b66a6afcaecd8fff552"
+        }
+      ]
+    },
+    {
+      "address": "0x100067e1c",
+      "symbols": [
+        "_iAP2MsgGetDataAsU16"
+      ],
+      "source_file_offset": 425500,
+      "raw_length": 48,
+      "raw_sha256": "0b0328e4b821ff4e3c4ffd1c6fbdabce9d2418b8a243cf752529362fd2fcf90c",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e1c.bin",
+          "sha256": "0b0328e4b821ff4e3c4ffd1c6fbdabce9d2418b8a243cf752529362fd2fcf90c"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e1c.s",
+          "sha256": "90d4736266ffa3a691e174ca65286828cce03c7c7123d608fc79f0bff499021b"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e1c.ghidra.c",
+          "sha256": "d61a1bbda2224d1ec2176a24db3d7a365fee89c35041349b1d35a5f760bbf981"
+        }
+      ]
+    },
+    {
+      "address": "0x100067e4c",
+      "symbols": [
+        "_iAP2MsgGetDataAsU8"
+      ],
+      "source_file_offset": 425548,
+      "raw_length": 40,
+      "raw_sha256": "b88854d880d67d4b43e346414807565faad8b9a7c3c6130c3bbac177398cfcd4",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e4c.bin",
+          "sha256": "b88854d880d67d4b43e346414807565faad8b9a7c3c6130c3bbac177398cfcd4"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e4c.s",
+          "sha256": "0764f595bb67398a220f338b7af01098c3929040b818bc7cc2494ca643acb763"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067e4c.ghidra.c",
+          "sha256": "1c2d7bf8adb0f7411c7411fef6637b989ffc1ea7e43209a8d16b07be6e3f9c77"
+        }
+      ]
+    },
+    {
+      "address": "0x10004f870",
+      "symbols": [
+        "_cbIdentificationInfoBluetoothTransportComponentParams"
+      ],
+      "source_file_offset": 325744,
+      "raw_length": 456,
+      "raw_sha256": "2b253e34ac2132c901a888bb913f88973cbd00553799cc6931ca692c9a5ae8d9",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004f870.bin",
+          "sha256": "2b253e34ac2132c901a888bb913f88973cbd00553799cc6931ca692c9a5ae8d9"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004f870.s",
+          "sha256": "8fb156925c6e65db0de8ea2a43dc40c6f0aaa7e36a067ce07200438a8776dc0a"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004f870.ghidra.c",
+          "sha256": "92dce59157d76b5eb07acb2f45d910cb0f689e4c74da5eafc7bb0a7cd13cc0d2"
+        }
+      ]
+    },
+    {
+      "address": "0x10004fa38",
+      "symbols": [
+        "_cbIdentificationInfoWirelessCarPlayTransportComponentParams"
+      ],
+      "source_file_offset": 326200,
+      "raw_length": 632,
+      "raw_sha256": "94365f56bffb388c74a048ce9dd279443bd60715d9fbf8d8f42e2f63ded21686",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004fa38.bin",
+          "sha256": "94365f56bffb388c74a048ce9dd279443bd60715d9fbf8d8f42e2f63ded21686"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004fa38.s",
+          "sha256": "8e67bb44cbcae6405a98b10ba4913632deb0aeae50540f8046caff475128d8af"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004fa38.ghidra.c",
+          "sha256": "bba4fdf5405189e293fd8f86bbcd9f20d5f110d96594b7ce764ea4ef638c8cba"
+        }
+      ]
+    },
+    {
+      "address": "0x1000500a8",
+      "symbols": [
+        "_iap2_identification_parseTransportComponent"
+      ],
+      "source_file_offset": 327848,
+      "raw_length": 444,
+      "raw_sha256": "bd12ca1504cc0214ce58634ab61deb5d332a500c172a22b47c19dc1854048a81",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000500a8.bin",
+          "sha256": "bd12ca1504cc0214ce58634ab61deb5d332a500c172a22b47c19dc1854048a81"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000500a8.s",
+          "sha256": "8df82579279d6f3e878489723a4c521ba4bc486cc7adae22503765cbb97a4fb0"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000500a8.ghidra.c",
+          "sha256": "075ce8f0c6522c70d84b42609a0498a12ae227404ce5374ad34ba7c0594c06f7"
+        }
+      ]
+    },
+    {
+      "address": "0x10004fedc",
+      "symbols": [
+        "_iap2_identification_addTransportComponent"
+      ],
+      "source_file_offset": 327388,
+      "raw_length": 460,
+      "raw_sha256": "a0315da1e290750f40939d7c637edc39df7f31f388780569e80d73a250f90e63",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004fedc.bin",
+          "sha256": "a0315da1e290750f40939d7c637edc39df7f31f388780569e80d73a250f90e63"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004fedc.s",
+          "sha256": "82544c55b4e2d453a15efc6d4a311356c9c15316102008a3b56af3f1d7e96b5e"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004fedc.ghidra.c",
+          "sha256": "86aee310b8ee8bebf37929d1776820ee62b3be2e810f55c72965e89146e97040"
+        }
+      ]
+    },
+    {
+      "address": "0x10004ea7c",
+      "symbols": [
+        "__addRejectGroup"
+      ],
+      "source_file_offset": 322172,
+      "raw_length": 216,
+      "raw_sha256": "f384f289dd50f1dbb25b33db5727a44638fbc492879ec091c9e5eedb74ac150d",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004ea7c.bin",
+          "sha256": "f384f289dd50f1dbb25b33db5727a44638fbc492879ec091c9e5eedb74ac150d"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004ea7c.s",
+          "sha256": "d4667ec99846118a2fa6eb348f129f046c79b996b3fe0877a8a5006e77586e4d"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004ea7c.ghidra.c",
+          "sha256": "66a324d0247af6f360ba444caa46e6157fe8a20f43034307d1f47ccb0c46b416"
+        }
+      ]
+    },
+    {
+      "address": "0x1000512e8",
+      "symbols": [
+        "__parseIdentificationParams"
+      ],
+      "source_file_offset": 332520,
+      "raw_length": 1160,
+      "raw_sha256": "1ffe2ab259762fcd0fccfa69489e707e34a58980a0405bf6b63fb1a05751bfb1",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000512e8.bin",
+          "sha256": "1ffe2ab259762fcd0fccfa69489e707e34a58980a0405bf6b63fb1a05751bfb1"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000512e8.s",
+          "sha256": "86ee42e619f41f574cf4e1ea30f0d5b59b43be7307af60b5bf63bc810df7dc76"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000512e8.ghidra.c",
+          "sha256": "7b7d26271ed660db43daea103553297f81e07e3119791550c6c5d05ebec028b4"
+        }
+      ]
+    },
+    {
+      "address": "0x10013aed0",
+      "symbols": [
+        "_iap2_identification_cbIdentificationInfoParams"
+      ],
+      "source_file_offset": 1289936,
+      "raw_length": 788,
+      "raw_sha256": "e835c69acfc3c4c3f00ccdc99749477c7774a8c69ce635c4a0f69d9973e15a51",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013aed0.bin",
+          "sha256": "e835c69acfc3c4c3f00ccdc99749477c7774a8c69ce635c4a0f69d9973e15a51"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013aed0.s",
+          "sha256": "f67ab405af9a5d616578026eaabadc7ead754dfe563cab69bd82de5b1b769292"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013aed0.ghidra.c",
+          "sha256": "5a6912d47ba5d4d7d3eca98419ce168ff9e3396919dba0c733afce538f1271ef"
+        }
+      ]
+    },
+    {
+      "address": "0x10013b920",
+      "symbols": [
+        "_iap2_identification_checkRequiredTransportComponentParam"
+      ],
+      "source_file_offset": 1292576,
+      "raw_length": 432,
+      "raw_sha256": "c69aa1d97bf0b08c56be47455bb561f7f4bc2961c98c8a7fa3a3d0f35baec54c",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013b920.bin",
+          "sha256": "c69aa1d97bf0b08c56be47455bb561f7f4bc2961c98c8a7fa3a3d0f35baec54c"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013b920.s",
+          "sha256": "f0dff627eefa6d2a4348806b519c77789cb66021d3ff5fb92d416affbf588ab0"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013b920.ghidra.c",
+          "sha256": "ea735eb190d0d5898629fad485fa4e33596854b2e7ebb9bcaeba9319aaadde67"
+        }
+      ]
+    },
+    {
+      "address": "0x10013bcc8",
+      "symbols": [
+        "_iap2_identification_identificationInfoHandler"
+      ],
+      "source_file_offset": 1293512,
+      "raw_length": 1060,
+      "raw_sha256": "5265716a10600e7b85d22168a5ecca684497351484144f14d1069ce73deaad01",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bcc8.bin",
+          "sha256": "5265716a10600e7b85d22168a5ecca684497351484144f14d1069ce73deaad01"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bcc8.s",
+          "sha256": "7baa137501a468d513b5e0c0d77226f8766f05826d49ce696535510ce4131140"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bcc8.ghidra.c",
+          "sha256": "f8c199d7fc7e13dc18cbc316f297bf5d404853d2c7fc537efc28ca67df28d144"
+        }
+      ]
+    },
+    {
+      "address": "0x10013b540",
+      "symbols": [
+        "_iap2_identification_identificationRejected"
+      ],
+      "source_file_offset": 1291584,
+      "raw_length": 404,
+      "raw_sha256": "78ab8d2fadf956ba9ce2d9612b4fc67649538df1f378dadb8f023bb0eb2fc6bc",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013b540.bin",
+          "sha256": "78ab8d2fadf956ba9ce2d9612b4fc67649538df1f378dadb8f023bb0eb2fc6bc"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013b540.s",
+          "sha256": "f9a765c46073bd6bdf423e122142ce298c34fd30d903dcef059284d57e579de9"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013b540.ghidra.c",
+          "sha256": "3aef32fed65cf6f78b404ac22714aad60d63c38eeb15d04164beb27ec070ea31"
+        }
+      ]
+    },
+    {
+      "address": "0x100067720",
+      "symbols": [
+        "_iAP2MsgGetParamValueLen"
+      ],
+      "source_file_offset": 423712,
+      "raw_length": 20,
+      "raw_sha256": "b0771292ad94521fb16a70fbab8c3bc45e96616bb524a371f37876b9251b464a",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067720.bin",
+          "sha256": "b0771292ad94521fb16a70fbab8c3bc45e96616bb524a371f37876b9251b464a"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067720.s",
+          "sha256": "36e8093e31fce6be27741e91cbb51e994ee7cf8282c3ecfb803c2710661f25bf"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067720.ghidra.c",
+          "sha256": "5fc5f399445e436240e9d6b3c95e8aebf213058bed6d5cd83ac8b61aae954cf0"
+        }
+      ]
+    },
+    {
+      "address": "0x100067f30",
+      "symbols": [
+        "_iAP2MsgGetDataAsData"
+      ],
+      "source_file_offset": 425776,
+      "raw_length": 12,
+      "raw_sha256": "c150d6a74c58f290a0965f135ff4960ebfe4daa94672850ee0d5e062e761d931",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067f30.bin",
+          "sha256": "c150d6a74c58f290a0965f135ff4960ebfe4daa94672850ee0d5e062e761d931"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067f30.s",
+          "sha256": "58fd6a16c29dd1c3cf7811914796b32c33f6ce13b19d54f539bb6a5137fe9578"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067f30.ghidra.c",
+          "sha256": "2ce00ce60dc92bdace50737bb11080696f7e9e10939bf305e5e0679b248e9202"
+        }
+      ]
+    },
+    {
+      "address": "0x100067f3c",
+      "symbols": [
+        "_iAP2MsgIsDataVoid"
+      ],
+      "source_file_offset": 425788,
+      "raw_length": 20,
+      "raw_sha256": "147b77983b121a507e1235bdcceff735da835c8ac7259fef375ed91262da5552",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067f3c.bin",
+          "sha256": "147b77983b121a507e1235bdcceff735da835c8ac7259fef375ed91262da5552"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067f3c.s",
+          "sha256": "622de22f9f5e8440805930ac04b9bd45da1b2f4f5dfb2cb263fc999d9dd7272e"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067f3c.ghidra.c",
+          "sha256": "73a788626de98b3d030aa4827f118e57407f59915e84c4c3da90f2155f4f8162"
+        }
+      ]
+    },
+    {
+      "address": "0x1000f2bac",
+      "symbols": [
+        "_iAP2MsgCopyDataAsCFString"
+      ],
+      "source_file_offset": 994220,
+      "raw_length": 104,
+      "raw_sha256": "4a58903f0a603d259987c6acf25e94370dc121de3cfa51e1fa7bb1f00155106f",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000f2bac.bin",
+          "sha256": "4a58903f0a603d259987c6acf25e94370dc121de3cfa51e1fa7bb1f00155106f"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000f2bac.s",
+          "sha256": "9fbf059610a870fb5130ff0e6c0a659d0b52ea1435565bf94e1f5d0c70c93d02"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000f2bac.ghidra.c",
+          "sha256": "04b601b09a8553bb6481522d9a3886edca4cd3ed9c99aea0b507e89379bd9904"
+        }
+      ]
+    },
+    {
+      "address": "0x100067ee4",
+      "symbols": [
+        "_iAP2MsgGetDataAsString"
+      ],
+      "source_file_offset": 425700,
+      "raw_length": 76,
+      "raw_sha256": "19f5f5bc9d08b6038e6324fb3898466959841e43484378da1d3c7e8f23753c62",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067ee4.bin",
+          "sha256": "19f5f5bc9d08b6038e6324fb3898466959841e43484378da1d3c7e8f23753c62"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067ee4.s",
+          "sha256": "203b9188fd947da2749839cbbff5cfbfc25b9d454550d0a0f14a80af51294758"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100067ee4.ghidra.c",
+          "sha256": "2d2541d06012b07e67a19e6b3fadc6bc02cdbfcf730f661db5fb31fc3774ef36"
+        }
+      ]
+    },
+    {
+      "address": "0x10004e91c",
+      "symbols": [
+        "__addRejectParam"
+      ],
+      "source_file_offset": 321820,
+      "raw_length": 288,
+      "raw_sha256": "622c3ba91c59d3b22c03f6d1d885cdbe5a5e5dedf0eb178355c34000576d6d84",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004e91c.bin",
+          "sha256": "622c3ba91c59d3b22c03f6d1d885cdbe5a5e5dedf0eb178355c34000576d6d84"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004e91c.s",
+          "sha256": "80b0c50157a0cbbd78cb8e1a6b7c02d6e5a1de76aceebfee053b716ae8690dc5"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004e91c.ghidra.c",
+          "sha256": "736b2a1c2a670c7fa0a88632eec5022ab86685d638545fec8c27343313203f87"
+        }
+      ]
+    },
+    {
+      "address": "0x10004ea3c",
+      "symbols": [
+        "_iap2_identification_addRejectParam"
+      ],
+      "source_file_offset": 322108,
+      "raw_length": 64,
+      "raw_sha256": "3ddb682b1ada64aca5c755d4fa2c91308aa4645ebf6f8aaa12f1af66b52046db",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004ea3c.bin",
+          "sha256": "3ddb682b1ada64aca5c755d4fa2c91308aa4645ebf6f8aaa12f1af66b52046db"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004ea3c.s",
+          "sha256": "44ecad8a42e4a8cc28e36dd339e46c2bb2cdf6d4f3aca5d427b8dafc0a1cd53e"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004ea3c.ghidra.c",
+          "sha256": "f4182372a6bd423491fe061acd1dd94883ce2fe844af3e21b16657a2944656be"
+        }
+      ]
+    },
+    {
+      "address": "0x10013bc5c",
+      "symbols": [
+        "__CFSetValidateRequiredIdentificationParamsApplierFunction"
+      ],
+      "source_file_offset": 1293404,
+      "raw_length": 108,
+      "raw_sha256": "5f019f69600d421691b0af0263d9b228601fbda0ce4f960f3a9120709517ee39",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bc5c.bin",
+          "sha256": "5f019f69600d421691b0af0263d9b228601fbda0ce4f960f3a9120709517ee39"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bc5c.s",
+          "sha256": "5a5473d43ec5ca71e1f04fbca49b61be4144d9ca4fac3821b0866b884c8d816b"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bc5c.ghidra.c",
+          "sha256": "9d41e37a2f8d7d0660cdd131ecaa94796297147b16f89343fb7b46f5edcc8a9f"
+        }
+      ]
+    },
+    {
+      "address": "0x10001234c",
+      "symbols": [
+        "__getPowerPluginInstance"
+      ],
+      "source_file_offset": 74572,
+      "raw_length": 96,
+      "raw_sha256": "7f0d6be1bccb21428f352f1b59b81be0f516411c96311f92c8444e2748a106aa",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10001234c.bin",
+          "sha256": "7f0d6be1bccb21428f352f1b59b81be0f516411c96311f92c8444e2748a106aa"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10001234c.s",
+          "sha256": "25c8d3ce52248effce5d21cddddcccda60413ccc5eec84ce1310acdf9a5d1468"
+        }
+      ]
+    },
+    {
+      "address": "0x10003182c",
+      "symbols": [
+        "_acc_manager2_copyConnectionUUIDFromEndpointUUID"
+      ],
+      "source_file_offset": 202796,
+      "raw_length": 500,
+      "raw_sha256": "39b161f77f4566ad5c1169fb9060ce24672b5927fdbcd38210ea84fbf00956f1",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10003182c.bin",
+          "sha256": "39b161f77f4566ad5c1169fb9060ce24672b5927fdbcd38210ea84fbf00956f1"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10003182c.s",
+          "sha256": "b6f13df6397d00ee1373694206ee9186a4793e6df22a9b32906e648f47585fc3"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10003182c.ghidra.c",
+          "sha256": "565a81853bd6643acd9850d79779a23ebde9ba4f26b882cefa37aa4f344a74e2"
+        }
+      ]
+    },
+    {
+      "address": "0x1000c0c70",
+      "symbols": [
+        "_iap2_power_checkIdentificationInfo"
+      ],
+      "source_file_offset": 789616,
+      "raw_length": 276,
+      "raw_sha256": "00792d2386ccdaaf00b79cfc694e9392f18e89be636621982a0bc67e9d1f250c",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c0c70.bin",
+          "sha256": "00792d2386ccdaaf00b79cfc694e9392f18e89be636621982a0bc67e9d1f250c"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c0c70.s",
+          "sha256": "935729bef127004883c8045869fd7e9864ca510fd67cc7ff27a17352a34a1bbe"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c0c70.ghidra.c",
+          "sha256": "3085151558313bfe824e49f7cea900778467411d9f2987911f6a4ad2bc932b76"
+        }
+      ]
+    },
+    {
+      "address": "0x10006782c",
+      "symbols": [
+        "_iAP2MsgForEachParamDo"
+      ],
+      "source_file_offset": 423980,
+      "raw_length": 348,
+      "raw_sha256": "7e1fc16e9b1605ebcc743a99c298c5ddd65996b774f8401803e38902462bf6b3",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10006782c.bin",
+          "sha256": "7e1fc16e9b1605ebcc743a99c298c5ddd65996b774f8401803e38902462bf6b3"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10006782c.s",
+          "sha256": "9fd03d33dfa6d5d09a6596d2c050ddccdd66703013dba0b9e824c1f0494e944a"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10006782c.ghidra.c",
+          "sha256": "8b9defe044f450a31ec616f30057b9411370e4579760f087926c175cb73297e4"
+        }
+      ]
+    },
+    {
+      "address": "0x100050264",
+      "symbols": [
+        "_iap2_messageParameterUtility_initWithMaxParamCount"
+      ],
+      "source_file_offset": 328292,
+      "raw_length": 132,
+      "raw_sha256": "6bee8c0b06d1bb737dda6f9967b02777b907ab9dff815c707a19e6e81edad709",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050264.bin",
+          "sha256": "6bee8c0b06d1bb737dda6f9967b02777b907ab9dff815c707a19e6e81edad709"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050264.s",
+          "sha256": "7ab085c149f6c8fb5165fc92daf93ab0e8e2cd49e66f2951db0ef5e655a6c0b6"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050264.ghidra.c",
+          "sha256": "7bff515531a81e28778da3c6579c20d0469ed9fd916f7289d908907f752a7176"
+        }
+      ]
+    },
+    {
+      "address": "0x10004df7c",
+      "symbols": [
+        "_iap2_identification_releaseIdentInfo"
+      ],
+      "source_file_offset": 319356,
+      "raw_length": 800,
+      "raw_sha256": "b79999682dc20e470bc2503d1bc6c70cee89624a5a026973ad49c9862951f80a",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004df7c.bin",
+          "sha256": "b79999682dc20e470bc2503d1bc6c70cee89624a5a026973ad49c9862951f80a"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004df7c.s",
+          "sha256": "570cff893bcab2a4fc4a3e6d4f229e4f93ee3ccaa480d1d03b1634735655bb47"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004df7c.ghidra.c",
+          "sha256": "a2083b09089b45af5a9d6f5ae2ed40ba91db7a7f7a1ffafd47868e7e920ebe0b"
+        }
+      ]
+    },
+    {
+      "address": "0x10013ab84",
+      "symbols": [
+        "_iap2_identification_setIdentificationInfo"
+      ],
+      "source_file_offset": 1289092,
+      "raw_length": 172,
+      "raw_sha256": "21ccbd938bbad421cbaadd93bcf61a8d6ec64017ae0d6bad0469f258fcc13d7f",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013ab84.bin",
+          "sha256": "21ccbd938bbad421cbaadd93bcf61a8d6ec64017ae0d6bad0469f258fcc13d7f"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013ab84.s",
+          "sha256": "40e6331f206218178e293adb86bb440f071f78edf0a07f9940ed3a23d6d02720"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013ab84.ghidra.c",
+          "sha256": "a45cb19b4b75c32d6bbefc57a5c17d8e04bc1fb3d922838303cae26064213a8e"
+        }
+      ]
+    },
+    {
+      "address": "0x10004e29c",
+      "symbols": [
+        "_iap2_identification_checkIdentificationInfoFeatures"
+      ],
+      "source_file_offset": 320156,
+      "raw_length": 1148,
+      "raw_sha256": "5a201e0864c5a82a3b2a5508ae174048ac639e36e92443a236f4dfe11150a4cf",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004e29c.bin",
+          "sha256": "5a201e0864c5a82a3b2a5508ae174048ac639e36e92443a236f4dfe11150a4cf"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004e29c.s",
+          "sha256": "9c48ef0cb6a258d3dea95ae651019569da54250e28e2095a4eb515aa9777ddca"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10004e29c.ghidra.c",
+          "sha256": "d6d4cc5b6aff0d46a8cada85647ae2ebb34e052f2f707b744aa86ba2c311f65d"
+        }
+      ]
+    },
+    {
+      "address": "0x10013bbdc",
+      "symbols": [
+        "_iap2_identification_checkIdentificationInfoAll"
+      ],
+      "source_file_offset": 1293276,
+      "raw_length": 128,
+      "raw_sha256": "7dc3f7a2180a4e75fd41f9d3526ae8caabc8633876531d149511109ce46ad5ed",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bbdc.bin",
+          "sha256": "7dc3f7a2180a4e75fd41f9d3526ae8caabc8633876531d149511109ce46ad5ed"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bbdc.s",
+          "sha256": "db5ed0ec2d41664d0f9b7df82214cb21a7ea84f354df6395e4876bd13e5643e5"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013bbdc.ghidra.c",
+          "sha256": "d8f0eb9260dd7cb0f7163706f72cd22e13e13b3ca1244ffe0df4ccff9ae90f26"
+        }
+      ]
+    },
+    {
+      "address": "0x100050af4",
+      "symbols": [
+        "_iap2_identification_checkIdentificationMsgIDs"
+      ],
+      "source_file_offset": 330484,
+      "raw_length": 312,
+      "raw_sha256": "6e700672b1a8f4423c49b0b5cb16d9f8b3b9776c1449f4c7035dfe0f323db501",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050af4.bin",
+          "sha256": "6e700672b1a8f4423c49b0b5cb16d9f8b3b9776c1449f4c7035dfe0f323db501"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050af4.s",
+          "sha256": "c69cfe33c43fedf886cbb8e790db1c5c536defaaceee8eb47899de3aa7143a33"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050af4.ghidra.c",
+          "sha256": "1f1a92b0125d25a7bb892f5e973f1e988c07cf6e45b1ad9e7d9911456fbad4e7"
+        }
+      ]
+    },
+    {
+      "address": "0x1000c2e00",
+      "symbols": [
+        "__createFeature"
+      ],
+      "source_file_offset": 798208,
+      "raw_length": 80,
+      "raw_sha256": "9fa4afb1c1a94aa08733413dd1939ea1af608341af4d3390992a381e79ca4af7",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c2e00.bin",
+          "sha256": "9fa4afb1c1a94aa08733413dd1939ea1af608341af4d3390992a381e79ca4af7"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c2e00.s",
+          "sha256": "50d386625fcaebd240783db2f65e157f0f0f314ecaa6c6c2bd2b4328e560ff81"
+        }
+      ]
+    },
+    {
+      "address": "0x1000c2e50",
+      "symbols": [
+        "__destroyFeature"
+      ],
+      "source_file_offset": 798288,
+      "raw_length": 252,
+      "raw_sha256": "f37986afb8f0a86bd958881c9dc38d378a909c2ab31e88892435d197eb5b9652",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c2e50.bin",
+          "sha256": "f37986afb8f0a86bd958881c9dc38d378a909c2ab31e88892435d197eb5b9652"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c2e50.s",
+          "sha256": "37826629d2fa52147768aefd906a3af9a9f8263c3635110d8abd7d36bfcc5637"
+        }
+      ]
+    },
+    {
+      "address": "0x10018f17c",
+      "symbols": [
+        "_acc_endpoint2_isWireless"
+      ],
+      "source_file_offset": 1634684,
+      "raw_length": 84,
+      "raw_sha256": "b57dfe671e4c650a2fb69114a6c648a2b6c7015db8930d1468937363494271f7",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10018f17c.bin",
+          "sha256": "b57dfe671e4c650a2fb69114a6c648a2b6c7015db8930d1468937363494271f7"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10018f17c.s",
+          "sha256": "182fd12893843adcec0e37567b2e49038fa7801ab98f48d3e42416057843f473"
+        }
+      ]
+    },
+    {
+      "address": "0x100050c2c",
+      "symbols": [
+        "_iap2_identification_checkRequiredMsgIDs"
+      ],
+      "source_file_offset": 330796,
+      "raw_length": 216,
+      "raw_sha256": "dafd1505f61252ea994f0698bfdc399d45aef7533d89fe09ba264ac7643333ab",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050c2c.bin",
+          "sha256": "dafd1505f61252ea994f0698bfdc399d45aef7533d89fe09ba264ac7643333ab"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050c2c.s",
+          "sha256": "cb9789a8378e03f4d6e0423915eeef16a82683dd334c53af5de38d7b3b4e990c"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050c2c.ghidra.c",
+          "sha256": "ea3b5859d151381cb8770f5d6d86d74ce4e47ec2457b02fa03e55a416dc26ca9"
+        }
+      ]
+    },
+    {
+      "address": "0x1000c2f4c",
+      "symbols": [
+        "____destroyFeature_block_invoke"
+      ],
+      "source_file_offset": 798540,
+      "raw_length": 112,
+      "raw_sha256": "8e4a7f9dd88bb1dd8c4e4c450b094eeb770a7f2ce897ccc12da72e171270a22c",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c2f4c.bin",
+          "sha256": "8e4a7f9dd88bb1dd8c4e4c450b094eeb770a7f2ce897ccc12da72e171270a22c"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_1000c2f4c.s",
+          "sha256": "37ff57eb532240d22c532509c1ada185f701dba0f15c2670a13a8f91f682a0de"
+        }
+      ]
+    },
+    {
+      "address": "0x100050dcc",
+      "symbols": [
+        "___iap2_identification_identificationInfoHandler_block_invoke.76"
+      ],
+      "source_file_offset": 331212,
+      "raw_length": 648,
+      "raw_sha256": "20fbc1f5e49c6e8a23f378a65865ae6a3ea3d54d6fa5c37e2111cdf2f747cf84",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050dcc.bin",
+          "sha256": "20fbc1f5e49c6e8a23f378a65865ae6a3ea3d54d6fa5c37e2111cdf2f747cf84"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050dcc.s",
+          "sha256": "fa0bec5c4f3393ffaa795861cf3381f7a86378cb904cdc846cac740174a715ae"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050dcc.ghidra.c",
+          "sha256": "261e2907d1e04d26547490bcdca2797a0447dd9e3e459f286fe00e54eeffe0c7"
+        }
+      ]
+    },
+    {
+      "address": "0x100050da8",
+      "symbols": [
+        "___iap2_identification_identificationInfoHandler_block_invoke"
+      ],
+      "source_file_offset": 331176,
+      "raw_length": 36,
+      "raw_sha256": "ffe880944382ebd8c195ff20cce7bdad85d9e17ec787aab3854c7058daded471",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050da8.bin",
+          "sha256": "ffe880944382ebd8c195ff20cce7bdad85d9e17ec787aab3854c7058daded471"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050da8.s",
+          "sha256": "d679b9d5804eac6b25010af2557c66af9b5da954fcfb741c8e28a70b731ffd3c"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_100050da8.ghidra.c",
+          "sha256": "b80734802585357a91fc1cf62eef2949725f357093f26275a6e7e277dc9e7692"
+        }
+      ]
+    },
+    {
+      "address": "0x10013cad8",
+      "symbols": [
+        "___iap2_identification_identificationInfoHandler_block_invoke.cold.1"
+      ],
+      "source_file_offset": 1297112,
+      "raw_length": 12,
+      "raw_sha256": "abb315cd1f33ed636cc740cae4bff1d67a7bf68f2d4e4485417f6de8dc1f352f",
+      "raw_matches_source": true,
+      "files": [
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013cad8.bin",
+          "sha256": "abb315cd1f33ed636cc740cae4bff1d67a7bf68f2d4e4485417f6de8dc1f352f"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013cad8.s",
+          "sha256": "f27e8e24f8afabfec371ae4634eeea0fd76054fadf23d13c7e5c601bac1a0b68"
+        },
+        {
+          "path": "D:\\carvex-research\\firmware\\analysis\\decompiler-cache\\24A446\\accessoryd\\18405d82c74429b84ed4\\functions\\f_10013cad8.ghidra.c",
+          "sha256": "7a71c8a870e5a23a4f2990d81721f4eb96c5942072ead29f7c2a3d28e24b540b"
+        }
+      ]
+    }
+  ],
+  "registration_records": [
+    {
+      "address": "0x10021a948",
+      "id": 17,
+      "required": 0,
+      "raw_hex": "1100000000000000e8120500000018800000000000000000",
+      "sha256": "ccab950e23a962dc2cdf4c6ce89fd1369451ec5aa6ecfbf87a618ae7e4498022"
+    },
+    {
+      "address": "0x10021a960",
+      "id": 24,
+      "required": 0,
+      "raw_hex": "1800000000000000e8120500000018800000000000000000",
+      "sha256": "2064c7d81999b3962fc26a27873c070f29c472dca113beb493b00ad1078f43ce"
+    },
+    {
+      "address": "0x10021f1a8",
+      "id": 8,
+      "required": 1,
+      "raw_hex": "0800000000000000a8070c00000018800100000000000000",
+      "sha256": "547189dba4644a7314737431990a8f8421cf159164cda275b044801605760fe9"
+    },
+    {
+      "address": "0x10021f1c0",
+      "id": 9,
+      "required": 1,
+      "raw_hex": "0900000000000000a8070c00000018800100000000000000",
+      "sha256": "2dd232d1440fbd3580094c868140de5345322a4b7bab4f5efa12e2207baa914a"
+    },
+    {
+      "address": "0x10021f1d8",
+      "id": 240,
+      "required": 0,
+      "raw_hex": "f000000000000000a8070c00000018800000000000000000",
+      "sha256": "9e28bb7426986d00581394253699e390488a3a2a98d0cdb5c2504d39c9a861b0"
+    },
+    {
+      "address": "0x10021f1f0",
+      "id": 241,
+      "required": 0,
+      "raw_hex": "f100000000000000a8070c00000018800000000000000000",
+      "sha256": "91965175a24d463d0ec09a903d81fba3b7359ae76e41f33dc8ef0e5e808c9801"
+    },
+    {
+      "address": "0x10021f208",
+      "id": 25,
+      "required": 0,
+      "raw_hex": "1900000000000000a8070c00000020800000000000000000",
+      "sha256": "f61bb66a5b7549d5de61217f07c3cb02cd715897f6e399f9ca81892678b67089"
+    }
+  ],
+  "original_data_ranges": [
+    {
+      "address": "0x10021eef8",
+      "role": "power feature callback pointers",
+      "length": 40,
+      "raw_hex": "002e0c0000000880502e0c000000088044fd160000000880700c0c00000010800000000000000000",
+      "sha256": "519616840ba061acf53b699250958b1cabcd4f95e33da727c00c30776361f8a4"
+    },
+    {
+      "address": "0x1001b4050",
+      "role": "power feature initial four u32 values",
+      "length": 16,
+      "raw_hex": "03000000020000000000000000000000",
+      "sha256": "1ecc3cdbffd746dafb8aabcab42b6cb77b88fa56ad2d37f9c9d8e12193fdd445"
+    },
+    {
+      "address": "0x1001b4060",
+      "role": "six 12-byte power message declarations",
+      "length": 72,
+      "raw_hex": "00ae0000000000000100000001ae0000010000000100000002ae0000000000000100000003ae0000000000000000000005ae0000000000000000000006ae00000000000000000000",
+      "sha256": "7699a16056e9a34e283a4dbb28337ad7bfe9d4ebbb1a270e69e0f2e8b6ff856b"
+    }
+  ],
+  "android_sources": [
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\sessioncore\\IapIdentifyInfo.kt",
+      "sha256": "a54a8609c98f49009c7d71ad5c504324f874e8f4104cb09756b9cce13d03b2f1"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\Bootstrap.kt",
+      "sha256": "c90fbfb9165ee8e796dbc573ba4ffd20fcdaed1804056a7c097255c6503a89a0"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\Wire.kt",
+      "sha256": "6b64f7c7c930e17161bd3bb6c3e1599a2377292fcd30ee67cbd02ae1c1d9a065"
+    }
+  ],
+  "tool": {
+    "path": "D:\\carvex-research\\research\connection\tools\\inspect_identification_power_transport.py",
+    "sha256": "a258c4b369741e3c3f81ac9073703c514cbefa32dc82f5d119920309065901b9"
+  },
+  "runtime_observed": false,
+  "firmware_executed": false,
+  "app_tests_executed": false,
+  "full_branch_coverage": false,
+  "limits": [
+    "ObjC plugin current-limit implementation and real provider values are not executed.",
+    "Types and semantic names inferred from disassembly require separately documented bounds.",
+    "No inference of audio failure causality or real vehicle compatibility."
+  ]
+}
+

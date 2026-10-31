@@ -1,0 +1,664 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-29",
+  "runtime_observed": false,
+  "vehicle_tested": false,
+  "status": "PARTIAL_STATIC_AUDIT",
+  "method": "Original ELF64 PT_LOAD reads; ARM64 Capstone disassembly; dynamic symbol and RELA PLT binding; exact iOS cached-slice/image/cache comparison. No original function execution, no unit-test rerun, no APK build.",
+  "toyota_image": {
+    "path": "/mnt/d/carvex-research/firmware/headunits/toyota/extract/vendor/carplay/libs/libAirPlay.so",
+    "sha256": "ecc9213489e4705b65ecae3869d6a701392023f1f934a9c325005bf51be62370",
+    "bytes": 199144
+  },
+  "functions": [
+    {
+      "name": "CompareOSBuildVersionStrings",
+      "address": "0x17d20",
+      "length": 200,
+      "sha256": "a566de301f42ddb43c7e93f835f2b230ec5fadbc79db00e97452c9e16ce1a184",
+      "scope": "Full-function hash is provenance only; reviewed portions are listed in slices."
+    },
+    {
+      "name": "AirPlayReceiverSessionSetup",
+      "address": "0x17de8",
+      "length": 11976,
+      "sha256": "f03582e9788f9ea5e86b8b2859c09fab7c7c8f185415fabbb9637d41c9c71dd7",
+      "scope": "Full-function hash is provenance only; reviewed portions are listed in slices."
+    },
+    {
+      "name": "AirPlayCopyServerInfo",
+      "address": "0xdc0c",
+      "length": 3864,
+      "sha256": "44a59a282569bcf6f6977f621091dbe6a7be2fde7662bb9eb407663bd6d35312",
+      "scope": "Full-function hash is provenance only; reviewed portions are listed in slices."
+    },
+    {
+      "name": "AirPlayGetMinimumClientOSBuildVersion",
+      "address": "0xd01c",
+      "length": 152,
+      "sha256": "796e2d92cbe6c23228600dbb2d14a1947e39a8edd15c3b600e1d139a3860bc31",
+      "scope": "Full-function hash is provenance only; reviewed portions are listed in slices."
+    },
+    {
+      "name": "APSRTPPacketHandlerDecryptCurrentMessage",
+      "address": "0x252c0",
+      "length": 336,
+      "sha256": "10d93ebf9fb51428b4db21a8013967ecf3f5056c4985339ce3ba0164b1d60122",
+      "scope": "Full-function hash is provenance only; reviewed portions are listed in slices."
+    }
+  ],
+  "slices": [
+    {
+      "id": "B01",
+      "address": "0x17d20",
+      "length": 200,
+      "sha256": "a566de301f42ddb43c7e93f835f2b230ec5fadbc79db00e97452c9e16ce1a184",
+      "raw_hex": "fd7bbba9fd030091f35301a9930000f073423e91f51300f9a4230191a3fb0091a2030191f50301aae10313aa29caff971f0c00712104005402cbff97f40300aaa1fb4039a4330191000040f9a3ff0091a2130191007861b8e10313aaa0fb0039e00315aa1bcaff971f0c0071a1020054a00748291f00016b600000540000014b08000014800240f9a1ff4039017861b8a0fb40391f00216bc00000540000214bf35341a9f51340f9fd7bc5a8c0035fd6a0074929f2ffff1700008012f9ffff1720008052f7ffff17",
+      "reviewed_scope": "CompareOSBuildVersionStrings: sscanf %d%c%d; first parse error=-1, second=+1, lexicographic numeric/upper-case letter/numeric subtraction"
+    },
+    {
+      "id": "B02",
+      "address": "0x18268",
+      "length": 80,
+      "sha256": "fe911112374f632c17a6ecdf6ce91b1f9dab5e1807e5850c446e8a084d51ebc6",
+      "raw_hex": "e40300aaa06b40f9b3a30491c1221091030480d2e20313aa219406912bcaff97a0ff40b9e0080035020480d2e10313aa80820291a1c8ff97800a40f9b7230591020480d2e10317aa14ccff97a0ff00b9",
+      "reviewed_scope": "SETUP osBuildVersion string copy to session+0xa0; minimum provider call"
+    },
+    {
+      "id": "B03",
+      "address": "0x182b4",
+      "length": 104,
+      "sha256": "8f0df7cedfa8f13a1705e312f4004bdd14de58e777458e3e0c3e06f12adbd91f",
+      "raw_hex": "a0ff00b980070035a07a47f9010040b93fc800716c0100543f04003120060054a07a47f9c1221091830000f0e40313aa63a808914206805221800391f8cdff97e10313aae00317aa5dc8ff971f0000712d05005440478312a0ff00b9a07740f97bc9ff97eafeff17",
+      "reviewed_scope": "provider failure skips gate; successful minimum vs client comparison; positive result sets -0x1a3b"
+    },
+    {
+      "id": "B04",
+      "address": "0x17ec0",
+      "length": 152,
+      "sha256": "7bdf5c8a1421ed92e06ed61c12f76d74698398272fcde458ec09b05aa6c93bd2",
+      "raw_hex": "a0ff40b9c0030034a07a47f9010040b93fc80071ec0100543f040031c0660154a07a47f9810000d0a6ff40b92120109184ae40f9a3000090a76b40f98552049163b014914206805221800391f1ceff97800a40f9a1ff40b9032440f9630000b4020c40f960003fd6a2ff40b9030080d2a16b40f9e00314aa12caff97a0ff40b9f35341a9f55b42a9f76343a9f96b44a9fb7345a9fd7b40a9",
+      "reviewed_scope": "SETUP error path callback/teardown/local error return"
+    },
+    {
+      "id": "B05",
+      "address": "0xd01c",
+      "length": 152,
+      "sha256": "796e2d92cbe6c23228600dbb2d14a1947e39a8edd15c3b600e1d139a3860bc31",
+      "raw_hex": "ff8301d1e30302aafd7b01a9fd430091f35302a9d30000d073222f91f55b03a973f20391b6330191f72300f9f40301aaf50302aae40316aae20301aaf70300aae10313aa0bfdff97a04f40b980010034820100b0f60300f9e70315aae60314aa42ec47f9050080d2e40313aa23008052010080d2e00317aaeff6ff97a04f40b9f35342a9f55b43a9fd7b41a9f72340f9ff830191c0035fd6",
+      "reviewed_scope": "minimum build provider: config dictionary then synchronous property callback fallback"
+    },
+    {
+      "id": "B06",
+      "address": "0xc48c",
+      "length": 88,
+      "sha256": "f938f535f131e8ce2a699b426737a502b8c8c021453bd53e4354f0a242f3edb2",
+      "raw_hex": "fd7bbda9fd030091f30b00f9f30304aa600100b5a0478312a02f00b9000100b000880791730000b4a12f40b9610200b9f30b40f9fd7bc3a8c0035fd6004440f9600000b5c0488312f4ffff17a4b3009195f9ff97f4ffff17",
+      "reviewed_scope": "server+0x88 config CString getter"
+    },
+    {
+      "id": "B07",
+      "address": "0x1af74",
+      "length": 36,
+      "sha256": "d2f77780b92737e89aba925641cb33004c829700842b18a51d7e1f9283ec9b30",
+      "raw_hex": "610a40f9800000b000741691218002913bbdff97027c1f53608243f961020f91e3bfff97",
+      "reviewed_scope": "main/alt inbound modern flag=Compare(13A1,sessionBuild)<0"
+    },
+    {
+      "id": "B08",
+      "address": "0x252c0",
+      "length": 336,
+      "sha256": "10d93ebf9fb51428b4db21a8013967ecf3f5056c4985339ce3ba0164b1d60122",
+      "raw_hex": "fd7bbaa9e703022afd030091a2830191f35301a9f55b02a9f30301aaf71b00f9f60300aa5f8c1ff8a1430191bf4f00b9bf2b00f9ccfcff97a04f00b9800100356002403940010034c03240f9c7010035f50300aa970180d200e042f91f5c00f18801005460458312a04f00b9a04f40b9f35341a9f55b42a9f71b40f9fd7bc6a8c0035fd615100091170180d2f3ffff17a20345a97422009161220491002000d14200008be00314aa9294ff97e10315aae20317aae00314aaba94ff97a30b45a9e00314aae10303aa426000d12194ff97f50300aaa10b45a9a3330191e00314aa426000d12200028b2100158be596ff97a002008ba14f40b9a1fbff35a12f40f9216000d13f0000eb60000054204d8312d6ffff1773a20491010080d2606a613800040011001c0012606a213880000035210400913f2000f121ffff54c13240f920e042f9006000d120e002f9c8ffff17",
+      "reviewed_scope": "APSRTPPacketHandlerDecryptCurrentMessage: legacy RTP pointer/12, modern pointer+4/8, add_aad call"
+    },
+    {
+      "id": "B09",
+      "address": "0x1b6b0",
+      "length": 192,
+      "sha256": "393d6e2664a7cb3789cdfb4dee5a44d172911150a01b643bfd3374a026c3a3c2",
+      "raw_hex": "80000090810b40f900741691b54743f95b43368b218002916abbff978008f83603130091040180d2d632001197631b91b50216cb96e31691e20317aa81e31a91e00316aaa48f07a9aebbff97a48f47a9e00316aae20304aae10303aad5bbff97e3031baae20315aae1031baa7503158be00316aa53bfff97e20315aa6103008be00316aa17bdff97806f43f9010080d2a00a00f9e06a613800040011001c0012e06a213880000035210400913f2000f121ffff54020380d2210000142000030a",
+      "reviewed_scope": "microphone transmitter build threshold and modern AAD pointer+4/8"
+    },
+    {
+      "id": "B10",
+      "address": "0x1b7dc",
+      "length": 12,
+      "sha256": "c91304ae23dda3366cb0c4ffba2a614c548ad67e8c65f6764f4db9433346a5fe",
+      "raw_hex": "840180d2e30318aabdffff17",
+      "reviewed_scope": "microphone transmitter legacy AAD pointer/12"
+    },
+    {
+      "id": "B11",
+      "address": "0xdd4c",
+      "length": 152,
+      "sha256": "f61cf9ea5796dc6a8f1c8f1ea4ce7c56913e05e2bbaa049d226e28cf4a34302c",
+      "raw_hex": "21008052040080d2030080d2a21a0991e00313aaacf4ff97f60300aaa06b40f9c10000f0212c229100800291bef1ff97c03ff836bf0301b9d60000b500468312a00301b9160500b4190080d21f000014e00316aad4f3ff97017c4093a15700f9e1feffb4820100b0e103002a000080d242d047f97cf1ff97bf7700f9f90300aac02900b4a0a60991a05b00f9a0030491a06f00f9a05740f9",
+      "reviewed_scope": "AirPlayCopyServerInfo display property; Compare(clientBuild,18A0)>=0 bypasses legacy transformation"
+    },
+    {
+      "id": "B12",
+      "address": "0xe2ec",
+      "length": 680,
+      "sha256": "26014a7558c1b567f050eeeaf7d48366a7da595819b06c6563fa7a8710f2db01",
+      "raw_hex": "e20300aa01008052000080d296f1ff97fb0300aa600000b5e0488312c2feff17a15e0991e00317aac7f0ff97a06300f9e01000b474f2ff97017c4093a15300f9c10000b500468312a00301b9e0031baa71f1ff97b5feff1782010090e103002a000080d242d047f917f0ff97fa0300aa001000b5e0488312f4ffff17a1e340b9a06340f9f4f5ff97f80300aac00000b500468312a00301b9e0031aaa5ef1ff97ebffff17e20300aa01008052000080d26df1ff97fc0300aa600000b5e0488312f5ffff17a15b40f9e00318aa2af5ff971f1c00728109005482010090a34f40f981008052000080d2427c47f9cef1ff97f70300aac00000b5e0488312a00301b9e0031caa44f1ff97e4ffff17a46f40f9a8ea0991e10308aaa83300f9e37f40b2020080d2e00318aad3f2ff97eb0300aaa46f40f9a73a0a91e10307aaab9f06a9e37f40b2020080d2e00318aacaf2ff97ea0300aaa46f40f9a68e0a91e10306aaaa9b07a9e37f40b2020080d2e00318aac1f2ff97e90300aaa46f40f9a5e60a91e37f40b2e10305aaa99708a9020080d2e00318aab8f2ff97f80300aaa82f46a9e00317aae10308aae2030b2aaef5ff97a72b47a9e00317aae10307aae2030a2aa9f5ff97a62748a9e00317aae10306aae203092aa4f5ff97a54b40f9e203182ae00317aae10305aa9ff5ff97a15b40f9e20317aae0031caa73f2ff97e00317aa05f1ff97e1031caae0031aaa4ef2ff97e0031caa00f1ff97a07340f900040091a07300f9a05340f9a17340f91f0001eb68f2ff54e2031aaaa15e0991e0031baa61f2ff97e0031aaaf3f0ff97e1031baae00319aa3cf2ff97e0031baaeef0ff97a07740f900040091a07700f922feff1780010090bf7300f9007047f9a04f00f9e9ffff17f60319aaf6c5ffb4c10000b021202f91e00314aae20316aa2118099149f2ff97e00316aa",
+      "reviewed_scope": "copy display/viewAreas; only if safeArea missing create from width/height/originX/originY; install returned displays"
+    },
+    {
+      "id": "B13",
+      "address": "0x1715c",
+      "length": 40,
+      "sha256": "39f768f71f8a18657e78236b0c2a936c4ced7297abc048f369bcec2351528585",
+      "raw_hex": "46f744f9a7830391e5031baae4030aaa030180d2e20316aae10314aa40230a91abab07a9eff4ff97",
+      "reviewed_scope": "gen local consumer constant AAD length8 before helper1453c"
+    },
+    {
+      "id": "B14",
+      "address": "0x1724c",
+      "length": 40,
+      "sha256": "7dc29ddecaa931d9873ca7496f243e5fc07ee8db343dccf201d99ba0d8b40210",
+      "raw_hex": "46f744f9a7830391e5031baae4030aaa030180d2e20316aae10314aa40230a91aa4300f9b3f4ff97",
+      "reviewed_scope": "second gen local consumer constant AAD length8 before helper1453c"
+    },
+    {
+      "id": "B15",
+      "address": "0xebe8",
+      "length": 64,
+      "sha256": "87f0c43313f440e4169023c5e45b166d37ca872919c15bdd225b87769318de3d",
+      "raw_hex": "610a42f9a4930191e30000f0c20000d0638820914248239160420091b7830191f6f0ff97800a40f9e20317aaa13740f96ef2ff97f50300aaa06340b920100035",
+      "reviewed_scope": "info handler reads X-Apple-ProtocolVersion; no independent required-header gate established"
+    }
+  ],
+  "strings": [
+    {
+      "address": "0x2af90",
+      "value": "%d%c%d",
+      "raw_hex": "25642563256400"
+    },
+    {
+      "address": "0x2b59d",
+      "value": "13A1",
+      "raw_hex": "3133413100"
+    },
+    {
+      "address": "0x2888b",
+      "value": "18A0",
+      "raw_hex": "3138413000"
+    },
+    {
+      "address": "0x295b5",
+      "value": "osBuildVersion",
+      "raw_hex": "6f734275696c6456657273696f6e00"
+    },
+    {
+      "address": "0x27ccc",
+      "value": "clientOSBuildVersionMin",
+      "raw_hex": "636c69656e744f534275696c6456657273696f6e4d696e00"
+    },
+    {
+      "address": "0x27e16",
+      "value": "displays",
+      "raw_hex": "646973706c61797300"
+    },
+    {
+      "address": "0x27e27",
+      "value": "viewAreas",
+      "raw_hex": "76696577417265617300"
+    },
+    {
+      "address": "0x27e39",
+      "value": "safeArea",
+      "raw_hex": "736166654172656100"
+    },
+    {
+      "address": "0x27e4a",
+      "value": "widthPixels",
+      "raw_hex": "7769647468506978656c7300"
+    },
+    {
+      "address": "0x27e5e",
+      "value": "heightPixels",
+      "raw_hex": "686569676874506978656c7300"
+    },
+    {
+      "address": "0x27e73",
+      "value": "originXPixels",
+      "raw_hex": "6f726967696e58506978656c7300"
+    },
+    {
+      "address": "0x27e89",
+      "value": "originYPixels",
+      "raw_hex": "6f726967696e59506978656c7300"
+    },
+    {
+      "address": "0x288d2",
+      "value": "X-Apple-ProtocolVersion",
+      "raw_hex": "582d4170706c652d50726f746f636f6c56657273696f6e00"
+    }
+  ],
+  "plt_bindings": [
+    {
+      "stub": "0xa470",
+      "got": "0x3f0d0",
+      "relocation": {
+        "symbol": [
+          "CompareOSBuildVersionStrings",
+          97568,
+          200
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xa5f0",
+      "got": "0x3f190",
+      "relocation": {
+        "symbol": [
+          "sscanf",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xa960",
+      "got": "0x3f348",
+      "relocation": {
+        "symbol": [
+          "__ctype_toupper_loc",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xab30",
+      "got": "0x3f430",
+      "relocation": {
+        "symbol": [
+          "CFDictionaryGetCString",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xa520",
+      "got": "0x3f128",
+      "relocation": {
+        "symbol": [
+          "strlcpy",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xaf20",
+      "got": "0x3f628",
+      "relocation": {
+        "symbol": [
+          "APSRTPPacketHandlerDecryptCurrentMessage",
+          152256,
+          336
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xa5b0",
+      "got": "0x3f170",
+      "relocation": {
+        "symbol": [
+          "chacha20_poly1305_init_64x64",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xa660",
+      "got": "0x3f1c8",
+      "relocation": {
+        "symbol": [
+          "chacha20_poly1305_add_aad",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xb300",
+      "got": "0x3f818",
+      "relocation": {
+        "symbol": [
+          "AirPlayGetMinimumClientOSBuildVersion",
+          53276,
+          152
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xac50",
+      "got": "0x3f4c0",
+      "relocation": {
+        "symbol": [
+          "CFObjectGetPropertyCStringSync",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xb010",
+      "got": "0x3f6a0",
+      "relocation": {
+        "symbol": [
+          "AirPlayReceiverServerPlatformCopyProperty",
+          48772,
+          180
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xa630",
+      "got": "0x3f1b0",
+      "relocation": {
+        "symbol": [
+          "CFDictionaryGetValue",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xb860",
+      "got": "0x3fac8",
+      "relocation": {
+        "symbol": [
+          "CFLDictionaryContainsKey",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xaf60",
+      "got": "0x3f648",
+      "relocation": {
+        "symbol": [
+          "CFDictionaryGetInt64Ranged",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xbb50",
+      "got": "0x3fc40",
+      "relocation": {
+        "symbol": [
+          "CFDictionarySetInt64",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xa780",
+      "got": "0x3f258",
+      "relocation": {
+        "symbol": [
+          "AirPlayReceiverSessionTearDown",
+          89984,
+          1156
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xafe0",
+      "got": "0x3f688",
+      "relocation": {
+        "symbol": [
+          "HTTPScanFHeaderValue",
+          0,
+          0
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    },
+    {
+      "stub": "0xb5d0",
+      "got": "0x3f980",
+      "relocation": {
+        "symbol": [
+          "AirPlayCopyServerInfo",
+          56332,
+          3864
+        ],
+        "type": 1026,
+        "addend": 0
+      }
+    }
+  ],
+  "minimum_build_callback_got": {
+    "address": "0x3efd8",
+    "raw_hex": "0000000000000000",
+    "relocation": {
+      "symbol": [
+        "AirPlayReceiverServerCopyProperty",
+        50440,
+        200
+      ],
+      "type": 1025,
+      "addend": 0
+    },
+    "limit": "Binding is evidence; complete callback behavior/default not audited."
+  },
+  "comparison_direct_calls": {
+    "method": "All direct B/BL in ELF .text to implementation17d20 or its resolved PLT a470. Does not cover indirect calls or other comparison functions.",
+    "callsites": [
+      "0xdd78",
+      "0x182fc",
+      "0x1af84",
+      "0x1b6c8"
+    ]
+  },
+  "apple_aad_helper": {
+    "image": {
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/AirPlaySupport/AirPlaySupport",
+      "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+      "bytes": 1536072
+    },
+    "name": [
+      "_APSTransportMessageGetAudioAADPointer"
+    ],
+    "address": "0x226e68af0",
+    "length": 100,
+    "sha256": "696095a4e481749248fa9d8ceff5e0f229a24c58e79dfd1588e8c3c8d6a36ce3",
+    "matches_extracted_image_and_original_cache": true,
+    "reviewed_scope": "APSTransportMessageGetAudioAADPointer success writes AAD length8; pointer-selector interpretation and all writer callers not re-audited in this task."
+  },
+  "android_current_sources": [
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/CarPlaySourceIdentity.kt",
+      "sha256": "54af8e401dd47085bab6751cef4217626d48d34d25349c0b7ad2e306d294662d",
+      "bytes": 1222,
+      "reviewed_lines": [
+        {
+          "first": 4,
+          "last": 20,
+          "text": "object CarPlaySourceIdentity {\n    const val sourceVersion=\"320.17\"\n    val userAgent get()=\"AirPlay/\"+sourceVersion\n\n    /** Wire compatibility declaration, NOT the Android OS build or an iOS identity.\n     * Toyota libAirPlay's main/alt receiver compares this with \"13A1\" (0x1af74).\n     * An unparsable Android Build.ID selects full-header AAD, but our established\n     * HomeKit audio writers use timestamp+SSRC (RTP bytes 4..11), like 24A446.\n     * 21A329 selects that modern branch (strictly newer than 13A1). Keep hardware,\n     * osName and osVersion truthful; report the actual Android build in diagnostics.\n     * This field can affect other receiver compatibility decisions as well. */\n    const val compatibilityOsBuildVersion=\"21A329\"\n\n    fun setupDeviceFields(model:String,osVersion:String):Map<String,Any> = linkedMapOf(\n        \"model\" to model,\"osBuildVersion\" to compatibilityOsBuildVersion,\n        \"osVersion\" to osVersion,\"osName\" to \"Android\")\n}"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/MediaAudioPackets.kt",
+      "sha256": "ed96c67100ba3c9b7c8b43e5796a0c9e3c2ae14350577a9b172c7fa24dc7be1b",
+      "bytes": 4292,
+      "reviewed_lines": [
+        {
+          "first": 19,
+          "last": 26,
+          "text": "    fun accessUnit(payload:ByteArray,key:ByteArray,sequence:Int,timestamp:Long,nonce:Long,type:Int):ByteArray {\n        require(type in setOf(100,101,102))\n        require(key.size==32&&sequence in 0..65535&&nonce>=0&&payload.isNotEmpty()&&payload.size<=1400)\n        val pt=wireType(type)\n        val header=ByteBuffer.allocate(12).order(ByteOrder.BIG_ENDIAN).put(0x80.toByte()).put(pt.toByte())\n            .putShort(sequence.toShort()).putInt(timestamp.toInt()).putInt(0).array()\n        val iv=Crypto.nonce(nonce)\n        return header+Crypto.seal(key,iv,payload,header.copyOfRange(4,12))+iv.copyOfRange(4,12)"
+        },
+        {
+          "first": 44,
+          "last": 68,
+          "text": "    fun redPacket(payload:ByteArray,history:ByteArray?,historyTimestamp:Long?,key:ByteArray,\n                  sequence:Int,timestamp:Long,nonce:Long,type:Int):ByteArray {\n        require(type in setOf(100,101,102))\n        require(key.size==32&&sequence in 0..65535&&nonce>=0&&payload.isNotEmpty()&&payload.size<=1400)\n        val primaryType=wireType(type)\n        val red=redType(type)\n        val header=ByteBuffer.allocate(12).order(ByteOrder.BIG_ENDIAN).put(0x80.toByte()).put(red.toByte())\n            .putShort(sequence.toShort()).putInt(timestamp.toInt()).putInt(0).array()\n        val redHeader:ByteArray\n        val clear:ByteArray\n        val delta=historyTimestamp?.let{redHistoryDelta(timestamp,it)}\n        // RED is still negotiated when history is unusable. Keep its primary-only\n        // header/PT and encrypt just this access unit; never truncate a length or age.\n        if(history!=null&&history.size in 1..0x3ff&&delta!=null){\n            val word=((0x80 or primaryType) shl 24) or (delta shl 10) or history.size\n            redHeader=byteArrayOf((word ushr 24).toByte(),(word ushr 16).toByte(),\n                (word ushr 8).toByte(),word.toByte(),primaryType.toByte())\n            clear=history+payload\n        }else{\n            redHeader=byteArrayOf(primaryType.toByte())\n            clear=payload\n        }\n        val iv=Crypto.nonce(nonce)\n        return header+redHeader+Crypto.seal(key,iv,clear,header.copyOfRange(4,12))+iv.copyOfRange(4,12)\n    }"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/AudioRtpInput.kt",
+      "sha256": "334cec06bb684a89db7a69b915155e151d27c64a071e46f633a70b3be20f50b0",
+      "bytes": 7753,
+      "reviewed_lines": [
+        {
+          "first": 33,
+          "last": 44,
+          "text": "    private fun combos(redLen:Int):List<Combo>{\n        val starts=listOf(12+redLen,12,14+redLen)\n        val aads=listOf(\"4-12\",\"0-12\",\"0-start\",\"none\")\n        val out=mutableListOf<Combo>()\n        for(start in starts)for(outKey in listOf(false,true))for(aad in aads)out+=Combo(start,outKey,aad)\n        return out\n    }\n    private fun aadFor(name:String,packet:ByteArray,start:Int):ByteArray=when(name){\n        \"4-12\"->packet.copyOfRange(4,12)\n        \"0-12\"->packet.copyOfRange(0,12)\n        \"0-start\"->packet.copyOfRange(0,minOf(start,packet.size))\n        else->byteArrayOf()"
+        },
+        {
+          "first": 56,
+          "last": 74,
+          "text": "        val all=combos(redLen)\n        val order=if(chosen!=null)listOf(chosen!!)+all.filter{it!=chosen} else all\n        var clear:ByteArray?=null;var used:Combo?=null;var last:Exception?=null\n        for(combo in order){\n            if(combo.start>=packet.size-8)continue\n            val candidateKey=if(combo.outputKey)alternateKey?:key else key\n            try{\n                clear=Crypto.open(candidateKey,Crypto.nonce(n),packet.copyOfRange(combo.start,packet.size-8),\n                    aadFor(combo.aad,packet,combo.start))\n                used=combo\n                break\n            }catch(t:Exception){last=t}\n        }\n        val opened=clear?:throw (last?:IllegalStateException(\"Microphone packet could not be authenticated\"))\n        if(used!=chosen){\n            chosen=used\n            if(!announced){announced=true;log(\"Microphone decrypt combo start=\"+used!!.start+\" key=\"+(if(used.outputKey)\"output\" else \"input\")+\" aad=\"+used.aad)}\n        }\n        if(n>highest){val delta=n-highest;seen=if(highest<0||delta>=64)1L else (seen shl delta.toInt()) or 1;highest=n}"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/DisplayCapabilities.kt",
+      "sha256": "483ccbb9a9b8b29a7a56a1108f472d5b57ab378bd45f11269cda62185d3c2dc2",
+      "bytes": 3903,
+      "reviewed_lines": [
+        {
+          "first": 24,
+          "last": 43,
+          "text": "    /** supportedFps returns a locally supported rate <= the advertised/local limit, or null. */\n    fun select(value:Any?,supportedFps:(Int,Int,Int)->Int?={_,_,fps->fps},log:(String)->Unit={}):Selected {\n        val diagnostic=summary(value)\n        val list=value as? List<*>?:error(\"${\"No display capabilities: \"}${diagnostic}\")\n        require(list.isNotEmpty()&&list.size<=16){\"${\"Invalid display count: \"}${diagnostic}\"}\n        val candidates=list.mapIndexedNotNull{index,item->\n            fun reject(reason:String):Selected?{log(\"${\"INFO display #\"}${index}${\" excluded: \"}${reason}\");return null}\n            val d=item as? Map<*,*>?:return@mapIndexedNotNull reject(\"not a dictionary\")\n            val type=integer(d[\"type\"])\n            if(d.containsKey(\"type\")&&type==null)return@mapIndexedNotNull reject(\"invalid type\")\n            val w=integer(d[\"widthPixels\"]);val h=integer(d[\"heightPixels\"])\n            if(w==null||h==null||w<=0||h<=0)return@mapIndexedNotNull reject(\"invalid dimensions\")\n            val limit=if(!d.containsKey(\"maxFPS\"))15 else integer(d[\"maxFPS\"])\n            if(limit==null||limit<=0)return@mapIndexedNotNull reject(\"invalid FPS\")\n            val uuid=d[\"uuid\"] as? String\n            if(d.containsKey(\"uuid\")&&uuid.isNullOrBlank())return@mapIndexedNotNull reject(\"invalid UUID\")\n            if(list.size>1&&uuid==null)return@mapIndexedNotNull reject(\"multiple displays require an addressable UUID\")\n            val fps=supportedFps(w,h,limit)?:return@mapIndexedNotNull reject(\"AVC surface encoder cannot support advertised dimensions\")\n            require(fps in 1..limit){\"Encoder returned invalid FPS\"}\n            Selected(index,type,w,h,fps,uuid,\"\")"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt",
+      "sha256": "dfe3d7f818b204a7ed93048a1add292cd02a9d16a6110edd6f21cac775af23c7",
+      "bytes": 100480,
+      "reviewed_lines": [
+        {
+          "first": 493,
+          "last": 500,
+          "text": "        val initial=linkedMapOf<String,Any?>(\"deviceID\" to options.phoneMac,\"macAddress\" to options.phoneMac,\"name\" to options.carPlayName)\n        initial.putAll(CarPlaySourceIdentity.setupDeviceFields(Build.MODEL,Build.VERSION.RELEASE))\n        initial.putAll(linkedMapOf(\n            // A new textual UUID belongs to this control-session generation only.\n            \"sessionUUID\" to java.util.UUID.randomUUID().toString(),\"sourceVersion\" to CarPlaySourceIdentity.sourceVersion,\"timingPort\" to timing.localPort,\n            \"timingProtocol\" to \"NTP\",\"isScreenMirroringSession\" to false,\"statsCollectionEnabled\" to false,\"features\" to emptyList<Any>()))\n        log(\"AirPlay identity osBuildVersion=\"+initial[\"osBuildVersion\"]+\" androidBuild=\"+Build.ID+\n            \" audioAAD=4-12; compatibility profile, actual device osName=Android osVersion=\"+Build.VERSION.RELEASE)"
+        },
+        {
+          "first": 509,
+          "last": 524,
+          "text": "        connectionPath=sessionPath\n        val setupBody=Plist.encode(initial)\n        // 从这里交给异步读线程：加密流（若启用）已经替换完毕，之后所有响应都由它读掉，\n        // 包括没人等的单向响应——不读会把对端的发送缓冲堆满，它就会卡在自己的 write 上。\n        c.startReader()\n        controlSocket.soTimeout=0\n        // 建会话这几步值得等 60 s（固件 S-0121 的量级）；之后压回 10 s，流 SETUP 与命令不占这个预算。\n        c.timeoutMs=controlReadTimeoutMs\n        var setupMessage=c.request(\"SETUP\",sessionPath,setupBody)\n        if(setupMessage.status !in 200..299){\n            // 兼容：个别接收端只认相对路径。固件不发这条，失败时才回退。\n            log(\"initial SETUP on the connection URL rejected status=\"+setupMessage.status+\"; retrying on /setup\")\n            setupMessage=c.request(\"SETUP\",\"/setup\",setupBody)\n            log(\"initial SETUP retry status=\"+setupMessage.status)\n        }\n        if(setupMessage.status !in 200..299)logSetupEncryptionRoute(\"initial\",setupMessage.status)"
+        },
+        {
+          "first": 561,
+          "last": 569,
+          "text": "        log(\"INFO \"+DisplayCapabilities.summary(info[\"displays\"]))\n        // 车机没有给出可用显示不是\"会话失败\"，而是\"这台车机在这一层能力更少\"：视频流与 HID 设备\n        // 视频与触摸无从建立；独立按键、控制会话与事件通道照旧 —— docs §9.8 的降级表\n        // 把这条写成\"无 displays 字段 ⇒ 不开视频，仅音频\"。返回 null 让调用方按无屏会话继续。\n        val display=runCatching{DisplayCapabilities.select(info[\"displays\"],localFps,log)}.getOrElse{t->\n            log(\"receiver /info offers no usable display (\"+t.javaClass.simpleName+\"：\"+(t.message?:\"no detail\")+\"); this session sets up no video stream or touch device\")\n            null\n        }\n        val uuid=display?.uuid"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/CarPlayMediaAudio.kt",
+      "sha256": "c8ce083d3a9c2e7d77bf6dfe4741349385c78c62678fabd781f66b0ae9100e66",
+      "bytes": 6810,
+      "reviewed_lines": [
+        {
+          "first": 74,
+          "last": 80,
+          "text": "                val sent=try{outputDiagnostic.transmit(framesPerPacket,System.nanoTime()){\n                    check(nonce<Long.MAX_VALUE){\"Audio nonce exhausted; new stream needed\"}\n                    val data=MediaAudioPackets.networkPcm(pending.copyOfRange(offset,offset+packetBytes))\n                    val wire=if(redEnabled)\n                        MediaAudioPackets.redPacket(data,history,historyTimestamp,key,sequence,timestamp,nonce++,streamType)\n                    else MediaAudioPackets.packet(data,key,sequence,timestamp,nonce++,streamType)\n                    val packetSequence=sequence"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/CarPlayMicReceiver.kt",
+      "sha256": "6fe4cd08429f1b9bd848468b23cd31faa98aad63f0dc66877c01ee4c26995c7b",
+      "bytes": 9739,
+      "reviewed_lines": [
+        {
+          "first": 27,
+          "last": 32,
+          "text": "    init{scope.launch(start=CoroutineStart.UNDISPATCHED){receive()}}\n    private suspend fun receive(){\n        val buffer=ByteArray(2048)\n        val auth=AudioRtpInput(key,100,alternateKey,log)\n        val jitter=AudioInputJitter()\n        val clock=RtpInputClock(format.rate)"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/core/CarPlaySourceIdentityTest.kt",
+      "sha256": "5db3e3182bd61bb8c84ff3c9750b3333730b450bbce2b76c32b6d047e7d8a69d",
+      "bytes": 4617
+    }
+  ],
+  "geometry_string_scan": {
+    "scope": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay",
+    "extensions": [
+      ".kt"
+    ],
+    "matches": [],
+    "meaning": "No literal viewAreas/safeArea source references in this bounded module scan; not a proof about generic external components."
+  },
+  "current_conclusions": [
+    "Current osBuildVersion=21A329; model/osName/osVersion remain Android. Initial SETUP and /setup retry reuse the same encoded body. sourceVersion/User-Agent remain320.17.",
+    "Current main/alt output uses RTP[4,12) AAD for plain and RED packets. Compare(13A1,21A329)=-8 by the reviewed static formula, selecting the same modern Toyota receiver branch. The historical raw Android Build.ID mismatch is not present in these current source lines.",
+    "For this Toyota image, an unparsable second build supplied to Compare(13A1,build) selects legacy full RTP[0,12); equality13A1 also selects legacy. Actual previous device Build.ID comes from historical reports, not a new device read.",
+    "AirPlayReceiverSessionSetup: if minimum getter succeeds and Compare(minimum,current)>0, sets-6715, reports error, tears down and returns it. Getter failure branches past comparison. Minimum is config key clientOSBuildVersionMin, then synchronous property fallback; no concrete default/callback implementation or actual vehicle minimum is proven.",
+    "AirPlayCopyServerInfo: only clientBuild<18A0 takes legacy displays/viewAreas transformation; absent safeArea is filled from that view area's width/height/originX/originY. Current21A329 skips transformation. Current DisplayCapabilities selects only type,widthPixels,heightPixels,maxFPS,uuid. This shows observable behavior coupling, not a reproduced current video failure.",
+    "Current microphone input tries multiple authenticated layouts/AADs, including none, with chosen preferred but fallback still enabled every packet. It is local compatibility behavior, not proof of one fixed declared profile or iPhone equivalence. Failed authentication is not published.",
+    "X-Apple-ProtocolVersion parsing exists in info handler eb24/ebf4-ec08; this audit does not establish a reject-on-missing/value gate."
+  ],
+  "historical_context": {
+    "source": {
+      "path": "/mnt/d/carvex-research/android/docs/audio-build-aad-repair-2026-10-29.md",
+      "sha256": "653d2290c78dca064a2473ba1d566a08f179ff0c14682f65d4d224b3f7236376",
+      "bytes": 4290
+    },
+    "evidence_level": "HISTORICAL_REPORT_ONLY",
+    "scope": "Reports prior CP2A Build.ID, prior original-comparison execution and model tests. Not rerun or used as current failure proof."
+  },
+  "limits": [
+    "Local Toyota library not independently matched to user's vehicle firmware.",
+    "No proof of universal receiver behavior, complete build/sourceVersion capability matrix, or all version consumers.",
+    "No new playback/connection/video/vehicle test; historical user success remains separate evidence.",
+    "21A329 above18A0/13A1 does not mean it implements every21A329 behavior; changing it to24A446 merely for appearance is unsupported.",
+    "Full source/version declaration and crypto/security capability agreement require separate negotiated-state and lifetime audits."
+  ],
+  "tools": [
+    {
+      "path": "/mnt/d/carvex-research/research/connection/tools/inspect_build_profile.py",
+      "sha256": "622bd189a5ef38a9d0b71d9f97e8318363edb29185ffe258364bf892d99574ce",
+      "bytes": 16833
+    }
+  ]
+}

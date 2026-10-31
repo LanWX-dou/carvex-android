@@ -1,0 +1,2007 @@
+{
+  "date": "2026-10-30",
+  "baseline": "24A446 / iPhone18,1",
+  "scope": "Static research only; production, reference applications, firmware and decompiler caches unchanged.",
+  "tool": "tools/inspect_iap2_handoff.py",
+  "tool_sha256": "c2874c599ffb78bc1addbac8e790738717b83b275e93309b4bc7b58924279f23",
+  "firmware_executed": false,
+  "headunit_test_run": false,
+  "verification": {
+    "byte_verification_passed": true,
+    "sources": 3,
+    "functions": 60,
+    "cached_functions": 41,
+    "original_cache_functions": 6,
+    "docset_integrity_passed": true,
+    "markdown_files": 46,
+    "json_files": 38,
+    "limit": "Integrity and byte equality only; not complete semantic or interoperability verification."
+  },
+  "components": [
+    {
+      "component": "accessoryd",
+      "source": "/mnt/d/carvex-research/firmware/extracted/24A446/components/24A446__iPhone18,1/root/System/Library/PrivateFrameworks/CoreAccessories.framework/Support/accessoryd",
+      "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+      "functions": [
+        {
+          "address": "0x10007e82c",
+          "end": "0x10007ea8c",
+          "sha256": "fc28da658d7a2f450791d791f61f0cef8f53f903feccc53076cb4d4db1bc1427",
+          "symbols": [
+            "-[ACCTransportServerRemote createEndpointWithTransportType:andProtocol:andIdentifier:forConnectionWithUUID:withReply:]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10007e82c.bin"
+          ],
+          "selector_calls": [
+            {
+              "site": "0x10007e880",
+              "stub": "0x1001a54e0",
+              "selector_slot": "0x100237b50",
+              "string_address": "0x1001c024f",
+              "selector": "clientInfo"
+            },
+            {
+              "site": "0x10007e88c",
+              "stub": "0x1001a5960",
+              "selector_slot": "0x100237c78",
+              "string_address": "0x1001b8b58",
+              "selector": "connectionUUIDs"
+            },
+            {
+              "site": "0x10007e89c",
+              "stub": "0x1001a59c0",
+              "selector_slot": "0x100237c90",
+              "string_address": "0x1001b9ed4",
+              "selector": "containsObject:"
+            },
+            {
+              "site": "0x10007e940",
+              "stub": "0x1001a54e0",
+              "selector_slot": "0x100237b50",
+              "string_address": "0x1001c024f",
+              "selector": "clientInfo"
+            },
+            {
+              "site": "0x10007e94c",
+              "stub": "0x1001a5960",
+              "selector_slot": "0x100237c78",
+              "string_address": "0x1001b8b58",
+              "selector": "connectionUUIDs"
+            }
+          ]
+        },
+        {
+          "address": "0x1000cdf60",
+          "end": "0x1000ce110",
+          "sha256": "66c60846c98509b934ee35bdfd8f53092f2d3976a6a87b6d81de07ee55b21e6d",
+          "symbols": [
+            "-[ACCTransportPluginManager createEndpointWithTransportType:andProtocol:andIdentifier:dataOutHandler:forConnectionWithUUID:]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000cdf60.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f6244",
+          "end": "0x1000f63b0",
+          "sha256": "91f367af02c4590c9848901f96ad5ee9fb0c0bd0627279f7795af98b91c04607",
+          "symbols": [
+            "_acc_manager2_createEndpointForConnection"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f6244.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10018f90c",
+          "end": "0x10018f9a8",
+          "sha256": "a4e259e9a063a5b0d06f8c38aa1f58365631a436f742d4d4210f70b50aae9763",
+          "symbols": [
+            "___acc_manager2_createEndpointForConnection_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10018f90c.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f97b8",
+          "end": "0x1000f98a4",
+          "sha256": "f5bcee33d4523ee42ec52667769cfe6751e1fdc7398124fb248f6883b4003c1f",
+          "symbols": [
+            "_acc_connection2_createEndpoint"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f97b8.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f98a4",
+          "end": "0x1000f98e0",
+          "sha256": "f421fa63d359550ec0252ce96909035a2816b33ce0a20ee007ae2468fde90740",
+          "symbols": [
+            "___acc_connection2_createEndpoint_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f98a4.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10019288c",
+          "end": "0x100192c24",
+          "sha256": "e53a847cef0c3fd9281bb029b0165429d625e5ac04aaaf50c2fd5a582a56d6df",
+          "symbols": [
+            "_acc_connection2_createEndpoint_internal"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10019288c.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f98e0",
+          "end": "0x1000f9920",
+          "sha256": "f3daab7a197a9747b25ab830efc5987b73c7ff3ba98326c0e2ce4eeef178f30e",
+          "symbols": [
+            "___acc_connection2_createEndpoint_internal_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f98e0.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000247c8",
+          "end": "0x100024848",
+          "sha256": "194f601f71193c6b432801e4b5660c7cf861f68d49e74ee45d0e782a1e401bbb",
+          "symbols": [
+            "-[ACCTransportServer init]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000247c8.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x100025794",
+          "end": "0x100025880",
+          "sha256": "2a1fe961bdf12732b6def8098466d3d1412b6df0461387015e8f3c4b180a53a5",
+          "symbols": [
+            "-[ACCTransportServer createExportedObjectForConnection:]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100025794.bin"
+          ],
+          "selector_calls": [
+            {
+              "site": "0x1000257cc",
+              "stub": "0x1001a7620",
+              "selector_slot": "0x1002383a8",
+              "string_address": "0x1001c2aba",
+              "selector": "initWithXPCConnection:"
+            },
+            {
+              "site": "0x100025830",
+              "stub": "0x1001a3900",
+              "selector_slot": "0x100237458",
+              "string_address": "0x1001bdb87",
+              "selector": "_performServerOperationSync:"
+            },
+            {
+              "site": "0x100025844",
+              "stub": "0x1001a7200",
+              "selector_slot": "0x1002382a0",
+              "string_address": "0x1001c2535",
+              "selector": "initWithClientInfo:"
+            }
+          ]
+        },
+        {
+          "address": "0x100025880",
+          "end": "0x10002596c",
+          "sha256": "ddbb4e145e083ecda8f3a3984b23b8e1d703d0c2e468d6f0c4b04079135c83c7",
+          "symbols": [
+            "___56-[ACCTransportServer createExportedObjectForConnection:]_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100025880.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10007dd80",
+          "end": "0x10007ddf8",
+          "sha256": "1189938a5ee0157e0403b7f0e078b0a5420419e42711bb4bb6ddae169788c028",
+          "symbols": [
+            "-[ACCTransportServerRemote initWithClientInfo:]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10007dd80.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x100192038",
+          "end": "0x1001920a0",
+          "sha256": "570420148b70ef290508b2567e9563e0c4bb8bbec9ec3a6a458056503c60e0a6",
+          "symbols": [
+            "_acc_connection2_publish"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100192038.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000e64cc",
+          "end": "0x1000e64d8",
+          "sha256": "a0d3b79d1bd32aadf2b06b8d5ae311508a8ec498870b716bd87240804779e147",
+          "symbols": [
+            "_platform_sleepAssertion_endpointProtocolAllowsAssertion"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000e64cc.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f97ac",
+          "end": "0x1000f97b4",
+          "sha256": "dd495c0ec5943a877d5428adb53713c08b9b7df64e689512aebf596fa63039ff",
+          "symbols": [
+            "___acc_connection2_publish_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f97ac.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f8740",
+          "end": "0x1000f891c",
+          "sha256": "dc2870a6fb0afddfbac98e7e9b97d5018fe833ae91452c3c3700d6c1c4c3e529",
+          "symbols": [
+            "_acc_connection2_performAsyncWithCleanup"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f8740.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000d4ee0",
+          "end": "0x1000d4f44",
+          "sha256": "4a3ccf0061c756fa983b7ba7c7bb3fbda808e1befbba2f8b61ac4cd33931e4e6",
+          "symbols": [
+            "_iAP2LinkCommandIsFeatureSetValid"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000d4ee0.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10001182c",
+          "end": "0x100011868",
+          "sha256": "e74cf9d7459425829c5b4f3e23631b125c33b73cb2362cc26c8cb5017c0ce89c",
+          "symbols": [
+            "__CFDictionaryApplierFunction_publishEndpoint"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10001182c.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x100191e70",
+          "end": "0x100191ee8",
+          "sha256": "4b74238189ac4a5a933e328906a575f75798d74b0dd79fc6e606c343d10783b6",
+          "symbols": [
+            "___acc_connection2_publish_internal_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100191e70.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000fd738",
+          "end": "0x1000fd74c",
+          "sha256": "e993f946a85294c5d7da369419bca7ca3f6ac29cf78d3ad40ba84c896b3eaa00",
+          "symbols": [
+            "____acc_connection2_connectionInfo_accessoryConnectionAttached_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000fd738.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000fd7a0",
+          "end": "0x1000fd7a8",
+          "sha256": "3b55842e6f3e3599cb42877742d392213d723bcbb38fac7f19887643e6caf1a3",
+          "symbols": [
+            "____acc_connection2_analytics_connectionWillBePublished_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000fd7a0.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000fd7b0",
+          "end": "0x1000fd7fc",
+          "sha256": "a2265a6fd959ab2c5669e1d9d9984552c3ae0e65e4e788feda332a49be87f943",
+          "symbols": [
+            "____acc_connection2_externalAccessory_removeEAAccessoryForPrimaryEndpoints_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000fd7b0.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000fd7fc",
+          "end": "0x1000fd858",
+          "sha256": "b99b507317e9a74453a5e9bd2c6c0e3971c3806b13d67661c3e54d63a9cd44f7",
+          "symbols": [
+            "____acc_connection2_externalAccessory_addEAAccessoryForEAEndpoints_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000fd7fc.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f8d44",
+          "end": "0x1000f97ac",
+          "sha256": "3466471a51e6d7fdad56e5f7e531e107bef7e8fcd763d81711983a1802867a6d",
+          "symbols": [
+            "_acc_connection2_publish_internal"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f8d44.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10014f944",
+          "end": "0x10014fa74",
+          "sha256": "c6fddbb4eeeb9287f63ea8b8cec4056ed548a1730cd750e6e2672f35e7b108f7",
+          "symbols": [
+            "_platform_connectionInfo_accessoryConnectionAttachedWithSnapshotInfo"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10014f944.bin"
+          ],
+          "selector_calls": [
+            {
+              "site": "0x10014f9e4",
+              "stub": "0x1001aadc0",
+              "selector_slot": "0x100239190",
+              "string_address": "0x1001c6cfd",
+              "selector": "sharedServer"
+            },
+            {
+              "site": "0x10014f9f0",
+              "stub": "0x1001a7080",
+              "selector_slot": "0x100238240",
+              "string_address": "0x1001c2397",
+              "selector": "incrementUserCount"
+            },
+            {
+              "site": "0x10014f9fc",
+              "stub": "0x1001aadc0",
+              "selector_slot": "0x100239190",
+              "string_address": "0x1001c6cfd",
+              "selector": "sharedServer"
+            },
+            {
+              "site": "0x10014fa0c",
+              "stub": "0x1001a3c40",
+              "selector_slot": "0x100237528",
+              "string_address": "0x1001b894a",
+              "selector": "accInfo"
+            },
+            {
+              "site": "0x10014fa1c",
+              "stub": "0x1001a8e40",
+              "selector_slot": "0x1002389b0",
+              "string_address": "0x1001c42a3",
+              "selector": "properties"
+            },
+            {
+              "site": "0x10014fa3c",
+              "stub": "0x1001a3f00",
+              "selector_slot": "0x1002375d8",
+              "string_address": "0x1001be8ea",
+              "selector": "accessoryConnectionAttached:type:info:properties:"
+            }
+          ]
+        },
+        {
+          "address": "0x10018bdcc",
+          "end": "0x10018c8b8",
+          "sha256": "fab8ccb6f3f4e35c19fadbd8051982c492773acccf8673b407d33a61b9b7168e",
+          "symbols": [
+            "_acc_endpoint2_publish"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10018bdcc.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10002576c",
+          "end": "0x100025780",
+          "sha256": "78d307a14d1634abd02322c9cbdceb36ad3f90ffd5ddbd5667ed133ae205cf25",
+          "symbols": [
+            "-[ACCTransportServer exportedInterface]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10002576c.bin"
+          ],
+          "selector_calls": [
+            {
+              "site": "0x10002577c",
+              "stub": "0x1001a77c0",
+              "selector_slot": "0x100238410",
+              "string_address": "0x1001c2c39",
+              "selector": "interfaceWithProtocol:"
+            }
+          ]
+        },
+        {
+          "address": "0x100025780",
+          "end": "0x100025794",
+          "sha256": "90898e9124f39d9c3b6af5485415f2f683ca2a0e3a1385eb14539851b33cc922",
+          "symbols": [
+            "-[ACCTransportServer remoteObjectInterface]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100025780.bin"
+          ],
+          "selector_calls": [
+            {
+              "site": "0x100025790",
+              "stub": "0x1001a77c0",
+              "selector_slot": "0x100238410",
+              "string_address": "0x1001c2c39",
+              "selector": "interfaceWithProtocol:"
+            }
+          ]
+        },
+        {
+          "address": "0x1000aff7c",
+          "end": "0x1000b0350",
+          "sha256": "c9e6b110cffa2f8bde4707c036b8765d033fde2b0a70a350b169bc3e998918a0",
+          "symbols": [
+            "-[ACCXPCServerBase listener:shouldAcceptNewConnection:]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000aff7c.bin"
+          ],
+          "selector_calls": [
+            {
+              "site": "0x1000b000c",
+              "stub": "0x1001a9c20",
+              "selector_slot": "0x100238d28",
+              "string_address": "0x1001c5592",
+              "selector": "serviceName"
+            },
+            {
+              "site": "0x1000b005c",
+              "stub": "0x1001aae00",
+              "selector_slot": "0x1002391a0",
+              "string_address": "0x1001c6d21",
+              "selector": "shouldAcceptConnection:"
+            },
+            {
+              "site": "0x1000b0068",
+              "stub": "0x1001a66c0",
+              "selector_slot": "0x100237fd0",
+              "string_address": "0x1001c170c",
+              "selector": "exportedInterface"
+            },
+            {
+              "site": "0x1000b0078",
+              "stub": "0x1001a9200",
+              "selector_slot": "0x100238aa0",
+              "string_address": "0x1001c47d5",
+              "selector": "remoteObjectInterface"
+            },
+            {
+              "site": "0x1000b0094",
+              "stub": "0x1001aa2a0",
+              "selector_slot": "0x100238ec8",
+              "string_address": "0x1001c5efb",
+              "selector": "setExportedInterface:"
+            },
+            {
+              "site": "0x1000b00a0",
+              "stub": "0x1001aa860",
+              "selector_slot": "0x100239038",
+              "string_address": "0x1001c6738",
+              "selector": "setRemoteObjectInterface:"
+            },
+            {
+              "site": "0x1000b00ac",
+              "stub": "0x1001a5d20",
+              "selector_slot": "0x100237d68",
+              "string_address": "0x1001c0d12",
+              "selector": "createExportedObjectForConnection:"
+            },
+            {
+              "site": "0x1000b00c4",
+              "stub": "0x1001aa2c0",
+              "selector_slot": "0x100238ed0",
+              "string_address": "0x1001c5f11",
+              "selector": "setExportedObject:"
+            },
+            {
+              "site": "0x1000b0144",
+              "stub": "0x1001aa440",
+              "selector_slot": "0x100238f30",
+              "string_address": "0x1001c60f2",
+              "selector": "setInvalidationHandler:"
+            },
+            {
+              "site": "0x1000b014c",
+              "stub": "0x1001a9840",
+              "selector_slot": "0x100238c30",
+              "string_address": "0x1001c4f3a",
+              "selector": "resume"
+            },
+            {
+              "site": "0x1000b0214",
+              "stub": "0x1001a9c20",
+              "selector_slot": "0x100238d28",
+              "string_address": "0x1001c5592",
+              "selector": "serviceName"
+            }
+          ]
+        },
+        {
+          "address": "0x1000168bc",
+          "end": "0x1000168d0",
+          "sha256": "fa0d019e97fb5ceefbb41a9928b976cfacba2b3e046513cdc56d7047f5273439",
+          "symbols": [
+            "_OUTLINED_FUNCTION_74"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000168bc.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f5f14",
+          "end": "0x1000f5f2c",
+          "sha256": "b8e4aa1918b8f1bb11b50e5a68b90b439498f68d1ea31bfe2da29f6812c1faaa",
+          "symbols": [
+            "____acc_endpoint2_connectionInfo_accessoryEndpointAttached_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f5f14.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f5f4c",
+          "end": "0x1000f5f54",
+          "sha256": "c6903319a2be513bfed262e226feeb71307f340296683c52df2d6d5302faeffc",
+          "symbols": [
+            "____acc_endpoint2_analytics_endpointWillBePublished_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f5f4c.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10014fa74",
+          "end": "0x10014fba0",
+          "sha256": "aa21ea1c65ab2d1b39a756d163bb80669f851e8334a48d06c77ff54ba47f0784",
+          "symbols": [
+            "_platform_connectionInfo_accessoryEndpointAttachedWithSnapshotInfo"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10014fa74.bin"
+          ],
+          "selector_calls": [
+            {
+              "site": "0x10014fb34",
+              "stub": "0x1001aadc0",
+              "selector_slot": "0x100239190",
+              "string_address": "0x1001c6cfd",
+              "selector": "sharedServer"
+            },
+            {
+              "site": "0x10014fb44",
+              "stub": "0x1001a8e40",
+              "selector_slot": "0x1002389b0",
+              "string_address": "0x1001c42a3",
+              "selector": "properties"
+            },
+            {
+              "site": "0x10014fb68",
+              "stub": "0x1001a4020",
+              "selector_slot": "0x100237620",
+              "string_address": "0x1001bea46",
+              "selector": "accessoryEndpointAttached:transportType:protocol:properties:forConnection:"
+            }
+          ]
+        },
+        {
+          "address": "0x1000f63b0",
+          "end": "0x1000f6454",
+          "sha256": "93077a032642bfb75d13fe00f3f6466ab4a1760ab768786632c015cdab08e288",
+          "symbols": [
+            "_acc_manager2_performSync"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f63b0.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1000f8934",
+          "end": "0x1000f8b2c",
+          "sha256": "f8489e9777d4ff8509ab78eabf8fea1cfd73c82b43a5ec9cbce39e54ea0ce099",
+          "symbols": [
+            "_acc_connection2_performSyncWithCleanup"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f8934.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10018a96c",
+          "end": "0x10018b020",
+          "sha256": "c1c0ce0469d88c1c83f424ffce1320fda469ff87656d2e2f1e804e5383989b29",
+          "symbols": [
+            "_acc_endpoint2_createWithUUID"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10018a96c.bin",
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/5b6265c7e8432e907ab2/functions/f_10018a96c.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10007f564",
+          "end": "0x10007f688",
+          "sha256": "d76c4c3fb0bfb95bf9258ebfaeba6ccd37e22a5f9d3c4c2e6610ea436d3ba2a4",
+          "symbols": [
+            "-[ACCTransportServerRemote publishConnectionWithUUID:withReply:]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10007f564.bin"
+          ],
+          "selector_calls": [
+            {
+              "site": "0x10007f598",
+              "stub": "0x1001a54e0",
+              "selector_slot": "0x100237b50",
+              "string_address": "0x1001c024f",
+              "selector": "clientInfo"
+            },
+            {
+              "site": "0x10007f5a4",
+              "stub": "0x1001a5960",
+              "selector_slot": "0x100237c78",
+              "string_address": "0x1001b8b58",
+              "selector": "connectionUUIDs"
+            },
+            {
+              "site": "0x10007f5b4",
+              "stub": "0x1001a59c0",
+              "selector_slot": "0x100237c90",
+              "string_address": "0x1001b9ed4",
+              "selector": "containsObject:"
+            }
+          ]
+        },
+        {
+          "address": "0x1000f648c",
+          "end": "0x1000f655c",
+          "sha256": "74ff04832c8feccba5917fa06f7941a77075de94c24b75feb906bd153f73fc91",
+          "symbols": [
+            "_acc_manager2_publishConnection"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000f648c.bin"
+          ],
+          "selector_calls": []
+        },
+        {
+          "address": "0x10018f9a8",
+          "end": "0x10018f9f4",
+          "sha256": "097bbd15a0537541da72ad569fbaa1beb333a82260be30b4a3897ab096252951",
+          "symbols": [
+            "___acc_manager2_publishConnection_block_invoke"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10018f9a8.bin"
+          ],
+          "selector_calls": []
+        }
+      ],
+      "observations": [
+        {
+          "query": "acc_mach",
+          "address": "0x100222738",
+          "string_address": "0x1001cbcf2",
+          "string": "com.apple.accessories.transport-server"
+        },
+        {
+          "query": "acc_class",
+          "slot": "0x10023b7e0",
+          "raw": "88132300f8610d80",
+          "target": "0x100231388",
+          "symbols": [
+            "__OBJC_CLASS_RO_$_ACCTransportServerRemote",
+            "__OBJC_CLASS_RO_$_ACCTransportServerRemote"
+          ]
+        },
+        {
+          "query": "acc_class",
+          "slot": "0x100238328",
+          "raw": "06281c0000000800",
+          "target": "0x1001c2806",
+          "symbols": [],
+          "string": "initWithServiceName:notification:"
+        },
+        {
+          "query": "acc_proto_slots",
+          "slot": "0x100229b50",
+          "raw": "b8cc230000000800",
+          "target": "0x10023ccb8",
+          "symbols": [
+            "__OBJC_PROTOCOL_$_ACCTransportXPCServerProtocol"
+          ],
+          "string": ""
+        },
+        {
+          "query": "acc_proto_slots",
+          "slot": "0x100229b58",
+          "raw": "18cd230000000800",
+          "target": "0x10023cd18",
+          "symbols": [
+            "__OBJC_PROTOCOL_$_ACCTransportXPCClientProtocol"
+          ],
+          "string": ""
+        },
+        {
+          "query": "acc_proto_names",
+          "slot": "0x10023ccc0",
+          "raw": "8c731b0000000800",
+          "target": "0x1001b738c",
+          "symbols": [],
+          "string": "ACCTransportXPCServerProtocol"
+        },
+        {
+          "query": "acc_proto_names",
+          "slot": "0x10023cd20",
+          "raw": "aa731b0000000800",
+          "target": "0x1001b73aa",
+          "symbols": [],
+          "string": "ACCTransportXPCClientProtocol"
+        }
+      ]
+    },
+    {
+      "component": "bluetoothd",
+      "source": "/mnt/d/carvex-research/firmware/extracted/24A446/components/24A446__iPhone18,1/root/usr/sbin/bluetoothd",
+      "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+      "functions": [
+        {
+          "address": "0x1000bf330",
+          "end": "0x1000bf350",
+          "sha256": "2220a39f7aab79e4f00392fd0451ae538ab296f1bcd004f98ac285647a944cdd",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1007a5628",
+          "end": "0x1007a5690",
+          "sha256": "f5ad50d5cb08820f95d56a4ae3b1c4050eb94ff9150efdd1e4f1971f2e0c77c3",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1007a4934",
+          "end": "0x1007a49b8",
+          "sha256": "b3f7ed7e79e99e8143d3515f0a5fdb4b77b47a806764c0eb033146983ae73050",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1007a4c04",
+          "end": "0x1007a4cbc",
+          "sha256": "2aa7772432f4a24dab9dbd52465898bf84668cbd22a6691f306a625b6679a52d",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1007a4d78",
+          "end": "0x1007a4e4c",
+          "sha256": "3da8807d194a8fa1d864ebcc36a62fb4def5d7fb111c840fe80fa52fe844b125",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1007a5a78",
+          "end": "0x1007a5ae0",
+          "sha256": "2ab7f923cb2623c31f2e71c281a36a82fcce14a74a8e36b1f0328bcd0af94986",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1006bb6b8",
+          "end": "0x1006bb6bc",
+          "sha256": "6b7f3c4134959751c24603b4154becc8cbf26d32775f498ec0820dbb3b0cefa3",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1006bb62c",
+          "end": "0x1006bb6b8",
+          "sha256": "4f9c122683116389b083495280b4279e844de8d99e70e0af1686258572287af8",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1006bc160",
+          "end": "0x1006bc204",
+          "sha256": "26783418b4290b359996c032833b88e723ef2b0fdc6f2fc93ff28d3758cd2cdd",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1005ec9a8",
+          "end": "0x1005ec9bc",
+          "sha256": "f31daa2c7aa6a507a7392185d85cac72f2668c6b7ac56ecd00468df71b5506fd",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1005e08bc",
+          "end": "0x1005e0944",
+          "sha256": "1d1a9e626c59b3d4609aff99908ccdec2cd7c3f34e10907639f7316658e3dea6",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1006ad698",
+          "end": "0x1006ad72c",
+          "sha256": "e98753a735974a8a102b92a0fcf9d87fbf23624cfb427ac4eb484f36ea04d701",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1007a49b8",
+          "end": "0x1007a4a68",
+          "sha256": "b579a34164d96c85ed52276bc2ea3b978619e8b17aa5a4cd6ef7f4605412c4b5",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1007a4cbc",
+          "end": "0x1007a4d78",
+          "sha256": "f39648313b3a61d8cf9b2603f07d2588eabfe77b49c0c1533fbbfe6bfa9d9661",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": []
+        },
+        {
+          "address": "0x1007a4a68",
+          "end": "0x1007a4c04",
+          "sha256": "9db0e4ae3159b9568fd39d49683fd51e862ca328e7ac1369c2fc0ed95a362d71",
+          "symbols": [],
+          "cache_matches": [],
+          "selector_calls": [
+            {
+              "site": "0x1007a4b14",
+              "stub": "0x10091b300",
+              "selector_slot": "0x100c146a8",
+              "string_address": "0x100aa5bdf",
+              "selector": "numberWithUnsignedShort:"
+            },
+            {
+              "site": "0x1007a4b28",
+              "stub": "0x10091b3e0",
+              "selector_slot": "0x100c146e0",
+              "string_address": "0x100aa5c5d",
+              "selector": "objectForKeyedSubscript:"
+            },
+            {
+              "site": "0x1007a4b3c",
+              "stub": "0x100916580",
+              "selector_slot": "0x100c13348",
+              "string_address": "0x100aa18f5",
+              "selector": "endpointUUID"
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "query": "bt_pointers",
+          "slot": "0x100bca7e8",
+          "raw": "00000000e16a15c0",
+          "error": "external bind"
+        },
+        {
+          "query": "bt_pointers",
+          "slot": "0x100bca7f0",
+          "raw": "0000005000000000",
+          "error": "unmapped 0x150000000+1"
+        },
+        {
+          "query": "bt_pointers",
+          "slot": "0x100bca7f8",
+          "raw": "785a7a0000000980",
+          "target": "0x1007a5a78",
+          "symbols": []
+        },
+        {
+          "query": "bt_pointers",
+          "slot": "0x100bca800",
+          "raw": "80c8b90000001800",
+          "target": "0x100b9c880",
+          "symbols": [],
+          "string": ""
+        },
+        {
+          "query": "bt_pointers",
+          "slot": "0x100bca808",
+          "raw": "0000000000000000",
+          "target": "0x0",
+          "symbols": []
+        },
+        {
+          "query": "bt_key_import",
+          "address": "0x100bfc008",
+          "symbol": "_kCFACCProperties_Endpoint_Bluetooth_HIDFunction",
+          "indirect_index": 2682
+        },
+        {
+          "query": "bt_imports",
+          "address": "0x100909f70",
+          "symbol": "_acc_transportClient_setConnectionAuthStatusDidChangeHandler",
+          "indirect_index": 656
+        },
+        {
+          "query": "bt_imports",
+          "address": "0x100909f80",
+          "symbol": "_acc_transportClient_setEndpointPropertiesDidChangeHandler",
+          "indirect_index": 657
+        },
+        {
+          "query": "bt_imports",
+          "address": "0x100909f30",
+          "symbol": "_acc_transportClient_isConnectionAuthenticated",
+          "indirect_index": 652
+        },
+        {
+          "query": "bt_imports",
+          "address": "0x100908030",
+          "symbol": "_CFDictionaryGetValue",
+          "indirect_index": 156
+        },
+        {
+          "query": "bt_imports",
+          "address": "0x100908120",
+          "symbol": "_CFNumberGetValue",
+          "indirect_index": 171
+        },
+        {
+          "query": "bt_imports",
+          "address": "0x10090a520",
+          "symbol": "_dispatch_once",
+          "indirect_index": 747
+        },
+        {
+          "query": "bt_vtable",
+          "slot": "0x100bc27a0",
+          "raw": "60c16b0058030980",
+          "target": "0x1006bc160",
+          "symbols": []
+        },
+        {
+          "query": "bt_classname",
+          "address": "0x100a7096e",
+          "string_address": "0x100a7096e",
+          "string": "HidService"
+        },
+        {
+          "query": "bt_auth_block",
+          "slot": "0x100bca6b8",
+          "raw": "00000000e16a15c0",
+          "error": "external bind"
+        },
+        {
+          "query": "bt_auth_block",
+          "slot": "0x100bca6c0",
+          "raw": "0000005000000000",
+          "error": "unmapped 0x150000000+1"
+        },
+        {
+          "query": "bt_auth_block",
+          "slot": "0x100bca6c8",
+          "raw": "b8497a0000000980",
+          "target": "0x1007a49b8",
+          "symbols": []
+        },
+        {
+          "query": "bt_auth_block",
+          "slot": "0x100bca6d0",
+          "raw": "98a6bc0000001800",
+          "target": "0x100bca698",
+          "symbols": [],
+          "string": ""
+        }
+      ]
+    },
+    {
+      "component": "CoreAccessories",
+      "source": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/CoreAccessories/CoreAccessories",
+      "source_sha256": "91069cd7279bdb0f4d813ef432d8865482452861e69a943d240b2bc772e0cb20",
+      "functions": [
+        {
+          "address": "0x204400494",
+          "end": "0x204400860",
+          "sha256": "08dd20014a15337e6feb293798934c5e8b188739492aae33ae7386b2155c30eb",
+          "symbols": [
+            "-[ACCTransportClient serverConnection]"
+          ],
+          "cache_matches": [],
+          "original_cache_matches": true,
+          "selector_calls": [
+            {
+              "site": "0x20440065c",
+              "stub": "0x208020cd0",
+              "stub_hex": "c1fff69021081891ca7eff17",
+              "string_address": "0x1f6018602",
+              "selector": "initWithMachServiceName:options:"
+            },
+            {
+              "site": "0x204400674",
+              "stub": "0x2080210e0",
+              "stub_hex": "2117f7b021683491c67dff17",
+              "string_address": "0x1f6306d1a",
+              "selector": "interfaceWithProtocol:"
+            },
+            {
+              "site": "0x204400688",
+              "stub": "0x208022bd0",
+              "stub_hex": "81a2f69021e43c910a77ff17",
+              "string_address": "0x1f5472f39",
+              "selector": "setRemoteObjectInterface:"
+            },
+            {
+              "site": "0x20440069c",
+              "stub": "0x2080210e0",
+              "stub_hex": "2117f7b021683491c67dff17",
+              "string_address": "0x1f6306d1a",
+              "selector": "interfaceWithProtocol:"
+            },
+            {
+              "site": "0x2044006b0",
+              "stub": "0x208022680",
+              "stub_hex": "81eaf6d021c02c915e78ff17",
+              "string_address": "0x1f5d74b30",
+              "selector": "setExportedInterface:"
+            },
+            {
+              "site": "0x2044006c0",
+              "stub": "0x208022690",
+              "stub_hex": "01d0f6b021c022915a78ff17",
+              "string_address": "0x1f5a238b0",
+              "selector": "setExportedObject:"
+            },
+            {
+              "site": "0x204400730",
+              "stub": "0x208022810",
+              "stub_hex": "81dbf69021c02691fa77ff17",
+              "string_address": "0x1f5b929b0",
+              "selector": "setInvalidationHandler:"
+            },
+            {
+              "site": "0x204400784",
+              "stub": "0x20803d050",
+              "stub_hex": "e1bbf6d021c03691ea0dff17",
+              "string_address": "0x1f57bbdb0",
+              "selector": "setInterruptionHandler:"
+            },
+            {
+              "site": "0x2044007c4",
+              "stub": "0x2080134f0",
+              "stub_hex": "8105f7d021c00691c2b4ff17",
+              "string_address": "0x1f60c51b0",
+              "selector": "resume"
+            }
+          ]
+        },
+        {
+          "address": "0x204415740",
+          "end": "0x204415864",
+          "sha256": "f16371a1bc284addacd589ed1d814291a3d8d0fa4212934b29b42555b9320c75",
+          "symbols": [
+            "_acc_transportClient_createEndpoint"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/CoreAccessories/8dd349d129d1e4c5d4ef/functions/f_204415740.bin"
+          ],
+          "original_cache_matches": true,
+          "selector_calls": [
+            {
+              "site": "0x2044157e0",
+              "stub": "0x20806c1f0",
+              "stub_hex": "41a2f7d021c415918251fe17",
+              "string_address": "0x1f74b6571",
+              "selector": "sharedBridge"
+            },
+            {
+              "site": "0x2044157ec",
+              "stub": "0x20806c2b0",
+              "stub_hex": "41a2f790217029915251fe17",
+              "string_address": "0x1f74b4a5c",
+              "selector": "transportClient"
+            },
+            {
+              "site": "0x204415810",
+              "stub": "0x20806b980",
+              "stub_hex": "41a2f7d0217016919e53fe17",
+              "string_address": "0x1f74b559c",
+              "selector": "createEndpointWithTransportType:andProtocol:andIdentifier:andDataOutHandler:forConnectionWithUUID:publishConnection:"
+            }
+          ]
+        },
+        {
+          "address": "0x20441b138",
+          "end": "0x20441b454",
+          "sha256": "1d694eae111e848c7196506d3c156b89189d73b72f8e4add7ba7586f5e342a6a",
+          "symbols": [
+            "-[ACCTransportClient createEndpointWithTransportType:andProtocol:andIdentifier:andDataOutHandler:forConnectionWithUUID:publishConnection:]"
+          ],
+          "cache_matches": [
+            "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/CoreAccessories/c105b6ff58c8aa60e5d4/functions/f_20441b138.bin"
+          ],
+          "original_cache_matches": true,
+          "selector_calls": [
+            {
+              "site": "0x20441b298",
+              "stub": "0x20806bf60",
+              "stub_hex": "e1c6f6b0215429912652fe17",
+              "string_address": "0x1f5948a55",
+              "selector": "serverConnection"
+            },
+            {
+              "site": "0x20441b2b4",
+              "stub": "0x2080233c0",
+              "stub_hex": "0111f7f021c03a910e75ff17",
+              "string_address": "0x1f6246eb0",
+              "selector": "synchronousRemoteObjectProxyWithErrorHandler:"
+            },
+            {
+              "site": "0x20441b328",
+              "stub": "0x20806b9a0",
+              "stub_hex": "41a2f7d021501b919653fe17",
+              "string_address": "0x1f74b56d4",
+              "selector": "createEndpointWithTransportType:andProtocol:andIdentifier:forConnectionWithUUID:withReply:"
+            },
+            {
+              "site": "0x20441b33c",
+              "stub": "0x20806ba60",
+              "stub_hex": "41a2f7d0217c20916653fe17",
+              "string_address": "0x1f74b581f",
+              "selector": "endpointDataOutHandlers"
+            },
+            {
+              "site": "0x20441b360",
+              "stub": "0x20806ba60",
+              "stub_hex": "41a2f7d0217c20916653fe17",
+              "string_address": "0x1f74b581f",
+              "selector": "endpointDataOutHandlers"
+            },
+            {
+              "site": "0x20441b388",
+              "stub": "0x208016930",
+              "stub_hex": "a1f4f6f021c01a91b2a7ff17",
+              "string_address": "0x1f5ead6b0",
+              "selector": "setObject:forKey:"
+            },
+            {
+              "site": "0x20441b3b8",
+              "stub": "0x20806be30",
+              "stub_hex": "41a2f7d021dc3b917252fe17",
+              "string_address": "0x1f74b5ef7",
+              "selector": "publishConnectionWithUUID:"
+            }
+          ]
+        },
+        {
+          "address": "0x20441b4e8",
+          "end": "0x20441b5e4",
+          "sha256": "02deeda31a42727ede4077c71bca1ee8d58375652603ef76a7578a78e4449e31",
+          "symbols": [
+            "___138-[ACCTransportClient createEndpointWithTransportType:andProtocol:andIdentifier:andDataOutHandler:forConnectionWithUUID:publishConnection:]_block_invoke.151"
+          ],
+          "cache_matches": [],
+          "original_cache_matches": true,
+          "selector_calls": []
+        },
+        {
+          "address": "0x20441d540",
+          "end": "0x20441d6f0",
+          "sha256": "06c5fa90463ee7c7eefe2f48b8da7ea7a3ec10e5180a7948b969d3eb33d35981",
+          "symbols": [
+            "-[ACCTransportClient publishConnectionWithUUID:]"
+          ],
+          "cache_matches": [],
+          "original_cache_matches": true,
+          "selector_calls": [
+            {
+              "site": "0x20441d608",
+              "stub": "0x20806bf60",
+              "stub_hex": "e1c6f6b0215429912652fe17",
+              "string_address": "0x1f5948a55",
+              "selector": "serverConnection"
+            },
+            {
+              "site": "0x20441d624",
+              "stub": "0x2080233c0",
+              "stub_hex": "0111f7f021c03a910e75ff17",
+              "string_address": "0x1f6246eb0",
+              "selector": "synchronousRemoteObjectProxyWithErrorHandler:"
+            },
+            {
+              "site": "0x20441d68c",
+              "stub": "0x20806be40",
+              "stub_hex": "41a2f7d021483c916e52fe17",
+              "string_address": "0x1f74b5f12",
+              "selector": "publishConnectionWithUUID:withReply:"
+            }
+          ]
+        },
+        {
+          "address": "0x20441520c",
+          "end": "0x2044152d8",
+          "sha256": "115ca7edcf57fcd5ed2d38882b08a0a2257a0e56301029f9e3a99e4e19b8078d",
+          "symbols": [
+            "-[ACCTransportClientBridge transportClient:propertiesDidChange:forEndpointWithUUID:previousProperties:connectionUUID:]"
+          ],
+          "cache_matches": [],
+          "original_cache_matches": true,
+          "selector_calls": [
+            {
+              "site": "0x20441525c",
+              "stub": "0x20806ba80",
+              "stub_hex": "41a2f7d021f021915e53fe17",
+              "string_address": "0x1f74b587c",
+              "selector": "endpointPropertiesChangedHandler"
+            },
+            {
+              "site": "0x204415274",
+              "stub": "0x20806ba80",
+              "stub_hex": "41a2f7d021f021915e53fe17",
+              "string_address": "0x1f74b587c",
+              "selector": "endpointPropertiesChangedHandler"
+            }
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "query": "core_proto_refs",
+          "slot": "0x26827f270",
+          "raw": "184dd26600001000",
+          "target": "0x1e6d24d18",
+          "symbols": []
+        },
+        {
+          "query": "core_proto_refs",
+          "slot": "0x26827f278",
+          "raw": "784dd26600001000",
+          "target": "0x1e6d24d78",
+          "symbols": []
+        },
+        {
+          "query": "core_mach",
+          "address": "0x27207ebc0",
+          "string_address": "0x20442a8ab",
+          "string": "com.apple.accessories.transport-server"
+        },
+        {
+          "query": "core_protonames",
+          "slot": "0x1e6d24d20",
+          "raw": "eb51397b00001000",
+          "target": "0x1fb3951eb",
+          "symbols": [],
+          "string": "ACCTransportXPCServerProtocol"
+        },
+        {
+          "query": "core_protonames",
+          "slot": "0x1e6d24d80",
+          "raw": "0952397b00001000",
+          "target": "0x1fb395209",
+          "symbols": [],
+          "string": "ACCTransportXPCClientProtocol"
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "XPC-01",
+      "status": "CLOSED-STATIC",
+      "claim": "Same transport-server Mach service, server/client NSXPC protocols and exported ACCTransportServerRemote object identified; protocol argument preserved on successful endpoint creation path.",
+      "limits": "Conditional on XPC acceptance/connection ownership and successful object creation; no Apple runtime/XPC wire execution."
+    },
+    {
+      "id": "PUB-01",
+      "status": "PARTIAL",
+      "claim": "Connection publication invokes endpoint publication; protocol0 bypasses known-protocol publish dispatch, then posts analytics/connection-info notifications.",
+      "limits": "Notification receivers and policy/restricted-mode effects not exhaustively audited; not proof that all upper-level timers are absent."
+    },
+    {
+      "id": "HID-01",
+      "status": "CLOSED-STATIC",
+      "claim": "BT endpoint-properties handler reads Bluetooth_HIDFunction and calls HidService vtable+0xf0 -> 0x1006bc160; authenticated guard plus previous/current-property presence gates verified.",
+      "limits": "UUID x4 is connectionUUID, not endpointUUID. Downstream conditional virtual notification at 0x1006ad6fc remains unresolved; no global no-timer conclusion."
+    },
+    {
+      "id": "AUTH-01",
+      "status": "CLOSED-STATIC",
+      "claim": "Parallel connection-auth-status callback also gets endpoint HIDFunction property and calls same HidService virtual target, carrying auth status.",
+      "limits": "Authentication producer/lifecycle and all side effects not closed."
+    },
+    {
+      "id": "ERRATA-75",
+      "status": "CLOSED-STATIC",
+      "claim": "0x1000d4ee0 folds 0x54->1, 0x55->2, other->0x80000000 with OR; duplicates alone do not invalidate a complete 54/55 pair.",
+      "limits": "Feature validator only. Entire SYN still subject to independent count/length/session checks. Existing production size==2 condition is stricter; not changed in this audit."
+    }
+  ],
+  "phone_read_only_check": {
+    "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/IapLink.kt",
+    "sha256": "f5960f4672d34e0a40b050ccb888fc9908b5936d778f9187df22c3a2693830df",
+    "line": 176,
+    "current_condition": "featureList.isEmpty() || (featureList.size == 2 && featureSet == setOf(0x54, 0x55))",
+    "production_changed": false
+  },
+  "feature_mask_examples": [
+    {
+      "bytes": [],
+      "mask": "0",
+      "valid": true
+    },
+    {
+      "bytes": [
+        "54",
+        "55"
+      ],
+      "mask": "3",
+      "valid": true
+    },
+    {
+      "bytes": [
+        "54",
+        "54",
+        "55"
+      ],
+      "mask": "3",
+      "valid": true
+    },
+    {
+      "bytes": [
+        "55",
+        "54",
+        "55"
+      ],
+      "mask": "3",
+      "valid": true
+    },
+    {
+      "bytes": [
+        "54",
+        "54"
+      ],
+      "mask": "1",
+      "valid": false
+    },
+    {
+      "bytes": [
+        "54",
+        "55",
+        "56"
+      ],
+      "mask": "80000003",
+      "valid": false
+    }
+  ],
+  "example_basis": "Manual derivation from original assembly; not firmware execution or a new production test.",
+  "excerpts": [
+    {
+      "component": "accessoryd",
+      "address": "0x10007e82c",
+      "assembly": [
+        "0x10007e850: f50306aa mov x21, x6",
+        "0x10007e854: f40305aa mov x20, x5",
+        "0x10007e858: f70303aa mov x23, x3",
+        "0x10007e85c: f80302aa mov x24, x2",
+        "0x10007e860: f90300aa mov x25, x0",
+        "0x10007e864: bb8f0494 bl #0x1001a2750",
+        "0x10007e868: f30300aa mov x19, x0",
+        "0x10007e86c: 918f0494 bl #0x1001a26b0",
+        "0x10007e870: f40300aa mov x20, x0",
+        "0x10007e874: 938f0494 bl #0x1001a26c0",
+        "0x10007e878: f50300aa mov x21, x0",
+        "0x10007e87c: e00319aa mov x0, x25",
+        "0x10007e880: 189b0494 bl #0x1001a54e0",
+        "0x10007e884: 038f0494 bl #0x1001a2490",
+        "0x10007e888: f60300aa mov x22, x0",
+        "0x10007e88c: 359c0494 bl #0x1001a5960",
+        "0x10007e890: 008f0494 bl #0x1001a2490",
+        "0x10007e894: fa0300aa mov x26, x0",
+        "0x10007e898: e20314aa mov x2, x20",
+        "0x10007e89c: 499c0494 bl #0x1001a59c0",
+        "0x10007e8a0: fb0300aa mov x27, x0",
+        "0x10007e8a4: 4f8f0494 bl #0x1001a25e0",
+        "0x10007e8a8: 3e8f0494 bl #0x1001a25a0",
+        "0x10007e8ac: 1b020036 tbz w27, #0, #0x10007e8ec",
+        "0x10007e8b0: e00314aa mov x0, x20",
+        "0x10007e8b4: e10318aa mov x1, x24",
+        "0x10007e8b8: e20317aa mov x2, x23",
+        "0x10007e8bc: e30313aa mov x3, x19",
+        "0x10007e8c0: 61de0194 bl #0x1000f6244"
+      ]
+    },
+    {
+      "component": "accessoryd",
+      "address": "0x10019288c",
+      "assembly": [
+        "0x1001928b0: e01800b4 cbz x0, #0x100192bcc",
+        "0x1001928b4: f60303aa mov x22, x3",
+        "0x1001928b8: f50302aa mov x21, x2",
+        "0x1001928bc: f70301aa mov x23, x1",
+        "0x1001928c0: 6910fa97 bl #0x100016a64",
+        "0x1001928c4: 0f3e0094 bl #0x1001a2100",
+        "0x1001928c8: 130080d2 mov x19, #0",
+        "0x1001928cc: bf4a0071 cmp w21, #0x12",
+        "0x1001928d0: e29a517a ccmp w23, #0x11, #2, ls",
+        "0x1001928d4: e8170054 b.hi #0x100192bd0",
+        "0x1001928d8: 880240f9 ldr x8, [x20]",
+        "0x1001928dc: a81700b4 cbz x8, #0x100192bd0",
+        "0x1001928e0: 1fe5f997 bl #0x10000bd5c",
+        "0x1001928e4: 401700b4 cbz x0, #0x100192bcc",
+        "0x1001929b8: e00314aa mov x0, x20",
+        "0x1001929bc: e10313aa mov x1, x19",
+        "0x1001929c0: e20317aa mov x2, x23",
+        "0x1001929c4: e30315aa mov x3, x21",
+        "0x1001929c8: e40316aa mov x4, x22",
+        "0x1001929cc: e8dfff97 bl #0x10018a96c"
+      ]
+    },
+    {
+      "component": "accessoryd",
+      "address": "0x1000d4ee0",
+      "assembly": [
+        "0x1000d4ee0: 09604039 ldrb w9, [x0, #0x18]",
+        "0x1000d4ee4: 490200b4 cbz x9, #0x1000d4f2c",
+        "0x1000d4ee8: 0a0080d2 mov x10, #0",
+        "0x1000d4eec: 08008052 mov w8, #0",
+        "0x1000d4ef0: 0b640091 add x11, x0, #0x19",
+        "0x1000d4ef4: 0c00b052 mov w12, #-0x80000000",
+        "0x1000d4ef8: 4d008052 mov w13, #2",
+        "0x1000d4efc: 6e696a38 ldrb w14, [x11, x10]",
+        "0x1000d4f00: df550171 cmp w14, #0x55",
+        "0x1000d4f04: af018c1a csel w15, w13, w12, eq",
+        "0x1000d4f08: df510171 cmp w14, #0x54",
+        "0x1000d4f0c: ee159f1a csinc w14, w15, wzr, ne",
+        "0x1000d4f10: c801082a orr w8, w14, w8",
+        "0x1000d4f14: 4a050091 add x10, x10, #1",
+        "0x1000d4f18: 290500f1 subs x9, x9, #1",
+        "0x1000d4f1c: 01ffff54 b.ne #0x1000d4efc",
+        "0x1000d4f20: 8800f836 tbz w8, #0x1f, #0x1000d4f30",
+        "0x1000d4f24: 00008052 mov w0, #0",
+        "0x1000d4f28: c0035fd6 ret ",
+        "0x1000d4f2c: 08008052 mov w8, #0",
+        "0x1000d4f30: 08050072 ands w8, w8, #3",
+        "0x1000d4f34: e9179f1a cset w9, eq",
+        "0x1000d4f38: 1f0d0071 cmp w8, #3",
+        "0x1000d4f3c: 20159f1a csinc w0, w9, wzr, ne",
+        "0x1000d4f40: c0035fd6 ret "
+      ]
+    },
+    {
+      "component": "accessoryd",
+      "address": "0x10018bdcc",
+      "assembly": [
+        "0x10018bdf4: f30300aa mov x19, x0",
+        "0x10018bdf8: 1b644139 ldrb w27, [x0, #0x59]",
+        "0x10018bdfc: 5c010090 adrp x28, #0x1001b3000",
+        "0x10018be00: db080036 tbz w27, #0, #0x10018bf18",
+        "0x10018be04: 681e40b9 ldr w8, [x19, #0x1c]",
+        "0x10018be08: 101d0051 sub w16, w8, #7",
+        "0x10018be0c: 1f2e0071 cmp w16, #0xb",
+        "0x10018be10: 48050054 b.hi #0x10018beb8",
+        "0x10018be14: 1f2e00f1 cmp x16, #0xb",
+        "0x10018be18: 10929f9a csel x16, x16, xzr, ls",
+        "0x10018be1c: 71f4ffd0 adrp x17, #0x100019000",
+        "0x10018be20: 31720091 add x17, x17, #0x1c",
+        "0x10018be24: 307ab0b8 ldrsw x16, [x17, x16, lsl #2]",
+        "0x10018be28: 11000010 adr x17, #0x10018be28",
+        "0x10018be2c: 3002108b add x16, x17, x16",
+        "0x10018be30: 00021fd6 br x16",
+        "0x10018be34: 601e40f9 ldr x0, [x19, #0x38]",
+        "0x10018bed0: 681e40b9 ldr w8, [x19, #0x1c]",
+        "0x10018bed4: 1f150071 cmp w8, #5",
+        "0x10018bed8: 810b0054 b.ne #0x10018c048",
+        "0x10018bedc: 600240f9 ldr x0, [x19]",
+        "0x10018bee0: 400b00b4 cbz x0, #0x10018c048",
+        "0x10018bee4: 080840b9 ldr w8, [x0, #8]",
+        "0x10018bee8: 1f190071 cmp w8, #6",
+        "0x10018beec: e10a0054 b.ne #0x10018c048",
+        "0x10018c754: 680240f9 ldr x8, [x19]",
+        "0x10018c758: 680300b4 cbz x8, #0x10018c7c4",
+        "0x10018c75c: e00313aa mov x0, x19",
+        "0x10018c760: 56000094 bl #0x10018c8b8",
+        "0x10018c764: 4b570094 bl #0x1001a2490",
+        "0x10018c768: 74d640a9 ldp x20, x21, [x19, #8]",
+        "0x10018c76c: 51f4f997 bl #0x1000098b0",
+        "0x10018c770: 803f40fd ldr d0, [x28, #0x78]",
+        "0x10018c774: e01f00fd str d0, [sp, #0x38]",
+        "0x10018c778: 08410091 add x8, x8, #0x10",
+        "0x10018c77c: 50fbffb0 adrp x16, #0x1000f5000",
+        "0x10018c780: 10523c91 add x16, x16, #0xf14",
+        "0x10018c784: 1001c1da pacia x16, x8",
+        "0x10018c788: a8040090 adrp x8, #0x100220000",
+        "0x10018c78c: 08e13391 add x8, x8, #0xcf8",
+        "0x10018c790: f02304a9 stp x16, x8, [sp, #0x40]",
+        "0x10018c794: 600e40fd ldr d0, [x19, #0x18]",
+        "0x10018c798: e02f00fd str d0, [sp, #0x58]",
+        "0x10018c79c: e02b00f9 str x0, [sp, #0x50]",
+        "0x10018c7a0: a4570094 bl #0x1001a2630",
+        "0x10018c7a4: f60300aa mov x22, x0",
+        "0x10018c7a8: e2c30091 add x2, sp, #0x30",
+        "0x10018c7ac: e00314aa mov x0, x20",
+        "0x10018c7b0: e10315aa mov x1, x21",
+        "0x10018c7b4: c894fa97 bl #0x100031ad4",
+        "0x10018c7b8: e82b40f9 ldr x8, [sp, #0x50]",
+        "0x10018c7bc: 95570094 bl #0x1001a2610",
+        "0x10018c7c0: 78570094 bl #0x1001a25a0",
+        "0x10018c7c4: 3e28fa97 bl #0x1000168bc",
+        "0x10018c7c8: c1000054 b.ne #0x10018c7e0",
+        "0x10018c7cc: 610a40f9 ldr x1, [x19, #0x10]",
+        "0x10018c7d0: a2040090 adrp x2, #0x100220000",
+        "0x10018c7d4: 42202f91 add x2, x2, #0xbc8",
+        "0x10018c7d8: 000080d2 mov x0, #0",
+        "0x10018c7dc: be94fa97 bl #0x100031ad4",
+        "0x10018c7e0: e00313aa mov x0, x19",
+        "0x10018c7e4: 9dfbff97 bl #0x10018b658"
+      ]
+    },
+    {
+      "component": "accessoryd",
+      "address": "0x10018a96c",
+      "assembly": [
+        "0x10018ac24: 9f620139 strb wzr, [x20, #0x58]",
+        "0x10018ac28: 9f420239 strb wzr, [x20, #0x90]",
+        "0x10018ac2c: 930200f9 str x19, [x20]",
+        "0x10018ac30: 610240f9 ldr x1, [x19]",
+        "0x10018ac34: c10000b5 cbnz x1, #0x10018ac4c",
+        "0x10018ac38: 000080d2 mov x0, #0",
+        "0x10018ac3c: b9050090 adrp x25, #0x10023e000",
+        "0x10018ac40: 1a0500b0 adrp x26, #0x10022b000",
+        "0x10018ac44: 5a7346f9 ldr x26, [x26, #0xce0]",
+        "0x10018ac48: 06000014 b #0x10018ac60",
+        "0x10018ac4c: 1a0500b0 adrp x26, #0x10022b000",
+        "0x10018ac50: 5a7346f9 ldr x26, [x26, #0xce0]",
+        "0x10018ac54: 400340f9 ldr x0, [x26]",
+        "0x10018ac58: 3a5b0094 bl #0x1001a1940",
+        "0x10018ac5c: b9050090 adrp x25, #0x10023e000",
+        "0x10018ac60: 800600f9 str x0, [x20, #8]",
+        "0x10018ac64: 985e0329 stp w24, w23, [x20, #0x18]",
+        "0x10018ac68: 760000b5 cbnz x22, #0x10018ac74",
+        "0x10018ac6c: 000080d2 mov x0, #0",
+        "0x10018ac70: 03000014 b #0x10018ac7c",
+        "0x10018ac74: e00316aa mov x0, x22",
+        "0x10018ac78: ee5a0094 bl #0x1001a1830",
+        "0x10018ac7c: b80500b0 adrp x24, #0x10023f000",
+        "0x10018ac80: 801200f9 str x0, [x20, #0x20]",
+        "0x10018ac84: c524fa97 bl #0x100013f98",
+        "0x10018ac88: 801600f9 str x0, [x20, #0x28]",
+        "0x10018ac8c: 950a00f9 str x21, [x20, #0x10]",
+        "0x10018ac90: 9f3a00f9 str xzr, [x20, #0x70]",
+        "0x10018ac94: 00e4006f movi v0.2d, #0000000000000000",
+        "0x10018ac98: 808201ad stp q0, q0, [x20, #0x30]",
+        "0x10018ac9c: 400340f9 ldr x0, [x26]",
+        "0x10018aca0: 851afa97 bl #0x1000116b4",
+        "0x10018aca4: 010080d2 mov x1, #0",
+        "0x10018aca8: 625a0094 bl #0x1001a1630",
+        "0x10018acac: 802a00f9 str x0, [x20, #0x50]",
+        "0x10018acb0: 80620291 add x0, x20, #0x98",
+        "0x10018acb4: 010080d2 mov x1, #0",
+        "0x10018acb8: 0a5f0094 bl #0x1001a28e0",
+        "0x10018acbc: 881e40b9 ldr w8, [x20, #0x1c]",
+        "0x10018acc0: c8000034 cbz w8, #0x10018acd8",
+        "0x10018acc4: 880240f9 ldr x8, [x20]",
+        "0x10018acc8: 014940f9 ldr x1, [x8, #0x90]",
+        "0x10018accc: e00314aa mov x0, x20",
+        "0x10018acd0: 08bdff97 bl #0x10017a0f0",
+        "0x10018acd4: 00160036 tbz w0, #0, #0x10018af94",
+        "0x10018acd8: 810a40f9 ldr x1, [x20, #0x10]",
+        "0x10018ad00: 9f460239 strb wzr, [x20, #0x91]",
+        "0x10018ad04: 801a40b9 ldr w0, [x20, #0x18]",
+        "0x10018ad08: 610a40b9 ldr w1, [x19, #8]",
+        "0x10018ad0c: 7c60fd97 bl #0x1000e2efc",
+        "0x10018ad10: f50300aa mov x21, x0",
+        "0x10018ad14: e00314aa mov x0, x20",
+        "0x10018ad18: 38020094 bl #0x10018b5f8",
+        "0x10018adc8: f6000034 cbz w22, #0x10018ade4",
+        "0x10018adcc: 081745f9 ldr x8, [x24, #0xa28]",
+        "0x10018add0: 480100b4 cbz x8, #0x10018adf8",
+        "0x10018add4: 492ffa97 bl #0x100016af8",
+        "0x10018add8: 0b010054 b.lt #0x10018adf8",
+        "0x10018addc: 084540f9 ldr x8, [x8, #0x88]",
+        "0x10018ade0: 09000014 b #0x10018ae04",
+        "0x10018ade4: 95030034 cbz w21, #0x10018ae54",
+        "0x10018ade8: 28008052 mov w8, #1",
+        "0x10018adec: 88460239 strb w8, [x20, #0x91]",
+        "0x10018adf0: 7aa7fd97 bl #0x1000f4bd8",
+        "0x10018adf4: 18000014 b #0x10018ae54"
+      ]
+    },
+    {
+      "component": "bluetoothd",
+      "address": "0x1007a5628",
+      "assembly": [
+        "0x1007a5628: 200300b4 cbz x0, #0x1007a568c",
+        "0x1007a562c: 7f2303d5 pacibsp ",
+        "0x1007a5630: ffc300d1 sub sp, sp, #0x30",
+        "0x1007a5634: f44f01a9 stp x20, x19, [sp, #0x10]",
+        "0x1007a5638: fd7b02a9 stp x29, x30, [sp, #0x20]",
+        "0x1007a563c: fd830091 add x29, sp, #0x20",
+        "0x1007a5640: f30301aa mov x19, x1",
+        "0x1007a5644: a82200f0 adrp x8, #0x100bfc000",
+        "0x1007a5648: 080540f9 ldr x8, [x8, #8]",
+        "0x1007a564c: 010140f9 ldr x1, [x8]",
+        "0x1007a5650: 788a0594 bl #0x100908030",
+        "0x1007a5654: ff0f00b9 str wzr, [sp, #0xc]",
+        "0x1007a5658: 200100b4 cbz x0, #0x1007a567c",
+        "0x1007a565c: e2330091 add x2, sp, #0xc",
+        "0x1007a5660: 21018052 mov w1, #9",
+        "0x1007a5664: af8a0594 bl #0x100908120",
+        "0x1007a5668: a0000034 cbz w0, #0x1007a567c",
+        "0x1007a566c: 730000b4 cbz x19, #0x1007a5678",
+        "0x1007a5670: e80f40b9 ldr w8, [sp, #0xc]",
+        "0x1007a5674: 68020039 strb w8, [x19]",
+        "0x1007a5678: 20008052 mov w0, #1",
+        "0x1007a567c: fd7b42a9 ldp x29, x30, [sp, #0x20]",
+        "0x1007a5680: f44f41a9 ldp x20, x19, [sp, #0x10]",
+        "0x1007a5684: ffc30091 add sp, sp, #0x30",
+        "0x1007a5688: ff2303d5 autibsp ",
+        "0x1007a568c: c0035fd6 ret "
+      ]
+    },
+    {
+      "component": "bluetoothd",
+      "address": "0x1007a4d78",
+      "assembly": [
+        "0x1007a4d78: 7f2303d5 pacibsp ",
+        "0x1007a4d7c: ff0301d1 sub sp, sp, #0x40",
+        "0x1007a4d80: f65701a9 stp x22, x21, [sp, #0x10]",
+        "0x1007a4d84: f44f02a9 stp x20, x19, [sp, #0x20]",
+        "0x1007a4d88: fd7b03a9 stp x29, x30, [sp, #0x30]",
+        "0x1007a4d8c: fdc30091 add x29, sp, #0x30",
+        "0x1007a4d90: f60304aa mov x22, x4",
+        "0x1007a4d94: f50303aa mov x21, x3",
+        "0x1007a4d98: f40302aa mov x20, x2",
+        "0x1007a4d9c: f30300aa mov x19, x0",
+        "0x1007a4da0: e10304aa mov x1, x4",
+        "0x1007a4da4: db010094 bl #0x1007a5510",
+        "0x1007a4da8: e10300aa mov x1, x0",
+        "0x1007a4dac: e00313aa mov x0, x19",
+        "0x1007a4db0: 2320fa97 bl #0x10062ce3c",
+        "0x1007a4db4: f40300b4 cbz x20, #0x1007a4e30",
+        "0x1007a4db8: f30300aa mov x19, x0",
+        "0x1007a4dbc: a00300b4 cbz x0, #0x1007a4e30",
+        "0x1007a4dc0: e00316aa mov x0, x22",
+        "0x1007a4dc4: 5b940594 bl #0x100909f30",
+        "0x1007a4dc8: 40030034 cbz w0, #0x1007a4e30",
+        "0x1007a4dcc: e00315aa mov x0, x21",
+        "0x1007a4dd0: 010080d2 mov x1, #0",
+        "0x1007a4dd4: 15020094 bl #0x1007a5628",
+        "0x1007a4dd8: c0020037 tbnz w0, #0, #0x1007a4e30",
+        "0x1007a4ddc: ff3f0039 strb wzr, [sp, #0xf]",
+        "0x1007a4de0: e13f0091 add x1, sp, #0xf",
+        "0x1007a4de4: e00314aa mov x0, x20",
+        "0x1007a4de8: 10020094 bl #0x1007a5628",
+        "0x1007a4dec: 20020034 cbz w0, #0x1007a4e30",
+        "0x1007a4df0: c82300f0 adrp x8, #0x100c1f000",
+        "0x1007a4df4: 083542f9 ldr x8, [x8, #0x468]",
+        "0x1007a4df8: 1f0500b1 cmn x8, #1",
+        "0x1007a4dfc: 41020054 b.ne #0x1007a4e44",
+        "0x1007a4e00: c82300f0 adrp x8, #0x100c1f000",
+        "0x1007a4e04: 003142f9 ldr x0, [x8, #0x460]",
+        "0x1007a4e08: e33f4039 ldrb w3, [sp, #0xf]",
+        "0x1007a4e0c: 100040f9 ldr x16, [x0]",
+        "0x1007a4e10: f10300aa mov x17, x0",
+        "0x1007a4e14: 71e8e5f2 movk x17, #0x2f43, lsl #48",
+        "0x1007a4e18: 301ac1da autda x16, x17",
+        "0x1007a4e1c: 080e4ff8 ldr x8, [x16, #0xf0]!",
+        "0x1007a4e20: e10313aa mov x1, x19",
+        "0x1007a4e24: 22008052 mov w2, #1",
+        "0x1007a4e28: 106be0f2 movk x16, #0x358, lsl #48",
+        "0x1007a4e2c: 10093fd7 blraa x8, x16",
+        "0x1007a4e30: fd7b43a9 ldp x29, x30, [sp, #0x30]",
+        "0x1007a4e34: f44f42a9 ldp x20, x19, [sp, #0x20]",
+        "0x1007a4e38: f65741a9 ldp x22, x21, [sp, #0x10]",
+        "0x1007a4e3c: ff030191 add sp, sp, #0x40",
+        "0x1007a4e40: ff0f5fd6 retab ",
+        "0x1007a4e44: 3e450594 bl #0x1008f633c",
+        "0x1007a4e48: eeffff17 b #0x1007a4e00"
+      ]
+    },
+    {
+      "component": "bluetoothd",
+      "address": "0x1006bb62c",
+      "assembly": [
+        "0x1006bb62c: 7f2303d5 pacibsp ",
+        "0x1006bb630: f44fbea9 stp x20, x19, [sp, #-0x20]!",
+        "0x1006bb634: fd7b01a9 stp x29, x30, [sp, #0x10]",
+        "0x1006bb638: fd430091 add x29, sp, #0x10",
+        "0x1006bb63c: f30300aa mov x19, x0",
+        "0x1006bb640: a11d00b0 adrp x1, #0x100a70000",
+        "0x1006bb644: 21b82591 add x1, x1, #0x96e",
+        "0x1006bb648: 02048052 mov w2, #0x20",
+        "0x1006bb64c: 31f8fd97 bl #0x100639710",
+        "0x1006bb650: 302800f0 adrp x16, #0x100bc2000",
+        "0x1006bb654: 10821a91 add x16, x16, #0x6a0",
+        "0x1006bb658: 10420091 add x16, x16, #0x10",
+        "0x1006bb65c: f10300aa mov x17, x0",
+        "0x1006bb660: 71e8e5f2 movk x17, #0x2f43, lsl #48",
+        "0x1006bb664: 300ac1da pacda x16, x17",
+        "0x1006bb668: 100000f9 str x16, [x0]",
+        "0x1006bb66c: 282b0090 adrp x8, #0x100c1f000",
+        "0x1006bb670: 089140f9 ldr x8, [x8, #0x120]",
+        "0x1006bb674: 1f0500b1 cmn x8, #1",
+        "0x1006bb678: 21010054 b.ne #0x1006bb69c",
+        "0x1006bb67c: 282b0090 adrp x8, #0x100c1f000",
+        "0x1006bb680: 018d40f9 ldr x1, [x8, #0x118]",
+        "0x1006bb684: e00313aa mov x0, x19",
+        "0x1006bb688: ecf8fd97 bl #0x100639a38",
+        "0x1006bb68c: e00313aa mov x0, x19",
+        "0x1006bb690: fd7b41a9 ldp x29, x30, [sp, #0x10]",
+        "0x1006bb694: f44fc2a8 ldp x20, x19, [sp], #0x20",
+        "0x1006bb698: ff0f5fd6 retab ",
+        "0x1006bb69c: fcb50894 bl #0x1008e8e8c",
+        "0x1006bb6a0: f7ffff17 b #0x1006bb67c",
+        "0x1006bb6a4: f40300aa mov x20, x0",
+        "0x1006bb6a8: e00313aa mov x0, x19",
+        "0x1006bb6ac: 61f8fd97 bl #0x100639830",
+        "0x1006bb6b0: e00314aa mov x0, x20",
+        "0x1006bb6b4: 33380994 bl #0x100909780"
+      ]
+    },
+    {
+      "component": "bluetoothd",
+      "address": "0x1006bc160",
+      "assembly": [
+        "0x1006bc160: 7f2303d5 pacibsp ",
+        "0x1006bc164: f44fbea9 stp x20, x19, [sp, #-0x20]!",
+        "0x1006bc168: fd7b01a9 stp x29, x30, [sp, #0x10]",
+        "0x1006bc16c: fd430091 add x29, sp, #0x10",
+        "0x1006bc170: f30301aa mov x19, x1",
+        "0x1006bc174: 5f000071 cmp w2, #0",
+        "0x1006bc178: e1079f1a cset w1, ne",
+        "0x1006bc17c: e00313aa mov x0, x19",
+        "0x1006bc180: e20303aa mov x2, x3",
+        "0x1006bc184: 09c2fc97 bl #0x1005ec9a8",
+        "0x1006bc188: e82a00f0 adrp x8, #0x100c1b000",
+        "0x1006bc18c: 08c944f9 ldr x8, [x8, #0x990]",
+        "0x1006bc190: 1f0500b1 cmn x8, #1",
+        "0x1006bc194: 01030054 b.ne #0x1006bc1f4",
+        "0x1006bc198: e82a00f0 adrp x8, #0x100c1b000",
+        "0x1006bc19c: 00c544f9 ldr x0, [x8, #0x988]",
+        "0x1006bc1a0: e10313aa mov x1, x19",
+        "0x1006bc1a4: 02048052 mov w2, #0x20",
+        "0x1006bc1a8: c591fc97 bl #0x1005e08bc",
+        "0x1006bc1ac: e0010034 cbz w0, #0x1006bc1e8",
+        "0x1006bc1b0: 082b00f0 adrp x8, #0x100c1f000",
+        "0x1006bc1b4: 089140f9 ldr x8, [x8, #0x120]",
+        "0x1006bc1b8: 1f0500b1 cmn x8, #1",
+        "0x1006bc1bc: 01020054 b.ne #0x1006bc1fc",
+        "0x1006bc1c0: 082b00f0 adrp x8, #0x100c1f000",
+        "0x1006bc1c4: 008d40f9 ldr x0, [x8, #0x118]",
+        "0x1006bc1c8: e10313aa mov x1, x19",
+        "0x1006bc1cc: fd7b41a9 ldp x29, x30, [sp, #0x10]",
+        "0x1006bc1d0: f44fc2a8 ldp x20, x19, [sp], #0x20",
+        "0x1006bc1d4: ff2303d5 autibsp ",
+        "0x1006bc1d8: d0071eca eor x16, x30, x30, lsl #1",
+        "0x1006bc1dc: 5000f0b6 tbz x16, #0x3e, #0x1006bc1e4",
+        "0x1006bc1e0: 208e38d4 brk #0xc471",
+        "0x1006bc1e4: 2dc5ff17 b #0x1006ad698",
+        "0x1006bc1e8: fd7b41a9 ldp x29, x30, [sp, #0x10]",
+        "0x1006bc1ec: f44fc2a8 ldp x20, x19, [sp], #0x20",
+        "0x1006bc1f0: ff0f5fd6 retab ",
+        "0x1006bc1f4: 56b30894 bl #0x1008e8f4c",
+        "0x1006bc1f8: e8ffff17 b #0x1006bc198",
+        "0x1006bc1fc: 24b30894 bl #0x1008e8e8c",
+        "0x1006bc200: f0ffff17 b #0x1006bc1c0"
+      ]
+    },
+    {
+      "component": "bluetoothd",
+      "address": "0x1005ec9a8",
+      "assembly": [
+        "0x1005ec9a8: 28008052 mov w8, #1",
+        "0x1005ec9ac: 086c1239 strb w8, [x0, #0x49b]",
+        "0x1005ec9b0: 01701239 strb w1, [x0, #0x49c]",
+        "0x1005ec9b4: 02901239 strb w2, [x0, #0x4a4]",
+        "0x1005ec9b8: c0035fd6 ret "
+      ]
+    },
+    {
+      "component": "CoreAccessories",
+      "address": "0x204400494",
+      "assembly": [
+        "0x204400644: e8e631f0 adrp x8, #0x2680df000",
+        "0x204400648: 003944f9 ldr x0, [x8, #0x870]",
+        "0x20440064c: 91c9f394 bl #0x2080f2c90",
+        "0x204400650: e2e336d0 adrp x2, #0x27207e000",
+        "0x204400654: 42002f91 add x2, x2, #0xbc0",
+        "0x204400658: 03008252 mov w3, #0x1000",
+        "0x20440065c: 9d81f094 bl #0x208020cd0",
+        "0x204400660: f50300aa mov x21, x0",
+        "0x204400664: f7e631f0 adrp x23, #0x2680df000",
+        "0x204400668: e04644f9 ldr x0, [x23, #0x888]",
+        "0x20440066c: e8f331f0 adrp x8, #0x26827f000",
+        "0x204400670: 023941f9 ldr x2, [x8, #0x270]",
+        "0x204400674: 9b82f094 bl #0x2080210e0",
+        "0x204400678: a6c9f394 bl #0x2080f2d10",
+        "0x20440067c: f60300aa mov x22, x0",
+        "0x204400680: e00315aa mov x0, x21",
+        "0x204400684: e20316aa mov x2, x22",
+        "0x204400688: 5289f094 bl #0x208022bd0",
+        "0x20440068c: 09caf394 bl #0x2080f2eb0",
+        "0x204400690: e04644f9 ldr x0, [x23, #0x888]",
+        "0x204400694: e8f331f0 adrp x8, #0x26827f000",
+        "0x204400698: 023d41f9 ldr x2, [x8, #0x278]",
+        "0x20440069c: 9182f094 bl #0x2080210e0",
+        "0x2044006a0: 9cc9f394 bl #0x2080f2d10",
+        "0x2044006a4: f60300aa mov x22, x0",
+        "0x2044006a8: e00315aa mov x0, x21",
+        "0x2044006ac: e20316aa mov x2, x22",
+        "0x2044006b0: f487f094 bl #0x208022680",
+        "0x2044006b4: ffc9f394 bl #0x2080f2eb0",
+        "0x2044006b8: e00315aa mov x0, x21",
+        "0x2044006bc: e20313aa mov x2, x19",
+        "0x2044006c0: f487f094 bl #0x208022690"
+      ]
+    },
+    {
+      "component": "CoreAccessories",
+      "address": "0x20441b138",
+      "assembly": [
+        "0x20441b150: f44f0da9 stp x20, x19, [sp, #0xd0]",
+        "0x20441b154: fd7b0ea9 stp x29, x30, [sp, #0xe0]",
+        "0x20441b158: fd830391 add x29, sp, #0xe0",
+        "0x20441b15c: f70307aa mov x23, x7",
+        "0x20441b160: f50306aa mov x21, x6",
+        "0x20441b164: f40305aa mov x20, x5",
+        "0x20441b168: f80303aa mov x24, x3",
+        "0x20441b16c: f90302aa mov x25, x2",
+        "0x20441b170: f60300aa mov x22, x0",
+        "0x20441b174: cb5ff394 bl #0x2080f30a0",
+        "0x20441b178: f30300aa mov x19, x0",
+        "0x20441b17c: a15ff394 bl #0x2080f3000",
+        "0x20441b180: f40300aa mov x20, x0",
+        "0x20441b184: a35ff394 bl #0x2080f3010",
+        "0x20441b298: 3243f194 bl #0x20806bf60",
+        "0x20441b29c: 9d5ef394 bl #0x2080f2d10",
+        "0x20441b2a0: fa0300aa mov x26, x0",
+        "0x20441b2a4: a00400b4 cbz x0, #0x20441b338",
+        "0x20441b2a8: 02e33690 adrp x2, #0x27207b000",
+        "0x20441b2ac: 42001e91 add x2, x2, #0x780",
+        "0x20441b2b0: e0031aaa mov x0, x26",
+        "0x20441b2b4: 4320f094 bl #0x2080233c0",
+        "0x20441b2b8: 965ef394 bl #0x2080f2d10",
+        "0x20441b2bc: fb0300aa mov x27, x0",
+        "0x20441b2c0: e8030091 mov x8, sp",
+        "0x20441b2c4: d0ec31b0 adrp x16, #0x2681b4000",
+        "0x20441b2c8: 106a47f9 ldr x16, [x16, #0xed0]",
+        "0x20441b2cc: f10308aa mov x17, x8",
+        "0x20441b2d0: 315cedf2 movk x17, #0x6ae1, lsl #48",
+        "0x20441b2d4: 300ac1da pacda x16, x17",
+        "0x20441b2d8: f00300f9 str x16, [sp]",
+        "0x20441b2dc: 69000090 adrp x9, #0x204427000",
+        "0x20441b2e0: 206144fd ldr d0, [x9, #0x8c0]",
+        "0x20441b2e4: e00700fd str d0, [sp, #8]",
+        "0x20441b2e8: 08410091 add x8, x8, #0x10",
+        "0x20441b2ec: 10000090 adrp x16, #0x20441b000",
+        "0x20441b2f0: 10a21391 add x16, x16, #0x4e8",
+        "0x20441b2f4: 1001c1da pacia x16, x8",
+        "0x20441b2f8: 08f331d0 adrp x8, #0x26827d000",
+        "0x20441b2fc: 08c12e91 add x8, x8, #0xbb0",
+        "0x20441b300: f02301a9 stp x16, x8, [sp, #0x10]",
+        "0x20441b304: 435ff394 bl #0x2080f3010",
+        "0x20441b308: e50300aa mov x5, x0",
+        "0x20441b30c: e8830191 add x8, sp, #0x60",
+        "0x20441b310: e02302a9 stp x0, x8, [sp, #0x20]",
+        "0x20441b314: e6030091 mov x6, sp",
+        "0x20441b318: e0031baa mov x0, x27",
+        "0x20441b31c: e20319aa mov x2, x25",
+        "0x20441b320: e30318aa mov x3, x24",
+        "0x20441b324: e40313aa mov x4, x19",
+        "0x20441b328: 9e41f194 bl #0x20806b9a0",
+        "0x20441b32c: f55ef394 bl #0x2080f2f00",
+        "0x20441b330: e81340f9 ldr x8, [sp, #0x20]",
+        "0x20441b334: ff5ef394 bl #0x2080f2f30",
+        "0x20441b338: e00316aa mov x0, x22",
+        "0x20441b33c: c941f194 bl #0x20806ba60",
+        "0x20441b340: 745ef394 bl #0x2080f2d10",
+        "0x20441b344: f80300aa mov x24, x0",
+        "0x20441b348: 8a5ff394 bl #0x2080f3170",
+        "0x20441b34c: 540200b4 cbz x20, #0x20441b394",
+        "0x20441b350: e83740f9 ldr x8, [sp, #0x68]",
+        "0x20441b354: 081540f9 ldr x8, [x8, #0x28]",
+        "0x20441b358: e80100b4 cbz x8, #0x20441b394",
+        "0x20441b35c: e00316aa mov x0, x22",
+        "0x20441b360: c041f194 bl #0x20806ba60",
+        "0x20441b364: 6b5ef394 bl #0x2080f2d10",
+        "0x20441b368: f90300aa mov x25, x0",
+        "0x20441b36c: e00314aa mov x0, x20",
+        "0x20441b370: 085ff394 bl #0x2080f2f90",
+        "0x20441b374: fb0300aa mov x27, x0",
+        "0x20441b378: e83740f9 ldr x8, [sp, #0x68]",
+        "0x20441b37c: 031540f9 ldr x3, [x8, #0x28]",
+        "0x20441b380: e00319aa mov x0, x25",
+        "0x20441b384: e2031baa mov x2, x27",
+        "0x20441b388: 6aedef94 bl #0x208016930",
+        "0x20441b38c: dd5ef394 bl #0x2080f2f00",
+        "0x20441b390: d45ef394 bl #0x2080f2ee0",
+        "0x20441b394: e00318aa mov x0, x24",
+        "0x20441b398: 7a5ff394 bl #0x2080f3180",
+        "0x20441b39c: cd5ef394 bl #0x2080f2ed0",
+        "0x20441b3a0: e83740f9 ldr x8, [sp, #0x68]",
+        "0x20441b3a4: 081540f9 ldr x8, [x8, #0x28]",
+        "0x20441b3a8: f7000034 cbz w23, #0x20441b3c4",
+        "0x20441b3ac: c80000b4 cbz x8, #0x20441b3c4",
+        "0x20441b3b0: e00316aa mov x0, x22",
+        "0x20441b3b4: e20315aa mov x2, x21",
+        "0x20441b3b8: 9e42f194 bl #0x20806be30",
+        "0x20441b3bc: e83740f9 ldr x8, [sp, #0x68]",
+        "0x20441b3c0: 081540f9 ldr x8, [x8, #0x28]"
+      ]
+    }
+  ],
+  "open_items": [
+    "Connection-info accessoryConnectionAttached and accessoryEndpointAttached receiver graph and property overrides.",
+    "acc_restrictedMode_accessoryAttached and sleep-assertion policy paths, their budgets/exit ownership.",
+    "BT HidService conditional observer target at 0x1006ad6fc (virtual +0x18); do not infer behavior from the owner alone.",
+    "All other endpoint providers, no-input timeout producers, cancellation/reconnect races and actual double-ended wire timeline.",
+    "Correct production extension duplicate handling in a separately authorized implementation batch; retained historical 872 tests are not native-equivalence proof."
+  ]
+}

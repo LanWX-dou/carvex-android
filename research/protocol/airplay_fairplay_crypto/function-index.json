@@ -1,0 +1,799 @@
+{
+ "docset": "airplay_fairplay_crypto",
+ "images": {
+  "AirPlaySender": {
+   "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+   "count": 36,
+   "functions": [
+    {
+     "symbol": "_APAuthenticationClientFairPlayCreate",
+     "address": "0x251ace54c",
+     "end": "0x251ace644",
+     "size": 248,
+     "raw_sha256": "45a756d91ba5c9afb075b678d17e5fea003296663cd0c014d3674354deba795b",
+     "asm": "f_251ace54c.s",
+     "bin": "f_251ace54c.bin",
+     "group": "F",
+     "readable": "readable/ghidra/AirPlaySender/f_251ace54c.ghidra.c"
+    },
+    {
+     "symbol": "_fpAuthentication_AuthenticateEndpoint",
+     "address": "0x251ace728",
+     "end": "0x251acea60",
+     "size": 824,
+     "raw_sha256": "cf530e4f1e75d59a261d78826076496213fd23b7c9f83bbe08fb8931d44c5e95",
+     "asm": "f_251ace728.s",
+     "bin": "f_251ace728.bin",
+     "group": "F",
+     "readable": "readable/ghidra/AirPlaySender/f_251ace728.ghidra.c"
+    },
+    {
+     "symbol": "_fpAuthentication_CreateEncryptedKey",
+     "address": "0x251acea60",
+     "end": "0x251aceb78",
+     "size": 280,
+     "raw_sha256": "4eb6337a41569a3720404fee23caeb380c55f4d2b51ac9419b0f8725bb5bed49",
+     "asm": "f_251acea60.s",
+     "bin": "f_251acea60.bin",
+     "group": "F",
+     "readable": "readable/ghidra/AirPlaySender/f_251acea60.ghidra.c"
+    },
+    {
+     "symbol": "_fpAuthentication_GetAuthenticationType",
+     "address": "0x251ace720",
+     "end": "0x251ace728",
+     "size": 8,
+     "raw_sha256": "866b82fb6649dcf0f7873c61006d47004b1074ea9b382227c4ab724c93f547f7",
+     "asm": "f_251ace720.s",
+     "bin": "f_251ace720.bin",
+     "group": "F",
+     "readable": "readable/ghidra/AirPlaySender/f_251ace720.ghidra.c"
+    },
+    {
+     "symbol": "_fpAuthentication_Finalize",
+     "address": "0x251ace644",
+     "end": "0x251ace6c8",
+     "size": 132,
+     "raw_sha256": "b99c7dd12552317ed4ee02ed662f5d9ba3f81c4c7f192ed034178824a0cb84a8",
+     "asm": "f_251ace644.s",
+     "bin": "f_251ace644.bin",
+     "group": "F",
+     "readable": "readable/ghidra/AirPlaySender/f_251ace644.ghidra.c"
+    },
+    {
+     "symbol": "_fpAuthentication_CopyDebugDescription",
+     "address": "0x251ace6c8",
+     "end": "0x251ace720",
+     "size": 88,
+     "raw_sha256": "b598e754160772f3b879f47a95419919fdf6abc342e9ebd03977060c970cd24f",
+     "asm": "f_251ace6c8.s",
+     "bin": "f_251ace6c8.bin",
+     "group": "F",
+     "readable": "readable/ghidra/AirPlaySender/f_251ace6c8.ghidra.c"
+    },
+    {
+     "symbol": "_APKeyHolderLegacyCreate",
+     "address": "0x251aa9060",
+     "end": "0x251aa91ac",
+     "size": 332,
+     "raw_sha256": "60142bfcf16b673fc3b51bca3e6eafc9af0977f768648e1047a8a1151bf645aa",
+     "asm": "f_251aa9060.s",
+     "bin": "f_251aa9060.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aa9060.ghidra.c"
+    },
+    {
+     "symbol": "_legacyKeyHolder_CopyMasterAESKeyAndIV",
+     "address": "0x251aa9490",
+     "end": "0x251aa9524",
+     "size": 148,
+     "raw_sha256": "e9c182bac8e28229c9c056e7b9b69ca5068d2be25a81d7ec0fa99e4ec3544f22",
+     "asm": "f_251aa9490.s",
+     "bin": "f_251aa9490.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aa9490.ghidra.c"
+    },
+    {
+     "symbol": "_legacyKeyHolder_CreateEncryptedMasterAESKeyAndIV",
+     "address": "0x251aa9524",
+     "end": "0x251aa9668",
+     "size": 324,
+     "raw_sha256": "21ae6df569a7470626cb46e02a68eaea8aa8f790756d1ebcca3d2377e4f42c81",
+     "asm": "f_251aa9524.s",
+     "bin": "f_251aa9524.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aa9524.ghidra.c"
+    },
+    {
+     "symbol": "_legacyKeyHolder_UpdateMasterAESKeyAfterSharing",
+     "address": "0x251aa9668",
+     "end": "0x251aa97a0",
+     "size": 312,
+     "raw_sha256": "306311dd919e85e0c57365e5c70084ecbbce4b7a593d7b61b94a9f751a678d6d",
+     "asm": "f_251aa9668.s",
+     "bin": "f_251aa9668.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aa9668.ghidra.c"
+    },
+    {
+     "symbol": "_legacyKeyHolder_CreateDerivedAESKeyAndIVForLegacyStream",
+     "address": "0x251aa97a0",
+     "end": "0x251aa98fc",
+     "size": 348,
+     "raw_sha256": "89035c4563a2f5d77b4451d5bf21eddc29a14363daabf17a604e81e8ae5c4c95",
+     "asm": "f_251aa97a0.s",
+     "bin": "f_251aa97a0.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aa97a0.ghidra.c"
+    },
+    {
+     "symbol": "_legacyKeyHolder_CreateDerivedKey",
+     "address": "0x251aa98fc",
+     "end": "0x251aa9a60",
+     "size": 356,
+     "raw_sha256": "23ee74228c1646cf7c90196f8b929fc51adec866187a5b3dc0381c5e7cac21f7",
+     "asm": "f_251aa98fc.s",
+     "bin": "f_251aa98fc.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aa98fc.ghidra.c"
+    },
+    {
+     "symbol": "_legacyKeyHolder_createDerivedKeyLegacy",
+     "address": "0x251aa9a60",
+     "end": "0x251aa9b80",
+     "size": 288,
+     "raw_sha256": "b0b8a71eb94972043ac042cbe5d188e07b4c4566f0f79c777acf682c1b5542db",
+     "asm": "f_251aa9a60.s",
+     "bin": "f_251aa9a60.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aa9a60.ghidra.c"
+    },
+    {
+     "symbol": "_legacyKeyHolder_GetAuthenticationType",
+     "address": "0x251aa93f4",
+     "end": "0x251aa9490",
+     "size": 156,
+     "raw_sha256": "4f10361b7a3671001699a60726446737970bf130d826b52c597bbbff5edfde70",
+     "asm": "f_251aa93f4.s",
+     "bin": "f_251aa93f4.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aa93f4.ghidra.c"
+    },
+    {
+     "symbol": "_legacyKeyHolder_CopyProperty",
+     "address": "0x251aa92c0",
+     "end": "0x251aa93f4",
+     "size": 308,
+     "raw_sha256": "ec824aad1e5f64d6b6d1db6e3e61a8f72ba2b73d948d137726fdbfe4d04a9da3",
+     "asm": "f_251aa92c0.s",
+     "bin": "f_251aa92c0.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aa92c0.ghidra.c"
+    },
+    {
+     "symbol": "_APKeyHolderSharedKeyCreate",
+     "address": "0x251aafde0",
+     "end": "0x251aaff68",
+     "size": 392,
+     "raw_sha256": "f9345ba4d0f65a374bbebab7b6898abb51964b6420bdbce863ac67603902b455",
+     "asm": "f_251aafde0.s",
+     "bin": "f_251aafde0.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251aafde0.ghidra.c"
+    },
+    {
+     "symbol": "_sharedKeyHolder_CopyMasterAESKeyAndIV",
+     "address": "0x251ab0108",
+     "end": "0x251ab019c",
+     "size": 148,
+     "raw_sha256": "a20adb6047f9ab911c0ab4387f17bda204b4666d4910a443ca7243c80c0880b1",
+     "asm": "f_251ab0108.s",
+     "bin": "f_251ab0108.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251ab0108.ghidra.c"
+    },
+    {
+     "symbol": "_sharedKeyHolder_CreateEncryptedMasterAESKeyAndIV",
+     "address": "0x251ab019c",
+     "end": "0x251ab02e0",
+     "size": 324,
+     "raw_sha256": "a49f4c22929604e07411524f177821b0b961101bc25767e41eeaf9170008958c",
+     "asm": "f_251ab019c.s",
+     "bin": "f_251ab019c.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251ab019c.ghidra.c"
+    },
+    {
+     "symbol": "_sharedKeyHolder_GetAuthenticationType",
+     "address": "0x251ab006c",
+     "end": "0x251ab0108",
+     "size": 156,
+     "raw_sha256": "2ea17e4c0c96282d92fd1ae742861e5e9bc0f8de2d0e11932ecd87df34d9114a",
+     "asm": "f_251ab006c.s",
+     "bin": "f_251ab006c.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251ab006c.ghidra.c"
+    },
+    {
+     "symbol": "_APKeyHolderCoreUtilsCreate",
+     "address": "0x251a355d0",
+     "end": "0x251a356c8",
+     "size": 248,
+     "raw_sha256": "1e4a141e32092d1da5bef910a21db865eaab6e2c2f332cbb16974cb848381266",
+     "asm": "f_251a355d0.s",
+     "bin": "f_251a355d0.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251a355d0.ghidra.c"
+    },
+    {
+     "symbol": "_coreUtilsKeyHolder_CreateDerivedKey",
+     "address": "0x2519bffc8",
+     "end": "0x2519c0148",
+     "size": 384,
+     "raw_sha256": "1af0b66a5395ef7848090e3cfecf4d06c4858157c1707ae31703eb6a8dd260d7",
+     "asm": "f_2519bffc8.s",
+     "bin": "f_2519bffc8.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_2519bffc8.ghidra.c"
+    },
+    {
+     "symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForStream",
+     "address": "0x2519bfecc",
+     "end": "0x2519bffc8",
+     "size": 252,
+     "raw_sha256": "cebfd84d456170ad006012b9c86fc3dcdd83df80e25dcb99399b0e02bbba8d31",
+     "asm": "f_2519bfecc.s",
+     "bin": "f_2519bfecc.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_2519bfecc.ghidra.c"
+    },
+    {
+     "symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForContext",
+     "address": "0x251a358e4",
+     "end": "0x251a35be0",
+     "size": 764,
+     "raw_sha256": "e5a835cb9eaa3ce17f83efcee88e83b87721ab2c4bcf61da5021b6bcd2c77571",
+     "asm": "f_251a358e4.s",
+     "bin": "f_251a358e4.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251a358e4.ghidra.c"
+    },
+    {
+     "symbol": "_APSKeyHolderCreateEncryptionKeysForStream",
+     "address": "0x251a89d50",
+     "end": "0x251a89e0c",
+     "size": 188,
+     "raw_sha256": "6bf6d94dc804079c23d2d60d35943e14a86afdff071c5d837fcc5cf34e12e6af",
+     "asm": "f_251a89d50.s",
+     "bin": "f_251a89d50.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251a89d50.ghidra.c"
+    },
+    {
+     "symbol": "_APSKeyHolderGetAuthenticationType",
+     "address": "0x251a9ff20",
+     "end": "0x251a9ffb0",
+     "size": 144,
+     "raw_sha256": "34a41c73e67d0230391e3f8663689a8eb96a07d6f6137e812383d8c93219e2c9",
+     "asm": "f_251a9ff20.s",
+     "bin": "f_251a9ff20.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251a9ff20.ghidra.c"
+    },
+    {
+     "symbol": "_apsession_ensureKeyHolderSetUp",
+     "address": "0x251b5ce10",
+     "end": "0x251b5cfe0",
+     "size": 464,
+     "raw_sha256": "82c2c3485d8146c1535e837d77bb4784cfff92714cbe8821f05ad534690fb880",
+     "asm": "f_251b5ce10.s",
+     "bin": "f_251b5ce10.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySender/f_251b5ce10.ghidra.c"
+    },
+    {
+     "symbol": "_NROcmM",
+     "address": "0x2519dc1c0",
+     "end": "0x2519dc1cc",
+     "size": 12,
+     "raw_sha256": "79a97c37b81c5404a28d31d313d3cbc87e5dc3ddf393a73b98b645e434653fe3",
+     "asm": "f_2519dc1c0.s",
+     "bin": "f_2519dc1c0.bin",
+     "group": "FP",
+     "readable": "readable/ghidra/AirPlaySender/f_2519dc1c0.ghidra.c"
+    },
+    {
+     "symbol": "_U4HBs",
+     "address": "0x2519dcb7c",
+     "end": "0x2519de0e8",
+     "size": 5484,
+     "raw_sha256": "b46ee46e93771de0d9d180b71cd81d875fb87afc22021429fa809907fa5e177a",
+     "asm": "f_2519dcb7c.s",
+     "bin": "f_2519dcb7c.bin",
+     "group": "FP",
+     "readable": "readable/ghidra/AirPlaySender/f_2519dcb7c.ghidra.c"
+    },
+    {
+     "symbol": "_Mib5yocT",
+     "address": "0x2519de244",
+     "end": "0x2519e1eec",
+     "size": 15528,
+     "raw_sha256": "172c1002c13a99a10108eea759d1393e0f31622c1754062669e7c46d0b22ae12",
+     "asm": "f_2519de244.s",
+     "bin": "f_2519de244.bin",
+     "group": "FP",
+     "readable": "readable/ghidra/AirPlaySender/f_2519de244.ghidra.c"
+    },
+    {
+     "symbol": "_zxcm2Qme0x",
+     "address": "0x2519f2904",
+     "end": "0x2519f4564",
+     "size": 7264,
+     "raw_sha256": "a0f90f018989b7c28f2cbe40f5ee063a3a0f1bd4d8708a7bf74f26023ac59ae0",
+     "asm": "f_2519f2904.s",
+     "bin": "f_2519f2904.bin",
+     "group": "FP",
+     "readable": "readable/ghidra/AirPlaySender/f_2519f2904.ghidra.c"
+    },
+    {
+     "symbol": "_IPaI1oem5iL",
+     "address": "0x2519fa054",
+     "end": "0x2519fa410",
+     "size": 956,
+     "raw_sha256": "5e8ccbd712377c62f74a8adcd9103f5d40720b8ed56882139f286ce74a9e477a",
+     "asm": "f_2519fa054.s",
+     "bin": "f_2519fa054.bin",
+     "group": "FP",
+     "readable": "readable/ghidra/AirPlaySender/f_2519fa054.ghidra.c"
+    },
+    {
+     "symbol": "_cp2g1b9ro",
+     "address": "0x2519fa410",
+     "end": "0x2519fb3a4",
+     "size": 3988,
+     "raw_sha256": "d6911bc3a59a4e0dc63d276893603dc17c0043d8cecb5333301112cfffd257f8",
+     "asm": "f_2519fa410.s",
+     "bin": "f_2519fa410.bin",
+     "group": "FP",
+     "readable": "readable/ghidra/AirPlaySender/f_2519fa410.ghidra.c"
+    },
+    {
+     "symbol": "_jEHf8Xzsv8K",
+     "address": "0x2519fb3a4",
+     "end": "0x2519fb4d4",
+     "size": 304,
+     "raw_sha256": "e0bd7a38035accc1989a4eba296fd8f35f812914fa4bc926ea0ca1ca3a3f2f2b",
+     "asm": "f_2519fb3a4.s",
+     "bin": "f_2519fb3a4.bin",
+     "group": "FP",
+     "readable": "readable/ghidra/AirPlaySender/f_2519fb3a4.ghidra.c"
+    },
+    {
+     "symbol": "_OowSGu",
+     "address": "0x2519ffebc",
+     "end": "0x251a0019c",
+     "size": 736,
+     "raw_sha256": "0d7e4be63a9d3915d7c020f6ed9af04584a6997694c8708ee1e906e846e39cb2",
+     "asm": "f_2519ffebc.s",
+     "bin": "f_2519ffebc.bin",
+     "group": "FP",
+     "readable": "readable/ghidra/AirPlaySender/f_2519ffebc.ghidra.c"
+    },
+    {
+     "symbol": "(unnamed)",
+     "address": "0x2519bbf24",
+     "end": "0x2519bd5a8",
+     "size": 5764,
+     "raw_sha256": "2474956bad6630ee63b02d72eb56748aa49531735f5e4f3772422c313bb6655c",
+     "asm": "f_2519bbf24.s",
+     "bin": "f_2519bbf24.bin",
+     "group": "X",
+     "readable": "readable/ghidra/AirPlaySender/f_2519bbf24.ghidra.c"
+    },
+    {
+     "symbol": "(unnamed)",
+     "address": "0x251abe4c8",
+     "end": "0x251abe68c",
+     "size": 452,
+     "raw_sha256": "eed75584793286303aa5d1af3b1b7a01bbee4e1b06f987366a75944931a3403d",
+     "asm": "f_251abe4c8.s",
+     "bin": "f_251abe4c8.bin",
+     "group": "X",
+     "readable": "readable/ghidra/AirPlaySender/f_251abe4c8.ghidra.c"
+    }
+   ]
+  },
+  "AirPlayReceiver": {
+   "source_sha256": "ad6eddbb9bedcb8f121699e7fc94702632c4acf30135564763a646ac472cc51a",
+   "count": 15,
+   "functions": [
+    {
+     "symbol": "_airplayReqProcessor_requestProcessFPSetup",
+     "address": "0x2518a50b4",
+     "end": "0x2518a5720",
+     "size": 1644,
+     "raw_sha256": "54c1053516d86a4de1777f02474a34f3cd135a7be734cc0baf2e20e4a9e2edeb",
+     "asm": "f_2518a50b4.s",
+     "bin": "f_2518a50b4.bin",
+     "group": "R",
+     "readable": "readable/ghidra/AirPlayReceiver/f_2518a50b4.ghidra.c"
+    },
+    {
+     "symbol": "_airplayReqProcessor_requestProcessFPSetup2",
+     "address": "0x2518a5720",
+     "end": "0x2518a5d1c",
+     "size": 1532,
+     "raw_sha256": "833d016f8941622b1c923515e47499964c5895093ba180970b2bd8b79289b9ea",
+     "asm": "f_2518a5720.s",
+     "bin": "f_2518a5720.bin",
+     "group": "R",
+     "readable": "readable/ghidra/AirPlayReceiver/f_2518a5720.ghidra.c"
+    },
+    {
+     "symbol": "__FPSetup2ResponseCompletionHandler",
+     "address": "0x2518892fc",
+     "end": "0x2518895c4",
+     "size": 712,
+     "raw_sha256": "05bb68e7cf9343b5c68c710345df6e7403e06e0e2b6d4d9e56352795e9fad6f6",
+     "asm": "f_2518892fc.s",
+     "bin": "f_2518892fc.bin",
+     "group": "R",
+     "readable": "readable/ghidra/AirPlayReceiver/f_2518892fc.ghidra.c"
+    },
+    {
+     "symbol": "_APReceiverFairPlayHelperCreate",
+     "address": "0x2518336b8",
+     "end": "0x251833960",
+     "size": 680,
+     "raw_sha256": "22c7996d3eeaeab7374ce4eabd6d16f194491e9a0d498f98d583f244cd82b8da",
+     "asm": "f_2518336b8.s",
+     "bin": "f_2518336b8.bin",
+     "group": "R",
+     "readable": "readable/ghidra/AirPlayReceiver/f_2518336b8.ghidra.c"
+    },
+    {
+     "symbol": "_APReceiverFairPlayHelperProcessFPInfo",
+     "address": "0x251834678",
+     "end": "0x251834adc",
+     "size": 1124,
+     "raw_sha256": "f1835e1a8f83eb50a6ee0033baa5da07af9e86100599d2e35ba15873b0bac130",
+     "asm": "f_251834678.s",
+     "bin": "f_251834678.bin",
+     "group": "R",
+     "readable": "readable/ghidra/AirPlayReceiver/f_251834678.ghidra.c"
+    },
+    {
+     "symbol": "_APReceiverFairPlayHelperCopyAuthorizeItemResponseIntoBuffer",
+     "address": "0x251833a74",
+     "end": "0x251833c88",
+     "size": 532,
+     "raw_sha256": "0ade0a4ea13fcda20dfa41276fffb3e0abc993ae4e52f708b8822b213c99e94f",
+     "asm": "f_251833a74.s",
+     "bin": "f_251833a74.bin",
+     "group": "R",
+     "readable": "readable/ghidra/AirPlayReceiver/f_251833a74.ghidra.c"
+    },
+    {
+     "symbol": "_APReceiverFairPlayHelperCopyAuthorizeItemResponseIntoDictionary",
+     "address": "0x251834500",
+     "end": "0x251834678",
+     "size": 376,
+     "raw_sha256": "10a6a5f52685065270813e80d6e26d1e0dbdb23cfe2a13c931015a50747c1100",
+     "asm": "f_251834500.s",
+     "bin": "f_251834500.bin",
+     "group": "R",
+     "readable": "readable/ghidra/AirPlayReceiver/f_251834500.ghidra.c"
+    },
+    {
+     "symbol": "_APReceiverFairPlayHelperRemoveAllFPSessions",
+     "address": "0x251833960",
+     "end": "0x251833a74",
+     "size": 276,
+     "raw_sha256": "be33fc1ecaac4876c85f15625b83d78a7c39f3838b1344779eb75102e1af654e",
+     "asm": "f_251833960.s",
+     "bin": "f_251833960.bin",
+     "group": "R",
+     "readable": "readable/ghidra/AirPlayReceiver/f_251833960.ghidra.c"
+    },
+    {
+     "symbol": "_apReceiverFairPlayHelper_CopyPICResponseData",
+     "address": "0x251833c88",
+     "end": "0x251834500",
+     "size": 2168,
+     "raw_sha256": "8836cd128c6b79e42000d833d2a089827238b48d047ba782fbbbc6a9e44806dc",
+     "asm": "f_251833c88.s",
+     "bin": "f_251833c88.bin",
+     "group": "R",
+     "readable": "readable/ghidra/AirPlayReceiver/f_251833c88.ghidra.c"
+    },
+    {
+     "symbol": "_AirPlayReceiverSessionSetSecurityInfo",
+     "address": "0x2518d3704",
+     "end": "0x2518d3bdc",
+     "size": 1240,
+     "raw_sha256": "5a042b3f44140c1375faf802d182a9dfc1cfb7a90ab75ec6e7e7c4ada80fae7b",
+     "asm": "f_2518d3704.s",
+     "bin": "f_2518d3704.bin",
+     "group": "S",
+     "readable": "readable/ghidra/AirPlayReceiver/f_2518d3704.ghidra.c"
+    },
+    {
+     "symbol": "__SetSecurityInfoAES",
+     "address": "0x2518d3bdc",
+     "end": "0x2518d3c74",
+     "size": 152,
+     "raw_sha256": "0f604c269b06ae7229dade8089fe43173a53cefc5d42fe43658fa1363072071a",
+     "asm": "f_2518d3bdc.s",
+     "bin": "f_2518d3bdc.bin",
+     "group": "S",
+     "readable": "readable/ghidra/AirPlayReceiver/f_2518d3bdc.ghidra.c"
+    },
+    {
+     "symbol": "_aprscreen_SetSecurityInfoAES",
+     "address": "0x251859b8c",
+     "end": "0x251859c8c",
+     "size": 256,
+     "raw_sha256": "ef26b2fcb090958f4e6a95d4d48fb9390d4fdb8844b01c0be68912fe3f1ab0f3",
+     "asm": "f_251859b8c.s",
+     "bin": "f_251859b8c.bin",
+     "group": "S",
+     "readable": "readable/ghidra/AirPlayReceiver/f_251859b8c.ghidra.c"
+    },
+    {
+     "symbol": "_aprscreen_SetSecurityInfoChaCha",
+     "address": "0x251859a60",
+     "end": "0x251859b8c",
+     "size": 300,
+     "raw_sha256": "d72e408b258be98e49e1df91a062f8c95f3a48d36a6653d9dfbf3e63c0a09408",
+     "asm": "f_251859a60.s",
+     "bin": "f_251859a60.bin",
+     "group": "S",
+     "readable": "readable/ghidra/AirPlayReceiver/f_251859a60.ghidra.c"
+    },
+    {
+     "symbol": "_aprscreen_decryptBuffer",
+     "address": "0x25185ba2c",
+     "end": "0x25185bc30",
+     "size": 516,
+     "raw_sha256": "7ee000ab86fa7d211af601f71268556d770655ef00b8c15d2d357d115ba42837",
+     "asm": "f_25185ba2c.s",
+     "bin": "f_25185ba2c.bin",
+     "group": "S",
+     "readable": "readable/ghidra/AirPlayReceiver/f_25185ba2c.ghidra.c"
+    },
+    {
+     "symbol": "(unnamed)",
+     "address": "0x2518d4338",
+     "end": "0x2518d7ba0",
+     "size": 14440,
+     "raw_sha256": "c43c031ddc688773e405df85a301fce318c91719ad5624adf37fe112b9750117",
+     "asm": "f_2518d4338.s",
+     "bin": "f_2518d4338.bin",
+     "group": "X",
+     "readable": "readable/ghidra/AirPlayReceiver/f_2518d4338.ghidra.c"
+    }
+   ]
+  },
+  "AirPlaySupport": {
+   "source_sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+   "count": 6,
+   "functions": [
+    {
+     "symbol": "_APSEncryptionUtilsDeriveAESKeySHA512",
+     "address": "0x226ee961c",
+     "end": "0x226ee9764",
+     "size": 328,
+     "raw_sha256": "ab6beb42f76502b1f3afe6d16210dc2de872760d180a4d8c0b94bcc771447e2a",
+     "asm": "f_226ee961c.s",
+     "bin": "f_226ee961c.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySupport/f_226ee961c.ghidra.c"
+    },
+    {
+     "symbol": "_APSEncryptionUtilsDeriveAESKeySHA512ForScreen",
+     "address": "0x226ee9764",
+     "end": "0x226ee9854",
+     "size": 240,
+     "raw_sha256": "be0265dd0168795e9bfab30c4b4017f7cd19d82a7fa1a93752da12b17242fcc9",
+     "asm": "f_226ee9764.s",
+     "bin": "f_226ee9764.bin",
+     "group": "K",
+     "readable": "readable/ghidra/AirPlaySupport/f_226ee9764.ghidra.c"
+    },
+    {
+     "symbol": "_APSCryptorChaCha20Poly1305Create",
+     "address": "0x226f2f54c",
+     "end": "0x226f2f6ec",
+     "size": 416,
+     "raw_sha256": "74037b22dfbe361414c1f1d5603dfe02763d7f541f8ca6e9a176ad8575984e1e",
+     "asm": "f_226f2f54c.s",
+     "bin": "f_226f2f54c.bin",
+     "group": "C",
+     "readable": "readable/ghidra/AirPlaySupport/f_226f2f54c.ghidra.c"
+    },
+    {
+     "symbol": "_APSCryptorCTRCreate",
+     "address": "0x226e8d208",
+     "end": "0x226e8d3c8",
+     "size": 448,
+     "raw_sha256": "44350ccee07750a72e157cbda890339b55d76aa17cfa5c23d12799c612461faa",
+     "asm": "f_226e8d208.s",
+     "bin": "f_226e8d208.bin",
+     "group": "C",
+     "readable": "readable/ghidra/AirPlaySupport/f_226e8d208.ghidra.c"
+    },
+    {
+     "symbol": "_APSCryptorCBCCreate",
+     "address": "0x226efbecc",
+     "end": "0x226efc0d8",
+     "size": 524,
+     "raw_sha256": "376c19876bc30330134a1bb6e3eb7f55ee710582882bd076d7e96723c7fc8119",
+     "asm": "f_226efbecc.s",
+     "bin": "f_226efbecc.bin",
+     "group": "C",
+     "readable": "readable/ghidra/AirPlaySupport/f_226efbecc.ghidra.c"
+    },
+    {
+     "symbol": "_APSCryptorGetNull",
+     "address": "0x226e83b30",
+     "end": "0x226e83b88",
+     "size": 88,
+     "raw_sha256": "58301116774d5ff02c99c5b1577ca4112852aae3144ebb536ad47ae1e794fc9c",
+     "asm": "f_226e83b30.s",
+     "bin": "f_226e83b30.bin",
+     "group": "C",
+     "readable": "readable/ghidra/AirPlaySupport/f_226e83b30.ghidra.c"
+    }
+   ]
+  }
+ },
+ "total_functions": 57,
+ "audit_images": {
+  "AirPlayReceiver": {
+   "image": "AirPlayReceiver",
+   "source_sha256": "ad6eddbb9bedcb8f121699e7fc94702632c4acf30135564763a646ac472cc51a",
+   "source_size": 2453520,
+   "address_rule": "end = 下一个 LC_FUNCTION_STARTS 起点（末函数回退到下一个符号地址）",
+   "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+   "count": 2,
+   "functions": [
+    {
+     "symbol": "___aprscreen_Start_block_invoke",
+     "address": "0x251859c8c",
+     "end": "0x25185b4e4",
+     "size": 6232,
+     "group": "screen-aad-audit",
+     "raw_sha256": "e816c9e00163d3c37c76bcf36c7ef961f2db549c55f9d2d9797a9446b079ad86",
+     "bin": "f_251859c8c.bin",
+     "asm": "f_251859c8c.s"
+    },
+    {
+     "symbol": "_aprscreen_ntpTimestamp",
+     "address": "0x25185b970",
+     "end": "0x25185ba2c",
+     "size": 188,
+     "group": "screen-aad-audit",
+     "raw_sha256": "3a40d1ccbc065042b70a9c061cd442aa25758f9b86897850d526dc5b6bab02e1",
+     "bin": "f_25185b970.bin",
+     "asm": "f_25185b970.s"
+    }
+   ],
+   "missing_symbols": []
+  },
+  "CoreUtils": {
+   "image": "CoreUtils",
+   "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+   "source_size": 2232432,
+   "address_rule": "end = 下一个 LC_FUNCTION_STARTS 起点（末函数回退到下一个符号地址）",
+   "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+   "count": 3,
+   "functions": [
+    {
+     "symbol": "_NetSocket_Create",
+     "address": "0x18bf1c660",
+     "end": "0x18bf1c798",
+     "size": 312,
+     "group": "screen-aad-audit",
+     "raw_sha256": "a4ea51df09a0db256828e34a520a072eaf70fb7f1f636412ba83ae8bb46c16d8",
+     "bin": "f_18bf1c660.bin",
+     "asm": "f_18bf1c660.s"
+    },
+    {
+     "symbol": "_NetSocket_ReadInternal",
+     "address": "0x18bf1c798",
+     "end": "0x18bf1c924",
+     "size": 396,
+     "group": "screen-aad-audit",
+     "raw_sha256": "62cd905123043aff1f1cc5ccb9501e5d8deafeeadc2215ef903f9ed000101fc7",
+     "bin": "f_18bf1c798.bin",
+     "asm": "f_18bf1c798.s"
+    },
+    {
+     "symbol": "_NetSocket_CreateWithNative",
+     "address": "0x18bf1cfb0",
+     "end": "0x18bf1d008",
+     "size": 88,
+     "group": "screen-aad-audit",
+     "raw_sha256": "ed5edd64f7953fa2dd9ea92f9f0aa758328366d8410889f759b25fa079acdd31",
+     "bin": "f_18bf1cfb0.bin",
+     "asm": "f_18bf1cfb0.s"
+    }
+   ],
+   "missing_symbols": []
+  }
+ },
+ "aes_audit_images": {
+  "CoreUtils": {
+   "image": "CoreUtils",
+   "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+   "source_size": 2232432,
+   "address_rule": "end = 下一个 LC_FUNCTION_STARTS 起点（末函数回退到下一个符号地址）",
+   "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+   "count": 6,
+   "functions": [
+    {
+     "symbol": "_AES_CTR_Init",
+     "address": "0x18be628bc",
+     "end": "0x18be62914",
+     "size": 88,
+     "group": "aes-state-audit",
+     "raw_sha256": "a38880e71155922d3da1e6aa81ab04957a5fc83b1277cbe6d55f9cd88bd72eaf",
+     "bin": "f_18be628bc.bin",
+     "asm": "f_18be628bc.s"
+    },
+    {
+     "symbol": "_AES_CTR_Update",
+     "address": "0x18be62914",
+     "end": "0x18be62afc",
+     "size": 488,
+     "group": "aes-state-audit",
+     "raw_sha256": "608c2fb11371667dcb6609f0fd8ae5a9c73899becd2410aa2e1e4de5455913b2",
+     "bin": "f_18be62914.bin",
+     "asm": "f_18be62914.s"
+    },
+    {
+     "symbol": "_AES_CTR_Final",
+     "address": "0x18be62afc",
+     "end": "0x18be62b48",
+     "size": 76,
+     "group": "aes-state-audit",
+     "raw_sha256": "3bccc6533b83f4111430942ae7e8bf81210c51da3a5fc22bdb2c86adbd5c6bb1",
+     "bin": "f_18be62afc.bin",
+     "asm": "f_18be62afc.s"
+    },
+    {
+     "symbol": "_AES_CBCFrame_Init",
+     "address": "0x18be62b48",
+     "end": "0x18be62ba4",
+     "size": 92,
+     "group": "aes-state-audit",
+     "raw_sha256": "bef7a3a68507beb356f68b17308236f270564b8bc2380ea546db5478352abed3",
+     "bin": "f_18be62b48.bin",
+     "asm": "f_18be62b48.s"
+    },
+    {
+     "symbol": "_AES_CBCFrame_Update",
+     "address": "0x18be62ba4",
+     "end": "0x18be62c50",
+     "size": 172,
+     "group": "aes-state-audit",
+     "raw_sha256": "8eb8b682097e25d9eeeb0d1bdb5d9e50cb39e2cee8eb5b28a939e99e42bdabdd",
+     "bin": "f_18be62ba4.bin",
+     "asm": "f_18be62ba4.s"
+    },
+    {
+     "symbol": "_AES_CBCFrame_Final",
+     "address": "0x18be62c50",
+     "end": "0x18be62c9c",
+     "size": 76,
+     "group": "aes-state-audit",
+     "raw_sha256": "3a1b6ad2e14dfbc285947cf02e3935eace469e34619e1ec849285bd28c9c0fb0",
+     "bin": "f_18be62c50.bin",
+     "asm": "f_18be62c50.s"
+    }
+   ],
+   "missing_symbols": []
+  }
+ },
+ "audit_functions": 11
+}

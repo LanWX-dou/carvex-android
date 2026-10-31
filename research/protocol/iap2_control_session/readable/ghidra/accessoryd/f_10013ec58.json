@@ -1,0 +1,13 @@
+{
+  "address": "0x10013ec58",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "247fd98daf54c7bc2b72ed08c00732f846ab60ae33c3011125435337411463f3",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "247fd98daf54c7bc2b72ed08c00732f846ab60ae33c3011125435337411463f3",
+  "ghidra_name": "_iap2_features_startFeatureFromDevice",
+  "signature": "undefined _iap2_features_startFeatureFromDevice()",
+  "diagnostic": "",
+  "c_file": "f_10013ec58.ghidra.c",
+  "c_sha256": "0ab33c8ed09c9869302f936f8f2ddc38a98ea255fa4d0993fde8cc03d24f1249",
+  "status": "DECOMPILED_UNREVIEWED"
+}

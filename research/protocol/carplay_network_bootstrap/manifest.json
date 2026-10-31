@@ -1,0 +1,89 @@
+{
+  "docset": "carplay_network_bootstrap",
+  "status": "v0-draft",
+  "build": "24A446 + sysdiagnose 23G90/22H374/21G93",
+  "files": [
+    {
+      "path": "README.md",
+      "size": 2222,
+      "sha256": "9345105a25a13fdf7f28688a7c58d6b52dc81f86767c6922f8fa65fec767d360"
+    },
+    {
+      "path": "STATUS.md",
+      "size": 2430,
+      "sha256": "d88b95f9246983612ff18f6e3107ec74fea6a491ffb736be67c9b70025438ea5"
+    },
+    {
+      "path": "TASK.md",
+      "size": 2385,
+      "sha256": "a0b323659f40cc0bba85fe6a5ad1904fe6a2f398cc9f8ec59b858d7d16ab42fb"
+    },
+    {
+      "path": "analysis/00-evidence-index.md",
+      "size": 5960,
+      "sha256": "fe1d15234ad69f16d486a439cbacff719177fbd82767818b7d30cfb693179578"
+    },
+    {
+      "path": "reference-impl/README.md",
+      "size": 1301,
+      "sha256": "d9be9be679009701f191eb9608a5061af6d94db748f1a9a10792d1900e707163"
+    },
+    {
+      "path": "reference-impl/bootstrap_fsm.py",
+      "size": 8170,
+      "sha256": "7b7f199461ebea934348aa1176c3f823ea7b4944292199bc422fe896ecc756c2"
+    },
+    {
+      "path": "reference-impl/test_bootstrap.py",
+      "size": 4804,
+      "sha256": "e116597b30810a5e3ee30f6e6d10824267faa897066131c4a3b53950945e680d"
+    },
+    {
+      "path": "spec/00-scope-and-terms.md",
+      "size": 2307,
+      "sha256": "068aa2ca86217fe314f561013c6ca1cfc06823e4b2a4df2124f972c9f1933933"
+    },
+    {
+      "path": "spec/01-from-4301-to-credentials.md",
+      "size": 6216,
+      "sha256": "14cd8f00a9ab4932c7d3e60a46a5f55c3803c738cf638062a0965c485f4924b5"
+    },
+    {
+      "path": "spec/02-association-and-address.md",
+      "size": 4687,
+      "sha256": "dd93a8ef2a2e42b86226640e3328ffa330eff2c0e010415a18523d3226cdd55b"
+    },
+    {
+      "path": "spec/03-endpoint-and-control.md",
+      "size": 3515,
+      "sha256": "e1ad39f19200070255ad3d98e7a477d8bae889af6dd89b867519b9cc83358627"
+    },
+    {
+      "path": "spec/04-open-items.md",
+      "size": 2142,
+      "sha256": "977e32a42c88d60c9dc04c85b01f80d4b433d7b25bc5a447ddfd8e225258b731"
+    },
+    {
+      "path": "verify.py",
+      "size": 6632,
+      "sha256": "e40bfa054bebb8f4ef8822e40c27f52233f89ccf44fe3dad853f3125240c7351"
+    }
+  ],
+  "counts": {
+    "files": 13,
+    "md_files": 10,
+    "spec_docs": 5
+  },
+  "open_items": [
+    "OPEN-NB-1",
+    "OPEN-NB-2",
+    "OPEN-NB-3",
+    "OPEN-NB-4",
+    "OPEN-NB-5",
+    "OPEN-NB-6",
+    "OPEN-NB-7",
+    "OPEN-NB-8",
+    "OPEN-NB-9",
+    "OPEN-NB-10"
+  ]
+}

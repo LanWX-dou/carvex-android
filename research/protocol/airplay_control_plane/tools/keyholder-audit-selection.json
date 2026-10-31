@@ -1,0 +1,7 @@
+{
+  "image": "AirPlaySender",
+  "functions": [
+    {"symbol": "_APKeyHolderCoreUtilsCreate", "group": "KEYHOLDER"},
+    {"symbol": "_coreUtilsKeyHolder_CreateDerivedKey", "group": "KEYHOLDER"}
+  ]
+}

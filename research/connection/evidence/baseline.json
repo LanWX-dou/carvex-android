@@ -1,0 +1,137 @@
+{
+  "collected_at": "2026-10-28T21:54:39.627131+00:00",
+  "firmware": {
+    "build": "24A446",
+    "version": "27.0.1",
+    "products": [
+      "iPhone18,1"
+    ],
+    "version_source": "IPSW BuildManifest.plist",
+    "manifest_sha256": "4e91acd9a28cb98b322c8e14904ff501da1406fa40fed3a2dfece9cf9299052d",
+    "apple_signature_verified": false,
+    "download_origin_verified": false
+  },
+  "phone_git_head": "dc056906b59c69da5cb7d289ca9f06d9a518d63a",
+  "phone_worktree_dirty": true,
+  "files": [
+    {
+      "path": "D:\\carvex-research\\firmware\\ipsw\\iPhone18,1_27.0.1_24A446_Restore.ipsw",
+      "bytes": 12725905286,
+      "sha256": "7ee7aaa896ef257e26aa54edb2a4ac7f6f6e8e5c20279b124bee38b809c2a6a5",
+      "role": "LOCAL_IPSW_UNVERIFIED_SIGNATURE"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "bytes": 4397312,
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySupport\\AirPlaySupport",
+      "bytes": 1536072,
+      "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+      "bytes": 1593864,
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\CarKit\\CarKit",
+      "bytes": 1091424,
+      "sha256": "d7a56e9b821f7cc5b6563ec239614fa37778a876fdf1403516e6cb9c458c6dbb",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\CoreUtils\\CoreUtils",
+      "bytes": 2232432,
+      "sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\MFAAuthentication\\MFAAuthentication",
+      "bytes": 1028976,
+      "sha256": "25c45287bedcf1caf032606526ada83f8f1a92f1396089994c51132c47f06b35",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\MobileWiFi\\MobileWiFi",
+      "bytes": 463896,
+      "sha256": "4562e9838d08a03ebbff8e70cab3dcae315b8bbfdb1258bbe43e35d31e4d97b6",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\WiFiSharing\\WiFiSharing",
+      "bytes": 89496,
+      "sha256": "0b7d4e282385cf8545b1812dc9e2d1f1fe9a29366eaeb2d0d495a802737b3c9a",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\Platform-Bluetooth\\Platform-Bluetooth",
+      "bytes": 132232,
+      "sha256": "6378711772f7d4c387ad938207bd37b5af045e666b584fe6eb47b9f5ce71e5dc",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\System\\Library\\PrivateFrameworks\\CoreAccessories.framework\\Support\\accessoryd",
+      "bytes": 4330752,
+      "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\usr\\libexec\\carkitd",
+      "bytes": 1287040,
+      "sha256": "87e352056b30cc29e206b265786dac43eeab8536e8cebeae14711e8e3fdaf8cd",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\usr\\sbin\\bluetoothd",
+      "bytes": 13092096,
+      "sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+      "role": "EXTRACTED_IPHONE_BINARY"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\bridge\\src\\main\\java\\io\\github\\iamr0s\\carvex\\session\\SessionController.kt",
+      "bytes": 70764,
+      "sha256": "de0de7ff36128ca054b12040c3cf1bfd1a1d798a42334ec68def2ff086f695c0",
+      "role": "CURRENT_ANDROID_IMPLEMENTATION_NOT_APPLE_SPEC"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\bridge\\src\\main\\java\\io\\github\\iamr0s\\carvex\\session\\VideoEncoder.kt",
+      "bytes": 22565,
+      "sha256": "884a3d64142de5e1e70cc2e217f2c06d14f51cc7886d5579cf3ea3d21d0b6576",
+      "role": "CURRENT_ANDROID_IMPLEMENTATION_NOT_APPLE_SPEC"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\Bootstrap.kt",
+      "bytes": 73689,
+      "sha256": "6d2b148cfc29cbef59bc00e63523105502a0f0a86ad994d1d981b3c07003f56c",
+      "role": "CURRENT_ANDROID_IMPLEMENTATION_NOT_APPLE_SPEC"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\AirSession.kt",
+      "bytes": 100480,
+      "sha256": "dfe3d7f818b204a7ed93048a1add292cd02a9d16a6110edd6f21cac775af23c7",
+      "role": "CURRENT_ANDROID_IMPLEMENTATION_NOT_APPLE_SPEC"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\ReceiverDiscovery.kt",
+      "bytes": 11526,
+      "sha256": "2c2fd3d25022081dee253b1b6f6ada6343f4c467556f62ae3d83a607b874e34d",
+      "role": "CURRENT_ANDROID_IMPLEMENTATION_NOT_APPLE_SPEC"
+    },
+    {
+      "path": "D:\\carvex-research\\android\\protocol-carplay\\src\\main\\java\\io\\github\\iamr0s\\carvex\\carplay\\core\\CarPlaySourceIdentity.kt",
+      "bytes": 1222,
+      "sha256": "54af8e401dd47085bab6751cef4217626d48d34d25349c0b7ad2e306d294662d",
+      "role": "CURRENT_ANDROID_IMPLEMENTATION_NOT_APPLE_SPEC"
+    }
+  ],
+  "limits": [
+    "Hash verifies identity, not Apple signature or extraction correctness.",
+    "Dirty current source is identified by per-file hash, not HEAD alone.",
+    "No fresh extraction or runtime execution of the IPSW performed."
+  ]
+}

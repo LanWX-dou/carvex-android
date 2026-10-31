@@ -1,0 +1,222 @@
+[
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 1032,
+    "offset": 32,
+    "segname": "__TEXT",
+    "vmaddr": 6641881088,
+    "vmsize": 1376256,
+    "fileoff": 0,
+    "filesize": 1376256,
+    "maxprot": 5,
+    "initprot": 5,
+    "nsects": 12,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 872,
+    "offset": 1064,
+    "segname": "__DATA_CONST",
+    "vmaddr": 8062632984,
+    "vmsize": 49152,
+    "fileoff": 1376256,
+    "filesize": 49152,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 10,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 632,
+    "offset": 1936,
+    "segname": "__AUTH_CONST",
+    "vmaddr": 8216185816,
+    "vmsize": 131072,
+    "fileoff": 1425408,
+    "filesize": 131072,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 7,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 232,
+    "offset": 2568,
+    "segname": "__AUTH",
+    "vmaddr": 8190813808,
+    "vmsize": 16384,
+    "fileoff": 1556480,
+    "filesize": 16384,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 2,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 392,
+    "offset": 2800,
+    "segname": "__DATA",
+    "vmaddr": 8124155192,
+    "vmsize": 32768,
+    "fileoff": 1572864,
+    "filesize": 32768,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 4,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 312,
+    "offset": 3192,
+    "segname": "__DATA_DIRTY",
+    "vmaddr": 8170582912,
+    "vmsize": 16384,
+    "fileoff": 1605632,
+    "filesize": 16384,
+    "maxprot": 3,
+    "initprot": 3,
+    "nsects": 3,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_SEGMENT_64",
+    "cmdsize": 72,
+    "offset": 3504,
+    "segname": "__LINKEDIT",
+    "vmaddr": 12300189696,
+    "vmsize": 622592,
+    "fileoff": 1622016,
+    "filesize": 610416,
+    "maxprot": 1,
+    "initprot": 1,
+    "nsects": 0,
+    "flags": 0
+  },
+  {
+    "cmd": "LC_ID_DYLIB",
+    "cmdsize": 88,
+    "offset": 3576
+  },
+  {
+    "cmd": "0x80000033",
+    "cmdsize": 16,
+    "offset": 3664
+  },
+  {
+    "cmd": "LC_SYMTAB",
+    "cmdsize": 24,
+    "offset": 3680,
+    "symoff": 1658408,
+    "nsyms": 10739,
+    "stroff": 1837320,
+    "strsize": 395112
+  },
+  {
+    "cmd": "LC_DYSYMTAB",
+    "cmdsize": 80,
+    "offset": 3704
+  },
+  {
+    "cmd": "LC_UUID",
+    "cmdsize": 24,
+    "offset": 3784,
+    "uuid": "364444ca-d8b8-3a37-98b3-3b012ab1a517"
+  },
+  {
+    "cmd": "LC_BUILD_VERSION",
+    "cmdsize": 32,
+    "offset": 3808
+  },
+  {
+    "cmd": "LC_SOURCE_VERSION",
+    "cmdsize": 16,
+    "offset": 3840
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 96,
+    "offset": 3856
+  },
+  {
+    "cmd": "0x80000018",
+    "cmdsize": 104,
+    "offset": 3952
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 88,
+    "offset": 4056
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 88,
+    "offset": 4144
+  },
+  {
+    "cmd": "0x80000018",
+    "cmdsize": 80,
+    "offset": 4232
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 80,
+    "offset": 4312
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 104,
+    "offset": 4392
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 56,
+    "offset": 4496
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 48,
+    "offset": 4552
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 88,
+    "offset": 4600
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 96,
+    "offset": 4688
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 96,
+    "offset": 4784
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 56,
+    "offset": 4880
+  },
+  {
+    "cmd": "LC_LOAD_DYLIB",
+    "cmdsize": 56,
+    "offset": 4936
+  },
+  {
+    "cmd": "LC_FUNCTION_STARTS",
+    "cmdsize": 16,
+    "offset": 4992,
+    "dataoff": 1650312,
+    "datasize": 8096
+  },
+  {
+    "cmd": "LC_DATA_IN_CODE",
+    "cmdsize": 16,
+    "offset": 5008
+  }
+]

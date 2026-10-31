@@ -1,0 +1,14 @@
+{
+  "address": "0x100177d80",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "be1fb7bcf77b24afb96b663bb04193caa6acf98e0303b6da46e39a786b8607df",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "be1fb7bcf77b24afb96b663bb04193caa6acf98e0303b6da46e39a786b8607df",
+  "ghidra_name": "_iap2_navigation_laneGuidanceInfoUpdateHandler",
+  "signature": "undefined _iap2_navigation_laneGuidanceInfoUpdateHandler()",
+  "diagnostic": "
+Low-level Error: Cannot properly adjust input varnodes",
+  "c_file": "f_100177d80.ghidra.c",
+  "c_sha256": "f8a4e9bd8b46cc093343bfe48eabab9898c4732e22ccaffed95fea5e959a7599",
+  "status": "DECOMPILE_FAILED"
+}

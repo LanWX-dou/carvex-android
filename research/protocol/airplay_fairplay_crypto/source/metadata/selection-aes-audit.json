@@ -1,0 +1,11 @@
+{
+  "image": "CoreUtils",
+  "functions": [
+    {"symbol": "_AES_CTR_Init", "group": "aes-state-audit"},
+    {"symbol": "_AES_CTR_Update", "group": "aes-state-audit"},
+    {"symbol": "_AES_CTR_Final", "group": "aes-state-audit"},
+    {"symbol": "_AES_CBCFrame_Init", "group": "aes-state-audit"},
+    {"symbol": "_AES_CBCFrame_Update", "group": "aes-state-audit"},
+    {"symbol": "_AES_CBCFrame_Final", "group": "aes-state-audit"}
+  ]
+}

@@ -1,0 +1,80 @@
+# pklg: bluetoothd-hci-2026_10_14-19_48_35.pklg  size=3180972
+# 解析：pklg 记录 -> ACL 重组 -> L2CAP -> 按 UUID 字节匹配 -> SDP 元素按 [type:5][size:3] 解码
+# 记录数=61230 ACL包=241 L2CAP帧=239
+# L2CAP CID 分布: {'0x1': 78, '0x1108': 17, '0x7': 6, '0x1208': 10, '0x160c': 15, '0x1809': 1, '0x140a': 7, '0x108': 17, '0x208': 21, '0x60c': 14, '0x309': 7, '0x40a': 10, '0x908': 1, '0xa08': 15, '0xb09': 20}
+### cid=0x160c handle=0xb 命中 WiapGateWay (BE)
+  PDU=6 tid=0x0024 paramlen=30 raw=060024001e35111c00000000decafadedecadeafdecacafe02a0350609000109000900
+   SearchPattern: SEQ[UUID128 00000000-deca-fade-deca-deafdecacafe]
+   MaxAttrByteCount: 672
+   AttributeIDList: SEQ[UINT16 1, UINT16 9]
+   Continuation: 00
+### cid=0x060c handle=0xb 命中 WiapGateWay (BE)
+  PDU=6 tid=0x0022 paramlen=30 raw=060022001e35111c00000000decafadedecadeafdecacafe02a0350609000109000900
+   SearchPattern: SEQ[UUID128 00000000-deca-fade-deca-deafdecacafe]
+   MaxAttrByteCount: 672
+   AttributeIDList: SEQ[UINT16 1, UINT16 9]
+   Continuation: 00
+### cid=0x0908 handle=0xb 命中 WiapGateWay (BE)
+  PDU=6 tid=0x0024 paramlen=36 raw=060024002435171c00000000decafadedecadeafdecacafe1901001900030064350609000409000900
+   SearchPattern: SEQ[UUID128 00000000-deca-fade-deca-deafdecacafe, UUID16 0100----, UUID16 0003----]
+   MaxAttrByteCount: 100
+   AttributeIDList: SEQ[UINT16 4, UINT16 9]
+   Continuation: 00
+### cid=0x0a08 handle=0xb 命中 WiapGateWay (BE)
+  PDU=6 tid=0x0032 paramlen=30 raw=060032001e35111c00000000decafadedecadeafdecacafe02a0350609000109000900
+   SearchPattern: SEQ[UUID128 00000000-deca-fade-deca-deafdecacafe]
+   MaxAttrByteCount: 672
+   AttributeIDList: SEQ[UINT16 1, UINT16 9]
+   Continuation: 00
+### cid=0x1108 handle=0xb 命中 WiapSink (BE)
+  PDU=5 tid=0x000b paramlen=61 raw=05000b003d003a3600370900000a0001000e09000135111c00000000decafadedecadeafdecacaff0900020a13a30d8c090004350c35031901003505190003080400
+   AttributeListByteCount: 58
+   AttributeList: SEQ[UINT16 0, UINT32 65550, UINT16 1, SEQ[UUID128 00000000-deca-fade-deca-deafdecacaff], UINT16 2, UINT32 329452940, UINT16 4, SEQ[SEQ[UUID16 0100----], SEQ[UUID16 0003----, UINT8 4]]]
+   Continuation: 00
+### cid=0x0108 handle=0xb 命中 WiapSink (BE)
+  PDU=5 tid=0x000a paramlen=61 raw=05000a003d003a3600370900000a0001000d09000135111c00000000decafadedecadeafdecacaff0900020a13a3c30e090004350c35031901003505190003080400
+   AttributeListByteCount: 58
+   AttributeList: SEQ[UINT16 0, UINT32 65549, UINT16 1, SEQ[UUID128 00000000-deca-fade-deca-deafdecacaff], UINT16 2, UINT32 329499406, UINT16 4, SEQ[SEQ[UUID16 0100----], SEQ[UUID16 0003----, UINT8 4]]]
+   Continuation: 00
+### cid=0x160c handle=0xb 命中 CarplayGateway (LE)
+  PDU=6 tid=0x0025 paramlen=30 raw=060025001e35111c1a29eaab0173bc881c454de166248d2d02a0350609000109000900
+   SearchPattern: SEQ[UUID128 1a29eaab-0173-bc88-1c45-4de166248d2d]
+   MaxAttrByteCount: 672
+   AttributeIDList: SEQ[UINT16 1, UINT16 9]
+   Continuation: 00
+### cid=0x060c handle=0xb 命中 CarplayGateway (LE)
+  PDU=6 tid=0x0023 paramlen=30 raw=060023001e35111c1a29eaab0173bc881c454de166248d2d02a0350609000109000900
+   SearchPattern: SEQ[UUID128 1a29eaab-0173-bc88-1c45-4de166248d2d]
+   MaxAttrByteCount: 672
+   AttributeIDList: SEQ[UINT16 1, UINT16 9]
+   Continuation: 00
+### cid=0x0a08 handle=0xb 命中 CarplayGateway (LE)
+  PDU=6 tid=0x0033 paramlen=30 raw=060033001e35111c1a29eaab0173bc881c454de166248d2d02a0350609000109000900
+   SearchPattern: SEQ[UUID128 1a29eaab-0173-bc88-1c45-4de166248d2d]
+   MaxAttrByteCount: 672
+   AttributeIDList: SEQ[UINT16 1, UINT16 9]
+   Continuation: 00
+
+# pklg: bluetoothd-hci-latest.pklg  size=890558
+# 解析：pklg 记录 -> ACL 重组 -> L2CAP -> 按 UUID 字节匹配 -> SDP 元素按 [type:5][size:3] 解码
+# 记录数=16686 ACL包=52 L2CAP帧=52
+# L2CAP CID 分布: {'0x1': 16, '0xc08': 1, '0xd08': 15, '0xe09': 20}
+### cid=0x0c08 handle=0xb 命中 WiapGateWay (BE)
+  PDU=6 tid=0x004c paramlen=36 raw=06004c002435171c00000000decafadedecadeafdecacafe1901001900030064350609000409000900
+   SearchPattern: SEQ[UUID128 00000000-deca-fade-deca-deafdecacafe, UUID16 0100----, UUID16 0003----]
+   MaxAttrByteCount: 100
+   AttributeIDList: SEQ[UINT16 4, UINT16 9]
+   Continuation: 00
+### cid=0x0d08 handle=0xb 命中 WiapGateWay (BE)
+  PDU=6 tid=0x005a paramlen=30 raw=06005a001e35111c00000000decafadedecadeafdecacafe02a0350609000109000900
+   SearchPattern: SEQ[UUID128 00000000-deca-fade-deca-deafdecacafe]
+   MaxAttrByteCount: 672
+   AttributeIDList: SEQ[UINT16 1, UINT16 9]
+   Continuation: 00
+### cid=0x0d08 handle=0xb 命中 CarplayGateway (LE)
+  PDU=6 tid=0x005b paramlen=30 raw=06005b001e35111c1a29eaab0173bc881c454de166248d2d02a0350609000109000900
+   SearchPattern: SEQ[UUID128 1a29eaab-0173-bc88-1c45-4de166248d2d]
+   MaxAttrByteCount: 672
+   AttributeIDList: SEQ[UINT16 1, UINT16 9]
+   Continuation: 00
+

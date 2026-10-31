@@ -1,0 +1,13 @@
+{
+  "address": "0x2519ffebc",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "0d7e4be63a9d3915d7c020f6ed9af04584a6997694c8708ee1e906e846e39cb2",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "0d7e4be63a9d3915d7c020f6ed9af04584a6997694c8708ee1e906e846e39cb2",
+  "ghidra_name": "_OowSGu",
+  "signature": "undefined _OowSGu()",
+  "diagnostic": "",
+  "c_file": "f_2519ffebc.ghidra.c",
+  "c_sha256": "e92300e8e6a038652a3293f3e502fadddcb934efb35dbe85a0abbf48d29ae83b",
+  "status": "DECOMPILED_UNREVIEWED"
+}

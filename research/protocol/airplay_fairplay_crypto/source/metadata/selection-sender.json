@@ -1,0 +1,230 @@
+{
+ "image": "AirPlaySender",
+ "functions": [
+  {
+   "symbol": "_APAuthenticationClientFairPlayCreate",
+   "group": "F",
+   "note": "FairPlay \u8ba4\u8bc1\u5ba2\u6237\u7aef vtable \u6784\u9020"
+  },
+  {
+   "symbol": "_fpAuthentication_AuthenticateEndpoint",
+   "group": "F",
+   "note": "FairPlay \u8ba4\u8bc1\u5165\u53e3"
+  },
+  {
+   "symbol": "_fpAuthentication_CreateEncryptedKey",
+   "group": "F",
+   "note": "\u52a0\u5bc6 master key\uff08ekey\uff09"
+  },
+  {
+   "symbol": "_fpAuthentication_GetAuthenticationType",
+   "group": "F",
+   "note": "\u8ba4\u8bc1\u7c7b\u578b"
+  },
+  {
+   "symbol": "_fpAuthentication_Finalize",
+   "group": "F",
+   "note": "\u6790\u6784"
+  },
+  {
+   "symbol": "_fpAuthentication_CopyDebugDescription",
+   "group": "F",
+   "note": "\u8c03\u8bd5\u63cf\u8ff0"
+  },
+  {
+   "symbol": "_APKeyHolderLegacyCreate",
+   "group": "K",
+   "note": "legacy keyholder \u6784\u9020"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CopyMasterAESKeyAndIV",
+   "group": "K",
+   "note": "\u53d6 master key/IV"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CreateEncryptedMasterAESKeyAndIV",
+   "group": "K",
+   "note": "\u751f\u6210\u5e76\u52a0\u5bc6 master key/IV"
+  },
+  {
+   "symbol": "_legacyKeyHolder_UpdateMasterAESKeyAfterSharing",
+   "group": "K",
+   "note": "\u5171\u4eab\u540e\u66f4\u65b0 master key"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CreateDerivedAESKeyAndIVForLegacyStream",
+   "group": "K",
+   "note": "\u9010\u6d41\u6d3e\u751f key/IV"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CreateDerivedKey",
+   "group": "K",
+   "note": "\u6d3e\u751f\u952e\u5165\u53e3"
+  },
+  {
+   "symbol": "_legacyKeyHolder_createDerivedKeyLegacy",
+   "group": "K",
+   "note": "legacy \u6d3e\u751f\u5b9e\u73b0"
+  },
+  {
+   "symbol": "_legacyKeyHolder_GetAuthenticationType",
+   "group": "K",
+   "note": "\u8ba4\u8bc1\u7c7b\u578b"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CopyProperty",
+   "group": "K",
+   "note": "\u5c5e\u6027\u8bfb\u53d6"
+  },
+  {
+   "symbol": "_APKeyHolderSharedKeyCreate",
+   "group": "K",
+   "note": "shared keyholder \u6784\u9020"
+  },
+  {
+   "symbol": "_sharedKeyHolder_CopyMasterAESKeyAndIV",
+   "group": "K",
+   "note": "\u53d6 master key/IV"
+  },
+  {
+   "symbol": "_sharedKeyHolder_CreateEncryptedMasterAESKeyAndIV",
+   "group": "K",
+   "note": "\u751f\u6210\u5e76\u52a0\u5bc6 master key/IV"
+  },
+  {
+   "symbol": "_sharedKeyHolder_GetAuthenticationType",
+   "group": "K",
+   "note": "\u8ba4\u8bc1\u7c7b\u578b"
+  },
+  {
+   "symbol": "_APKeyHolderCoreUtilsCreate",
+   "group": "K",
+   "note": "coreutils keyholder \u6784\u9020"
+  },
+  {
+   "symbol": "_coreUtilsKeyHolder_CreateDerivedKey",
+   "group": "K",
+   "note": "\u6d3e\u751f\u952e"
+  },
+  {
+   "symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForStream",
+   "group": "K",
+   "note": "\u9010\u6d41\u5bc6\u94a5"
+  },
+  {
+   "symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForContext",
+   "group": "K",
+   "note": "\u9010\u4e0a\u4e0b\u6587\u5bc6\u94a5"
+  },
+  {
+   "symbol": "_APSKeyHolderCreateEncryptionKeysForStream",
+   "group": "K",
+   "note": "\u5bf9\u5916\u9010\u6d41\u5bc6\u94a5\u63a5\u53e3"
+  },
+  {
+   "symbol": "_APSKeyHolderGetAuthenticationType",
+   "group": "K",
+   "note": "\u5bf9\u5916\u8ba4\u8bc1\u7c7b\u578b\u63a5\u53e3"
+  },
+  {
+   "symbol": "_apsession_ensureKeyHolderSetUp",
+   "group": "K",
+   "note": "\u4f1a\u8bdd\u88c5\u914d keyholder"
+  },
+  {
+   "symbol": "_apsession_createKeyHolder",
+   "group": "K",
+   "note": "\u521b\u5efa keyholder"
+  },
+  {
+   "symbol": "_NROcmM",
+   "group": "FP",
+   "note": "\u6df7\u6dc6\u540d FairPlay \u8f85\u52a9\uff0812B\uff0c\u53d6\u5730\u5740\u7528\uff09"
+  },
+  {
+   "symbol": "_U4HBs",
+   "group": "FP",
+   "note": "\u6df7\u6dc6\u540d\uff1aFairPlay \u52a0\u5bc6 master key \u7684\u5b9e\u73b0\u4f53"
+  },
+  {
+   "symbol": "_Mib5yocT",
+   "group": "FP",
+   "note": "\u6df7\u6dc6\u540d\uff1aFairPlay \u63e1\u624b\u72b6\u6001\u673a\uff08\u8bf7\u6c42/\u54cd\u5e94\u751f\u6210\uff09"
+  },
+  {
+   "symbol": "_zxcm2Qme0x",
+   "group": "FP",
+   "note": "\u6df7\u6dc6\u540d\uff1aFairPlay \u8f85\u52a9"
+  },
+  {
+   "symbol": "_IPaI1oem5iL",
+   "group": "FP",
+   "note": "\u6df7\u6dc6\u540d\uff1aFairPlay \u4e0a\u4e0b\u6587\u9500\u6bc1"
+  },
+  {
+   "symbol": "_cp2g1b9ro",
+   "group": "FP",
+   "note": "\u6df7\u6dc6\u540d\uff1aFairPlay \u4e0a\u4e0b\u6587\u521b\u5efa/\u88c5\u8f7d"
+  },
+  {
+   "symbol": "_jEHf8Xzsv8K",
+   "group": "FP",
+   "note": "\u6df7\u6dc6\u540d\uff1a\u91ca\u653e FairPlay \u8f93\u51fa\u7f13\u51b2"
+  },
+  {
+   "symbol": "_OowSGu",
+   "group": "FP",
+   "note": "\u6df7\u6dc6\u540d\uff1aFairPlay \u8f85\u52a9"
+  },
+  {
+   "address": "0x2519bbf24",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251abe4c8",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251aa9490",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251aa9524",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251aa9668",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251aafde0",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251ab0108",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251b5ce10",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251a89d50",
+   "group": "X",
+   "note": ""
+  },
+  {
+   "address": "0x251a9ff20",
+   "group": "X",
+   "note": ""
+  }
+ ]
+}

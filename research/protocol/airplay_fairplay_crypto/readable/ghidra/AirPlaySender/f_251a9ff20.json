@@ -1,0 +1,13 @@
+{
+  "address": "0x251a9ff20",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "34a41c73e67d0230391e3f8663689a8eb96a07d6f6137e812383d8c93219e2c9",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "34a41c73e67d0230391e3f8663689a8eb96a07d6f6137e812383d8c93219e2c9",
+  "ghidra_name": "_APSKeyHolderGetAuthenticationType",
+  "signature": "undefined _APSKeyHolderGetAuthenticationType()",
+  "diagnostic": "",
+  "c_file": "f_251a9ff20.ghidra.c",
+  "c_sha256": "52f4d6509aaf2465aaec4b8685fba525f48e4c96fa11df40de7916a277b4a0ce",
+  "status": "DECOMPILED_UNREVIEWED"
+}

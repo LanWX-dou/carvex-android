@@ -1,0 +1,13 @@
+{
+  "address": "0x13c820",
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "raw_sha256": "2503f7f98a0da105ee90c1ef3bddc7ce7fbd6a0cbb33df9e6cdd6e7e599381a8",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "2503f7f98a0da105ee90c1ef3bddc7ce7fbd6a0cbb33df9e6cdd6e7e599381a8",
+  "ghidra_name": "connect",
+  "signature": "undefined connect(CIpodLib * this, int * param_1, char * param_2)",
+  "diagnostic": "",
+  "c_file": "f_13c820.ghidra.c",
+  "c_sha256": "2c835c25622f98f8a9f3101635d655a4da01d3602ca4e6ff6306c41be466345a",
+  "status": "DECOMPILED_UNREVIEWED"
+}

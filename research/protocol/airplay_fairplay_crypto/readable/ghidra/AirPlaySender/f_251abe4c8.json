@@ -1,0 +1,13 @@
+{
+  "address": "0x251abe4c8",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "eed75584793286303aa5d1af3b1b7a01bbee4e1b06f987366a75944931a3403d",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "eed75584793286303aa5d1af3b1b7a01bbee4e1b06f987366a75944931a3403d",
+  "ghidra_name": "_bufferedAudioEngine_generateEncryptionKeyAndCryptor",
+  "signature": "undefined _bufferedAudioEngine_generateEncryptionKeyAndCryptor()",
+  "diagnostic": "",
+  "c_file": "f_251abe4c8.ghidra.c",
+  "c_sha256": "b3a589ca67a4c9332495ad4a230514fe9b0ee1a3694df1e3de324167369bb253",
+  "status": "DECOMPILED_UNREVIEWED"
+}

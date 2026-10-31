@@ -1,0 +1,101 @@
+{
+ "element_pack": [
+  {
+   "b7": 5,
+   "d14": 10940,
+   "l10": 341,
+   "wire": "85AAF155",
+   "internal": 1433058437
+  },
+  {
+   "b7": 0,
+   "d14": 0,
+   "l10": 0,
+   "wire": "80000000",
+   "internal": 128
+  },
+  {
+   "b7": 127,
+   "d14": 16383,
+   "l10": 1023,
+   "wire": "FFFFFFFF",
+   "internal": 4294967295
+  },
+  {
+   "b7": 1,
+   "d14": 1,
+   "l10": 1,
+   "wire": "81000401",
+   "internal": 4194689
+  },
+  {
+   "b7": 18,
+   "d14": 5,
+   "l10": 682,
+   "wire": "920016AA",
+   "internal": 2860516754
+  }
+ ],
+ "pt_remap": {
+  "0x60": "0x61",
+  "0x64": "0x68",
+  "0x65": "0x69",
+  "0x6a": "0x6c",
+  "0x6b": "0x6b",
+  "0x6d": "0x6d"
+ },
+ "header_len": [
+  {
+   "elements": 0,
+   "merged": true,
+   "expected": 11
+  },
+  {
+   "elements": 1,
+   "merged": true,
+   "expected": 15
+  },
+  {
+   "elements": 3,
+   "merged": true,
+   "expected": 23
+  },
+  {
+   "elements": 0,
+   "merged": false,
+   "expected": 10
+  }
+ ],
+ "gate": [
+  {
+   "pt": 97,
+   "merged": false,
+   "expect": true
+  },
+  {
+   "pt": 96,
+   "merged": false,
+   "expect": false
+  },
+  {
+   "pt": 96,
+   "merged": true,
+   "expect": true
+  },
+  {
+   "pt": 104,
+   "merged": false,
+   "expect": true
+  },
+  {
+   "pt": 109,
+   "merged": false,
+   "expect": true
+  },
+  {
+   "pt": 100,
+   "merged": true,
+   "expect": false
+  }
+ ]
+}

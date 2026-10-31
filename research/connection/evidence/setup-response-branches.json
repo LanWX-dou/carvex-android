@@ -1,0 +1,262 @@
+{
+  "schema": "setup-response-branches-v1",
+  "build": "24A446",
+  "firmware_executed": false,
+  "sources": {
+    "AirPlaySender": {
+      "path_relative_to_firmware": "extracted/24A446/binaries/AirPlaySender/AirPlaySender",
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "functions": [
+        {
+          "address": "0x251a59338",
+          "end": "0x251a59708",
+          "sha256": "cd804eb83c75b9caca057829351be714919375d5da11cc38234baadedc381d14",
+          "bytes": 976,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x251b5cfe0",
+          "end": "0x251b5d2ec",
+          "sha256": "1d0d1fd2b6426e0a12a0cd5881e024f1c8b278e61e31e9acbbc801ab5165996c",
+          "bytes": 780,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x251a5dec0",
+          "end": "0x251a5e858",
+          "sha256": "da5c10872975888c24e5c5bddbc87e402597ba37cec60b7a3b8b6e08885f0ec8",
+          "bytes": 2456,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x2519c69f0",
+          "end": "0x2519c80c0",
+          "sha256": "458362e5e51be43bbe1d9550800a5223dcb4e43beeabc2295664d32eeb0162cc",
+          "bytes": 5840,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x2519c5858",
+          "end": "0x2519c69d0",
+          "sha256": "1348fc1e56decf58100df1cd4faa3f704857be71fd09a378566917502958d3c6",
+          "bytes": 4472,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x251a5a840",
+          "end": "0x251a5af78",
+          "sha256": "e3ae7948a64c689a4b866dadd7b753a397fa2edabcd0d0aa5e8998219aaaed7f",
+          "bytes": 1848,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x251afe62c",
+          "end": "0x251afefbc",
+          "sha256": "914eb260ae07be0de4537bb235b2d6e6a765d3431328e4104070b3ab4abf4497",
+          "bytes": 2448,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x251a56e44",
+          "end": "0x251a56f24",
+          "sha256": "f6721287112a17e386a29389d818b036c7d1eaa16dc320ff9907f41ef6c081e2",
+          "bytes": 224,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x2519bbf24",
+          "end": "0x2519bd5a8",
+          "sha256": "2474956bad6630ee63b02d72eb56748aa49531735f5e4f3772422c313bb6655c",
+          "bytes": 5764,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        }
+      ]
+    },
+    "CoreUtils": {
+      "path_relative_to_firmware": "extracted/24A446/binaries/CoreUtils/CoreUtils",
+      "sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+      "functions": [
+        {
+          "address": "0x18be373d8",
+          "end": "0x18be37434",
+          "sha256": "8f3287832be63857f22d82e58278f8c8724f1593418aefadd7fa5a2466be4097",
+          "bytes": 92,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x18be37434",
+          "end": "0x18be37744",
+          "sha256": "628746f504d16572885a10af918828cd47ff1b70a3118b72cbf7649560307b6e",
+          "bytes": 784,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x18be38df0",
+          "end": "0x18be38e58",
+          "sha256": "2493b7d02cd6319ad9969516e4c2da03e013434e425d689b8d576f6a0f10e799",
+          "bytes": 104,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x18be36428",
+          "end": "0x18be364a4",
+          "sha256": "32fd273f5d38ed4c46bfb5ee55428e05222c3b15f5e9d255514ed35a57c56cba",
+          "bytes": 124,
+          "cache_fragment_present": false,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x18be41338",
+          "end": "0x18be41364",
+          "sha256": "8050439ec4658cef6876461c9cb18cb88be3f8247d0415f3a6f1ef23136b7f88",
+          "bytes": 44,
+          "cache_fragment_present": false,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x18be41994",
+          "end": "0x18be426d0",
+          "sha256": "11dcc9c9ee8560cd8d154ac30464de05d6923f2f30c044dec92ed0c4c850142f",
+          "bytes": 3388,
+          "cache_fragment_present": false,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x18be588b0",
+          "end": "0x18be58964",
+          "sha256": "dcd8cf02a7a65d1049999c1f403b749f425cc02d0e8af743ad142382c52561d9",
+          "bytes": 180,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x18be40c9c",
+          "end": "0x18be411bc",
+          "sha256": "f4465e9a042121e5d2fc253002ed66c93c780a7c0f26fd2ac30d8d7ba187932b",
+          "bytes": 1312,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        }
+      ]
+    },
+    "APTransport": {
+      "path_relative_to_firmware": "extracted/24A446/binaries/APTransport/APTransport",
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "functions": [
+        {
+          "address": "0x24fdc8e50",
+          "end": "0x24fdc93c0",
+          "sha256": "b445d78444ef8853492a13e2e8aa79cd3ee01a97aaefc9d1b6d7c1be950652e2",
+          "bytes": 1392,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x24fdc93c0",
+          "end": "0x24fdc9750",
+          "sha256": "641c602bfb33fe78723c04ddb43e537407573bbef16c3c3cff100e4a61366677",
+          "bytes": 912,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        },
+        {
+          "address": "0x24fda58ec",
+          "end": "0x24fda688c",
+          "sha256": "6a4552591408d3fc25dabbd8cefce2cffffd6c0c8a308e338672b2df9d62ab5e",
+          "bytes": 4000,
+          "cache_fragment_present": true,
+          "original_dyld_equal": true,
+          "decoded_complete": true
+        }
+      ]
+    }
+  },
+  "pointer_bindings": [
+    {
+      "slot": "0x2761280d0",
+      "raw": "388112f604a85c80",
+      "target": "0x276128138"
+    },
+    {
+      "slot": "0x276128158",
+      "raw": "2ce6afd1002f1680",
+      "target": "0x251afe62c"
+    },
+    {
+      "slot": "0x271bf4d80",
+      "raw": "a019f0b700001480",
+      "target": "0x237f019a0"
+    },
+    {
+      "slot": "0x271bf4d78",
+      "raw": "1c6af0b700001480",
+      "target": "0x237f06a1c"
+    }
+  ],
+  "keys": [
+    {
+      "slot": "0x268104150",
+      "indirect": "0x268a95be8",
+      "cfstring": "0x273d53220",
+      "value": "info"
+    },
+    {
+      "slot": "0x268104158",
+      "indirect": "0x268a95bf0",
+      "cfstring": "0x273d53260",
+      "value": "skipRecord"
+    }
+  ],
+  "socket_symbols": {
+    "image": "/usr/lib/system/libsystem_kernel.dylib",
+    "image_base": "0x237ef8000",
+    "targets": {
+      "0x237f06a1c": [
+        "___getpeername",
+        "_getpeername"
+      ],
+      "0x237f019a0": [
+        "___getsockname",
+        "_getsockname"
+      ]
+    },
+    "nlist_sha256": "02c52b8ee99b15ab2d1d7ea6ea37846897d21b4e74f73452289e3a50b163d78d"
+  },
+  "scan_i_dispatch": {
+    "slot": "0x18be42708",
+    "raw": "68000000",
+    "target": "0x18be41cb4"
+  },
+  "scope": "Static bounded consumers, numeric conversion and URL producer; not full endpoint/platform or SETUP presence coverage"
+}

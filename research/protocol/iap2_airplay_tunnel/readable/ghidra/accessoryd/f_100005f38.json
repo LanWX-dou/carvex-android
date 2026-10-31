@@ -1,0 +1,13 @@
+{
+  "address": "0x100005f38",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "faf5f3e11f6cd836318747c7be008dc29f85c2da2c959a2ea89dfe3692b0d434",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "faf5f3e11f6cd836318747c7be008dc29f85c2da2c959a2ea89dfe3692b0d434",
+  "ghidra_name": "_iAP2LinkCurPckChksumSize",
+  "signature": "undefined _iAP2LinkCurPckChksumSize()",
+  "diagnostic": "",
+  "c_file": "f_100005f38.ghidra.c",
+  "c_sha256": "90c14115c088020b743e76cdbcdbe4dc3002b25bf004182aae7cdfdab59263c9",
+  "status": "DECOMPILED_UNREVIEWED"
+}

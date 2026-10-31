@@ -1,0 +1,14 @@
+{
+  "image": "CoreUtils",
+  "functions": [
+    {"symbol": "_poly1305_update", "group": "crypto-audit"},
+    {"symbol": "_chacha20_poly1305_add_aad", "group": "crypto-audit"},
+    {"symbol": "_chacha20_poly1305_init_64x64", "group": "crypto-audit"},
+    {"symbol": "_chacha20_poly1305_decrypt", "group": "crypto-audit"},
+    {"symbol": "_chacha20_poly1305_verify", "group": "crypto-audit"},
+    {"symbol": "_chacha20_poly1305_final", "group": "crypto-audit"},
+    {"symbol": "_chacha20_poly1305_encrypt", "group": "crypto-audit"},
+    {"symbol": "__chacha20_poly1305_encrypt_all", "group": "crypto-audit"},
+    {"symbol": "__chacha20_poly1305_decrypt_all", "group": "crypto-audit"}
+  ]
+}

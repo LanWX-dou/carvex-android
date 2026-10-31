@@ -1,0 +1,51 @@
+{
+ "image": "AirPlaySender",
+ "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+ "source_size": 4397312,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 4,
+ "functions": [
+  {
+   "symbol": "_realTimeAudioEngine_tas_transcodeAndSendEntry",
+   "address": "0x251b80e54",
+   "end": "0x251b82120",
+   "size": 4812,
+   "group": "message-audit",
+   "raw_sha256": "ae1b52c453574284a3179f29fe7d7b3acb1c4df8da7a4499948a1f90c2be75fd",
+   "bin": "f_251b80e54.bin",
+   "asm": "f_251b80e54.s"
+  },
+  {
+   "symbol": "audio-message-postprocess-audit",
+   "address": "0x251aa7f38",
+   "end": "0x251aa817c",
+   "size": 580,
+   "group": "message-audit",
+   "raw_sha256": "3dcb293cc188d917aa039a22fde6a809e3d35e6783f580e42e89a1b16df861a7",
+   "bin": "f_251aa7f38.bin",
+   "asm": "f_251aa7f38.s"
+  },
+  {
+   "symbol": "audio-message-delivery-audit",
+   "address": "0x251a6f7c0",
+   "end": "0x251a6f9a8",
+   "size": 488,
+   "group": "message-audit",
+   "raw_sha256": "6a9e85b990870ffa4868a82d5fded1f8f66eaa208124505090f514a34799dbb8",
+   "bin": "f_251a6f7c0.bin",
+   "asm": "f_251a6f7c0.s"
+  },
+  {
+   "symbol": "car-audio-send-callback-audit",
+   "address": "0x2519c2428",
+   "end": "0x2519c26ac",
+   "size": 644,
+   "group": "message-audit",
+   "raw_sha256": "f26e7396bad202774a12327de0871043b5fc5ade15d5e1352cd609c1551bf35d",
+   "bin": "f_2519c2428.bin",
+   "asm": "f_2519c2428.s"
+  }
+ ],
+ "missing_symbols": []
+}

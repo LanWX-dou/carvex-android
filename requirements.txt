@@ -1,0 +1,13 @@
+# Python dependencies for the docset verifiers and static-analysis helpers.
+# Install in WSL/Ubuntu:
+#   python3 -m pip install -r requirements.txt
+#
+# capstone/unicorn are required by the audit-grade verifiers that re-disassemble
+# or execute bounded original ARM64 slices. Without them, verify-all reports
+# SKIP (not PASS) for the affected docsets.
+capstone==5.0.7
+unicorn==2.1.4
+cryptography==41.0.7
+
+# Optional: used by firmware/tools/*tracev3*.py to scan sysdiagnose logarchives.
+lzfse>=0.3.0

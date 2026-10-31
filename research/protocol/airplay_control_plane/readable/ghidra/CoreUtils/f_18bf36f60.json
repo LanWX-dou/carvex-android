@@ -1,0 +1,13 @@
+{
+  "address": "0x18bf36f60",
+  "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+  "raw_sha256": "b5a1316def5c780964f15921ac0622bfa88121a42621ed8c8c21cbd6d90f9a7e",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "b5a1316def5c780964f15921ac0622bfa88121a42621ed8c8c21cbd6d90f9a7e",
+  "ghidra_name": "_SRPClientVerify_libsrp",
+  "signature": "undefined _SRPClientVerify_libsrp()",
+  "diagnostic": "",
+  "c_file": "f_18bf36f60.ghidra.c",
+  "c_sha256": "43fe192b0b1643b807c3e00ed0e5834f7c9df30d7dbb89fef256f1c11782ed40",
+  "status": "DECOMPILED_UNREVIEWED"
+}

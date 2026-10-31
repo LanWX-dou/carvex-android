@@ -1,0 +1,13 @@
+{
+  "address": "0x100027c94",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "293e9c8afd4dd987b6b12538aeeaed2212f2c3b909a36a4f836b2094cb4de069",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "293e9c8afd4dd987b6b12538aeeaed2212f2c3b909a36a4f836b2094cb4de069",
+  "ghidra_name": "_platform_power_sendSleepUpdate",
+  "signature": "undefined _platform_power_sendSleepUpdate()",
+  "diagnostic": "",
+  "c_file": "f_100027c94.ghidra.c",
+  "c_sha256": "6066f7fd366f397c9f58bc132d34f84383fa800b396eb47b4ca87b1ea1a67221",
+  "status": "DECOMPILED_UNREVIEWED"
+}

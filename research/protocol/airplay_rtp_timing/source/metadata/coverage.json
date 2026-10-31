@@ -1,0 +1,195 @@
+{
+ "docset": "airplay_rtp_timing",
+ "build": "24A446",
+ "device": "iPhone18,1",
+ "updated": "2026-10-26",
+ "items": [
+  {
+   "id": "RT-01",
+   "name": "RTP 头",
+   "status": "部分确认",
+   "evidence": "12 字节固定头、序列号 +2、时间戳 +4、PT +1、整段复制（A01.1/A01.2/A01.3/A01.8/A01.9）",
+   "missing": "第 0 字节语义、SSRC、marker、padding、CSRC",
+   "open": [
+    "OPEN-RTP-2",
+    "OPEN-RTP-3"
+   ],
+   "files": [
+    "analysis/01-rtp-header.md",
+    "spec/01-rtp-format.md"
+   ]
+  },
+  {
+   "id": "RT-02",
+   "name": "扩展头",
+   "status": "部分确认",
+   "evidence": "元素两态、双游标、正常计数C=n+1与4C−3=4n+1（A02/A07/A11.4）",
+   "missing": "音频数据基址B到网络包的映射、B7/L10跨profile语义与长度上限保证",
+   "open": [
+    "OPEN-RTP-4",
+    "OPEN-RTP-5"
+   ],
+   "files": [
+    "analysis/02-extended-header.md",
+    "spec/01-rtp-format.md"
+   ]
+  },
+  {
+   "id": "RT-03",
+   "name": "载荷类型",
+   "status": "部分确认",
+   "evidence": "四字符码→PT 8 项硬编码表、合并模式 PT 改写、接收侧门集合（A03.1–A03.4）",
+   "missing": "四字符码↔编解码器、PT 是否可协商",
+   "open": [
+    "OPEN-RTP-6",
+    "OPEN-RTP-9"
+   ],
+   "files": [
+    "analysis/03-payload-types.md",
+    "spec/01-rtp-format.md"
+   ]
+  },
+  {
+   "id": "RT-04",
+   "name": "序列号",
+   "status": "部分确认",
+   "evidence": "16 位大端、回绕截断、按子包递增（A01.2、A01.9）",
+   "missing": "重复/乱序判定规则、连续性检查的判据",
+   "open": [
+    "OPEN-RTP-8"
+   ],
+   "files": [
+    "analysis/01-rtp-header.md"
+   ]
+  },
+  {
+   "id": "RT-05",
+   "name": "时间戳",
+   "status": "部分确认",
+   "evidence": "32 位大端、子包时间戳 = 包头 − 14 位差值、末子包不减；接口层是 double，写入时 fcvtzu 截断（A01.8、A02.5、A05.5）",
+   "missing": "时钟频率、单位、回绕、与 NTP/网络时钟的关系",
+   "open": [
+    "OPEN-CLK-3",
+    "OPEN-CLK-5"
+   ],
+   "files": [
+    "analysis/01-rtp-header.md",
+    "analysis/05-clock-and-timestamps.md",
+    "spec/02-clock-and-timestamps.md"
+   ]
+  },
+  {
+   "id": "RT-06",
+   "name": "SSRC/流标识",
+   "status": "OPEN",
+   "evidence": "有头部整段复制包含pkt+8..11，未核字段生成/语义使用",
+   "missing": "SSRC语义、多流区分、冲突处理",
+   "open": [
+    "OPEN-RTP-2"
+   ],
+   "files": [
+    "analysis/01-rtp-header.md"
+   ]
+  },
+  {
+   "id": "RT-07",
+   "name": "NTP 同步",
+   "status": "部分确认",
+   "evidence": "内部64B记录/原子索引/double间隔；24B输出与state2门；首次首字段为0重算一次、第二次未检查，默认对象未解析（A05.1–A05.4、A10.3）",
+   "missing": "SR/时钟消息、漂移补偿、平滑算法、NTP/PTP 参与方式",
+   "open": [
+    "OPEN-CLK-4",
+    "OPEN-RUN-2"
+   ],
+   "files": [
+    "analysis/05-clock-and-timestamps.md",
+    "spec/02-clock-and-timestamps.md"
+   ]
+  },
+  {
+   "id": "RT-08",
+   "name": "抖动缓冲（发送缓冲）",
+   "status": "部分确认",
+   "evidence": "内部预留12B/容量1460、非零提交清持有字段；零提交未显式清；Read八参数、第5参为0、乘积u32（A06.1–A06.6、A10.1/A10.2）",
+   "missing": "目标延迟、水位、上下溢策略、池大小、零提交/失败后完整池生命周期",
+   "open": [
+    "OPEN-JIT-1",
+    "OPEN-JIT-2",
+    "OPEN-JIT-3",
+    "OPEN-JIT-4"
+   ],
+   "files": [
+    "analysis/06-jitter-buffer.md",
+    "spec/03-buffers.md"
+   ]
+  },
+  {
+   "id": "RT-09",
+   "name": "丢包处理",
+   "status": "部分确认",
+   "evidence": "环槽序列+1按16位回绕比较；不连续按0x1e日志门记录后返回既有状态，不单独证明网络丢包（A08.1–A08.4、A10.4）",
+   "missing": "丢包后的恢复（重传/插值）、检测窗口",
+   "open": [
+    "OPEN-RTP-12"
+   ],
+   "files": [
+    "analysis/08-loss-and-gaps.md",
+    "spec/04-loss.md"
+   ]
+  },
+  {
+   "id": "RT-10",
+   "name": "统计",
+   "status": "OPEN",
+   "evidence": "未取证",
+   "missing": "丢包率/乱序率/重复率/迟到率的定义与窗口",
+   "open": [
+    "OPEN-RUN-2"
+   ],
+   "files": [
+    "analysis/08-loss-and-gaps.md",
+    "spec/04-loss.md"
+   ]
+  },
+  {
+   "id": "RT-11",
+   "name": "流量控速",
+   "status": "OPEN",
+   "evidence": "未取证（合并数 obj+0x1c 与缓冲容量 1460 是两条相关线索）",
+   "missing": "发送节奏、令牌桶、背压",
+   "open": [
+    "OPEN-RTP-7",
+    "OPEN-JIT-1",
+    "OPEN-RTP-13"
+   ],
+   "files": [
+    "analysis/06-jitter-buffer.md",
+    "analysis/08-loss-and-gaps.md"
+   ]
+  },
+  {
+   "id": "RT-12",
+   "name": "异常与版本",
+   "status": "OPEN",
+   "evidence": "仅见 1481 字节上限、元素数上限、两个缓冲错误码、装配输出与解析布局不一致四条边界",
+   "missing": "断流、时钟跳变、车机差异",
+   "open": [
+    "OPEN-RTP-1",
+    "OPEN-RTP-10",
+    "OPEN-RTP-11",
+    "OPEN-RUN-1"
+   ],
+   "files": [
+    "analysis/01-rtp-header.md",
+    "analysis/06-jitter-buffer.md",
+    "analysis/07-compose-path.md"
+   ]
+  }
+ ],
+ "summary": {
+  "confirmed": 0,
+  "partial": 8,
+  "open": 4,
+  "open_ids": 23
+ }
+}

@@ -1,0 +1,72 @@
+; accessoryd 0x100084bd4-0x100084ce8; source SHA256 2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x100084bd4:	pacibsp	
+0x100084bd8:	sub	sp, sp, #0x50
+0x100084bdc:	stp	x22, x21, [sp, #0x20]
+0x100084be0:	stp	x20, x19, [sp, #0x30]
+0x100084be4:	stp	x29, x30, [sp, #0x40]
+0x100084be8:	add	x29, sp, #0x40
+0x100084bec:	mov	x19, x2
+0x100084bf0:	cbz	x0, #0x100084c88
+0x100084bf4:	mov	x20, x1
+0x100084bf8:	cmp	w1, #3
+0x100084bfc:	b.hs	#0x100084ca4
+0x100084c00:	mov	x21, x0
+0x100084c04:	adrp	x0, #0x10022b000
+0x100084c08:	ldr	x0, [x0, #0xbb0]
+0x100084c0c:	mov	w1, #1
+0x100084c10:	bl	#0x1001a2830
+0x100084c14:	cbz	w0, #0x100084c64
+0x100084c18:	adrp	x8, #0x1001b3000
+0x100084c1c:	ldr	d0, [x8, #0x98]
+0x100084c20:	str	s0, [sp]
+0x100084c24:	adrp	x8, #0x1001d1000
+0x100084c28:	add	x8, x8, #0xb85
+0x100084c2c:	stur	x8, [sp, #4]
+0x100084c30:	mov	w8, #0x400
+0x100084c34:	strh	w8, [sp, #0xc]
+0x100084c38:	stur	w20, [sp, #0xe]
+0x100084c3c:	adrp	x0, #0x100000000
+0x100084c40:	add	x0, x0, #0
+0x100084c44:	adrp	x1, #0x10022b000
+0x100084c48:	ldr	x1, [x1, #0xbb0]
+0x100084c4c:	adrp	x3, #0x1001f1000
+0x100084c50:	add	x3, x3, #0xa75
+0x100084c54:	mov	x4, sp
+0x100084c58:	mov	w2, #1
+0x100084c5c:	mov	w5, #0x12
+0x100084c60:	bl	#0x1001a1fe0
+0x100084c64:	ldr	x0, [x21, #0x140]
+0x100084c68:	cbz	x0, #0x100084cb8
+0x100084c6c:	ldr	x1, [x21]
+0x100084c70:	mov	x8, x0
+0x100084c74:	ldr	x9, [x8, #0x10]!
+0x100084c78:	mov	x2, x20
+0x100084c7c:	blraa	x9, x8
+0x100084c80:	cbnz	x19, #0x100084cbc
+0x100084c84:	b	#0x100084cc0
+0x100084c88:	adrp	x0, #0x10022b000
+0x100084c8c:	ldr	x0, [x0, #0xbb0]
+0x100084c90:	mov	w1, #0x10
+0x100084c94:	bl	#0x1001a2830
+0x100084c98:	cbz	w0, #0x100084cb8
+0x100084c9c:	bl	#0x10014c9fc
+0x100084ca0:	b	#0x100084cdc
+0x100084ca4:	adrp	x0, #0x10022b000
+0x100084ca8:	ldr	x0, [x0, #0xbb0]
+0x100084cac:	mov	w1, #0x10
+0x100084cb0:	bl	#0x1001a2830
+0x100084cb4:	cbnz	w0, #0x100084cd4
+0x100084cb8:	cbz	x19, #0x100084cc0
+0x100084cbc:	strb	w0, [x19]
+0x100084cc0:	ldp	x29, x30, [sp, #0x40]
+0x100084cc4:	ldp	x20, x19, [sp, #0x30]
+0x100084cc8:	ldp	x22, x21, [sp, #0x20]
+0x100084ccc:	add	sp, sp, #0x50
+0x100084cd0:	retab	
+0x100084cd4:	mov	x0, x20
+0x100084cd8:	bl	#0x10014c9b8
+0x100084cdc:	mov	w0, #0
+0x100084ce0:	cbnz	x19, #0x100084cbc
+0x100084ce4:	b	#0x100084cc0

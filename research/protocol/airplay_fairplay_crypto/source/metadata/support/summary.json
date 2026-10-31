@@ -1,0 +1,35 @@
+{
+  "path": "D:\\carvex-research\\research\\protocol\\airplay_fairplay_crypto\\source\\firmware\\AirPlaySupport",
+  "size": 1536072,
+  "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+  "magic": "0xfeedfacf",
+  "cputype": 16777228,
+  "cpusubtype": 2147483650,
+  "filetype": 6,
+  "ncmds": 42,
+  "sizeofcmds": 6040,
+  "flags": "0x2110085",
+  "uuid": "3dc39c34-98dd-348c-ad18-de6e6dc38173",
+  "encryption": null,
+  "entry": null,
+  "segment_count": 7,
+  "section_count": 37,
+  "function_starts": 2624,
+  "symtab": {
+    "symoff": 1247608,
+    "nsyms": 5257,
+    "stroff": 1339344,
+    "strsize": 196728
+  },
+  "symbol_count": 4173,
+  "sect_create_date": null,
+  "text_section": {
+    "segment": "__TEXT",
+    "section": "__text",
+    "addr": 9242556496,
+    "size": 836460,
+    "fileoff": 6224,
+    "align": 2,
+    "flags": 2147484672
+  }
+}

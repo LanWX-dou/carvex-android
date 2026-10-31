@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-29",
+  "status": "BOUNDED_STATIC_LIFECYCLE_AUDIT",
+  "runtime_observed": false,
+  "original_code_executed_this_round": false,
+  "source": {
+    "path": "/mnt/d/carvex-research/firmware/extracted/24A446/components/24A446__iPhone18,1/root/System/Library/PrivateFrameworks/CoreAccessories.framework/Support/accessoryd",
+    "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe"
+  },
+  "functions": [
+    {
+      "address": "0x1000511d0",
+      "symbols": [
+        "__startFeatureFromDevice"
+      ],
+      "length_from_function_starts": 280,
+      "sha256": "da57aad399a01807a60aa1067ea9de4273015fb95a4f6dfcb280eea068b2b1ec",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_1000511d0.bin",
+      "cached_length": 280,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10013bcc8",
+      "symbols": [
+        "_iap2_identification_identificationInfoHandler"
+      ],
+      "length_from_function_starts": 1060,
+      "sha256": "5265716a10600e7b85d22168a5ecca684497351484144f14d1069ce73deaad01",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013bcc8.bin",
+      "cached_length": 1060,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x100050da8",
+      "symbols": [
+        "___iap2_identification_identificationInfoHandler_block_invoke"
+      ],
+      "length_from_function_starts": 36,
+      "sha256": "ffe880944382ebd8c195ff20cce7bdad85d9e17ec787aab3854c7058daded471",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050da8.bin",
+      "cached_length": 36,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x100050dcc",
+      "symbols": [
+        "___iap2_identification_identificationInfoHandler_block_invoke.76"
+      ],
+      "length_from_function_starts": 648,
+      "sha256": "20fbc1f5e49c6e8a23f378a65865ae6a3ea3d54d6fa5c37e2111cdf2f747cf84",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050dcc.bin",
+      "cached_length": 648,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10013b540",
+      "symbols": [
+        "_iap2_identification_identificationRejected"
+      ],
+      "length_from_function_starts": 404,
+      "sha256": "78ab8d2fadf956ba9ce2d9612b4fc67649538df1f378dadb8f023bb0eb2fc6bc",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013b540.bin",
+      "cached_length": 404,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10013b414",
+      "symbols": [
+        "_iap2_identification_handleIdentificationRejected"
+      ],
+      "length_from_function_starts": 300,
+      "sha256": "2306d9f7c4a66e7558969a1a41165039e10cd64aad60b1f53fcb740d7cf6cdb6",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013b414.bin",
+      "cached_length": 300,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10004dd50",
+      "symbols": [
+        "_iap2_identification_setIdentificationState"
+      ],
+      "length_from_function_starts": 556,
+      "sha256": "fe222b8a97f3e1519d3c62c5659c1b128cb2fc2d2ebbf478ac1af0f99092869a",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004dd50.bin",
+      "cached_length": 556,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10013b28c",
+      "symbols": [
+        "_iap2_identification_cancelIdentificationHandler"
+      ],
+      "length_from_function_starts": 392,
+      "sha256": "f7e5131f6b17a6f724b52955ad188ca74fb4eb8efd487714abb47c2e1c2ee0f1",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10013b28c.bin",
+      "cached_length": 392,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x100050934",
+      "symbols": [
+        "_iap2_identification_identificationInfoUpdateHandler"
+      ],
+      "length_from_function_starts": 448,
+      "sha256": "6ca108c1bcc2c736ed804028af9c97470d44dd4157f25b6b964e925b4d91df21",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050934.bin",
+      "cached_length": 448,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x100050458",
+      "symbols": [
+        "_iap2_identification_cbIdentificationInfoUpdateParams"
+      ],
+      "length_from_function_starts": 748,
+      "sha256": "0e78e95bef1fb7f78b899f00cae6bf00e5cedd30285265fe626c0a2c28a81870",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050458.bin",
+      "cached_length": 748,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x100050744",
+      "symbols": [
+        "_iap2_identification_updateIdentificationInfo"
+      ],
+      "length_from_function_starts": 496,
+      "sha256": "35b9f241ea1ba7573839dfde4779a642a1c66020700a619dcd8c2cde714eca0c",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050744.bin",
+      "cached_length": 496,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10011e1f0",
+      "symbols": [
+        "_iap2_sessionControl_authorizationHook_identification"
+      ],
+      "length_from_function_starts": 476,
+      "sha256": "eb9eac7ab29bc131e3816b8f9fd48f76644f3d2a698c3cf5ac41cb408a764d79",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10011e1f0.bin",
+      "cached_length": 476,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10011dfd8",
+      "symbols": [
+        "__requestAuthorization"
+      ],
+      "length_from_function_starts": 536,
+      "sha256": "a5c9c8d1b70425217537b0fba7c8da39038dd24b200a80a1d7ade2398607011f",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10011dfd8.bin",
+      "cached_length": 536,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10002ab44",
+      "symbols": [
+        "____requestAuthorization_block_invoke"
+      ],
+      "length_from_function_starts": 400,
+      "sha256": "fd67a43da4b210d6a9a3a4ed23d876a46e5e5ff460e5583ad38ff57cf6325f58",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10002ab44.bin",
+      "cached_length": 400,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10002acd4",
+      "symbols": [
+        "____requestAuthorization_block_invoke.7"
+      ],
+      "length_from_function_starts": 580,
+      "sha256": "ae9a35c2ec19de09e4adb2ed77a13ac3b12b1ad1cbf0e1301096a211d828c977",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10002acd4.bin",
+      "cached_length": 580,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10002af18",
+      "symbols": [
+        "____requestAuthorization_block_invoke.8"
+      ],
+      "length_from_function_starts": 276,
+      "sha256": "04adc5a1d9681dab83602515a6fe79c139ed24cf1cc81c964db00d6419cc0ab3",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10002af18.bin",
+      "cached_length": 276,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10002b02c",
+      "symbols": [
+        "____requestAuthorization_block_invoke_2"
+      ],
+      "length_from_function_starts": 88,
+      "sha256": "ea425a15b7840caf2a17a4df1227d0da82f67bcc825baec29864a395c87a5327",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10002b02c.bin",
+      "cached_length": 88,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10002b084",
+      "symbols": [
+        "____requestAuthorization_block_invoke_3"
+      ],
+      "length_from_function_starts": 188,
+      "sha256": "e53053340ef51f68b683bd6528da006b2a4701a26b32bfc876c4d36716f1e1db",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10002b084.bin",
+      "cached_length": 188,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10011da74",
+      "symbols": [
+        "_iap2_sessionControl_identificationStateChanged"
+      ],
+      "length_from_function_starts": 876,
+      "sha256": "c037402e1e6222cfe5440261fdaf0046105c8ec45dee49a742c1dcd1f65d9b2f",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10011da74.bin",
+      "cached_length": 876,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10004df7c",
+      "symbols": [
+        "_iap2_identification_releaseIdentInfo"
+      ],
+      "length_from_function_starts": 800,
+      "sha256": "b79999682dc20e470bc2503d1bc6c70cee89624a5a026973ad49c9862951f80a",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004df7c.bin",
+      "cached_length": 800,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x10004eba4",
+      "symbols": [
+        "__iap2_identification_cleanupRejectMsg"
+      ],
+      "length_from_function_starts": 328,
+      "sha256": "384b318e47dc25d9e6d3f4df1dac718a28e6451b45f15d269e8d209654022e82",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_10004eba4.bin",
+      "cached_length": 328,
+      "cached_matches_source": true
+    },
+    {
+      "address": "0x100050338",
+      "symbols": [
+        "_iap2_identification_releaseRejectMessage"
+      ],
+      "length_from_function_starts": 288,
+      "sha256": "87c9b0f79abeaefa192b1f1b4320a552c5a663dcaa062a07bc00f26cb8bcdc7c",
+      "cached_path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/accessoryd/18405d82c74429b84ed4/functions/f_100050338.bin",
+      "cached_length": 288,
+      "cached_matches_source": true
+    }
+  ],
+  "android_sources": [
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/Bootstrap.kt",
+      "sha256": "c90fbfb9165ee8e796dbc573ba4ffd20fcdaed1804056a7c097255c6503a89a0"
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/RuntimeIap.kt",
+      "sha256": "bc658777fb9edb303cdc5189c20aa30860d06ac8855659f756e1d01788f25fe5"
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/sessioncore/PeerNegotiationController.kt",
+      "sha256": "58f48b4cff010724bee1c594b196ab9c1b62ca3c8ba4fce3674a2dc3b9e0ac01"
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt",
+      "sha256": "b9c5584c72ce55802152ead09e94ffe2fd9c6bac851e27c91ad056f2a27cd9aa"
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/sessioncore/IapIdentifyInfo.kt",
+      "sha256": "a54a8609c98f49009c7d71ad5c504324f874e8f4104cb09756b9cce13d03b2f1"
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/IapLink.kt",
+      "sha256": "e7f74072370127f8d5308a698f948a6da374630470d048038f4e4934ea6a0238"
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/BootstrapNegotiationTest.kt",
+      "sha256": "0d8fea0779aeb3d3ee055a6a5044cafad2c9514bc653e2e06d3f03559daa1993"
+    },
+    {
+      "path": "/mnt/d/carvex-research/android/bridge/src/main/java/io/github/iamr0s/carvex/session/SessionController.kt",
+      "sha256": "de0de7ff36128ca054b12040c3cf1bfd1a1d798a42334ec68def2ff086f695c0"
+    }
+  ],
+  "method": "Mach-O LC_SEGMENT_64 mapped reads; LC_FUNCTION_STARTS bounded slices; original bytes re-disassembled with Capstone; existing cached slices compared where present. JSON records are provenance, not semantic or runtime coverage.",
+  "limits": [
+    "Chapter16 states exact reviewed branch semantics and unresolved dependencies.",
+    "No full queue cancellation/session lifetime proof, no device or headunit execution.",
+    "No original or production code modified; no Gradle or APK build."
+  ]
+}

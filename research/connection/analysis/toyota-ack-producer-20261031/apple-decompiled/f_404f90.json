@@ -1,0 +1,13 @@
+{
+  "address": "0x404f90",
+  "source_sha256": "bb8a5b0d9fa57eafa8a9358341db3c9661d210ec778620e52e8d3b9fa4fd9f5e",
+  "raw_sha256": "9b8fd9404e1a6dfc8871ba90d2e40ac72b92f2f488dd480e6722131804beef72",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "9b8fd9404e1a6dfc8871ba90d2e40ac72b92f2f488dd480e6722131804beef72",
+  "ghidra_name": "main",
+  "signature": "undefined main()",
+  "diagnostic": "",
+  "c_file": "f_404f90.ghidra.c",
+  "c_sha256": "ada915febf4b2ec48bee7f9f01432a5af578a8ec14c2056f0e7f32347a672728",
+  "status": "DECOMPILED_UNREVIEWED"
+}

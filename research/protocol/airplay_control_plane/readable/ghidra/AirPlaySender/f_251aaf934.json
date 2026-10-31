@@ -1,0 +1,13 @@
+{
+  "address": "0x251aaf934",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "ec34bb75c18cb7e672ef8685c78c112ccece450a133559a066dab275db852474",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "ec34bb75c18cb7e672ef8685c78c112ccece450a133559a066dab275db852474",
+  "ghidra_name": "_coreUtilsPairing_createAirPlayPairingSession",
+  "signature": "undefined _coreUtilsPairing_createAirPlayPairingSession()",
+  "diagnostic": "",
+  "c_file": "f_251aaf934.ghidra.c",
+  "c_sha256": "d23e8d9923f0011a2e30d94cb10cc4e9b541dfa2b5cedae227037544d7bf5a84",
+  "status": "DECOMPILED_UNREVIEWED"
+}

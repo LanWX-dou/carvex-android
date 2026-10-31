@@ -1,0 +1,13 @@
+{
+  "address": "0x10004f254",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "74c679edc3d6d765f09bfada51a9ef24fa1a44e94c1cb260f2842d5f5049cf03",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "74c679edc3d6d765f09bfada51a9ef24fa1a44e94c1cb260f2842d5f5049cf03",
+  "ghidra_name": "_cbIdentificationInfoSerialTransportComponentParams",
+  "signature": "undefined _cbIdentificationInfoSerialTransportComponentParams()",
+  "diagnostic": "",
+  "c_file": "f_10004f254.ghidra.c",
+  "c_sha256": "2bac6622f3ed22abbc322060abe6354f914c432fe7171dc69ea975014d9de960",
+  "status": "DECOMPILED_UNREVIEWED"
+}

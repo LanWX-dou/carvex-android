@@ -1,0 +1,34 @@
+{
+ "spec": "spec/04-kdf.md R-4.1 / R-4.2",
+ "algorithm": "key16 = SHA-512(nameKey||K)[0:16]; iv16 = SHA-512(nameIV||K)[0:16]",
+ "note": "名字为 ASCII 前缀 + %llu 十进制索引；K 长度由调用方给（Legacy 路径为 16 字节）",
+ "vectors": [
+  {
+   "id": "kdf-1",
+   "K_hex": "000102030405060708090a0b0c0d0e0f",
+   "index": 0,
+   "name_key": "AirPlayStreamKey0",
+   "name_iv": "AirPlayStreamIV0",
+   "key16_hex": "82930c24485d72e09704f37f9134a81e",
+   "iv16_hex": "30cad22e2b86b8fe3e210e9f3e575b66"
+  },
+  {
+   "id": "kdf-2",
+   "K_hex": "000102030405060708090a0b0c0d0e0f",
+   "index": 7,
+   "name_key": "AirPlayStreamKey7",
+   "name_iv": "AirPlayStreamIV7",
+   "key16_hex": "3958f1ba4a2c822e48b25b90aef0efe8",
+   "iv16_hex": "4c767daeb97c25bf8c338a23f782a22d"
+  },
+  {
+   "id": "kdf-3",
+   "K_hex": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+   "index": 12345,
+   "name_key": "AirPlayStreamKey12345",
+   "name_iv": "AirPlayStreamIV12345",
+   "key16_hex": "c8ff02e0fd6df09335dfdcc86d6caa21",
+   "iv16_hex": "8edc6cac338d3848facfc52ab0826e77"
+  }
+ ]
+}

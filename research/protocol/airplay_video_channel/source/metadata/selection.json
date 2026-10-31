@@ -1,0 +1,144 @@
+{
+ "image": "airplaysender",
+ "note": "视频通道阶段的种子函数：屏幕流创建/SETUP/记录格式/加密/AVC/恢复。地址取自 24A446 AirPlaySender，符号名用于检索，语义以汇编为准。",
+ "functions": [
+  {
+   "address": "0x251b40be8",
+   "symbol": "_APEndpointStreamScreenCreate",
+   "group": "S",
+   "note": "屏幕流创建与 110/111 选择"
+  },
+  {
+   "address": "0x251aeda20",
+   "symbol": "_carEndpoint_setupScreenStreams",
+   "group": "S",
+   "note": "CarPlay 侧按显示建流"
+  },
+  {
+   "address": "0x251b371ac",
+   "symbol": "_endpoint_setupStreams",
+   "group": "S",
+   "note": "SETUP 发起"
+  },
+  {
+   "address": "0x251b3db28",
+   "symbol": "_endpoint_setupScreenStream",
+   "group": "S",
+   "note": "单屏 SETUP"
+  },
+  {
+   "address": "0x2519bbf24",
+   "symbol": "_apsession_setupStreamCreatingResponseInternal",
+   "group": "S",
+   "note": "SETUP 响应解析"
+  },
+  {
+   "address": "0x251a9f364",
+   "symbol": "_sdpsession_sendSetup",
+   "group": "S",
+   "note": "SDP 变体 SETUP，RTP/AVP/UDP"
+  },
+  {
+   "address": "0x2519b0014",
+   "symbol": "_screenstream_dequeueAndProcessSampleBuffer",
+   "group": "R",
+   "note": "帧头/时间戳/加密/发送"
+  },
+  {
+   "address": "0x251b43fcc",
+   "symbol": "_sbpd_createConfigBBuf",
+   "group": "R",
+   "note": "128 字节配置记录"
+  },
+  {
+   "address": "0x251b443cc",
+   "symbol": "_screenstream_initDisplayInfo",
+   "group": "R",
+   "note": "显示信息初始化"
+  },
+  {
+   "address": "0x2519b508c",
+   "symbol": "_sbpd_encryptBBuf",
+   "group": "E",
+   "note": "帧加密包装"
+  },
+  {
+   "address": "0x251a773c4",
+   "symbol": "-[APEndpointStreamScreenAVCWrapper createVideoStreamConfig:withDirection:screenOptions:previousConfig:]",
+   "group": "V",
+   "note": "AVC 编码配置"
+  },
+  {
+   "address": "0x251a77178",
+   "symbol": "-[APEndpointStreamScreenAVCWrapper getVideoResolutionFromOptions:width:height:]",
+   "group": "V",
+   "note": "分辨率解析"
+  },
+  {
+   "address": "0x251a76374",
+   "symbol": "-[APEndpointStreamScreenAVCWrapper initializeNegotiatorWithMode:presentationMode:hdrMirroringSupported:]",
+   "group": "V",
+   "note": "AVC 协商器"
+  },
+  {
+   "address": "0x251a779d8",
+   "symbol": "negotiationDataForPresentationMode",
+   "group": "V",
+   "note": "协商数据"
+  },
+  {
+   "address": "0x251b438e8",
+   "symbol": "_screenstream_Control",
+   "group": "C",
+   "note": "流控制命令"
+  },
+  {
+   "address": "0x251b43140",
+   "symbol": "_screenstream_handleFatalError",
+   "group": "C",
+   "note": "致命错误"
+  },
+  {
+   "address": "0x251b42e34",
+   "symbol": "_screenstream_cleanup",
+   "group": "C",
+   "note": "清理"
+  },
+  {
+   "address": "0x251a761d8",
+   "symbol": "_screenstreamudp_handleClearScreen",
+   "group": "C",
+   "note": "清屏（UDP 变体）"
+  },
+  {
+   "address": "0x2519bffc8",
+   "symbol": "_coreUtilsKeyHolder_CreateDerivedKey",
+   "group": "E",
+   "note": "密钥派生实现（vtable 调用）"
+  },
+  {
+   "address": "0x2519bfecc",
+   "symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForStream",
+   "group": "E",
+   "note": "salt/Input/Output 键派生"
+  },
+  {
+   "address": "0x251a356c8",
+   "symbol": "_APKeyHolderCoreUtilsEncryptionContextDataStreamCreateWithSeed",
+   "group": "E",
+   "note": "数据流加密上下文（带 seed）"
+  },
+  {
+   "address": "0x251aa97a0",
+   "symbol": "_legacyKeyHolder_CreateDerivedAESKeyAndIVForLegacyStream",
+   "group": "E",
+   "note": "legacy AES 路径"
+  },
+  {
+   "address": "0x251a9fcec",
+   "symbol": "_sdpsession_copyCryptor",
+   "group": "E",
+   "note": "流加密器获取"
+  }
+ ]
+}

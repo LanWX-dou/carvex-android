@@ -1,0 +1,13 @@
+{
+  "address": "0x2519c19b4",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "0e0392bbec1c028185de0182fb3766168d771ff73801a1a9eabd493969d5df78",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "0e0392bbec1c028185de0182fb3766168d771ff73801a1a9eabd493969d5df78",
+  "ghidra_name": "_jitterBuffer_CommitBuffer",
+  "signature": "undefined _jitterBuffer_CommitBuffer()",
+  "diagnostic": "",
+  "c_file": "f_2519c19b4.ghidra.c",
+  "c_sha256": "67e0c6b222224cde61d93fad4eae0fb062d433ac719bd829ed9c7161b4ccb97b",
+  "status": "DECOMPILED_UNREVIEWED"
+}

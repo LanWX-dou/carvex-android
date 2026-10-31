@@ -1,0 +1,71 @@
+{
+ "image": "AirPlaySupport",
+ "source_sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+ "source_size": 1536072,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 6,
+ "functions": [
+  {
+   "symbol": "_APSEncryptionUtilsDeriveAESKeySHA512",
+   "address": "0x226ee961c",
+   "end": "0x226ee9764",
+   "size": 328,
+   "group": "K",
+   "raw_sha256": "ab6beb42f76502b1f3afe6d16210dc2de872760d180a4d8c0b94bcc771447e2a",
+   "bin": "f_226ee961c.bin",
+   "asm": "f_226ee961c.s"
+  },
+  {
+   "symbol": "_APSEncryptionUtilsDeriveAESKeySHA512ForScreen",
+   "address": "0x226ee9764",
+   "end": "0x226ee9854",
+   "size": 240,
+   "group": "K",
+   "raw_sha256": "be0265dd0168795e9bfab30c4b4017f7cd19d82a7fa1a93752da12b17242fcc9",
+   "bin": "f_226ee9764.bin",
+   "asm": "f_226ee9764.s"
+  },
+  {
+   "symbol": "_APSCryptorChaCha20Poly1305Create",
+   "address": "0x226f2f54c",
+   "end": "0x226f2f6ec",
+   "size": 416,
+   "group": "C",
+   "raw_sha256": "74037b22dfbe361414c1f1d5603dfe02763d7f541f8ca6e9a176ad8575984e1e",
+   "bin": "f_226f2f54c.bin",
+   "asm": "f_226f2f54c.s"
+  },
+  {
+   "symbol": "_APSCryptorCTRCreate",
+   "address": "0x226e8d208",
+   "end": "0x226e8d3c8",
+   "size": 448,
+   "group": "C",
+   "raw_sha256": "44350ccee07750a72e157cbda890339b55d76aa17cfa5c23d12799c612461faa",
+   "bin": "f_226e8d208.bin",
+   "asm": "f_226e8d208.s"
+  },
+  {
+   "symbol": "_APSCryptorCBCCreate",
+   "address": "0x226efbecc",
+   "end": "0x226efc0d8",
+   "size": 524,
+   "group": "C",
+   "raw_sha256": "376c19876bc30330134a1bb6e3eb7f55ee710582882bd076d7e96723c7fc8119",
+   "bin": "f_226efbecc.bin",
+   "asm": "f_226efbecc.s"
+  },
+  {
+   "symbol": "_APSCryptorGetNull",
+   "address": "0x226e83b30",
+   "end": "0x226e83b88",
+   "size": 88,
+   "group": "C",
+   "raw_sha256": "58301116774d5ff02c99c5b1577ca4112852aae3144ebb536ad47ae1e794fc9c",
+   "bin": "f_226e83b30.bin",
+   "asm": "f_226e83b30.s"
+  }
+ ],
+ "missing_symbols": []
+}

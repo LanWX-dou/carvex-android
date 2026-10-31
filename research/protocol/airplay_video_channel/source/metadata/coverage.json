@@ -1,0 +1,337 @@
+{
+  "docset": "airplay_video_channel",
+  "build": "24A446",
+  "device": "iPhone18,1",
+  "image": {
+    "name": "AirPlaySender",
+    "path": "source/firmware/AirPlaySender",
+    "size": 4397312,
+    "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+    "uuid": "2d49b39b-fb65-366b-9ab5-6995e5e0febf",
+    "function_starts": 11443,
+    "symbols": 14277,
+    "text_start": "0x251997a78",
+    "text_end": "0x251bdbb08"
+  },
+  "status_legend": {
+    "已确认": "结论可回落到 source/asm 的指令地址，且被至少一条 MUST 条款使用",
+    "部分确认": "主路径已证，但存在 OPEN 项影响可用性",
+    "OPEN": "本阶段证据不足，不能指导实现"
+  },
+  "items": [
+    {
+      "id": "CS-01",
+      "title": "视频流建立",
+      "status": "部分确认",
+      "rules": [
+        "R-1.1",
+        "R-1.3",
+        "R-1.4",
+        "R-1.5",
+        "R-1.6",
+        "R-1.7",
+        "R-1.9"
+      ],
+      "analysis": [
+        "A01.1",
+        "A01.2",
+        "A01.4",
+        "A01.5",
+        "A01.6",
+        "A01.7",
+        "A01.8"
+      ],
+      "open": [
+        "OPEN-VID-1",
+        "OPEN-VID-14"
+      ],
+      "note": "已核无display入参时类型110及内部显示字典；主副屏语义、线上字段和响应身份绑定仍待核。"
+    },
+    {
+      "id": "CS-02",
+      "title": "视频封装（Annex-B/AVCC、SPS/PPS）",
+      "status": "OPEN",
+      "rules": [
+        "R-4.2",
+        "R-4.5"
+      ],
+      "analysis": [
+        "A04.2"
+      ],
+      "open": [
+        "OPEN-VID-3",
+        "OPEN-VID-6"
+      ],
+      "note": "analysis07已核avcC CFData到type1配置body；NAL长度表示/转换、参数集内部布局和UDP仍未闭合。"
+    },
+    {
+      "id": "CS-03",
+      "title": "记录格式（128 字节头）",
+      "status": "部分确认",
+      "rules": [
+        "R-0.5",
+        "R-2.1",
+        "R-2.2",
+        "R-2.3",
+        "R-2.4",
+        "R-2.11"
+      ],
+      "analysis": [
+        "A02.1",
+        "A02.2",
+        "A02.8",
+        "A06.4",
+        "A06.5"
+      ],
+      "open": [
+        "OPEN-VID-2"
+      ],
+      "note": "类型0/1及部分字段写入已证；长度含额外项、几何字段稀疏，完整语义与其他记录类型待核。"
+    },
+    {
+      "id": "CS-04",
+      "title": "访问单元与时间戳组织",
+      "status": "部分确认",
+      "rules": [
+        "R-2.6",
+        "R-2.7",
+        "R-5.2",
+        "R-5.3"
+      ],
+      "analysis": [
+        "A02.4",
+        "A05.1",
+        "A05.2",
+        "A06.4"
+      ],
+      "open": [
+        "OPEN-VID-4",
+        "OPEN-VID-9"
+      ],
+      "note": "ticks转ms、65536阈值及16间隔槽已核；不能推出每批16帧，时间基准和聚合责任未证。"
+    },
+    {
+      "id": "CS-05",
+      "title": "加密位置与顺序",
+      "status": "部分确认",
+      "rules": [
+        "R-3.1",
+        "R-3.2",
+        "R-3.3",
+        "R-3.4",
+        "R-3.8"
+      ],
+      "analysis": [
+        "A03.1",
+        "A03.2",
+        "A03.3",
+        "A03.4",
+        "A03.5",
+        "A03.6",
+        "A06.1",
+        "A06.2",
+        "A06.3"
+      ],
+      "open": [
+        "OPEN-VID-5",
+        "OPEN-VID-13"
+      ],
+      "note": "原地载荷/附加输出、可选第二次调用、标签长度及条件性CTR/ChaCha分派已核；发送绑定/nonce/profile仍待核。"
+    },
+    {
+      "id": "CS-06",
+      "title": "SPS/PPS 传输",
+      "status": "OPEN",
+      "rules": [
+        "R-4.2"
+      ],
+      "analysis": [
+        "A04.2"
+      ],
+      "open": [
+        "OPEN-VID-6"
+      ],
+      "note": "已核本avc1分支avcC缓存变化触发type1、本地组装在帧前；内部SPS/PPS布局、帧内重复与其他profile仍待核。"
+    },
+    {
+      "id": "CS-07",
+      "title": "关键帧",
+      "status": "部分确认",
+      "rules": [
+        "R-4.7",
+        "R-5.5"
+      ],
+      "analysis": [
+        "A04.6",
+        "A05.3"
+      ],
+      "open": [
+        "OPEN-VID-7",
+        "OPEN-VID-12"
+      ],
+      "note": "analysis07已核bit7来自APInterestingFrame、bit4来自NotSync派生；与NAL IDR和forceKeyFrame实际生效的对应仍待核。"
+    },
+    {
+      "id": "CS-08",
+      "title": "对端解码约束（编码配置/协商）",
+      "status": "部分确认",
+      "rules": [
+        "R-4.3",
+        "R-4.4",
+        "R-4.6"
+      ],
+      "analysis": [
+        "A04.1",
+        "A04.4",
+        "A04.5"
+      ],
+      "open": [
+        "OPEN-VID-8"
+      ],
+      "note": "协商器与模式切换已证；blob 结构与参数取值未证。"
+    },
+    {
+      "id": "CS-09",
+      "title": "显示几何与同步",
+      "status": "部分确认",
+      "rules": [
+        "R-2.9",
+        "R-2.10",
+        "R-5.3"
+      ],
+      "analysis": [
+        "A02.6",
+        "A05.2"
+      ],
+      "open": [
+        "OPEN-VID-9"
+      ],
+      "note": "10 个 float 几何与时间字段已证；同步策略未证。"
+    },
+    {
+      "id": "CS-10",
+      "title": "重连与生命周期",
+      "status": "部分确认",
+      "rules": [
+        "R-5.7",
+        "R-5.8",
+        "R-5.9"
+      ],
+      "analysis": [
+        "A05.5",
+        "A05.6"
+      ],
+      "open": [
+        "OPEN-VID-10"
+      ],
+      "note": "四类事件组件已证；阈值/退避/重发策略未证。"
+    },
+    {
+      "id": "CS-11",
+      "title": "错误分类",
+      "status": "OPEN",
+      "rules": [],
+      "analysis": [
+        "A05.5"
+      ],
+      "open": [
+        "OPEN-VID-11"
+      ],
+      "note": "失败分支存在，但错误码到现象的映射未证。"
+    },
+    {
+      "id": "CS-12",
+      "title": "版本与性能",
+      "status": "OPEN",
+      "rules": [
+        "R-4.6"
+      ],
+      "analysis": [
+        "A04.5"
+      ],
+      "open": [
+        "OPEN-VID-12"
+      ],
+      "note": "编码参数调用存在；取值与 HDR/多屏差异未证。"
+    }
+  ],
+  "open_items": [
+    {
+      "id": "OPEN-VID-1",
+      "text": "0x6f 语义、UUID 比较方向与 TCP SETUP 请求字段清单未闭合",
+      "first": "spec/01"
+    },
+    {
+      "id": "OPEN-VID-2",
+      "text": "统计type2/5条件与本路径UserData并入type0已证；控制位来源、完整schema及接收状态影响待核",
+      "first": "analysis/02"
+    },
+    {
+      "id": "OPEN-VID-3",
+      "text": "载荷内 H.264 封装与 UDP RTP 打包未证",
+      "first": "analysis/04"
+    },
+    {
+      "id": "OPEN-VID-4",
+      "text": "访问单元由谁聚合未证",
+      "first": "analysis/02"
+    },
+    {
+      "id": "OPEN-VID-5",
+      "text": "已核条件性CTR/ChaCha分派、包装器ABI/标签长度及接收侧AAD；发送cryptor绑定、nonce/附加输出布局与目标profile仍待核",
+      "first": "analysis/03"
+    },
+    {
+      "id": "OPEN-VID-6",
+      "text": "本avcC到type1配置body路径已证；内部参数集布局、帧内重复及其他profile待核",
+      "first": "analysis/04"
+    },
+    {
+      "id": "OPEN-VID-7",
+      "text": "bit7/bit4附件来源及首个合法布尔NotSync停止规则已证；附件生产者及forceKeyFrame到实际IDR因果链待核",
+      "first": "analysis/04"
+    },
+    {
+      "id": "OPEN-VID-8",
+      "text": "negotiationData blob 结构未证",
+      "first": "analysis/01"
+    },
+    {
+      "id": "OPEN-VID-9",
+      "text": "时间基准、单位与音视频同步未证",
+      "first": "analysis/05"
+    },
+    {
+      "id": "OPEN-VID-10",
+      "text": "断流阈值、重连退避、重发策略未证",
+      "first": "analysis/05"
+    },
+    {
+      "id": "OPEN-VID-11",
+      "text": "错误码到黑屏/花屏/卡顿的映射未证",
+      "first": "analysis/05"
+    },
+    {
+      "id": "OPEN-VID-12",
+      "text": "编码参数取值与性能差异未证",
+      "first": "analysis/04"
+    },
+    {
+      "id": "OPEN-VID-13",
+      "text": "没有 24A446 视频抓包，无法做重放/解码验证",
+      "first": "analysis/00"
+    },
+    {
+      "id": "OPEN-VID-14",
+      "text": "TCP/UDP 变体选择条件未证",
+      "first": "analysis/01"
+    }
+  ],
+  "summary": {
+    "total_items": 12,
+    "confirmed": 0,
+    "partial": 8,
+    "open": 4,
+    "open_ids": 14
+  }
+}

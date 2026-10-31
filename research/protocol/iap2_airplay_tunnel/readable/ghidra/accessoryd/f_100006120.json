@@ -1,0 +1,13 @@
+{
+  "address": "0x100006120",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "a2c9dc586cd9d863cb4d9d9dcad3c0a5fc1eaedfe238451148d53045e939be60",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "a2c9dc586cd9d863cb4d9d9dcad3c0a5fc1eaedfe238451148d53045e939be60",
+  "ghidra_name": "_iAP2PacketGetPayloadLen",
+  "signature": "undefined _iAP2PacketGetPayloadLen()",
+  "diagnostic": "",
+  "c_file": "f_100006120.ghidra.c",
+  "c_sha256": "d95ece05fa47dd85dbc1ba39d039ec5f50e8544ec43e424a2ce10becff0b6d0b",
+  "status": "DECOMPILED_UNREVIEWED"
+}

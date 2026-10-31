@@ -1,0 +1,8 @@
+{
+ "address": "0x251a761d8",
+ "source": "source/firmware/AirPlaySender",
+ "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+ "evidence_status": "DECOMPILED_UNREVIEWED",
+ "name_hint": "_screenstreamudp_handleClearScreen",
+ "note": "Ghidra 机器输出；结论必须回落到 source/asm 的指令地址。"
+}

@@ -1,0 +1,2656 @@
+{
+  "docset": "bluetooth_rfcomm",
+  "title": "iPhone 经典蓝牙发现 / SDP / RFCOMM 协议文档集",
+  "generated_from": "静态固件证据（Ghidra + Capstone + Mach-O 解析）",
+  "device": {
+    "model": "iPhone18,1",
+    "product": "iPhone 17 Pro",
+    "os": "iOS 27.0.1",
+    "build": "24A446"
+  },
+  "source": {
+    "primary_binary": "source/firmware/bluetoothd",
+    "sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+    "size": 13092096,
+    "format": "thin ARM64 Mach-O (arm64e)",
+    "function_starts": 37368,
+    "secondary": [
+      {
+        "path": "source/firmware/bluetoothuserd",
+        "note": "LE 侧进程，非本套经典链路证据来源"
+      },
+      {
+        "path": "source/firmware/Platform-Bluetooth",
+        "note": "状态插件，不含 SDP/RFCOMM"
+      }
+    ]
+  },
+  "toolchain": {
+    "ghidra": "12.1.4",
+    "jdk": "21",
+    "capstone": "5.0.7",
+    "ipsw": "3.1.739",
+    "python": "3.12.3"
+  },
+  "coverage": {
+    "documented_functions": 101,
+    "total_functions": 37368,
+    "ratio": "0.27%",
+    "cited_by_analysis": 61,
+    "sampled_not_cited": 40,
+    "note": "抽样覆盖发现/SDP/RFCOMM（命令族 + 定时器/时间基 + 重连节奏）/边界；不构成全二进制覆盖声明"
+  },
+  "items": {
+    "1_discovery": "CONFIRMED（EIR 构造、UUID 常量、映射表）；page scan 参数化 PARTIAL",
+    "2_registration_uuid": "CONFIRMED（注册输入格式、UUID 常量）；记录属性取值 OPEN",
+    "3_sdp_records": "CONFIRMED（服务端容量/续读/大端、客户端通道号提取）",
+    "4_server_listen": "CONFIRMED（通道表、注册项继承、五道拒收）",
+    "5_client_connect": "CONFIRMED（DLCI 公式、参数校验、信用换算）",
+    "6_post_connect_state": "PARTIAL（状态数值已知，枚举名与完整迁移图 OPEN）",
+    "7_rx_path": "CONFIRMED（九步校验、精确长度、逐帧交付）",
+    "8_tx_path": "CONFIRMED（串行队列、完成回调、2570 分块、部分写语义）",
+    "9_disconnect_cleanup": "CONFIRMED（DISC/DM、清理顺序、错误码传播）；超时单位 OPEN",
+    "10_iap2_boundary": "CONFIRMED（帧级交付接口 + fd 通路 + 固件内无 iAP2 实现）",
+    "11_vs_old_docs": "N/A-BY-DECISION（用户选择不对照旧文档）",
+    "12_vs_programs": "N/A-BY-DECISION（用户选择本轮不比程序）"
+  },
+  "open_items": [
+    {
+      "id": "OPEN-BASE-1",
+      "where": [
+        "STATUS.md",
+        "analysis/08-conflicts-and-baselines.md"
+      ]
+    },
+    {
+      "id": "OPEN-BASE-2",
+      "where": [
+        "STATUS.md",
+        "analysis/08-conflicts-and-baselines.md"
+      ]
+    },
+    {
+      "id": "OPEN-BND-2",
+      "where": [
+        "STATUS.md",
+        "analysis/07-boundary-and-pairing.md"
+      ]
+    },
+    {
+      "id": "OPEN-BND-3",
+      "where": [
+        "STATUS.md",
+        "analysis/07-boundary-and-pairing.md",
+        "analysis/09-function-inventory.md",
+        "spec/07-conformance-checklist.md"
+      ]
+    },
+    {
+      "id": "OPEN-BND-5",
+      "where": [
+        "STATUS.md",
+        "analysis/07-boundary-and-pairing.md"
+      ]
+    },
+    {
+      "id": "OPEN-CLI-1",
+      "where": [
+        "STATUS.md",
+        "analysis/07-boundary-and-pairing.md"
+      ]
+    },
+    {
+      "id": "OPEN-CLI-2",
+      "where": [
+        "STATUS.md",
+        "analysis/07-boundary-and-pairing.md",
+        "spec/09-client-open-rfcomm.md"
+      ]
+    },
+    {
+      "id": "OPEN-CLI-3",
+      "where": [
+        "STATUS.md",
+        "analysis/07-boundary-and-pairing.md",
+        "spec/09-client-open-rfcomm.md"
+      ]
+    },
+    {
+      "id": "OPEN-DISC-1",
+      "where": [
+        "STATUS.md",
+        "analysis/01-discovery-and-eir.md"
+      ]
+    },
+    {
+      "id": "OPEN-DISC-2",
+      "where": [
+        "STATUS.md",
+        "analysis/01-discovery-and-eir.md",
+        "analysis/09-function-inventory.md"
+      ]
+    },
+    {
+      "id": "OPEN-DISC-3",
+      "where": [
+        "STATUS.md",
+        "analysis/01-discovery-and-eir.md"
+      ]
+    },
+    {
+      "id": "OPEN-DISC-4",
+      "where": [
+        "STATUS.md",
+        "analysis/01-discovery-and-eir.md"
+      ]
+    },
+    {
+      "id": "OPEN-ENV-1",
+      "where": [
+        "STATUS.md",
+        "analysis/00-method-and-environment.md"
+      ]
+    },
+    {
+      "id": "OPEN-ENV-2",
+      "where": [
+        "STATUS.md",
+        "analysis/00-method-and-environment.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-10",
+      "where": [
+        "STATUS.md",
+        "analysis/05-rfcomm-data-path.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-11",
+      "where": [
+        "STATUS.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-13",
+      "where": [
+        "STATUS.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-14",
+      "where": [
+        "STATUS.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md",
+        "runtime/README.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-17",
+      "where": [
+        "STATUS.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "runtime/captures/2026-10-rfcomm-pklg-reanalysis.md",
+        "spec/04-rfcomm-link-establishment.md",
+        "spec/07-conformance-checklist.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-2",
+      "where": [
+        "STATUS.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "analysis/06-rfcomm-disconnect-and-cleanup.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-3",
+      "where": [
+        "STATUS.md",
+        "analysis/04-rfcomm-mux-link-setup.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-4",
+      "where": [
+        "STATUS.md",
+        "analysis/04-rfcomm-mux-link-setup.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-5",
+      "where": [
+        "analysis/05-rfcomm-data-path.md",
+        "analysis/09-function-inventory.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-5a",
+      "where": [
+        "STATUS.md",
+        "analysis/04-rfcomm-mux-link-setup.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-5b",
+      "where": [
+        "STATUS.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "runtime/captures/2026-10-rfcomm-pklg-reanalysis.md",
+        "spec/04-rfcomm-link-establishment.md",
+        "spec/07-conformance-checklist.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-5c",
+      "where": [
+        "STATUS.md",
+        "analysis/04-rfcomm-mux-link-setup.md",
+        "spec/04-rfcomm-link-establishment.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-6",
+      "where": [
+        "STATUS.md",
+        "analysis/05-rfcomm-data-path.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-7",
+      "where": [
+        "STATUS.md",
+        "analysis/05-rfcomm-data-path.md",
+        "spec/07-conformance-checklist.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-8",
+      "where": [
+        "STATUS.md",
+        "analysis/05-rfcomm-data-path.md"
+      ]
+    },
+    {
+      "id": "OPEN-RF-9",
+      "where": [
+        "STATUS.md",
+        "analysis/05-rfcomm-data-path.md"
+      ]
+    },
+    {
+      "id": "OPEN-RUN-1",
+      "where": [
+        "analysis/01-discovery-and-eir.md",
+        "runtime/observations/findings-sdp-hci.md",
+        "spec/01-discovery-and-identification.md"
+      ]
+    },
+    {
+      "id": "OPEN-RUN-2",
+      "where": [
+        "STATUS.md",
+        "runtime/README.md",
+        "runtime/observations/findings-sdp-hci.md"
+      ]
+    },
+    {
+      "id": "OPEN-RUN-3",
+      "where": [
+        "STATUS.md"
+      ]
+    },
+    {
+      "id": "OPEN-SDP-1",
+      "where": [
+        "STATUS.md",
+        "analysis/02-sdp-server-and-registration.md",
+        "spec/07-conformance-checklist.md"
+      ]
+    },
+    {
+      "id": "OPEN-SDP-2",
+      "where": [
+        "STATUS.md",
+        "analysis/02-sdp-server-and-registration.md"
+      ]
+    },
+    {
+      "id": "OPEN-SDP-3",
+      "where": [
+        "STATUS.md",
+        "analysis/02-sdp-server-and-registration.md",
+        "analysis/09-function-inventory.md"
+      ]
+    },
+    {
+      "id": "OPEN-SDP-4",
+      "where": [
+        "STATUS.md",
+        "analysis/02-sdp-server-and-registration.md"
+      ]
+    },
+    {
+      "id": "OPEN-SDPC-1",
+      "where": [
+        "STATUS.md",
+        "analysis/03-sdp-client.md"
+      ]
+    },
+    {
+      "id": "OPEN-SDPC-2",
+      "where": [
+        "STATUS.md",
+        "analysis/03-sdp-client.md"
+      ]
+    },
+    {
+      "id": "OPEN-SDPC-3",
+      "where": [
+        "STATUS.md",
+        "analysis/03-sdp-client.md"
+      ]
+    },
+    {
+      "id": "OPEN-SDPC-4",
+      "where": [
+        "STATUS.md",
+        "analysis/03-sdp-client.md"
+      ]
+    }
+  ],
+  "verification": {
+    "script": "verify.py",
+    "checks": 2173,
+    "failures": 0,
+    "result": "pass"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "size": 5458,
+      "sha256": "1bd6633f63a9ae80e833bcaa41100f170e4e10b5e4f4dd8e446cb5c8efbbf00e"
+    },
+    {
+      "path": "STATUS.md",
+      "size": 12951,
+      "sha256": "59777b8a6b2ad033ecb5285c3cf1eb117fdc2377584986bb198a1a970fdbc917"
+    },
+    {
+      "path": "function-index.json",
+      "size": 79671,
+      "sha256": "56f934dedb4e45819ce7e26617990ef4674ca464754b7b58097c0b217859361a"
+    },
+    {
+      "path": "verify.py",
+      "size": 17870,
+      "sha256": "64f022e82a70ba0ecdeb528de932bc87f081cc4f6dfd9eaebd201a670eecbc3c"
+    },
+    {
+      "path": "analysis/00-method-and-environment.md",
+      "size": 9005,
+      "sha256": "cd1055f3efe6b1f568673325440128b2589a6fabc30715203efb76fd5bb08e24"
+    },
+    {
+      "path": "analysis/01-discovery-and-eir.md",
+      "size": 13223,
+      "sha256": "99d87d52815212d942ff4d70603dfbe64350e4ff7f02b900e0ba14d0a4c58100"
+    },
+    {
+      "path": "analysis/02-sdp-server-and-registration.md",
+      "size": 10890,
+      "sha256": "1e05ab5b1ad3882b4cf9cbc9791280820a3835a67909dff42e18045289be2ec5"
+    },
+    {
+      "path": "analysis/03-sdp-client.md",
+      "size": 10064,
+      "sha256": "b40b7b9231a35ce35bf1cbfa16844d363af3d8ce53261c4dfb6ea2f1602bf3cd"
+    },
+    {
+      "path": "analysis/04-rfcomm-mux-link-setup.md",
+      "size": 22068,
+      "sha256": "2030f9ca5b45e7cb3cdf09a1bfdb98b0df857c4f4094c713f446e6060daba6f2"
+    },
+    {
+      "path": "analysis/05-rfcomm-data-path.md",
+      "size": 12901,
+      "sha256": "13e95ec4bc24aff1189052f3203805bc3cde72e8e0ee8be224b03f6a0394fbfc"
+    },
+    {
+      "path": "analysis/06-rfcomm-disconnect-and-cleanup.md",
+      "size": 11436,
+      "sha256": "26e28f275246774730c98c372a2d24a5bf5a50900635053ea861ee103345e111"
+    },
+    {
+      "path": "analysis/07-boundary-and-pairing.md",
+      "size": 14641,
+      "sha256": "078f7005af242c4e7e2d6cb992267d8c3006e76fb6f25b2d77cc19f2ebdff438"
+    },
+    {
+      "path": "analysis/08-conflicts-and-baselines.md",
+      "size": 2970,
+      "sha256": "6a931ace1107e19fd5e1ab75ec312269ee465128c5326f5597b088f8a803a6eb"
+    },
+    {
+      "path": "analysis/09-function-inventory.md",
+      "size": 19840,
+      "sha256": "d669b72b857a07c01446eaf27c489032b59ac7ed3704d0c90664ba4c2626afe3"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100035440.ghidra.c",
+      "size": 1859,
+      "sha256": "ad558fac896554578f2076c8db65a3b5e2c5e77b0dc45319b043fe2f7ab6461c"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100035440.json",
+      "size": 608,
+      "sha256": "7060edbeec8246d465e0cfc5fb0a167cc8cc459e34d262cde720c6989d63fda2"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000609fc.ghidra.c",
+      "size": 889,
+      "sha256": "046e66268f29d81e7df0d2a8cf7eb5227b7d81b47f9da5648cfea1b6375379fb"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000609fc.json",
+      "size": 608,
+      "sha256": "b09196046660ee0224739172bfc12839afa171a39551181bbaa4f76ac9b0e5e4"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100060ff4.ghidra.c",
+      "size": 1250,
+      "sha256": "38e8baa5a6d60eee01679e27009ee9f0dddf3d0fa97ff214c276caab588ec6c3"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100060ff4.json",
+      "size": 618,
+      "sha256": "22d3a76f96271c6a240bf64128e416ceb8042a7dcf300c6317cb028a52af5547"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10006135c.ghidra.c",
+      "size": 4234,
+      "sha256": "28643efb8d2e097b89ab74c137bb06f49ce94613454f73c62762e625f725ae04"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10006135c.json",
+      "size": 608,
+      "sha256": "f3bf6238c276d5ccbeaa8459d6713f4ec3093e2657f0d9c15023d6044c4c2a8c"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000615dc.ghidra.c",
+      "size": 1004,
+      "sha256": "d1ea83f197cb958a792291693828f9589d2f35ded9aa09e472cc5efa5730ede5"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000615dc.json",
+      "size": 608,
+      "sha256": "753d2ef87b418e6a3f363738e67fe80de64afb98837fe1e3d9c4a6ef4492bd36"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100061690.ghidra.c",
+      "size": 849,
+      "sha256": "147523121eaa6711f1b31462a9b8074fcc597ca678ec5c87c10321a0ded83a48"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100061690.json",
+      "size": 608,
+      "sha256": "2daabe760db3808142533b5fc157c8625a1a6be4d2294c554cf7e9cea5d828b8"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000b5e68.ghidra.c",
+      "size": 23795,
+      "sha256": "ab90dd91437768f578170a41120f78bcc23afad7f9e0372f836f6568ddd23dbc"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000b5e68.json",
+      "size": 618,
+      "sha256": "e6688d8d04fa02b9493b4af927f32ad4c0c8d93dc4a0510911f498a7cea78ebe"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000c7818.ghidra.c",
+      "size": 50141,
+      "sha256": "a68b044e4e59b308fc977a8877e074910803f2e495e929dfd611d436bab3009f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000c7818.json",
+      "size": 608,
+      "sha256": "b0925b8b94a41ab3dc29933aa6af3930a14534da3dce01d4b365938d7b7e5562"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000eb4e8.ghidra.c",
+      "size": 14246,
+      "sha256": "144140d24c8d3296bba4af543fa076c33b0b7612c494d9e6ccb8d32d1c1ab6f8"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1000eb4e8.json",
+      "size": 608,
+      "sha256": "3c977c0592686e3aca5b1e080b621e32ea2fbd3a4c4b98ee2fc649399ff1d2fc"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100137ee8.ghidra.c",
+      "size": 11803,
+      "sha256": "9362a15d1a4f13b7db7a3f374f0fc7e076923d55ebe34230791b5a72ca228cff"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100137ee8.json",
+      "size": 618,
+      "sha256": "c5787787f6154ec81f281aba833ef89538ef6c666245c0aacc068e7f28b79ecd"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100139490.ghidra.c",
+      "size": 9909,
+      "sha256": "c1e740dccdc305f5957174a1e4ffaf72c4582e9a012d21ce6292d8ee7ec189c3"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100139490.json",
+      "size": 608,
+      "sha256": "f9f54242e8528ca0754b469dc3ec497148e31ed0f33f360f8dd047c22ada282a"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100139d70.ghidra.c",
+      "size": 1842,
+      "sha256": "a4b90e21db2d992f2f76c0ebee2fd018dcc4fdebf0cebefca1778e915ce90d42"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100139d70.json",
+      "size": 608,
+      "sha256": "51674e8f69686afc5d3845b5801c334fd0a782b55000a04c3578282677276374"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1001479fc.ghidra.c",
+      "size": 20859,
+      "sha256": "d9ddb14973c73a12481a861c8cdf5b6e3f41c3102e016800fe434edf42b58aab"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1001479fc.json",
+      "size": 608,
+      "sha256": "84b7804546ab7a23d372e47153cbf9eed76178b5d877b89d316ab7320516ac06"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1001a31f4.ghidra.c",
+      "size": 8057,
+      "sha256": "86e80148822d2a3b66a0583b182935093fd568568b854e66fd4f3ef245fe64fd"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1001a31f4.json",
+      "size": 618,
+      "sha256": "74c66ec30666b55dbcaa7e1405933ba1c77b91d010586caa8fd1aa574d989691"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100233530.ghidra.c",
+      "size": 4477,
+      "sha256": "7e65bffaf56c272fdf73c7a808056cc9cde491c0bb036ad5d904e838f905341b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100233530.json",
+      "size": 696,
+      "sha256": "79d8ff506583fea37c7e69cd90ded79a348f2a1da72d81bc5da7fc8002801d62"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100296014.ghidra.c",
+      "size": 1888,
+      "sha256": "ee72e540a529de8f7770503578fc21d1e616077b10c2b8cd41981c3dde79f925"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100296014.json",
+      "size": 618,
+      "sha256": "5d2aea6bfae12bda8cf653659a1520ea6a1ce8c7e719d9ecee562cf5bfebce2c"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100296714.ghidra.c",
+      "size": 3673,
+      "sha256": "c151a6f74db96f81f378638ccd43eda8ef958be4c9bc4953e33fec92c8fab38d"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100296714.json",
+      "size": 608,
+      "sha256": "c7d05b82542d01b2aa13da24842a408c26336b9a12f76e00e855c0f46b7c32c5"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10029ead0.ghidra.c",
+      "size": 1162,
+      "sha256": "77f641401a5290bf0ac3f0f8b06599adc7281a6b5203614e804aa2efc2f5946f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10029ead0.json",
+      "size": 608,
+      "sha256": "fa42cb71646aaa57632a2a89c530990622d98c123a9c4b224328d0472cb0bdf6"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1002f1300.ghidra.c",
+      "size": 4610,
+      "sha256": "125bdfc71fc8c712abe107b0dc2b5e8861652fdb233b143ebade7b6b2c25f312"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1002f1300.json",
+      "size": 608,
+      "sha256": "8deb93ad4cb18e27f52ff66b4e0f9df609f117cdd15f78bd9d61295ec5a2359e"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1002f1798.ghidra.c",
+      "size": 2300,
+      "sha256": "6660ce0e2c55a11eec1793c9624f658f8e38d74e6c1027f557a1b7c5b0be34b2"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1002f1798.json",
+      "size": 618,
+      "sha256": "dd83bb9b435394bb446e916c174939f715be32844c17bfecc504308e7a237427"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003010ac.ghidra.c",
+      "size": 2442,
+      "sha256": "7b28ae54773974beb4eb30cfaa4f7d3fcdc24b220ffe28cc1340dd28d1c52469"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003010ac.json",
+      "size": 618,
+      "sha256": "3b92882c46fa7e3a747c86c851d1174151bad534e64cecf6c6209e79f8ec78fa"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100312584.ghidra.c",
+      "size": 5553,
+      "sha256": "e5237daf4c79650e44ce3ad0a000c17b47f1790c89e76efe3337b84d5ada2179"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100312584.json",
+      "size": 608,
+      "sha256": "3487a44217b72ab1d077179c2d6aa041de41968730badd6c40ac92ae686a0831"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c136c.ghidra.c",
+      "size": 1018,
+      "sha256": "d40b1430db3da97ed5ce1fe1dff77b3fd98f286d57b9557e4f342ba2e1efb9e5"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c136c.json",
+      "size": 608,
+      "sha256": "3b54841f7fcaf754fd6989f71763b81f1b1b24b2b3245ad24f4a50247d029785"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1404.ghidra.c",
+      "size": 1681,
+      "sha256": "d9ca720f174f911a34a3edc45efaa006a8520c8b39e61cfd8b2a1a894478ef65"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1404.json",
+      "size": 608,
+      "sha256": "b0cba12d2ee53fcd2f490321dc47eead40d55ce0b09d803b88b9f95fee4a1480"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c14dc.ghidra.c",
+      "size": 1826,
+      "sha256": "5c6a776cd005cd68dd3fdae56b3c04fbeff8739bbf45941d76bdd0f218af79d2"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c14dc.json",
+      "size": 608,
+      "sha256": "4dc45df91ff48f005c7aaa02f97f65696fa12470d041fb2672d18e63f2f2d2dc"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c16dc.ghidra.c",
+      "size": 1302,
+      "sha256": "98b685781319a7a020321e8b71faef805fe8f0185308375a9ed6a4a5bdf5a623"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c16dc.json",
+      "size": 608,
+      "sha256": "d7b00597093ebdb9cbf4984b111c32b4a29f2a66db95fe33a4b931e90c00372e"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c18a4.ghidra.c",
+      "size": 1271,
+      "sha256": "bb0b9ac0e9f7e3fc67a89df0f1b2154560b3db05ba2df8fc776ee0400daeb3c9"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c18a4.json",
+      "size": 608,
+      "sha256": "a9349ec9ef921337d52e96af01f963b92061a0a7f0b71ebd4f14f8c0b920516f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1964.ghidra.c",
+      "size": 1329,
+      "sha256": "e5925eaf5c64bfd7af273e38974a384fba8d450c954e487fb93c248b643fe198"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1964.json",
+      "size": 608,
+      "sha256": "9cfa7b356b787410740ee7442657991043606748e68367f82f5d2b9a4cf5ba34"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1d40.ghidra.c",
+      "size": 1966,
+      "sha256": "81329921cbdd392aef2088f719de12eb2a9def0bb28d20d70e3d807378673262"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1d40.json",
+      "size": 608,
+      "sha256": "110c889a927e2473c2013171fc5da13aabd71e4e743195f67df09a6a3c6de256"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1eac.ghidra.c",
+      "size": 962,
+      "sha256": "b7f4fc2dde9902c8394cb5b525e88d6be4fde477a6d0aa228d4014b772cfcf41"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1eac.json",
+      "size": 608,
+      "sha256": "e11b70cd3b08dc39851d09551bc9e226d0575b28fa79d86c0f99d38d2199899d"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1f78.ghidra.c",
+      "size": 4394,
+      "sha256": "a3f44be4e08807ab64b4fbb3643d192cf7ebe078a645e9bb7e783b43d88b4049"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c1f78.json",
+      "size": 608,
+      "sha256": "e9fb748c42e4a5311b27146f76ca2bd655b8c3c81fa472bfbf83dc21e6116f8c"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c20b8.ghidra.c",
+      "size": 1661,
+      "sha256": "0b5995e6a6a914ae11af5127734c78d58199a629d30fbecf2f14f58d79c19e51"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c20b8.json",
+      "size": 608,
+      "sha256": "6194b250f9a8ceb35b7139d263a24f48e573617ad0694c9f37626236752df7f7"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2314.ghidra.c",
+      "size": 980,
+      "sha256": "83adb0fb2fb048a8aeb61d882ec303d0ea5bca6121d5e12a8f5fa022c407c6ca"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2314.json",
+      "size": 608,
+      "sha256": "dcef861f81037db65ec5207606f1542c09b32a6c7a6376a2182af7ae69739b8d"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2394.ghidra.c",
+      "size": 1075,
+      "sha256": "183b8e2e53c273d37a05fcc86f760ee8e26405e1a609a3ae7a0c8c7d87a2258a"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2394.json",
+      "size": 608,
+      "sha256": "f706ab9dc1e109c25e4a151f55d7e2f92c3a2c407f2e9cb5fdf0aa5aa656dc2f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2624.ghidra.c",
+      "size": 1963,
+      "sha256": "59efc38b1978137da1e80870a2319acd78df7a5da66f0aff03993117a2f840dc"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2624.json",
+      "size": 608,
+      "sha256": "9a767d8217e7be68b14d6d2d87fa9dadb3385f8f6121ab7a83790f5c794adaaf"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2b00.ghidra.c",
+      "size": 3921,
+      "sha256": "56dbce3accce7a6c4767dbb97efe45586544dca7115877e885e51d447b07b89d"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2b00.json",
+      "size": 608,
+      "sha256": "3fc65ca4d9cfff55910bf924d3a90f244606f64bb1a86f3a1b85c68f9cd53bed"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2d6c.ghidra.c",
+      "size": 1001,
+      "sha256": "1a07b28742f7c8c256de541351732656467085080748fdb97bbaeb22231f122b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2d6c.json",
+      "size": 608,
+      "sha256": "a7b9723d339569853c0c775bdf3a44631c93fddae8d1f553d23b87f957b6b934"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2df0.ghidra.c",
+      "size": 2206,
+      "sha256": "3077ecc46dadea2879c9e2d92ed13405716a5845354f72af69622944cc3a2c52"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c2df0.json",
+      "size": 608,
+      "sha256": "85fde16e488aa006823f9bbbc95386d6bcbb3ff7a579f8ba3917ad0a2ea3ff23"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c33a8.ghidra.c",
+      "size": 4577,
+      "sha256": "4573b760a2787f066a2bd5cd93a6866257de4add5e535c49629445ed6524456f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c33a8.json",
+      "size": 608,
+      "sha256": "f61f1e590c7f9db2c164b63322fe7cfa6bf65295c9318d91445b407b1ae5c88f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c3c20.ghidra.c",
+      "size": 4752,
+      "sha256": "4db1f45adca3971957f5757691b2f9d8e9b4b6fddaa25ce7533153740c19b810"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c3c20.json",
+      "size": 618,
+      "sha256": "d44b89076734b1d9dbc72908493b7904226d5a6338d515fa137627b824a58a2d"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c4c88.ghidra.c",
+      "size": 1963,
+      "sha256": "7bc77e451d05586470f05e13d2bf35b905d9b64528e5bc585e0e9f0441ed7797"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c4c88.json",
+      "size": 608,
+      "sha256": "9ad5e73c2dff81dc84e27c8b358b4a9452b01815e7d1f19da2b69740fe6ce179"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c518c.ghidra.c",
+      "size": 1248,
+      "sha256": "5ae58849075f4d1d7c454a9e214a0d502b6c755730bf6a4b59d9b99d8723df71"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c518c.json",
+      "size": 608,
+      "sha256": "850a6ba9d5139df1cc3c24d00366d2df9f92b761d4be272780890691a576a74b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c5334.ghidra.c",
+      "size": 2394,
+      "sha256": "b85b1a678e70df0493817b749172ce47b8906a4a6d9204efea610c4f88a341a7"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c5334.json",
+      "size": 608,
+      "sha256": "35bd9e8b839ec7ed4effa4d4eb5d90df8902f973040bc44b33d77e1e7c11d5bb"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c54f8.ghidra.c",
+      "size": 2194,
+      "sha256": "0cc28172be57aa2fa6078c3d6896c1f7afd1ed02045dcb8f4133bffa6295e9f3"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c54f8.json",
+      "size": 608,
+      "sha256": "da6455c70d2a435cf69ecc5a2944eaba3db43546c10a6a0a164d2ca9f7a42a14"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c5884.ghidra.c",
+      "size": 1561,
+      "sha256": "04f73babd3c7925ffee4a9b6086742ae52790c629e958759f44b641edaedd616"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c5884.json",
+      "size": 608,
+      "sha256": "9e2f0d6b1d636e3172e9e9fc646330a13be7494af79e1ab1d5f3afdd8e3c2570"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c59a0.ghidra.c",
+      "size": 22924,
+      "sha256": "944216d6f0c22627f79aa87dec29d44a058ac0b2203e4e90c969327e482397de"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c59a0.json",
+      "size": 618,
+      "sha256": "5a06499e86cb64b9aaed3f3b9ff3c6b1ffbcdbdba203f0b41d3be33a8dd5f738"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c5c70.ghidra.c",
+      "size": 2908,
+      "sha256": "2f09dbf053628b37fc22b6f7e8e12eba9df15c2168f567290f3408ddbcc4a7d9"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c5c70.json",
+      "size": 618,
+      "sha256": "be3091f61bc3ff07b57e24fd836c33216c18db8dada0904362978429858e31bf"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6180.ghidra.c",
+      "size": 3989,
+      "sha256": "1c52a4ccdb489fadda953911ac079a57534149617829c8274950f57b358d7bdf"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6180.json",
+      "size": 618,
+      "sha256": "1a7d77b2d0ac506ee3f7e2132ee97ba203214b124863d7b0e9fa29cf222b40e4"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6b60.ghidra.c",
+      "size": 751,
+      "sha256": "d85bb744a17aedacc086323d22a54d4f430289d18f7bb6e1a2d687dcffb8dd96"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6b60.json",
+      "size": 608,
+      "sha256": "fd9f54c2d4d3cb1b49fcf4c9a7c6519d88ba1d2cdc577ecdd582b25d635a3eee"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6be4.ghidra.c",
+      "size": 662,
+      "sha256": "f3c2a3b74c6b3e81e26473203dfcde242107f6cb8a81faccf142ca903dff7115"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6be4.json",
+      "size": 608,
+      "sha256": "615813ab9504f3cf32f3067bc4fafe6025b2c488a7365a207b05975ef3668fb9"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6c18.ghidra.c",
+      "size": 829,
+      "sha256": "dba255343fa6ae0b421fb65c9c9da019850667911ed291fd1a24134ace7dc679"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6c18.json",
+      "size": 608,
+      "sha256": "2c5cec8e79bab86b1b96db306d96f57605a5bdbc80e03db846907062c244c2c9"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6db8.ghidra.c",
+      "size": 795,
+      "sha256": "2e472d49dbdea2d8c7c691b4d90ded48714c6cee6cb3d4cbcaefe5260dab3ce2"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6db8.json",
+      "size": 608,
+      "sha256": "961b3d93d94bcdebad53b2fd9550d268a90be28061a59934a154054bf4a77949"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6f94.ghidra.c",
+      "size": 2904,
+      "sha256": "62faa3f9c6f5774b5b34a7832759565274a17a5ecb5a3593913a796199d88cd3"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c6f94.json",
+      "size": 618,
+      "sha256": "568e0cad02c5e9a5e2bcb1b9c978c491358c4187346086a289303036e20f7228"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c71e8.ghidra.c",
+      "size": 1072,
+      "sha256": "fe622d748de610eaf2e7eebf471efea97636d360c6870c5a918943f146047894"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c71e8.json",
+      "size": 608,
+      "sha256": "9fcbc3e6ee345ec64ad0015ff0a3295e70a3bed498acdf72ae175190ca29fd2f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c73f0.ghidra.c",
+      "size": 36608,
+      "sha256": "3aa88318c2a99ae29280960871bf06e6a2573b43d827284e0c19b60a0051b707"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c73f0.json",
+      "size": 608,
+      "sha256": "74573b7863942c1064f5128888422f089370fe2261f12dac19927884060bf15f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c8464.ghidra.c",
+      "size": 2651,
+      "sha256": "d51fe33363db659622453013888c6a1097bfb99d9592167483b21562348c4af1"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c8464.json",
+      "size": 618,
+      "sha256": "0705dcd8bc2ff5f24a1f6257ca2e84af0243a6f00d46fe39ed8613d453a8911c"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c9720.ghidra.c",
+      "size": 4529,
+      "sha256": "8e7d90924bf20dda89a5c09e5da63937c083b404e5939a58e375a3652133b2ac"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c9720.json",
+      "size": 608,
+      "sha256": "ef488901b7ae31f0f0ced03d6986491ea639e4e669e6169411c2c7ef32576b33"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c9ab8.ghidra.c",
+      "size": 4877,
+      "sha256": "35f8d3e8b8a1972f6869c94204279238462b7ec17a6e9772a0a3b7e6286e7068"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c9ab8.json",
+      "size": 608,
+      "sha256": "ad2644ca41ca1d0f1b217d8782876d85d0b6b8399431ff621b5b8aa994ddcad3"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c9dd8.ghidra.c",
+      "size": 5041,
+      "sha256": "e330e3b0a8951a399131dda65e14a61c5c373a677203636b45d4ffaccf43cb3a"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003c9dd8.json",
+      "size": 608,
+      "sha256": "2fbca793d64a4bea9426fb76a2f08ea35cecd818965cb7a9c395e5246b43bc2a"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003ca1d8.ghidra.c",
+      "size": 4839,
+      "sha256": "14b9c5417f049dc98585c40b5f117adf2421779a3f4f1fe9970f7798a0980329"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003ca1d8.json",
+      "size": 608,
+      "sha256": "28ff9d45d7ecac89dd0fd5ffe2533bf1f9cb35a9509414dff4e4d42956d941f6"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003cbd74.ghidra.c",
+      "size": 5017,
+      "sha256": "d4dc03b7618ac2f226f897c2c8ffb68e349830afb195b5cef514ea573f8a9242"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003cbd74.json",
+      "size": 608,
+      "sha256": "0212a53ec8a5c8d1a876091d234ad27a11ae098e0c6565c663c325d540fa02f2"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003cd684.ghidra.c",
+      "size": 3514,
+      "sha256": "f8a9cdae6821077360b414c60dd16a4a528f1927622aa7dbb4ef10e8fcf5bd1d"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003cd684.json",
+      "size": 608,
+      "sha256": "b69b88919bcdf41ea3ae00fbaa76b445321cb9bfabc433b0a7404228abc29e74"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003ce304.ghidra.c",
+      "size": 14957,
+      "sha256": "a18d7b401b23ae613e1792fc615123f3f557428eaee4c5f95c701eb7af106866"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003ce304.json",
+      "size": 608,
+      "sha256": "70d02b3ac84a6060d1c70af6f6ddbb75ddc8181253f72c10ca7e7d32a5f2ac7b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003ce9c4.ghidra.c",
+      "size": 4892,
+      "sha256": "7098734872366a87b4918b254f3686df906a4cdbf87ca9027585afc08cc668c9"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003ce9c4.json",
+      "size": 608,
+      "sha256": "996fc0398e5858fa212394c900828cb39292cb0b30f117a373f585d9f3e633d5"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003cec64.ghidra.c",
+      "size": 5477,
+      "sha256": "2847ada4b1202afe7aa3f06ce7258f142998395292c18b544c05b7439fab0298"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003cec64.json",
+      "size": 608,
+      "sha256": "e4b169941b100f427c55246b3a184b18efab44140a1290cce6fd237cc46db3ef"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d56fc.ghidra.c",
+      "size": 2345,
+      "sha256": "dc2677a5a37521ad1d8024f1523d712fe4e138762f29378f9ee328c940ae21b0"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d56fc.json",
+      "size": 608,
+      "sha256": "71f53099dbfa6a11de177e90a5a344c3f94850987c2baec47414696459285a36"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d7a1c.ghidra.c",
+      "size": 699,
+      "sha256": "768d0e98466fcdcf35fa12e6481252023030ecbd6633e682fdf3b879cafcdec6"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d7a1c.json",
+      "size": 608,
+      "sha256": "204fb8058dfc8dfee49f97daffbe3124dbd1a1a749de56972d5c375d00247642"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d7f28.ghidra.c",
+      "size": 1751,
+      "sha256": "c42b942c49242bced82d1d2c907f8cb9b5834d1759d5eab2d72b0b40680381e4"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d7f28.json",
+      "size": 608,
+      "sha256": "612b7a11786e2276855f098f91aa7b8cad699f898b8f7b6620fd3776e8e23e88"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d8668.ghidra.c",
+      "size": 1678,
+      "sha256": "3c48f5d0fbd3a85f93a41bfe719d69106994a6c658d0df41e58e00e507c70262"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d8668.json",
+      "size": 608,
+      "sha256": "aa2eeaa091d251c137cc12b990144d208dc9d61e150a1b39c8625b6a73dc462c"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d8e5c.ghidra.c",
+      "size": 3479,
+      "sha256": "f77882c91ad0dbc8b016e92df37ac57a7866cea51aacbd9a1db21e7a3b44ce0b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1003d8e5c.json",
+      "size": 608,
+      "sha256": "40cddf0ef2699404aa4ca65d906ba9a50e456c3c10e23690fb760f17d6040898"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100407e38.ghidra.c",
+      "size": 2808,
+      "sha256": "1b7199a57700b26610b543b7622413682f6789976bf8832fdd50206b4219b262"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100407e38.json",
+      "size": 618,
+      "sha256": "db892e3163c770ec4b070f61112b8094ba88ae2df04640b88fcf02d5a666b5ea"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100407fd4.ghidra.c",
+      "size": 1738,
+      "sha256": "b5183b77025a4f1ea178a86ef70be8f01712ed131962e4e7cc98be05040c769d"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100407fd4.json",
+      "size": 618,
+      "sha256": "5711f54ad2b69f674ccea0f853d75accab88cb0397d963431e5e57242433d311"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1004080f0.ghidra.c",
+      "size": 3483,
+      "sha256": "69b9de3fe235e7ec69ed747363528489f0aa3bc8267ceb320eb277fae9a76af6"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1004080f0.json",
+      "size": 618,
+      "sha256": "1f034ca8ce0a94fa029c127625f560437834a773fe82c227b97eb09bf021e9f4"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10040b568.ghidra.c",
+      "size": 19167,
+      "sha256": "7c07e4612e1ce74c3707802bc9cb7010da226d694aa31d343e36d3fd387efc32"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10040b568.json",
+      "size": 608,
+      "sha256": "637b9e66da4aaa00f1cfca6312300d004408b44de10f9d5cbfab18c58ad6c68e"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10040c934.ghidra.c",
+      "size": 3476,
+      "sha256": "0d82e2974b94ecc230df1a64214d6febe6934e8927b4b49e58548e0a1e249199"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10040c934.json",
+      "size": 618,
+      "sha256": "4dce9cca28b3b3179a3ac6a74ef43321676a9e3cf48de85e944bbd2f049cff42"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10040cbf8.ghidra.c",
+      "size": 2131,
+      "sha256": "dbab2d96e949995e4e1cb01d0b6f2ea152a6aff5f5a8775fe58ab38320241b43"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10040cbf8.json",
+      "size": 618,
+      "sha256": "dd67c0055b1e1efb6b886e8546899745509ebf41339209d44ffc41db123e2ef1"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1004f20fc.ghidra.c",
+      "size": 5574,
+      "sha256": "f820f883fee0ed65fe559ca42c48c4b2a60462a039ba1d25f8c2a60e4f7f0d8b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1004f20fc.json",
+      "size": 618,
+      "sha256": "d5620b12088eb0dc89d9ea7270f8a4f733ccbd00ccc515142ec3ced354ae8367"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1004f2730.ghidra.c",
+      "size": 4021,
+      "sha256": "0353682e1cbdf9b486d6bb49581b2ccb9f767d799c3dcdb2a9fa450a5d192324"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1004f2730.json",
+      "size": 618,
+      "sha256": "6f07779856884e0e4691ad228579af30de494aef13cb430659d3ac97e0af0ef5"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005e3ae0.ghidra.c",
+      "size": 63835,
+      "sha256": "5db19fc0e131f0952c83ae6a129fabf50fdbd9ebb351d37c37759534fcc960a7"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005e3ae0.json",
+      "size": 608,
+      "sha256": "2ba03a49579e005d78dc618257ada0142d9ce419596f787d64686636e2fddf74"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005e6ce0.ghidra.c",
+      "size": 24705,
+      "sha256": "eb57ba81debb30beefb42666742da280e57d25221bb5826c7d59a1c576468150"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005e6ce0.json",
+      "size": 608,
+      "sha256": "9f6f240e319316b7d173d74f98c7748eec3868ff9e351058a324d4d6245635ce"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005faeec.ghidra.c",
+      "size": 4042,
+      "sha256": "e540bae8e698370941801829ce8c8351477b93e1667f9c465278c3a2b465f23d"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005faeec.json",
+      "size": 608,
+      "sha256": "9324346a95ae1a0c359b16cf13e8f73c6ff9ed0beb335260d98cab3ece127d29"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fb1c8.ghidra.c",
+      "size": 9557,
+      "sha256": "42607332abe8a95feb05ba667a3ca8da23fb4314564038cec00c478a22ac0e8b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fb1c8.json",
+      "size": 608,
+      "sha256": "7298dc2ebcb715ebe29c1d344dd7c5836b4732088200b01200c074001ce78f19"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fbae8.ghidra.c",
+      "size": 3523,
+      "sha256": "25251f7743eb4b515509f1dc628fb3f78fdb489d34239b3309927b7ee3a931f8"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fbae8.json",
+      "size": 608,
+      "sha256": "53a57d691cd6042b236fc1d2c99c2ba26b619920f398e3b9c59a4ac5393de131"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fc024.ghidra.c",
+      "size": 7130,
+      "sha256": "af7ba3f07c999afbb2eaa5ddb0eb131a99909f9b508a728a46dc95b47939bf7f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fc024.json",
+      "size": 608,
+      "sha256": "aafb88b33529ad2922ebcd2d3fef4d7bc6c2b8e384cf1bce957297a0a044f1e2"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fcaf8.ghidra.c",
+      "size": 697,
+      "sha256": "e9033f69d4d467c31fb548dc733a1f15219d7cfec66b0777f2009c2edc8d58a8"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fcaf8.json",
+      "size": 608,
+      "sha256": "6f5be666570b91e27f404dcb30d5e834661dc4105bd702e027f75fdcea4e7b33"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fcb40.ghidra.c",
+      "size": 2627,
+      "sha256": "7b645758fb49e7da12d15fcce9a18a94ebb0e14c0d7558568218ee30d4b6a567"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fcb40.json",
+      "size": 608,
+      "sha256": "ad58d58bd539b132a31aa38ddd900532a32e93f2aadcaf46925c6c10edb0da4c"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fcd8c.ghidra.c",
+      "size": 2401,
+      "sha256": "1fb0572ccf3426fc7bda19a2afbadebb230589b36c6aadd50aac7cc3db70784c"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1005fcd8c.json",
+      "size": 608,
+      "sha256": "355e5e2e0f79b07746cdd30e9821257b8649416ab542a521cbb7a4622d0f7f3b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100631edc.ghidra.c",
+      "size": 5839,
+      "sha256": "a0c023e6efe6830e47c4176bd07c6f6df78cdd496d5a291e75a120340bb90092"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100631edc.json",
+      "size": 608,
+      "sha256": "35bed2087dac3092b9b6b1da0590d1c86eae5934b9c13992bdb236e5e6d500a1"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10063240c.ghidra.c",
+      "size": 7058,
+      "sha256": "1a404b29e321f73430aad6affef9131a255b2ddd4399c69f34119607852763dc"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10063240c.json",
+      "size": 608,
+      "sha256": "7243f8b94eb6f92548956a7312354de1813ca72fd810469238b15691ef18ec3a"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100632af4.ghidra.c",
+      "size": 13315,
+      "sha256": "532c5c37427b5be23c9281ce5b570c9cc8226b6629b5978f6bca952853f62ad7"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100632af4.json",
+      "size": 618,
+      "sha256": "125808fd2620d354d00ff84265a41528acc1254f3ded16c116610580c6352ec1"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100633770.ghidra.c",
+      "size": 3896,
+      "sha256": "92c287d3f36e576d9ec12863ba0c87a8b99a0d91a708af49f7893d33209628cd"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100633770.json",
+      "size": 618,
+      "sha256": "6175bbebd24f0ce812cbc90c4ebce1601022a4360b11e6dfd0d5d5a597f0f396"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1006347c0.ghidra.c",
+      "size": 3450,
+      "sha256": "3c18fb9bb1ac9fdd2e18be388e0165b64ce1cfb2fb0ddc1835fc8f7f6083f41b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1006347c0.json",
+      "size": 608,
+      "sha256": "d85bfc83ceb7412262c317522a6d33225d6dece8a4df23c30e211b3798978a0f"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100634b7c.ghidra.c",
+      "size": 11632,
+      "sha256": "71b6babfaab4fe60adeb19424a0e912a94b32ac4e00eac2a854fa69ae155138e"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100634b7c.json",
+      "size": 608,
+      "sha256": "ae64c0f5a404b81bb45db6b9e6e7b0a0a9bbbc6c11bbe1e546ed96b4c7087968"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10063791c.ghidra.c",
+      "size": 10244,
+      "sha256": "2b20efc9f910e36c0e4b3d27b57346150e36090df7f2439a5ac9ebd5aec0b4b4"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10063791c.json",
+      "size": 608,
+      "sha256": "ce1f7d7ad89a0f629b0092994932bd07b84661c9948876fd98bd9a4a8d437505"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10063cea4.ghidra.c",
+      "size": 3916,
+      "sha256": "58f2f68d5fab090e507487e1810b9f1d7ff2c1adca28a6c39c67350d6dcfbdd7"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10063cea4.json",
+      "size": 618,
+      "sha256": "2757c6d53ff1e826b545a9b6fd4ca18f71cb47b2081e87b9c270895b42015515"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1006428ac.ghidra.c",
+      "size": 8247,
+      "sha256": "ee5820207d1b2d5ae672ad47ad6b50168dd2e704de6fc4f0b66d7effca28c4f1"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1006428ac.json",
+      "size": 608,
+      "sha256": "21de0b50bfec155392fd319618a22d67e590e3ba847ca589f7870fad9a360f1e"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100653368.ghidra.c",
+      "size": 19298,
+      "sha256": "0b5cd809dce63ca6fabbae35a0e24644ce93a319272f90d62a128b3a97033356"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_100653368.json",
+      "size": 608,
+      "sha256": "b6bbb0d41606e47718694c0099eb2082302aad0626fba6c498b4ebe8e01a5997"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1007a3ba4.ghidra.c",
+      "size": 5305,
+      "sha256": "c32f63a6d01fba6b2a96f9cbea66f2432398304ec97200fd3215aa4b1c56c920"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1007a3ba4.json",
+      "size": 618,
+      "sha256": "8d5baebff83eaaf5acee86b0aa8cfbe51f8e9de11b83e6f20efc9dd0f59f7148"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1007e106c.ghidra.c",
+      "size": 69682,
+      "sha256": "d3c346f9254f4fa1fafcc5f7987602af16a2cadf1c4fd77a5fee8843dd1db416"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_1007e106c.json",
+      "size": 608,
+      "sha256": "c5f2692c65f9db8a9616f0a6871c8d1558e6933d6c87cddf8e588c900e575bb3"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10087dbf0.ghidra.c",
+      "size": 5291,
+      "sha256": "44bfda382e21237564c1b01d7bba52186a2497db0a98c68c6289c61e93452099"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10087dbf0.json",
+      "size": 618,
+      "sha256": "7e119cce4f9bdfa32c8992530f26126abc89d7b64caf7224abc1ba2a47303ea8"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10088c824.ghidra.c",
+      "size": 107118,
+      "sha256": "39cca72e6701855a01ccde30eec7d5dc1e2d35f3c0daf108906a4cf2456abb3b"
+    },
+    {
+      "path": "readable/ghidra/bluetoothd/f_10088c824.json",
+      "size": 618,
+      "sha256": "83c0b130c63799ad0ff122bb08f7017dda92c7cebd4eb208ff7527c1089c11ce"
+    },
+    {
+      "path": "reference/README.md",
+      "size": 1615,
+      "sha256": "5f69222556b965e2d4b617b93b088a2223033d13eadea3ba89711b4eb864c57a"
+    },
+    {
+      "path": "reference/handoff-facts-for-iap2.md",
+      "size": 4684,
+      "sha256": "693ec888743828fb85e83a53001d35820f3beab6c6e401d42d7463dabf56a5d6"
+    },
+    {
+      "path": "runtime/README.md",
+      "size": 5412,
+      "sha256": "1d62075adf8ef9d16975c16afba00b6cfb427af877fc37fee8b050d9f4b4199f"
+    },
+    {
+      "path": "runtime/captures/2026-10-rfcomm-pklg-reanalysis.md",
+      "size": 11355,
+      "sha256": "78d9856e90e46d1e4b76ec2554f13912192cfe66c3621f31d1cc8e096b9df00f"
+    },
+    {
+      "path": "runtime/observations/2026-10-14-22H374-sdp-raw.txt",
+      "size": 4870,
+      "sha256": "3465a43e7f5b18f137927671a8bc4fbd9436956e6bebbb85cb5fffee3356a653"
+    },
+    {
+      "path": "runtime/observations/2026-10-16-21G93-sdp-raw.txt",
+      "size": 1454,
+      "sha256": "59477c995e6b64948d2b2187fb1dcada0596b7e370a8741a5129b51c8efdd228"
+    },
+    {
+      "path": "runtime/observations/2026-10-16-23G90-sdp-raw.txt",
+      "size": 1040,
+      "sha256": "6fe3aa12c5d9c83cdfd23c04b973b56060c7eb14f0adb7770c53bba4223b927e"
+    },
+    {
+      "path": "runtime/observations/findings-sdp-hci.md",
+      "size": 7903,
+      "sha256": "7c07fddbd04894226791bdba055cb7ca06d5d41b1fac7fa4eb4b08f62e479981"
+    },
+    {
+      "path": "runtime/observations/sdp-records-iap2.md",
+      "size": 4276,
+      "sha256": "41ca70549febb517aa5923c3a1b8b6c7e3ed0cdd6483b0533731f2fa335cc815"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100035440.bin",
+      "size": 240,
+      "sha256": "aa9674f4eff432972a1c7d9f15a570ce33b779bbb50112d3fa95db5c1d4280b3"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100035440.s",
+      "size": 2627,
+      "sha256": "cbc37f9a84cf4f6106e8ba5232d5cf2000a693484418fa71b1da3843372d043b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000609fc.bin",
+      "size": 116,
+      "sha256": "0ecb5315c514a4e8f8e4d70736a8d02735ffd6d8693c799b1b27b1323422a8a9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000609fc.s",
+      "size": 1365,
+      "sha256": "b869ca702b0249553703fb7d617e8a49bba430443f52ae39e0098c51d28ea5c7"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100060ff4.bin",
+      "size": 252,
+      "sha256": "cff738266b93a0852ace977223949080e35a4d5f1e8823ac56758b6bdb1326a5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100060ff4.s",
+      "size": 2840,
+      "sha256": "c6ac55167f6ae09902f3ef81f5cec2300760e0c071301a8191bfad06a74c2ce6"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10006135c.bin",
+      "size": 640,
+      "sha256": "d67fe7461d9f34c5d4e6d6e57ce9b033c1be7834d6db265e8ce5914e17eecc3a"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10006135c.s",
+      "size": 6582,
+      "sha256": "9cf027045b62f093c34e6b1da9f85896482da6353fe743939a243069c06d35b7"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000615dc.bin",
+      "size": 180,
+      "sha256": "9a00b12b80d89d26129718d52bc9a87567bf8b0590833548cdadf05945c6047d"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000615dc.s",
+      "size": 2083,
+      "sha256": "5cef257daee4a11ac0e0945d19e94317297c6637db9b3c655df376ea223cabb9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100061690.bin",
+      "size": 88,
+      "sha256": "9c329deb7c0af81b125e3516a9fcaef8df2480bcec6399442d620653fe66a5c6"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100061690.s",
+      "size": 1126,
+      "sha256": "4a619419044d7806da9fcf0abfc68ede5ef457ce4bf87ea7320ee09588a158f9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000b5e68.bin",
+      "size": 2872,
+      "sha256": "185f76f22ba7d063e1b82b165f553d3fb6071444b5cc2fd8366da6814d452db8"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000b5e68.s",
+      "size": 28549,
+      "sha256": "e7c9ae6bce365b32836c3a65eb02f3debc7952213940502da7c710598e48e0c5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000c7818.bin",
+      "size": 7960,
+      "sha256": "3fb93c535291d278dfcdae44b5c26b4b6d52bc4d1642b89c38e7593cca84195f"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000c7818.s",
+      "size": 79590,
+      "sha256": "4a98a9147b5fe0ae0401a8910b4227f36855b10dee19ca0118a1991d52bd0e00"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000eb4e8.bin",
+      "size": 2504,
+      "sha256": "0457a4ec3119498d8c7200ec6df68cfbeb1be41b16346073645ffd8c2c2cc623"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1000eb4e8.s",
+      "size": 24848,
+      "sha256": "6a257a4c662f82ebc6ec184ac4b165cfb06c29275fd4e18deee4332fa632d426"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100137ee8.bin",
+      "size": 1940,
+      "sha256": "0c13cf806986d5984a6e5cb23a8b974e1f136634a7170e0879dc77bca5dbcf74"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100137ee8.s",
+      "size": 19606,
+      "sha256": "ff4d5befa42f6f90f9c20d6b54fa611ab81a2b1b8c30cfc4e374c67e00ba2e0f"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100139490.bin",
+      "size": 1808,
+      "sha256": "9a85fbc7f6d8eb2345b8121ba00b5b75e867f0de499948285541d2fb771a583d"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100139490.s",
+      "size": 17833,
+      "sha256": "31767fe233d9e2ef9cb0f089c1a20768f8351eaf034d19d1df4e4fd30b23f067"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100139d70.bin",
+      "size": 288,
+      "sha256": "0b9a6b415079267ea5ebb9ef9a54a006cee0b292a538c9f1ed723938b979b6eb"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100139d70.s",
+      "size": 3066,
+      "sha256": "be9338e8dcb763efe9cb1452580bc5df1c39fc7e8e83e3f5a7459d597d3d81ef"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1001479fc.bin",
+      "size": 3540,
+      "sha256": "1a23c91beeeb9fd9b178f8dc60439e8b0e938c5c0ecc324d61d7396fd376ce72"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1001479fc.s",
+      "size": 35775,
+      "sha256": "9872da9e158acf9313d31564a0e46ec445d571424f1e39ed12228046df0345fb"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1001a31f4.bin",
+      "size": 1388,
+      "sha256": "7d6191e0a5a7b8df7e0c756a044834ec412d0383dff245449272ee208c5006d2"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1001a31f4.s",
+      "size": 13717,
+      "sha256": "85547c273a57a455ef9909d77fae31113ec54439a6da75eadd9735fb945f84cf"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100233530.bin",
+      "size": 848,
+      "sha256": "0db66f95d346b8124bc822aefffa7292e32c5cc160800f7ff7f80816da632acc"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100233530.s",
+      "size": 8408,
+      "sha256": "f22ab86a2ee6d3899141f6a131f14de0c52e52c7099705bfdd45763acfd75c7c"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100296014.bin",
+      "size": 312,
+      "sha256": "e7531ab07d5dc010d135c1740fccf30a068964bfe3b3dae45c2ab23964c8c939"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100296014.s",
+      "size": 3244,
+      "sha256": "5f07195de462e63f578c3f0dbca91c9015d1d7864a13314992308ff41070e9e6"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100296714.bin",
+      "size": 616,
+      "sha256": "3b6696650fe88219f57c653b6de20c92bee0d78f12881718a422c47c789cf6a5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100296714.s",
+      "size": 6250,
+      "sha256": "d60727037ad8d4f3684e8895cb44b83aef8d999bcc9ad9ab4f26aab60584aea3"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10029ead0.bin",
+      "size": 148,
+      "sha256": "56eb0b2e9c91f591798f823d228cecd4dd3b572f76c00af800aa01652c08a0d0"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10029ead0.s",
+      "size": 1666,
+      "sha256": "f5c598ac0b0e7b4f6950d34ffd4d3f47ab7d0ccad221dbec750c1c176d8125d3"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1002f1300.bin",
+      "size": 736,
+      "sha256": "95e07d8b14c0a055c11ac48a7c864c11357771839ffb82a74e2e4f87eaa8b30a"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1002f1300.s",
+      "size": 7669,
+      "sha256": "59ff93e252101a2c00cef4e47734e635c2785c275bf4c8f9fccc71a37876cd85"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1002f1798.bin",
+      "size": 432,
+      "sha256": "3bb8e309238004c89e450bfab5e621f141acdfc09a168d5852ef25d1d9732a3e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1002f1798.s",
+      "size": 4363,
+      "sha256": "dc623797356cd25df9e52ded00d812ae4e074963672b2520816badea2c764b1a"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003010ac.bin",
+      "size": 412,
+      "sha256": "e6d03c1e3b6ba9f00db8e0c3e6de366593e7cc240b97ef567f280f63d99fb9d1"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003010ac.s",
+      "size": 4229,
+      "sha256": "dddf37f96204740e31a938acc8a8b6278ebc2383a6204598c212cc41744ef316"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100312584.bin",
+      "size": 1132,
+      "sha256": "f8a051a219e74d627530feac9d7d75c08e040edc23e9142c8f880e3abbc9746c"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100312584.s",
+      "size": 11176,
+      "sha256": "06d2924beaab90c1384122c35de20669247a6b69ee5f59d7a7d99ae1b400cb81"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c136c.bin",
+      "size": 152,
+      "sha256": "49afb425851e1a3d25ff11dd2e6a1b56860436d26e7a181f72a6dbc1626f1455"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c136c.s",
+      "size": 1730,
+      "sha256": "f640aed7923a4f8b5503a415106713a3c7969eb4c9e2eeea8264935cce5743eb"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1404.bin",
+      "size": 216,
+      "sha256": "6ae0b7f481c9c7b33bf2ae33eb7f2f87cd399421e65cde606905dea107dc9b3b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1404.s",
+      "size": 2384,
+      "sha256": "97795899f43fb72961b98f143676d3c7df2a90c6527ebbbda27eb230f396eb1b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c14dc.bin",
+      "size": 276,
+      "sha256": "b87bf9df4e59ccabb8a317003f8f6e59ad14c0d873553706ebf00641576cdd49"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c14dc.s",
+      "size": 3014,
+      "sha256": "627fe662136270f46b295cc52478bd8b3f2efb5f0e6f12c50c7d95887c4ca00e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c16dc.bin",
+      "size": 172,
+      "sha256": "798eb849a90f4fcf24469f42ff26b6ffb7c64d551c4d543c4a3a541371939740"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c16dc.s",
+      "size": 1952,
+      "sha256": "2c8f3ce5603809431ed22e55ba3c6833a7ba19153d473b5b413ece85bb2c1fb1"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c18a4.bin",
+      "size": 192,
+      "sha256": "e4aedeab291750887cf4652aa0c60b5040df7eb53a7e78a17e002eed4e37f9ed"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c18a4.s",
+      "size": 2113,
+      "sha256": "85d236218dfa3184681625c08b02c8ba8fee3abc4fc28a0758ab906a5ad46c3e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1964.bin",
+      "size": 208,
+      "sha256": "0c1bb76aaac5341ff68284928e58abf1a83c789c17982e18258418e983a7c6bc"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1964.s",
+      "size": 2278,
+      "sha256": "656e4da4375a7177ef21423e8957061b69fe8f34e14141b207d6c9c94dd834e9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1d40.bin",
+      "size": 364,
+      "sha256": "39ac1c915195ca2b4b9cf2ca6930708af40b9a683e133ed8b53f22ed78c9303f"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1d40.s",
+      "size": 3767,
+      "sha256": "5fb30d6e3b8706d1005c0b390838811e71a8795c93f2535e05aa1a7444928ecb"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1eac.bin",
+      "size": 96,
+      "sha256": "9c3c9486e45d5d56baebcc53e9127ca74c165c9ae8086897a1723eda5b3eaf20"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1eac.s",
+      "size": 1218,
+      "sha256": "6e41ddd040d4c2cf81989ddf04ae1b5676733add8c64b6ddd0363fac20f6687b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1f78.bin",
+      "size": 320,
+      "sha256": "4815bd64a7d76b102a91267de4123cd30efb617dc0d9bff9903b8debb6c08c97"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c1f78.s",
+      "size": 3403,
+      "sha256": "ca3cbc71d94e8ee094d6a9d0c205f8cc2cbffff53aa8e294281004d9504a5a5e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c20b8.bin",
+      "size": 244,
+      "sha256": "76346c66966ef09af6166edecedcf3ab27f013eb281350fe36b8d5922f23e14a"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c20b8.s",
+      "size": 2631,
+      "sha256": "e01d23b1ea434e428339045ceef210eac291c278c1a0d2d4a6d359df4951dbef"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2314.bin",
+      "size": 128,
+      "sha256": "d952eee6ecea7dc677a6bcfebd04c2bcd8a4fabf76abff8bd6cb61b6202669b9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2314.s",
+      "size": 1466,
+      "sha256": "a25291dfb07bb8824404e3ce3d091392c421c1df3ac7393662995e6defd8a786"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2394.bin",
+      "size": 160,
+      "sha256": "50d7725247246ccd3e2b7aa9d005673cedb7b71a100ce29f9bec1edd0305cae9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2394.s",
+      "size": 1781,
+      "sha256": "b040a7500d7020ed84340c26450b3e9fee127ca7fa218b06b2a7837300880aba"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2624.bin",
+      "size": 364,
+      "sha256": "3d865ebc3fca5d4ce2d4f54fdc3553ce527ca89631e9f6c20803b819d686142c"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2624.s",
+      "size": 4013,
+      "sha256": "bab67135d9264de9ba92ea0edd7d32dc40406834f23a99e31d52c5cea3d8e7df"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2b00.bin",
+      "size": 620,
+      "sha256": "b0792e1c66fb6050501b6f10ac5bdde67a389ec8a9259f4ca428bb797ddca1d9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2b00.s",
+      "size": 6336,
+      "sha256": "0483950b3bc54929f56837768daff14158c300140c86654bccf46bd9cb82e3b4"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2d6c.bin",
+      "size": 132,
+      "sha256": "c477c7bfc0262cc71a156962f056a788784f8017d4e423a9171542a4a01a58bd"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2d6c.s",
+      "size": 1599,
+      "sha256": "8873a85783483f5c946b2f18b9026c50590291d55532d367c00ed3c56859e1b9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2df0.bin",
+      "size": 388,
+      "sha256": "ab36001783e4b468ab5a2faa15dc6f19e309bfaac8c25d849a463f8086a91a10"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c2df0.s",
+      "size": 3977,
+      "sha256": "1fab16c0610cd3d1709c59db0d519d4e82cce64ad64822315b95429dbf533a8e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c33a8.bin",
+      "size": 716,
+      "sha256": "5050227e84019dcb001a8b100bb4cc2e835318ba388d9efa7a8bfe4c2c7cebcf"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c33a8.s",
+      "size": 7199,
+      "sha256": "dd83c7e82c5592105f4cc3f6dae6cddcd2cd7ff83a1f5f168a8ec0a1e9d9e7bc"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c3c20.bin",
+      "size": 908,
+      "sha256": "5c468306359a0a7b3c6c5cc3a905721d20cd7f694fb779c281b880f72c86e4b6"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c3c20.s",
+      "size": 8975,
+      "sha256": "4c762d936010ead2a6cfaf52ecea21d79a2e308b0ff800d1d86f05737c4f2abe"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c4c88.bin",
+      "size": 260,
+      "sha256": "4c91605d8cf0fcb0e43917364b8c5af9f6c740eb2e568758096e75a45868f86b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c4c88.s",
+      "size": 2901,
+      "sha256": "3781d79d8bf9d14577f20895ef0c6de069637dc90b94d79bf97c54a509e27e8b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c518c.bin",
+      "size": 188,
+      "sha256": "2049278bc4d8c6c96c63cbbb98c49d4d9ad0210a51bf3acee722dd79ad63f85f"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c518c.s",
+      "size": 2033,
+      "sha256": "f6a30f2ce0dd14841b1f3df040dfb06c80cb71be9b2a6101e582a7d0a3a18597"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c5334.bin",
+      "size": 452,
+      "sha256": "e005ce73b34b7b91f4b5aa1bff31b3f461e2b8939a672d34ae14de250abe13fb"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c5334.s",
+      "size": 4574,
+      "sha256": "e719311b4d90c8db2127f2e1be82ed263e561960b05ce86274282819aebc1c08"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c54f8.bin",
+      "size": 380,
+      "sha256": "150ee03470f4e3632c0d871a2da1881e231af01de1038a7b43d71675bad8daf0"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c54f8.s",
+      "size": 3955,
+      "sha256": "6b5bcd6fba65789503f50888c64332024252b4ac902d5cea564c45c2461aa272"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c5884.bin",
+      "size": 284,
+      "sha256": "32565e93114728416cff1659f44630d733f6f89143980ea8ccc32fe2cb9c6fff"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c5884.s",
+      "size": 2919,
+      "sha256": "503bac8aa205f4c1555d96135982042b54aa42b81f69b568f9f8d40637c6f2e5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c59a0.bin",
+      "size": 4544,
+      "sha256": "c43f625016a371b2ac6e22822acf3b6d0f6b99fc4ade9d27a8c836547d40c689"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c59a0.s",
+      "size": 44297,
+      "sha256": "6b4185b06b4147dabc98662bcdcf6211fef6edb51d5e47c8621b1cf6e4342846"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c5c70.bin",
+      "size": 528,
+      "sha256": "33d872df966ea57bc18b314900808444f592696196fc0f1f320fead0f476847b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c5c70.s",
+      "size": 5312,
+      "sha256": "4af0161a11dad653e0c3c12bf030bfc299dcd88025f7a938b3d570e1d27ab300"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6180.bin",
+      "size": 632,
+      "sha256": "bf7b9c47e6e0d212da8f49f51cc058e2d7fd4205ea8f96b64a5b5ed7dbdb643f"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6180.s",
+      "size": 6265,
+      "sha256": "3203173970c21c7d8a3668dfda34f5c10bb4581ddf83d134631c2557e11221f4"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6b60.bin",
+      "size": 68,
+      "sha256": "d7bef474797645439fb1863f093dc1ffea11d0e857552b935d7e88ac75bdeaaf"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6b60.s",
+      "size": 858,
+      "sha256": "08cf62515e45c07ba9cf36d78fa077dc4a8308688c3895000512a815bb7f7fde"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6be4.bin",
+      "size": 52,
+      "sha256": "47eb60244d6e3989d412d8f570fa8f708ad68aa77f8d1155feab8b344fd989e2"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6be4.s",
+      "size": 712,
+      "sha256": "aa64a5ddc42b68de3609db3b28748ddfa00606ce590626a58f9a33904768285e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6c18.bin",
+      "size": 116,
+      "sha256": "4bdca17f3ff94fd54fada8a0768a9e56c37d8b2e14b79ce6ea335c24e347d6df"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6c18.s",
+      "size": 1370,
+      "sha256": "1514336a9c59ca99d639f3f4896bc32cb9bfe14ed42bde660f31a84691e57ac5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6db8.bin",
+      "size": 60,
+      "sha256": "ff5cabb3f15a0f683f7f8f32349e412135a05c772688dcef47cd64a8cc8317e5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6db8.s",
+      "size": 846,
+      "sha256": "f63d9b74832edb6492da2104cc639c481f83eedaf4d483e07c1145b25f1c908e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6f94.bin",
+      "size": 364,
+      "sha256": "a62cb98b6ee9ec08681a1ea6ae6d275e531c5b71e2ca07bbc72ef0ad034e7946"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c6f94.s",
+      "size": 3872,
+      "sha256": "a560b996d85992b0a321637d0ba1653ecf31de41c5a32d489a850c1169fdcfe8"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c71e8.bin",
+      "size": 160,
+      "sha256": "99d8b2cd7d552a666078593c25fb19f15889d5038acdd8b952939c2e958f308c"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c71e8.s",
+      "size": 1762,
+      "sha256": "1d756e4522d411ecfc3b60391eb2f2fd60f1a487f2fdfc884d147d6253ac3d5e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c73f0.bin",
+      "size": 4212,
+      "sha256": "cc129683eb1fee6d5963bb1ce5e404806d4be7fc1cf4657493e675e61e8a8229"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c73f0.s",
+      "size": 41544,
+      "sha256": "56a247314fd49c654f1c33d83bc579aaa672c4bb04eb71e0d8da2828dc3923c3"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c8464.bin",
+      "size": 492,
+      "sha256": "61bdc0c4a1fd4bf24f0c1d8c2dbff2ebd721e1737631d4d0cc9acff19224faaa"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c8464.s",
+      "size": 4991,
+      "sha256": "6cfd251766621769e85acf0a9fdd727ce40fd5e350f3870e0509650446532943"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c9720.bin",
+      "size": 736,
+      "sha256": "07e7b5a5e2da67a0fafa81621a5410d8cd88e08ed0b1ecd6846bca8ae6ec4d8b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c9720.s",
+      "size": 7639,
+      "sha256": "ed69a8972ac877a8f4630a6bdd3c6d60317070f4cde17ad6f830c9e7fb53600a"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c9ab8.bin",
+      "size": 612,
+      "sha256": "64e7c427c2178a94d2c69ca9c2125b9c69ad64525a92ddbfa1014382b31cf8c6"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c9ab8.s",
+      "size": 6344,
+      "sha256": "15ba0c3ddd5a2aca6412faf3770cacc1124e287fd9236a1dc66fe90ac6fa5761"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c9dd8.bin",
+      "size": 720,
+      "sha256": "6f0f94432f9d3923685cd6867edd0cf52e18eb73dfb42f88da14f1d3a5aff1ff"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003c9dd8.s",
+      "size": 7407,
+      "sha256": "304c7e8868b136b839c3b8415a585312f784d9ac5588688442fa0140ca1e9817"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003ca1d8.bin",
+      "size": 536,
+      "sha256": "ab5a503d7d5d7629bd833f5dc9f0f1ed714c08c2c11490716ddc67305e1891de"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003ca1d8.s",
+      "size": 5571,
+      "sha256": "28bd13e4fad05139e38b3eef50bb4ef820c5b4683663f3ea5310fb913b8922c2"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003cbd74.bin",
+      "size": 828,
+      "sha256": "39631b0a90b17b15a9fa192d4f2314010fed4b66300a5309aa8f6af2a8cd9d28"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003cbd74.s",
+      "size": 8358,
+      "sha256": "591e8c2300200ead732e68a938792f123b7a0d6827a169c6b91674a504d88187"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003cd684.bin",
+      "size": 580,
+      "sha256": "e0901aca9b159cb142f14d750ef6ae462e7c8eb6b50ffbc24180a7427f0c09de"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003cd684.s",
+      "size": 5959,
+      "sha256": "9d0fa9397067a4c12b4812cc5c63cd8f5f07f63d9dd25b3385d613d1fa9ea31a"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003ce304.bin",
+      "size": 1728,
+      "sha256": "6c40020dbe3650711ad9c01523353ff159f63350e94088f620487016ff2f9da5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003ce304.s",
+      "size": 17576,
+      "sha256": "91f10fd1dc96d54363209c019b561756483bf22320d947c338a0151d30ddb00d"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003ce9c4.bin",
+      "size": 672,
+      "sha256": "856ffb6d0fc08ead7dafa88bbda9d68f3c9522ce8d9fc7349ae2f948c09c53f9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003ce9c4.s",
+      "size": 6786,
+      "sha256": "c568c7fe48ae675f54f7916ccb9bf3da50613a8d6d10361a72d1295b9cdb8136"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003cec64.bin",
+      "size": 820,
+      "sha256": "9d183be0e7b01ea09188628654b26c4a3040353bfaf46362dc1d8bf33b1049b3"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003cec64.s",
+      "size": 8293,
+      "sha256": "8a300aa5d7d5238ccd253cc374c3446ae3a4de98e34df490debcee19a9711ca0"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d56fc.bin",
+      "size": 764,
+      "sha256": "c98e909e1aff89006691c1f23b35c163c8c5a542ebf25bbef934f3a334195302"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d56fc.s",
+      "size": 8146,
+      "sha256": "cbf9adf082d2c3e04541193051075b98cd292772be368e79ec08d941688e5e0b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d7a1c.bin",
+      "size": 68,
+      "sha256": "fdc808ee9dd0f3717db089f702ada9e707698474461a96b05f500f130f5fb89a"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d7a1c.s",
+      "size": 933,
+      "sha256": "447e5040b91f7d0d0da98a77bd8ee60cfa2e380a1d226eb77a4b3f89854a9441"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d7f28.bin",
+      "size": 352,
+      "sha256": "954560587790d06a818bd3f7c3777adae52ca427c595a0b1dde1280fd73ab758"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d7f28.s",
+      "size": 3739,
+      "sha256": "f0c4532c1e90b0a1fe1d72a6893ed2782b637158c57e033027770f54e27304cd"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d8668.bin",
+      "size": 268,
+      "sha256": "af02597f09985ba968a52340c559a1cdb26e8f6dce5dd9ad52af23ab9836d07f"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d8668.s",
+      "size": 2818,
+      "sha256": "336a6ead25a5e0ca1c8b63a9dc51000944b14894f72adbbdeb337f861ed3e253"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d8e5c.bin",
+      "size": 424,
+      "sha256": "9eed6f4179cb06c23731cf9fb118a6da77be314dcfacbe6778e1aba7b38fc2b0"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1003d8e5c.s",
+      "size": 4496,
+      "sha256": "ada7a7524921c880fa8cad0fe42843316fa0a7f5b9fbf965fbd081265bccd2ab"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100407e38.bin",
+      "size": 412,
+      "sha256": "feaba5c02c59946769b590d4be3a39358920d46df402afde74637187cdb6d545"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100407e38.s",
+      "size": 4338,
+      "sha256": "2773961ec96a6077e6d20c0831f3f7b8e4f421b902d37070f27ba49d50adf608"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100407fd4.bin",
+      "size": 284,
+      "sha256": "fddb6ba4d2095a2e47759c80c2ac5635968899cd47a2265d15db6d891cd25a7b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100407fd4.s",
+      "size": 3048,
+      "sha256": "56b91882db9ebee79915ad5f43723290d197cb4c760867bc8835e36e52cb7a00"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1004080f0.bin",
+      "size": 468,
+      "sha256": "fd0448ab67898609ffca6bc9e1940d19132941e0a7acd13dcaf178c3739b552e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1004080f0.s",
+      "size": 4986,
+      "sha256": "a879b5ff5e0ca0c6d30e8389a0f1b43a0d496935c387f8a5cdd6d3baa3613fa4"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10040b568.bin",
+      "size": 2616,
+      "sha256": "5098af9801fb3dad37003e308f8dcaee077b77e12ddd768cd9c2a38f84962a3b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10040b568.s",
+      "size": 25965,
+      "sha256": "af3d1853ab1d29c1cecf4086db12a819785642f5390d6caf92f579d241e3787e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10040c934.bin",
+      "size": 700,
+      "sha256": "9e8d8aca18de597c17076dd1945b1cdbec124deb91c9d90a58d34c6d63a07c75"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10040c934.s",
+      "size": 6963,
+      "sha256": "532b00107066b3430fb09ef5b8049655c8f090931b0146a5c68325efb31e2338"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10040cbf8.bin",
+      "size": 392,
+      "sha256": "6a6a382235a5ea8b89e10edfeed697db8e87c9dadef0db939047aa09003d02cd"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10040cbf8.s",
+      "size": 3988,
+      "sha256": "ee65a7b44ebd0ae0f60537dfc6ec38a0aa8a9ca0fdde3441d8f2d9dd8a70f6df"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1004f20fc.bin",
+      "size": 1232,
+      "sha256": "7df98ee7f27b0fa608b8b50e63f63d632cbbfbbf00a2ecc4cfe5f4dd794425e9"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1004f20fc.s",
+      "size": 11858,
+      "sha256": "3cc436fc9c899fd2dfea249d3bf94de7c5667991b18c859a7856783d5952d329"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1004f2730.bin",
+      "size": 1040,
+      "sha256": "19f24f7d448655c0ece4ea06f2e707a718fbda02d7c41614d20c36f5489364f7"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1004f2730.s",
+      "size": 10276,
+      "sha256": "fae6f2f3c1845381eab04adf3d3e76ff9d90da0e1aa4924dd6bca8365aaf53c2"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005e3ae0.bin",
+      "size": 11844,
+      "sha256": "76a6b0b6efca94e6e73a5a02558c4889efb40081900898961f28e5a58445b83c"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005e3ae0.s",
+      "size": 118592,
+      "sha256": "1043c0d8f6e855a845594224494a329455435e1682a3132759de2ec0e0ff734c"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005e6ce0.bin",
+      "size": 3372,
+      "sha256": "b1fa782c518573d30a2f2690b6c7b1ef8d203d24ee12bf24b89ffb725646efcc"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005e6ce0.s",
+      "size": 33699,
+      "sha256": "b0d63de87a644431788f2fedd443b00a83125760d4f713190d526b96a4863604"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005faeec.bin",
+      "size": 732,
+      "sha256": "e92123fb56a18b99af0dc2b02d9d5779ae2ea3ea4af8b761d14dd500f89f0eb1"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005faeec.s",
+      "size": 7293,
+      "sha256": "1b4dcd7aa3b43753bff87238ba299e66d25580f5a8731b15142bbab30cf2a1e1"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fb1c8.bin",
+      "size": 1652,
+      "sha256": "ab0e90473e22593d888b78677fa633183f114e53088461bd1b7b34055cdc5a63"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fb1c8.s",
+      "size": 16515,
+      "sha256": "68a3698910552759323301771332634561df8c9c426aebe8aeadf448f458e471"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fbae8.bin",
+      "size": 676,
+      "sha256": "c26766701ba6452eea5efa5447ee46f4249744fb2bb318b4cd07ea918cd17a5d"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fbae8.s",
+      "size": 6818,
+      "sha256": "d5d5b000f454a4226fc4f7c07656187c770bbda8f41249d38125cd63b0284816"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fc024.bin",
+      "size": 984,
+      "sha256": "0dc4d58209be8a8adae018bff4535f9e3d119242d55979f077b38cbf2592ee22"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fc024.s",
+      "size": 10217,
+      "sha256": "25cf64ed533b86474b3ef6faf4feaca8b05273ce160aa6666b8c36b264b59fe1"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fcaf8.bin",
+      "size": 72,
+      "sha256": "2cd2ac3b45716899b77b2798482fd2a5e247cc2b3b99f332887e9b3e13e2a86d"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fcaf8.s",
+      "size": 924,
+      "sha256": "f94c855833c304662b95b8fce938799c917c470d5ca2fffa3e88572a260805b7"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fcb40.bin",
+      "size": 444,
+      "sha256": "9abc94672eba5ac4984b0a04aa01270206c24cb43f747f0de015f6deba2d0ff1"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fcb40.s",
+      "size": 4696,
+      "sha256": "8743241972f49c4b1d7e2280fc10d775a35f05444d2234b7d1439aeaffbb7880"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fcd8c.bin",
+      "size": 408,
+      "sha256": "82007479d17f220673c0f2b12dc31b5ec1094888836572fbc07114d2eea73904"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1005fcd8c.s",
+      "size": 4309,
+      "sha256": "96da601dd51a6c60e211d835864839b4c882897f59d4049a0e16b798d1cf0c8b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100631edc.bin",
+      "size": 1108,
+      "sha256": "905d021d5dd3e6edbd69462b52dac371b4256a239e7553779c892ffb3693ba79"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100631edc.s",
+      "size": 11189,
+      "sha256": "72e90b1324f3139b1f11621e22ee286c165c6466706dddc436a5c13e846879d4"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10063240c.bin",
+      "size": 1304,
+      "sha256": "0d82214fd2b41053a25667594176147dd62c8c92a596f95b549cf6fec59660be"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10063240c.s",
+      "size": 13237,
+      "sha256": "602fb37895990658cec265165140c5a6ce471ab7a8803141429d562dcbe30c44"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100632af4.bin",
+      "size": 2008,
+      "sha256": "a8e17a32d7b26cbdaf37bc842617884519971a44d32af9107a1dee33f255f822"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100632af4.s",
+      "size": 20026,
+      "sha256": "a820a3ea102e3725e5a1240564cab8974926f7359217257a5038c8c403b7cd4b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100633770.bin",
+      "size": 656,
+      "sha256": "9e49b51e9e7d7f0d2b580084cc274b1ffaf4ff54a5eaca33ac33c764e1af410e"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100633770.s",
+      "size": 6862,
+      "sha256": "1ea656edff70726a7c7b7a5586ef06a308bdc875c0b93a3f9b57a479dde01733"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1006347c0.bin",
+      "size": 612,
+      "sha256": "5c09eccbae67bd09114431e118d4fae237e88e91a9ea6ee83e4a64d17cb050f5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1006347c0.s",
+      "size": 6332,
+      "sha256": "23a08b2fd314884996b3001ac3e578d4eb18b37f213808a571e0f7406c938908"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100634b7c.bin",
+      "size": 1296,
+      "sha256": "6a11c2c3da546a5260036484fabeda733ebce035db6f82c2b59027d7231fbb8f"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100634b7c.s",
+      "size": 13408,
+      "sha256": "8127be07f99f28eb0470eb8c8d25559f5b330e14ee55e97dec1d2acfda39c6cf"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10063791c.bin",
+      "size": 1780,
+      "sha256": "05602da28acbdbdcef06fb40314d709ea5e1ed2dd0a45c90dfa1d38281ea3093"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10063791c.s",
+      "size": 18027,
+      "sha256": "f922834a174f1c1b37506df620c234b276bd373eaa5d893fc89803dc96ed0357"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10063cea4.bin",
+      "size": 828,
+      "sha256": "534729da074c0ad3e320a163495a022d8d4d43a08b13ed724084e8859dc8f950"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10063cea4.s",
+      "size": 8706,
+      "sha256": "73e08e30beff08f73441b01332ebf1cd7da62e5d5df1e187cab70c38a7c03bd5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1006428ac.bin",
+      "size": 1548,
+      "sha256": "b3b44e7197ef18f41375f68d0b9affa7b146635b34f60771eb110b39995d4fe3"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1006428ac.s",
+      "size": 15725,
+      "sha256": "763a307ba07d5289dd968ca0099529adab2da0263ced5593535edec21e956e04"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100653368.bin",
+      "size": 3748,
+      "sha256": "faba9099abf300d98325456b05f28f6088b29576673014b14bc1171c6066fee5"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_100653368.s",
+      "size": 37860,
+      "sha256": "72fb225e5940b9cf5f72347d4e4ffc06a11c9fcf48178fe86f581638b525a694"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1007a3ba4.bin",
+      "size": 868,
+      "sha256": "bfb997ca07ae992fd0481edd812966b8ab437fd1e87c19b8990d3eec7ddb32c0"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1007a3ba4.s",
+      "size": 8693,
+      "sha256": "b4fcb8001f70ec075f023f6ef12726252fbc950c3a2a85faa52ea13a86810b8f"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1007e106c.bin",
+      "size": 13496,
+      "sha256": "ed29cb2eaa2474708528a1aab25ad563df5f0d77a2f266572a0f0340baa686cd"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_1007e106c.s",
+      "size": 136898,
+      "sha256": "59e305437eb2da999f1c7d2fdbc7d960eac843d9d922f42071cf3fa893d5bccb"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10087dbf0.bin",
+      "size": 868,
+      "sha256": "556c1bbc393089c4aa2fbe1eb5d0195e57735b0d0c08467a84dd348e76ce38fd"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10087dbf0.s",
+      "size": 8693,
+      "sha256": "159fb1e4858f4717717f7afa7de39b264016846adb0d1b5fdf1f05e0bacc179b"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10088c824.bin",
+      "size": 16980,
+      "sha256": "6e03de627e81310b48e04802e1224ecff9ab4a7c1531e640dddaa866b0de2893"
+    },
+    {
+      "path": "source/asm/bluetoothd/f_10088c824.s",
+      "size": 168428,
+      "sha256": "6b400c93b520151232db13d647e3d0fcdd0d15d53653d56f95337b8b959d778f"
+    },
+    {
+      "path": "source/asm/bluetoothd/index.json",
+      "size": 41718,
+      "sha256": "9539ca85830aec6f0c7b8e04fa0de468c5c738cfd4cec2df39be36c4bc825add"
+    },
+    {
+      "path": "source/firmware/Platform-Bluetooth",
+      "size": 132232,
+      "sha256": "6378711772f7d4c387ad938207bd37b5af045e666b584fe6eb47b9f5ce71e5dc"
+    },
+    {
+      "path": "source/firmware/bluetoothd",
+      "size": 13092096,
+      "sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1"
+    },
+    {
+      "path": "source/firmware/bluetoothuserd",
+      "size": 764272,
+      "sha256": "030e64efbdb6b67dd73f45dd4b284b8a074a1337db3300b821f06c8a40d1b8b8"
+    },
+    {
+      "path": "source/metadata/README.md",
+      "size": 3609,
+      "sha256": "8090380b4f0025df8412d91f74ca4b14074b07205a5ab726398f2b285d5f60ab"
+    },
+    {
+      "path": "source/metadata/macho.json",
+      "size": 12380,
+      "sha256": "72b143c0d8c4b1e48de97454fefb65251bb4982a12ecd6747d837c6f179e5a38"
+    },
+    {
+      "path": "spec/00-scope-and-conventions.md",
+      "size": 4038,
+      "sha256": "681cb49a713350592ebd901f18b211bb0fd877db66998b8f1382f5bdf93b8078"
+    },
+    {
+      "path": "spec/01-discovery-and-identification.md",
+      "size": 8024,
+      "sha256": "27fcc582ccc21fa41ca4c2c6fa54db6322b4d9556e09f5ee43e2ab5a276173ad"
+    },
+    {
+      "path": "spec/02-service-registration-and-sdp-server.md",
+      "size": 7031,
+      "sha256": "dcc2207d1570813dd88b7cbbb83c69a21030d35c72e2685e9b85043db4ad0e48"
+    },
+    {
+      "path": "spec/03-sdp-client.md",
+      "size": 7943,
+      "sha256": "be202727ac6a6241f945309c7c424d23f56d6f1ae2b61858e1df3253eeec3a2d"
+    },
+    {
+      "path": "spec/04-rfcomm-link-establishment.md",
+      "size": 17333,
+      "sha256": "8446d0189e2766dc459548f55a1f8228a8e0930d119c797951bd649cad30e7a0"
+    },
+    {
+      "path": "spec/05-rfcomm-data-transfer.md",
+      "size": 7864,
+      "sha256": "1add276421073246d7457fb5572cd6dc0c00a6a78675b8b62dd938e97c77f9b6"
+    },
+    {
+      "path": "spec/06-lifecycle-and-boundary.md",
+      "size": 10273,
+      "sha256": "b4e77c46542c8e0cf10b7d6628c2d8ba6eb156ea4cde28d92e70ea0ec9b064b3"
+    },
+    {
+      "path": "spec/07-conformance-checklist.md",
+      "size": 11611,
+      "sha256": "f817c0618d1f3873bcd8f8b8b6c38fe8a34c5c365ad43cf41effc274919c3583"
+    },
+    {
+      "path": "spec/08-handoff-contract.md",
+      "size": 14626,
+      "sha256": "313b2054424aa8b3e6cc341953f4ba88926226817c9d2b7a18fafa9e7e76ab68"
+    },
+    {
+      "path": "spec/09-client-open-rfcomm.md",
+      "size": 21628,
+      "sha256": "28944bf84b4ec449d34127ba2a25177e11abcde3f31fc02c03f292b01c63d32b"
+    },
+    {
+      "path": "tools/find-str-xref.py",
+      "size": 2828,
+      "sha256": "d98a275aabe78efddff35c624750d82b59065176e6fbd9967600bd780d48bc13"
+    },
+    {
+      "path": "tools/sdp-records-from-pklg.py",
+      "size": 7280,
+      "sha256": "0a529fa3067d5b51d58b42dfa5032193ee7a51463fa5e61d338cd5b766e887ce"
+    }
+  ],
+  "open_item_count": 41,
+  "documents": {
+    "analysis": [
+      "analysis/00-method-and-environment.md",
+      "analysis/01-discovery-and-eir.md",
+      "analysis/02-sdp-server-and-registration.md",
+      "analysis/03-sdp-client.md",
+      "analysis/04-rfcomm-mux-link-setup.md",
+      "analysis/05-rfcomm-data-path.md",
+      "analysis/06-rfcomm-disconnect-and-cleanup.md",
+      "analysis/07-boundary-and-pairing.md",
+      "analysis/08-conflicts-and-baselines.md",
+      "analysis/09-function-inventory.md"
+    ],
+    "spec": [
+      "spec/00-scope-and-conventions.md",
+      "spec/01-discovery-and-identification.md",
+      "spec/02-service-registration-and-sdp-server.md",
+      "spec/03-sdp-client.md",
+      "spec/04-rfcomm-link-establishment.md",
+      "spec/05-rfcomm-data-transfer.md",
+      "spec/06-lifecycle-and-boundary.md",
+      "spec/07-conformance-checklist.md"
+    ],
+    "root": [
+      "README.md",
+      "STATUS.md",
+      "function-index.json",
+      "verify.py"
+    ],
+    "source_metadata": [
+      "source/metadata/README.md",
+      "source/metadata/macho.json"
+    ],
+    "runtime": [
+      "runtime/README.md",
+      "runtime/observations/findings-sdp-hci.md"
+    ],
+    "runtime_raw": [
+      "runtime/observations/2026-10-14-22H374-sdp-raw.txt",
+      "runtime/observations/2026-10-16-21G93-sdp-raw.txt",
+      "runtime/observations/2026-10-16-23G90-sdp-raw.txt"
+    ]
+  },
+  "macho": {
+    "uuid": "8e49197b-e6bc-3f3b-a8d3-df4bedd37f01",
+    "minos": "27.0.0",
+    "segments": [
+      "__PAGEZERO",
+      "__TEXT",
+      "__DATA_CONST",
+      "__DATA",
+      "__LINKEDIT"
+    ],
+    "sections": 48,
+    "chained_fixups": true,
+    "function_starts": 37368
+  },
+  "runtime_status": "first-pass-done (SDP/HCI captures of 3 non-24A446 builds; corroboration only)"
+}

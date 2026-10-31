@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "baseline": "iPhone18,1 / iOS 27.0.1 / 24A446",
+  "status": "PARTIAL",
+  "method": "Read-only comparison of cached raw slices against current extracted Mach-O LC_SEGMENT_64 mappings and original dyld cache; selected instruction review; original cache v5 pointer, direct-stub and selector-string resolution. Existing read-only C10/C11 checkers rerun with python3 -B. No Apple function, encoder, crypto primitive, socket or headunit execution.",
+  "runtime_proof": false,
+  "real_sample_or_display_proof": false,
+  "cache_root": "D:/carvex-research/firmware/extracted/24A446/dyld",
+  "images": [
+    {"name":"AirPlaySender","path":"D:/carvex-research/firmware/extracted/24A446/binaries/AirPlaySender/AirPlaySender","sha256":"304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f"},
+    {"name":"AirPlaySupport","path":"D:/carvex-research/firmware/extracted/24A446/binaries/AirPlaySupport/AirPlaySupport","sha256":"d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15"},
+    {"name":"CoreMedia","path":"D:/carvex-research/firmware/extracted/24A446/binaries/CoreMedia/CoreMedia","sha256":"65775c5795c2696444037aaaa36ccda29f93fa59c25a05f19a0c53ed4db6724f"},
+    {"name":"CoreFoundation","path":"D:/carvex-research/firmware/extracted/24A446/binaries/CoreFoundation/CoreFoundation","sha256":"28be8a1510b9c7b8211d196584d3cd502a2d8fd1c40ffd00e3db84466279d478"},
+    {"name":"CoreUtils","path":"D:/carvex-research/firmware/extracted/24A446/binaries/CoreUtils/CoreUtils","sha256":"3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083"}
+  ],
+  "functions": [
+    {"id":"VC-C01","image":"AirPlaySender","address":"0x2519b0014","length":5520,"raw_path":"D:/carvex-research/firmware/analysis/24A446/screen-media/AirPlaySender-2519b0014.bin","sha256":"3294e357f7d3416ee6f60ad4285a9a8e85e4af770c0655cb4a90e27da2c0de9d","matches_image_and_cache":true,"scope":"avcC cache/config trigger, NotSync/APInterestingFrame flags, frame length, optional second encryption call and local concatenation"},
+    {"id":"VC-C02","image":"AirPlaySender","address":"0x251b43fcc","length":820,"raw_path":"D:/carvex-research/firmware/analysis/24A446/screen-media/AirPlaySender-251b43fcc.bin","sha256":"c706decdcd0e1212d9edf7b01eecf6e8e08fe728bfa95420288f8903a67ba38a","matches_image_and_cache":true,"scope":"type1 cached CFData body, conditional flags, sparse float stores; alternative serializer schema remains open"},
+    {"id":"VC-S01","image":"AirPlaySender","address":"0x2519bbf24","length":5764,"raw_path":"D:/carvex-research/firmware/analysis/24A446/screen-negotiation/AirPlaySender-2519bbf24.bin","sha256":"2474956bad6630ee63b02d72eb56748aa49531735f5e4f3772422c313bb6655c","matches_image_and_cache":true,"scope":"110/111 cryptor creation: modern flag0 and legacy CTR constructor branch only"},
+    {"id":"VC-K00","image":"AirPlaySender","address":"0x2519b508c","length":608,"raw_path":"D:/carvex-research/firmware/analysis/24A446/screen-media/AirPlaySender-2519b508c.bin","sha256":"bf74ed3511dceffa8be66a9e35c94e18d9b3aba4922163b80dfc01f6f8c4aeae","matches_image_and_cache":true,"scope":"vtable ABI, whole header AAD argument, in-place payload, extra-buffer append, error boundaries"},
+    {"id":"VC-K01","image":"AirPlaySupport","address":"0x226f2f54c","length":416,"raw_path":"D:/carvex-research/firmware/analysis/24A446/screen-media/AirPlaySupport-226f2f54c.bin","sha256":"74037b22dfbe361414c1f1d5603dfe02763d7f541f8ca6e9a176ad8575984e1e","matches_image_and_cache":true,"scope":"constructor, vtable, key retention +0x108, flag+0, no nonce overwrite"},
+    {"id":"VC-K02","image":"CoreMedia","address":"0x18ee2efdc","length":508,"raw_path":"D:/carvex-research/firmware/analysis/24A446/screen-media/CoreMedia-18ee2efdc.bin","sha256":"75497cc2225ef8619c2ad31a68f0256cc8ce0c94b330d6efd12aad29370bf100","matches_image_and_cache":true,"scope":"CMDerivedObjectCreate storage-size load, derived storage at object+0x20 and zero-fill call"},
+    {"id":"VC-K03","image":"AirPlaySupport","address":"0x226e645f8","length":352,"raw_path":"D:/carvex-research/firmware/analysis/24A446/screen-media/AirPlaySupport-226e645f8.bin","sha256":"c029ed63be15b88a21ceaaeb2948e13c4b3b370b1a87fabea15c11ef5d467a51","matches_image_and_cache":true,"scope":"AAD/encrypt/final imports, 8-byte LE counter +0x110 and optional appended counter"},
+    {"id":"VC-K04","image":"AirPlaySupport","address":"0x226e6772c","length":44,"raw_path":"D:/carvex-research/firmware/analysis/24A446/screen-media/AirPlaySupport-226e6772c.bin","sha256":"ff2ea55573d04b99d1449ed8452e1299d598e9fca92002117ccdeac3b68768ea","matches_image_and_cache":true,"scope":"flag0 overhead16 versus flag-nonzero overhead24"},
+    {"id":"VC-D01","image":"AirPlaySender","address":"0x251a9baf0","length":268,"raw_path":"D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a9baf0.bin","sha256":"df40b370c2bded16f543c8d598dbd47e9f2c15c3ac3086ab515d3e01c7d57310","matches_image_and_cache":true,"scope":"display dictionary object creation; not full field validation"},
+    {"id":"VC-D02","image":"AirPlaySender","address":"0x251b443cc","length":2772,"raw_path":"D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b443cc.bin","sha256":"8bffbec0c33fa30cb8200298f469c32633a8b099aad6631607ab1aad256faa81","matches_image_and_cache":true,"scope":"internal display property consumption; MaxFPS positive-only reduction at 0x251b44a50-0x251b44a74; full wire mapping open"},
+    {"id":"VC-E01","image":"AirPlaySender","address":"0x251a773c4","length":884,"raw_path":"D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a773c4.bin","sha256":"438bc35cbaba311f7ee8fe710ead39cf6fe9dd7cb6613817706e0890fb47d621","matches_image_and_cache":true,"scope":"AVConference/ScreenUDP wrapper parameters only; not proven active on target CarPlay record path"}
+  ],
+  "pointer_and_stub_evidence": [
+    {"id":"VC-P01","address":"0x258109690","length":16,"sha256":"5a32484d3297e65e19f4be94fc10614f18d896811b21a1badc0c7f19d78458f0","target":"0x226f2f54c","symbol":"_APSCryptorChaCha20Poly1305Create","target_symbol_from_image":true},
+    {"address":"0x25810d160","length":16,"sha256":"0b151337522b002d5d75850e765028f9fba5eaaf0b403b3343a59030cc13fb37","target":"0x226e8d208","symbol":"_APSCryptorCTRCreate","target_symbol_from_image":true,"limit":"constructor binding only, not full legacy algorithm/material lifecycle"},
+    {"id":"VC-P02","address":"0x273d50040","length":144,"sha256":"b28ef67728510465e25046055ea99d5e27ce0e6de4c43a45a0200b25c395e9a7","cache_file":"dyld_shared_cache_arm64e.54.dylddata","file_offset":164134976,"pointer_slots":{"0x273d50048":"0x273d50058","0x273d50050":"0x273d500b8","0x273d500c0":"0x226e6772c","0x273d500c8":"0x226e645f8"},"scalar_slots":{"0x273d50058":1,"0x273d50060":280,"0x273d500b8":1},"limit":"v5 pointer interpretation, not runtime PAC execution; scalar and zero slots are not rebased as pointers"},
+    {"address":"0x258109150","length":16,"sha256":"8dcbb6f2c5288cb10d4d709b71d80e0dc204053569093f355dccf02b74ab1bcf","target":"0x18ee2f210","symbol":"_CMBaseObjectGetVTable","target_symbol_from_image":true},
+    {"address":"0x22818bff0","length":16,"sha256":"86de1cef14a271faf45f410f5415f5fb7f1540da00c2a200fc757876617a1c4d","target":"0x18ee2efdc","symbol":"_CMDerivedObjectCreate","target_symbol_from_image":true},
+    {"address":"0x22818bdd0","length":16,"sha256":"10679e0f039a7fef6c1334bb57f193ae9528e5642a4515481eca2fd4795d7fc2","target":"0x18ee2f3ac","symbol":"_CMBaseObjectGetDerivedStorage","target_symbol_from_image":true},
+    {"id":"VC-P03","address":"0x1900cc250","length":16,"sha256":"f9aafd2cb9624c70077e46d1658a5af5f57437432349637b8734237029459e70","target":"0x18c3778e0","target_semantics":"zero-fill routine; entry clears vector/scalar and length0x118 uses reviewed store loop","target_fragments":[{"address":"0x18c3778e0","length":96,"sha256":"518549c5fbf2d44a2839d1e92a9119fc68cb42551d05d97fe362951b11496e88"},{"address":"0x18c3779ac","length":72,"sha256":"941532be50e6b24a6c8222b95c658d43a110d1d296e61aff13e3e874f310d43f"}]},
+    {"id":"VC-P04","address":"0x22818d390","length":16,"sha256":"4f447a8b7d1ba2833f4ea66c668ce5d7d6b802d78caadec2c786f2bd8ac3ac1f","target":"0x18be48ef0","symbol":"_chacha20_poly1305_add_aad","target_symbol_from_image":true},
+    {"address":"0x22818d3b0","length":16,"sha256":"9a3079d843299d33a50faddd21f206709b4360f7dab13c14cd8fe87e61998532","target":"0x18be4d1f4","symbol":"_chacha20_poly1305_encrypt","target_symbol_from_image":true},
+    {"address":"0x22818d3c0","length":16,"sha256":"383b564491b34fc3f6633d1df2778b5842f315df8f5b74f5bd1742839e99a35c","target":"0x18be4d06c","symbol":"_chacha20_poly1305_final","target_symbol_from_image":true},
+    {"address":"0x22818d3d0","length":16,"sha256":"bdf76a672a8d6b2e6924438cee741ca47e57b97551fcac54a1efaf5b0c33be75","target":"0x18be4a104","symbol":"_chacha20_poly1305_init_64x64","target_symbol_from_image":true}
+  ],
+  "codec_keys_rechecked_by_C11": [
+    {"slot":"0x2680d44d0","indirect":"0x1e09fd170","target":"0x1e9fe5188","value":"SampleDescriptionExtensionAtoms"},
+    {"slot":"0x2680d4600","indirect":"0x1e09fd800","target":"0x1e9fe6608","value":"NotSync"},
+    {"slot":"0x2693e7898","target":"0x276136590","value":"APInterestingFrame"},
+    {"target":"0x27613fe10","value":"avcC"}
+  ],
+  "selector_rechecks": [
+    {"stub":"0x2580311b0","selector":"setVideoResolution:","string_address":"0x1f5860f30","stub_length":12,"sha256":"4e4a3928fb84c491aba6bcefc0dce74bd9a163820c99163ef013c6096bf47330","argument":12},
+    {"stub":"0x258030fb0","selector":"setCustomWidth:","string_address":"0x1f52f4aeb","stub_length":12,"sha256":"47cf95f60d4cf472e584e52a8f25f66e3ed3894c4e6c050aa67ac429f5e93f46"},
+    {"stub":"0x258030fa0","selector":"setCustomHeight:","string_address":"0x1f5303575","stub_length":12,"sha256":"6e7281ca8f8ff2ff94a79d163460e4317ce167be0921b25398cf979a29aa9734"},
+    {"stub":"0x258030fe0","selector":"setFramerate:","string_address":"0x1f6052f3b","stub_length":12,"sha256":"6589a0e7fa0a4164434b80570f7e4ff6d5a3613d64513442a4a48d5ff9e7ec25","argument":"nonzero screenOptions+0x10"},
+    {"stub":"0x258031180","selector":"setTxMaxBitrate:","string_address":"0x1f5a6a37b","stub_length":12,"sha256":"f345882d3df58cfa7d518ff2e9540d4a20dc8df67b0addbe583760c1a0aaaca0","argument":"local preference lookup, fallback argument 40000000"},
+    {"stub":"0x258031190","selector":"setTxMinBitrate:","string_address":"0x1f605db71","stub_length":12,"sha256":"fce993c11a7a613f6c8d33b5f9e1450a1daa451f947ef4e305bff22a1f2ab499","argument":"local preference lookup, fallback argument 5000000"},
+    {"stub":"0x258031110","selector":"setRtcpTimeOutEnabled:","string_address":"0x1f7521538","stub_length":12,"sha256":"7ab6af5b4af28f1915888f0d11ca26ad15043948e6e00a5b0f05adc2ce0ce3e9","argument":1},
+    {"stub":"0x258031100","selector":"setRtcpSendInterval:","string_address":"0x1f752150b","stub_length":12,"sha256":"994359d8903072b27d4a14a130eb37147c73a5e840ae531e5fd32855431cf720","argument":1.0},
+    {"stub":"0x258031120","selector":"setRtcpTimeOutInterval:","string_address":"0x1f752154f","stub_length":12,"sha256":"36df1c1ac254cb083d38519fd1c07ac9a7347e1db66f7072a5c451a688f1e9fc","argument":30.0},
+    {"stub":"0x258031140","selector":"setSRTPCipherSuite:","string_address":"0x1f75217da","stub_length":12,"sha256":"c448c41d33b15aaa39cb98d5acea35e6acf67917f360df243ca481830d82daf3","argument":5},
+    {"stub":"0x258031130","selector":"setSRTCPCipherSuite:","string_address":"0x1f75217c5","stub_length":12,"sha256":"e7ebbcb7a68459ed67eb03f41e1f8b1b3d47f35be0da016eadc537f0d4b3cb4f","argument":5}
+  ],
+  "local_preference_names": [
+    {"address":"0x276131590","value":"AVConferenceBasedMirroringWidth"},
+    {"address":"0x2761315b0","value":"AVConferenceBasedMirroringHeight"},
+    {"address":"0x2761315d0","value":"AVConferenceBasedMirroringMaxRate"},
+    {"address":"0x2761315f0","value":"AVConferenceBasedMirroringMinRate"}
+  ],
+  "read_only_checks": [
+    {"id":"C10","path":"D:/carvex-research/research/protocol/airplay_video_channel/tools/verify-wrapper.py","sha256":"9d9ca86465066d348c3208b5794d658f5f2610a3c22466c39b43986ca69ffa39","result":"PASS","scope":"fixed image SHA; 5 full slices; 65 anchors; 4 labels; 9 imports; 2 ABI windows; 7 converted-ms boundaries; 10 sparse float stores; 256 local stats cases","is_firmware_execution":false},
+    {"id":"C11","path":"D:/carvex-research/research/protocol/airplay_video_channel/tools/verify-codec-config.py","sha256":"e1dfc67ee99eb235f9036e99c8d649c89baf29cefed0cf43033058d2f4f7a423","result":"PASS","scope":"Sender/cache code,47 anchors,4 CFStrings,CFBoolean export,12 import labels; NotSync getter+2 ABI helpers+19 anchors+6 direct stubs;341 local model sequences","is_firmware_execution":false}
+  ],
+  "readers": [
+    {"path":"D:/carvex-research/firmware/tools/ipsw-research/firmware_cache.py","sha256":"2a4083dc30efce1c9df02ca64330e5279a142f4c08af22e14738bfa9bd1d0300"},
+    {"path":"D:/carvex-research/firmware/tools/ipsw-research/firmware_image.py","sha256":"642cb879df32e8974c6e59cce9339dc8deb1aa3c9867e38dfadd03967f01157b"}
+  ],
+  "limits": [
+    "No complete wire display-key to property to encoder mapping or screen-resource admission proof.",
+    "No actual NAL framing/length/profile/GOP/SPS/PPS/IDR sample or encoder execution.",
+    "AVConference wrapper constants are not established CarPlay record-path defaults.",
+    "Modern cryptor virtual binding and zero initialization are static local facts; all error/reuse/reconnect paths remain open.",
+    "Legacy CTR constructor binding does not close full key/IV/material semantics.",
+    "No headunit acceptance, decode, first frame, sustained display or reconnection evidence."
+  ]
+}

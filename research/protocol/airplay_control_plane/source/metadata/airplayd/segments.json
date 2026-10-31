@@ -1,0 +1,47 @@
+[
+  {
+    "segname": "__PAGEZERO",
+    "vmaddr": 0,
+    "vmsize": 4294967296,
+    "fileoff": 0,
+    "filesize": 0,
+    "initprot": 0,
+    "nsects": 0
+  },
+  {
+    "segname": "__TEXT",
+    "vmaddr": 4294967296,
+    "vmsize": 16384,
+    "fileoff": 0,
+    "filesize": 16384,
+    "initprot": 5,
+    "nsects": 7
+  },
+  {
+    "segname": "__DATA_CONST",
+    "vmaddr": 4294983680,
+    "vmsize": 16384,
+    "fileoff": 16384,
+    "filesize": 16384,
+    "initprot": 3,
+    "nsects": 4
+  },
+  {
+    "segname": "__DATA",
+    "vmaddr": 4295000064,
+    "vmsize": 16384,
+    "fileoff": 32768,
+    "filesize": 16384,
+    "initprot": 3,
+    "nsects": 2
+  },
+  {
+    "segname": "__LINKEDIT",
+    "vmaddr": 4295016448,
+    "vmsize": 49152,
+    "fileoff": 49152,
+    "filesize": 40688,
+    "initprot": 1,
+    "nsects": 0
+  }
+]

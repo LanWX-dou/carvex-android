@@ -1,0 +1,148 @@
+{
+  "baseline": "iPhone18,1 / 24A446",
+  "status": "PARTIAL",
+  "execution": "static byte/provenance checks only, not firmware execution",
+  "source_sha256": {
+    "AirPlaySender": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+    "APTransport": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d"
+  },
+  "functions": [
+    {
+      "id": "RC01",
+      "image": "AirPlaySender",
+      "address": "0x251babc44",
+      "size": 672,
+      "sha256": "25cfc6342f252b02d19e853033f7341cb94a876a84a8d3d2e1fe49876df93253",
+      "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251babc44.bin",
+      "reviewed_scope": "ordinary iAP command passes inSendAsync=0; alternate RCS path retained"
+    },
+    {
+      "id": "RC02",
+      "image": "AirPlaySender",
+      "address": "0x251ae8e90",
+      "size": 464,
+      "sha256": "2d75f3568fe205d713b9402624cbe5c9e99c063b253fd0fd94c3428f01414ede",
+      "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251ae8e90.bin",
+      "reviewed_scope": "command dictionary creation and dispatch block captures"
+    },
+    {
+      "id": "RC03",
+      "image": "AirPlaySender",
+      "address": "0x251baaa94",
+      "size": 1080,
+      "sha256": "8a4d7584c8f9c641dfc7eb4ab4f113a7e572bd3be7280bebbc36151bf7c6128c",
+      "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251baaa94.bin",
+      "reviewed_scope": "TransportControlStream; async=false calls type vtable+0x38 with reply output=NULL"
+    },
+    {
+      "id": "RC04",
+      "image": "AirPlaySender",
+      "address": "0x251af5a74",
+      "size": 20,
+      "sha256": "404959fd6ea5e9c319daac867fdf3595e93758a7371cd129946ff2036cd3cc2f",
+      "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251af5a74.bin",
+      "reviewed_scope": "outlined helper sets stream, comm, request buffer arguments"
+    },
+    {
+      "id": "RC05",
+      "image": "APTransport",
+      "address": "0x24fda3f70",
+      "size": 1188,
+      "sha256": "04c962780ef64db6336da5ff5b6e3565d3da4469a247b935b63e12b5024c7353",
+      "path": "/mnt/d/carvex-research/firmware/analysis/24A446/keepalive-transaction/APTransport-24fda3f70.bin",
+      "reviewed_scope": "ordinary keep calls type vtable+0x38 with reply output; lkee remains distinct"
+    },
+    {
+      "id": "RC06",
+      "image": "APTransport",
+      "address": "0x24fda45bc",
+      "size": 872,
+      "sha256": "2f94d25b0ac1d9c45d38fe31eb56cc09ca886a1e10b36948ae79d60b5cba7f3e",
+      "path": "/mnt/d/carvex-research/firmware/analysis/24A446/keepalive-transaction/APTransport-24fda45bc.bin",
+      "reviewed_scope": "pending keepalive skips another send; stall notification is not request timeout"
+    },
+    {
+      "id": "RC07",
+      "image": "APTransport",
+      "address": "0x24fe001e8",
+      "size": 208,
+      "sha256": "0d7a08e6a1f8ab838786e454018a343b49b2e31d99d7cc44bc8410f8d8728c28",
+      "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fe001e8.bin",
+      "reviewed_scope": "resumed standard keepalive publishes Failed status"
+    },
+    {
+      "id": "RC08",
+      "image": "APTransport",
+      "address": "0x24fda68f8",
+      "size": 888,
+      "sha256": "7537fc0bcd3df7b047d5adf75adf2ad4f6b230892fb414135e1ed0742cb873e6",
+      "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fda68f8.bin",
+      "reviewed_scope": "SendMessageCreatingReply waits even without output pointer; timeout schedules invalidation"
+    }
+  ],
+  "pointers": [
+    {
+      "slot": "0x275fa2cc0",
+      "raw": "0x804c701cf5fa2d28",
+      "target": "0x275fa2d28"
+    },
+    {
+      "slot": "0x275fa2d60",
+      "raw": "0x80345928cfda68f8",
+      "target": "0x24fda68f8"
+    },
+    {
+      "slot": "0x2693e7aa8",
+      "raw": "0x100000f6136990",
+      "target": "0x276136990"
+    },
+    {
+      "slot": "0x2761369a0",
+      "raw": "0x200000d1c1d7c6",
+      "target": "0x251c1d7c6"
+    }
+  ],
+  "instructions": [
+    {
+      "image": "AirPlaySender",
+      "address": "0x251babdc4",
+      "bytes": "03008052",
+      "scope": "inSendAsync=0"
+    },
+    {
+      "image": "AirPlaySender",
+      "address": "0x251babdcc",
+      "bytes": "31f4fc97",
+      "scope": "call sendCommandInternal"
+    },
+    {
+      "image": "AirPlaySender",
+      "address": "0x251baacfc",
+      "bytes": "098d43f8",
+      "scope": "load type vtable+0x38"
+    },
+    {
+      "image": "AirPlaySender",
+      "address": "0x251baad98",
+      "bytes": "030080d2",
+      "scope": "reply-output pointer NULL, not async send"
+    },
+    {
+      "image": "APTransport",
+      "address": "0x24fda40d4",
+      "bytes": "098e43f8",
+      "scope": "normal keepalive type vtable+0x38"
+    },
+    {
+      "image": "APTransport",
+      "address": "0x24fda410c",
+      "bytes": "a3e300d1",
+      "scope": "normal keepalive reply output pointer"
+    }
+  ],
+  "open_items": [
+    "why the observed receiver stops replying after 0x5001",
+    "all RCS and lower HTTP engine branches",
+    "actual vehicle recovery and interoperability"
+  ]
+}

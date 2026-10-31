@@ -1,0 +1,13 @@
+{
+  "address": "0x11e368",
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "raw_sha256": "af8601c40281c02a11f242d67f17331241d7e011d79ef74c6503a7af166bd0e9",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "af8601c40281c02a11f242d67f17331241d7e011d79ef74c6503a7af166bd0e9",
+  "ghidra_name": "FUN_0011e368",
+  "signature": "undefined FUN_0011e368()",
+  "diagnostic": "",
+  "c_file": "f_11e368.ghidra.c",
+  "c_sha256": "5efdd707422880624c940ac5f922add8e4fd12b464ec4810db7d7ad02870eb41",
+  "status": "DECOMPILED_UNREVIEWED"
+}

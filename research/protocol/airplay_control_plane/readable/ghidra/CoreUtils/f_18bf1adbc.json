@@ -1,0 +1,13 @@
+{
+  "address": "0x18bf1adbc",
+  "source_sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+  "raw_sha256": "4f2d18b83eaba58430fb601786d520648eec1dcb5631c4e29be55856ae3a26d6",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "4f2d18b83eaba58430fb601786d520648eec1dcb5631c4e29be55856ae3a26d6",
+  "ghidra_name": "_NetTransportChaCha20Poly1305Configure",
+  "signature": "undefined _NetTransportChaCha20Poly1305Configure()",
+  "diagnostic": "",
+  "c_file": "f_18bf1adbc.ghidra.c",
+  "c_sha256": "d1408860039132b1504003ec9442c99830f14dec0746bcff2d26dc349d6ddc7e",
+  "status": "DECOMPILED_UNREVIEWED"
+}

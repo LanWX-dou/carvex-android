@@ -1,0 +1,194 @@
+{
+  "schema": "feature-source-branches-v1",
+  "build": "24A446",
+  "device": "iPhone18,1",
+  "firmware_executed": false,
+  "real_vehicle_verified": false,
+  "sources": [
+    {
+      "component": "AirPlaySupport",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySupport\\AirPlaySupport",
+      "sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+      "functions": [
+        {
+          "address": "0x226e67c0c",
+          "end": "0x226e67e3c",
+          "bytes": 560,
+          "sha256": "47a208ad79c32bb8f18dc7fe3502b42713031011ac729be9e115f9893184f198",
+          "names": [
+            "_APSFeaturesCreateFromStringRepresentation"
+          ],
+          "reviewed_scope": "ASCII string conversion, strlen, Base64DecodeCopy, CFData creation/error"
+        },
+        {
+          "address": "0x226f0776c",
+          "end": "0x226f07828",
+          "bytes": 188,
+          "sha256": "35fc5fdd51a5b882a6af103ec9d665955f6465df5c7345b1264085d3b339e3cd",
+          "names": [
+            "_APSFeaturesCreateFromEndpointInfoFeatureRepresentations"
+          ],
+          "reviewed_scope": "endpoint extended representation is preferred; parse error does not try legacy"
+        },
+        {
+          "address": "0x226f078a0",
+          "end": "0x226f07938",
+          "bytes": 152,
+          "sha256": "76022ff79cff8eacc3c85c11fc30e8ceb1f7b47f75de0816048a12b370fdb5f7",
+          "names": [
+            "_APSFeaturesHasFeature"
+          ],
+          "reviewed_scope": "variable-length LSB-first feature lookup"
+        },
+        {
+          "address": "0x226f07bf4",
+          "end": "0x226f07c90",
+          "bytes": 156,
+          "sha256": "f67b1c1697c02db6255fc47a579748ddc104ca5f0f4dd5efbae2547fd43cb3de",
+          "names": [
+            "_APSFeaturesGetLegacyFlags"
+          ],
+          "reviewed_scope": "legacy compatibility value uses little-endian first eight bytes"
+        }
+      ]
+    },
+    {
+      "component": "CoreUtils",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\CoreUtils\\CoreUtils",
+      "sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+      "functions": [
+        {
+          "address": "0x18be43ad0",
+          "end": "0x18be43bbc",
+          "bytes": 236,
+          "sha256": "58c722223d3e759783f9486ef7b37197e472b18732c0369e3e2198f5b2742862",
+          "names": [
+            "_Base64DecodeCopy"
+          ],
+          "reviewed_scope": "Base64DecodeCopy allocation, complete decode and error propagation"
+        },
+        {
+          "address": "0x18be447e0",
+          "end": "0x18be44974",
+          "bytes": 404,
+          "sha256": "51d4080acb560800f12ea9af6e081642e778f2fb6c329dc46c207c2c668ba082",
+          "names": [
+            "_Base64Decode"
+          ],
+          "reviewed_scope": "complete Base64Decode loop, alphabet table, padding termination and residual sextets"
+        }
+      ]
+    },
+    {
+      "component": "APTransport",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\APTransport\\APTransport",
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+      "functions": [
+        {
+          "address": "0x24fd9ac78",
+          "end": "0x24fd9ad68",
+          "bytes": 240,
+          "sha256": "67e2708c70d416f9d54200645901f52b85c345cd4ab9616c7f9df2b99c71b699",
+          "names": [
+            "_APAdvertiserInfoCreateAPSFeaturesFromTXTRecordEx"
+          ],
+          "reviewed_scope": "TXT extended getter; only missing-key status permits legacy getter"
+        }
+      ]
+    },
+    {
+      "component": "AirPlaySender",
+      "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\AirPlaySender\\AirPlaySender",
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+      "functions": [
+        {
+          "address": "0x2519ca804",
+          "end": "0x2519ca900",
+          "bytes": 252,
+          "sha256": "21ef4ec087de4d1e2d67f6caa57141ae930048a0e2ddd913499f0aa457db5e5e",
+          "names": [
+            "_airPlayDescription_copyAuthenticationType"
+          ],
+          "reviewed_scope": "AuthenticationType: feature80 before all lower-bit authentication choices"
+        },
+        {
+          "address": "0x251a60f70",
+          "end": "0x251a61474",
+          "bytes": 1284,
+          "sha256": "f4f24327a05aca9bd91c32b02333fea5c9710b92d5844cb59b693bfe5de4aa66",
+          "names": [
+            "_apsession_createPairingClient"
+          ],
+          "reviewed_scope": "bounded CU creation: reads AuthenticationType, type0x20 is a CU client argument"
+        }
+      ]
+    }
+  ],
+  "txt_key_cfstrings": [
+    {
+      "cfstring": "0x275fa5380",
+      "chars": "0x24fe4f7fa",
+      "length": 3,
+      "value": "fex"
+    },
+    {
+      "cfstring": "0x275fa49c0",
+      "chars": "0x24fe4f2f0",
+      "length": 8,
+      "value": "features"
+    }
+  ],
+  "txt_call_site": {
+    "address": "0x24fd97840",
+    "end": "0x24fd9786c",
+    "sha256": "473a010f4381761dd2085d924418a300ead2784f8baa5cad2c9bedc77004df52",
+    "scope": "AddAirPlayData loads fex as x1, features as x2, calls helper, propagates non-missing errors",
+    "assembly": [
+      "0x24fd97840: adrp x1, #0x275fa5000",
+      "0x24fd97844: add x1, x1, #0x380",
+      "0x24fd97848: adrp x2, #0x275fa4000",
+      "0x24fd9784c: add x2, x2, #0x9c0",
+      "0x24fd97850: add x3, sp, #8",
+      "0x24fd97854: mov x0, x20",
+      "0x24fd97858: bl #0x24fd9ac78",
+      "0x24fd9785c: cmp w0, w22",
+      "0x24fd97860: b.eq #0x24fd9788c",
+      "0x24fd97864: mov x21, x0",
+      "0x24fd97868: cbnz w0, #0x24fd9816c"
+    ]
+  },
+  "trampolines": [
+    {
+      "address": "0x22818b800",
+      "target": "0x18be43ad0",
+      "sha256": "b64c01970b864e7e6525f6e10d64d3b7f5dcdbcb1d6cf01aee0b158e04100d68"
+    },
+    {
+      "address": "0x2500ee000",
+      "target": "0x226e67c0c",
+      "sha256": "85f92b59e11462a834a9d15df538e54d96ab4f93f2575bafa77399e96acf2119"
+    }
+  ],
+  "base64_table": {
+    "address": "0x18bf710b0",
+    "sha256": "62d863d19ef4f581d897dc233958d1d8dedbaf86a7bb7f3ca35f60d01a269e7e",
+    "hex": "ffffffffffffffffff8080808080ffffffffffffffffffffffffffffffffffff80ffffffffffffffffffff3eff3eff3f3435363738393a3b3c3dffffff40ffffff000102030405060708090a0b0c0d0e0f10111213141516171819ffffffff3fff1a1b1c1d1e1f202122232425262728292a2b2c2d2e2f30313233ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  },
+  "reviewed_branches": {
+    "fex_absent": "only missing-key status -0x1a47 tries legacy features",
+    "fex_parse_error": "propagate; never retry legacy",
+    "empty_extended": "successful zero-length data, distinct from missing",
+    "base64_terminator": "first '=' ends decode without examining trailing bytes",
+    "base64_residual_sextets": "0 or 1 -> no extra bytes; 2 -> one byte; 3 -> two bytes; unused bits unchecked",
+    "string_boundary": "ASCII conversion before strlen; embedded NUL truncates decoder input",
+    "feature_bit_order": "LSB-first within bytes; byte index = bit/8",
+    "legacy_flags": "little-endian first min(length,8) bytes",
+    "feature80": "AuthenticationType 0x20; CU creation consumes type==0x20, no kind5 blanket bypass"
+  },
+  "open": [
+    "all TXT string/number coercion cases",
+    "complete endpoint-info and 4301 producer precedence",
+    "full Apple pairing/authentication engine and trust transcripts",
+    "real device interoperability"
+  ]
+}

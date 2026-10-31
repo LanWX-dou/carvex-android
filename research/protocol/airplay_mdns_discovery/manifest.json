@@ -1,0 +1,386 @@
+{
+ "docset": "airplay_mdns_discovery",
+ "build": "24A446",
+ "device": "iPhone18,1",
+ "source": {
+  "name": "APTransport",
+  "path": "firmware/extracted/24A446/binaries/APTransport/APTransport",
+  "framework": "/System/Library/PrivateFrameworks/APTransport.framework/APTransport",
+  "size": 1593864,
+  "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d",
+  "uuid": "14228b3f-1df6-308b-97c4-b7574dbd7a97",
+  "symbol_count": 7013,
+  "function_starts": 5367,
+  "text_vmaddr": "0x24fd8c530",
+  "text_size": 747500
+ },
+ "counts": {
+  "files": 33,
+  "analysis_docs": 8,
+  "spec_docs": 11,
+  "md_files": 24
+ },
+ "coverage": [
+  {
+   "id": "CS-01",
+   "title": "mDNS 传输与宣告",
+   "status": "部分确认",
+   "spec": [
+    "spec/01-mdns-transport.md"
+   ],
+   "open": [
+    "OPEN-MDNS-1",
+    "OPEN-MDNS-2",
+    "OPEN-MDNS-3",
+    "OPEN-MDNS-5",
+    "OPEN-MDNS-7"
+   ],
+   "notes": "端点/TTL/QU/cache-flush/Probe 与 Announce 的规则来自 RFC；车机侧节奏与实际取值无抓包。"
+  },
+  {
+   "id": "CS-02",
+   "title": "DNS 报文格式",
+   "status": "已确认",
+   "spec": [
+    "analysis/02-dns-message-format.md"
+   ],
+   "open": [
+    "OPEN-MDNS-3",
+    "OPEN-MDNS-6"
+   ],
+   "notes": "参考实现覆盖 header/名称压缩/五类记录，10 条向量全过；截断与 EDNS0 未覆盖。"
+  },
+  {
+   "id": "CS-03",
+   "title": "服务类型与浏览",
+   "status": "部分确认",
+   "spec": [
+    "spec/01-mdns-transport.md",
+    "spec/02-browse-and-instance-names.md"
+   ],
+   "open": [
+    "OPEN-MDNS-8",
+    "OPEN-MDNS-17"
+   ],
+   "notes": "24A446 含 5 个服务类型字符串，且 _APBonjourBrowserCreate 默认建 _airplay._tcp.local. 浏览器（Ghidra 数据引用 0x24fdce464）；车机实际宣告集合与实例名形态未知。"
+  },
+  {
+   "id": "CS-04",
+   "title": "SRV 解析",
+   "status": "部分确认",
+   "spec": [
+    "analysis/02-dns-message-format.md",
+    "spec/05-address-selection.md"
+   ],
+   "open": [
+    "OPEN-MDNS-9"
+   ],
+   "notes": "priority/weight/port/target 解析已实现并测试；车机端口与 target 形态未知。"
+  },
+  {
+   "id": "CS-05",
+   "title": "TXT 编码",
+   "status": "已确认",
+   "spec": [
+    "spec/03-txt-schema.md"
+   ],
+   "open": [],
+   "notes": "长度前缀、空值、重复键、未知键、非 UTF-8 均有向量覆盖。"
+  },
+  {
+   "id": "CS-06",
+   "title": "AirPlay TXT 字段",
+   "status": "部分确认",
+   "spec": [
+    "spec/03-txt-schema.md",
+    "analysis/03-txt-and-features.md"
+   ],
+   "open": [
+    "OPEN-MDNS-10",
+    "OPEN-MDNS-13"
+   ],
+   "notes": "读方键集合由 24A446 两个函数确认；车机取值与 pk 语义未知。"
+  },
+  {
+   "id": "CS-07",
+   "title": "设备能力位",
+   "status": "部分确认",
+   "spec": [
+    "spec/04-features-bits.md",
+    "spec/03-txt-schema.md"
+   ],
+   "open": [
+    "OPEN-MDNS-11",
+    "OPEN-MDNS-15"
+   ],
+   "notes": "已确认文本格式（单段/双段、低位在前，A02.6）、legacy/extended 拆分（A02.7）与 fex 是独立字符串键（A02.8）；位 55/56 的语义仍未知（A02.4 只证明查询，不证明含义）。"
+  },
+  {
+   "id": "CS-08",
+   "title": "地址解析",
+   "status": "部分确认",
+   "spec": [
+    "analysis/02-dns-message-format.md"
+   ],
+   "open": [
+    "OPEN-MDNS-12"
+   ],
+   "notes": "A/AAAA 解析与 link-local 标记已实现；IPv6 可用性与 scope 未知。"
+  },
+  {
+   "id": "CS-09",
+   "title": "服务选择",
+   "status": "部分确认",
+   "spec": [
+    "spec/05-address-selection.md",
+    "reference-impl/mdns_discovery.py"
+   ],
+   "open": [
+    "OPEN-MDNS-12",
+    "OPEN-MDNS-16"
+   ],
+   "notes": "实现给出可解释排序（IPv4/同网段优先、缺地址不可用），但不自动连接；iOS 的多地址策略未取证。"
+  },
+  {
+   "id": "CS-10",
+   "title": "缓存与生命周期",
+   "status": "部分确认",
+   "spec": [
+    "spec/01-mdns-transport.md",
+    "spec/10-cache-and-security.md"
+   ],
+   "open": [
+    "OPEN-MDNS-3",
+    "OPEN-MDNS-5",
+    "OPEN-MDNS-19",
+    "OPEN-MDNS-21"
+   ],
+   "notes": "TTL=0 撤销、TTL 递减、切网清缓存已写成规则并有向量；车机的休眠/唤醒与代理行为未知。"
+  },
+  {
+   "id": "CS-11",
+   "title": "安全边界",
+   "status": "部分确认",
+   "spec": [
+    "spec/00-scope-and-terms.md",
+    "spec/03-txt-schema.md",
+    "spec/10-cache-and-security.md"
+   ],
+   "open": [
+    "OPEN-MDNS-13",
+    "OPEN-MDNS-20"
+   ],
+   "notes": "明确 mDNS 无认证、pk 不得当身份、不得自动连未知设备、冲突要记录；防冒充的具体流程属配对阶段。"
+  },
+  {
+   "id": "CS-12",
+   "title": "版本与差异",
+   "status": "OPEN",
+   "spec": [
+    "spec/09-version-differences.md",
+    "spec/08-open-items.md"
+   ],
+   "open": [
+    "OPEN-MDNS-18"
+   ],
+   "notes": "只有一个构建、零台车机；只能写“不得假设版本一致”，无法比较 AirPlay 1/2 或不同车机的字段差异。"
+  }
+ ],
+ "coverage_summary": {
+  "已确认": 2,
+  "部分确认": 9,
+  "未开始": 0,
+  "OPEN": 1
+ },
+ "open_items": {
+  "OPEN-MDNS-18": "README.md",
+  "OPEN-MDNS-7": "STATUS.md",
+  "OPEN-MDNS-11": "STATUS.md",
+  "OPEN-MDNS-14": "STATUS.md",
+  "OPEN-MDNS-16": "STATUS.md",
+  "OPEN-MDNS-17": "STATUS.md",
+  "OPEN-MDNS-2": "analysis/01-mdns-transport-and-announce.md",
+  "OPEN-MDNS-3": "analysis/01-mdns-transport-and-announce.md",
+  "OPEN-MDNS-4": "analysis/01-mdns-transport-and-announce.md",
+  "OPEN-MDNS-8": "analysis/01-mdns-transport-and-announce.md",
+  "OPEN-MDNS-1": "analysis/01-mdns-transport-and-announce.md",
+  "OPEN-MDNS-5": "analysis/01-mdns-transport-and-announce.md",
+  "OPEN-MDNS-6": "analysis/02-dns-message-format.md",
+  "OPEN-MDNS-13": "analysis/03-txt-and-features.md",
+  "OPEN-MDNS-15": "analysis/03-txt-and-features.md",
+  "OPEN-MDNS-10": "analysis/03-txt-and-features.md",
+  "OPEN-MDNS-12": "analysis/04-address-and-event-model.md",
+  "OPEN-MDNS-9": "analysis/04-address-and-event-model.md",
+  "OPEN-MDNS-19": "analysis/06-open-items-feasibility.md",
+  "OPEN-MDNS-20": "analysis/06-open-items-feasibility.md",
+  "OPEN-MDNS-21": "analysis/06-open-items-feasibility.md"
+ },
+ "open_item_count": 21,
+ "files": [
+  {
+   "path": "README.md",
+   "size": 3989,
+   "sha256": "d933092fadd31ca5660681f2f406e50e9c592700c1b1548ab0e831f99159b546"
+  },
+  {
+   "path": "STATUS.md",
+   "size": 7215,
+   "sha256": "0878997342a587e44bef64da47523fbb76562037019fc960e18eddd4b7ff718b"
+  },
+  {
+   "path": "TASK.md",
+   "size": 13578,
+   "sha256": "11bd5a458266949340f3796e79e8bc1073cea64e37aea5e553ed0f9f2f5ff655"
+  },
+  {
+   "path": "analysis/00-method-and-environment.md",
+   "size": 6786,
+   "sha256": "ebbf00696aae11c0dda97f8de0d47917c376742180b8a10f62712d6aa86b9948"
+  },
+  {
+   "path": "analysis/01-mdns-transport-and-announce.md",
+   "size": 8613,
+   "sha256": "e9bb373a27d3baf20fcb604fb1c42c01fe7031d52eb1031fbfc8e4eb4cec2050"
+  },
+  {
+   "path": "analysis/02-dns-message-format.md",
+   "size": 4821,
+   "sha256": "44f08bb5d7f115186c1524a3f0544cfcd8bf513713904242f337e4e594cef7f4"
+  },
+  {
+   "path": "analysis/03-txt-and-features.md",
+   "size": 7790,
+   "sha256": "28a06413f6ffdf09b2620365427bd704d076c17c8b8ec5c458039b122fa5b953"
+  },
+  {
+   "path": "analysis/04-address-and-event-model.md",
+   "size": 5769,
+   "sha256": "7f33dc06066a0675b42617479b54465e32fa6be5d95a5fc626ef51f0e3d66dbc"
+  },
+  {
+   "path": "analysis/06-open-items-feasibility.md",
+   "size": 4547,
+   "sha256": "c7de3f10805a314f252e934a1f8ab4d11dcb34dca8a2d0c097052cc1e4b7363e"
+  },
+  {
+   "path": "analysis/09-runtime-captures.md",
+   "size": 6078,
+   "sha256": "447d0a20d3eaa28b3ae0bebee65b6ab5ecde45e27686c6ec2a5564775f0dc997"
+  },
+  {
+   "path": "analysis/A-conclusions.md",
+   "size": 11342,
+   "sha256": "6574ffb155f2482a3225e8005f19ab7caa9a4f8bbe7c56f58dd8e61615ed000e"
+  },
+  {
+   "path": "reference-impl/gen_vectors.py",
+   "size": 5944,
+   "sha256": "6fa48db821d78a4f8146bff2821c42170bd2e5d1234ca2aef451dd2f0d42c776"
+  },
+  {
+   "path": "reference-impl/mdns_discovery.py",
+   "size": 27935,
+   "sha256": "c3e12552269e780f930b3c6032aa6db14b4e47e6f6bae2dc1d7ecd350a90c2f3"
+  },
+  {
+   "path": "reference-impl/metadata/features-bits.json",
+   "size": 1282,
+   "sha256": "c4fc5daf088a4f3ff22e6caba86507586c2cd5db481d778f9072dc7f3379aae1"
+  },
+  {
+   "path": "reference-impl/metadata/txt-keys.json",
+   "size": 7171,
+   "sha256": "d0425d07f814c5810c7dd0dcb7128a029ab442b364b2c90e610968213523eea7"
+  },
+  {
+   "path": "reference-impl/test_vectors.json",
+   "size": 7081,
+   "sha256": "1d6a0a395b68e26263c63611edd0d0f9734bf55e3a149d3926b90b92ede0fc53"
+  },
+  {
+   "path": "runtime/README.md",
+   "size": 1330,
+   "sha256": "afb2c972152c7e85cff690644b59af071ea3500ca1a5521625226524669e2bba"
+  },
+  {
+   "path": "runtime/captures/README.md",
+   "size": 1347,
+   "sha256": "04645937894912c49306ec886f4f60b5fc919e9bc72eb25e4ca6aa737a03ed76"
+  },
+  {
+   "path": "runtime/replay/replay.py",
+   "size": 7451,
+   "sha256": "736838b1226253fbe4829b4ce6b964f5b5e1358a965aabcb6d84abd7e48b6603"
+  },
+  {
+   "path": "source/metadata/coverage.json",
+   "size": 5039,
+   "sha256": "f3dc0481c8ce74452a3e0bc482c3febda8506d6ad550c684b606e6bbcd6f4b1a"
+  },
+  {
+   "path": "source/metadata/summary.json",
+   "size": 1422,
+   "sha256": "dfe9abee3d944b156e578b35d2774c6965d092e2d9bfb7a1d568a1eb9f6b8ec0"
+  },
+  {
+   "path": "spec/00-scope-and-terms.md",
+   "size": 3190,
+   "sha256": "5b4269c6f3a5c39298136755566526948e8d6e76fcaadd77a07d961dab430283"
+  },
+  {
+   "path": "spec/01-mdns-transport.md",
+   "size": 5267,
+   "sha256": "867454ddf813ccd11fc02da7889ea9a55256adbe29d865843f2a0d35d4ec2735"
+  },
+  {
+   "path": "spec/02-browse-and-instance-names.md",
+   "size": 3746,
+   "sha256": "f6cb6231f70b5c6ac5699e976d1a4e77413629b4b858b2d4be61c5ce70fb8f99"
+  },
+  {
+   "path": "spec/03-txt-schema.md",
+   "size": 3990,
+   "sha256": "ba2b68ee97a8a53595808c1e64cfad795098f0bc090061d428cdd58c06d701d3"
+  },
+  {
+   "path": "spec/04-features-bits.md",
+   "size": 3223,
+   "sha256": "0f291cb6cab2d6ba651ce4b7a367f6366ac7d380baade46773fd97872eeb4cf4"
+  },
+  {
+   "path": "spec/05-address-selection.md",
+   "size": 3577,
+   "sha256": "176056ca1ffa9ec283a5f3396817ac0044778d1f1bbdc9449f1e5e62852c09f6"
+  },
+  {
+   "path": "spec/06-client-guide.md",
+   "size": 4751,
+   "sha256": "53526c1d366dd941fd20c4fcc1e8fde83c667ac4120f205d0804abde715bdf94"
+  },
+  {
+   "path": "spec/07-acceptance.md",
+   "size": 3577,
+   "sha256": "b3b1f3ab71bb689ba3f63dacd0c8929e2c648c06654c65eb2804f7da22e49905"
+  },
+  {
+   "path": "spec/08-open-items.md",
+   "size": 3921,
+   "sha256": "2ac3f38cc73a56ca1beb4c00711679c21e91a5d26bd9db84d55dee97cee03284"
+  },
+  {
+   "path": "spec/09-version-differences.md",
+   "size": 1836,
+   "sha256": "e9a7308ce8e085dc7041f79a3c3b08b97566258b3613ad06f35eb6919092f1bc"
+  },
+  {
+   "path": "spec/10-cache-and-security.md",
+   "size": 3480,
+   "sha256": "4f28e69045082fd62dcbb549e82334163125b0717d88da1637bf4fdef899c0eb"
+  },
+  {
+   "path": "verify.py",
+   "size": 24533,
+   "sha256": "bd63242ac30072a2b838cd6b4dcbb3fb325264400541513baeaecec4c66c9c7f"
+  }
+ ]
+}

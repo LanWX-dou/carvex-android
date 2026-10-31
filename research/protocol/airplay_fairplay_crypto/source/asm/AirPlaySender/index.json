@@ -1,0 +1,373 @@
+{
+ "image": "AirPlaySender",
+ "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+ "source_size": 4397312,
+ "address_rule": "end = \u4e0b\u4e00\u4e2a LC_FUNCTION_STARTS \u8d77\u70b9\uff08\u672b\u51fd\u6570\u56de\u9000\u5230\u4e0b\u4e00\u4e2a\u7b26\u53f7\u5730\u5740\uff09",
+ "tool": "Capstone 5.0.7 CS_ARCH_ARM64; no rewriting",
+ "count": 36,
+ "functions": [
+  {
+   "symbol": "_APAuthenticationClientFairPlayCreate",
+   "address": "0x251ace54c",
+   "end": "0x251ace644",
+   "size": 248,
+   "group": "F",
+   "raw_sha256": "45a756d91ba5c9afb075b678d17e5fea003296663cd0c014d3674354deba795b",
+   "bin": "f_251ace54c.bin",
+   "asm": "f_251ace54c.s"
+  },
+  {
+   "symbol": "_fpAuthentication_AuthenticateEndpoint",
+   "address": "0x251ace728",
+   "end": "0x251acea60",
+   "size": 824,
+   "group": "F",
+   "raw_sha256": "cf530e4f1e75d59a261d78826076496213fd23b7c9f83bbe08fb8931d44c5e95",
+   "bin": "f_251ace728.bin",
+   "asm": "f_251ace728.s"
+  },
+  {
+   "symbol": "_fpAuthentication_CreateEncryptedKey",
+   "address": "0x251acea60",
+   "end": "0x251aceb78",
+   "size": 280,
+   "group": "F",
+   "raw_sha256": "4eb6337a41569a3720404fee23caeb380c55f4d2b51ac9419b0f8725bb5bed49",
+   "bin": "f_251acea60.bin",
+   "asm": "f_251acea60.s"
+  },
+  {
+   "symbol": "_fpAuthentication_GetAuthenticationType",
+   "address": "0x251ace720",
+   "end": "0x251ace728",
+   "size": 8,
+   "group": "F",
+   "raw_sha256": "866b82fb6649dcf0f7873c61006d47004b1074ea9b382227c4ab724c93f547f7",
+   "bin": "f_251ace720.bin",
+   "asm": "f_251ace720.s"
+  },
+  {
+   "symbol": "_fpAuthentication_Finalize",
+   "address": "0x251ace644",
+   "end": "0x251ace6c8",
+   "size": 132,
+   "group": "F",
+   "raw_sha256": "b99c7dd12552317ed4ee02ed662f5d9ba3f81c4c7f192ed034178824a0cb84a8",
+   "bin": "f_251ace644.bin",
+   "asm": "f_251ace644.s"
+  },
+  {
+   "symbol": "_fpAuthentication_CopyDebugDescription",
+   "address": "0x251ace6c8",
+   "end": "0x251ace720",
+   "size": 88,
+   "group": "F",
+   "raw_sha256": "b598e754160772f3b879f47a95419919fdf6abc342e9ebd03977060c970cd24f",
+   "bin": "f_251ace6c8.bin",
+   "asm": "f_251ace6c8.s"
+  },
+  {
+   "symbol": "_APKeyHolderLegacyCreate",
+   "address": "0x251aa9060",
+   "end": "0x251aa91ac",
+   "size": 332,
+   "group": "K",
+   "raw_sha256": "60142bfcf16b673fc3b51bca3e6eafc9af0977f768648e1047a8a1151bf645aa",
+   "bin": "f_251aa9060.bin",
+   "asm": "f_251aa9060.s"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CopyMasterAESKeyAndIV",
+   "address": "0x251aa9490",
+   "end": "0x251aa9524",
+   "size": 148,
+   "group": "K",
+   "raw_sha256": "e9c182bac8e28229c9c056e7b9b69ca5068d2be25a81d7ec0fa99e4ec3544f22",
+   "bin": "f_251aa9490.bin",
+   "asm": "f_251aa9490.s"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CreateEncryptedMasterAESKeyAndIV",
+   "address": "0x251aa9524",
+   "end": "0x251aa9668",
+   "size": 324,
+   "group": "K",
+   "raw_sha256": "21ae6df569a7470626cb46e02a68eaea8aa8f790756d1ebcca3d2377e4f42c81",
+   "bin": "f_251aa9524.bin",
+   "asm": "f_251aa9524.s"
+  },
+  {
+   "symbol": "_legacyKeyHolder_UpdateMasterAESKeyAfterSharing",
+   "address": "0x251aa9668",
+   "end": "0x251aa97a0",
+   "size": 312,
+   "group": "K",
+   "raw_sha256": "306311dd919e85e0c57365e5c70084ecbbce4b7a593d7b61b94a9f751a678d6d",
+   "bin": "f_251aa9668.bin",
+   "asm": "f_251aa9668.s"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CreateDerivedAESKeyAndIVForLegacyStream",
+   "address": "0x251aa97a0",
+   "end": "0x251aa98fc",
+   "size": 348,
+   "group": "K",
+   "raw_sha256": "89035c4563a2f5d77b4451d5bf21eddc29a14363daabf17a604e81e8ae5c4c95",
+   "bin": "f_251aa97a0.bin",
+   "asm": "f_251aa97a0.s"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CreateDerivedKey",
+   "address": "0x251aa98fc",
+   "end": "0x251aa9a60",
+   "size": 356,
+   "group": "K",
+   "raw_sha256": "23ee74228c1646cf7c90196f8b929fc51adec866187a5b3dc0381c5e7cac21f7",
+   "bin": "f_251aa98fc.bin",
+   "asm": "f_251aa98fc.s"
+  },
+  {
+   "symbol": "_legacyKeyHolder_createDerivedKeyLegacy",
+   "address": "0x251aa9a60",
+   "end": "0x251aa9b80",
+   "size": 288,
+   "group": "K",
+   "raw_sha256": "b0b8a71eb94972043ac042cbe5d188e07b4c4566f0f79c777acf682c1b5542db",
+   "bin": "f_251aa9a60.bin",
+   "asm": "f_251aa9a60.s"
+  },
+  {
+   "symbol": "_legacyKeyHolder_GetAuthenticationType",
+   "address": "0x251aa93f4",
+   "end": "0x251aa9490",
+   "size": 156,
+   "group": "K",
+   "raw_sha256": "4f10361b7a3671001699a60726446737970bf130d826b52c597bbbff5edfde70",
+   "bin": "f_251aa93f4.bin",
+   "asm": "f_251aa93f4.s"
+  },
+  {
+   "symbol": "_legacyKeyHolder_CopyProperty",
+   "address": "0x251aa92c0",
+   "end": "0x251aa93f4",
+   "size": 308,
+   "group": "K",
+   "raw_sha256": "ec824aad1e5f64d6b6d1db6e3e61a8f72ba2b73d948d137726fdbfe4d04a9da3",
+   "bin": "f_251aa92c0.bin",
+   "asm": "f_251aa92c0.s"
+  },
+  {
+   "symbol": "_APKeyHolderSharedKeyCreate",
+   "address": "0x251aafde0",
+   "end": "0x251aaff68",
+   "size": 392,
+   "group": "K",
+   "raw_sha256": "f9345ba4d0f65a374bbebab7b6898abb51964b6420bdbce863ac67603902b455",
+   "bin": "f_251aafde0.bin",
+   "asm": "f_251aafde0.s"
+  },
+  {
+   "symbol": "_sharedKeyHolder_CopyMasterAESKeyAndIV",
+   "address": "0x251ab0108",
+   "end": "0x251ab019c",
+   "size": 148,
+   "group": "K",
+   "raw_sha256": "a20adb6047f9ab911c0ab4387f17bda204b4666d4910a443ca7243c80c0880b1",
+   "bin": "f_251ab0108.bin",
+   "asm": "f_251ab0108.s"
+  },
+  {
+   "symbol": "_sharedKeyHolder_CreateEncryptedMasterAESKeyAndIV",
+   "address": "0x251ab019c",
+   "end": "0x251ab02e0",
+   "size": 324,
+   "group": "K",
+   "raw_sha256": "a49f4c22929604e07411524f177821b0b961101bc25767e41eeaf9170008958c",
+   "bin": "f_251ab019c.bin",
+   "asm": "f_251ab019c.s"
+  },
+  {
+   "symbol": "_sharedKeyHolder_GetAuthenticationType",
+   "address": "0x251ab006c",
+   "end": "0x251ab0108",
+   "size": 156,
+   "group": "K",
+   "raw_sha256": "2ea17e4c0c96282d92fd1ae742861e5e9bc0f8de2d0e11932ecd87df34d9114a",
+   "bin": "f_251ab006c.bin",
+   "asm": "f_251ab006c.s"
+  },
+  {
+   "symbol": "_APKeyHolderCoreUtilsCreate",
+   "address": "0x251a355d0",
+   "end": "0x251a356c8",
+   "size": 248,
+   "group": "K",
+   "raw_sha256": "1e4a141e32092d1da5bef910a21db865eaab6e2c2f332cbb16974cb848381266",
+   "bin": "f_251a355d0.bin",
+   "asm": "f_251a355d0.s"
+  },
+  {
+   "symbol": "_coreUtilsKeyHolder_CreateDerivedKey",
+   "address": "0x2519bffc8",
+   "end": "0x2519c0148",
+   "size": 384,
+   "group": "K",
+   "raw_sha256": "1af0b66a5395ef7848090e3cfecf4d06c4858157c1707ae31703eb6a8dd260d7",
+   "bin": "f_2519bffc8.bin",
+   "asm": "f_2519bffc8.s"
+  },
+  {
+   "symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForStream",
+   "address": "0x2519bfecc",
+   "end": "0x2519bffc8",
+   "size": 252,
+   "group": "K",
+   "raw_sha256": "cebfd84d456170ad006012b9c86fc3dcdd83df80e25dcb99399b0e02bbba8d31",
+   "bin": "f_2519bfecc.bin",
+   "asm": "f_2519bfecc.s"
+  },
+  {
+   "symbol": "_coreUtilsKeyHolder_CreateEncryptionKeysForContext",
+   "address": "0x251a358e4",
+   "end": "0x251a35be0",
+   "size": 764,
+   "group": "K",
+   "raw_sha256": "e5a835cb9eaa3ce17f83efcee88e83b87721ab2c4bcf61da5021b6bcd2c77571",
+   "bin": "f_251a358e4.bin",
+   "asm": "f_251a358e4.s"
+  },
+  {
+   "symbol": "_APSKeyHolderCreateEncryptionKeysForStream",
+   "address": "0x251a89d50",
+   "end": "0x251a89e0c",
+   "size": 188,
+   "group": "K",
+   "raw_sha256": "6bf6d94dc804079c23d2d60d35943e14a86afdff071c5d837fcc5cf34e12e6af",
+   "bin": "f_251a89d50.bin",
+   "asm": "f_251a89d50.s"
+  },
+  {
+   "symbol": "_APSKeyHolderGetAuthenticationType",
+   "address": "0x251a9ff20",
+   "end": "0x251a9ffb0",
+   "size": 144,
+   "group": "K",
+   "raw_sha256": "34a41c73e67d0230391e3f8663689a8eb96a07d6f6137e812383d8c93219e2c9",
+   "bin": "f_251a9ff20.bin",
+   "asm": "f_251a9ff20.s"
+  },
+  {
+   "symbol": "_apsession_ensureKeyHolderSetUp",
+   "address": "0x251b5ce10",
+   "end": "0x251b5cfe0",
+   "size": 464,
+   "group": "K",
+   "raw_sha256": "82c2c3485d8146c1535e837d77bb4784cfff92714cbe8821f05ad534690fb880",
+   "bin": "f_251b5ce10.bin",
+   "asm": "f_251b5ce10.s"
+  },
+  {
+   "symbol": "_NROcmM",
+   "address": "0x2519dc1c0",
+   "end": "0x2519dc1cc",
+   "size": 12,
+   "group": "FP",
+   "raw_sha256": "79a97c37b81c5404a28d31d313d3cbc87e5dc3ddf393a73b98b645e434653fe3",
+   "bin": "f_2519dc1c0.bin",
+   "asm": "f_2519dc1c0.s"
+  },
+  {
+   "symbol": "_U4HBs",
+   "address": "0x2519dcb7c",
+   "end": "0x2519de0e8",
+   "size": 5484,
+   "group": "FP",
+   "raw_sha256": "b46ee46e93771de0d9d180b71cd81d875fb87afc22021429fa809907fa5e177a",
+   "bin": "f_2519dcb7c.bin",
+   "asm": "f_2519dcb7c.s"
+  },
+  {
+   "symbol": "_Mib5yocT",
+   "address": "0x2519de244",
+   "end": "0x2519e1eec",
+   "size": 15528,
+   "group": "FP",
+   "raw_sha256": "172c1002c13a99a10108eea759d1393e0f31622c1754062669e7c46d0b22ae12",
+   "bin": "f_2519de244.bin",
+   "asm": "f_2519de244.s"
+  },
+  {
+   "symbol": "_zxcm2Qme0x",
+   "address": "0x2519f2904",
+   "end": "0x2519f4564",
+   "size": 7264,
+   "group": "FP",
+   "raw_sha256": "a0f90f018989b7c28f2cbe40f5ee063a3a0f1bd4d8708a7bf74f26023ac59ae0",
+   "bin": "f_2519f2904.bin",
+   "asm": "f_2519f2904.s"
+  },
+  {
+   "symbol": "_IPaI1oem5iL",
+   "address": "0x2519fa054",
+   "end": "0x2519fa410",
+   "size": 956,
+   "group": "FP",
+   "raw_sha256": "5e8ccbd712377c62f74a8adcd9103f5d40720b8ed56882139f286ce74a9e477a",
+   "bin": "f_2519fa054.bin",
+   "asm": "f_2519fa054.s"
+  },
+  {
+   "symbol": "_cp2g1b9ro",
+   "address": "0x2519fa410",
+   "end": "0x2519fb3a4",
+   "size": 3988,
+   "group": "FP",
+   "raw_sha256": "d6911bc3a59a4e0dc63d276893603dc17c0043d8cecb5333301112cfffd257f8",
+   "bin": "f_2519fa410.bin",
+   "asm": "f_2519fa410.s"
+  },
+  {
+   "symbol": "_jEHf8Xzsv8K",
+   "address": "0x2519fb3a4",
+   "end": "0x2519fb4d4",
+   "size": 304,
+   "group": "FP",
+   "raw_sha256": "e0bd7a38035accc1989a4eba296fd8f35f812914fa4bc926ea0ca1ca3a3f2f2b",
+   "bin": "f_2519fb3a4.bin",
+   "asm": "f_2519fb3a4.s"
+  },
+  {
+   "symbol": "_OowSGu",
+   "address": "0x2519ffebc",
+   "end": "0x251a0019c",
+   "size": 736,
+   "group": "FP",
+   "raw_sha256": "0d7e4be63a9d3915d7c020f6ed9af04584a6997694c8708ee1e906e846e39cb2",
+   "bin": "f_2519ffebc.bin",
+   "asm": "f_2519ffebc.s"
+  },
+  {
+   "symbol": "(unnamed)",
+   "address": "0x2519bbf24",
+   "end": "0x2519bd5a8",
+   "size": 5764,
+   "group": "X",
+   "raw_sha256": "2474956bad6630ee63b02d72eb56748aa49531735f5e4f3772422c313bb6655c",
+   "bin": "f_2519bbf24.bin",
+   "asm": "f_2519bbf24.s"
+  },
+  {
+   "symbol": "(unnamed)",
+   "address": "0x251abe4c8",
+   "end": "0x251abe68c",
+   "size": 452,
+   "group": "X",
+   "raw_sha256": "eed75584793286303aa5d1af3b1b7a01bbee4e1b06f987366a75944931a3403d",
+   "bin": "f_251abe4c8.bin",
+   "asm": "f_251abe4c8.s"
+  }
+ ],
+ "missing_symbols": [
+  "_apsession_createKeyHolder"
+ ]
+}

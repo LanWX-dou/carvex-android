@@ -1,0 +1,72 @@
+; AirPlaySender 0x2519cc87c-0x2519cc990; source SHA256 304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x2519cc87c:	pacibsp	
+0x2519cc880:	sub	sp, sp, #0x40
+0x2519cc884:	stp	x22, x21, [sp, #0x10]
+0x2519cc888:	stp	x20, x19, [sp, #0x20]
+0x2519cc88c:	stp	x29, x30, [sp, #0x30]
+0x2519cc890:	add	x29, sp, #0x30
+0x2519cc894:	str	xzr, [sp, #8]
+0x2519cc898:	cbz	x2, #0x2519cc95c
+0x2519cc89c:	mov	x19, x2
+0x2519cc8a0:	mov	x20, x1
+0x2519cc8a4:	mov	x21, x0
+0x2519cc8a8:	bl	#0x25810f370
+0x2519cc8ac:	mov	x2, x0
+0x2519cc8b0:	adrp	x1, #0x276128000
+0x2519cc8b4:	add	x1, x1, #0xde8
+0x2519cc8b8:	add	x3, sp, #8
+0x2519cc8bc:	mov	x0, x21
+0x2519cc8c0:	bl	#0x25810acc0
+0x2519cc8c4:	cbnz	w0, #0x2519cc968
+0x2519cc8c8:	ldr	x0, [sp, #8]
+0x2519cc8cc:	bl	#0x25810ac50
+0x2519cc8d0:	ldr	x8, [x20, #0x20]
+0x2519cc8d4:	ldp	q1, q0, [x20]
+0x2519cc8d8:	stp	q1, q0, [x0, #0x40]
+0x2519cc8dc:	str	x8, [x0, #0x60]
+0x2519cc8e0:	ldp	q1, q0, [x20]
+0x2519cc8e4:	ldr	x8, [x20, #0x20]
+0x2519cc8e8:	str	x8, [x0, #0x38]
+0x2519cc8ec:	stur	q1, [x0, #0x18]
+0x2519cc8f0:	stur	q0, [x0, #0x28]
+0x2519cc8f4:	mov	w8, #0x32
+0x2519cc8f8:	str	w8, [x0, #0x10]
+0x2519cc8fc:	strb	wzr, [x0, #0x70]
+0x2519cc900:	adrp	x8, #0x26e7db000
+0x2519cc904:	ldr	w8, [x8, #0x200]
+0x2519cc908:	cmp	w8, #0x1e
+0x2519cc90c:	b.gt	#0x2519cc930
+0x2519cc910:	cmn	w8, #1
+0x2519cc914:	b.ne	#0x2519cc954
+0x2519cc918:	adrp	x0, #0x26e7db000
+0x2519cc91c:	add	x0, x0, #0x200
+0x2519cc920:	mov	w1, #0x1e
+0x2519cc924:	movk	w1, #0x200, lsl #16
+0x2519cc928:	bl	#0x258101e40
+0x2519cc92c:	cbnz	w0, #0x2519cc954
+0x2519cc930:	mov	w21, #0
+0x2519cc934:	ldr	x8, [sp, #8]
+0x2519cc938:	str	x8, [x19]
+0x2519cc93c:	mov	x0, x21
+0x2519cc940:	ldp	x29, x30, [sp, #0x30]
+0x2519cc944:	ldp	x20, x19, [sp, #0x20]
+0x2519cc948:	ldp	x22, x21, [sp, #0x10]
+0x2519cc94c:	add	sp, sp, #0x40
+0x2519cc950:	retab	
+0x2519cc954:	bl	#0x251bcc2c4
+0x2519cc958:	b	#0x2519cc930
+0x2519cc95c:	bl	#0x251bcc2fc
+0x2519cc960:	mov	w21, #-0x4198
+0x2519cc964:	b	#0x2519cc93c
+0x2519cc968:	mov	x21, x0
+0x2519cc96c:	adrp	x1, #0x251c5c000
+0x2519cc970:	add	x1, x1, #0x423
+0x2519cc974:	mov	w2, #0x179
+0x2519cc978:	mov	w3, #0
+0x2519cc97c:	bl	#0x258109a30
+0x2519cc980:	ldr	x0, [sp, #8]
+0x2519cc984:	cbz	x0, #0x2519cc93c
+0x2519cc988:	bl	#0x2580f5830
+0x2519cc98c:	b	#0x2519cc93c

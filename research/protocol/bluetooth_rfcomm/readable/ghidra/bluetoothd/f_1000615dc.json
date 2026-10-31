@@ -1,0 +1,13 @@
+{
+  "address": "0x1000615dc",
+  "source_sha256": "cfd94854d0a2efd3ca4a2de6e55349f43fd0d274a4b8bfa9937f29d9f7208cb1",
+  "raw_sha256": "9a00b12b80d89d26129718d52bc9a87567bf8b0590833548cdadf05945c6047d",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "9a00b12b80d89d26129718d52bc9a87567bf8b0590833548cdadf05945c6047d",
+  "ghidra_name": "FUN_1000615dc",
+  "signature": "undefined FUN_1000615dc(void)",
+  "diagnostic": "",
+  "c_file": "f_1000615dc.ghidra.c",
+  "c_sha256": "d1ea83f197cb958a792291693828f9589d2f35ded9aa09e472cc5efa5730ede5",
+  "status": "DECOMPILED_UNREVIEWED"
+}

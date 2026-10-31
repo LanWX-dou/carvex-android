@@ -1,0 +1,38 @@
+{
+  "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\usr\\libexec\\carkitd",
+  "size": 1287040,
+  "sha256": "87e352056b30cc29e206b265786dac43eeab8536e8cebeae14711e8e3fdaf8cd",
+  "magic": "0xfeedfacf",
+  "cputype": 16777228,
+  "cpusubtype": 2147483650,
+  "filetype": 2,
+  "ncmds": 82,
+  "sizeofcmds": 9968,
+  "flags": "0x200085",
+  "uuid": "93f7ffc2-c043-317a-a74b-a9481da16e98",
+  "encryption": null,
+  "entry": {
+    "entryoff": 383280,
+    "stacksize": 0
+  },
+  "segment_count": 5,
+  "section_count": 46,
+  "function_starts": 3427,
+  "symtab": {
+    "symoff": 1212552,
+    "nsyms": 746,
+    "stroff": 1228912,
+    "strsize": 21504
+  },
+  "symbol_count": 2,
+  "sect_create_date": null,
+  "text_section": {
+    "segment": "__TEXT",
+    "section": "__text",
+    "addr": 4294977560,
+    "size": 610048,
+    "fileoff": 10264,
+    "align": 2,
+    "flags": 2147484672
+  }
+}

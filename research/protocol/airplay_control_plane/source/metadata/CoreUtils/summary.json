@@ -1,0 +1,35 @@
+{
+  "path": "D:\\carvex-research\\firmware\\extracted\\24A446\\binaries\\CoreUtils\\CoreUtils",
+  "size": 2232432,
+  "sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083",
+  "magic": "0xfeedfacf",
+  "cputype": 16777228,
+  "cpusubtype": 2147483650,
+  "filetype": 6,
+  "ncmds": 30,
+  "sizeofcmds": 4992,
+  "flags": "0x2100085",
+  "uuid": "364444ca-d8b8-3a37-98b3-3b012ab1a517",
+  "encryption": null,
+  "entry": null,
+  "segment_count": 7,
+  "section_count": 38,
+  "function_starts": 5789,
+  "symtab": {
+    "symoff": 1658408,
+    "nsyms": 10739,
+    "stroff": 1837320,
+    "strsize": 395112
+  },
+  "symbol_count": 9783,
+  "sect_create_date": null,
+  "text_section": {
+    "segment": "__TEXT",
+    "section": "__text",
+    "addr": 6641886224,
+    "size": 1144168,
+    "fileoff": 5136,
+    "align": 2,
+    "flags": 2147484672
+  }
+}

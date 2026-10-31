@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "collected": "2026-10-30",
+  "baseline_ref": "refs/tags/android-16.0.0_r1",
+  "baseline_commit": "4b73ee6039271ffbf71ebdc8c109fc98eac8e137",
+  "additional_ref": "refs/heads/main",
+  "additional_commit": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
+  "scope": "Source snapshots only. Not Xiaomi ROM or Android 17 runtime evidence.",
+  "snapshots": [
+    {
+      "revision": "4b73ee6039271ffbf71ebdc8c109fc98eac8e137",
+      "files": [
+        {
+          "path": "NOTICE",
+          "sha256": "fcfd08d120e2558dded978b780df4404a221b94372f7d2aa407b7ada7c54ff07",
+          "bytes": 16650,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/NOTICE"
+        },
+        {
+          "path": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+          "sha256": "57e68fb677d9381373f064ad2a286f3e45bd61531dc5283ae617f23a5bb2e43c",
+          "bytes": 31675,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/android/app/aidl/android/bluetooth/IBluetooth.aidl"
+        },
+        {
+          "path": "android/app/aidl/android/bluetooth/IBluetoothSocketManager.aidl",
+          "sha256": "2ad16bc4aa64c2b25d3b55089202107098bc278ce07a05627ea561650aadb381",
+          "bytes": 2971,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/android/app/aidl/android/bluetooth/IBluetoothSocketManager.aidl"
+        },
+        {
+          "path": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+          "sha256": "eaa1cff23fae06179f46d0163a3e18374b217af4e3656d8ae3338d1c6abd1f60",
+          "bytes": 88891,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp"
+        },
+        {
+          "path": "android/app/jni/com_android_bluetooth_sdp.cpp",
+          "sha256": "2fe4a0caf6b61a3e980b33b5a75b96d53bd736747ec000f41de10933e25d7ba6",
+          "bytes": 20500,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/android/app/jni/com_android_bluetooth_sdp.cpp"
+        },
+        {
+          "path": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+          "sha256": "6d05d4a5599b42bcf0b1d54a81f90e8897e60a30d5146c23aed2f1d1a9ba866a",
+          "bytes": 11316,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java"
+        },
+        {
+          "path": "android/app/src/com/android/bluetooth/sdp/SdpManager.java",
+          "sha256": "ffa57c0759da9968f0c8f6f6edea3d695497e0e2230d89cfd8967403bdbe8cbd",
+          "bytes": 18867,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/android/app/src/com/android/bluetooth/sdp/SdpManager.java"
+        },
+        {
+          "path": "android/app/src/com/android/bluetooth/sdp/SdpManagerNativeInterface.java",
+          "sha256": "db6950a231a2fe5c7c2269114946c0aed6bb2018eb826a5a4a57fa794f839823",
+          "bytes": 17216,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/android/app/src/com/android/bluetooth/sdp/SdpManagerNativeInterface.java"
+        },
+        {
+          "path": "framework/java/android/bluetooth/BluetoothAdapter.java",
+          "sha256": "4c76268587f8b04272089bfdf792d24dc27bf22576b60fc17558580ded22e0d2",
+          "bytes": 243844,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/framework/java/android/bluetooth/BluetoothAdapter.java"
+        },
+        {
+          "path": "framework/java/android/bluetooth/BluetoothDevice.java",
+          "sha256": "81a0256b88470db4d79c4bead3a617498d41498a6e834b6b4b0da8b2aeeee913",
+          "bytes": 157853,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/framework/java/android/bluetooth/BluetoothDevice.java"
+        },
+        {
+          "path": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+          "sha256": "480bc15974d9a3034985d6c3200d2d9e9567ed575704fc5e0103dfef7e52c781",
+          "bytes": 14654,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/framework/java/android/bluetooth/BluetoothServerSocket.java"
+        },
+        {
+          "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+          "sha256": "d2c7e4260899a5e6cc4dbf3c47348c5d6b9dea0538156d634157d6eea8dfd758",
+          "bytes": 56301,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/framework/java/android/bluetooth/BluetoothSocket.java"
+        },
+        {
+          "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+          "sha256": "522733b300178db227e7e69886891c864cb9bfb6f6dafdbf9d1382a3733efc4a",
+          "bytes": 26227,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/framework/java/android/bluetooth/BluetoothSocketSettings.java"
+        },
+        {
+          "path": "system/bta/jv/bta_jv_act.cc",
+          "sha256": "a7c13925c6b9effa77c3122e89763e1578272fca03cc112863f37835d508f818",
+          "bytes": 76718,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/system/bta/jv/bta_jv_act.cc"
+        },
+        {
+          "path": "system/bta/sys/bta_sys_main.cc",
+          "sha256": "7135d042d0901e98b398e1958753b40f7938416020b836dd8d8bf68dfa56512f",
+          "bytes": 6502,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/system/bta/sys/bta_sys_main.cc"
+        },
+        {
+          "path": "system/btif/src/btif_sdp_server.cc",
+          "sha256": "0cb6633f577386ecb3e543243b341c8be0d24fb1a69bdbb798a877d97509f81b",
+          "bytes": 33965,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/system/btif/src/btif_sdp_server.cc"
+        },
+        {
+          "path": "system/btif/src/btif_sock_rfc.cc",
+          "sha256": "9e8c84819d448c7b739f6dc1c716bc9e5551870e539ffadf9aede6f0f38100c5",
+          "bytes": 54447,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/system/btif/src/btif_sock_rfc.cc"
+        },
+        {
+          "path": "system/btif/src/btif_sock_sdp.cc",
+          "sha256": "48341428d56fd33ac7993f355e1483573e45f5cc51032f177a7c19bb4c99e1c2",
+          "bytes": 16810,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/system/btif/src/btif_sock_sdp.cc"
+        },
+        {
+          "path": "system/include/hardware/bt_sdp.h",
+          "sha256": "157fb849f6097188bddc3f6e324b710d6b4bea3101839014430ea2a78368fb10",
+          "bytes": 5704,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/system/include/hardware/bt_sdp.h"
+        },
+        {
+          "path": "system/stack/sdp/sdp_db.cc",
+          "sha256": "9c44d2d07f22a7d236d4cc573248fa79bc17aef4cd2759428d85a3250d1e2486",
+          "bytes": 31625,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/4b73ee6039271ffbf71ebdc8c109fc98eac8e137/system/stack/sdp/sdp_db.cc"
+        }
+      ]
+    },
+    {
+      "revision": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
+      "files": [
+        {
+          "path": "NOTICE",
+          "sha256": "fcfd08d120e2558dded978b780df4404a221b94372f7d2aa407b7ada7c54ff07",
+          "bytes": 16650,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/745ee92b87ed62b5a8a1bac47d5df8cad623bf59/NOTICE"
+        },
+        {
+          "path": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+          "sha256": "c406dd057d00ffc08feb32916884699e3f6cbc64bf764a7403c478e53ffff0d0",
+          "bytes": 31378,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/745ee92b87ed62b5a8a1bac47d5df8cad623bf59/android/app/aidl/android/bluetooth/IBluetooth.aidl"
+        },
+        {
+          "path": "android/app/aidl/android/bluetooth/IBluetoothSocketManager.aidl",
+          "sha256": "d30b50a1f4090676729b15a33c87a7ec1df6f4d5b52b3f9f139716ee0aead04a",
+          "bytes": 2970,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/745ee92b87ed62b5a8a1bac47d5df8cad623bf59/android/app/aidl/android/bluetooth/IBluetoothSocketManager.aidl"
+        },
+        {
+          "path": "system/btif/src/btif_sdp_server.cc",
+          "sha256": "0cb6633f577386ecb3e543243b341c8be0d24fb1a69bdbb798a877d97509f81b",
+          "bytes": 33965,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/745ee92b87ed62b5a8a1bac47d5df8cad623bf59/system/btif/src/btif_sdp_server.cc"
+        },
+        {
+          "path": "system/btif/src/btif_sock_sdp.cc",
+          "sha256": "48341428d56fd33ac7993f355e1483573e45f5cc51032f177a7c19bb4c99e1c2",
+          "bytes": 16810,
+          "url": "https://android.googlesource.com/platform/packages/modules/Bluetooth/+/745ee92b87ed62b5a8a1bac47d5df8cad623bf59/system/btif/src/btif_sock_sdp.cc"
+        }
+      ]
+    }
+  ]
+}

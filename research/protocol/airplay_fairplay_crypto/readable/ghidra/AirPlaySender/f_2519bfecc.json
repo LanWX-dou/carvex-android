@@ -1,0 +1,13 @@
+{
+  "address": "0x2519bfecc",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "cebfd84d456170ad006012b9c86fc3dcdd83df80e25dcb99399b0e02bbba8d31",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "cebfd84d456170ad006012b9c86fc3dcdd83df80e25dcb99399b0e02bbba8d31",
+  "ghidra_name": "_coreUtilsKeyHolder_CreateEncryptionKeysForStream",
+  "signature": "undefined _coreUtilsKeyHolder_CreateEncryptionKeysForStream()",
+  "diagnostic": "",
+  "c_file": "f_2519bfecc.ghidra.c",
+  "c_sha256": "cd0f636259308b770fefb04c74fa2f6c67eb4d2176f77550ad17e22481080ce1",
+  "status": "DECOMPILED_UNREVIEWED"
+}

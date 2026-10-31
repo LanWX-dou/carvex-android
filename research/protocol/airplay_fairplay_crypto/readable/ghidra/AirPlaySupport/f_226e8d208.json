@@ -1,0 +1,13 @@
+{
+  "address": "0x226e8d208",
+  "source_sha256": "d90a26393a5f761e1a8c98ce08f2acd90b9a630c4697054d07e8b3381ebf6a15",
+  "raw_sha256": "44350ccee07750a72e157cbda890339b55d76aa17cfa5c23d12799c612461faa",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "44350ccee07750a72e157cbda890339b55d76aa17cfa5c23d12799c612461faa",
+  "ghidra_name": "_APSCryptorCTRCreate",
+  "signature": "undefined _APSCryptorCTRCreate()",
+  "diagnostic": "",
+  "c_file": "f_226e8d208.ghidra.c",
+  "c_sha256": "24a6000efd5329145c7b9794b0a29ef396c7b3b70aab44505f4006a578a1acaf",
+  "status": "DECOMPILED_UNREVIEWED"
+}

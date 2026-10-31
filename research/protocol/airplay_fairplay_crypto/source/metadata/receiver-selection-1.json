@@ -1,0 +1,20 @@
+{
+ "image": "AirPlayReceiver",
+ "functions": [
+  {"symbol": "_airplayReqProcessor_requestProcessFPSetup", "group": "R", "note": "/fp-setup 请求处理"},
+  {"symbol": "_airplayReqProcessor_requestProcessFPSetup2", "group": "R", "note": "/fp-setup2 请求处理"},
+  {"symbol": "__FPSetup2ResponseCompletionHandler", "group": "R", "note": "fp-setup2 外部响应回调"},
+  {"symbol": "_APReceiverFairPlayHelperCreate", "group": "R", "note": "FairPlay 助手构造"},
+  {"symbol": "_APReceiverFairPlayHelperProcessFPInfo", "group": "R", "note": "处理 FPInfo（ekey 解密）"},
+  {"symbol": "_APReceiverFairPlayHelperCopyAuthorizeItemResponseIntoBuffer", "group": "R", "note": "authorize-item 响应（内容 DRM 边界）"},
+  {"symbol": "_APReceiverFairPlayHelperCopyAuthorizeItemResponseIntoDictionary", "group": "R", "note": "authorize-item 响应（字典形态）"},
+  {"symbol": "_APReceiverFairPlayHelperRemoveAllFPSessions", "group": "R", "note": "清除全部 FP 会话"},
+  {"symbol": "_apReceiverFairPlayHelper_CopyPICRequest", "group": "R", "note": "取 PIC 请求（FPInfo 载体）"},
+  {"symbol": "_apReceiverFairPlayHelper_CopyPICResponseData", "group": "R", "note": "取 PIC 响应数据"},
+  {"symbol": "_AirPlayReceiverSessionSetSecurityInfo", "group": "S", "note": "会话级安全参数设置"},
+  {"symbol": "__SetSecurityInfoAES", "group": "S", "note": "AES 安全参数"},
+  {"symbol": "_aprscreen_SetSecurityInfoAES", "group": "S", "note": "屏幕流 AES 安全参数"},
+  {"symbol": "_aprscreen_SetSecurityInfoChaCha", "group": "S", "note": "屏幕流 ChaCha 安全参数"},
+  {"symbol": "_aprscreen_decryptBuffer", "group": "S", "note": "屏幕流解密路径"}
+ ]
+}

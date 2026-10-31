@@ -1,0 +1,13 @@
+{
+  "address": "0x100084a40",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "03cc739bc437f073e485a15a3282b9737e94c29229d92cdcbb0b115a552d23ba",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "03cc739bc437f073e485a15a3282b9737e94c29229d92cdcbb0b115a552d23ba",
+  "ghidra_name": "_mfi4Auth_relay_handle_iAP2RelayFailed",
+  "signature": "undefined _mfi4Auth_relay_handle_iAP2RelayFailed()",
+  "diagnostic": "",
+  "c_file": "f_100084a40.ghidra.c",
+  "c_sha256": "4306ec877916f6e12a6e456fc60401c84ad24a210cd0df2395948bdce10f743b",
+  "status": "DECOMPILED_UNREVIEWED"
+}

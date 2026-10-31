@@ -1,0 +1,13 @@
+{
+  "address": "0x251aa92c0",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "ec824aad1e5f64d6b6d1db6e3e61a8f72ba2b73d948d137726fdbfe4d04a9da3",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "ec824aad1e5f64d6b6d1db6e3e61a8f72ba2b73d948d137726fdbfe4d04a9da3",
+  "ghidra_name": "_legacyKeyHolder_CopyProperty",
+  "signature": "undefined _legacyKeyHolder_CopyProperty()",
+  "diagnostic": "",
+  "c_file": "f_251aa92c0.ghidra.c",
+  "c_sha256": "e6e9cd356caaaf40f0956b285ae04ce3c32d920ad5266d47b8e077b35c959c7e",
+  "status": "DECOMPILED_UNREVIEWED"
+}

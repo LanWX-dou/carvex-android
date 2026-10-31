@@ -1,0 +1,71 @@
+{
+  "source_sha256": "f7f28e152d1791a38c91ee4495297c5ea078bd6f30386dcde121413f21d9a29f",
+  "ghidra_image_base": "0x100000",
+  "functions": [
+    {
+      "address": "0x128cb0",
+      "end": "0x128d10",
+      "raw_sha256": "2edb08a13bcf8129103ee8a24efadda405f1bc78b265d64063660560591a7e61"
+    },
+    {
+      "address": "0x128d10",
+      "end": "0x128ed8",
+      "raw_sha256": "cc6fd2191618e07bdcfe8f05ff989a751ff1037b58ddb6d03beb8488ffe7a73c"
+    },
+    {
+      "address": "0x1282f0",
+      "end": "0x1285b0",
+      "raw_sha256": "babba6dca1e94e2b9194c95172b8e091023086dcb1a74182e28b6a97385b7c16"
+    },
+    {
+      "address": "0x128680",
+      "end": "0x1286f8",
+      "raw_sha256": "a6beb70e6b7d51f1f780102fd188e5e7699f9c0d2358ed914e1c57fc35c0c887"
+    },
+    {
+      "address": "0x138370",
+      "end": "0x1383d0",
+      "raw_sha256": "997255f120eff7dae8b30933397f177f40663337e81b72d35d0d3ea7e8192ba6"
+    },
+    {
+      "address": "0x137d60",
+      "end": "0x138370",
+      "raw_sha256": "9a547dcc775660dfa38a25ed14c606692eed41b14213f59a87956711beb85edb"
+    },
+    {
+      "address": "0x11e738",
+      "end": "0x11e7c0",
+      "raw_sha256": "419c1df51d813df7c0be77e85ed18b750fff410de47cc1de571fa447a66be56d"
+    },
+    {
+      "address": "0x11fc30",
+      "end": "0x11fc90",
+      "raw_sha256": "57cd23e91d7e6ac3e2244254b461939bb96ca8ee87b8ba742621b6a9db643c78"
+    },
+    {
+      "address": "0x11fa78",
+      "end": "0x11fc30",
+      "raw_sha256": "b761a51199bbae3db4bc76ea13a9f3729db8dd3427de07378a0a66c437a058e0"
+    },
+    {
+      "address": "0x120010",
+      "end": "0x120498",
+      "raw_sha256": "d2776eba7b2483cc0834d2f4890bb8ac6c501af017bd090fb4779885204730ed"
+    },
+    {
+      "address": "0x1349d8",
+      "end": "0x134d70",
+      "raw_sha256": "f582af355dc4064f1ed7d9beeb6fa2ada5b178a420e4a819f00fc188cf52e847"
+    },
+    {
+      "address": "0x1360a8",
+      "end": "0x1365d0",
+      "raw_sha256": "b177fd810d71bb57b4228bc81691be042131843f98806554b2028bde022e6e4f"
+    },
+    {
+      "address": "0x136960",
+      "end": "0x138370",
+      "raw_sha256": "94de56fb82bf9bf29a0bbeffb4073ef6c0c6cb68703485ccf97ce071de69fff0"
+    }
+  ]
+}

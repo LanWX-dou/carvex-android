@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-10-29",
+  "scope": "Current Android source version/capability-to-routing audit against a bounded iPhone 24A446 subset",
+  "status": "STATIC_SOURCE_AUDIT",
+  "runtime_observed": false,
+  "app_built": false,
+  "app_installed": false,
+  "real_headunit_verified": false,
+  "methodology": [
+    "Read current Kotlin sources and production references; comments are not treated as executed behavior.",
+    "Recomputed SHA-256 for source images, raw function files, assembly, decompilation and current Kotlin files.",
+    "Compared all 5 listed raw .bin files byte-for-byte to Mach-O VA reads using the read-only firmware_image.Image helper under python3 -B.",
+    "No original ARM function, Kotlin application, network handshake, APK or vehicle was executed for this audit."
+  ],
+  "tool": {
+    "path": "D:/carvex-research/firmware/tools/ipsw-research/firmware_image.py",
+    "sha256": "642cb879df32e8974c6e59cce9339dc8deb1aa3c9867e38dfadd03967f01157b"
+  },
+  "images": [
+    {
+      "component": "AirPlaySender",
+      "path": "D:/carvex-research/firmware/extracted/24A446/binaries/AirPlaySender/AirPlaySender",
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f"
+    },
+    {
+      "component": "APTransport",
+      "path": "D:/carvex-research/firmware/extracted/24A446/binaries/APTransport/APTransport",
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d"
+    }
+  ],
+  "firmware": [
+    {
+      "id": "AVC-F01",
+      "component": "AirPlaySender",
+      "address": "0x251a5e858",
+      "raw_equals_macho_va": true,
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5e858.bin",
+          "sha256": "a7692d1f7f22e14c7a22a3ddd9da428a302e245deed37e320c33a2750cc3fc36",
+          "bytes": 6728
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5e858.s",
+          "sha256": "aa6e23b9fc44980c0534999a7f1f0d013b93a6f037694e4a1b1b5cd86ef08ade",
+          "bytes": 66231
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a5e858.ghidra.c",
+          "sha256": "05a0ce417834dffb4f7571a6bd2524cf15bd17f023665a6773482799ad5ae01a",
+          "bytes": 37701
+        }
+      ],
+      "evidence_level": "STATIC_REVIEWED_SUBSET",
+      "reviewed_ranges": {
+        "c_lines": "78-167",
+        "assembly_addresses": "0x251a5e890-0x251a5eb20",
+        "claim": "Pairing selector reads CU, legacy, one-time, unified and access-control endpoint properties; no-pair return is a step result, not completion of all authentication."
+      }
+    },
+    {
+      "id": "AVC-F02",
+      "component": "AirPlaySender",
+      "address": "0x251b5ce10",
+      "raw_equals_macho_va": true,
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b5ce10.bin",
+          "sha256": "82c2c3485d8146c1535e837d77bb4784cfff92714cbe8821f05ad534690fb880",
+          "bytes": 464
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b5ce10.s",
+          "sha256": "2114bf82f51db7046aaf96539bfa2f32b4e7c3d4c80dca0e79efece2d1273d0f",
+          "bytes": 4747
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251b5ce10.ghidra.c",
+          "sha256": "6e4502e80e7f3f4f71055ffb6f158c6b3c5ff8ae5aa66d34971e5c06b12d425f",
+          "bytes": 3516
+        }
+      ],
+      "evidence_level": "STATIC_REVIEWED_SUBSET",
+      "reviewed_ranges": {
+        "c_lines": "29-64",
+        "assembly_addresses": "0x251b5ce54-0x251b5cf20",
+        "claim": "Key-holder construction branches on SupportsCoreUtilsPairingAndEncryption."
+      }
+    },
+    {
+      "id": "AVC-F03",
+      "component": "AirPlaySender",
+      "address": "0x2519c5858",
+      "raw_equals_macho_va": true,
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/kind5-setup-dictionary/2519c5858.bin",
+          "sha256": "1348fc1e56decf58100df1cd4faa3f704857be71fd09a378566917502958d3c6",
+          "bytes": 4472
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/24A446/kind5-setup-dictionary/2519c5858.s",
+          "sha256": "99b7317a64665aabe2f40edf7cd685d18e7bfbd41c94a6cfa4952d2601ee0267",
+          "bytes": 44265
+        }
+      ],
+      "evidence_level": "STATIC_ASSEMBLY_REVIEWED_SUBSET",
+      "reviewed_ranges": {
+        "assembly_addresses": "0x2519c63d0-0x2519c66e0",
+        "claim": "Stage1 checks unified pairing then separately dispatches AuthenticationType; internal enum is not wire SETUP et."
+      }
+    },
+    {
+      "id": "AVC-F04",
+      "component": "AirPlaySender",
+      "address": "0x251a59708",
+      "raw_equals_macho_va": true,
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a59708.bin",
+          "sha256": "69a7e75e50d440208102fe6f2152502e3ae9b34b7d0d6f21141b3733b19ac85c",
+          "bytes": 4408
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a59708.s",
+          "sha256": "57164733328fa7d3c8857fd19acdbbdbc4aa88fa3b9f653a10a6117b7b916a82",
+          "bytes": 43435
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a59708.ghidra.c",
+          "sha256": "fdb332fd5fb41a5d3eb6b394f4b2c4b6b71129eb1303e454ef00f990f60365fd",
+          "bytes": 25832
+        }
+      ],
+      "evidence_level": "STATIC_REVIEWED_SUBSET",
+      "reviewed_ranges": {
+        "c_lines": "210-234",
+        "claim": "Control SETUP sourceVersion producer uses literal 980.77.1.2; not a peer version or a universal version recommendation."
+      }
+    },
+    {
+      "id": "AVC-F05",
+      "component": "APTransport",
+      "address": "0x24fd9c6b8",
+      "raw_equals_macho_va": true,
+      "files": [
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fd9c6b8.bin",
+          "sha256": "73e32fa0e18fd19086245123a5f854932a740ffa656f94b7e03c0dd2f81d1177",
+          "bytes": 6240
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fd9c6b8.s",
+          "sha256": "91bc84f775b0235f8a970d28ff65572a69994fd32e2c260d3075cc0d82fa9ef1",
+          "bytes": 62758
+        },
+        {
+          "path": "D:/carvex-research/firmware/analysis/decompiler-cache/24A446/APTransport/dcc06dc3316817912f6d/functions/f_24fd9c6b8.ghidra.c",
+          "sha256": "bf8ef8b1b27d653aa1b3b44aebe1c21c3873eb14b74afff7aa6abce0d6b44c1d",
+          "bytes": 31126
+        }
+      ],
+      "evidence_level": "STATIC_REVIEWED_SUBSET",
+      "reviewed_ranges": {
+        "c_lines": "594-680",
+        "claim": "Helper constructs feature set and advertiser properties, with conditional feature 0x1a based on mutual-authentication provider; full provider/role binding remains open."
+      }
+    }
+  ],
+  "app": [
+    {
+      "id": "AVC-A01",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/AirPlayFeatures.kt",
+      "sha256": "ff0c1f85a25b81b38b8461e79ca8e7328f99d9b2be7bb96ea04ac92fa9765336",
+      "bytes": 6600,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    },
+    {
+      "id": "AVC-A02",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/ReceiverDiscovery.kt",
+      "sha256": "2c2fd3d25022081dee253b1b6f6ada6343f4c467556f62ae3d83a607b874e34d",
+      "bytes": 11526,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    },
+    {
+      "id": "AVC-A03",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt",
+      "sha256": "dfe3d7f818b204a7ed93048a1add292cd02a9d16a6110edd6f21cac775af23c7",
+      "bytes": 100480,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    },
+    {
+      "id": "AVC-A04",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/BootstrapSecurity.kt",
+      "sha256": "cea0606ad622097dc68bab2feaa00e13fdadf8555c1313222391aa4a22d7033b",
+      "bytes": 3597,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    },
+    {
+      "id": "AVC-A05",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/SecurityRouting.kt",
+      "sha256": "e684ffd9a82cc69123566ed1ff2f8c4ab0249f64a496ed3902744d81593a0c08",
+      "bytes": 8138,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    },
+    {
+      "id": "AVC-A06",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/CarPlaySourceIdentity.kt",
+      "sha256": "54af8e401dd47085bab6751cef4217626d48d34d25349c0b7ad2e306d294662d",
+      "bytes": 1222,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    },
+    {
+      "id": "AVC-A07",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/Bootstrap.kt",
+      "sha256": "6d2b148cfc29cbef59bc00e63523105502a0f0a86ad994d1d981b3c07003f56c",
+      "bytes": 73689,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    },
+    {
+      "id": "AVC-A08",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/ReceiverIdentity.kt",
+      "sha256": "005ee19db3500263e814ee2a168228cbae760cf7c03804af54f066f33c01556c",
+      "bytes": 1876,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    },
+    {
+      "id": "AVC-A09",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/StartSessionFields.kt",
+      "sha256": "0e3597c7230c2e56c91d1eb96e2f3f1bd636500bac2e33ca7ae52d0a948ecbbe",
+      "bytes": 3551,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    },
+    {
+      "id": "AVC-A10",
+      "path": "D:/carvex-research/android/protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/IapPeerProfile.kt",
+      "sha256": "056bbc2de1d34dfd8a4be99c01cfac24888faede46ead203e1cb0cab7393e070",
+      "bytes": 6075,
+      "evidence_level": "IMPLEMENTATION_OBSERVED"
+    }
+  ],
+  "findings": [
+    {
+      "id": "AVC-01",
+      "priority": "P1_COVERAGE",
+      "claim": "At the reviewed AirSession connection path, formal mode or a missing shared secret unconditionally enters requireSapSignatureSchema(), which always throws; authentication/SETUP cannot continue beyond that point.",
+      "sources": [
+        "AVC-A03:487-491",
+        "AVC-A05:112-124"
+      ],
+      "limits": "Intentional fail-closed execution boundary, not authorization to bypass trust; no deployed-APK claim."
+    },
+    {
+      "id": "AVC-02",
+      "priority": "P1_RESEARCH",
+      "claim": "4301 srcVer/sdkVer are not consumed by wifiConfig; mutualAuth is only logged and not retained in WifiBootstrap/security inputs. Discovery metadata has no featuresEx/noPair/mutualAuth slot.",
+      "sources": [
+        "AVC-A07:18-52,875-913",
+        "AVC-A02:18-24,116-117",
+        "AVC-A04:11-31"
+      ],
+      "limits": "4301 field names/types reference chapter 21; noPair is an internal selection outcome in the reviewed Apple evidence, not established as a required TXT key. Raw callback exists, but no production consumer was found by repository Kotlin reference search."
+    },
+    {
+      "id": "AVC-03",
+      "priority": "P2_DIAGNOSTIC",
+      "claim": "AirPlayGenerations labels any non-null protocolVersion V1 absent earlier signals; service clues and feature bit46 can label V2 although actual route does not use these signals.",
+      "sources": [
+        "AVC-A01:100-133",
+        "AVC-A03:430-443",
+        "AVC-A05:47-64"
+      ],
+      "limits": "Generation is diagnostic only in the audited production source; not shown to change the selected authentication route."
+    },
+    {
+      "id": "AVC-04",
+      "priority": "P2_DIAGNOSTIC",
+      "claim": "Clue service types are aggregated without endpoint/peer matching then attached to the selected receiver metadata.",
+      "sources": [
+        "AVC-A02:34-36,60-75,116-117"
+      ],
+      "limits": "Can contaminate generation logs; not evidence of authentication bypass or route change."
+    },
+    {
+      "id": "AVC-05",
+      "priority": "P2_DIAGNOSTIC",
+      "claim": "INFO protocol/source/features are read after SETUP and used for generation logs; '/info wins from here' does not update version metadata or reselect security routing.",
+      "sources": [
+        "AVC-A03:517-556"
+      ],
+      "limits": "Other INFO fields such as audioFormats/displays do have consumers and are outside this version-only statement."
+    },
+    {
+      "id": "AVC-06",
+      "priority": "P2_SCHEMA",
+      "claim": "TXT features parser treats unprefixed values as hexadecimal despite a comment promising decimal support; decimal interoperability is not established by this audit.",
+      "sources": [
+        "AVC-A01:76-77",
+        "AVC-A08:23-31"
+      ],
+      "example": {
+        "input": "4294967296",
+        "if_decimal": "0x100000000",
+        "actual_parser_hex": "0x4294967296",
+        "if_decimal_bit38": false,
+        "actual_parser_bit38": true
+      },
+      "limits": "Arithmetic illustration from source, not a Kotlin test or captured target TXT."
+    },
+    {
+      "id": "AVC-07",
+      "priority": "P2_DECLARATION",
+      "claim": "Local sourceVersion 320.17, User-Agent and compatibility OS build 21A329 are a local compatibility combination, not the 24A446 source identity.",
+      "sources": [
+        "AVC-A06:1-19",
+        "AVC-A03:493-498,982",
+        "AVC-F04"
+      ],
+      "limits": "Changing the literal alone does not add protocol behavior; truthful Android model/osName/osVersion remain separately reported."
+    }
+  ],
+  "open_items": [
+    "Full producer mapping from TXT/featuresEx/version/start-session inputs to all Apple endpoint properties.",
+    "Whether and how 4301 mutualAuth/srcVer/sdkVer reach downstream Apple session providers on the exact wireless kind5 path.",
+    "Scope and semantics of noPair beyond the reviewed ensurePaired step.",
+    "Valid on-wire features encodings across target receivers; decimal support must not be assumed solely from an app comment.",
+    "Per-vehicle capability/route matrix, current APK-source match, and packet-level outcomes.",
+    "Complete client request header audit is outside this chapter; sourceVersion and X-Apple-ProtocolVersion are distinct fields."
+  ]
+}

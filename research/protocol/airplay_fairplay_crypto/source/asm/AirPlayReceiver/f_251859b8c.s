@@ -1,0 +1,67 @@
+; AirPlayReceiver 0x251859b8c-0x251859c8c; source SHA256 ad6eddbb9bedcb8f121699e7fc94702632c4acf30135564763a646ac472cc51a; original firmware bytes
+; disassembly: Capstone 5.0.7 CS_ARCH_ARM64; no rewriting
+; unreviewed: 未人工确认（机器输出，字节为固件原始值）
+0x251859b8c:	pacibsp	
+0x251859b90:	sub	sp, sp, #0x40
+0x251859b94:	stp	x22, x21, [sp, #0x10]
+0x251859b98:	stp	x20, x19, [sp, #0x20]
+0x251859b9c:	stp	x29, x30, [sp, #0x30]
+0x251859ba0:	add	x29, sp, #0x30
+0x251859ba4:	mov	x20, x2
+0x251859ba8:	mov	x22, x1
+0x251859bac:	mov	x21, x0
+0x251859bb0:	bl	#0x25810ac50
+0x251859bb4:	mov	x19, x0
+0x251859bb8:	ldr	x0, [x0, #0xc8]
+0x251859bbc:	bl	#0x25810b430
+0x251859bc0:	ldrb	w8, [x19, #0xb9]
+0x251859bc4:	cbnz	w8, #0x251859bd0
+0x251859bc8:	ldrb	w8, [x19, #0xb8]
+0x251859bcc:	cbz	w8, #0x251859c38
+0x251859bd0:	mov	w20, #0xe645
+0x251859bd4:	movk	w20, #0xfffe, lsl #16
+0x251859bd8:	adrp	x8, #0x26e7bf000
+0x251859bdc:	ldr	w8, [x8, #0xf30]
+0x251859be0:	cmp	w8, #0x5a
+0x251859be4:	b.gt	#0x251859c6c
+0x251859be8:	cmn	w8, #1
+0x251859bec:	b.eq	#0x251859c1c
+0x251859bf0:	str	x21, [sp]
+0x251859bf4:	adrp	x0, #0x26e7bf000
+0x251859bf8:	add	x0, x0, #0xf30
+0x251859bfc:	adrp	x1, #0x251920000
+0x251859c00:	add	x1, x1, #0x34f
+0x251859c04:	adrp	x3, #0x251920000
+0x251859c08:	add	x3, x3, #0x3b3
+0x251859c0c:	mov	w2, #0x5a
+0x251859c10:	movk	w2, #0x200, lsl #16
+0x251859c14:	bl	#0x258101eb0
+0x251859c18:	b	#0x251859c6c
+0x251859c1c:	adrp	x0, #0x26e7bf000
+0x251859c20:	add	x0, x0, #0xf30
+0x251859c24:	mov	w1, #0x5a
+0x251859c28:	movk	w1, #0x200, lsl #16
+0x251859c2c:	bl	#0x258101e40
+0x251859c30:	cbnz	w0, #0x251859bf0
+0x251859c34:	b	#0x251859c6c
+0x251859c38:	ldrb	w8, [x19, #0x2c0]
+0x251859c3c:	cbz	w8, #0x251859c4c
+0x251859c40:	add	x0, x19, #0x290
+0x251859c44:	bl	#0x2581091b0
+0x251859c48:	strb	wzr, [x19, #0x2c0]
+0x251859c4c:	add	x0, x19, #0x290
+0x251859c50:	mov	x1, x22
+0x251859c54:	mov	x2, x20
+0x251859c58:	bl	#0x2581091c0
+0x251859c5c:	mov	x20, x0
+0x251859c60:	cmp	w0, #0
+0x251859c64:	cset	w8, eq
+0x251859c68:	strb	w8, [x19, #0x2c0]
+0x251859c6c:	ldr	x0, [x19, #0xc8]
+0x251859c70:	bl	#0x25810b440
+0x251859c74:	mov	x0, x20
+0x251859c78:	ldp	x29, x30, [sp, #0x30]
+0x251859c7c:	ldp	x20, x19, [sp, #0x20]
+0x251859c80:	ldp	x22, x21, [sp, #0x10]
+0x251859c84:	add	sp, sp, #0x40
+0x251859c88:	retab	

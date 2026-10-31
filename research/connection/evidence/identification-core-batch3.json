@@ -1,0 +1,1744 @@
+{
+  "schema": 1,
+  "record_date": "2026-10-29",
+  "target": "iPhone18,1 / iOS 27.0.1 / 24A446",
+  "scope": "Android initial Identification core batch3; not complete feature validation or interoperability",
+  "source_root": "D:\\carvex-research\\android",
+  "source_files": [
+    {
+      "relative_path": "core/src/main/java/io/github/iamr0s/carvex/sessioncore/Connection.kt",
+      "sha256": "d4c00494e88f9fed10e20e6331577115f916ce4b349902e6e79457ae055c5ca6",
+      "bytes": 7737
+    },
+    {
+      "relative_path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/sessioncore/IapIdentifyInfo.kt",
+      "sha256": "2af3c815a4f84d7888e6ccfd290f3a92a4afc40b8868be111a9cad20293ee41c",
+      "bytes": 5139
+    },
+    {
+      "relative_path": "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/Bootstrap.kt",
+      "sha256": "e35003ca1c1fa3d2c2c6dfc625770928328bd49d746e39c2305c749799054648",
+      "bytes": 73743
+    },
+    {
+      "relative_path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/sessioncore/IapIdentifyInfoTest.kt",
+      "sha256": "90ac178227e20bbd7becfdb8b106dd5d1effa6695a785c27de8db80d1560eb67",
+      "bytes": 9479
+    },
+    {
+      "relative_path": "protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/BootstrapNegotiationTest.kt",
+      "sha256": "a508cb832ca51ea11b23f9526107bce4d4287b8571e4330dbac1d26fca7c3195",
+      "bytes": 63105
+    }
+  ],
+  "test_modules": [
+    {
+      "module": "protocol-carplay",
+      "suites": 103,
+      "tests": 741,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reports": [
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.AudioOutputIsolationTest.xml",
+          "sha256": "af983bf95031abfb74de91894dc90edcc0bb0b15e96e7726257eaae11ad74bae",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:35.654Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.AudioResourceOutputTest.xml",
+          "sha256": "9fe20133fcbc947d1e6041ffacfa602f5f55e0a682d78a48403cfce2df97467e",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:37.327Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.BootstrapConfigTest.xml",
+          "sha256": "b9f78519395f4cf63eed7ec5d8d3170a6d7002224a981a69381691be42ac80dc",
+          "tests": 25,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:37.882Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.BootstrapNegotiationTest.xml",
+          "sha256": "06e28cc720338bc1f86877c86ac9d3eb7eaaa505b17742c73e5c2d4285244da6",
+          "tests": 55,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:38.082Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.BootstrapSecurityTest.xml",
+          "sha256": "41cd5b803bd11fdf820a1690cb0b47b9d59fdbfa34e076518deaee5899478e2b",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.493Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.CompressedAudioTimestampTest.xml",
+          "sha256": "43675bdd55b3be4950bc809c0ce2646f9537f1c37b454defee8b377c5ef6e5bc",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.498Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AacConfigurationTest.xml",
+          "sha256": "f79c79461076ea2e1c23449ea0252d9c30fad7eecec8d33672a67668f0d89f53",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.781Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AccessoryChallengeTest.xml",
+          "sha256": "c1e42bf4d2beb706d70da4c2da9b1110d5728938f4e885984ad16fc44e2a06fb",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.785Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AirPlayFeaturesTest.xml",
+          "sha256": "4a12e1d40cbd5bf9ffe03928ccedd1115f0578efbd1fab794e2b0421aecf490f",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.990Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AppleAccessoryTrustTest.xml",
+          "sha256": "93ac80bd665e82ece3a954bbb835a07f160860d2bd2fd33afc82161d69f79472",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.996Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioCapabilitiesTest.xml",
+          "sha256": "38d9c7ae09ed2a186c29b37bd89a421b4c7aabd775a3163c0c4d641fdd3e4309",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.025Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioEncoderInputTest.xml",
+          "sha256": "3d4cc9cffa07ea8f4f407ffb62d5ac439c49756cadd038fdf3e114961daba0bc",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.030Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioEncoderOutputTest.xml",
+          "sha256": "6c6040b6a84944e7bdff593cfca77b45e1a2cc65448eff87cbe2accd10828447",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.049Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioLatencyCapabilitiesTest.xml",
+          "sha256": "75f7a7e479d93e6435e49ebf4eeabcbb7c7e82c0cf5351b73207427d24fe7f5f",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.052Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioOutputDiagnosticTest.xml",
+          "sha256": "6a0f2fa654a812f94baedff2a2367651dd51825f5a42e00a90e20362a4f70be4",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.062Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioPipelineTimingTest.xml",
+          "sha256": "eb17142aace5a2378db19af05676a5d70a3246f8a32b891cc28bf42fae9c5a9b",
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.083Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRedDiagnosticTest.xml",
+          "sha256": "95c85c24c7ba7dd4862841d689ae2a3a93fe908e66b0c3ad062e1f424abb334a",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.147Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRedundancyPolicyTest.xml",
+          "sha256": "c83c97f3a27de0f0ae93567cf57f69917374cf17756e5c2bd2b930171ffcf12e",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.167Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRetransmitProtocolTest.xml",
+          "sha256": "f50a3539d0243936d241e2363593595339a4e98b1cf87f920b747caa9aeb64ad",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.169Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRtpInputTest.xml",
+          "sha256": "4d8544ed9e26c9f9f019102afc53185c671fbe31d3a86888b36fcea1c282178e",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.187Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioRtpTimestampClockTest.xml",
+          "sha256": "2223b8dd64632b447f0880a3a5e80f584780ff7430530fc79f53a89e71a4efd6",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.196Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioSetupDescriptionTest.xml",
+          "sha256": "b6f939b2d7edacffda8fdf7921fd48443a1220b1e87719586fb662ec696c14ca",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.222Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioStreamLifecycleTest.xml",
+          "sha256": "cff62fa1813879f3b9163a990d5741f5a8cd90ba739c5b24cc26bff45516b8e9",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.227Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AudioTeardownDescriptorTest.xml",
+          "sha256": "9b6463b0c7bdf5c339036ac3e47007ff7421f7692e23d8f3e5b0a580ba9c19db",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.261Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AuthTrustTest.xml",
+          "sha256": "9b8b6e89e47cfebeca804ad49235fb93ff05124268b695867614ee86aff36962",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.264Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.AvcRecoveryConfigTest.xml",
+          "sha256": "cb943d1df3c623c9c1ce2f1a84ed5d54846b8ea56ae06d604b990aec5442ecaa",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.288Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.CarPlayAudioPlanTest.xml",
+          "sha256": "83425c74e4a0d3067a81d8fdd50fa22a32d0b6376b869c20a2007ad03730ca6f",
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.291Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.CarPlaySourceIdentityTest.xml",
+          "sha256": "3eac5de2cb0c0f0c8edddb07602e33cd6730a0d3b9a795047624165502ed1e5d",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.319Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.CarPlayTimingTest.xml",
+          "sha256": "1a2732d58040d47b4746ca80067870cb9a5aaec5710731d3ac5b6e4726c6a837",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.326Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.CompressedAudioContractTest.xml",
+          "sha256": "1dfffe5d3102513b76a617bff35b3ec7cee4f456e8ff7b9d3f8a258a7b8b76c4",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.330Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ControlReadDiagnosticsTest.xml",
+          "sha256": "67bd427d7051ef1cfbbf965a6b273d894b142a6f0a156e369551b3cec0e08e52",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.335Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ControlRecordBoundaryTest.xml",
+          "sha256": "cf07be3cef2e7c5c39f766d12c4f9810895bc22b58bb290b9cb919e7889e8234",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.376Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.DigitalAudioAndDestinationTest.xml",
+          "sha256": "68543c1bafd14661d0318265be55a41ab000dcf8c2ca9a0ef69ce5a09cb06d85",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.382Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.DisplayCapabilitiesTest.xml",
+          "sha256": "b9c82bf98613966f63d29d31a40ce198327bc7fac7d8bb75a188fbf4d01741ba",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.384Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.EaSessionPolicyTest.xml",
+          "sha256": "5f302a5fbc91effb4a4f97ff9f7a35d718420bd2496aa3d28a774a0eb25526f0",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.394Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ExperimentalAaPolicyTest.xml",
+          "sha256": "5798598382892b40ecb107b29e78925fb136e5e90a5b459b34f2633b38063bba",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.398Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ExperimentalHapV11Test.xml",
+          "sha256": "fab16b65dcdb52f36a5b6c72d72894cab9a26338110eb6c6ebb054fb171ddabc",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.502Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.FidTokenTest.xml",
+          "sha256": "1deb356da231be1f090f0c33693e37ae59710a44cdc79e2929936bf16c731feb",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.528Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidMediaKeysTest.xml",
+          "sha256": "e1085c75672fb67bb9a013a45037631f6d7758d9bf4c91c2f029021dcc471504",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.532Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidMixedPageTest.xml",
+          "sha256": "1d2764bc35493b6e0aa03dc1a877edbd098e1cfd9e36c86763f2f92ed265ce0c",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.535Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidTouchCompositeTest.xml",
+          "sha256": "40e11ab32e8098de5d0a3f461004fafd925a4c7ceb7961e6101e88e6641ca436",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.537Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidUsagesTest.xml",
+          "sha256": "5eb9c9c7437a0160d6d360e7650a93592d0a7b79c6292e379a607ec2fbc69ae5",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.541Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HidUsagesVendorDescriptorTest.xml",
+          "sha256": "342df419d0e61f95ea312a2a7156c2cc86f6fbc475b4aff6eef12d6287a9dae9",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.543Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.HomeKitBoundaryTest.xml",
+          "sha256": "c91d71024f061cdc6979e4829af8b795d86f2f57cc5f1a57837cda0d5716a90c",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.546Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapAuthenticationTest.xml",
+          "sha256": "5368b7608baa60a131609aa0de96a65bca4bb90e6c7bd82c6bd2a526ea8e5a13",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.579Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapCertificateTransactionTest.xml",
+          "sha256": "7efc6cdfe73248ba36282922aab3796cd092a8341e8b54f7016fc71a43d79b6b",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.583Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapFrameReaderTest.xml",
+          "sha256": "f4febd372aa6f20383a4c486fb4c5b01f6647e279962d8dc37efc9d63fa63822",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:44.602Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapLingoCatalogTest.xml",
+          "sha256": "5e0ff07561fa3e0f2de4df95a32c9aa625a90332b49a69d4275a393577d0136f",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:45.309Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapLingoTest.xml",
+          "sha256": "fb3eb763b01b937671f6e98af07469d39bdeff7914e097724632620509353267",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:45.313Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapLinkRestartTest.xml",
+          "sha256": "ac5060416633ee67de83358e5d760f943878785fad6efd6175b084bc9852df00",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:45.317Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapLinkSynchronizationTest.xml",
+          "sha256": "0f1b2a0c702b35e39368ed822b6f53a5aa32eb17772700c14dbc54d378e88bef",
+          "tests": 51,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:45.331Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapMessageRouterTest.xml",
+          "sha256": "c19f49d565ed870c7b01d38e1bd94a8a8eea7e3a07e3d9e82aa499a033b70e6f",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.307Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapPeerProfileTest.xml",
+          "sha256": "ec6167e0c6d013f4203841539250b4a90aba6916fa5ea7d15805b123e94447c6",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.309Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapStartupPolicyTest.xml",
+          "sha256": "437446bb907c9e75f1b20d7c0dffc3a13ec5a11c87cbf359b01eed33179d6926",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.311Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapTunnelTest.xml",
+          "sha256": "76dc4887f236ee353463b08c6e5b9acacaf31d44be9cac7f200cd7b73f51bf3b",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.313Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IapWirelessPairingTest.xml",
+          "sha256": "038686eb62a6f6e8be7e146c65e4769c0cba18a9816e7aa0869d3f74b6411182",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.316Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.InvitationIdentityTest.xml",
+          "sha256": "c1684e16061e6298bc4c872777b93e84757876d6219b51c4828870e6de4a64b9",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.318Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.IpLiteralTest.xml",
+          "sha256": "a1fd449f89005570e37279b6c297a628a60edc39deb97f6b36197633496ac793",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.320Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.LocationNmeaTest.xml",
+          "sha256": "5bc56575742fb9b783c97984b77ccd8e2ec84bce3aaefe7aece11413c85577f7",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.323Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MainAudioResourceModesTest.xml",
+          "sha256": "2afc0ffa00b393e45eaff2ecc99e0746f7c9b763f536f3b3d0b678ee7f85c002",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.325Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MediaAudioPacketsTest.xml",
+          "sha256": "9822bfa2cfae69ebec1c21922887867330c8e43ccec17f1213c8fd8ce9f39fb2",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.327Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MediaLibraryTest.xml",
+          "sha256": "cad50af0a579919caf7d4d7c7dbd000181b5d3b5f5e2c919d19cbadc4493a12f",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.330Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MfiSignatureTest.xml",
+          "sha256": "e775d42d08bb7ab47bdf61b9e574b8fd571bd378fe9da8e485d3bb8386a2491d",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.333Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.MicrophoneCodecPolicyTest.xml",
+          "sha256": "2bde33bcd25403a8190cef0bf08a6ca51bbdc39b1fbc8a144d4d2a93cda9743f",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.532Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.NavigationGuidanceTest.xml",
+          "sha256": "8a280d6dc8bb2285560c3a9663ca81dcf0d7ef6e4d6ce5cf5b190967eb7a4df5",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.533Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.NowPlayingUpdateTest.xml",
+          "sha256": "be46a8622879adf76e9f16a9eff5d233cbd197f1af3f99b590a54d199a4a8c82",
+          "tests": 13,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.541Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PairAliasTest.xml",
+          "sha256": "4639701e7c102920ee57ae906ea8583ab03739123bc236a872472ecac79cc6e3",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.550Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PairingResponsesTest.xml",
+          "sha256": "d7a3affa38d184246958b412011179fc1055d34ee44ac10fed506d8a3f4d9f51",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.605Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PairRecordsTest.xml",
+          "sha256": "5a1b9feeaf8fdc3d84f66f2b94305c3a56726e5efd51c6f665a83c11bb92204a",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.553Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PairSetupSrpTest.xml",
+          "sha256": "e15a6f9bf7e4a623cac1f5d1c62c4c29c3480962970ad812886fbbbef2baa4fb",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.557Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.PhoneSubscriptionsTest.xml",
+          "sha256": "a804ca57dd9df4256f62496d13b5358bd875ab1d626bab667811657e6ba77df8",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.612Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ProjectionGeometryTest.xml",
+          "sha256": "8d4d980c2d860b71b9bf584d363d1c8e22d6b0e2e167c95333ae85a1c697cac4",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.615Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ProtocolCompatibilityTest.xml",
+          "sha256": "e97fb4bfb32480dd95c0fe5534adf51cb3506f2bca954b5f54f0c4409b437704",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.618Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.RtspClientTest.xml",
+          "sha256": "c1b7c6a2eb27d4343f308bbbc9820718cab80818c8c971d19f6ab8a9159f647f",
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.622Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.RuntimeIapTest.xml",
+          "sha256": "f1628f0ed342b21c7169596b6fd463c9ede0a5b978521913d3e778feb7411a83",
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.704Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.ScreenResourceModesTest.xml",
+          "sha256": "59106b22695b6ea4b59e68c79a1e813e234da44ec3c7cfb5a58283ebc17ada3d",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.737Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SecurityRoutingTest.xml",
+          "sha256": "53641480fbc8181d9c5ec25fcdde11a73ba291ce9f15104d9a969a4d15d833b6",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.740Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SessionEventGateTest.xml",
+          "sha256": "f7cecb1f34465186dfc2f4b5b99cc5e4096b9703574ceb841ea6f0a899a7b69a",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.745Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SiriRequestsTest.xml",
+          "sha256": "731c77469dcdb317d071917db53694b61edf119b92c57f71cc7b74dd110d9932",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.750Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SpeechPcmDiagnosticTest.xml",
+          "sha256": "5f18d2d8b237ee3fd9fd3cfaa9321cb1304adaa92e868d282831a589dbe2c536",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.754Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.SurfaceFrameTimelineTest.xml",
+          "sha256": "5f41a616285c135c95e3c0325f474868f03de9f2dd19e08ff646f9f17c01e13c",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.757Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.U2iwHidReportCodecTest.xml",
+          "sha256": "45199a8b5a4dc7f12b4b398977543efb42bd4be7b39640551268a33256dd5b4b",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.759Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.UsbEp0RolePolicyTest.xml",
+          "sha256": "d53434d2c0b7318390ebb17dc0e208fed4366632b1c804807ea7491c87f52b32",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.763Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VehicleRegressionTest.xml",
+          "sha256": "6ae7669ee056fb91b107ed0666c39ffd4a4fd3f5b2fd4b7791cd3ca9e718821e",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.767Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoDeliveryGateTest.xml",
+          "sha256": "d99f47024403be86f02bc3a25583ba02b4389800340e7ad469c25c0c2848f406",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.770Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoDiagnosticLogTest.xml",
+          "sha256": "c639f3171b36e76061e12eb35e9cd53432c0e64ded374256ef77737b84b74ff9",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.771Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoIdleHeartbeatTest.xml",
+          "sha256": "6c13874f88e3007b47b7967654cfccb442ecf3bc6d66d34761953633f0b6e793",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.772Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoRatePolicyTest.xml",
+          "sha256": "0589bbf01e2bb4221edbee28b81ca7140630e5a0fca1fcb93c14ee4348c0b58c",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.774Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoSendDiagnosticsTest.xml",
+          "sha256": "3066c68450fda1cc2bce458ee97f897e70787347712aa04e7629a66a4356c642",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.777Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.VideoTcp128Test.xml",
+          "sha256": "9afce12cdd7409a84cba0a1ffc895e61c6c0cd9d455f37e89955cf58ebcb60f3",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.794Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.WifiAnnouncementTest.xml",
+          "sha256": "093d9b9a4d86a869795303843d4e0556a26421232a1d882ab3d2f9ead0d43262",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.796Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.WireTest.xml",
+          "sha256": "ee2fc0fb30f8014cd48864684b8746dda884fe9b60d10a7bf02d22924969ac60",
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:47.803Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.core.WriteDeadlineTest.xml",
+          "sha256": "4dcc4fc07efa5ec8495bbeebc81d709093ef805aa499d8e85bdb7e9c231bece0",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:48.215Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.ExperimentalHapDiscoveryTest.xml",
+          "sha256": "1679664452484341bafeb349c848678b9808eea4ccfa9b0286e682456d2a30b6",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.708Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.HidKeyRegistryTest.xml",
+          "sha256": "9737b007618af5494d46f26c6a7cdff8b0a43901673bb56cbbbc2c15c7e47643",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.722Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.NetworkAddressCandidatesTest.xml",
+          "sha256": "16163ba18d0cd65d9f3b9766ff0cb4525dc1485cdce03affc550a1115f7765e1",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.738Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.NetworkBindingTest.xml",
+          "sha256": "97a5470ec5ae45897560830dac7633d08375c487f7af0e2c7fac441f1b56bfbf",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.760Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.carplay.ReceiverDiscoveryScopeTest.xml",
+          "sha256": "7872f47cabd391ade69f4ef3737d92af062960a3dc16eecdcd35a4cbe9506734",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:43.778Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.AcceptedIdentificationTest.xml",
+          "sha256": "ecd6b789f984feef3e2c3c9850146fbedcef611c39c5e3901205dc6e617122fe",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:48.217Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.AudioDemandGateTest.xml",
+          "sha256": "6f34c4bbd9e43226eefbfc319fc8c625dc8a8a961ba420ed1716edf42c527ab5",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:48.277Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.IapIdentificationUpdateTest.xml",
+          "sha256": "953479773d9244b634b734687d36b5250d985da57af6eea5d4c94122b31f7495",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:48.294Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.IapIdentifyInfoTest.xml",
+          "sha256": "5e64535c6ce3a5aa60376948b4bdca0bfe593354448a0b4df614860eb1143031",
+          "tests": 20,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:48.297Z"
+        },
+        {
+          "relative_path": "protocol-carplay/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.PeerNegotiationControllerTest.xml",
+          "sha256": "3fc74ccbd101f715ae6c275e50baf17c40596dfa5388e32a212165ba75b4971d",
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:48.303Z"
+        }
+      ]
+    },
+    {
+      "module": "core",
+      "suites": 12,
+      "tests": 79,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reports": [
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.BluetoothAddressCaseTest.xml",
+          "sha256": "ed829814a19050e698a6fe0a29e55dc89e2a70118f93a72d350665ed5a4cb47c",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:35.314Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.ConnectionModeTest.xml",
+          "sha256": "512bb978fe97c245c55df7ccddf02d0a3f6b8cc5e9b2735b2db1af024f12071e",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:35.347Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.DeviceNameResolutionTest.xml",
+          "sha256": "b7f38baab7e372988686f72ab1d819fa3525ce4c83511a083de6a2baba17d739",
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:35.356Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.DiagnosticLogTextTest.xml",
+          "sha256": "7a5d12e416bcf376664df2064ff3921154c81a9f267360cf43a0c19fdd37896c",
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:35.365Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.HandoffSupervisorTest.xml",
+          "sha256": "1dde84410e988201206203362600bfaaf949007ad10309b8fe3dc9960778e4b9",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:35.670Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.HostAudioBridgeTest.xml",
+          "sha256": "ba1732738e04c537aefae59c8d45f2f244c7ba20e2834973b7231ace42a7b69f",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:35.717Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.MainAudioOwnershipTest.xml",
+          "sha256": "72ab37cfad134905ab1eb64a219b939fde04941b891691bd7f29e7b448ca716c",
+          "tests": 11,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:35.993Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.ProtocolTraceTest.xml",
+          "sha256": "fdfa27e4f1138f158e8ef905756f103f0874d736144a54130dbf535f4454a90c",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:36.008Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.ResourcesTest.xml",
+          "sha256": "bfd323fa8620b6c085538944769c4a6c8744439212a95b3763b9d43151f847cb",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:36.012Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.SpeechOutputOptionsTest.xml",
+          "sha256": "74a5c2a4a61bb61d3da1e726992b70e70b42272990195a18179222a655b8dd11",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:36.016Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.UsbPhoneHostAdapterTest.xml",
+          "sha256": "0f81ca02afc24adb21b51d4e9298d7dc17a79627e096aa509dc039d99f213266",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:36.026Z"
+        },
+        {
+          "relative_path": "core/build/test-results/testDebugUnitTest/TEST-io.github.iamr0s.carvex.sessioncore.VoiceButtonToggleTest.xml",
+          "sha256": "5ced0d4a49c4082cdfc2ffd4dcf0541407f486dde4bd53bd6375cc7d7ca5f2e6",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "timestamp": "2026-10-29T09:30:36.042Z"
+        }
+      ]
+    }
+  ],
+  "original": {
+    "source": "D:\\carvex-research\\firmware\\extracted\\24A446\\components\\24A446__iPhone18,1\\root\\System\\Library\\PrivateFrameworks\\CoreAccessories.framework\\Support\\accessoryd",
+    "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+    "tool_sha256": "dfa5e53964d811113f39e41a718380b043caff8c4f0217d154094817ca6396dc",
+    "functions": [
+      {
+        "address": "0x100067ee4",
+        "length": 76,
+        "file_offset": 425700,
+        "sha256": "19f5f5bc9d08b6038e6324fb3898466959841e43484378da1d3c7e8f23753c62",
+        "symbols": [
+          "",
+          "_iAP2MsgGetDataAsString",
+          "",
+          "_iAP2MsgGetDataAsString"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 19
+      },
+      {
+        "address": "0x1000f2bac",
+        "length": 104,
+        "file_offset": 994220,
+        "sha256": "4a58903f0a603d259987c6acf25e94370dc121de3cfa51e1fa7bb1f00155106f",
+        "symbols": [
+          "",
+          "_iAP2MsgCopyDataAsCFString",
+          "",
+          "_iAP2MsgCopyDataAsCFString"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 26
+      },
+      {
+        "address": "0x10004f0d4",
+        "length": 384,
+        "file_offset": 323796,
+        "sha256": "f45b99031812ec27db340981cc8e87ed603680d1ee2aa10773485c5b115e951d",
+        "symbols": [
+          "",
+          "_iap2_identification_processStringParam",
+          "",
+          "_iap2_identification_processStringParam"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 96
+      },
+      {
+        "address": "0x1000512e8",
+        "length": 1160,
+        "file_offset": 332520,
+        "sha256": "1ffe2ab259762fcd0fccfa69489e707e34a58980a0405bf6b63fb1a05751bfb1",
+        "symbols": [
+          "__parseIdentificationParams",
+          "",
+          "__parseIdentificationParams",
+          ""
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 290
+      },
+      {
+        "address": "0x10013adf0",
+        "length": 224,
+        "file_offset": 1289712,
+        "sha256": "af00bb6c1a449ef2269ff960cb230e74278fb35eea26fc43e0ac5fc697423cbd",
+        "symbols": [
+          "",
+          "_iap2_identification_processMessagesSet",
+          "",
+          "_iap2_identification_processMessagesSet"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 56
+      },
+      {
+        "address": "0x10013aed0",
+        "length": 788,
+        "file_offset": 1289936,
+        "sha256": "e835c69acfc3c4c3f00ccdc99749477c7774a8c69ce635c4a0f69d9973e15a51",
+        "symbols": [
+          "",
+          "_iap2_identification_cbIdentificationInfoParams",
+          "",
+          "_iap2_identification_cbIdentificationInfoParams"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 197
+      },
+      {
+        "address": "0x10013bc5c",
+        "length": 108,
+        "file_offset": 1293404,
+        "sha256": "5f019f69600d421691b0af0263d9b228601fbda0ce4f960f3a9120709517ee39",
+        "symbols": [
+          "",
+          "__CFSetValidateRequiredIdentificationParamsApplierFunction",
+          "",
+          "__CFSetValidateRequiredIdentificationParamsApplierFunction"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 27
+      },
+      {
+        "address": "0x10013bcc8",
+        "length": 1060,
+        "file_offset": 1293512,
+        "sha256": "5265716a10600e7b85d22168a5ecca684497351484144f14d1069ce73deaad01",
+        "symbols": [
+          "",
+          "_iap2_identification_identificationInfoHandler",
+          "",
+          "_iap2_identification_identificationInfoHandler"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 265
+      },
+      {
+        "address": "0x10006782c",
+        "length": 348,
+        "file_offset": 423980,
+        "sha256": "7e1fc16e9b1605ebcc743a99c298c5ddd65996b774f8401803e38902462bf6b3",
+        "symbols": [
+          "",
+          "_iAP2MsgForEachParamDo",
+          "",
+          "_iAP2MsgForEachParamDo"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 87
+      },
+      {
+        "address": "0x10006a3e4",
+        "length": 556,
+        "file_offset": 435172,
+        "sha256": "f59443759e4dfebad8f79b4d8d98c73a6a3c071aa12b9bb5913c32367edda627",
+        "symbols": [
+          "",
+          "_iap2_features_registerIdentificationParamHandlers",
+          "",
+          "_iap2_features_registerIdentificationParamHandlers"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 139
+      },
+      {
+        "address": "0x10013c788",
+        "length": 384,
+        "file_offset": 1296264,
+        "sha256": "420eb3dfdd1c54f76534a155160b6d5f65515796c9d6e03574467dd28aaee5ff",
+        "symbols": [
+          "",
+          "_iap2_identification_setRequiredIdentificationParam",
+          "",
+          "_iap2_identification_setRequiredIdentificationParam"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 96
+      },
+      {
+        "address": "0x10004e91c",
+        "length": 288,
+        "file_offset": 321820,
+        "sha256": "622c3ba91c59d3b22c03f6d1d885cdbe5a5e5dedf0eb178355c34000576d6d84",
+        "symbols": [
+          "",
+          "__addRejectParam",
+          "",
+          "__addRejectParam"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 72
+      },
+      {
+        "address": "0x100067ce0",
+        "length": 76,
+        "file_offset": 425184,
+        "sha256": "1f31959686ae20a6f14ae15e4537271b978982481210cb818929de2cc0991c77",
+        "symbols": [
+          "",
+          "_iAP2MsgAddVoidParam",
+          "",
+          "_iAP2MsgAddVoidParam"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 19
+      },
+      {
+        "address": "0x100003a68",
+        "length": 176,
+        "file_offset": 14952,
+        "sha256": "c81d4d9e5d099d27a42a05d81b4d27bfbb9777881b167513a6ca98eaa13c72fa",
+        "symbols": [
+          "",
+          "_iAP2MsgInitParam",
+          "",
+          "_iAP2MsgInitParam"
+        ],
+        "cache_matches": true,
+        "decoded_instructions": 44
+      }
+    ],
+    "registration": [
+      {
+        "address": "0x10021a810",
+        "length": 24,
+        "file_offset": 2205712,
+        "sha256": "cf937fa868f1511c53f305506dcbf4c424c9cbf051a44d78ad1afb1e6dd379a8",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 0,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0000000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a828",
+        "length": 24,
+        "file_offset": 2205736,
+        "sha256": "17078e86ed055ef6ed8e58375f4b57b6460ed86a383ffc204c73fbb59c33984a",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 1,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0100000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a840",
+        "length": 24,
+        "file_offset": 2205760,
+        "sha256": "9ad336059dca5ca2b514dc6fb06f6483ce7a040a101004b065eb530846922fe0",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 2,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0200000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a858",
+        "length": 24,
+        "file_offset": 2205784,
+        "sha256": "048a87315b88eb7655fe7e0a8c6960dc90c97992362080b4fb1d25b678a96474",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 3,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0300000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a870",
+        "length": 24,
+        "file_offset": 2205808,
+        "sha256": "b178ce4b9889ea29525835ab869f3d1ff0ec756bf567e3b0ce7369a2a82ce41e",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 4,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0400000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a888",
+        "length": 24,
+        "file_offset": 2205832,
+        "sha256": "a41a934b1bae9864187eb00c6c1ef7e1c10fe94460318532f1155154a52fd190",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 5,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0500000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a8a0",
+        "length": 24,
+        "file_offset": 2205856,
+        "sha256": "ef5a599331705a9f4c4320d0cd261abe9d939be3a075c62b6bb5c47346a80c01",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 6,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0600000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a8b8",
+        "length": 24,
+        "file_offset": 2205880,
+        "sha256": "0d8e193d0b86152b7b91d85a7e3e8360ff993ccf2cc987f0a1c7cacb19eaae70",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 7,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0700000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a8d0",
+        "length": 24,
+        "file_offset": 2205904,
+        "sha256": "711d3df2c38e71cedabbce3448d3f075620da7077c52d83d73683bf992888698",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 12,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0c00000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a8e8",
+        "length": 24,
+        "file_offset": 2205928,
+        "sha256": "accd14cd52f66f25c5cc81f00a1f0461f3f42ce377a3ec8713e89e01726e5b28",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 13,
+        "callback": "0x1000512e8",
+        "required": 1,
+        "raw_hex": "0d00000000000000e8120500000018800100000000000000"
+      },
+      {
+        "address": "0x10021a900",
+        "length": 24,
+        "file_offset": 2205952,
+        "sha256": "9904b0a801b105afe77568059127244d892159fd31bc9e13d4d89820b99b2408",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 14,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "raw_hex": "0e00000000000000e8120500000018800000000000000000"
+      },
+      {
+        "address": "0x10021a918",
+        "length": 24,
+        "file_offset": 2205976,
+        "sha256": "1cae4b975997481432628b045e42398301629b29e4d325a97c9b8650f1abd96f",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 15,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "raw_hex": "0f00000000000000e8120500000018800000000000000000"
+      },
+      {
+        "address": "0x10021a930",
+        "length": 24,
+        "file_offset": 2206000,
+        "sha256": "bbceac7bfcef2886930540dbae30960b2c2ac3c7414e92c991e180eef034339b",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 16,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "raw_hex": "1000000000000000e8120500000018800000000000000000"
+      },
+      {
+        "address": "0x10021a948",
+        "length": 24,
+        "file_offset": 2206024,
+        "sha256": "ccab950e23a962dc2cdf4c6ce89fd1369451ec5aa6ecfbf87a618ae7e4498022",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 17,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "raw_hex": "1100000000000000e8120500000018800000000000000000"
+      },
+      {
+        "address": "0x10021a960",
+        "length": 24,
+        "file_offset": 2206048,
+        "sha256": "2064c7d81999b3962fc26a27873c070f29c472dca113beb493b00ad1078f43ce",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 24,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "raw_hex": "1800000000000000e8120500000018800000000000000000"
+      },
+      {
+        "address": "0x10021a978",
+        "length": 24,
+        "file_offset": 2206072,
+        "sha256": "d19c5452d21d2039d69a5d7f0bd6cd7fb96cc3cebe81d401a3fff954f18bd8a4",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 26,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "raw_hex": "1a00000000000000e8120500000018800000000000000000"
+      },
+      {
+        "address": "0x10021a990",
+        "length": 24,
+        "file_offset": 2206096,
+        "sha256": "23a29d431bd0a9596f8013baa94de2dcb251a319ae9a4f1a42a115fed4a8e5de",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 19,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "raw_hex": "1300000000000000e8120500000018800000000000000000"
+      },
+      {
+        "address": "0x10021a9a8",
+        "length": 24,
+        "file_offset": 2206120,
+        "sha256": "2c333e2129b30c4e9192394bfe6012007dff2e19d03d2dd81d2f2dae0938d950",
+        "descriptor": "0x10021a778",
+        "feature": 1,
+        "id": 34,
+        "callback": "0x1000512e8",
+        "required": 0,
+        "raw_hex": "2200000000000000e8120500000020800000000000000000"
+      },
+      {
+        "address": "0x10021f1a8",
+        "length": 24,
+        "file_offset": 2224552,
+        "sha256": "547189dba4644a7314737431990a8f8421cf159164cda275b044801605760fe9",
+        "descriptor": "0x10021ef20",
+        "feature": 16,
+        "id": 8,
+        "callback": "0x1000c07a8",
+        "required": 1,
+        "raw_hex": "0800000000000000a8070c00000018800100000000000000"
+      },
+      {
+        "address": "0x10021f1c0",
+        "length": 24,
+        "file_offset": 2224576,
+        "sha256": "2dd232d1440fbd3580094c868140de5345322a4b7bab4f5efa12e2207baa914a",
+        "descriptor": "0x10021ef20",
+        "feature": 16,
+        "id": 9,
+        "callback": "0x1000c07a8",
+        "required": 1,
+        "raw_hex": "0900000000000000a8070c00000018800100000000000000"
+      },
+      {
+        "address": "0x10021f1d8",
+        "length": 24,
+        "file_offset": 2224600,
+        "sha256": "9e28bb7426986d00581394253699e390488a3a2a98d0cdb5c2504d39c9a861b0",
+        "descriptor": "0x10021ef20",
+        "feature": 16,
+        "id": 240,
+        "callback": "0x1000c07a8",
+        "required": 0,
+        "raw_hex": "f000000000000000a8070c00000018800000000000000000"
+      },
+      {
+        "address": "0x10021f1f0",
+        "length": 24,
+        "file_offset": 2224624,
+        "sha256": "91965175a24d463d0ec09a903d81fba3b7359ae76e41f33dc8ef0e5e808c9801",
+        "descriptor": "0x10021ef20",
+        "feature": 16,
+        "id": 241,
+        "callback": "0x1000c07a8",
+        "required": 0,
+        "raw_hex": "f100000000000000a8070c00000018800000000000000000"
+      },
+      {
+        "address": "0x10021f208",
+        "length": 24,
+        "file_offset": 2224648,
+        "sha256": "f61bb66a5b7549d5de61217f07c3cb02cd715897f6e399f9ca81892678b67089",
+        "descriptor": "0x10021ef20",
+        "feature": 16,
+        "id": 25,
+        "callback": "0x1000c07a8",
+        "required": 0,
+        "raw_hex": "1900000000000000a8070c00000020800000000000000000"
+      },
+      {
+        "address": "0x10021a0f0",
+        "length": 24,
+        "file_offset": 2203888,
+        "sha256": "1d79b7acf81d8b5ac892d4b1cf3910ea37788bf01e5a9ff729b5ef1b19fa9a79",
+        "descriptor": "0x10021a008",
+        "feature": 11,
+        "id": 18,
+        "callback": "0x100043cc8",
+        "required": 0,
+        "raw_hex": "1200000000000000c83c0400000018800000000000000000"
+      },
+      {
+        "address": "0x10021a108",
+        "length": 24,
+        "file_offset": 2203912,
+        "sha256": "ce232b97e696857969b3b6959a6bdc416e05dc9c7d02c3f37d7024ef8fa96d5c",
+        "descriptor": "0x10021a008",
+        "feature": 11,
+        "id": 23,
+        "callback": "0x100044124",
+        "required": 0,
+        "raw_hex": "170000000000000024410400000018800000000000000000"
+      },
+      {
+        "address": "0x10021a120",
+        "length": 24,
+        "file_offset": 2203936,
+        "sha256": "785a8da6e0e702ed618ff77e482a6205d06b53191acc041b6fe98988f4feb654",
+        "descriptor": "0x10021a008",
+        "feature": 11,
+        "id": 29,
+        "callback": "0x1000446fc",
+        "required": 0,
+        "raw_hex": "1d00000000000000fc460400000020800000000000000000"
+      },
+      {
+        "address": "0x10021d278",
+        "length": 24,
+        "file_offset": 2216568,
+        "sha256": "351daacaa8b12ea48a9380cdc21cf16918fe298f72895b006265bfe710b8fbba",
+        "descriptor": "0x10021d200",
+        "feature": 10,
+        "id": 10,
+        "callback": "0x10009fba8",
+        "required": 0,
+        "raw_hex": "0a00000000000000a8fb0900000018800000000000000000"
+      },
+      {
+        "address": "0x10021d290",
+        "length": 24,
+        "file_offset": 2216592,
+        "sha256": "af63d207ebe5a9988cb7ee8fab832ea91ecf46d30f09a6411f5c994575b831bf",
+        "descriptor": "0x10021d200",
+        "feature": 10,
+        "id": 11,
+        "callback": "0x1000a02d0",
+        "required": 0,
+        "raw_hex": "0b00000000000000d0020a00000020800000000000000000"
+      },
+      {
+        "address": "0x10021e270",
+        "length": 24,
+        "file_offset": 2220656,
+        "sha256": "7d816c454ae14f818624670ead8a8ec84d793c6e6d1a74d7db9829844846f7f1",
+        "descriptor": "0x10021e218",
+        "feature": 20,
+        "id": 20,
+        "callback": "0x1001676f4",
+        "required": 0,
+        "raw_hex": "1400000000000000f4761600000018800000000000000000"
+      },
+      {
+        "address": "0x10021e288",
+        "length": 24,
+        "file_offset": 2220680,
+        "sha256": "ec94011e3a111efc24755c391035e09c8da31d86d7c500d196229c1c1bc733e7",
+        "descriptor": "0x10021e218",
+        "feature": 20,
+        "id": 21,
+        "callback": "0x1001676f4",
+        "required": 0,
+        "raw_hex": "1500000000000000f4761600000020800000000000000000"
+      },
+      {
+        "address": "0x10021f780",
+        "length": 24,
+        "file_offset": 2226048,
+        "sha256": "26f3a0f54e35ae18f1a47a80d7411d567bbb92ab55e0ec79910ea74d13d3bfc8",
+        "descriptor": "0x10021f728",
+        "feature": 12,
+        "id": 22,
+        "callback": "0x1000c97ac",
+        "required": 0,
+        "raw_hex": "1600000000000000ac970c00000020800000000000000000"
+      },
+      {
+        "address": "0x10021f650",
+        "length": 24,
+        "file_offset": 2225744,
+        "sha256": "603fff8337147d83b06a6d01814220d13300416b24e8e9e16bcdf5168b08435f",
+        "descriptor": "0x10021f5b8",
+        "feature": 17,
+        "id": 30,
+        "callback": "0x1000c5704",
+        "required": 0,
+        "raw_hex": "1e0000000000000004570c00000018800000000000000000"
+      },
+      {
+        "address": "0x10021f668",
+        "length": 24,
+        "file_offset": 2225768,
+        "sha256": "7d489421b763f89b8ec50cf0297387edcefa24ce36a3c240bfc102622a3d6d75",
+        "descriptor": "0x10021f5b8",
+        "feature": 17,
+        "id": 33,
+        "callback": "0x1000c5704",
+        "required": 0,
+        "raw_hex": "210000000000000004570c00000020800000000000000000"
+      },
+      {
+        "address": "0x1002219d8",
+        "length": 24,
+        "file_offset": 2234840,
+        "sha256": "d9f636de9593d1b95ab9812d4a62824260e6132a1fdd063f1841c9b097082977",
+        "descriptor": "0x1002219b0",
+        "feature": 27,
+        "id": 38,
+        "callback": "0x100103ab8",
+        "required": 0,
+        "raw_hex": "2600000000000000b83a1000000020800000000000000000"
+      }
+    ],
+    "required_registration_order": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      12,
+      13,
+      8,
+      9
+    ],
+    "firmware_executed": false,
+    "full_branch_coverage": false,
+    "limitations": [
+      "Registry for this build only; not a future-version promise.",
+      "CF conversion/equality and allocation failures not executed.",
+      "Other registered feature callbacks remain separately audited/deferred."
+    ]
+  },
+  "validation": {
+    "result": "BUILD SUCCESSFUL",
+    "full_command": ".\\gradlew.bat :protocol-carplay:testDebugUnitTest :core:testDebugUnitTest :app:compileXiaomiDebugKotlin --no-configuration-cache",
+    "total_tests": 820,
+    "targeted_subset": 94,
+    "compile_xiaomi_debug_kotlin": "PASS; actually executed along with bridge",
+    "test_execution": "Both module test tasks actually executed",
+    "git_diff_check": "PASS; existing CRLF warnings",
+    "packaging": "NOT_RUN",
+    "installation": "NOT_RUN",
+    "headunit": "NOT_RUN"
+  },
+  "limits": [
+    "Core0..7/12/13/34 only; other registered feature inputs are deferred, not counted as success.",
+    "Power8/9 required-success remains unimplemented in production; full feature and component gates remain incomplete.",
+    "Unknown classification is the fixed 24A446 registry, not all future versions.",
+    "JVM UTF-8/equality and stable collection ordering are not a CF runtime equivalence claim.",
+    "Original snapshots preserved; current files include existing dirty worktree changes."
+  ]
+}

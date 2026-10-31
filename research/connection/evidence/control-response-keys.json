@@ -1,0 +1,344 @@
+{
+  "build": "24A446",
+  "scope": "AP-U05: exact response keys and selected consumer/guard code provenance",
+  "method": "Original cache mapping+v5 pointer decoding; no old field-resolution JSON input; not execution",
+  "keys": [
+    {
+      "slot": "0x268104150",
+      "pointer_chain": [
+        {
+          "storage": {
+            "address": "0x268104150",
+            "bytes": 8,
+            "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+            "file_offset": 246096,
+            "sha256": "4e53ef6b3c4156d58a1caedad30a62f5cf8ef403252b87d432a52c5047eea87a",
+            "raw_hex": "e85ba9e800001000"
+          },
+          "raw_u64": "0x100000e8a95be8",
+          "target": "0x268a95be8",
+          "v5_value_add": "0x180000000",
+          "interpretation": "v5: value_add + low34; unauth high8 restored"
+        },
+        {
+          "storage": {
+            "address": "0x268a95be8",
+            "bytes": 8,
+            "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+            "file_offset": 10279912,
+            "sha256": "83320a930b0489b76db4c32a842270a8e0e6c6ab078c8d439e48a1e5f84d98da",
+            "raw_hex": "2032d5f300001000"
+          },
+          "raw_u64": "0x100000f3d53220",
+          "target": "0x273d53220",
+          "v5_value_add": "0x180000000",
+          "interpretation": "v5: value_add + low34; unauth high8 restored"
+        }
+      ],
+      "cfstring_header": {
+        "address": "0x273d53220",
+        "bytes": 32,
+        "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 164147744,
+        "sha256": "0d7c1e9935e4ecf2699274dac53b7145ecfa4befa9a0cac6b6248d4a78e42aaa",
+        "raw_hex": "c08bf06684ab2d80c807000000000000ef85f4a6000020000400000000000000"
+      },
+      "length": 4,
+      "characters_pointer": {
+        "storage": {
+          "address": "0x273d53230",
+          "bytes": 8,
+          "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+          "file_offset": 164147760,
+          "sha256": "562e9ca2e91a671385ba263571c42014ca9d38f7c46dada8ebbf8dc532aa8cdd",
+          "raw_hex": "ef85f4a600002000"
+        },
+        "raw_u64": "0x200000a6f485ef",
+        "target": "0x226f485ef",
+        "v5_value_add": "0x180000000",
+        "interpretation": "v5: value_add + low34; unauth high8 restored"
+      },
+      "characters": {
+        "address": "0x226f485ef",
+        "bytes": 5,
+        "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+        "file_offset": 112494063,
+        "sha256": "75ff72438039e86074c37592a7353396a896c714e0bd20b3d7b602e59e3576ef",
+        "raw_hex": "696e666f00"
+      },
+      "value": "info"
+    },
+    {
+      "slot": "0x268104158",
+      "pointer_chain": [
+        {
+          "storage": {
+            "address": "0x268104158",
+            "bytes": 8,
+            "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+            "file_offset": 246104,
+            "sha256": "db2bb8fde0d1d2507686716d86a9db7ef318e499fd3f67efe2f6a8a84e9ad7bf",
+            "raw_hex": "f05ba9e800001000"
+          },
+          "raw_u64": "0x100000e8a95bf0",
+          "target": "0x268a95bf0",
+          "v5_value_add": "0x180000000",
+          "interpretation": "v5: value_add + low34; unauth high8 restored"
+        },
+        {
+          "storage": {
+            "address": "0x268a95bf0",
+            "bytes": 8,
+            "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+            "file_offset": 10279920,
+            "sha256": "b534aedc89ef91cd1489377c3657d080442bcd210efb4bb8094e15916a631933",
+            "raw_hex": "6032d5f300001000"
+          },
+          "raw_u64": "0x100000f3d53260",
+          "target": "0x273d53260",
+          "v5_value_add": "0x180000000",
+          "interpretation": "v5: value_add + low34; unauth high8 restored"
+        }
+      ],
+      "cfstring_header": {
+        "address": "0x273d53260",
+        "bytes": 32,
+        "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+        "file_offset": 164147808,
+        "sha256": "a2f9a14f2e0e586913d52735eb7abc35e9aeb964332b37bf7076d8cbcbd55942",
+        "raw_hex": "c08bf06684ab2d80c807000000000000fe85f4a6000020000a00000000000000"
+      },
+      "length": 10,
+      "characters_pointer": {
+        "storage": {
+          "address": "0x273d53270",
+          "bytes": 8,
+          "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+          "file_offset": 164147824,
+          "sha256": "a4c3d43d6354a62be0e64832543eeaea730d9db41ea18d1c6e2470ce23c4b864",
+          "raw_hex": "fe85f4a600002000"
+        },
+        "raw_u64": "0x200000a6f485fe",
+        "target": "0x226f485fe",
+        "v5_value_add": "0x180000000",
+        "interpretation": "v5: value_add + low34; unauth high8 restored"
+      },
+      "characters": {
+        "address": "0x226f485fe",
+        "bytes": 11,
+        "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+        "file_offset": 112494078,
+        "sha256": "6ffae88ffb81376c5e8387c45b418df82aee37ab0c119d589a033670c45778cf",
+        "raw_hex": "736b69705265636f726400"
+      },
+      "value": "skipRecord"
+    }
+  ],
+  "imports": [
+    {
+      "entry": {
+        "address": "0x25810a710",
+        "bytes": 16,
+        "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.49",
+        "file_offset": 108304,
+        "sha256": "f22a589e9f397a191bf014abc2fbda67f17c62cc4b9ea9605f56ced11bf6abfc",
+        "raw_hex": "70e999d010c2379100021fd6200020d4"
+      },
+      "instructions": [
+        "adrp x16, #0x18be38000",
+        "add x16, x16, #0xdf0",
+        "br x16",
+        "brk #1"
+      ],
+      "target": "0x18be38df0",
+      "symbols": [
+        {
+          "image": "CoreUtils",
+          "names": [
+            "_CFDictionaryGetTypedValue"
+          ]
+        }
+      ]
+    },
+    {
+      "entry": {
+        "address": "0x25810a6f0",
+        "bytes": 16,
+        "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.49",
+        "file_offset": 108272,
+        "sha256": "906a622f52e40313f35b1bca3badf271d83fd6d44108ab8504eb2fe7e933eb09",
+        "raw_hex": "70e999b010620f9100021fd6200020d4"
+      },
+      "instructions": [
+        "adrp x16, #0x18be37000",
+        "add x16, x16, #0x3d8",
+        "br x16",
+        "brk #1"
+      ],
+      "target": "0x18be373d8",
+      "symbols": [
+        {
+          "image": "CoreUtils",
+          "names": [
+            "_CFDictionaryGetInt64"
+          ]
+        }
+      ]
+    },
+    {
+      "entry": {
+        "address": "0x258102670",
+        "bytes": 16,
+        "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.49",
+        "file_offset": 75376,
+        "sha256": "729e1f7d40a48f09166447f4ad41dbbd2f2a04efcc6080343363f5a73fead5c4",
+        "raw_hex": "d02994d010620a9100021fd6200020d4"
+      },
+      "instructions": [
+        "adrp x16, #0x18063c000",
+        "add x16, x16, #0x298",
+        "br x16",
+        "brk #1"
+      ],
+      "target": "0x18063c298",
+      "symbols": [
+        {
+          "image": "CoreFoundation",
+          "names": [
+            "_CFDictionaryGetTypeID"
+          ]
+        }
+      ]
+    },
+    {
+      "entry": {
+        "address": "0x25810e4e0",
+        "bytes": 16,
+        "file": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.49",
+        "file_offset": 124128,
+        "sha256": "d900eb4bbffde3bf3aa79a5502fa0de91c0976309966a1b987a32f9580b66289",
+        "raw_hex": "10e5fbb010b2219100021fd6200020d4"
+      },
+      "instructions": [
+        "adrp x16, #0x24fdaf000",
+        "add x16, x16, #0x86c",
+        "br x16",
+        "brk #1"
+      ],
+      "target": "0x24fdaf86c",
+      "symbols": [
+        {
+          "image": "APTransport",
+          "names": [
+            "_APTransportStreamSendPlistMessageCreatingPlistReply"
+          ]
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "address": "0x251a59338",
+      "raw_matches_image_and_cache": true,
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a59338.bin",
+          "sha256": "cd804eb83c75b9caca057829351be714919375d5da11cc38234baadedc381d14"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a59338.s",
+          "sha256": "5daef28966c017e36f9f263ccb249f83f12f4d5558d16fcc3f22c70bedbdbea6"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a59338.ghidra.c",
+          "sha256": "1036d973226ca6d6fad6ce0b759ac0680683c940ffad531449cc457139db306d"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_251a59338.json",
+          "sha256": "df635774e5ec87d6762e04a5ac9d209d414d3d768d90e1b8060d389cf434c88b"
+        }
+      ]
+    },
+    {
+      "address": "0x2519c69f0",
+      "raw_matches_image_and_cache": true,
+      "files": [
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_2519c69f0.bin",
+          "sha256": "458362e5e51be43bbe1d9550800a5223dcb4e43beeabc2295664d32eeb0162cc"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_2519c69f0.s",
+          "sha256": "3c50c9ca1af8dbe26245ef95023bc8a4e52a93c8d7aa612c5a96bd791f7608d6"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_2519c69f0.ghidra.c",
+          "sha256": "70e20f751f3542596255fec477043cefd72d9ee485758f0f5004bd4cf0d33983"
+        },
+        {
+          "path": "/mnt/d/carvex-research/firmware/analysis/decompiler-cache/24A446/AirPlaySender/934ec850a9ab7623f1d8/functions/f_2519c69f0.json",
+          "sha256": "e723f7192a9833eb2785bcf7662b9d22cff771c6ac150bd9e10aff48e0780d57"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.36",
+      "bytes": 131563520,
+      "sha256": "0226a90a4d52ace5800c1a70e0df9e97c78033a255e6fd186d730909dc2c974c"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.48",
+      "bytes": 131268608,
+      "sha256": "298a27c9c6bb80d0fe4a6fb812c8cee69a4c7b9524801a13c4acd6c42a41703a"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.49",
+      "bytes": 344064,
+      "sha256": "bdf981ab3925ac53fbc0a5e391c1ed4e5fb37c66ad20294e4486b032d001455a"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/dyld/dyld_shared_cache_arm64e.54.dylddata",
+      "bytes": 226328576,
+      "sha256": "e60cf2f93941a4977e04d43c94811c877c787e39e26d11f7ef52c93c12a05a0f"
+    }
+  ],
+  "tools": [
+    {
+      "path": "/mnt/d/carvex-research/research/connection/tools/inspect_control_keys.py",
+      "sha256": "ca2968303c988fe6e2968f6fa6c42db3596141b034380e59369ebaa6dee9a7a8"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/tools/ipsw-research/firmware_cache.py",
+      "sha256": "2a4083dc30efce1c9df02ca64330e5279a142f4c08af22e14738bfa9bd1d0300"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/tools/ipsw-research/firmware_image.py",
+      "sha256": "642cb879df32e8974c6e59cce9339dc8deb1aa3c9867e38dfadd03967f01157b"
+    }
+  ],
+  "images": [
+    {
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/AirPlaySender/AirPlaySender",
+      "sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/CoreUtils/CoreUtils",
+      "sha256": "3968b52b962def4ac94d0c6e2e3451dda29a468b00ea67d6d4bd6e12a8d71083"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/CoreFoundation/CoreFoundation",
+      "sha256": "28be8a1510b9c7b8211d196584d3cd502a2d8fd1c40ffd00e3db84466279d478"
+    },
+    {
+      "path": "/mnt/d/carvex-research/firmware/extracted/24A446/binaries/APTransport/APTransport",
+      "sha256": "e277719a95de258399d7843f9d9822e6178e50fba466658193ba11ebc6844a8d"
+    }
+  ],
+  "limits": [
+    "Cached v5 pointers interpreted, not executing dyld fixups or Apple signature verification.",
+    "Does not prove endpoint chose combined info/skipRecord in a vehicle session.",
+    "Does not establish all CF coercion defaults or complete Stage2 lifecycle."
+  ]
+}

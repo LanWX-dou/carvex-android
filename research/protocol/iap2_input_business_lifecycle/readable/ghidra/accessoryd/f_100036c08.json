@@ -1,0 +1,13 @@
+{
+  "address": "0x100036c08",
+  "source_sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "raw_sha256": "1c97d4674d9ab68d8e6ed673c9a44e970a12cd444e0247a6c1b345bc42bf2a1b",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "1c97d4674d9ab68d8e6ed673c9a44e970a12cd444e0247a6c1b345bc42bf2a1b",
+  "ghidra_name": "_platform_assistiveTouch_accessoryDetached",
+  "signature": "undefined _platform_assistiveTouch_accessoryDetached()",
+  "diagnostic": "",
+  "c_file": "f_100036c08.ghidra.c",
+  "c_sha256": "2d316069dbb0da7fdb01484024dce036ec6715be9198c3b89d617733495f3b35",
+  "status": "DECOMPILED_UNREVIEWED"
+}

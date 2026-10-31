@@ -1,0 +1,13 @@
+{
+  "address": "0x251b5ce10",
+  "source_sha256": "304b8a4a688028f58fc851ec700c905a49f17132aaa9dc04acd93a8bd50cd63f",
+  "raw_sha256": "82c2c3485d8146c1535e837d77bb4784cfff92714cbe8821f05ad534690fb880",
+  "evidence_status": "RAW_DECOMPILER_OUTPUT_UNREVIEWED",
+  "loaded_code_sha256": "82c2c3485d8146c1535e837d77bb4784cfff92714cbe8821f05ad534690fb880",
+  "ghidra_name": "_apsession_ensureKeyHolderSetUp",
+  "signature": "undefined _apsession_ensureKeyHolderSetUp()",
+  "diagnostic": "",
+  "c_file": "f_251b5ce10.ghidra.c",
+  "c_sha256": "f660b7c0396331442b21a76c3320900f5bf976509bcf6d95964fa58a0e5c506f",
+  "status": "DECOMPILED_UNREVIEWED"
+}
