@@ -28,6 +28,16 @@
 
 <p align="center">支付宝 · 微信支付 · Binance Pay</p>
 
+## 交流群
+
+CarVeX 开发者交流群，欢迎一起讨论协议适配、车机兼容性与实车调试。
+
+<p align="center">
+  <a href="https://qm.qq.com/cgi-bin/qm/qr?k=KyWBLDmahaZW2TKDU51x3hs-6irSn6UX&amp;jump_from=webapi&amp;authKey=qFX04xLs8pXluNhr7O18mECpkt8MP3ooZzKf81NPWjq9C4QDf42TixqzTWrEXQG1">
+    <img src="https://pub.idqqimg.com/wpa/images/group.png" alt="CarVeX开发者交流群">
+  </a>
+</p>
+
 ## 这是什么
 
 本项目不是单一的 CarPlay 研究，而是面向多协议车机互联：目标是让 Android 手机与支持 CarPlay、HiCar、CarLife、ICCOA 以及 CarWith、CAR+ 等生态的车机建立连接。CarPlay 是第一个按 iPhone 固件复现的协议；其他协议按同一套模块边界逐步接入。
