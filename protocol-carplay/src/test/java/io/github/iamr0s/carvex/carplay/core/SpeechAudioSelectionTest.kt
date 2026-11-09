@@ -14,7 +14,7 @@ class SpeechAudioSelectionTest {
     private lateinit var previous:CarPlayAudioPlan.Transport
     @Before fun setup(){previous=CarPlayAudioPlan.currentTransport;CarPlayAudioPlan.useTransport(CarPlayAudioPlan.Transport.WIRELESS)}
     @After fun restore(){CarPlayAudioPlan.useTransport(previous)}
-    private fun entries(mask:Long)=listOf(AudioCapabilities.Entry(100,"alert",null,mask),
+    private fun entries(mask:Long)=listOf(AudioCapabilities.Entry(101,"default",null,mask),
         AudioCapabilities.Entry(100,"speechRecognition",mask,mask))
 
     @Test fun availableCompressedSpeechIsNotOverriddenByAdvertisedPcm() {

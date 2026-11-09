@@ -1007,7 +1007,9 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             val encoders=runCatching{AudioCodecSupport.encoders(format)}.getOrDefault(emptyList())
             log("Audio category="+category+" local "+format.codec+"/"+format.rate+"/"+format.channels+" encoders="+encoders.joinToString())
             encoders.isNotEmpty()
-        }?:throw UnsupportedOperationException("No implemented local/receiver audio intersection for category="+category)
+        }?:throw UnsupportedOperationException(if(category==2)
+            "Navigation requires an available receiver-advertised type101/default output route and a supported codec"
+            else "No implemented local/receiver audio intersection for category="+category)
         val route=selected.route
         val candidate=selected.format
         log("Audio category="+category+" selected type="+route.type+"/"+route.purpose+" codec="+candidate.codec+"/"+candidate.rate+"/"+candidate.channels)
@@ -1184,12 +1186,11 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
                 finishClose(needsTeardown=setupAttempted&&t !is RtspClient.StatusException)
             }else runCatching{audioStreams.awaitClose(lease)}
             transportRef.get()?.let{audioTransports.remove(category,it)}
-            // An explicit refusal is retryable on the next advertised prompt route. A timeout,
-            // crypto error or malformed successful response must not trigger another SETUP.
+            // Remember explicit refusals for this session. Navigation cannot switch to main
+            // alert audio after rejection: that would change the receiver's volume context.
             if(category==2&&t is RtspClient.StatusException&&t.status in setOf(400,406,415)&&rejectedPromptRoutes.add(route)){
                 log("Audio prompt route refused type="+route.type+"/"+route.purpose+" status="+t.status+
-                    "; local recovery tries the next advertised route")
-                return createAudioLocked(category,source,onMicrophone)
+                    "; navigation AltAudio unavailable for this session")
             }
             throw t
         }

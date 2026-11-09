@@ -91,7 +91,7 @@ object CarPlayAudioPlan {
     }
     fun routeForCategory(entries:List<AudioCapabilities.Entry>,category:Int):Route = when(category){
         1->mediaRoute(entries)
-        2->alert
+        2->alternate
         3->assistant
         else->error("${"Unknown CarWith audio category="}${category}")
     }
@@ -113,7 +113,11 @@ object CarPlayAudioPlan {
         excludedRoutes:Set<Route> = emptySet(),supportsEncoded:(Format)->Boolean):Selection? {
         val choices=when(category){
             1->listOf(media,mediaLowLatency)
-            2->listOf(alert,alternate)
+            // Host category 2 is navigation. Use the advertised AltAudio output lane so
+            // the receiver can select its prompt volume context independently of main audio.
+            // Main/alert is a different purpose, not a navigation fallback. Volume UI remains
+            // receiver-owned; see research connection spec 89 for evidence and field-test limits.
+            2->listOf(alternate)
             3->listOf(assistant)
             else->throw IllegalArgumentException()
         }
@@ -175,7 +179,7 @@ object CarPlayAudioPlan {
     /** Local category map when no peer capability exists yet; runtime uses [selectPlayback]. */
     fun implementedRouteForCategory(category:Int):Route=when(category){
         1->mediaLowLatency
-        2->alert
+        2->alternate
         3->assistant
         else->throw IllegalArgumentException()
     }

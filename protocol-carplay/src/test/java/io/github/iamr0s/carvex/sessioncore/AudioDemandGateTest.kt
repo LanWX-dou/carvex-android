@@ -32,8 +32,8 @@ class AudioDemandGateTest {
     @Test fun firstPromptRequestsOnlyAlternateAndFirstVoiceDoesNotPreclaimMedia(){
         val prompt=AudioDemandGate()
         val ticket=prompt.claim(2,320,format)!!
-        assertEquals(100,CarPlayAudioPlan.implementedRouteForCategory(ticket.category).type)
-        // No prior empty media request owns the shared type100 slot.
+        assertEquals(101,CarPlayAudioPlan.implementedRouteForCategory(ticket.category).type)
+        // Navigation has its own type101 lane; voice still uses type100.
         val voice=prompt.claim(3,320,format)!!
         assertEquals(100,CarPlayAudioPlan.implementedRouteForCategory(voice.category).type)
         assertEquals(1,voice.attempt)

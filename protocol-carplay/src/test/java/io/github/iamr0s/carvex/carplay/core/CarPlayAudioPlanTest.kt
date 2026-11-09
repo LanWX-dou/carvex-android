@@ -6,18 +6,38 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class CarPlayAudioPlanTest {
-    @Test fun refusedPromptRouteFallsThroughOnlyToAnotherAdvertisedRoute(){
+    @Test fun navigationUsesOnlyAdvertisedAlternateAndNeverFallsBackToMainAlert(){
         val entries=listOf(entry(100,"alert",0x8000L),entry(101,"default",0x8000L),entry(102,"media",0x800000L))
         val source=PcmFormat(48000,2)
-        assertEquals(CarPlayAudioPlan.alert,CarPlayAudioPlan.selectPlayback(entries,2,source){false}!!.route)
+        assertEquals(CarPlayAudioPlan.alternate,CarPlayAudioPlan.selectPlayback(entries,2,source){false}!!.route)
+        assertEquals(CarPlayAudioPlan.alternate,CarPlayAudioPlan.routeForCategory(entries,2))
+        assertEquals(CarPlayAudioPlan.alternate,CarPlayAudioPlan.implementedRouteForCategory(2))
         assertEquals(CarPlayAudioPlan.alternate,CarPlayAudioPlan.selectPlayback(entries,2,source,
             excludedRoutes=setOf(CarPlayAudioPlan.alert)){false}!!.route)
-        assertNull(CarPlayAudioPlan.selectPlayback(entries.take(1),2,source,
-            excludedRoutes=setOf(CarPlayAudioPlan.alert)){false})
+        assertNull(CarPlayAudioPlan.selectPlayback(entries.take(1),2,source){false})
+        assertNull(CarPlayAudioPlan.selectPlayback(entries,2,source,
+            excludedRoutes=setOf(CarPlayAudioPlan.alternate)){false})
         assertNull(CarPlayAudioPlan.selectPlayback(entries,2,source,
             excludedRoutes=setOf(CarPlayAudioPlan.alert,CarPlayAudioPlan.alternate)){false})
         assertEquals(CarPlayAudioPlan.media,CarPlayAudioPlan.selectPlayback(entries,1,source,
             excludedRoutes=setOf(CarPlayAudioPlan.alert)){true}!!.route)
+    }
+    @Test fun navigationCannotBorrowMainAlertFormatsWhenAlternateOutputIsUnusable(){
+        val source=PcmFormat(48000,2)
+        val alert=entry(100,"alert",0x8000L)
+        for(alternate in listOf(
+            AudioCapabilities.Entry(101,"default",0x8000L,null), // input only
+            entry(101,"default",1L shl 60), // unknown codec bit
+            entry(101,"default",0x40000000L), // OPUS without a local encoder
+            entry(101,"alert",0x8000L) // wrong purpose
+        )){
+            assertNull(CarPlayAudioPlan.selectPlayback(listOf(alert,alternate),2,source){false})
+        }
+        val selected=CarPlayAudioPlan.selectPlayback(
+            listOf(alert,entry(101,"default",0x40008000L)),2,source){false}!!
+        assertEquals(CarPlayAudioPlan.alternate,selected.route)
+        assertEquals(CarPlayAudioPlan.Codec.PCM16,selected.format.codec)
+        assertEquals(0x8000L,selected.format.bit)
     }
     @Test fun runtimeWireGateRetainsTheExistingCompressedWritersAndBoundsPcm(){
         for(format in CarPlayAudioPlan.formats){
@@ -117,12 +137,12 @@ class CarPlayAudioPlanTest {
 
     /** Anonymous /info shape from the disconnect log. v11 offered three independent streams;
      * route selection must preserve the advertised codec instead of applying a global OPUS ban. */
-    @Test fun observedCapabilitiesKeepMedia102AndPromptAlert100SeparateFromVoice100(){
+    @Test fun observedCapabilitiesKeepMedia102AndNavigation101SeparateFromVoice100(){
         val entries=listOf(entry(100,"media",0x8000L),entry(102,"media",0x800000L),entry(100,"alert",0x40008000L),
             entry(101,"default",0x40008000L),
             AudioCapabilities.Entry(100,"speechRecognition",0x20000040L,0x20000040L))
         val expected=listOf(Triple(1,102,CarPlayAudioPlan.Codec.AAC_LC),
-            Triple(2,100,CarPlayAudioPlan.Codec.OPUS),Triple(3,100,CarPlayAudioPlan.Codec.OPUS))
+            Triple(2,101,CarPlayAudioPlan.Codec.OPUS),Triple(3,100,CarPlayAudioPlan.Codec.OPUS))
         val source=PcmFormat(48000,2)
         val selected=expected.map{(category,type,codec)->
             val selection=CarPlayAudioPlan.selectPlayback(entries,category,source){true}!!
@@ -130,7 +150,7 @@ class CarPlayAudioPlanTest {
             assertEquals(codec,selection.format.codec)
             selection.route to selection.format
         }
-        assertEquals(listOf(102,100,100),selected.map{it.first.type})
+        assertEquals(listOf(102,101,100),selected.map{it.first.type})
         assertEquals(listOf(48000,48000,24000),selected.map{it.second.rate})
         val voice=selected.last().second
         // The same route-specific mask is used for output and capture; no global codec ban.
