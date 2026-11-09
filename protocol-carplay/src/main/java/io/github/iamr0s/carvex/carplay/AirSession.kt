@@ -996,10 +996,14 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     private suspend fun createAudioLocked(category:Int,source:PcmFormat,onMicrophone:(suspend (ByteArray,PcmFormat)->Boolean)?):NegotiatedAudioTransport {
         check(!stopping){"Audio session stopping"}
         val wantsInput=category==3&&onMicrophone!=null
+        // raw100/101/102 teardown carries only type (24A446 suspend path). Prefer another
+        // advertised route over opening a prompt whose close would also tear down live media.
+        val occupiedRoutes=CarPlayAudioPlan.routes.filterTo(mutableSetOf()){
+            audioStreams.conflicts(it.type,it.purpose,exclusive=category==2)}
         val selected=CarPlayAudioPlan.selectPlayback(receiverAudio,category,source,
             requireDuplex=wantsInput,supportsCapture={format->
                 format.codec==CarPlayAudioPlan.Codec.PCM16||runCatching{AudioCodecSupport.decoders(format).isNotEmpty()}.getOrDefault(false)
-            },excludedRoutes=if(category==2)rejectedPromptRoutes else emptySet()){format->
+            },excludedRoutes=occupiedRoutes+(if(category==2)rejectedPromptRoutes else emptySet())){format->
             val encoders=runCatching{AudioCodecSupport.encoders(format)}.getOrDefault(emptyList())
             log("Audio category="+category+" local "+format.codec+"/"+format.rate+"/"+format.channels+" encoders="+encoders.joinToString())
             encoders.isNotEmpty()
@@ -1025,12 +1029,14 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         val streamKey=audioKey(route.type,route.purpose)
         val udp=DatagramSocket(null)
         val rtcp=try{DatagramSocket(null)}catch(t:Throwable){udp.close();throw t}
-        val lease=try{audioStreams.reserve(route.type,route.purpose,id)}catch(t:Throwable){udp.close();rtcp.close();throw t}
+        val lease=try{audioStreams.reserve(route.type,route.purpose,id,exclusive=category==2)}catch(t:Throwable){udp.close();rtcp.close();throw t}
         var setupAttempted=false
         var microphone:CarPlayMicReceiver?=null
         val owned=java.util.concurrent.atomic.AtomicBoolean(false)
         val released=java.util.concurrent.atomic.AtomicBoolean(false)
         val transportRef=java.util.concurrent.atomic.AtomicReference<NegotiatedAudioTransport?>()
+        val registrationLock=Any()
+        var registeredTransport:NegotiatedAudioTransport?=null
         suspend fun finishClose(needsTeardown:Boolean){
             // A cancelled SETUP must still return its main-audio reservation and finish
             // the closing barrier. RTSP retains its own bounded response timeout.
@@ -1046,10 +1052,17 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
                 }
             }catch(t:Throwable){closeError=t}
             try{
-                if(needsTeardown&&!stopping)control.plist("TEARDOWN",connectionPath?:"/",mapOf("streams" to listOf(AudioTeardownDescriptor.forType(route.type))))
+                if(needsTeardown&&!stopping){
+                    log("Audio teardown category=$category type=${route.type} phase=begin")
+                    control.plist("TEARDOWN",connectionPath?:"/",mapOf("streams" to listOf(AudioTeardownDescriptor.forType(route.type))))
+                    log("Audio teardown category=$category type=${route.type} phase=accepted")
+                }
             }catch(t:Throwable){if(closeError==null)closeError=t else closeError.addSuppressed(t)}
             finally{
                 transportRef.get()?.let{audioTransports.remove(category,it)}
+                // Repeated prompts must not accumulate closed codecs/transports until disconnect.
+                val retired=synchronized(registrationLock){registeredTransport.also{registeredTransport=null}}
+                retired?.let{resources.release(it)}
                 if(closeError==null)audioStreamIds.remove(streamKey)
                 audioStreams.completeClose(lease,closeError)
             }
@@ -1156,8 +1169,11 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             transportRef.set(transport)
             val combined=microphone?.let{DuplexAudioTransport(transport,it)}?:transport
             audioTransports[category]=transport
-            check(transport.ready&&!released.get()){"Audio transport closed during setup"}
-            resources.own(combined)
+            synchronized(registrationLock){
+                check(transport.ready&&!released.get()){"Audio transport closed during setup"}
+                resources.own(combined)
+                registeredTransport=combined
+            }
             return combined
         }catch(t:Exception){
             microphone?.close()

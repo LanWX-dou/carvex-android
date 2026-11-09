@@ -132,6 +132,7 @@ class SessionController(
         val observedAudio=ConcurrentHashMap.newKeySet<String>()
         val audio=r.own(HostAudioBridge(log={BridgeStore.log(id,it)}));audioBridge=audio
         val audioDemand=r.own(AudioDemandGate())
+        val audioSourceLock=Any()
         val mediaPlayback=MediaPlaybackToggle()
         val frames=AtomicLong()
         val bytes=AtomicLong()
@@ -226,11 +227,15 @@ class SessionController(
                 }
                 if(startAudio.get()?.invoke(category,data,pcmFormat)!=true)audio.receive(data,category,pcmFormat)
             }
-            override fun audioState(category:Int,state:Int){if(!ended.get()){
+            override fun audioState(category:Int,state:Int){synchronized(audioSourceLock){if(!ended.get()){
+                // Navigation completion ends its receiver stream, restoring the receiver's media
+                // volume context. Invalidate pending SETUPs before clearing the local queue.
+                // Speech output stopping does not establish that microphone recognition ended.
+                if(category==2)audioDemand.sourceState(category,state==1)
                 audio.state(category,state)
                 if(category==1)mediaPlayback.audioLaneActive(state==1)
                 // category3 is an audio lane only. Prompt completion must not stop recognition.
-            }}
+            }}}
             override fun music(info:HostMusic?){
                 if(ended.get())return
                 if(info==null){BridgeStore.log(id,"Host reported no current music item");return}
@@ -860,7 +865,7 @@ class SessionController(
                 pendingHostFps.get().takeIf{it>0}?.let{applyDynamicFps?.invoke(it)}
 
             }
-            // Existing prewarm/demand policy; this is not a recovered firmware scheduling rule.
+            // Media prewarm and source-driven prompt setup are local scheduling policy.
             // 这一档要容纳音频 SETUP 的 RTSP 往返：控制连接允许等 60 s（S-0121），所以这里必须比它长，
             // 否则 phase 会先判失败、socket 的 60 s 永远用不上。代价是这个阶段真失败时也要等更久。
             phase(Stage.SETUP,70000){
@@ -880,14 +885,15 @@ class SessionController(
                             var setupOutcome="incomplete"
                             BridgeStore.log(id,"Audio activation category=$category phase=begin monoNs=$setupBegan")
                             try{
-                                val transport=air.createAudio(category,pcmFormat){pcm,format->audio.microphone(pcm,format)}
-                                if(!audioDemand.install(ticket,transport,audio::attach)){
+                                if(!audioDemand.prepare(ticket,
+                                    create={air.createAudio(category,pcmFormat){pcm,format->audio.microphone(pcm,format)}},
+                                    attach=audio::attach)){
                                     setupOutcome="not-installed";return@launch
                                 }
                                 setupOutcome="installed"
                                 // Do not replay a short prompt after a slow network negotiation.
                                 if(initial.isNotEmpty()){
-                                    if(System.nanoTime()-capturedAt<=100_000_000L)audio.receive(initial,category,pcmFormat)
+                                    if(System.nanoTime()-capturedAt<=100_000_000L)audioDemand.ifActive(ticket){audio.receive(initial,category,pcmFormat)}
                                     else BridgeStore.log(id,"${"Audio category="}${category}${" first PCM expired during SETUP; awaiting fresh source"}")
                                 }
                                 BridgeStore.update(id){it.copy(audioStatus="音频通道 ${audio.categories().sorted()} 已建立 · 编码/传输见日志 · 发声待实测")}
@@ -905,7 +911,8 @@ class SessionController(
                     }
                     return ticket!=null
                 }
-                // Retain the existing serialized prewarm order while testing SETUP field changes.
+                // Only media may be prewarmed. Navigation and recognition are demand-driven,
+                // otherwise an idle prompt stream can retain the receiver's volume context.
                 val plan=air.bootstrapAudioPlan()
                 BridgeStore.log(id,"Audio bootstrap plan="+plan.joinToString(","){
                     "cat="+it.route.category+" type="+it.route.type+"/"+it.route.purpose+" codec="+it.format.codec

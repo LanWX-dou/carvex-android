@@ -176,15 +176,16 @@ class CarPlayAudioPlanTest {
         assertNull(CarPlayAudioPlan.selectPlayback(emptyList(),1,PcmFormat(48000,2)){true})
     }
 
-    @Test fun bootstrapPrimesSpeechThenAlertThenMedia(){
+    @Test fun bootstrapPrimesOnlyMediaAndNeverIdleNavigationOrRecognition(){
         val entries=listOf(entry(100,"media",0x8000L),entry(102,"media",0x800000L),entry(100,"alert",0x40008000L),
             entry(101,"default",0x40008000L),
             AudioCapabilities.Entry(100,"speechRecognition",0x20000040L,0x20000040L))
         val source=PcmFormat(48000,2)
-        assertEquals(listOf(100,100,102),CarPlayAudioPlan.bootstrapPlayback(entries,source){true}.map{it.route.type})
+        assertEquals(listOf(102),CarPlayAudioPlan.bootstrapPlayback(entries,source){true}.map{it.route.type})
         val pcm=CarPlayAudioPlan.bootstrapPlayback(entries,source){false}
-        assertEquals(listOf(100,100,100),pcm.map{it.route.type})
-        assertEquals(listOf(3,2,1),pcm.map{it.route.category})
+        assertEquals(listOf(100),pcm.map{it.route.type})
+        assertEquals(listOf(1),pcm.map{it.route.category})
+        assertTrue(CarPlayAudioPlan.bootstrapPlayback(entries.filter{it.audioType!="media"},source){true}.isEmpty())
     }
 
     @Test fun microphoneRetainsPcmWhenCompressedDecoderIsUnavailable(){

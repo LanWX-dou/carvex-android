@@ -47,13 +47,19 @@ class SpeechAudioSelectionTest {
             requireDuplex=true,supportsCapture={false}){true})
         assertNull(CarPlayAudioPlan.selectPlayback(emptyList(),3,source){true})
     }
-    @Test fun bootstrapAndOnDemandUseTheSameUnmodifiedCodecSelection() {
+    @Test fun bootstrapPrewarmsOnlyMediaAndSpeechKeepsItsOnDemandCodecSelection() {
         val capabilities=entries(opus or pcm)+AudioCapabilities.Entry(102,"media",null,0x800000L)
         for(encoderAvailable in listOf(false,true)){
             val bootstrap=CarPlayAudioPlan.bootstrapPlayback(capabilities,source){encoderAvailable}
             val runtime=listOf(3,2,1).mapNotNull{category->
                 CarPlayAudioPlan.selectPlayback(capabilities,category,source,requireDuplex=category==3){encoderAvailable}}
-            assertEquals(runtime,bootstrap)
+            assertEquals(runtime.filter{it.route.category==1},bootstrap)
+            assertEquals(if(encoderAvailable)listOf(1) else emptyList<Int>(),bootstrap.map{it.route.category})
+            for(category in listOf(2,3)){
+                val speech=runtime.single{it.route.category==category}
+                assertEquals(if(encoderAvailable)opus else pcm,speech.format.bit)
+                if(category==3)assertTrue(CarPlayAudioPlan.duplexSupported(capabilities,speech.route,speech.format))
+            }
         }
     }
 }

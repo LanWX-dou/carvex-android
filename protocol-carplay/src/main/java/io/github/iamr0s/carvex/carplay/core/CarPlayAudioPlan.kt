@@ -133,13 +133,11 @@ object CarPlayAudioPlan {
     }
     fun duplexSupported(entries:List<AudioCapabilities.Entry>,route:Route,format:Format):Boolean =
         route.type==100&&format in playbackFormats(entries,route)&&format in advertised(entries,route,capture=true)
-    /** Existing local prewarm policy (3,2,1), retained for this field/format repair.
-     * It is not a firmware guarantee of stream ordering or same-type concurrency. */
+    /** Local media prewarm only. Prompts start on source demand; recognition starts on a voice
+     * request or real PCM. An idle prompt/recognition SETUP must not retain the volume context. */
     fun bootstrapPlayback(entries:List<AudioCapabilities.Entry>,source:PcmFormat,
         supportsEncoded:(Format)->Boolean):List<Selection> =
-        listOf(3,2,1).mapNotNull{category->
-            selectPlayback(entries,category,source,requireDuplex=category==3,supportsEncoded=supportsEncoded)
-        }.distinctBy{it.route.type to it.route.purpose}
+        listOfNotNull(selectPlayback(entries,1,source,supportsEncoded=supportsEncoded))
     /** 麦克风（车机采集方向）的候选序。
      *
      *  它必须与 [wirelessCandidates] 共用同一套 [wirelessCodecPreference] 优先序：麦克风原来在 AirSession 里
