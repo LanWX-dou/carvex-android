@@ -12,6 +12,7 @@ import org.json.JSONObject
  */
 internal object CarLifeMusicIntent {
     private const val ACTION = "carlife_vehicle_music_info"
+    private const val PROGRESS_ACTION = "carlife_vehicle_music_progress"
 
     fun parse(intent: Intent): NowPlayingUpdate.Track? {
         val json = intent.getStringExtra("params")?.let { raw ->
@@ -25,7 +26,7 @@ internal object CarLifeMusicIntent {
 
     internal fun parsePayload(action: String?, values: Map<String, Any?>,
                               json: JSONObject? = null): NowPlayingUpdate.Track? {
-        if (action != ACTION) return null
+        if (action != ACTION && action != PROGRESS_ACTION) return null
         fun string(vararg names: String): String? {
             for (name in names) {
                 val direct = values[name]
@@ -52,8 +53,12 @@ internal object CarLifeMusicIntent {
         val app = string("source", "app", "MediaAPPName", "MediaAppName")
         val duration = number("duration", "duration_ms", "MediaSongDuration")
             ?.takeIf { it in 1..0xffffffffL }
-        val elapsed = number("progress", "progress_ms", "MediaSongPlayTime")
+        val elapsed = number("curTime", "progress", "progress_ms", "MediaSongPlayTime")
             ?.takeIf { it in 0..0xffffffffL }
+        // The progress broadcast is a delta, including a legitimate zero after seeking.
+        // Units follow the existing host adapter's millisecond contract; state is unknown.
+        if (action == PROGRESS_ACTION) return if (duration == null && elapsed == null) null
+            else NowPlayingUpdate.Track(durationMs = duration, elapsedMs = elapsed)
         if (title == null && artist == null && album == null && app == null && duration == null && elapsed == null) {
             return null
         }

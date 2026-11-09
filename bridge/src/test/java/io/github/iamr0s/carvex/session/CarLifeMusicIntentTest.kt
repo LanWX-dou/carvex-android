@@ -26,4 +26,20 @@ class CarLifeMusicIntentTest {
     @Test fun rejectsWrongActionAndReportsArtworkAsUnimplemented() {
         assertNull(CarLifeMusicIntent.parsePayload("other", mapOf("song" to "ignored"), null))
     }
+
+    @Test fun progressBroadcastUsesCurTimeIncludingSeekToZero() {
+        val track = CarLifeMusicIntent.parsePayload("carlife_vehicle_music_progress",
+            mapOf("curTime" to 0L, "duration" to 180000L, "song" to "not metadata"))!!
+        assertEquals(0L, track.elapsedMs)
+        assertEquals(180000L, track.durationMs)
+        assertNull(track.title)
+        assertNull(track.status)
+    }
+
+    @Test fun progressRejectsOutOfRangeInsteadOfWrapping() {
+        assertNull(CarLifeMusicIntent.parsePayload("carlife_vehicle_music_progress",
+            mapOf("curTime" to -1L, "duration" to 0x100000000L)))
+        assertEquals(0xffffffffL, CarLifeMusicIntent.parsePayload("carlife_vehicle_music_progress",
+            mapOf("curTime" to "4294967295"))?.elapsedMs)
+    }
 }

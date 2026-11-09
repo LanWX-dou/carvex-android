@@ -41,6 +41,15 @@ object NavigationGuidance {
      * 参数 1..5 非空载荷或重复、参数 0 长度不是 2。
      */
     fun start(fields: IapFields): Start? {
+        val result = parseStart(fields) ?: return null
+        components = result.components
+        mask = result.mask
+        active = true
+        return result
+    }
+
+    /** Pure parser: runtime subscriptions belong to their authenticated Link. */
+    fun parseStart(fields: IapFields): Start? {
         val ids = mutableListOf<Int>()
         var localMask = 0
         for ((id, payload) in fields.ordered) {
@@ -58,27 +67,28 @@ object NavigationGuidance {
                 else -> Unit // ≥6：固件只记日志后忽略
             }
         }
-        val result = Start(ids, localMask)
-        components = ids
-        mask = localMask
-        active = true
-        return result
+        return Start(ids.toList(), localMask)
     }
 
     /** `5203`：调用方先通过 feature17/navMainList 闸门；这里只接受参数 0（u16 组件 id，可重复），
      * 其它 id 忽略。空入参按固件传递空组件表并停止；参数 0 的坏长度按固件返回 0，并且不清除已有会话。
      * 其它参数只记录后忽略。 */
     fun stop(fields: IapFields): Boolean {
-        val ids = mutableListOf<Int>()
-        for ((id, payload) in fields.ordered) {
-            if (id != 0) continue
-            if (payload.size != 2) return false
-            ids += ((payload[0].toInt() and 0xff) shl 8) or (payload[1].toInt() and 0xff)
-        }
+        val ids = parseStop(fields) ?: return false
         active = false
         components = ids
         mask = 0
         return true
+    }
+
+    fun parseStop(fields: IapFields): List<Int>? {
+        val ids = mutableListOf<Int>()
+        for ((id, payload) in fields.ordered) {
+            if (id != 0) continue
+            if (payload.size != 2) return null
+            ids += ((payload[0].toInt() and 0xff) shl 8) or (payload[1].toInt() and 0xff)
+        }
+        return ids.toList()
     }
 
     /** 上游消息编码器；没有导航数据源时不会被调用，但字段宽度/类型按 ch16 §2.2–§2.5 校验。 */
@@ -92,7 +102,7 @@ object NavigationGuidance {
         validate(LANE_TYPES, values)
 
     /** Build the exact repeated component and nested-group TLVs used by the firmware senders. */
-    fun route(update:RouteUpdate):List<Pair<Int,ByteArray>> = buildList {
+    fun route(update:RouteUpdate, mask:Int = this.mask):List<Pair<Int,ByteArray>> = buildList {
         update.components.forEach{add(0 to IapWire.be16(it))}
         fun u8(id:Int,v:Int?){v?.let{require(it in 0..255);add(id to byteArrayOf(it.toByte()))}}
         fun u16(id:Int,v:Int?){v?.let{add(id to IapWire.be16(it))}}

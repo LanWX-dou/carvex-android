@@ -134,7 +134,17 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     @Volatile private var micStreamId:Long?=null
     private fun micTeardownDescriptor():Map<String,Any?> = AudioTeardownDescriptor.forType(100)
     @Volatile private var runtimeCapabilities=CapabilityRegistry()
-    private val nowPlayingPublisher=NowPlayingPublisher{runtime.send(NowPlayingUpdate.ID,it)}
+    private val nowPlayingPublisher=NowPlayingPublisher{fields->
+        val accepted=runtime.send(NowPlayingUpdate.ID,fields)
+        log("Now Playing 5001 queued=$accepted fields="+fields.joinToString(";"){(group,bytes)->
+            "$group:"+IapWire.parseFieldList(bytes).ordered.joinToString(","){it.first.toString()}})
+        accepted
+    }
+    private val navigationPublisher=NavigationPublisher({id,fields->
+        val accepted=runtime.send(id,fields)
+        log("navigation ${id.toString(16)} queued=$accepted fields="+fields.joinToString(","){it.first.toString()})
+        accepted
+    },log)
     private fun emitRuntime(bytes:ByteArray):Boolean{
         if(stopping||!options.experiment)return false
         tunnel?.let{return it.send(bytes)}
@@ -144,6 +154,9 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         log("Runtime iAP state="+state)
         if(state in setOf(RuntimeIapState.SYNCHRONIZING,RuntimeIapState.DEGRADED,RuntimeIapState.CLOSED))runtimeCapabilities=CapabilityRegistry()
         nowPlayingPublisher.linkReady(state==RuntimeIapState.CONTROL_READY)
+        navigationPublisher.linkReady(state==RuntimeIapState.CONTROL_READY,
+            runtimeCapabilities.sentByAccessory.map{it.value}.toSet(),
+            runtimeCapabilities.receivedByAccessory.map{it.value}.toSet())
         runtimeChanged(state)
     },message={command->
         if(command.id in setOf(NowPlayingUpdate.START,NowPlayingUpdate.STOP,0x5003)&&
@@ -151,6 +164,10 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             runtimeCapabilities.receivedByAccessory.any{it.value==NowPlayingUpdate.ID}){
             if(command.id==0x5003)nowPlayingPublisher.setInfo(requireNotNull(command.fields))
             else nowPlayingPublisher.command(command.id,requireNotNull(command.fields))
+        }
+        if(command.id==0x5200||command.id==0x5203){
+            val accepted=navigationPublisher.command(command.id,requireNotNull(command.fields))
+            if(!accepted)log("navigation runtime ${command.id.toString(16)} rejected: capability/state/fields")
         }
     },negotiate={link->
         Bootstrap.negotiateRuntimeIdentification(link,options.phoneMac,options.carPlayName,PairStore(context).identity(),
@@ -672,14 +689,8 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         val mediaPath=sessionPath
         val screenReply=try{setupSession.screen(stream)}
             catch(t:RtspClient.StatusException){logSetupEncryptionRoute("video",t.status);throw t}
-        // 链路已可用于上行消息：打开 Now Playing 发布器，并把识别阶段暂存的 5000 订阅补上，
-        // 否则车机的订阅在 Bootstrap 里被当未知命令丢弃，之后永远不会收到 5001。
-        nowPlayingPublisher.linkReady(true)
-        NowPlayingUpdate.pendingSubscription?.let{
-            nowPlayingPublisher.command(NowPlayingUpdate.START,it)
-            NowPlayingUpdate.pendingSubscription=null
-            log("Now Playing subscription replayed from bootstrap")
-        }
+        // Video readiness cannot authorize an iAP business subscription. Runtime START
+        // owns initialization; replaying Bluetooth's START here can reset a live subscriber.
         video=connectedSocket(address,screenReply.dataPort)
         // RECORD 没有正文（第 06 章）；发空 plist 会让对端把已配置的流当成无输入。
         // URL 用连接 URL（固件 0x24fda58ec：'recr' 包不设自己的 URL，落到连接 URL
@@ -975,14 +986,13 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     /** Cache real metadata until this Link subscribes. False means no selected update was sent. */
     fun nowPlaying(track:NowPlayingUpdate.Track,replaceMedia:Boolean=false):Boolean =
         nowPlayingPublisher.update(track,replaceMedia)
-    /** Firmware message 5201. The caller must have an active 5200 subscription. */
-    fun navigationRouteUpdate(values:List<Pair<Int,ByteArray>>):Boolean =
-        if(!NavigationGuidance.active) false
-        else runtime.send(0x5201,NavigationGuidance.routeGuidanceUpdate(values))
+    /** Cache the backend sample; the current runtime Link supplies components and options. */
+    fun navigationRouteUpdate(update:NavigationGuidance.RouteUpdate):Boolean =
+        navigationPublisher.update(update)
     fun navigationManeuverUpdate(values:List<Pair<Int,ByteArray>>):Boolean =
-        if(!NavigationGuidance.active) false else runtime.send(0x5202,NavigationGuidance.maneuverUpdate(values))
+        navigationPublisher.send(0x5202,values)
     fun navigationLaneUpdate(values:List<Pair<Int,ByteArray>>):Boolean =
-        if(!NavigationGuidance.active) false else runtime.send(0x5204,NavigationGuidance.laneGuidance(values))
+        navigationPublisher.send(0x5204,values)
     /** Prefer implemented wireless codec from the announcement; PCM is an explicit compatibility fallback. */
     suspend fun createAudio(category:Int,source:PcmFormat,onMicrophone:(suspend (ByteArray,PcmFormat)->Boolean)?=null):NegotiatedAudioTransport = withContext(Dispatchers.IO){
         val began=System.nanoTime()

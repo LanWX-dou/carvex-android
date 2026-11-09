@@ -143,6 +143,22 @@ object NowPlayingUpdate {
                 .mapNotNull{a->byId[a.id]?.let{a.id to it}})
         }
     }
+    /** Merge nullable backend deltas without losing earlier metadata before Link readiness. */
+    fun merge(old:Track,delta:Track):Track {
+        return Track(delta.title?:old.title,delta.artist?:old.artist,delta.album?:old.album,
+            delta.durationMs?:old.durationMs,delta.elapsedMs?:old.elapsedMs,delta.queueIndex?:old.queueIndex,
+            delta.queueCount?:old.queueCount,delta.status?:old.status,delta.persistentId?:old.persistentId,
+            delta.albumTrackNum?:old.albumTrackNum,delta.albumTrackCount?:old.albumTrackCount,
+            delta.albumDiscNum?:old.albumDiscNum,delta.albumDiscCount?:old.albumDiscCount,delta.genre?:old.genre,
+            delta.composer?:old.composer,delta.isLikeSupported?:old.isLikeSupported,delta.isBanSupported?:old.isBanSupported,
+            delta.isLiked?:old.isLiked,delta.isBanned?:old.isBanned,delta.chapterCount?:old.chapterCount,
+            delta.queueChapterIndex?:old.queueChapterIndex,delta.shuffleMode?:old.shuffleMode,delta.repeatMode?:old.repeatMode,
+            delta.appName?:old.appName,delta.mediaLibraryUid?:old.mediaLibraryUid,delta.itunesRadioAd?:old.itunesRadioAd,
+            delta.itunesRadioStation?:old.itunesRadioStation,
+            delta.itunesRadioStationMediaPlaylistPersistentId?:old.itunesRadioStationMediaPlaylistPersistentId,
+            delta.playbackSpeed?:old.playbackSpeed,delta.setTimeElapsedAvailable?:old.setTimeElapsedAvailable,
+            delta.appBundleId?:old.appBundleId)
+    }
     fun encode(track:Track):ByteArray {
         val fields=fields(track);require(fields.isNotEmpty())
         return IapWire.csm(ID,fields)
@@ -204,19 +220,7 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean)
         // Validate even before a subscriber exists, so bad ranges are never cached.
         NowPlayingUpdate.fields(delta)
         val old=if(replaceMedia)NowPlayingUpdate.Track() else snapshot
-        snapshot=NowPlayingUpdate.Track(delta.title?:old.title,delta.artist?:old.artist,delta.album?:old.album,
-            delta.durationMs?:old.durationMs,delta.elapsedMs?:old.elapsedMs,delta.queueIndex?:old.queueIndex,
-            delta.queueCount?:old.queueCount,delta.status?:old.status,delta.persistentId?:old.persistentId,
-            delta.albumTrackNum?:old.albumTrackNum,delta.albumTrackCount?:old.albumTrackCount,
-            delta.albumDiscNum?:old.albumDiscNum,delta.albumDiscCount?:old.albumDiscCount,delta.genre?:old.genre,
-            delta.composer?:old.composer,delta.isLikeSupported?:old.isLikeSupported,delta.isBanSupported?:old.isBanSupported,
-            delta.isLiked?:old.isLiked,delta.isBanned?:old.isBanned,delta.chapterCount?:old.chapterCount,
-            delta.queueChapterIndex?:old.queueChapterIndex,delta.shuffleMode?:old.shuffleMode,delta.repeatMode?:old.repeatMode,
-            delta.appName?:old.appName,delta.mediaLibraryUid?:old.mediaLibraryUid,delta.itunesRadioAd?:old.itunesRadioAd,
-            delta.itunesRadioStation?:old.itunesRadioStation,
-            delta.itunesRadioStationMediaPlaylistPersistentId?:old.itunesRadioStationMediaPlaylistPersistentId,
-            delta.playbackSpeed?:old.playbackSpeed,delta.setTimeElapsedAvailable?:old.setTimeElapsedAvailable,
-            delta.appBundleId?:old.appBundleId)
+        snapshot=NowPlayingUpdate.merge(old,delta)
         return send(delta)
     }
     private fun send(track:NowPlayingUpdate.Track):Boolean {
