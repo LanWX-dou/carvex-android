@@ -5,6 +5,24 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
 class ScreenResourceModesTest {
+    @Test fun failedAnnouncementRestoresExactAudioSnapshotAndKeepsScreenChanges(){
+        val modes=ScreenResourceModes()
+        modes.audio(true)
+        modes.commit(requireNotNull(modes.propose(batch(2 to 3))))
+        val before=modes.state
+        val change=modes.audio(false)
+        modes.commit(requireNotNull(modes.propose(batch(1 to 1))))
+        modes.rollbackAudio(change)
+        assertEquals(before.copy(owner=2,permanent=2),modes.state)
+    }
+    @Test fun failedAnnouncementCannotUndoNewAudioDeclarationEvenWithSameValues(){
+        val modes=ScreenResourceModes()
+        val change=modes.audio(true)
+        modes.commit(modes.state,audioDeclared=true)
+        modes.rollbackAudio(change)
+        assertEquals(1,modes.state.audioOwner)
+        assertEquals(1,modes.state.audioPermanent)
+    }
     private fun batch(vararg entries:Pair<Int,Int>)=mapOf("resources" to entries.map{
         mapOf("resourceID" to it.first,"transferType" to it.second)
     })

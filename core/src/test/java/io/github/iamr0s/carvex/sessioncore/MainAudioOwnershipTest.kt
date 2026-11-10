@@ -8,6 +8,32 @@ import java.util.concurrent.atomic.AtomicInteger
 /** The ownership decision is what keeps a second main stream from being opened while the receiver
  *  owns main audio, so each transition is pinned here rather than only in the transport tests. */
 class MainAudioOwnershipTest {
+    @Test fun lateAnnouncementCannotOverwriteReceiverTakeover()=runBlocking {
+        lateinit var owner:MainAudioOwnership
+        owner=MainAudioOwnership({}){owner.receiverDeclared(true);true}
+        try{owner.takeOwn();fail("takeover must suppress setup")}catch(_:IllegalStateException){}
+        assertEquals(MainAudioOwnership.State.THEIRS,owner.state())
+        assertFalse(owner.allowsMainSend())
+        assertFalse(owner.ownHoldAccepted())
+    }
+    @Test fun rejectedAnnouncementCannotEraseNewReceiverDeclaration()=runBlocking {
+        for(receiverOwns in listOf(true,false)){
+            lateinit var owner:MainAudioOwnership
+            owner=MainAudioOwnership({}){owner.receiverDeclared(receiverOwns);false}
+            try{owner.takeOwn();fail("rejection must fail setup")}catch(_:IllegalStateException){}
+            assertEquals(if(receiverOwns)MainAudioOwnership.State.THEIRS else MainAudioOwnership.State.OURS,owner.state())
+            assertEquals(!receiverOwns,owner.ownHoldAccepted())
+        }
+    }
+    @Test fun sameOwnerDeclarationSettlesPreviouslyUnannouncedHold()=runBlocking {
+        val announce=Announce()
+        val owner=ownerWith(announce)
+        owner.receiverAdvertised(false)
+        owner.receiverDeclared(false)
+        owner.takeOwn()
+        assertEquals(0,announce.calls.get())
+        assertTrue(owner.ownHoldAccepted())
+    }
     @Test fun transitionBeginIsVisibleBeforeAnnouncementAndFailureIsPreserved()=runBlocking {
         val logs=mutableListOf<String>()
         val failure=java.io.IOException("test")

@@ -19,6 +19,7 @@ class MainAudioOwnership(private val log:(String)->Unit,private val announceHold
     enum class State { UNKNOWN,OURS,THEIRS }
     private var state=State.UNKNOWN
     private var announced=false
+    private var receiverRevision=0L
 
     @Synchronized fun state():State=state
     /** True while our own hold is announced and accepted, so a second announcement is not sent. */
@@ -49,7 +50,9 @@ class MainAudioOwnership(private val log:(String)->Unit,private val announceHold
     }
     /** changeModes declared who owns the main audio resource; audioOwner==1 means the phone (us). */
     @Synchronized fun receiverDeclared(receiverOwns:Boolean){
+        receiverRevision++
         val next=if(receiverOwns)State.THEIRS else State.OURS
+        announced=!receiverOwns
         if(state!=next){
             // The receiver's declaration is authoritative: a hold of ours it just took over is gone.
             announced=!receiverOwns
@@ -59,16 +62,25 @@ class MainAudioOwnership(private val log:(String)->Unit,private val announceHold
     }
     /** Settle ownership before a main stream is set up: throws instead of opening a second main stream. */
     suspend fun takeOwn(){
-        when(synchronized(this){state}){
-            State.THEIRS->throw IllegalStateException("Main audio is owned by the receiver; new main SETUP suppressed")
-            State.OURS->if(synchronized(this){announced})return
-            State.UNKNOWN->Unit
+        val revision=synchronized(this){
+            when(state){
+                State.THEIRS->throw IllegalStateException("Main audio is owned by the receiver; new main SETUP suppressed")
+                State.OURS->if(announced)return
+                State.UNKNOWN->Unit
+            }
+            receiverRevision
         }
         if(!announceObserved(true)){
-            synchronized(this){state=State.UNKNOWN;announced=false}
+            synchronized(this){if(receiverRevision==revision){state=State.UNKNOWN;announced=false}}
             throw IllegalStateException("Main audio ownership announcement was rejected")
         }
-        synchronized(this){state=State.OURS;announced=true;log("MainAudio owner=ours; own hold announced and accepted")}
+        synchronized(this){
+            if(receiverRevision!=revision){
+                check(state==State.OURS){"Receiver took main audio during ownership announcement; new main SETUP suppressed"}
+                return
+            }
+            state=State.OURS;announced=true;log("MainAudio owner=ours; own hold announced and accepted")
+        }
     }
     /** Drop our hold on main audio; ownership goes back to unknown for the next attempt. */
     suspend fun releaseOwn(){

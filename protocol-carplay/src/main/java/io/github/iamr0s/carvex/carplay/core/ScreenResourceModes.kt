@@ -5,7 +5,20 @@ class ScreenResourceModes {
     data class State(val owner:Int=1,val permanent:Int=1,val borrowed:Boolean=false,
         val audioOwner:Int=2,val audioPermanent:Int=2,val audioBorrowed:Boolean=false)
     var state=State();private set
-    fun audio(phone:Boolean){state=state.copy(audioOwner=if(phone)1 else 2,audioPermanent=if(phone)1 else 2,audioBorrowed=false)}
+    private var audioRevision=0L
+    class AudioChange internal constructor(internal val before:State,internal val revision:Long)
+    fun audio(phone:Boolean):AudioChange {
+        val before=state
+        state=state.copy(audioOwner=if(phone)1 else 2,audioPermanent=if(phone)1 else 2,audioBorrowed=false)
+        return AudioChange(before,++audioRevision)
+    }
+    /** A failed local announcement cannot undo a newer receiver declaration or a screen change. */
+    fun rollbackAudio(change:AudioChange){
+        if(audioRevision!=change.revision)return
+        state=state.copy(audioOwner=change.before.audioOwner,audioPermanent=change.before.audioPermanent,
+            audioBorrowed=change.before.audioBorrowed)
+        audioRevision++
+    }
     private fun integer(value:Any?):Int? {
         val number=value as? Number?:return null
         val double=number.toDouble()
@@ -54,7 +67,11 @@ class ScreenResourceModes {
         }
         return null
     }
-    fun commit(next:State){state=next}
+    fun commit(next:State,audioDeclared:Boolean=false){
+        if(audioDeclared||next.audioOwner!=state.audioOwner||next.audioPermanent!=state.audioPermanent||
+            next.audioBorrowed!=state.audioBorrowed)audioRevision++
+        state=next
+    }
     fun params(value:State=state):Map<String,Any?> = mapOf(
         "resources" to listOf(
             mapOf("resourceID" to 1,"entity" to value.owner,"permanentEntity" to value.permanent),
