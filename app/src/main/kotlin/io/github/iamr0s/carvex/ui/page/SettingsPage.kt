@@ -5,6 +5,8 @@ import io.github.iamr0s.carvex.ui.model.*
 import io.github.iamr0s.carvex.ui.screen.Nav
 
 import android.bluetooth.BluetoothAdapter
+import androidx.compose.ui.platform.LocalContext
+import io.github.iamr0s.carvex.platform.MediaPlaybackAccess
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -64,6 +66,7 @@ fun SettingsPage(
     val s = state.settings
     val cs = MaterialTheme.colorScheme
     val focus = LocalFocusManager.current
+    val context = LocalContext.current
     val safe = LocalAppInsets.current.content.toPaddingValues()
     val direction = LocalLayoutDirection.current
 
@@ -79,6 +82,17 @@ fun SettingsPage(
             ),
     ) {
         ScreenTitle(stringResource(R.string.nav_settings))
+
+        Panel {
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.media_playback_sync)) },
+                supportingContent = { Text(stringResource(R.string.media_playback_sync_description)) },
+            )
+            OutlinedButton(
+                onClick = { context.startActivity(MediaPlaybackAccess.settings()) },
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+            ) { Text(stringResource(R.string.media_playback_sync_settings)) }
+        }
 
         // Local device name + switches
         Panel {

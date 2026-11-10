@@ -6,6 +6,20 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class MediaPlaybackToggleTest {
+    @Test fun verifiedPlaybackOverridesAudioFocusAndSentKey() {
+        val state=MediaPlaybackToggle()
+        state.playbackState(true)
+        state.audioLaneActive(false)
+        state.observeExplicitKey(0xb1)
+        assertTrue(state.isPlaying())
+        assertEquals(101,state.choose(100,101))
+        state.playbackState(false)
+        state.audioLaneActive(true)
+        assertEquals(100,state.choose(100,101))
+        state.playbackState(null)
+        state.audioLaneActive(false)
+        assertFalse(state.isPlaying())
+    }
     @Test fun statelessHidToggleAlternatesHostPlayAndPause() {
         val state=MediaPlaybackToggle()
         assertEquals(100,state.choose(100,101))

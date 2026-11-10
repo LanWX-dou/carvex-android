@@ -121,4 +121,7 @@
     <string name="experimental_auth">实验认证</string>
     <string name="experimental_auth_supporting">使用实验连接流程，保留本次挑战签名、配对签名与加密数据校验；不代表已通过正式证书链认证。</string>
     <string name="airplay_security_automatic">安全流程由程序按内部支持配置自动选择；缺少适用配置或认证材料时会说明原因。</string>
+    <string name="media_playback_sync">音乐播放状态同步</string>
+    <string name="media_playback_sync_description">开启通知访问后，将当前音乐的播放和暂停状态同步到车机，用于方控与仪表显示。仅匹配当前歌曲的媒体会话，不读取通知正文。</string>
+    <string name="media_playback_sync_settings">设置通知访问</string>
 </resources>

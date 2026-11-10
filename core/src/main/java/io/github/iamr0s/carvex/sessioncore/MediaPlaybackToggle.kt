@@ -9,12 +9,19 @@ package io.github.iamr0s.carvex.sessioncore
  */
 class MediaPlaybackToggle {
     private var playing = false
+    private var reported: Boolean? = null
+
+    @Synchronized fun playbackState(active: Boolean?) {
+        reported = active
+        if (active != null) playing = active
+    }
 
     @Synchronized fun audioLaneActive(active: Boolean) {
-        playing = active
+        if (reported == null) playing = active
     }
 
     @Synchronized fun observeExplicitKey(usage: Int) {
+        if (reported != null) return
         when (usage) {
             0xb0 -> playing = true
             0xb1, 0xb7 -> playing = false

@@ -262,3 +262,7 @@ capture or a field test.
 GNU General Public License v3.0. See [`LICENSE`](LICENSE).
 
 Not affiliated with Apple, Baidu, or any phone, vehicle or head-unit vendor. CarPlay is a trademark of Apple Inc.
+
+### Music playback state sync
+
+Enable notification access from Music playback sync in Settings. The app observes only the Android media session uniquely matching the host song and reports its playback state to the cluster; notification text is not read. Missing access or ambiguous players leave the state unknown. Audio focus changes are not treated as player state. Steering wheel behavior still needs vehicle verification.

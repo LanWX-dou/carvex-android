@@ -13,6 +13,7 @@ import kotlin.math.PI
 import kotlin.math.sin
 import io.github.iamr0s.carvex.carplay.core.*
 import io.github.iamr0s.carvex.pcm.*
+import io.github.iamr0s.carvex.platform.MediaPlaybackMonitor
 import io.github.iamr0s.carvex.protocol.api.ProtocolStack
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
@@ -191,6 +192,21 @@ class SessionController(
             runCatching{musicRelay.update(track,replaceMedia)}.onFailure{
                 BridgeStore.log(id,"nowplaying update failed: "+it.javaClass.simpleName)}
         }
+        val playbackMonitor=r.own(MediaPlaybackMonitor(context){state->
+            if(!ended.get()){
+                val status=when(state){
+                    MediaPlaybackMonitor.State.PLAYING->NowPlayingUpdate.PlaybackStatus.PLAYING
+                    MediaPlaybackMonitor.State.PAUSED->NowPlayingUpdate.PlaybackStatus.PAUSED
+                    MediaPlaybackMonitor.State.STOPPED->NowPlayingUpdate.PlaybackStatus.STOPPED
+                    MediaPlaybackMonitor.State.SEEK_FORWARD->NowPlayingUpdate.PlaybackStatus.SEEK_FORWARD
+                    MediaPlaybackMonitor.State.SEEK_BACKWARD->NowPlayingUpdate.PlaybackStatus.SEEK_BACKWARD
+                    null->null
+                }
+                mediaPlayback.playbackState(status?.let{it!=NowPlayingUpdate.PlaybackStatus.PAUSED&&it!=NowPlayingUpdate.PlaybackStatus.STOPPED})
+                BridgeStore.log(id,"Media session playback status="+(status?.name?:"unknown")+"; matched to host track")
+                if(status!=null)deliverMusic(NowPlayingUpdate.Track(status=status))
+            }
+        })
         fun deliverNavigation(update:NavigationGuidance.RouteUpdate){synchronized(navigationLock){
             if(ended.get())return
             latestNavigation=update
@@ -252,6 +268,7 @@ class SessionController(
                     queueIndex=info.index.toLong().takeIf{it>=0},queueCount=info.playlistSize.toLong().takeIf{it>0},
                     appName=NowPlayingUpdate.textOrNull(info.source))
                 deliverMusic(track,replaceMedia=true)
+                playbackMonitor.track(track.title,track.artist)
             }
             override fun musicProgress(progress:Long){
                 if(ended.get())return
@@ -276,6 +293,7 @@ class SessionController(
                         // Intent payloads may be partial (for example progress-only); let the
                         // publisher merge them with its last accepted snapshot.
                         deliverMusic(parsed)
+                        if(parsed.title!=null)playbackMonitor.track(parsed.title,parsed.artist)
                         parsed.elapsedMs?.let{progress->BridgeStore.update(id){it.copy(hostMusicProgress=progress)}}
                     }else BridgeStore.log(id,"CarLife music Intent had no recognized metadata fields")
                     if(CarLifeMusicIntent.hasArtwork(intent))

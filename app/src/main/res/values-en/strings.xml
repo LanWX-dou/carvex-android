@@ -167,4 +167,7 @@
     <string name="experimental_auth">Experimental authentication</string>
     <string name="experimental_auth_supporting">Uses the experimental connection flow while verifying challenge signatures, pairing signatures and encrypted data. Production certificate-chain trust is not established.</string>
     <string name="airplay_security_automatic">Security is selected automatically from supported internal profiles. Missing profiles or authentication material are reported when connecting.</string>
+    <string name="media_playback_sync">Music playback sync</string>
+    <string name="media_playback_sync_description">Enable notification access to sync playback and pause state for steering wheel controls and the instrument cluster. Only the media session matching the current song is used; notification text is not read.</string>
+    <string name="media_playback_sync_settings">Notification access settings</string>
 </resources>
