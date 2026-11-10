@@ -167,33 +167,42 @@ object NowPlayingUpdate {
 
 /** One authenticated Link owns the subscription. Backend snapshots may precede Link readiness.
  * All mutations and sends serialize: STOP cancels uncommitted updates, not bytes already sent. */
-class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean) {
+class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean,private val log:(String)->Unit) {
+    constructor(emit:(List<Pair<Int,ByteArray>>)->Boolean):this(emit,{})
     var artworkSelectionChanged:(Boolean)->Unit={}
     private var ready=false
     private var selection:NowPlayingUpdate.Selection?=null
     private var snapshot=NowPlayingUpdate.Track()
-    @Synchronized fun linkReady(ready:Boolean){this.ready=ready;selection=null;artworkSelectionChanged(false)}
+    @Synchronized fun linkReady(ready:Boolean){
+        this.ready=ready;selection=null;artworkSelectionChanged(false)
+        log("debug music event=link ready=$ready subscribed=false cachedTitle=${snapshot.title!=null} cachedState=${snapshot.status?:"unknown"}")
+    }
     @Synchronized fun command(id:Int,fields:IapFields):Boolean {
-        if(!ready)return false
+        if(!ready){log("debug music event=blocked direction=rx id=${id.toString(16)} reason=link-not-ready");return false}
         when(id){
             // 非法订阅整条丢弃，不改已有 selection（固件返回 0，不中止会话）。
             NowPlayingUpdate.START->{
-                val selected=NowPlayingUpdate.selection(fields)?:return false
+                val selected=NowPlayingUpdate.selection(fields)?:run{
+                    log("debug music event=subscription direction=rx id=5000 accepted=false reason=invalid-fields");return false
+                }
                 selection=null
                 artworkSelectionChanged(false)
                 val initial=NowPlayingUpdate.fields(NowPlayingUpdate.initialDefaults,selected)
                 // A failed enqueue must not let a real update overtake initialization.
-                if(initial.isNotEmpty()&&!emit(initial))return false
+                if(initial.isNotEmpty()&&!emit(initial)){
+                    log("debug music event=subscription direction=rx id=5000 accepted=false reason=initial-enqueue-failed");return false
+                }
                 selection=selected
                 // Our backend may already have delivered a snapshot before START.
                 // Publish it after the independent default message, never instead.
                 val current=NowPlayingUpdate.fields(snapshot,selected)
                 val accepted=current.isEmpty() || emit(current)
                 artworkSelectionChanged(NowPlayingUpdate.Attribute(0,0x1a) in selected.attributes)
+                log("debug music event=subscription direction=rx id=5000 accepted=$accepted attributes=${selected.orderedAttributes.size} infoMask=${selected.infoMask} queueStart=${selected.startIndexOverride?:"unknown"} artwork=${NowPlayingUpdate.Attribute(0,0x1a) in selected.attributes}")
                 return accepted
             }
             // 5002 没有参数，handler 不读 param；多余参数按固件忽略。
-            NowPlayingUpdate.STOP->{selection=null;artworkSelectionChanged(false)}
+            NowPlayingUpdate.STOP->{selection=null;artworkSelectionChanged(false);log("debug music event=subscription direction=rx id=5002 subscribed=false")}
             else->return false
         }
         return true
@@ -228,9 +237,10 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean)
         return send(delta)
     }
     private fun send(track:NowPlayingUpdate.Track):Boolean {
-        val selected=selection?:return false
-        if(!ready)return false
+        val selected=selection?:run{log("debug music event=blocked direction=tx id=5001 reason=no-subscription cached=true");return false}
+        if(!ready){log("debug music event=blocked direction=tx id=5001 reason=link-not-ready");return false}
         val fields=NowPlayingUpdate.fields(track,selected)
+        if(fields.isEmpty())log("debug music event=blocked direction=tx id=5001 reason=no-selected-values")
         return fields.isNotEmpty()&&emit(fields)
     }
 }

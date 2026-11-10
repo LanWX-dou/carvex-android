@@ -113,6 +113,7 @@ object BridgeStore {
     private val logState=MutableStateFlow<List<String>>(emptyList())
     private val sessionStartup=mutableListOf<String>()
     private val audioEvidence=linkedMapOf<String,String>()
+    private val businessEvidence=BusinessLogEvidence()
     val logs=logState.asStateFlow()
     private val optionState=MutableStateFlow(Options())
     val options=optionState.asStateFlow()
@@ -215,7 +216,7 @@ object BridgeStore {
     }
     @Synchronized fun update(id:String,transform:(SessionState)->SessionState){if(mutable.value.id==id)mutable.value=transform(mutable.value)}
     @Synchronized fun begin(attempt:Int):String {
-        sessionStartup.clear();audioEvidence.clear()
+        sessionStartup.clear();audioEvidence.clear();businessEvidence.clear()
         val id=UUID.randomUUID().toString().take(8);mutable.value=SessionState(id=id,stage=Stage.HOST,attempt=attempt);return id
     }
     @Synchronized fun idle(){mutable.value=SessionState()}
@@ -224,6 +225,7 @@ object BridgeStore {
     @Synchronized fun log(id:String,message:String){
         val line=Instant.now().toString()+" ["+id+"] "+redact(message)
         if(id==mutable.value.id){
+            businessEvidence.record(line,message)
             if(sessionStartup.size<220)sessionStartup.add(line)
             val relevant=message.startsWith("Audio category=")||message.startsWith("CarPlay audio SETUP")||
                     message.startsWith("CarWith audio")||message.startsWith("CarPlay audio category=")||
@@ -244,7 +246,7 @@ object BridgeStore {
         writer.trySend(LogWrite(logGeneration,line))
     }
     @Synchronized fun clearLogs(){
-        logGeneration++;logState.value=emptyList();sessionStartup.clear();audioEvidence.clear()
+        logGeneration++;logState.value=emptyList();sessionStartup.clear();audioEvidence.clear();businessEvidence.clear()
         val clear=LogWrite(logGeneration,null)
         if(writer.trySend(clear).isFailure){
             // Clear remains ordered before new writes even when the disk queue is full.
@@ -265,7 +267,7 @@ object BridgeStore {
     private data class LogSnapshot(val generation:Long,val session:SessionState,
         val evidence:List<String>,val recent:List<String>)
     private fun logSnapshot()=synchronized(this){
-        LogSnapshot(logGeneration,mutable.value,(sessionStartup+audioEvidence.values).distinct(),logState.value)
+        LogSnapshot(logGeneration,mutable.value,(sessionStartup+audioEvidence.values+businessEvidence.snapshot()).distinct(),logState.value)
     }
 
     /** Read on an IO dispatcher. Copy only memory under the live-state monitor. */

@@ -342,6 +342,7 @@ object Bootstrap {
         }
         fun send(id:Int,fields:List<Pair<Int,ByteArray>> = emptyList()){
             checkGeneration();checkDeadlines()
+            BusinessDiagnostics.fields(id,"tx",fields,"source=${if(runtimeSession)"runtime-identification" else "bluetooth"}").forEach(log)
             log(ProtocolTrace.event("IAP2","RFCOMM","tx","0x"+id.toString(16),"queued","fields"+fields.size))
             link.send(id,fields,expectedGeneration=generation)
             checkGeneration();checkDeadlines()
@@ -463,6 +464,8 @@ object Bootstrap {
                 val command=link.poll(((activeDeadlines.min()-System.nanoTime())/1_000_000).coerceIn(1,500))?:continue
                 checkGeneration();checkDeadlines()
                 val receivedFields=command.fields
+                receivedFields?.let{BusinessDiagnostics.fields(command.id,"rx",it.ordered,
+                    "source=${if(runtimeSession)"runtime-identification" else "bluetooth"}").forEach(log)}
                 log(ProtocolTrace.event("IAP2","RFCOMM","rx","0x"+command.id.toString(16),"received",
                     if(receivedFields==null)"raw" else "fields"+receivedFields.ordered.size))
                 evidence=evidence.observing(command.id,command is IapCommand.Lingo)
@@ -766,12 +769,20 @@ object Bootstrap {
                     }
                     // 电话/通信状态订阅（第 15 章 §2.2/§2.3）：接受并记录字段集。没有通话状态来源时
                     // 不主动发 4155/4158，但也不能再当"未知命令"丢弃，否则车机侧永远等不到订阅生效。
-                    0x4154->log("phone call-state subscription accepted="+PhoneSubscriptions.startCallStateUpdates(fields)+
-                        " fields="+PhoneSubscriptions.callStateFields.sorted()+" defaultSet="+PhoneSubscriptions.callStateDefaultSet)
-                    0x4156->{PhoneSubscriptions.stopCallStateUpdates();log("phone call-state subscription stopped")}
-                    0x4157->log("phone communication subscription accepted="+PhoneSubscriptions.startCommunicationUpdates(fields)+
-                        " fields="+PhoneSubscriptions.communicationFields.sorted())
-                    0x4159->{PhoneSubscriptions.stopCommunicationUpdates();log("phone communication subscription stopped")}
+                    0x4154->{
+                        val accepted=PhoneSubscriptions.startCallStateUpdates(fields)
+                        log("phone call-state subscription accepted=$accepted fields="+PhoneSubscriptions.callStateFields.sorted()+" defaultSet="+PhoneSubscriptions.callStateDefaultSet)
+                        log("debug call event=subscription direction=rx id=4154 accepted=$accepted fields=${PhoneSubscriptions.callStateFields.sorted()} defaultSet=${PhoneSubscriptions.callStateDefaultSet}; no iAP call metadata provider installed")
+                    }
+                    0x4156->{PhoneSubscriptions.stopCallStateUpdates();log("phone call-state subscription stopped")
+                        log("debug call event=subscription direction=rx id=4156 subscribed=false")}
+                    0x4157->{
+                        val accepted=PhoneSubscriptions.startCommunicationUpdates(fields)
+                        log("phone communication subscription accepted=$accepted fields="+PhoneSubscriptions.communicationFields.sorted())
+                        log("debug call event=subscription direction=rx id=4157 accepted=$accepted fields=${PhoneSubscriptions.communicationFields.sorted()}; no iAP communications provider installed")
+                    }
+                    0x4159->{PhoneSubscriptions.stopCommunicationUpdates();log("phone communication subscription stopped")
+                        log("debug call event=subscription direction=rx id=4159 subscribed=false")}
                     // 导航路线引导（第 16 章 §2.1/§2.4）：5200 开始、5203 停止。
                     // 两个 handler 都先经过 feature 17 + navMainList 的四条必需消息闸门；
                     // 5204 是可选项。解析失败按固件"整条拒绝、不回应、不改状态"处理，只记日志。

@@ -41,7 +41,10 @@ class PhoneCallMonitor(context:Context,private val changed:(Boolean)->Unit,
     }
     private fun publish(){
         val active=states.values.any{it==TelephonyManager.CALL_STATE_OFFHOOK}
-        if(last!=active){last=active;changed(active)}
+        if(last!=active){
+            log("debug call event=state source=cellular previous=${last?:"unknown"} active=$active observed=${states.values.sorted()} registrations=${registrations.size}; OFFHOOK includes dialing/held")
+            last=active;changed(active)
+        }
     }
     private fun clear(){
         tokens.clear();registrations.values.forEach{runCatching{it.close()}}
@@ -50,6 +53,7 @@ class PhoneCallMonitor(context:Context,private val changed:(Boolean)->Unit,
     private fun refresh(){
         if(closed.get())return
         if(context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED){
+            log("debug call event=access source=cellular granted=false reason=READ_PHONE_STATE")
             clear();publish();log("Call microphone state unavailable: READ_PHONE_STATE not granted");return
         }
         try{
@@ -59,6 +63,7 @@ class PhoneCallMonitor(context:Context,private val changed:(Boolean)->Unit,
                 watching=true
             }
             val ids=subscriptions?.activeSubscriptionInfoList.orEmpty().map{it.subscriptionId}.toSet()
+            log("debug call event=monitor source=cellular granted=true subscriptions=${ids.size} registered=${registrations.size} manager=${telephony!=null}")
             if(registrations.keys==ids&&ids.isNotEmpty())return
             for(id in registrations.keys.toSet()-ids){
                 tokens.remove(id);states.remove(id)
@@ -71,6 +76,8 @@ class PhoneCallMonitor(context:Context,private val changed:(Boolean)->Unit,
                     if(closed.get()||tokens[id]!==token)return
                     if(context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED){refresh();return}
                     states[id]=value
+                    val name=when(value){TelephonyManager.CALL_STATE_IDLE->"IDLE";TelephonyManager.CALL_STATE_RINGING->"RINGING";TelephonyManager.CALL_STATE_OFFHOOK->"OFFHOOK";else->"UNKNOWN"}
+                    log("debug call event=state source=cellular sourceIndex=${ids.sorted().indexOf(id)} raw=$value name=$name; numbers not observed")
                     log("Call state source=cellular state=$value subscriptions="+ids.size+"; OFFHOOK includes dialing/held")
                     publish()
                 }
@@ -93,10 +100,12 @@ class PhoneCallMonitor(context:Context,private val changed:(Boolean)->Unit,
             // Removing another SIM must not momentarily end an ongoing call.
             publish()
             log("Call state monitoring subscriptions="+registrations.size)
-        }catch(t:Exception){clear();publish();log("Call state monitoring failed: "+t.javaClass.simpleName)}
+        }catch(t:Exception){clear();publish();log("Call state monitoring failed: "+t.javaClass.simpleName)
+            log("debug call event=monitor source=cellular failed=${t.javaClass.simpleName}")}
     }
     override fun close(){
         if(!closed.compareAndSet(false,true))return
+        log("debug call event=lifecycle source=cellular closed=true")
         permissionObservers.remove(permission)
         handler.post{runCatching{if(watching)subscriptions?.removeOnSubscriptionsChangedListener(subscriptionListener)};clear()}
     }

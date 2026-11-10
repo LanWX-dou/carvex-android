@@ -16,35 +16,42 @@ class CallMicrophoneSession(parent:CoroutineScope,private val log:(String)->Unit
     @Synchronized fun attach(factory:suspend (()->Boolean)->AutoCloseable){
         if(closed)return
         check(open==null);open=factory
+        log("debug call event=provider attached=true active=$active generation=$generation")
         if(active)start()
     }
     @Synchronized fun update(value:Boolean){
         if(closed||active==value)return
         active=value;generation++
+        log("debug call event=demand active=$value generation=$generation installed=${installed!=null} provider=${open!=null}")
         log("Call microphone demand active=$value generation=$generation")
         installed?.close();installed=null
         if(value)start()
     }
     @Synchronized private fun current(ticket:Long)=!closed&&active&&generation==ticket
     private fun start(){
-        val factory=open?:return
+        val factory=open?:run{log("debug call event=blocked source=microphone reason=no-provider generation=$generation");return}
         val ticket=generation
         scope.launch{
             lock.lock()
             try{
-                if(!current(ticket))return@launch
+                if(!current(ticket)){log("debug call event=setup generation=$ticket current=false reason=obsolete-before-open");return@launch}
+                log("debug call event=setup generation=$ticket phase=begin")
                 val receiver=factory{current(ticket)}
                 synchronized(this@CallMicrophoneSession){
-                    if(current(ticket)){installed=receiver;log("Call microphone phase=installed generation=$ticket")}
-                    else{receiver.close();log("Call microphone phase=obsolete generation=$ticket")}
+                    if(current(ticket)){installed=receiver;log("Call microphone phase=installed generation=$ticket")
+                        log("debug call event=setup generation=$ticket phase=installed")}
+                    else{receiver.close();log("Call microphone phase=obsolete generation=$ticket")
+                        log("debug call event=setup generation=$ticket phase=obsolete closed=true")}
                 }
-            }catch(t:CancellationException){throw t}
-            catch(t:Exception){log("Call microphone phase=failed error="+t.javaClass.simpleName+" "+t.message)}
+            }catch(t:CancellationException){log("debug call event=setup generation=$ticket phase=cancelled");throw t}
+            catch(t:Exception){log("Call microphone phase=failed error="+t.javaClass.simpleName+" "+t.message)
+                log("debug call event=setup generation=$ticket phase=failed error=${t.javaClass.simpleName} detail=${DebugLogValue.text(t.message)}")}
             finally{lock.unlock()}
         }
     }
     @Synchronized override fun close(){
         if(closed)return
+        log("debug call event=lifecycle source=microphone closed=true active=$active installed=${installed!=null} generation=$generation")
         closed=true;active=false;generation++;installed?.close();installed=null;scope.cancel()
     }
 }

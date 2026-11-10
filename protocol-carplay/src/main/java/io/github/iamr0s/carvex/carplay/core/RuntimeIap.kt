@@ -51,6 +51,7 @@ class RuntimeIap(private val emit:(ByteArray)->Boolean,private val log:(String)-
     private val closed=AtomicBoolean(false)
     private val degraded=AtomicBoolean(false)
     private val started=AtomicBoolean(false)
+    private val diagnosticTx=java.util.concurrent.atomic.AtomicLong()
     @Volatile private var state=RuntimeIapState.WAITING_DATA
     @Volatile private var worker:Thread?=null
     @Volatile private var authorizedGeneration=-1
@@ -114,6 +115,7 @@ class RuntimeIap(private val emit:(ByteArray)->Boolean,private val log:(String)-
                     val command=link.poll()
                     if(negotiate!=null)check(link.generation==authorizedGeneration&&link.linkEpoch==authorizedEpoch&&link.negotiatedControlSession!=null)
                     if(command!=null){
+                        command.fields?.let{fields->BusinessDiagnostics.fields(command.id,"rx",fields.ordered,"source=runtime").forEach(log)}
                         val consumed=identification?.handle(command,link.generation,link.linkEpoch,log)==true
                         if(!consumed&&!closed.get()&&!degraded.get())message(command)
                     }
@@ -124,14 +126,26 @@ class RuntimeIap(private val emit:(ByteArray)->Boolean,private val log:(String)-
     /** 运行期提交一条控制会话消息。固件同样是提交即返回；ACK/重传失败
      *  由后台发送队列回调到 [fail]，不会阻塞事件/业务线程。 */
     fun send(id:Int,fields:List<Pair<Int,ByteArray>>,completion:(Throwable?)->Unit={}):Boolean {
-        if(closed.get()||degraded.get()||(state!=RuntimeIapState.CONTROL_READY&&(negotiate!=null||state!=RuntimeIapState.LINK_READY)))return false
+        val domain=BusinessDiagnostics.domain(id)
+        val ticket=if(domain!=null)diagnosticTx.incrementAndGet() else 0
+        if(domain!=null)BusinessDiagnostics.fields(id,"tx",fields,"source=runtime tx=$ticket").forEach(log)
+        if(closed.get()||degraded.get()||(state!=RuntimeIapState.CONTROL_READY&&(negotiate!=null||state!=RuntimeIapState.LINK_READY))){
+            if(domain!=null)log("debug $domain event=blocked direction=tx id=${id.toString(16)} tx=$ticket reason=runtime-state state=$state closed=${closed.get()} degraded=${degraded.get()}")
+            return false
+        }
         return try{
             if(negotiate!=null)check(link.generation==authorizedGeneration&&link.linkEpoch==authorizedEpoch&&link.negotiatedControlSession!=null)
-            link.sendAsync(id,fields,expectedGeneration=if(negotiate!=null)authorizedGeneration else null){t->
+            val queued=link.sendAsync(id,fields,expectedGeneration=if(negotiate!=null)authorizedGeneration else null){t->
+                if(domain!=null)log("debug $domain event=transport direction=tx id=${id.toString(16)} tx=$ticket completed=${t==null} error=${t?.javaClass?.simpleName?:"none"}; local transport completion, receiver display unverified")
                 if(t!=null)fail(t)
                 completion(t)
             }
-        }catch(t:Throwable){fail(t);false}
+            if(domain!=null)log("debug $domain event=queued direction=tx id=${id.toString(16)} tx=$ticket accepted=$queued generation=${link.generation} epoch=${link.linkEpoch}")
+            queued
+        }catch(t:Throwable){
+            if(domain!=null)log("debug $domain event=dispatch direction=tx id=${id.toString(16)} tx=$ticket failed=${t.javaClass.simpleName}")
+            fail(t);false
+        }
     }
     fun fileSession():Pair<Int,Int>? {
         if(closed.get()||degraded.get()||state!=RuntimeIapState.CONTROL_READY)return null

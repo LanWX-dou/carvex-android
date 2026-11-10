@@ -141,6 +141,7 @@ class SessionController(
         r.own(PhoneCallMonitor(context,{active->synchronized(audioSourceLock){
             if(!ended.get()){
                 // Voice recognition and cellular calls cannot share a type-only teardown slot.
+                BridgeStore.log(id,"debug call event=route source=cellular active=$active mediaSuspended=${callSuspendedMedia.get()} microphoneActive=${callMicrophone.active} audioCategories=${audio.categories().sorted()}")
                 if(active){callSuspendedMedia.set(true);audioDemand.sourceState(3,false)}
                 callMicrophone.update(active)
                 if(!active){
@@ -212,10 +213,15 @@ class SessionController(
         var latestNavigation:NavigationGuidance.RouteUpdate?=null
         fun deliverMusic(track:NowPlayingUpdate.Track,replaceMedia:Boolean=false){
             if(ended.get())return
+            BridgeStore.log(id,"debug music event=sample source=bridge replace=$replaceMedia air=${musicAir.get()!=null} status=${track.status?:"unknown"} durationMs=${track.durationMs?:"unknown"} elapsedMs=${track.elapsedMs?:"unknown"}")
+            listOf("title" to track.title,"artist" to track.artist,"album" to track.album,"app" to track.appName).forEach{(field,value)->
+                if(value!=null)BridgeStore.log(id,"debug music event=host-field source=bridge field=$field value=${DebugLogValue.text(value)}")
+            }
             runCatching{musicRelay.update(track,replaceMedia)}.onFailure{
+                BridgeStore.log(id,"debug music event=dispatch source=bridge accepted=false error=${it.javaClass.simpleName}")
                 BridgeStore.log(id,"nowplaying update failed: "+it.javaClass.simpleName)}
         }
-        val playbackMonitor=r.own(MediaPlaybackMonitor(context){state->
+        val playbackMonitor=r.own(MediaPlaybackMonitor(context,log={BridgeStore.log(id,it)}){state->
             if(!ended.get()){
                 val status=when(state){
                     MediaPlaybackMonitor.State.PLAYING->NowPlayingUpdate.PlaybackStatus.PLAYING
@@ -227,16 +233,19 @@ class SessionController(
                 }
                 mediaPlayback.playbackState(status?.let{it!=NowPlayingUpdate.PlaybackStatus.PAUSED&&it!=NowPlayingUpdate.PlaybackStatus.STOPPED})
                 BridgeStore.log(id,"Media session playback status="+(status?.name?:"unknown")+"; matched to host track")
+                BridgeStore.log(id,"debug music event=playback source=media-session state=${status?.name?:"unknown"} wire=${status?.wire?:"unknown"}")
                 if(status!=null)deliverMusic(NowPlayingUpdate.Track(status=status))
             }
         })
         fun deliverNavigation(update:NavigationGuidance.RouteUpdate){synchronized(navigationLock){
             if(ended.get())return
             latestNavigation=update
+            BridgeStore.log(id,"debug navigation event=sample source=bridge air=${musicAir.get()!=null} state=${update.state?:"unknown"} maneuverCount=${update.maneuverCount?:"unknown"} distanceRemaining=${update.distanceRemaining?:"unknown"} distanceToManeuver=${update.distanceToManeuver?:"unknown"}")
             if(musicAir.get()?.navigationRouteUpdate(update)!=true)
                 BridgeStore.log(id,"navigation 5201 cached; no update queued")
         }}
         fun clearNavigation(){synchronized(navigationLock){
+            BridgeStore.log(id,"debug navigation event=lifecycle source=bridge ended=true cached=${latestNavigation!=null} air=${musicAir.get()!=null}")
             latestNavigation=null
             musicAir.get()?.clearNavigationRoute()
             BridgeStore.update(id){it.copy(hostHud="")}
@@ -273,6 +282,8 @@ class SessionController(
                 if(startAudio.get()?.invoke(category,data,pcmFormat)!=true)audio.receive(data,category,pcmFormat)
             }
             override fun audioState(category:Int,state:Int){synchronized(audioSourceLock){if(!ended.get()){
+                val domain=when{category==2->"navigation";category==1->"music";callMicrophone.active&&category==3->"call";else->null}
+                if(domain!=null)BridgeStore.log(id,"debug $domain event=audio-state source=host category=$category state=$state callActive=${callMicrophone.active} audioCategories=${audio.categories().sorted()}")
                 // Navigation completion ends its receiver stream, restoring the receiver's media
                 // volume context. Revoke pending SETUPs; finish accepted audio on installed streams.
                 // Speech output stopping does not establish that microphone recognition ended.
@@ -282,7 +293,8 @@ class SessionController(
             }}}
             override fun music(info:HostMusic?){
                 if(ended.get())return
-                if(info==null){BridgeStore.log(id,"Host reported no current music item");return}
+                if(info==null){BridgeStore.log(id,"Host reported no current music item");BridgeStore.log(id,"debug music event=track source=host present=false");return}
+                BridgeStore.log(id,"debug music event=track source=host durationMs=${info.duration} playlistSize=${info.playlistSize} index=${info.index}")
                 BridgeStore.log(id,"${"Host music source="}${info.source}${" song="}${info.song}${" artist="}${info.artist}${" duration="}${info.duration}${" playlistSize="}${info.playlistSize}${" index="}${info.index}")
                 BridgeStore.update(id){it.copy(hostMusic=BridgeStore.redact(
                     listOfNotNull(info.song,info.artist).filter{it.isNotBlank()}.joinToString(" - ").ifBlank{"(未命名)"}))}
@@ -312,6 +324,11 @@ class SessionController(
                 BridgeStore.update(id){it.copy(hostOptionalActions=it.hostOptionalActions+1)}
                 BridgeStore.log(id,"Host action "+action+" extras="+intent.extras?.keySet()?.sorted()?.joinToString(","))
                 if(action=="carlife_vehicle_music_info"||action=="carlife_vehicle_music_progress"){
+                    if(action=="carlife_vehicle_music_info"){
+                        BridgeStore.log(id,"debug music event=track source=intent params=${intent.hasExtra("params")} cover=${intent.hasExtra("cover")} coverUrl=${intent.hasExtra("coverUrl")}")
+                        for(field in listOf("song","artist","album","source","duration"))
+                            BridgeStore.log(id,"debug music event=host-field source=intent field=$field value=${DebugLogValue.value(intent.extras?.get(field))}")
+                    }else BridgeStore.log(id,"debug music event=progress source=intent curTime=${DebugLogValue.value(intent.extras?.get("curTime"))} duration=${DebugLogValue.value(intent.extras?.get("duration"))}")
                     val parsed=CarLifeMusicIntent.parse(intent)
                     if(parsed!=null){
                         BridgeStore.log(id,"CarLife music Intent normalized for 5001: title="+
@@ -332,11 +349,15 @@ class SessionController(
                 when(action){
                     "mix_notify_start_navi"->{
                         val value=intent.extras?.get("isNavi")
+                        BridgeStore.log(id,"debug navigation event=lifecycle source=intent isNavi=${DebugLogValue.value(value)} type=${value?.javaClass?.simpleName?:"null"}")
                         if(CarLifeNavigationIntent.ended(intent))clearNavigation()
                         BridgeStore.log(id,"CarLife navigation lifecycle isNavi="+value+
                             " type="+value?.javaClass?.simpleName+"; wire state mapping unverified")
                     }
                     "carlife_show_hud_info"->{
+                        BridgeStore.log(id,"debug navigation event=sample source=intent ended=${CarLifeNavigationIntent.ended(intent)} action=${DebugLogValue.value(intent.extras?.get("action"))} turn=${DebugLogValue.value(intent.extras?.get("navi_turn"))}")
+                        for(field in listOf("road_name","remain_distance","total_distance","turn_icon_data"))
+                            BridgeStore.log(id,"debug navigation event=host-field source=intent field=$field value=${DebugLogValue.value(intent.extras?.get(field))}")
                         if(CarLifeNavigationIntent.ended(intent)){
                             clearNavigation()
                             return
@@ -355,6 +376,7 @@ class SessionController(
                             components=emptyList(),currentRoad=NowPlayingUpdate.textOrNull(road),
                             distanceRemaining=remain.toLong().takeIf{it>=0})
                         deliverNavigation(route)
+                        BridgeStore.log(id,"debug navigation event=sample source=mapping currentRoad=road_name distanceRemaining=remain_distance guidanceState=unmapped maneuver=unmapped lane=unmapped")
                     }
                     "carlife_change_theme"->{
                         val mode=intent.getIntExtra("mode",-1)
@@ -1012,6 +1034,7 @@ class SessionController(
                     }
                 }
                 callMicrophone.attach{current->
+                    BridgeStore.log(id,"debug call event=setup source=bridge phase=preparation audioCategories=${audio.categories().sorted()}")
                     // New media/speech requests are gated above. Let older SETUP/install work
                     // finish before inspecting the media route and reserving raw100 for calls.
                     audioDemand.awaitPreparation(1)
@@ -1021,14 +1044,26 @@ class SessionController(
                         if(air.mediaUsesMainType()){
                             callSuspendedMedia.set(true);audioDemand.sourceState(1,false)
                             BridgeStore.log(id,"Call microphone suspending type100 media until hangup; type102 media remains independent")
+                            BridgeStore.log(id,"debug call event=route source=bridge mediaType=100 suspended=true")
                         }
                         audioDemand.sourceState(3,false)
                     }
-                    val (receiver,format)=air.createCallMicrophone(current){pcm,pcmFormat->audio.microphone(pcm,pcmFormat,current)}
+                    val deliveredBlocks=AtomicLong();val rejectedBlocks=AtomicLong();val deliveredBytes=AtomicLong()
+                    val (receiver,format)=air.createCallMicrophone(current){pcm,pcmFormat->
+                        val accepted=audio.microphone(pcm,pcmFormat,current)
+                        val count=(if(accepted)deliveredBlocks else rejectedBlocks).incrementAndGet()
+                        if(accepted)deliveredBytes.addAndGet(pcm.size.toLong())
+                        if(count==1L||count%250==0L)BridgeStore.log(id,"debug call event=audio-health source=host accepted=$accepted acceptedBlocks=${deliveredBlocks.get()} rejectedBlocks=${rejectedBlocks.get()} deliveredBytes=${deliveredBytes.get()} rate=${pcmFormat.rate} channels=${pcmFormat.channels}; PCM contents not recorded")
+                        accepted
+                    }
                     try{
                         check(current()){"Call ended before microphone attachment"}
                         audio.attachMicrophone(receiver,format)
-                        AutoCloseable{audio.detachMicrophone(receiver)}
+                        BridgeStore.log(id,"debug call event=setup source=bridge phase=attached rate=${format.rate} channels=${format.channels}")
+                        AutoCloseable{
+                            BridgeStore.log(id,"debug call event=teardown source=bridge acceptedBlocks=${deliveredBlocks.get()} rejectedBlocks=${rejectedBlocks.get()} deliveredBytes=${deliveredBytes.get()}")
+                            audio.detachMicrophone(receiver)
+                        }
                     }catch(t:Throwable){audio.detachMicrophone(receiver);throw t}
                 }
                 BridgeStore.update(id){it.copy(audioStatus="音频通道 ${audio.categories().sorted()} 已建立 · 发声待实测")}

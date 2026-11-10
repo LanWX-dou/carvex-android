@@ -30,7 +30,8 @@ class MediaPlaybackAccess : NotificationListenerService() {
 }
 
 /** All platform callbacks run on main. Close revokes queued work before releasing controllers. */
-class MediaPlaybackMonitor(context: Context, private val changed: (State?) -> Unit) : AutoCloseable {
+class MediaPlaybackMonitor(context: Context, private val log: (String) -> Unit = {},
+                           private val changed: (State?) -> Unit) : AutoCloseable {
     enum class State { STOPPED, PLAYING, PAUSED, SEEK_FORWARD, SEEK_BACKWARD }
     private val context = context.applicationContext
     private val handler = Handler(Looper.getMainLooper())
@@ -42,6 +43,7 @@ class MediaPlaybackMonitor(context: Context, private val changed: (State?) -> Un
     private var controllers = emptyList<MediaController>()
     private val callbacks = mutableMapOf<MediaController, MediaController.Callback>()
     private var last: State? = null
+    private var lastDiagnostic: String? = null
     private val sessions = MediaSessionManager.OnActiveSessionsChangedListener { replace(it.orEmpty()) }
     private val accessChanged: () -> Unit = { handler.post { refresh() } }
 
@@ -64,7 +66,9 @@ class MediaPlaybackMonitor(context: Context, private val changed: (State?) -> Un
     private fun refresh() {
         if (closed.get()) return
         try {
-            if (!MediaPlaybackAccess.enabled(context)) {
+            val enabled=MediaPlaybackAccess.enabled(context)
+            log("debug music event=access enabled=$enabled manager=${manager!=null}")
+            if (!enabled) {
                 if (listening) manager?.removeOnActiveSessionsChangedListener(sessions)
                 listening = false
                 replace(emptyList())
@@ -76,6 +80,7 @@ class MediaPlaybackMonitor(context: Context, private val changed: (State?) -> Un
             }
             replace(manager?.getActiveSessions(MediaPlaybackAccess.component(context)).orEmpty())
         } catch (_: SecurityException) {
+            log("debug music event=access enabled=false reason=SecurityException")
             if (listening) manager?.removeOnActiveSessionsChangedListener(sessions)
             listening = false
             replace(emptyList())
@@ -105,7 +110,8 @@ class MediaPlaybackMonitor(context: Context, private val changed: (State?) -> Un
             MediaSessionSelection.Item(controller.metadata?.getString(MediaMetadata.METADATA_KEY_TITLE),
                 controller.metadata?.getString(MediaMetadata.METADATA_KEY_ARTIST))
         }, additionalMatch)
-        val state = when (index?.let { controllers[it].playbackState?.state }) {
+        val rawState=index?.let { controllers[it].playbackState?.state }
+        val state = when (rawState) {
             PlaybackState.STATE_PLAYING -> State.PLAYING
             PlaybackState.STATE_PAUSED -> State.PAUSED
             PlaybackState.STATE_STOPPED -> State.STOPPED
@@ -113,11 +119,14 @@ class MediaPlaybackMonitor(context: Context, private val changed: (State?) -> Un
             PlaybackState.STATE_REWINDING -> State.SEEK_BACKWARD
             else -> null // Buffering, missing permission or ambiguous player is not "paused".
         }
+        val diagnostic="candidates=${controllers.size} match=${index?:"none"} package=${index?.let{controllers[it].packageName}?:"unknown"} rawState=${rawState?:"unknown"} state=${state?:"unknown"} extraMatch=${additionalMatch!=null} targetTitle=${!target.title.isNullOrBlank()}"
+        if(force||diagnostic!=lastDiagnostic){lastDiagnostic=diagnostic;log("debug music event=match $diagnostic")}
         if (force || state != last) { last = state; changed(state) }
     }
 
     override fun close() {
         if (!closed.compareAndSet(false, true)) return
+        log("debug music event=lifecycle source=media-monitor closed=true")
         MediaPlaybackAccess.observers.remove(accessChanged)
         handler.post {
             if (listening) manager?.removeOnActiveSessionsChangedListener(sessions)

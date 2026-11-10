@@ -141,12 +141,12 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         session={runtime.fileSession()},
         announce={fields,completion->runtime.send(NowPlayingUpdate.ID,fields,completion)},
         send={bytes,valid,completion->runtime.sendFile(bytes,valid,completion)},log=log)
-    private val nowPlayingPublisher=NowPlayingPublisher{fields->
+    private val nowPlayingPublisher=NowPlayingPublisher({fields->
         val accepted=runtime.send(NowPlayingUpdate.ID,fields)
         log("Now Playing 5001 queued=$accepted fields="+fields.joinToString(";"){(group,bytes)->
             "$group:"+IapWire.parseFieldList(bytes).ordered.joinToString(","){it.first.toString()}})
         accepted
-    }
+    },log)
     private val navigationPublisher=NavigationPublisher({id,fields->
         val accepted=runtime.send(id,fields)
         log("navigation ${id.toString(16)} queued=$accepted fields="+fields.joinToString(","){it.first.toString()})
@@ -159,6 +159,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     }
     private val runtime:RuntimeIap=RuntimeIap({emitRuntime(it)},log,{state->
         log("Runtime iAP state="+state)
+        log("debug call event=link source=runtime state=$state; iAP call metadata provider not installed")
         if(state in setOf(RuntimeIapState.SYNCHRONIZING,RuntimeIapState.DEGRADED,RuntimeIapState.CLOSED))runtimeCapabilities=CapabilityRegistry()
         nowPlayingPublisher.linkReady(state==RuntimeIapState.CONTROL_READY)
         artworkEvents.trySend{artwork.linkReady(state==RuntimeIapState.CONTROL_READY)}
@@ -171,13 +172,18 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         if(command.id in setOf(NowPlayingUpdate.START,NowPlayingUpdate.STOP,0x5003)&&
             runtimeCapabilities.sentByAccessory.any{it.value==command.id}&&
             runtimeCapabilities.receivedByAccessory.any{it.value==NowPlayingUpdate.ID}){
-            if(command.id==0x5003)nowPlayingPublisher.setInfo(requireNotNull(command.fields))
+            val accepted=if(command.id==0x5003)nowPlayingPublisher.setInfo(requireNotNull(command.fields))
             else nowPlayingPublisher.command(command.id,requireNotNull(command.fields))
+            log("debug music event=dispatch direction=rx id=${command.id.toString(16)} accepted=$accepted")
+        }else if(command.id in setOf(0x5000,0x5002,0x5003)){
+            log("debug music event=dispatch direction=rx id=${command.id.toString(16)} accepted=false reason=capability-gate")
         }
         if(command.id==0x5200||command.id==0x5203){
             val accepted=navigationPublisher.command(command.id,requireNotNull(command.fields))
             if(!accepted)log("navigation runtime ${command.id.toString(16)} rejected: capability/state/fields")
         }
+        if(BusinessDiagnostics.domain(command.id)=="call")
+            log("debug call event=dispatch direction=rx id=${command.id.toString(16)} handled=false reason=no-runtime-call-metadata-provider")
     },negotiate={link->
         Bootstrap.negotiateRuntimeIdentification(link,options.phoneMac,options.carPlayName,PairStore(context).identity(),
             experimentalIntegrityOnly=options.experiment,log=log)
@@ -1242,7 +1248,11 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         check(!stopping&&current()){"Call already ended"}
         val candidate=CallMicrophonePlan.select(receiverAudio){format->
             format.codec==CarPlayAudioPlan.Codec.PCM16||runCatching{AudioCodecSupport.decoders(format).isNotEmpty()}.getOrDefault(false)
-        }?:throw UnsupportedOperationException("No receiver telephony input format with a local decoder")
+        }?:run{
+            log("debug call event=setup source=protocol phase=blocked reason=no-compatible-telephony-decoder receiverRows=${receiverAudio.size}")
+            throw UnsupportedOperationException("No receiver telephony input format with a local decoder")
+        }
+        log("debug call event=setup source=protocol phase=selected type=100 codec=${candidate.codec} rate=${candidate.rate} channels=${candidate.channels} audioFormat=${candidate.bit}")
         val secret=shared?:error("Call input requires established HomeKit keys")
         val control=client?:error("No control session")
         val id=Crypto.random.nextLong().and(Long.MAX_VALUE).coerceAtLeast(1)
@@ -1256,12 +1266,15 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         var receiver:CarPlayMicReceiver?=null
         val setupAttempted=java.util.concurrent.atomic.AtomicBoolean(false)
         val setupFinished=CompletableDeferred<Unit>()
+        val inputBlocks=java.util.concurrent.atomic.AtomicLong()
+        val gatedBlocks=java.util.concurrent.atomic.AtomicLong()
         fun release(needsTeardown:Boolean){
             val teardown=synchronized(registrationLock){
                 accepted.set(false)
                 if(!released.compareAndSet(false,true)||!audioStreams.beginClose(lease))return
                 needsTeardown&&setupAttempted.get()
             }
+            log("debug call event=teardown source=protocol phase=begin stream=$id requested=$needsTeardown setupAttempted=${setupAttempted.get()} teardown=$teardown inputBlocks=${inputBlocks.get()} gatedBlocks=${gatedBlocks.get()}")
             scope.launch(start=CoroutineStart.UNDISPATCHED){withContext(Dispatchers.IO+NonCancellable){
                 var failure:Throwable?=null
                 try{
@@ -1272,6 +1285,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
                         log("Call microphone phase=teardown-begin")
                         control.plist("TEARDOWN",connectionPath?:"/",mapOf("streams" to listOf(AudioTeardownDescriptor.forType(100))))
                         log("Call microphone phase=teardown-accepted")
+                        log("debug call event=teardown source=protocol phase=receiver-response stream=$id accepted=true")
                     }
                 }catch(t:Throwable){failure=t}
                 try{
@@ -1284,6 +1298,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
                     audioStreams.completeClose(lease,failure)
                 }
                 failure?.let{log("Call microphone close unconfirmed: "+it.javaClass.simpleName)}
+                log("debug call event=teardown source=protocol phase=complete stream=$id error=${failure?.javaClass?.simpleName?:"none"}")
             }}
         }
         try{
@@ -1295,7 +1310,12 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             receiver=CarPlayMicReceiver.create(udp,address,0,
                 key=Crypto.hkdf(secret,"DataStream-Salt$id","DataStream-Input-Encryption-Key"),
                 format=candidate,controlPort=null,
-                output={pcm,format->accepted.get()&&!released.get()&&current()&&audioOwnership.allowsMainSend()&&onPcm(pcm,format)},log=log,
+                output={pcm,format->
+                    val allowed=accepted.get()&&!released.get()&&current()&&audioOwnership.allowsMainSend()
+                    val count=(if(allowed)inputBlocks else gatedBlocks).incrementAndGet()
+                    if(count==1L||count%250==0L)log("debug call event=audio-health source=protocol stream=$id allowed=$allowed inputBlocks=${inputBlocks.get()} gatedBlocks=${gatedBlocks.get()} bytes=${pcm.size} rate=${format.rate} channels=${format.channels}")
+                    allowed&&onPcm(pcm,format)
+                },log=log,
                 stopped={release(true)},purpose="telephony")
             val input=requireNotNull(receiver)
             val handle=object:MicrophoneInput{
@@ -1305,10 +1325,13 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             synchronized(registrationLock){check(!released.get());handleRef.set(handle);resources.own(handle)}
             check(input.ready&&!released.get()&&current()){"Call input closed before SETUP"}
             log("Call microphone phase=setup-begin type=100 audioType=telephony codec=${candidate.codec} rate=${candidate.rate} channels=${candidate.channels} localPort=${udp.localPort}")
+            log("debug call event=setup source=protocol phase=request stream=$id type=100 audioType=telephony codec=${candidate.codec} rate=${candidate.rate} channels=${candidate.channels} localPort=${udp.localPort}")
             synchronized(registrationLock){check(!released.get());setupAttempted.set(true)}
             val response=control.plist("SETUP",connectionPath?:"/",mapOf("streams" to listOf(CallMicrophonePlan.description(candidate,id,udp.localPort))))
             val stream=(response["streams"] as? List<*>)?.filterIsInstance<Map<*,*>>()?.singleOrNull{(it["type"] as? Number)?.toInt()==100}
                 ?:error("No unique telephony input SETUP response")
+            for(field in listOf("type","audioType","audioFormat","streamConnectionID","dataPort","controlPort","streamID"))
+                log("debug call event=field source=setup-response field=$field value=${DebugLogValue.value(stream[field])}")
             require(stream["audioType"]==null||stream["audioType"]=="telephony")
             require(stream["streamConnectionID"]==null||(stream["streamConnectionID"] as? Number)?.toLong()==id)
             require(stream["audioFormat"]==null||(stream["audioFormat"] as? Number)?.toLong()==candidate.bit)
@@ -1318,9 +1341,11 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             check(!stopping&&current()&&input.ready&&!released.get()){"Call ended during SETUP"}
             synchronized(registrationLock){check(!released.get());accepted.set(true)}
             log("Call microphone phase=setup-accepted; awaiting authenticated RTP and host acceptance")
+            log("debug call event=setup source=protocol phase=accepted stream=$id inputReady=${input.ready}; authenticated RTP and host consumption still unverified")
             return handle to candidate.decodedPcm
         }catch(t:Throwable){
             // Explicit refusal did not create a remote stream. Other failures after sending
+            log("debug call event=setup source=protocol phase=failed stream=$id error=${t.javaClass.simpleName} detail=${DebugLogValue.text(t.message)}")
             // SETUP are uncertain and need the normal type-wide teardown barrier.
             release(t !is RtspClient.StatusException)
             receiver?.close();udp.close()
