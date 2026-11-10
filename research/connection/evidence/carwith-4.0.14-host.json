@@ -1,0 +1,220 @@
+{
+  "schema": 1,
+  "apk_sha256": "c7888ec5018b4e279ed3d3395b8c855d2a3571f06ae26b96849a61ad6dbef00e",
+  "apk_bytes": 55952823,
+  "package": "com.miui.carlink",
+  "version_code": 104000014,
+  "version_name": "4.0.14-20260801",
+  "scope": "DEX byte identity and locations; no runtime or Apple-equivalence claim",
+  "dex": {
+    "classes.dex": {
+      "sha256": "14b5d0b0d9e3cfebccbf8487cccf2674189be504fdb4e7a8a8e5ecc0d97a1ab2",
+      "bytes": 8684124,
+      "methods": {
+        "h1.a.a([BI)": {
+          "code_item": "0x48ef6c",
+          "insns_offset": "0x48ef7c",
+          "code_units": 52,
+          "registers": 7,
+          "inputs": 3,
+          "outputs": 2,
+          "insns_sha256": "ce72227d05bccc469359c765f89fd24fa6c60305c6f44cca7ae21b666bc0d0e3"
+        },
+        "h1.a.c([B)": {
+          "code_item": "0x48ee00",
+          "insns_offset": "0x48ee10",
+          "code_units": 131,
+          "registers": 6,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "ab9686568d5b4587306482b73303cceb3000564093daf8c0241719f3d0530bbf"
+        },
+        "PhoneAudioCast.B([B)": {
+          "code_item": "0x4328e0",
+          "insns_offset": "0x4328f0",
+          "code_units": 53,
+          "registers": 3,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "7b19b545fba741472a9094c697600de6a765509d346abab3bd7475f60a5f1a4b"
+        },
+        "VoIPService$IPhoneAudioCastStub.readAssistantRecorderData([B)": {
+          "code_item": "0x4384d0",
+          "insns_offset": "0x4384e0",
+          "code_units": 9,
+          "registers": 2,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "59ece5504e05b4ac42d72d5371a1bff1e2602e1452dfc4bd282008f5843709ef"
+        }
+      }
+    },
+    "classes2.dex": {
+      "sha256": "ea8f6236622c61ce75f503f4099d5b61ae1a83fb03e7bf564fab75b205577b06",
+      "bytes": 6323024,
+      "methods": {
+        "LauncherDataBusClient.C()": {
+          "code_item": "0x16fb48",
+          "insns_offset": "0x16fb58",
+          "code_units": 63,
+          "registers": 7,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "92445416ada438325a30d6099310f47109929538ffe1931879a9add0ec72c513"
+        },
+        "LauncherDataBusClient.E(...)": {
+          "code_item": "0x16fc3c",
+          "insns_offset": "0x16fc4c",
+          "code_units": 430,
+          "registers": 30,
+          "inputs": 10,
+          "outputs": 9,
+          "insns_sha256": "dcbf56f3c49d18a0e12b6dc8ffe4b50a5a5ec8b5d3e21d2a9d872d5804d7e91d"
+        },
+        "LauncherDataBusClient.F(...)": {
+          "code_item": "0x16ffc4",
+          "insns_offset": "0x16ffd4",
+          "code_units": 61,
+          "registers": 14,
+          "inputs": 4,
+          "outputs": 10,
+          "insns_sha256": "5ad136febc196c4b6ffbfe49b8e6ab41a56353cd2c5ee6e53a18b006575f0b11"
+        },
+        "LauncherDataBusClient.w(String,String)": {
+          "code_item": "0x16f3f0",
+          "insns_offset": "0x16f400",
+          "code_units": 74,
+          "registers": 4,
+          "inputs": 3,
+          "outputs": 2,
+          "insns_sha256": "30df7a932eea73e7c9bae08da8e94a0cc1f7c2830978856373d22e70a76da717"
+        },
+        "LauncherDataBusClient.u(Intent,Intent)": {
+          "code_item": "0x16f8e4",
+          "insns_offset": "0x16f8f4",
+          "code_units": 15,
+          "registers": 3,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "4025519fa0f9dd1001b5709f090a1499446c2713f7f589cd4b4e070e364ec76f"
+        },
+        "map.wms.i$x.g(boolean)": {
+          "code_item": "0x1c5c20",
+          "insns_offset": "0x1c5c30",
+          "code_units": 77,
+          "registers": 3,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "495bdd6cedf1c0ee945c0756a9283b2a3a3e13145b238d21c77f67de2edb05af"
+        }
+      },
+      "distance_strings": [
+        {
+          "index": "0xc845",
+          "data_offset": "0x5329b8",
+          "value": "公里"
+        },
+        {
+          "index": "0xc8e0",
+          "data_offset": "0x5332c2",
+          "value": "米"
+        },
+        {
+          "index": "0xc8cc",
+          "data_offset": "0x5331a6",
+          "value": "现在"
+        }
+      ]
+    },
+    "classes4.dex": {
+      "sha256": "f41c43e358d96cffea567c325ff34f308e13a1bf4816c9a9bea3632fd755bd60",
+      "bytes": 3095392,
+      "methods": {
+        "DataBusService$DataBusServiceStub.readAssistantRecorderData([B)": {
+          "code_item": "0x10f738",
+          "insns_offset": "0x10f748",
+          "code_units": 9,
+          "registers": 2,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "dc0f066269ee49656b64db1b38feefd369c5d1e7f3568c38420205d453b0f712"
+        },
+        "NavigationInfo.i()": {
+          "code_item": "0x11c40c",
+          "insns_offset": "0x11c41c",
+          "code_units": 3,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 0,
+          "insns_sha256": "d6dea875fcfbe97d4e321b4b48dbdf6252a6a6bc48dd9751c3dbfae651a2edb8"
+        },
+        "NavigationInfo.<init>(boolean,byte[],String,...)": {
+          "code_item": "0x11c4d0",
+          "insns_offset": "0x11c4e0",
+          "code_units": 23,
+          "registers": 10,
+          "inputs": 9,
+          "outputs": 1,
+          "insns_sha256": "18b26bdf1d1b99b017bbd83d76933664a67548d4b96894260de00c8fc1bf8624"
+        }
+      }
+    },
+    "classes5.dex": {
+      "sha256": "84bb963ce310114668a38370167075b517d2ba0344f3224e330ada366c1948db",
+      "bytes": 8058612,
+      "methods": {
+        "UCarMapInfo.fromBundle(Bundle)": {
+          "code_item": "0x1bf334",
+          "insns_offset": "0x1bf344",
+          "code_units": 100,
+          "registers": 10,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "ec0551ecf86cd7a388eb1005154a59827b830c2d7164897c74a8d1a7443c2954"
+        },
+        "be.f.d([BII)": {
+          "code_item": "0x1b1fc8",
+          "insns_offset": "0x1b1fd8",
+          "code_units": 17,
+          "registers": 4,
+          "inputs": 4,
+          "outputs": 2,
+          "insns_sha256": "0ad3f9e81df8fd87ed8f07eb935e7ab21d7046b30cb1b8a951ec53cd98a55146"
+        }
+      }
+    },
+    "classes6.dex": {
+      "sha256": "dfcd670161bc9e37589d7d98bc5e3605803eefc2d1fbc5f59c5beb3cb9e941f8",
+      "bytes": 1933736,
+      "methods": {
+        "CarlifeAudioListener.onReceiveAudioStream([BIII)": {
+          "code_item": "0xadf90",
+          "insns_offset": "0xadfa0",
+          "code_units": 58,
+          "registers": 5,
+          "inputs": 5,
+          "outputs": 3,
+          "insns_sha256": "9779b0d9bf69958896a4113599dce6a36e44c192720a4291645919e7385fd5f4"
+        },
+        "carlife.j.r(Intent)": {
+          "code_item": "0xa88bc",
+          "insns_offset": "0xa88cc",
+          "code_units": 112,
+          "registers": 7,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "e476ffe20e1c5829a0aa4bbe756727bff143960e3a3a57f077056b70e24cf39e"
+        },
+        "carlife.j.G(Intent)": {
+          "code_item": "0xa8a60",
+          "insns_offset": "0xa8a70",
+          "code_units": 20,
+          "registers": 4,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "582bedcf8b1901921d856d4c18ba595c799847e95b52d54db8c680b39f62845e"
+        }
+      }
+    }
+  }
+}
