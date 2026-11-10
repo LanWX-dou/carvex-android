@@ -14,6 +14,7 @@ object CarPlayAudioPlan {
     val alert=Route(2,100,"alert")
     val alternate=Route(2,101,"default")
     val assistant=Route(3,100,"speechRecognition")
+    val telephony=Route(0,100,"telephony") // Input-only route; no host PCM category is assigned.
     val routes=listOf(media,mediaLowLatency,alert,alternate,assistant)
     private fun f(bit:Long,codec:Codec,rate:Int,channels:Int,frames:Int)=Format(bit,codec,rate,channels,frames)
     val formats:List<Format> = buildList {
@@ -170,7 +171,7 @@ object CarPlayAudioPlan {
      * Main/Alt/High raw access units. This is an implementation contract, not a claim that U2IW's
      * audited 100/101 PCM subset proves every compressed codec or type102 on every receiver. */
     fun wireSupported(route:Route,format:Format):Boolean {
-        if(route !in routes||format !in formats)return false
+        if((route !in routes&&route!=telephony)||format !in formats)return false
         return when(format.codec){
             Codec.PCM16->route.type in setOf(100,101)&&format.rate%200==0
             Codec.AAC_LC,Codec.AAC_ELD,Codec.OPUS->route.type in setOf(100,101,102)

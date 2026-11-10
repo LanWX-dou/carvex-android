@@ -1220,6 +1220,109 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         }
     }
 
+    fun mediaUsesMainType():Boolean=audioStreams.isActive(100,"media")
+
+    /** Cellular uplink only. The existing host downlink remains separate; no synthetic PCM or
+     * guessed CarLife audio category is used. Raw100 teardown requires an exclusive lease. */
+    suspend fun createCallMicrophone(current:()->Boolean,onPcm:suspend (ByteArray,PcmFormat)->Boolean):Pair<MicrophoneInput,PcmFormat> {
+        var created:Pair<MicrophoneInput,PcmFormat>?=null
+        try{return withContext(Dispatchers.IO){
+            audioSetupLock.lock()
+            try{createCallMicrophoneLocked(current,onPcm).also{created=it}}finally{audioSetupLock.unlock()}
+        }}catch(t:Throwable){created?.first?.close();throw t}
+    }
+    private suspend fun createCallMicrophoneLocked(current:()->Boolean,onPcm:suspend (ByteArray,PcmFormat)->Boolean):Pair<MicrophoneInput,PcmFormat>{
+        check(!stopping&&current()){"Call already ended"}
+        val candidate=CallMicrophonePlan.select(receiverAudio){format->
+            format.codec==CarPlayAudioPlan.Codec.PCM16||runCatching{AudioCodecSupport.decoders(format).isNotEmpty()}.getOrDefault(false)
+        }?:throw UnsupportedOperationException("No receiver telephony input format with a local decoder")
+        val secret=shared?:error("Call input requires established HomeKit keys")
+        val control=client?:error("No control session")
+        val id=Crypto.random.nextLong().and(Long.MAX_VALUE).coerceAtLeast(1)
+        val udp=DatagramSocket(null)
+        val lease=try{audioStreams.reserve(100,"telephony",id,exclusive=true)}catch(t:Throwable){udp.close();throw t}
+        val accepted=java.util.concurrent.atomic.AtomicBoolean(false)
+        val released=java.util.concurrent.atomic.AtomicBoolean(false)
+        val owned=java.util.concurrent.atomic.AtomicBoolean(false)
+        val handleRef=java.util.concurrent.atomic.AtomicReference<MicrophoneInput?>()
+        val registrationLock=Any()
+        var receiver:CarPlayMicReceiver?=null
+        val setupAttempted=java.util.concurrent.atomic.AtomicBoolean(false)
+        val setupFinished=CompletableDeferred<Unit>()
+        fun release(needsTeardown:Boolean){
+            val teardown=synchronized(registrationLock){
+                accepted.set(false)
+                if(!released.compareAndSet(false,true)||!audioStreams.beginClose(lease))return
+                needsTeardown&&setupAttempted.get()
+            }
+            scope.launch(start=CoroutineStart.UNDISPATCHED){withContext(Dispatchers.IO+NonCancellable){
+                var failure:Throwable?=null
+                try{
+                    // A failed receiver can close while SETUP is in flight. Never let its
+                    // type-only TEARDOWN overtake SETUP on the control connection.
+                    setupFinished.await()
+                    if(teardown&&!stopping){
+                        log("Call microphone phase=teardown-begin")
+                        control.plist("TEARDOWN",connectionPath?:"/",mapOf("streams" to listOf(AudioTeardownDescriptor.forType(100))))
+                        log("Call microphone phase=teardown-accepted")
+                    }
+                }catch(t:Throwable){failure=t}
+                try{
+                    audioOwnershipLock.lock()
+                    try{if(owned.compareAndSet(true,false)&&mainAudioUsers.decrementAndGet()==0&&!stopping)audioOwnership.releaseOwn()}
+                    finally{audioOwnershipLock.unlock()}
+                }catch(t:Throwable){if(failure==null)failure=t else failure.addSuppressed(t)}
+                finally{
+                    synchronized(registrationLock){handleRef.getAndSet(null)}?.let{resources.release(it)}
+                    audioStreams.completeClose(lease,failure)
+                }
+                failure?.let{log("Call microphone close unconfirmed: "+it.javaClass.simpleName)}
+            }}
+        }
+        try{
+            audioOwnershipLock.lock()
+            try{audioOwnership.takeOwn();mainAudioUsers.incrementAndGet();owned.set(true)}finally{audioOwnershipLock.unlock()}
+            check(!stopping&&current()){"Call ended before input setup"}
+            Bootstrap.bind(network,udp,options.bindNetwork,::pinningRefused)
+            udp.bind(InetSocketAddress(requireNotNull(localMediaAddress),0))
+            receiver=CarPlayMicReceiver.create(udp,address,0,
+                key=Crypto.hkdf(secret,"DataStream-Salt$id","DataStream-Input-Encryption-Key"),
+                format=candidate,controlPort=null,
+                output={pcm,format->accepted.get()&&!released.get()&&current()&&audioOwnership.allowsMainSend()&&onPcm(pcm,format)},log=log,
+                stopped={release(true)},purpose="telephony")
+            val input=requireNotNull(receiver)
+            val handle=object:MicrophoneInput{
+                override val ready get()=accepted.get()&&!released.get()&&input.ready
+                override fun close(){release(true);input.close()}
+            }
+            synchronized(registrationLock){check(!released.get());handleRef.set(handle);resources.own(handle)}
+            check(input.ready&&!released.get()&&current()){"Call input closed before SETUP"}
+            log("Call microphone phase=setup-begin type=100 audioType=telephony codec=${candidate.codec} rate=${candidate.rate} channels=${candidate.channels} localPort=${udp.localPort}")
+            synchronized(registrationLock){check(!released.get());setupAttempted.set(true)}
+            val response=control.plist("SETUP",connectionPath?:"/",mapOf("streams" to listOf(CallMicrophonePlan.description(candidate,id,udp.localPort))))
+            val stream=(response["streams"] as? List<*>)?.filterIsInstance<Map<*,*>>()?.singleOrNull{(it["type"] as? Number)?.toInt()==100}
+                ?:error("No unique telephony input SETUP response")
+            require(stream["audioType"]==null||stream["audioType"]=="telephony")
+            require(stream["streamConnectionID"]==null||(stream["streamConnectionID"] as? Number)?.toLong()==id)
+            require(stream["audioFormat"]==null||(stream["audioFormat"] as? Number)?.toLong()==candidate.bit)
+            // Sink-only dataPort in the response is not the sender's RTP source port.
+            (stream["dataPort"] as? Number)?.toInt()?.let{require(it in 1..65535)}
+            input.updateControlPort((stream["controlPort"] as? Number)?.toInt()?.also{require(it in 1..65535)})
+            check(!stopping&&current()&&input.ready&&!released.get()){"Call ended during SETUP"}
+            synchronized(registrationLock){check(!released.get());accepted.set(true)}
+            log("Call microphone phase=setup-accepted; awaiting authenticated RTP and host acceptance")
+            return handle to candidate.decodedPcm
+        }catch(t:Throwable){
+            // Explicit refusal did not create a remote stream. Other failures after sending
+            // SETUP are uncertain and need the normal type-wide teardown barrier.
+            release(t !is RtspClient.StatusException)
+            receiver?.close();udp.close()
+            setupFinished.complete(Unit)
+            withContext(NonCancellable){runCatching{audioStreams.awaitClose(lease)}}
+            throw t
+        }finally{setupFinished.complete(Unit)}
+    }
+
     suspend fun createMicrophoneReceiver(onPcm:suspend (ByteArray,PcmFormat)->Boolean):Pair<CarPlayMicReceiver,PcmFormat>? = withContext(Dispatchers.IO){
         audioSetupLock.lock()
         try{createMicrophoneLocked(onPcm)}finally{audioSetupLock.unlock()}

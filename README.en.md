@@ -77,8 +77,12 @@ This repository can also live inside the larger research workspace at
 - iAP2 link establishment, identification flow and control-session routing.
 - Wi-Fi handoff and AirPlay control / RTSP setup pipeline.
 - Protocol and pipeline modules for video, audio, microphone, RTP timing and
-  retransmission. Vehicle audio and microphone transfer are not implemented yet; video,
-  touch and compatibility still require vehicle acceptance.
+  retransmission; head-unit interoperability still requires vehicle acceptance.
+- Experimental cellular-call microphone path: grant phone-state access under Settings →
+  Call microphone to negotiate vehicle `telephony` input during cellular activity, decode
+  it for the host, and release it on hangup. No numbers are read or recordings saved.
+  Actual cellular uplink consumption by the host remains unverified; VoIP is outside this path.
+  See the [implementation and validation record](docs/fixes/2026-11-10-call-microphone.md).
 - CarLife mixing host for Xiaomi, OPPO, vivo and Samsung; Honor is packaging-only.
 - Structured bridge logs with copy and export.
 - Shizuku-assisted read of the phone Bluetooth MAC address, used by the identity
@@ -176,9 +180,9 @@ from forks cannot read them, so the PR job generates a throwaway keystore only t
 build configure. Nothing signed by that throwaway key is published.
 
 Every non-PR run publishes the signed APKs and `SHA256SUMS` as a prerelease named
-`build-<run>` under GitHub Releases. These are experimental builds: audio and microphone
-transfer to the vehicle is not implemented yet, and video, touch and compatibility still
-require vehicle acceptance.
+`build-<run>` under GitHub Releases. These are experimental builds: audio, microphone,
+video, touch and compatibility still require vehicle acceptance. Call uplink additionally
+requires confirmation that the host passes the received audio into the actual call.
 
 This repository intentionally publishes `.signing/keystore.properties` and `release.jks`
 for reproducible builds; they are not a security boundary. Do not commit `local.properties`,

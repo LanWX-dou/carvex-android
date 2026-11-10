@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 class CarPlayMicReceiver private constructor(private val socket:DatagramSocket,private val peer:InetAddress,
     private val peerPort:Int,private val key:ByteArray,private val alternateKey:ByteArray?,private val format:CarPlayAudioPlan.Format,
     private val codec:MediaCodec?,controlPort:Int?,private val output:suspend (ByteArray,PcmFormat)->Boolean,
-    private val log:(String)->Unit,private val stopped:()->Unit):MicrophoneInput {
+    private val log:(String)->Unit,private val stopped:()->Unit,private val purpose:String):MicrophoneInput {
     private val closed=AtomicBoolean(false)
     @Volatile private var controlPort:Int?=controlPort
     /** The local sink exists before SETUP; the remote control port arrives in its response. */
@@ -33,6 +33,7 @@ class CarPlayMicReceiver private constructor(private val socket:DatagramSocket,p
         val info=MediaCodec.BufferInfo()
         var actual=format.decodedPcm;var converter=Pcm16Converter(actual,pcmFormat)
         var requested:Int?=null;var invalid=0L;var received=0L;var delivered=0L;var lastLogged=0L
+        var datagrams=0L;var foreign=0L;var authenticated=0L;var summaryAt=System.nanoTime()
         suspend fun drain(){
             val c=codec?:return
             while(true){
@@ -44,14 +45,15 @@ class CarPlayMicReceiver private constructor(private val socket:DatagramSocket,p
                     actual=PcmFormat(f.getInteger(MediaFormat.KEY_SAMPLE_RATE),f.getInteger(MediaFormat.KEY_CHANNEL_COUNT))
                     converter=Pcm16Converter(actual,pcmFormat)
                 }else if(index>=0){
-                    try{
+                    val pcm=try{
                         if(info.size>0){
                             val data=requireNotNull(c.getOutputBuffer(index)).duplicate()
                             data.position(info.offset);data.limit(info.offset+info.size)
-                            val pcm=converter.convert(ByteArray(info.size).also{data.get(it)})
-                            if(pcm.isNotEmpty()&&output(pcm,pcmFormat))delivered+=pcm.size
-                        }
+                            converter.convert(ByteArray(info.size).also{data.get(it)})
+                        }else byteArrayOf()
                     }finally{c.releaseOutputBuffer(index,false)}
+                    // Never hold a MediaCodec output buffer across a potentially slow Binder sink.
+                    if(pcm.isNotEmpty()&&output(pcm,pcmFormat))delivered+=pcm.size
                 }else if(index==MediaCodec.INFO_TRY_AGAIN_LATER)return
             }
         }
@@ -80,6 +82,8 @@ class CarPlayMicReceiver private constructor(private val socket:DatagramSocket,p
                 val packet=DatagramPacket(buffer,buffer.size)
                 try{
                     socket.receive(packet)
+                    datagrams++
+                    if(datagrams==1L)log("Microphone phase=first-datagram purpose=$purpose bytes="+packet.length)
                     // 固件只在长度小于 0x5c9（最多 1480 字节）时处理；更大的不是合法麦克风包。
                     if(packet.length>=0x5c9){invalid++;continue}
                     if(packet.address==peer&&(peerPort==0||packet.port==peerPort||packet.port==controlPort)){
@@ -89,7 +93,7 @@ class CarPlayMicReceiver private constructor(private val socket:DatagramSocket,p
                         val skip=if(packet.length>=4&&(packet.data[packet.offset+1].toInt() and 255)==214)4 else 0
                         val wire=packet.data.copyOfRange(packet.offset+skip,end)
                         try{
-                            auth.open(wire)?.let{frame->jitter.offer(frame,System.nanoTime());received++}
+                            auth.open(wire)?.let{frame->jitter.offer(frame,System.nanoTime());received++;authenticated++}
                         }catch(t:Exception){
                             invalid++
                             if(invalid==1L){
@@ -101,7 +105,7 @@ class CarPlayMicReceiver private constructor(private val socket:DatagramSocket,p
                             }
                             if(invalid==1L||invalid%100==0L)log("${"Microphone packet rejected: "}${t.javaClass.simpleName}${"; count="}${invalid}")
                         }
-                    }
+                    }else foreign++
                 }catch(_:SocketTimeoutException){}
                 val missing=jitter.missing()
                 val retransmitPort=controlPort
@@ -112,20 +116,25 @@ class CarPlayMicReceiver private constructor(private val socket:DatagramSocket,p
                 while(true){val frame=jitter.poll(System.nanoTime())?:break;decode(frame)}
                 if(jitter.missing()==null)requested=null
                 drain()
-                if(received!=lastLogged&&(received==1L||received>0&&received%100==0L)){lastLogged=received;log("${"Microphone authenticated RTP="}${received}${" deliveredPCM="}${delivered}${" skipped="}${jitter.skipped}${"; ASR acceptance pending"}")}
+                val now=System.nanoTime()
+                if(now-summaryAt>=5_000_000_000L){
+                    summaryAt=now
+                    log("Microphone health purpose=$purpose datagrams=$datagrams foreign=$foreign rejected=$invalid authenticated=$authenticated deliveredPCM=$delivered; host delivery only")
+                }
+                if(received!=lastLogged&&(received==1L||received>0&&received%100==0L)){lastLogged=received;log("Microphone authenticated RTP=$received purpose=$purpose deliveredPCM=$delivered skipped=${jitter.skipped}; audible acceptance pending")}
             }
         }catch(t:CancellationException){throw t}
         catch(t:Exception){if(!closed.get())log("${"Microphone receiver failed: "}${t.javaClass.simpleName}${" "}${t.message}")}
         finally{
             closed.set(true);socket.close()
             codec?.let{runCatching{it.stop()};runCatching{it.release()}}
-            key.fill(0);runCatching{stopped()};scope.cancel()
+            key.fill(0);log("Microphone phase=closed purpose=$purpose datagrams=$datagrams authenticated=$authenticated deliveredPCM=$delivered");runCatching{stopped()};scope.cancel()
         }
     }
     override fun close(){if(!closed.compareAndSet(false,true))return;socket.close();scope.cancel()}
     companion object {
         suspend fun create(socket:DatagramSocket,peer:InetAddress,peerPort:Int,key:ByteArray,alternateKey:ByteArray?=null,format:CarPlayAudioPlan.Format,
-            controlPort:Int?,output:suspend (ByteArray,PcmFormat)->Boolean,log:(String)->Unit,stopped:()->Unit={}):CarPlayMicReceiver = withContext(Dispatchers.IO){
+            controlPort:Int?,output:suspend (ByteArray,PcmFormat)->Boolean,log:(String)->Unit,purpose:String="speechRecognition",stopped:()->Unit={}):CarPlayMicReceiver = withContext(Dispatchers.IO){
             var codec:MediaCodec?=null
             try{
                 if(format.codec!=CarPlayAudioPlan.Codec.PCM16){
@@ -141,7 +150,7 @@ class CarPlayMicReceiver private constructor(private val socket:DatagramSocket,p
                     }else f.setByteBuffer("csd-0",ByteBuffer.wrap(AacConfiguration.decoderConfig(format)))
                     c.configure(f,null,null,0);c.start()
                 }
-                CarPlayMicReceiver(socket,peer,peerPort,key,alternateKey,format,codec,controlPort,output,log,stopped)
+                CarPlayMicReceiver(socket,peer,peerPort,key,alternateKey,format,codec,controlPort,output,log,stopped,purpose)
             }catch(t:Throwable){codec?.let{runCatching{it.release()}};socket.close();key.fill(0);throw t}
         }
     }

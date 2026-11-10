@@ -1,4 +1,8 @@
 <resources>
+    <string name="call_microphone_title">Call microphone</string>
+    <string name="call_microphone_description">Allow phone state access to enable the vehicle microphone during cellular calls and release it afterward. No phone numbers are read and no recordings are saved. Requires receiver and host support.</string>
+    <string name="call_microphone_grant">Allow phone state access</string>
+    <string name="call_microphone_granted">Phone state access enabled</string>
     <string name="app_name">CarVeX</string>
     <string name="device_connected">%1$s connected</string>
     <string name="device_disconnected">%1$s disconnected</string>

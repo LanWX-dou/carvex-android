@@ -76,6 +76,13 @@ class AudioDemandGate(private val now:()->Long=System::nanoTime,
         else transport.close()
     }
 
+    /** After revoking a source, wait until any in-flight creation has closed its stale result.
+     * The caller must keep new demand gated while transitioning to another stream purpose. */
+    suspend fun awaitPreparation(category:Int){
+        val lock=preparationLocks.getValue(category)
+        lock.lock();lock.unlock()
+    }
+
     /** Serialize creation AND installation across successive activations of a category. A stopped
      * SETUP must close its late result before the next activation attempts to reserve that stream. */
     suspend fun prepare(ticket:Ticket,create:suspend ()->NegotiatedAudioTransport,

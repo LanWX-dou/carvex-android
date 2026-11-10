@@ -43,6 +43,7 @@ class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:
     private data class End(val binding:Binding):Work
     private val active=AtomicReference<Map<Int,Binding>>(emptyMap())
     private val micReceiver=AtomicReference<Pair<MicrophoneInput,PcmFormat>?>(null)
+    private val micAcceptedBlocks=AtomicLong();private val micRejectedBlocks=AtomicLong()
     private val closed=AtomicBoolean(false)
     private val received=AtomicLong();private val dropped=AtomicLong();private val forwarded=AtomicLong();private val microphoneBytes=AtomicLong()
     /** 抓包诊断：每类 host PCM 的块数/字节与 5 秒节流摘要，用来判断“同一声音到底走了哪一类”。 */
@@ -186,6 +187,11 @@ class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:
     suspend fun attachMicrophone(receiver:MicrophoneInput,format:PcmFormat){
         routeLock.lock();try{check(!closed.get()&&receiver.ready){"Microphone receiver not ready"};micReceiver.getAndSet(receiver to format)?.first?.close();log("${"CarWith microphone receiver configured format="}${format.rate}${"/"}${format.channels}")}finally{routeLock.unlock()}
     }
+    fun detachMicrophone(receiver:MicrophoneInput){
+        val current=micReceiver.get()
+        if(current?.first===receiver)micReceiver.compareAndSet(current,null)
+        receiver.close()
+    }
     /** Binder callback performs no conversion or network operation. Stale data cannot cross bindings. */
     fun receive(pcm:ByteArray,category:Int,format:PcmFormat){
         if(closed.get())return
@@ -254,23 +260,29 @@ class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:
             (if(lastPcm==0L)"none" else ((now-lastPcm)/1_000_000).toString())+
             " packets="+(transport?.packetsSent?:0)+" lastSendMonoNs=$lastSent; receiver buffered audio not measured")
     }
-    suspend fun microphone(pcm:ByteArray,format:PcmFormat):Boolean {
+    suspend fun microphone(pcm:ByteArray,format:PcmFormat,current:()->Boolean={true}):Boolean {
         routeLock.lock()
         try{
             val independent=micReceiver.get()
             val binding=microphoneBinding()
-            if(closed.get()||!format.accepts(pcm.size))return false
+            if(closed.get()||!current()||!format.accepts(pcm.size))return false
             if(independent!=null&&independent.first.ready&&independent.second==format){
                 val accepted=host?.microphone(pcm,format.rate,format.channels,format.encoding)==true
                 if(accepted)microphoneBytes.addAndGet(pcm.size.toLong())
+                microphoneDelivery(accepted,pcm.size)
                 return accepted
             }
             val receiver=binding?:return false
             if(receiver.mic!=format)return false
             val accepted=host?.microphone(pcm,format.rate,format.channels,format.encoding)==true
             if(accepted)microphoneBytes.addAndGet(pcm.size.toLong())
+            microphoneDelivery(accepted,pcm.size)
             return accepted
         }finally{routeLock.unlock()}
+    }
+    private fun microphoneDelivery(accepted:Boolean,bytes:Int){
+        val count=(if(accepted)micAcceptedBlocks else micRejectedBlocks).incrementAndGet()
+        if(count==1L||count%100==0L)log("Microphone sink accepted=$accepted blocks=$count bytes=$bytes; host callback result, remote caller audibility unverified")
     }
     fun snapshot()=Snapshot(received.get(),dropped.get(),forwarded.get(),microphoneBytes.get())
     override fun close(){

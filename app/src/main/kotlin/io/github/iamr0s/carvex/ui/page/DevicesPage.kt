@@ -57,6 +57,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import io.github.iamr0s.carvex.BuildConfig
 import io.github.iamr0s.carvex.sessioncore.Stage
 import io.github.iamr0s.carvex.Permissions
+import io.github.iamr0s.carvex.platform.PhoneCallMonitor
 import io.github.iamr0s.carvex.R
 import io.github.iamr0s.carvex.ui.model.Device
 import io.github.iamr0s.carvex.ui.model.DeviceViewModel
@@ -77,7 +78,7 @@ fun DevicesPage(
     var permissionRevision by remember { mutableIntStateOf(0) }
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
-            if (event == Lifecycle.Event.ON_RESUME) permissionRevision++
+            if (event == Lifecycle.Event.ON_RESUME) {permissionRevision++;PhoneCallMonitor.refreshPermissions()}
         }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
@@ -88,7 +89,7 @@ fun DevicesPage(
     }
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions(),
-    ) { permissionRevision++ }
+    ) { permissionRevision++;PhoneCallMonitor.refreshPermissions() }
 
     val now = rememberNow()
     val connecting = state.link as? Link.Connecting

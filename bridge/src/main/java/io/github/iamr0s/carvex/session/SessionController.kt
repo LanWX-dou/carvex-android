@@ -14,6 +14,7 @@ import kotlin.math.sin
 import io.github.iamr0s.carvex.carplay.core.*
 import io.github.iamr0s.carvex.pcm.*
 import io.github.iamr0s.carvex.platform.MediaPlaybackMonitor
+import io.github.iamr0s.carvex.platform.PhoneCallMonitor
 import io.github.iamr0s.carvex.protocol.api.ProtocolStack
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
@@ -134,6 +135,19 @@ class SessionController(
         val audio=r.own(HostAudioBridge(log={BridgeStore.log(id,it)}));audioBridge=audio
         val audioDemand=r.own(AudioDemandGate())
         val audioSourceLock=Any()
+        val callMicrophone=r.own(CallMicrophoneSession(sessionScope){BridgeStore.log(id,it)})
+        val callSuspendedMedia=AtomicBoolean(false)
+        r.own(PhoneCallMonitor(context,{active->synchronized(audioSourceLock){
+            if(!ended.get()){
+                // Voice recognition and cellular calls cannot share a type-only teardown slot.
+                if(active){callSuspendedMedia.set(true);audioDemand.sourceState(3,false)}
+                callMicrophone.update(active)
+                if(!active){
+                    audioDemand.sourceState(3,true)
+                    if(callSuspendedMedia.getAndSet(false))audioDemand.sourceState(1,true)
+                }
+            }
+        }},{BridgeStore.log(id,it)}))
         val mediaPlayback=MediaPlaybackToggle()
         val frames=AtomicLong()
         val bytes=AtomicLong()
@@ -901,6 +915,7 @@ class SessionController(
             phase(Stage.SETUP,70000){
                 val completions=ConcurrentHashMap<Int,CompletableDeferred<Unit>>()
                 fun requestAudio(category:Int,firstPcm:ByteArray,pcmFormat:PcmFormat,prime:Boolean=false):Boolean {
+                    if(callMicrophone.active&&(category==3||category==1&&callSuspendedMedia.get()))return true
                     val ticket=if(prime)audioDemand.prime(category,pcmFormat)
                         else audioDemand.claim(category,firstPcm.size,pcmFormat)
                     if(ticket!=null){
@@ -916,7 +931,7 @@ class SessionController(
                             BridgeStore.log(id,"Audio activation category=$category phase=begin monoNs=$setupBegan")
                             try{
                                 if(!audioDemand.prepare(ticket,
-                                    create={air.createAudio(category,pcmFormat){pcm,format->audio.microphone(pcm,format)}},
+                                    create={air.createAudio(category,pcmFormat){pcm,format->audio.microphone(pcm,format){!callMicrophone.active}}},
                                     attach=audio::attach)){
                                     setupOutcome="not-installed";return@launch
                                 }
@@ -955,6 +970,26 @@ class SessionController(
                 }
                 startAudio.set{category,pcm,format->requestAudio(category,pcm,format)}
                 startSpeech.set{requestAudio(3,byteArrayOf(),PcmFormat(24000,1),prime=true)}
+                callMicrophone.attach{current->
+                    // New media/speech requests are gated above. Let older SETUP/install work
+                    // finish before inspecting the media route and reserving raw100 for calls.
+                    audioDemand.awaitPreparation(1)
+                    audioDemand.awaitPreparation(3)
+                    synchronized(audioSourceLock){
+                        check(current()){"Call ended before preparation"}
+                        if(air.mediaUsesMainType()){
+                            callSuspendedMedia.set(true);audioDemand.sourceState(1,false)
+                            BridgeStore.log(id,"Call microphone suspending type100 media until hangup; type102 media remains independent")
+                        }
+                        audioDemand.sourceState(3,false)
+                    }
+                    val (receiver,format)=air.createCallMicrophone(current){pcm,pcmFormat->audio.microphone(pcm,pcmFormat,current)}
+                    try{
+                        check(current()){"Call ended before microphone attachment"}
+                        audio.attachMicrophone(receiver,format)
+                        AutoCloseable{audio.detachMicrophone(receiver)}
+                    }catch(t:Throwable){audio.detachMicrophone(receiver);throw t}
+                }
                 BridgeStore.update(id){it.copy(audioStatus="音频通道 ${audio.categories().sorted()} 已建立 · 发声待实测")}
             }
             // A receiver may legitimately expose only audio/control. In that mode no video
@@ -963,7 +998,7 @@ class SessionController(
             val firstFrameDeadline=video?.let{timer.schedule({if(frames.get()==0L)failure(java.net.SocketTimeoutException("No video frame written"))},15000,TimeUnit.MILLISECONDS)}
             try{throw failed.await()}finally{firstFrameDeadline?.cancel(false)}
         } finally {
-            ended.set(true);voiceToggle.close();startAudio.set(null);startSpeech.set(null);audioDemand.close();metrics.cancel(false);applyDynamicFps=null;applyBitrate=null;sendKey=null;carPlayAudioTestJob?.cancel();carPlayAudioTestJob=null;carWithAudioProbeJob?.cancel();carWithAudioProbeJob=null
+            ended.set(true);callMicrophone.close();voiceToggle.close();startAudio.set(null);startSpeech.set(null);audioDemand.close();metrics.cancel(false);applyDynamicFps=null;applyBitrate=null;sendKey=null;carPlayAudioTestJob?.cancel();carPlayAudioTestJob=null;carWithAudioProbeJob?.cancel();carWithAudioProbeJob=null
             cleanup.close()
             withContext(NonCancellable){cleanup.awaitClosed()}
             if(termination===cleanup)termination=null

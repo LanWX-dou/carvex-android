@@ -1,4 +1,8 @@
 <resources>
+    <string name="call_microphone_title">通话麦克风</string>
+    <string name="call_microphone_description">允许读取电话状态，以便在电话通话时启用车载麦克风、挂断后释放。不读取号码或保存录音。需要车机与宿主支持。</string>
+    <string name="call_microphone_grant">允许读取电话状态</string>
+    <string name="call_microphone_granted">电话状态权限已开启</string>
     <string name="app_name">CarVeX</string>
     <string name="device_connected">%1$s 已连接</string>
     <string name="device_disconnected">%1$s 已断开连接</string>

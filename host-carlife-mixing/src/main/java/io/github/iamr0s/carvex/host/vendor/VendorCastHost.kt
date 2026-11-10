@@ -36,6 +36,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import org.json.JSONObject
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * One implementation for every verified CarLife mixing endpoint.
@@ -60,8 +61,11 @@ class VendorCastHost(
     @Volatile private var closed = false
     @Volatile private var touch: IRemoteTouchListener? = null
     @Volatile private var key: IRemoteKeyListener? = null
-    private class MicrophoneBinding(val listener: IRemoteAudioListener)
+    private class MicrophoneBinding(val listener: IRemoteAudioListener) {
+        val delivered=AtomicBoolean(false)
+    }
     @Volatile private var microphone: MicrophoneBinding? = null
+    private val missingMicrophoneListener=AtomicBoolean(false)
     private val microphonePcm = MixingMicrophonePcm()
 
     private fun allowed(): Boolean {
@@ -263,13 +267,18 @@ class VendorCastHost(
             if (closed) return@withContext false
             require(rate in 8000..192000 && channels in 1..2 && encoding == 2 &&
                 pcm.size in 1..32768 && pcm.size % (channels * 2) == 0)
-            val binding = microphone ?: return@withContext false
+            val binding = microphone ?: run {
+                if(missingMicrophoneListener.compareAndSet(false,true))events.event("microphone-no-host-listener")
+                return@withContext false
+            }
+            missingMicrophoneListener.set(false)
             val converted = microphonePcm.convert(pcm, PcmFormat(rate, channels, encoding), binding)
             if (closed || microphone !== binding) return@withContext false
             if (converted.isEmpty()) return@withContext true
             try {
                 binding.listener.onReceiveAudioStream(converted, MixingMicrophonePcm.OUTPUT.rate,
                     MixingMicrophonePcm.CHANNEL_CONFIG, MixingMicrophonePcm.OUTPUT.encoding)
+                if(binding.delivered.compareAndSet(false,true))events.event("microphone-host-callback-delivered")
                 true
             } catch (_: RemoteException) {
                 if (microphone === binding) {

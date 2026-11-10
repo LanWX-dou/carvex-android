@@ -5,6 +5,11 @@ import io.github.iamr0s.carvex.ui.model.*
 import io.github.iamr0s.carvex.ui.screen.Nav
 
 import android.bluetooth.BluetoothAdapter
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import io.github.iamr0s.carvex.platform.PhoneCallMonitor
 import androidx.compose.ui.platform.LocalContext
 import io.github.iamr0s.carvex.platform.MediaPlaybackAccess
 import androidx.compose.foundation.clickable
@@ -32,6 +37,10 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -67,6 +76,19 @@ fun SettingsPage(
     val cs = MaterialTheme.colorScheme
     val focus = LocalFocusManager.current
     val context = LocalContext.current
+    var callAccess by remember { mutableStateOf(context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)==PackageManager.PERMISSION_GRANTED) }
+    val lifecycleOwner=LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner,context){
+        val observer=LifecycleEventObserver{_,event->if(event==Lifecycle.Event.ON_RESUME){
+            callAccess=context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE)==PackageManager.PERMISSION_GRANTED
+            PhoneCallMonitor.refreshPermissions()
+        }}
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose{lifecycleOwner.lifecycle.removeObserver(observer)}
+    }
+    val callPermission=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()){granted->
+        callAccess=granted;PhoneCallMonitor.refreshPermissions()
+    }
     val safe = LocalAppInsets.current.content.toPaddingValues()
     val direction = LocalLayoutDirection.current
 
@@ -82,6 +104,18 @@ fun SettingsPage(
             ),
     ) {
         ScreenTitle(stringResource(R.string.nav_settings))
+
+        Panel {
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.call_microphone_title)) },
+                supportingContent = { Text(stringResource(R.string.call_microphone_description)) },
+            )
+            OutlinedButton(
+                onClick = { callPermission.launch(Manifest.permission.READ_PHONE_STATE) },
+                enabled = !callAccess,
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+            ) { Text(stringResource(if(callAccess) R.string.call_microphone_granted else R.string.call_microphone_grant)) }
+        }
 
         Panel {
             ListItem(

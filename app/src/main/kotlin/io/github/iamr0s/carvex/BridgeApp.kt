@@ -43,6 +43,7 @@ object Permissions {
     /** 不阻塞连接、但影响体验的权限：Android 13 起前台服务的通知也要用户授权，没有它通知栏里
      *  看不到配对与连接的状态，所以放在同一个入口一起要。 */
     fun optional()=buildList {
+        add(Manifest.permission.READ_PHONE_STATE)
         if(Build.VERSION.SDK_INT>=33)add(Manifest.permission.POST_NOTIFICATIONS)
     }.toTypedArray()
     /** 要申请的完整清单：阻塞性的在前，可选的在后。 */
