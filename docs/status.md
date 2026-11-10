@@ -17,6 +17,11 @@ Current priorities:
 - Preserve complete evidence for field-test changes.
 - Do not claim vehicle interoperability without matching device logs.
 
+The [gap register updated on 2026-11-10](../research/connection/spec/90-open-items.md#34-官方资料续查后的实现缺口2026-11-10)
+tracks G01–G11 against Android `67b68e3` (Release 20013), with priorities, evidence links
+and closure conditions. It separately records document alignment and field validation after fixes.
+This update records existing review findings; it adds no implementation or vehicle test results.
+
 Repository notes:
 
 - `firmware/` and `android/` are separate repositories tracked by the root
