@@ -41,6 +41,15 @@ Android `175c048` 只落实已证结束事件：删除桥接和发布器缓存�
 
 已定位到 SDK 的读取适配器，不能继续把“未有宿主 APK”列为前提。尚未取得蜂窝 modem/HAL 消费者或专用下行来源，也未把宿主内部 PhoneState/databus 数据证明为当前 mixing 公开接口。普通助手及 VoIP 的队列读取成功不证明蜂窝上行。G02 保持 PARTIAL，没有创建空通话代码提交。
 
+继续读取原指令后，明确区分两条音频路径：
+
+- CarLife listener `0x0adf90` 只把mic写入 h1.a 共享助手队列。
+- 原生 databus `classes4 0x10979c` 比较 `STREAM_MICROPHONE`，在匹配时调用 PhoneAudioCast.z；`classes 0x432dc4` 转发 `IPhoneAudioCast.onAudioData`。这条路径不是现有 mixing listener 的直接消费者。
+- 自带 VoIPService 的 `0x438558` 在其状态门下也可写 h1.a；另一分支写 h1.e 和 h1.d。`0x438884` 的 startToRecord 调用 h1.d.h；`0x48f254` 将PCM分块写入另一队列，`0x48f2ec` 将该队列数据与输入缓冲混合。尚未据此证明蜂窝modem消费，也没有把不同队列替换为一条“通话上行”。
+- mixing 输出 `classes6 0x0a9488` 的 j.A 来自 bh.d$c.b（`0x0a4c04`），bh.d 在 `0x0a4cd8` 注册 i1.a 音频回调并观察录音启动事件。音频类别、底层采集与蜂窝专用下行仍需继续追到实际生产者，不能从通用回调名称推定。
+
+APK中25个arm64原生库已提取到忽略目录；libmicastcore动态符号包含AudioSource等，名称仅用于后续定位，本轮未把符号扫描作为蜂窝路由存在或缺失的证明。没有修改宿主绑定、调用未验证服务或新增PCM注入。
+
 ## 原 Apple 缓存缺失的具体边界
 
 用户本轮明确回复：本机没有原始 24A446 IPSW 或 dyld_shared_cache_arm64e。既有提取库和原 accessoryd 仍可读取，不能因此停止所有静态取证。当前真正缺的是跨库 FigStark 资源控制器及原缓存中 GOT/stub 绑定所需字节：`_carEndpoint_handleEventCreatingReply` 成功/失败门已核，实际仲裁外部调用 `0x25810f770` 仍未闭合；音频本地政策的 transport 参数绑定也未闭合。提取镜像中的编码指针不能靠经验解码当作原缓存证明。
@@ -51,4 +60,4 @@ Android `175c048` 只落实已证结束事件：删除桥接和发布器缓存�
 python -B research/connection/tools/inspect_carwith_host.py D:\home\CarWith_4.0.14-20260801.apk
 ```
 
-本轮 PASS：APK身份、5份 DEX、18处原 code item 指令哈希及3个原距离字符串。它只复核字节位置与身份，不运行供应商代码，也不证明语义、蜂窝声音或车机互通。
+本轮 PASS：APK身份、5份 DEX、27处原 code item 指令哈希及3个原距离字符串。它只复核字节位置与身份，不运行供应商代码，也不证明语义、蜂窝声音或车机互通。

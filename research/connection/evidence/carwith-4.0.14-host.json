@@ -46,6 +46,51 @@
           "inputs": 2,
           "outputs": 2,
           "insns_sha256": "59ece5504e05b4ac42d72d5371a1bff1e2602e1452dfc4bd282008f5843709ef"
+        },
+        "PhoneAudioCast.z([B)": {
+          "code_item": "0x432dc4",
+          "insns_offset": "0x432dd4",
+          "code_units": 36,
+          "registers": 3,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "7e365a1316d0ba95a1fe2d33f3562db9ae9c8274f3416beb8b3c880ef6f1bbaf"
+        },
+        "VoIPService$IPhoneAudioCastStub.onAudioData([B)": {
+          "code_item": "0x438558",
+          "insns_offset": "0x438568",
+          "code_units": 54,
+          "registers": 4,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "bc051073328e32ab1fe848b06d065f6a5b10a2af1fd370bc12c3ed8dd70a51d7"
+        },
+        "VoIPService$IPhoneAudioCastStub.startToRecord()": {
+          "code_item": "0x438884",
+          "insns_offset": "0x438894",
+          "code_units": 12,
+          "registers": 2,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "ab2a3d5c293139bf9cd59115715c1ebbbddac57629ecb4603662a98ed6661dbb"
+        },
+        "h1.d.b([B)": {
+          "code_item": "0x48f254",
+          "insns_offset": "0x48f264",
+          "code_units": 68,
+          "registers": 8,
+          "inputs": 2,
+          "outputs": 5,
+          "insns_sha256": "9a66f91f96679dfffd30d5147b8cc8dea66a1c48bd11f15c300957b784abe0ea"
+        },
+        "h1.d.f([B)": {
+          "code_item": "0x48f2ec",
+          "insns_offset": "0x48f2fc",
+          "code_units": 42,
+          "registers": 8,
+          "inputs": 2,
+          "outputs": 6,
+          "insns_sha256": "3cdf5ea5eacc3f41e53b9c07fdc5204c28ace58511eadef046cf6d2a6d148be0"
         }
       }
     },
@@ -156,6 +201,15 @@
           "inputs": 9,
           "outputs": 1,
           "insns_sha256": "18b26bdf1d1b99b017bbd83d76933664a67548d4b96894260de00c8fc1bf8624"
+        },
+        "databus.b$b.run()": {
+          "code_item": "0x10979c",
+          "insns_offset": "0x1097ac",
+          "code_units": 24,
+          "registers": 3,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "845942b78b067f57a94fbd8430350ed00e090fc34a079387254d12dd6835d6ee"
         }
       }
     },
@@ -213,6 +267,33 @@
           "inputs": 2,
           "outputs": 3,
           "insns_sha256": "582bedcf8b1901921d856d4c18ba595c799847e95b52d54db8c680b39f62845e"
+        },
+        "bh.d.<init>(Context)": {
+          "code_item": "0xa4cd8",
+          "insns_offset": "0xa4ce8",
+          "code_units": 129,
+          "registers": 6,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "222223d35513e0dbdfdb02c21afa35892c25714136e166334178c5c3a4199a9f"
+        },
+        "bh.d$c.b([BIIII)": {
+          "code_item": "0xa4c04",
+          "insns_offset": "0xa4c14",
+          "code_units": 13,
+          "registers": 12,
+          "inputs": 6,
+          "outputs": 6,
+          "insns_sha256": "ad3aa8d4152e7b9ed0f284e38f57ed20bd99355ffdd2bf185b0527c3ab9a7be2"
+        },
+        "carlife.j.A([BIIII)": {
+          "code_item": "0xa9488",
+          "insns_offset": "0xa9498",
+          "code_units": 47,
+          "registers": 12,
+          "inputs": 6,
+          "outputs": 6,
+          "insns_sha256": "52b53e1f4d2d659abba441e39a63037b43ae40f45350f55da3d9052e6a6f0b15"
         }
       }
     }

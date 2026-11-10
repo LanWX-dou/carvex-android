@@ -18,6 +18,11 @@ METHODS = {
         'h1.a.c([B)': 0x48ee00,
         'PhoneAudioCast.B([B)': 0x4328e0,
         'VoIPService$IPhoneAudioCastStub.readAssistantRecorderData([B)': 0x4384d0,
+        'PhoneAudioCast.z([B)': 0x432dc4,
+        'VoIPService$IPhoneAudioCastStub.onAudioData([B)': 0x438558,
+        'VoIPService$IPhoneAudioCastStub.startToRecord()': 0x438884,
+        'h1.d.b([B)': 0x48f254,
+        'h1.d.f([B)': 0x48f2ec,
     },
     'classes2.dex': {
         'LauncherDataBusClient.C()': 0x16fb48,
@@ -31,6 +36,7 @@ METHODS = {
         'DataBusService$DataBusServiceStub.readAssistantRecorderData([B)': 0x10f738,
         'NavigationInfo.i()': 0x11c40c,
         'NavigationInfo.<init>(boolean,byte[],String,...)': 0x11c4d0,
+        'databus.b$b.run()': 0x10979c,
     },
     'classes5.dex': {
         'UCarMapInfo.fromBundle(Bundle)': 0x1bf334,
@@ -40,6 +46,9 @@ METHODS = {
         'CarlifeAudioListener.onReceiveAudioStream([BIII)': 0x0adf90,
         'carlife.j.r(Intent)': 0x0a88bc,
         'carlife.j.G(Intent)': 0x0a8a60,
+        'bh.d.<init>(Context)': 0x0a4cd8,
+        'bh.d$c.b([BIIII)': 0x0a4c04,
+        'carlife.j.A([BIIII)': 0x0a9488,
     },
 }
 
@@ -105,7 +114,8 @@ def main():
         expected = json.loads(EVIDENCE.read_text(encoding='utf-8'))
         if observed != expected:
             raise ValueError('recorded DEX byte locations or hashes differ')
-    print('PASS: APK identity, 5 DEX files, 18 code items, and 3 original distance strings')
+    method_count = sum(len(value['methods']) for value in observed['dex'].values())
+    print(f'PASS: APK identity, {len(observed["dex"])} DEX files, {method_count} code items, and 3 original distance strings')
     print('No Android runtime, modem injection, or vehicle behavior was tested.')
 
 

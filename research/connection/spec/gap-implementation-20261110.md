@@ -43,7 +43,7 @@ G01、G05、G08的具体差异、证据边界和回归分别见
 | G09 | 原avc1/模式门0x2519b04cc..0x2519b04fc与配置构造0x251b43ff8..0x251b44024 | HEVC独立配置/帧生产路径和对端接收合同；AVC证据不能覆盖该分支。 |
 | G10 | DisplayCapabilities.select、单Screen与单host Surface、deviceOfferFocus | 每屏能力和内容来源、身份/会话关联、区域变更/触摸/焦点消费者。 |
 
-用户已提供CarWith `4.0.14-20260801` APK；来源/哈希及18处原DEX字节定位见[宿主证据](carwith-4.0.14-host-evidence.md)。用户另明确确认本机没有原始24A446 IPSW或dyld cache；保留跨库资源政策/绑定边界，继续读取已有提取物。
+用户已提供CarWith `4.0.14-20260801` APK；来源/哈希及27处原DEX字节定位见[宿主证据](carwith-4.0.14-host-evidence.md)。G02已区分CarLife助手共享队列与独立databus/VoIP麦克风路径，仍未证明蜂窝消费。用户另明确确认本机没有原始24A446 IPSW或dyld cache；保留跨库资源政策/绑定边界，继续读取已有提取物。
 缺口中属于原固件静态调用链的部分仍须继续取证，不能将“没有抓包”当作这些静态问题的阻塞理由。
 最新本地结果：协议1110项、桥接41项无失败/错误/跳过，小米Debug Kotlin编译通过；原APK字节身份与定位复核通过。
 研究全目录 `validate_docset.py` 仍报告既有3份JSON非法转义、历史带行号路径及根目录/spec布局不一致，未将其报告为通过；本次新增证据JSON独立解析/复核通过，新增引用目标均存在，whitespace检查通过。

@@ -84,7 +84,7 @@
 
 - [G11网络回调边界](spec/g11-network-callback-boundary.md)：实际读取API36 SDK原源码，区分register观察与request选择、物理断开与不满足条件。尚无目标ROM的L2/Network/socket关联，未添加固定等待或将其标为修复。
 
-- [CarWith 4.0.14 原DEX核对](spec/carwith-4.0.14-host-evidence.md)：18处原code item与来源哈希、导航结束生产链和共享mic队列消费者。G03结束缓存清理已单独提交，协议1110项/桥接41项及小米编译通过；完整状态/机动/车道与蜂窝音频仍PARTIAL。`tools/inspect_carwith_host.py <现有APK路径>`只读复核原字节身份，不运行供应商代码。
+- [CarWith 4.0.14 原DEX核对](spec/carwith-4.0.14-host-evidence.md)：27处原code item与来源哈希、导航结束生产链、CarLife助手共享队列与独立VoIP麦克风路径。G03结束缓存清理已单独提交，协议1110项/桥接41项及小米编译通过；完整状态/机动/车道与蜂窝音频仍PARTIAL。`tools/inspect_carwith_host.py <现有APK路径>`只读复核原字节身份，不运行供应商代码。
 
 - `evidence/reconnect-lifecycle-audit.json`：87的11个原函数、9份当前手机源码哈希、7次ACK-only及手动TEARDOWN脱敏元数据；`tools/inspect_reconnect_lifecycle.py`默认只读，`--write`只写本证据。未证明ACK-only根因或图标状态。
 - `evidence/iap2-pending-ack-recovery.json`：86的78项有界原指令向量、镜像/runner/函数哈希。`tools/probe_iap2_pending_ack.py`默认只读复跑，`--write`仅更新本证据；平台依赖替身及合成元数据不等于真实蓝牙/车机测试。
