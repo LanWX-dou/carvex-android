@@ -4,6 +4,30 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class AudioSetupDescriptionTest {
+    @Test fun mainAndAlternateOutputOmitBothControlFields(){
+        val formats=CarPlayAudioPlan.formats.filter{it.bit in setOf(0x40L,0x20000000L,0x800000L)}
+        for(route in listOf(CarPlayAudioPlan.mediaLowLatency,CarPlayAudioPlan.assistant,CarPlayAudioPlan.alternate)){
+            assertFalse(AudioSetupDescription.outputControlTransportRequired(route.type))
+            for(format in formats){
+                val fields=AudioSetupDescription.playback(route,format,17)
+                val wire=Plist.dictionary(Plist.encode(fields))
+                assertFalse(wire.containsKey("controlPort"));assertFalse(wire.containsKey("spf"))
+                assertEquals(format.bit,(wire["audioFormat"] as Number).toLong())
+            }
+        }
+    }
+    @Test fun mainDuplexInputPortDoesNotCreateOutputControl(){
+        val pcm=CarPlayAudioPlan.formats.single{it.bit==0x40L}
+        val fields=AudioSetupDescription.playback(CarPlayAudioPlan.assistant,pcm,18,inputPort=5002)
+        assertEquals(true,fields["input"]);assertEquals(5002,fields["dataPort"])
+        assertFalse(fields.containsKey("controlPort"));assertFalse(fields.containsKey("spf"))
+    }
+    @Test fun raw102RequiresTheOutputControlTransport(){
+        assertTrue(AudioSetupDescription.outputControlTransportRequired(102))
+        val aac=CarPlayAudioPlan.formats.single{it.bit==0x800000L}
+        val fields=AudioSetupDescription.playback(CarPlayAudioPlan.media,aac,19,5001)
+        assertEquals(5001,fields["controlPort"]);assertEquals(1024,fields["spf"])
+    }
     @Test fun pcmFormatAdvertisesTheFiveMillisecondRtpPacketSize(){
         val pcm=CarPlayAudioPlan.formats.single{it.bit==0x40L}
         val fields=AudioSetupDescription.playback(CarPlayAudioPlan.assistant,pcm,7,5001)

@@ -1054,8 +1054,9 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         val id=Crypto.random.nextLong().and(Long.MAX_VALUE).coerceAtLeast(1)
         val streamKey=audioKey(route.type,route.purpose)
         val udp=DatagramSocket(null)
-        val rtcp=try{DatagramSocket(null)}catch(t:Throwable){udp.close();throw t}
-        val lease=try{audioStreams.reserve(route.type,route.purpose,id,exclusive=category==2)}catch(t:Throwable){udp.close();rtcp.close();throw t}
+        val rtcp=try{if(AudioSetupDescription.outputControlTransportRequired(route.type))DatagramSocket(null) else null}
+            catch(t:Throwable){udp.close();throw t}
+        val lease=try{audioStreams.reserve(route.type,route.purpose,id,exclusive=category==2)}catch(t:Throwable){udp.close();rtcp?.close();throw t}
         var setupAttempted=false
         var microphone:CarPlayMicReceiver?=null
         val owned=java.util.concurrent.atomic.AtomicBoolean(false)
@@ -1109,10 +1110,14 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
                 }
                 finally{audioOwnershipLock.unlock()}
             }
-            Bootstrap.bind(network,udp,options.bindNetwork,::pinningRefused);Bootstrap.bind(network,rtcp,options.bindNetwork,::pinningRefused)
+            Bootstrap.bind(network,udp,options.bindNetwork,::pinningRefused)
             val localAddress=requireNotNull(localMediaAddress)
-            udp.bind(InetSocketAddress(localAddress,0));rtcp.bind(InetSocketAddress(localAddress,0))
-            val retransmit=AudioRtpRetransmit(rtcp,address,log)
+            udp.bind(InetSocketAddress(localAddress,0))
+            val retransmit=rtcp?.let{
+                Bootstrap.bind(network,it,options.bindNetwork,::pinningRefused)
+                it.bind(InetSocketAddress(localAddress,0))
+                AudioRtpRetransmit(it,address,log)
+            }
             val key=Crypto.hkdf(secret,"DataStream-Salt$id","DataStream-Output-Encryption-Key")
             // Prepare the real input socket/decoder before advertising input=true.
             if(duplex){
@@ -1125,7 +1130,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             // Offer the implemented route capability, without a diagnostic override.
             // Writers receive only the validated result, never a second local override.
             val offeredRed=AudioRedundancyPolicy.offerFor(route)
-            val description=AudioSetupDescription.playback(route,candidate,id,rtcp.localPort,
+            val description=AudioSetupDescription.playback(route,candidate,id,rtcp?.localPort,
                 inputPort=udp.localPort.takeIf{duplex},offerRedundancy=offeredRed)
             log("Audio latency category="+category+" requestedMs="+description["audioLatencyMs"]+
                 " receiver="+AudioLatencyCapabilities.summary(receiverAudioLatencies,route.type,route.purpose)+
@@ -1203,7 +1208,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             return combined
         }catch(t:Exception){
             microphone?.close()
-            udp.close();rtcp.close();transportRef.get()?.close();released.set(true)
+            udp.close();rtcp?.close();transportRef.get()?.close();released.set(true)
             if(audioStreams.beginClose(lease)){
                 // No teardown for an explicit refusal: another purpose may still use this type.
                 // A timeout/malformed success is uncertain and requires an acknowledged teardown.
