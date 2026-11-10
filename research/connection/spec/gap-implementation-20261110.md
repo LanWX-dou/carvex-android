@@ -14,7 +14,7 @@
 | 4 | G03 / P1 | `175c048` 已核并落实isNavi=false/action3的结束缓存清理；7项新增回归、协议1110项/桥接41项及小米编译通过。原宿主距离转换已核，但活动道路/距离的iAP语义、guidanceState/机动/车道仍OPEN，见[宿主证据](carwith-4.0.14-host-evidence.md)。 |
 | 5 | G05 / P1 | `75ec5b2` 已修正100/101控制传输及controlPort/spf存在性，3项新增回归、协议1107项与小米编译通过；延迟首字段已追到本地政策对象，不从接收端微秒值换算；政策绑定及采集时钟仍OPEN。 |
 | 6 | G08 / P1 | `de453e0` 已补标准系统快进/快退键及实际DOWN/UP、并行按住计数与断开清理；10项新增桥接回归、桥接37项及小米编译通过。目标应用持续seek及UP停止效果仍OPEN，不能把投递当播放确认。 |
-| 7 | G11 / P1 | 已区分现有代码的网络复用观察与specifier请求路径，两处onLost仍立即失败。L2到网络租约事件的映射尚无证据；本轮Android在线源码获取连接超时，不添加猜测等待或自动重绑。 |
+| 7 | G11 / P1 | 已读取API36原SDK源码和官方回调合同，区分registerNetworkCallback与requestNetwork、物理断开与不再满足请求；见[事件边界](g11-network-callback-boundary.md)。API37/目标ROM的L2→Network/socket关系仍缺，不添加猜测等待或自动重绑。 |
 | 8 | G06 / P2 | 宿主只有实时onAudioStreamReady，缺可提前传输的数据源与媒体时间线控制；生产路由只有100/101/102。增强缓冲的CarPlay流选择和清除/重入队合同仍OPEN，不能把实时PCM暂存当此能力。 |
 | 9 | G07 / P2 | 宿主仅有通用麦克风PCM/语音动作，无历史触发时刻或Aux消费者。原107时间戳/突发字段有独立分支，单位/宿主映射与增强Siri声明未闭合，不新增空历史缓冲或猜测时间换算。 |
 | 10 | G09 / P2 | 已核当前原始配置证据仅闭合avc1/avcC分支；bit42不是HEVC封装合同。需继续闭合HEVC格式描述序列化、接收选择及编码样本，当前不发送猜测hvcC/帧正文。 |
@@ -38,7 +38,7 @@ G01、G05、G08的具体差异、证据边界和回归分别见
 | G03 | CarWith原DEX生产者、SessionController及NavigationGuidance | 生命周期及米制转换已核；尚需外部地图完整语义、iAP单位/状态映射、navi_turn与机动/车道生产链；原iAP编码器不能证明宿主枚举相同。 |
 | G05剩余 | GetLatencyInfo 0x2519bbf0c、repackage 0x251ade434..0x251ade474 | 本地政策构造参数/选择绑定及真实采集时间映射；SETUP首字段不是接收端微秒延迟除以1000。 |
 | G08剩余 | 系统媒体键投递和HID边沿回归 | 目标应用begin/end seek消费者或实机按住/释放/取消结果；AudioManager无播放成功回执。 |
-| G11 | Bootstrap复用monitor与specifier callback | Android版本对应的callback/网络撤销语义、L2/租约/socket关联记录、可保留socket的条件；区分静态策略与运行验证。 |
+| G11 | Bootstrap复用monitor与specifier callback、API36 SDK原源码 | 平台接口边界已核；尚需API37/目标ROM事件、L2/Network/socket关联记录和可保留socket的条件；区分静态合同与运行验证。 |
 | G06/G07 | 实时宿主PCM契约及原音频类型/107字段分支 | 可提前读取的内容与时间线控制；车端增强Siri声明、触发时间和历史/Aux消费合同。 |
 | G09 | 原avc1/模式门0x2519b04cc..0x2519b04fc与配置构造0x251b43ff8..0x251b44024 | HEVC独立配置/帧生产路径和对端接收合同；AVC证据不能覆盖该分支。 |
 | G10 | DisplayCapabilities.select、单Screen与单host Surface、deviceOfferFocus | 每屏能力和内容来源、身份/会话关联、区域变更/触摸/焦点消费者。 |
