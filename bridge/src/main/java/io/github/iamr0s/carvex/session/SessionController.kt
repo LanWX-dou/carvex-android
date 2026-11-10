@@ -321,7 +321,8 @@ class SessionController(
                         // Intent payloads may be partial (for example progress-only); let the
                         // publisher merge them with its last accepted snapshot.
                         deliverMusic(parsed)
-                        if(parsed.title!=null)playbackMonitor.track(parsed.title,parsed.artist)
+                        if(parsed.title!=null)playbackMonitor.track(parsed.title,parsed.artist,
+                            CarLifeMusicPresentation::matches)
                         parsed.elapsedMs?.let{progress->BridgeStore.update(id){it.copy(hostMusicProgress=progress)}}
                     }else BridgeStore.log(id,"CarLife music Intent had no recognized metadata fields")
                     artworkLoader.update(intent)

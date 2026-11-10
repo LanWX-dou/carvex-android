@@ -38,6 +38,7 @@ class MediaPlaybackMonitor(context: Context, private val changed: (State?) -> Un
     private val closed = AtomicBoolean(false)
     private var listening = false
     private var target = MediaSessionSelection.Item(null, null)
+    private var additionalMatch: ((MediaSessionSelection.Item, MediaSessionSelection.Item) -> Boolean)? = null
     private var controllers = emptyList<MediaController>()
     private val callbacks = mutableMapOf<MediaController, MediaController.Callback>()
     private var last: State? = null
@@ -49,10 +50,12 @@ class MediaPlaybackMonitor(context: Context, private val changed: (State?) -> Un
         handler.post { refresh() }
     }
 
-    fun track(title: String?, artist: String?) {
+    fun track(title: String?, artist: String?,
+              additionalMatch: ((MediaSessionSelection.Item, MediaSessionSelection.Item) -> Boolean)? = null) {
         handler.post {
             if (!closed.get()) {
                 target = MediaSessionSelection.Item(title, artist)
+                this.additionalMatch = additionalMatch
                 publish(force = true)
             }
         }
@@ -101,7 +104,7 @@ class MediaPlaybackMonitor(context: Context, private val changed: (State?) -> Un
         val index = MediaSessionSelection.index(target, controllers.map { controller ->
             MediaSessionSelection.Item(controller.metadata?.getString(MediaMetadata.METADATA_KEY_TITLE),
                 controller.metadata?.getString(MediaMetadata.METADATA_KEY_ARTIST))
-        })
+        }, additionalMatch)
         val state = when (index?.let { controllers[it].playbackState?.state }) {
             PlaybackState.STATE_PLAYING -> State.PLAYING
             PlaybackState.STATE_PAUSED -> State.PAUSED
