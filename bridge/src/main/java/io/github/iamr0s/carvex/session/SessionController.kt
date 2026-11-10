@@ -129,8 +129,9 @@ class SessionController(
         val voiceToggle=r.own(VoiceButtonToggle())
         val receiverAudio=AtomicReference<List<AudioCapabilities.Entry>>(emptyList())
         val startAudio=AtomicReference<((Int,ByteArray,PcmFormat)->Boolean)?>(null)
-        /** Siri/语音开始时按需建立 type100/speechRecognition（含麦克风输入）；固件没有启动预建。 */
-        val startSpeech=AtomicReference<(() -> Boolean)?>(null)
+        // The voice worker waits for the session setup entry point and actual input installation.
+        val prepareSpeech=CompletableDeferred<suspend ()->Boolean>()
+        r.own(AutoCloseable{prepareSpeech.cancel()})
         val observedAudio=ConcurrentHashMap.newKeySet<String>()
         val audio=r.own(HostAudioBridge(log={BridgeStore.log(id,it)}));audioBridge=audio
         val audioDemand=r.own(AudioDemandGate(log={BridgeStore.log(id,it)}))
@@ -516,10 +517,14 @@ class SessionController(
                     }?:false
                 }
                 val accepted=try{
-                    val result=if(requestedStart==null)voiceToggle.toggle(dispatch)
-                        else voiceToggle.request(requestedStart,dispatch)
+                    val result=voiceToggle.preparedRequest(requestedStart,
+                        prepare={prepareSpeech.await().invoke()},dispatch=dispatch)
                     dispatchOutcome=if(result)"accepted" else "rejected"
                     result
+                }catch(t:CancellationException){dispatchOutcome="cancelled";throw t}
+                catch(t:Exception){
+                    BridgeStore.log(id,"Voice dispatch failed: "+t.javaClass.simpleName)
+                    false
                 }finally{
                     BridgeStore.log(id,"Voice dispatch phase=end outcome=$dispatchOutcome elapsedMs="+(System.nanoTime()-dispatchBegan)/1_000_000+
                         "; local dispatch only, not host playback confirmation")
@@ -529,14 +534,9 @@ class SessionController(
         }
         fun directVoiceAction(action:String):Boolean{
             BridgeStore.log(id,"Voice trigger source=protocol action="+(action.toIntOrNull()?.toString()?:"unknown")+
-                " monoNs="+System.nanoTime()+" speechSetupAvailable="+(startSpeech.get()!=null))
+                " monoNs="+System.nanoTime()+" speechSetupAvailable="+(prepareSpeech.isCompleted&&!prepareSpeech.isCancelled))
             BridgeStore.recordCarPlayKey(CarPlayEvents.voice(action))
             val raw=action.toIntOrNull()?:return false
-            if(raw==2){
-                val newSetup=startSpeech.get()?.invoke()
-                BridgeStore.log(id,"Voice speech preparation newSetupRequested="+newSetup+
-                    "; false may mean already prepared or request coalesced")
-            }
             val accepted=voiceToggle.button(raw){voiceOutput.trySend(null).isSuccess}
             BridgeStore.log(id,"CarPlay Siri action="+raw+" adapterAccepted="+accepted+
                 " localRequestedActive="+voiceToggle.isRequestedActive+" hostRunningConfirmed=false")
@@ -994,7 +994,23 @@ class SessionController(
                     withTimeoutOrNull(6000){completions[category]?.await()}
                 }
                 startAudio.set{category,pcm,format->requestAudio(category,pcm,format)}
-                startSpeech.set{requestAudio(3,byteArrayOf(),PcmFormat(24000,1),prime=true)}
+                prepareSpeech.complete{
+                    if(ended.get()||callMicrophone.active)false
+                    else if(!caps.microphone||!protocolCaps.microphone||!air.microphoneInputAvailable()){
+                        // Preserve host-controlled phone input when vehicle input is not advertised.
+                        BridgeStore.log(id,"Voice input: vehicle microphone not advertised; host source selection retained")
+                        true
+                    }else{
+                        requestAudio(3,byteArrayOf(),PcmFormat(24000,1),prime=true)
+                        // requestAudio publishes this completion before launching SETUP, so waiting
+                        // cannot race the preparation worker acquiring its category lock.
+                        completions[3]?.await()
+                        val ready=!ended.get()&&!callMicrophone.active&&audio.microphoneReady()
+                        BridgeStore.log(id,"Voice input preparation complete ready="+ready+
+                            "; assistant start key follows only an installed input")
+                        ready
+                    }
+                }
                 callMicrophone.attach{current->
                     // New media/speech requests are gated above. Let older SETUP/install work
                     // finish before inspecting the media route and reserving raw100 for calls.
@@ -1023,7 +1039,7 @@ class SessionController(
             val firstFrameDeadline=video?.let{timer.schedule({if(frames.get()==0L)failure(java.net.SocketTimeoutException("No video frame written"))},15000,TimeUnit.MILLISECONDS)}
             try{throw failed.await()}finally{firstFrameDeadline?.cancel(false)}
         } finally {
-            ended.set(true);callMicrophone.close();voiceToggle.close();startAudio.set(null);startSpeech.set(null);audioDemand.close();metrics.cancel(false);applyDynamicFps=null;applyBitrate=null;sendKey=null;carPlayAudioTestJob?.cancel();carPlayAudioTestJob=null;carWithAudioProbeJob?.cancel();carWithAudioProbeJob=null
+            ended.set(true);callMicrophone.close();voiceToggle.close();startAudio.set(null);prepareSpeech.cancel();audioDemand.close();metrics.cancel(false);applyDynamicFps=null;applyBitrate=null;sendKey=null;carPlayAudioTestJob?.cancel();carPlayAudioTestJob=null;carWithAudioProbeJob?.cancel();carWithAudioProbeJob=null
             cleanup.close()
             withContext(NonCancellable){cleanup.awaitClosed()}
             if(termination===cleanup)termination=null

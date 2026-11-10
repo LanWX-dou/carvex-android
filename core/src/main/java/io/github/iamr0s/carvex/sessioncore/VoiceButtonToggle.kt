@@ -43,23 +43,40 @@ class VoiceButtonToggle:AutoCloseable {
     /** An explicit local command shares the toggle worker's state, including repeated commands. */
     fun request(start:Boolean,dispatch:(Boolean)->Boolean):Boolean=dispatchRequest(start,dispatch)
 
+    /** Reserve the ordered request before waiting for input setup. STOP skips preparation.
+     * Preparation and dispatch run outside the state lock; close revokes a pending START. */
+    suspend fun preparedRequest(explicitStart:Boolean?,prepare:suspend ()->Boolean,
+        dispatch:(Boolean)->Boolean):Boolean {
+        val operation=beginRequest(explicitStart)?:return false
+        var accepted=false
+        var committed=false
+        try{
+            if(operation.second&&!prepare())return false
+            if(synchronized(lock){closed||togglePending!==operation.first})return false
+            accepted=dispatch(operation.second)
+        }finally{committed=finishRequest(operation,accepted)}
+        return committed
+    }
+
+    private fun beginRequest(explicitStart:Boolean?):Pair<Any,Boolean>?=synchronized(lock){
+        if(closed||togglePending!=null)return null
+        val token=Any();togglePending=token
+        token to (explicitStart?:!requestedActive)
+    }
+
+    private fun finishRequest(operation:Pair<Any,Boolean>,accepted:Boolean):Boolean=synchronized(lock){
+        if(closed||togglePending!==operation.first)return false
+        togglePending=null
+        if(accepted)requestedActive=operation.second
+        accepted
+    }
+
     private fun dispatchRequest(explicitStart:Boolean?,dispatch:(Boolean)->Boolean):Boolean {
-        val operation=synchronized(lock){
-            if(closed||togglePending!=null)return false
-            val token=Any();togglePending=token
-            val start=explicitStart?:!requestedActive
-            token to start
-        }
+        val operation=beginRequest(explicitStart)?:return false
         var accepted=false
         var committed=false
         try{accepted=dispatch(operation.second)}finally{
-            synchronized(lock){
-                if(!closed&&togglePending===operation.first){
-                    togglePending=null
-                    if(accepted)requestedActive=operation.second
-                    committed=accepted
-                }
-            }
+            committed=finishRequest(operation,accepted)
         }
         return committed
     }
