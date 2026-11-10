@@ -25,6 +25,8 @@
 
 新增[G01–G11 按优先级分项实施](spec/gap-implementation-20261110.md)：按用户要求每项独立提交。G04已修有序候选读取及扩展保存，新增14项回归、协议1099项与桥接27项通过，小米编译通过；最终格式选择仍OPEN。后续按P0/P1/P2推进，不以局部实现关闭整组缺口。
 
+新增[CarWith歌词展示与播放器状态匹配](spec/carwith-4.0.14-host-evidence.md#r03--g08歌词展示与真实播放器匹配)：原DEX证实song可放歌词、artist可放完整歌名-歌手，Android `3c92c9d` 补唯一候选组合匹配；新增11项回归，平台13项、桥接48项、协议1110项及小米编译通过。通知访问仍必需，暂停效果未实车复测；完整G08与其他缺口未关闭。
+
 此前[Release 20013 方控与图片实测反馈](spec/media-feedback-20013-20261110.md)：14次相关按键全部为Play，47次播放器状态均unknown；用户确认未开启通知访问。图片出现36对空/非空引用，已修复带图元数据的中间清空并增加去重，桥接27项单测及小米编译通过；新实现尚未实车复测。台账 R01/R03 已记录本次观察及复测条件。
 
 此前[统一缺口台账（2026-11-10）](spec/90-open-items.md#34-官方资料续查后的实现缺口2026-11-10)：登记 G01–G11 的优先级、状态和关闭条件，另记文档同步 D01 及修复后的设备验收 R01–R03。基线为 Android `67b68e3`（Release 20013）；该轮仅整理记录，没有新增实现或实车结果。
@@ -84,7 +86,7 @@
 
 - [G11网络回调边界](spec/g11-network-callback-boundary.md)：实际读取API36 SDK原源码，区分register观察与request选择、物理断开与不满足条件。尚无目标ROM的L2/Network/socket关联，未添加固定等待或将其标为修复。
 
-- [CarWith 4.0.14 原DEX核对](spec/carwith-4.0.14-host-evidence.md)：27处原code item与来源哈希、导航结束生产链、CarLife助手共享队列与独立VoIP麦克风路径。G03结束缓存清理已单独提交，协议1110项/桥接41项及小米编译通过；完整状态/机动/车道与蜂窝音频仍PARTIAL。`tools/inspect_carwith_host.py <现有APK路径>`只读复核原字节身份，不运行供应商代码。
+- [CarWith 4.0.14 原DEX核对](spec/carwith-4.0.14-host-evidence.md)：39处原code item与来源哈希、歌词展示与状态匹配、导航结束生产链、CarLife助手共享队列与独立VoIP麦克风路径。G03结束缓存和歌词播放器匹配已分别提交；最新平台13项/协议1110项/桥接48项及小米编译通过。完整状态/机动/车道与蜂窝音频仍PARTIAL。`tools/inspect_carwith_host.py <现有APK路径>`只读复核原字节身份，不运行供应商代码。
 
 - `evidence/reconnect-lifecycle-audit.json`：87的11个原函数、9份当前手机源码哈希、7次ACK-only及手动TEARDOWN脱敏元数据；`tools/inspect_reconnect_lifecycle.py`默认只读，`--write`只写本证据。未证明ACK-only根因或图标状态。
 - `evidence/iap2-pending-ack-recovery.json`：86的78项有界原指令向量、镜像/runner/函数哈希。`tools/probe_iap2_pending_ack.py`默认只读复跑，`--write`仅更新本证据；平台依赖替身及合成元数据不等于真实蓝牙/车机测试。

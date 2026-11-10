@@ -4,6 +4,18 @@
 
 APK 为 `com.miui.carlink`，versionCode `104000014`，versionName `4.0.14-20260801`，55,952,823 bytes，SHA256 `c7888ec5018b4e279ed3d3395b8c855d2a3571f06ae26b96849a61ad6dbef00e`。包信息来自 `aapt2 dump badging`；DEX 哈希、code item 偏移和原指令哈希见[证据 JSON](../evidence/carwith-4.0.14-host.json)。APK、完整 DEX 与供应商全量反汇编仅保留本地，不入库。
 
+## R03 / G08：歌词展示与真实播放器匹配
+
+本轮直接读取 classes2 `f5.d.q` `0x3350a8`。它没有把播放状态写入 `carlife_vehicle_music_info`，但在歌词展示门开启且文本非空时，把 `oa.c.D()` 结果放进 `song`。原 artist 不包含歌名时，`0x335124..0x335168` 将原歌名 + `-` + 原 artist 写入 `artist`；否则保留原 artist。无歌词文本的分支使用正常歌名与 artist。同一 Intent 包含 album、duration、coverUrl 和 Bitmap cover。
+
+classes4 `oa.c.D` `0x19ae44` 取按播放时刻选择的文本，空时读 `ucar.media.metadata.LYRICS_LINE`，并可能取缓存展示文本；r `0x19a9a0` 读取 `LYRICS_STATUS` 作门。classes2 `f5.d.i` `0x334a3c` → databus.MusicInfo 构造 `0x11c0fc` → getter `0x11bd10/0x11bec0` 闭合 artist/歌名数据流。`za.c.a/e` `0x1bb444/0x1bb524` 可读 UCAR 私有 ARTIST/TITLE，也回退标准元数据和 DISPLAY 字段，不能保证与公开会话始终一致。
+
+原 `MediaSessionSelection` 严格匹配实际 TITLE/ARTIST，对 Lyric / Song-Artist 无法选中实际 Song / Artist。Android `3c92c9d` 已在桥接补完整组合匹配并将其注入平台读取器；与标准规则一起要求唯一候选，连字符组合歧义、缺字段或多个播放器仍未知。新增平台4项与桥接7项回归，本次平台13项/2 suites、桥接48项/9 suites、协议1110项/135 suites无失败/错误/跳过，小米Debug Kotlin编译成功。状态只来自获得授权后实际 MediaSession。见[Android修复](../../../android/docs/fixes/2026-11-10-carwith-lyrics-state.md)。没有从歌词、进度或音频猜播放状态，也未新增图片修复。
+
+这一生产者证据补充了此前频闪记录中“为何展示字段反复变化”的一种已存在路径，但没有把脱敏日志中的每次身份变化绑定到具体歌词分支；实车原因和修复效果仍待验证。此前暂停测试明确未授权，本项不能替代授权或认定其唯一根因。
+
+后续可继续依据 APK 核对：原artist已包含歌名的另一展示分支、覆盖后的元数据与公开会话关系、封面来源的更新链、语音键到录音启停的实际消费，以及 Surface/尺寸/动态FPS的请求回复。导航结束已修；蜂窝上下行和Apple政策绑定仍未闭合，不将这些方向标为已修复。
+
 ## G03：已确认宿主生命周期，Apple 映射继续分开核实
 
 下表位置均为 DEX 文件内偏移，code item 的指令正文从偏移加 16 bytes 开始，不是加载虚拟地址。
@@ -60,4 +72,4 @@ APK中25个arm64原生库已提取到忽略目录；libmicastcore动态符号包
 python -B research/connection/tools/inspect_carwith_host.py D:\home\CarWith_4.0.14-20260801.apk
 ```
 
-本轮 PASS：APK身份、5份 DEX、27处原 code item 指令哈希及3个原距离字符串。它只复核字节位置与身份，不运行供应商代码，也不证明语义、蜂窝声音或车机互通。
+本轮 PASS：APK身份、5份 DEX、39处原 code item 指令哈希及3个原距离字符串。它只复核字节位置与身份，不运行供应商代码，也不证明语义、蜂窝声音或车机互通。

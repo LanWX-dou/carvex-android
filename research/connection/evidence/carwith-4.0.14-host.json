@@ -151,6 +151,42 @@
           "inputs": 2,
           "outputs": 3,
           "insns_sha256": "495bdd6cedf1c0ee945c0756a9283b2a3a3e13145b238d21c77f67de2edb05af"
+        },
+        "f5.d.i(oa.c,boolean)": {
+          "code_item": "0x334a3c",
+          "insns_offset": "0x334a4c",
+          "code_units": 234,
+          "registers": 22,
+          "inputs": 3,
+          "outputs": 14,
+          "insns_sha256": "a2df94fc24fda80da93081e161aa43f31eae866a50dbec6b6fe13427df9a301b"
+        },
+        "f5.d.n(String)": {
+          "code_item": "0x334e8c",
+          "insns_offset": "0x334e9c",
+          "code_units": 159,
+          "registers": 6,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "d7c80a6f2897da1a3fc03a803ee9f38862f8f79dc5af8d437d98c23a210b8d29"
+        },
+        "f5.d.q(MusicInfo,oa.c)": {
+          "code_item": "0x3350a8",
+          "insns_offset": "0x3350b8",
+          "code_units": 136,
+          "registers": 7,
+          "inputs": 3,
+          "outputs": 3,
+          "insns_sha256": "01bf979bc641bb8a7f9b2cb8b15a46c71c5d63a8a41dae8b2ed9f9331460fa24"
+        },
+        "f5.d.m()": {
+          "code_item": "0x334dac",
+          "insns_offset": "0x334dbc",
+          "code_units": 103,
+          "registers": 7,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "0e42b8457083e46df22048e2882643be2a086d5db3cbeb33726ae3aefb0a7f5f"
         }
       },
       "distance_strings": [
@@ -210,6 +246,78 @@
           "inputs": 1,
           "outputs": 2,
           "insns_sha256": "845942b78b067f57a94fbd8430350ed00e090fc34a079387254d12dd6835d6ee"
+        },
+        "oa.c.D()": {
+          "code_item": "0x19ae44",
+          "insns_offset": "0x19ae54",
+          "code_units": 51,
+          "registers": 4,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "762353816210030d5f4ddd61fcf353dc4edaa43899f2067f232c81696ef1b067"
+        },
+        "oa.c.r()": {
+          "code_item": "0x19a9a0",
+          "insns_offset": "0x19a9b0",
+          "code_units": 24,
+          "registers": 4,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "b2b6bad7337e6560a20f79775b8220668c6d62ff9e140643641ffe19060db749"
+        },
+        "oa.c.N()": {
+          "code_item": "0x19af4c",
+          "insns_offset": "0x19af5c",
+          "code_units": 18,
+          "registers": 2,
+          "inputs": 1,
+          "outputs": 1,
+          "insns_sha256": "9db253820ed133432ca6e2aaf48596a0eae0d924afe81d78de62371e6ad86ec9"
+        },
+        "za.c.a(MediaMetadataCompat)": {
+          "code_item": "0x1bb444",
+          "insns_offset": "0x1bb454",
+          "code_units": 31,
+          "registers": 3,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "b5bed6e88d7ca5d908cad7671001075f83c3d34b3de9bcddcfb7edce3066e190"
+        },
+        "za.c.e(MediaMetadataCompat)": {
+          "code_item": "0x1bb524",
+          "insns_offset": "0x1bb534",
+          "code_units": 31,
+          "registers": 3,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "52e4c0a03d3a9f80d5c8df94fccc80d030cd7e2765f88a2f0a8c870a518fc065"
+        },
+        "databus.MusicInfo.<init>(String,String,String,String,long,...)": {
+          "code_item": "0x11c0fc",
+          "insns_offset": "0x11c10c",
+          "code_units": 28,
+          "registers": 14,
+          "inputs": 14,
+          "outputs": 1,
+          "insns_sha256": "5415a10703b2eabd012d3f52fc2e3d8d820d984c36f305c65280dc7e61671e45"
+        },
+        "databus.MusicInfo.d()": {
+          "code_item": "0x11bd10",
+          "insns_offset": "0x11bd20",
+          "code_units": 3,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 0,
+          "insns_sha256": "68e2f6accad01aacfa0bad023ee4624d322d15e4bdc7ca33d75d8ae69c00aa92"
+        },
+        "databus.MusicInfo.q()": {
+          "code_item": "0x11bec0",
+          "insns_offset": "0x11bed0",
+          "code_units": 3,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 0,
+          "insns_sha256": "cfca8fdc04dedc412b0e7d36e09cccf2554072d881bd5d4ad864fb8084f4575e"
         }
       }
     },
