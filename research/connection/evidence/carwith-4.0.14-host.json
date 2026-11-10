@@ -91,6 +91,177 @@
           "inputs": 2,
           "outputs": 6,
           "insns_sha256": "3cdf5ea5eacc3f41e53b9c07fdc5204c28ace58511eadef046cf6d2a6d148be0"
+        },
+        "common.utils.p.a(Bitmap,float)": {
+          "code_item": "0x44e174",
+          "insns_offset": "0x44e184",
+          "code_units": 59,
+          "registers": 11,
+          "inputs": 2,
+          "outputs": 7,
+          "insns_sha256": "512858752244eb0070ecbb441e60d3d857fd21dd3aa46449a21ae7226cf0cb92"
+        },
+        "common.utils.p.b(Bitmap,Bitmap)": {
+          "code_item": "0x44e254",
+          "insns_offset": "0x44e264",
+          "code_units": 78,
+          "registers": 8,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "af289ec2e0b715f06ca05ee0bbdb86aa2ae366d8b0cde74019eef2e54771e60b"
+        },
+        "common.utils.c1.o()": {
+          "code_item": "0x45668c",
+          "insns_offset": "0x45669c",
+          "code_units": 8,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 1,
+          "insns_sha256": "ce38611daf8f825f4b17f7e27d6caa19e6ebe01e0c7f73b3faddbbd8e5e3f9ad"
+        },
+        "common.utils.c1.l()": {
+          "code_item": "0x456634",
+          "insns_offset": "0x456644",
+          "code_units": 8,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 1,
+          "insns_sha256": "02d5f553d5cf404e3626704e0dc8beace200980b9fdff3d140a85b225248f64d"
+        },
+        "e2.a.<init>()": {
+          "code_item": "0x476570",
+          "insns_offset": "0x476580",
+          "code_units": 70,
+          "registers": 6,
+          "inputs": 1,
+          "outputs": 4,
+          "insns_sha256": "1eca0af5c336ddfc5565e23f4289a4d0193597fe8540a1e3ec73deb6ae6e7cc5"
+        },
+        "e2.a.u()": {
+          "code_item": "0x47660c",
+          "insns_offset": "0x47661c",
+          "code_units": 115,
+          "registers": 8,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "71a5e08a211b6d6c4e648ac873590e9bd65a9a732457733d3b063eae5e8639c1"
+        },
+        "e2.a.o()": {
+          "code_item": "0x4761c4",
+          "insns_offset": "0x4761d4",
+          "code_units": 3,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 0,
+          "insns_sha256": "983b699dbbf783550ffbd9079b9beca19dcb886a60ef05b63b6f817e9dd366ed"
+        },
+        "e2.a.p()": {
+          "code_item": "0x4761dc",
+          "insns_offset": "0x4761ec",
+          "code_units": 3,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 0,
+          "insns_sha256": "769dba9049752f620bc7878426346fcf8fe8fb71d7695577faf28ef50947ae11"
+        },
+        "e2.d.b()": {
+          "code_item": "0x476bfc",
+          "insns_offset": "0x476c0c",
+          "code_units": 69,
+          "registers": 5,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "62b98f2cee24d3fcf909ec1ca7e9dc1ce87dbb29c9010c133ada539be055c12e"
+        },
+        "e2.d.c()": {
+          "code_item": "0x476c98",
+          "insns_offset": "0x476ca8",
+          "code_units": 69,
+          "registers": 5,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "159fd161443df5752dbd84309fb1ce8cd32c743d846dd742672ad539a8cc643d"
+        },
+        "o1.a.c()": {
+          "code_item": "0x519cd8",
+          "insns_offset": "0x519ce8",
+          "code_units": 32,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 1,
+          "insns_sha256": "8db76c3368421fd2da6fe9a7a1ccf4622b4268d73e217d7e77c08ce82f4d0e9a"
+        },
+        "o1.a.d()": {
+          "code_item": "0x519d28",
+          "insns_offset": "0x519d38",
+          "code_units": 39,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 1,
+          "insns_sha256": "16f0113207f3eecca1b2b26b78809b2bcd5c4eae285b60144e9e66ba06efb802"
+        },
+        "o1.a.g(boolean)": {
+          "code_item": "0x519e64",
+          "insns_offset": "0x519e74",
+          "code_units": 36,
+          "registers": 2,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "faf2c21aa6680dec2a53a00305ee6b7e1b20f1f08ba04a3fe2978610d9d658a8"
+        },
+        "i1.a.h(int)": {
+          "code_item": "0x495648",
+          "insns_offset": "0x495658",
+          "code_units": 34,
+          "registers": 3,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "8c1fa18a485f6fc909ed4ec139c174e12efda1d44d6168efcc1d1d8ed5036157"
+        },
+        "i1.a.j(int,int)": {
+          "code_item": "0x4956dc",
+          "insns_offset": "0x4956ec",
+          "code_units": 41,
+          "registers": 5,
+          "inputs": 3,
+          "outputs": 3,
+          "insns_sha256": "3b901437061442f5925caf136058bbb192b3c214bae1acbe1b0e3a94a86e8d8b"
+        },
+        "i1.a.q(int)": {
+          "code_item": "0x495838",
+          "insns_offset": "0x495848",
+          "code_units": 130,
+          "registers": 6,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "288f0e64d4dcfe213ba18904d4308c44d1d5b42e7b80704d4028d7b5ad3fa8a2"
+        },
+        "i1.a.s(int)": {
+          "code_item": "0x49597c",
+          "insns_offset": "0x49598c",
+          "code_units": 63,
+          "registers": 4,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "212913a591f7b28aafcb6a0dc456ff1178d27f3090f2113854d8f36dd0bf89f7"
+        },
+        "h1.j$d.a()": {
+          "code_item": "0x490714",
+          "insns_offset": "0x490724",
+          "code_units": 549,
+          "registers": 9,
+          "inputs": 1,
+          "outputs": 5,
+          "insns_sha256": "76e423d762dea58da98c22291d2358919b4a74f60c7dd77227b4777fd4d24164"
+        },
+        "PhoneAudioCast.q(boolean)": {
+          "code_item": "0x432b24",
+          "insns_offset": "0x432b34",
+          "code_units": 249,
+          "registers": 8,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "e418201353d0096a054f84a7a61be0972c97a839fd46df11b080e01120b287e2"
         }
       }
     },
@@ -187,6 +358,78 @@
           "inputs": 1,
           "outputs": 3,
           "insns_sha256": "0e42b8457083e46df22048e2882643be2a086d5db3cbeb33726ae3aefb0a7f5f"
+        },
+        "f5.d.j(MusicInfo,MusicInfo)": {
+          "code_item": "0x3348a4",
+          "insns_offset": "0x3348b4",
+          "code_units": 51,
+          "registers": 6,
+          "inputs": 3,
+          "outputs": 2,
+          "insns_sha256": "c7c0e234b5e35103019ed1e833a2782f417609861ff0ca23d378369444c3b02d"
+        },
+        "f5.d.k(MusicInfo,MusicInfo)": {
+          "code_item": "0x33491c",
+          "insns_offset": "0x33492c",
+          "code_units": 22,
+          "registers": 4,
+          "inputs": 3,
+          "outputs": 1,
+          "insns_sha256": "46e2f2a05a087c147e9a883ef3a41e3a581c52f319885f73eeb16808445150cf"
+        },
+        "f5.d.r()": {
+          "code_item": "0x3351c8",
+          "insns_offset": "0x3351d8",
+          "code_units": 31,
+          "registers": 5,
+          "inputs": 1,
+          "outputs": 4,
+          "insns_sha256": "f6d6f5b082001d4453a074c52e089ebf282c275ed6b51d67cb352b82ce16d0cb"
+        },
+        "f5.d.s(oa.c,MusicInfo)": {
+          "code_item": "0x335218",
+          "insns_offset": "0x335228",
+          "code_units": 36,
+          "registers": 4,
+          "inputs": 3,
+          "outputs": 2,
+          "insns_sha256": "4939ecf0ec1bfa57ca1ddb450dfc8daaef7e8072f83e3280939818260c15812b"
+        },
+        "HomeActivity$f.b()": {
+          "code_item": "0x1a538c",
+          "insns_offset": "0x1a539c",
+          "code_units": 29,
+          "registers": 3,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "e35d20dbdd678ee8acbff6d16f84a44285fd2fab74110a2ea08b36387ea1aaf2"
+        },
+        "HomeActivity$f.c()": {
+          "code_item": "0x1a5340",
+          "insns_offset": "0x1a5350",
+          "code_units": 17,
+          "registers": 2,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "6da8f946dd93de11df0f6106852c8cf300373cd9508b974593a8e58fbc1a6153"
+        },
+        "HomeActivity.M1()": {
+          "code_item": "0x1a6758",
+          "insns_offset": "0x1a6768",
+          "code_units": 13,
+          "registers": 3,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "1d15817433680f14a833029f405fcb64f4a653fe07d021dedde5848c52250fa2"
+        },
+        "HomeActivity.onDestroy()": {
+          "code_item": "0x1a7200",
+          "insns_offset": "0x1a7210",
+          "code_units": 232,
+          "registers": 5,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "ae97372eea070244e081a67ea8049242f810b606492710cbcd55657d9023d0ce"
         }
       },
       "distance_strings": [
@@ -318,6 +561,114 @@
           "inputs": 1,
           "outputs": 0,
           "insns_sha256": "cfca8fdc04dedc412b0e7d36e09cccf2554072d881bd5d4ad864fb8084f4575e"
+        },
+        "oa.c.F0()": {
+          "code_item": "0x19c0d8",
+          "insns_offset": "0x19c0e8",
+          "code_units": 104,
+          "registers": 5,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "e570d68edfbc0aa65de8b2904fd255012acaec4b9c0b5b42612b3dbc3603b097"
+        },
+        "oa.c.H()": {
+          "code_item": "0x19a848",
+          "insns_offset": "0x19a858",
+          "code_units": 3,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 0,
+          "insns_sha256": "299d2a060e20cc6c96821df5b80bd2317668bc0f9fa98a9d15138c1124eb93d7"
+        },
+        "oa.c.g(oa.c,Bitmap)": {
+          "code_item": "0x19b540",
+          "insns_offset": "0x19b550",
+          "code_units": 3,
+          "registers": 2,
+          "inputs": 2,
+          "outputs": 0,
+          "insns_sha256": "2412199a6a080c8f706567de79ba24cfe12474d2b7480b04d0b33ce9bce1602e"
+        },
+        "oa.c$c.a(ra.b)": {
+          "code_item": "0x1996bc",
+          "insns_offset": "0x1996cc",
+          "code_units": 98,
+          "registers": 7,
+          "inputs": 2,
+          "outputs": 5,
+          "insns_sha256": "2bb7d747cfc9de06e90bc694dc7d6d0a35630769e337408d18730340c86f25d5"
+        },
+        "oa.c.s(MediaMetadataCompat)": {
+          "code_item": "0x19b7b0",
+          "insns_offset": "0x19b7c0",
+          "code_units": 47,
+          "registers": 4,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "159b309b9eede8425ae7ac047d53af564dd9c1c38e20bfda753355ca396bf82e"
+        },
+        "oa.c.d0()": {
+          "code_item": "0x19aa24",
+          "insns_offset": "0x19aa34",
+          "code_units": 2,
+          "registers": 1,
+          "inputs": 1,
+          "outputs": 0,
+          "insns_sha256": "3eee0b08fa052c50ed72b4ae9486257a113bc9ef48c0d11efbba79dff7458729"
+        },
+        "oa.c.t()": {
+          "code_item": "0x19b820",
+          "insns_offset": "0x19b830",
+          "code_units": 56,
+          "registers": 3,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "07cea2b8ef54db9176862f547c195566832478c310799462f072051518b4eebe"
+        },
+        "ra.d.c(ra.a)": {
+          "code_item": "0x1a5b08",
+          "insns_offset": "0x1a5b18",
+          "code_units": 108,
+          "registers": 7,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "fc5e28bcc3526bd12a6fee9e8d2f0f45dc0ffcf7df473980da57fdbcaca791a8"
+        },
+        "ra.d.d(ra.a)": {
+          "code_item": "0x1a5bf0",
+          "insns_offset": "0x1a5c00",
+          "code_units": 50,
+          "registers": 4,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "5c4669aba1d0c6eb2fc9c88169f52165d1bddd13663a3557c43e00d59898d0be"
+        },
+        "ra.d.e(ra.a)": {
+          "code_item": "0x1a5c64",
+          "insns_offset": "0x1a5c74",
+          "code_units": 52,
+          "registers": 4,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "d46179c13aa9da6679044b9b58fc23a9901775548bc9005e5030208dbfbcf232"
+        },
+        "ra.d.f()": {
+          "code_item": "0x1a5cdc",
+          "insns_offset": "0x1a5cec",
+          "code_units": 17,
+          "registers": 2,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "6f839a8dee6d27b980cc68074e43620910c288e58b45666a0611a7e63f6bcd02"
+        },
+        "qa.b.C(String,Uri,Bitmap,Bitmap)": {
+          "code_item": "0x1a20b4",
+          "insns_offset": "0x1a20c4",
+          "code_units": 24,
+          "registers": 7,
+          "inputs": 5,
+          "outputs": 4,
+          "insns_sha256": "00475bc5da4ed9cf0aa240cea2da9365f2abd5c5a7a97af1adcfd395a2e4e67c"
         }
       }
     },
@@ -342,6 +693,24 @@
           "inputs": 4,
           "outputs": 2,
           "insns_sha256": "0ad3f9e81df8fd87ed8f07eb935e7ab21d7046b30cb1b8a951ec53cd98a55146"
+        },
+        "be.h.b(int)": {
+          "code_item": "0x1b2620",
+          "insns_offset": "0x1b2630",
+          "code_units": 40,
+          "registers": 2,
+          "inputs": 1,
+          "outputs": 1,
+          "insns_sha256": "1243d1b5bb79b4a933aaba872990c6387bade3d417b37096da75d6d9b84aa740"
+        },
+        "be.g.d([BII)": {
+          "code_item": "0x1b20bc",
+          "insns_offset": "0x1b20cc",
+          "code_units": 24,
+          "registers": 5,
+          "inputs": 4,
+          "outputs": 4,
+          "insns_sha256": "5fde2c5be206f233856683e4089f602138f63c895e44a9f08c40359dca05c734"
         }
       }
     },
@@ -402,6 +771,133 @@
           "inputs": 6,
           "outputs": 6,
           "insns_sha256": "52b53e1f4d2d659abba441e39a63037b43ae40f45350f55da3d9052e6a6f0b15"
+        },
+        "CarlifeHw.onKeyEvent(KeyEvent)": {
+          "code_item": "0xa98e8",
+          "insns_offset": "0xa98f8",
+          "code_units": 376,
+          "registers": 24,
+          "inputs": 2,
+          "outputs": 12,
+          "insns_sha256": "4b71f00f985aa36a38fd58ea16faf0dc1993fdaadde2a4de0ab74fd1debb1a1b"
+        },
+        "carlife.j.q(Intent)": {
+          "code_item": "0xa7fd0",
+          "insns_offset": "0xa7fe0",
+          "code_units": 1108,
+          "registers": 18,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "f4979df93d769c4c5de548d0f1274b0f3def3aa94b0ac615e363b57e6566d789"
+        },
+        "carlife.j.x(int)": {
+          "code_item": "0xa93a8",
+          "insns_offset": "0xa93b8",
+          "code_units": 42,
+          "registers": 4,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "d3bbf78c87a07cbc662a0a62caac15d3bec86b79badbf86a06dccc531a2ebc50"
+        },
+        "bh.d$c.a(int,int)": {
+          "code_item": "0xa4be4",
+          "insns_offset": "0xa4bf4",
+          "code_units": 8,
+          "registers": 3,
+          "inputs": 3,
+          "outputs": 3,
+          "insns_sha256": "e0ede0001841d6a4eaf125aff53ece0e74c0b07db63dba50d8bceab51406a80a"
+        },
+        "bh.d$c.notifyAudioState(int)": {
+          "code_item": "0xa4ba4",
+          "insns_offset": "0xa4bb4",
+          "code_units": 8,
+          "registers": 2,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "2054aba95d4b8e2f3a24db93489b246a3cd39da7c0ea810a73131df67669495d"
+        }
+      },
+      "voice_key_switch": {
+        "instruction_offset": "0xa9980",
+        "register": 0,
+        "payload_offset": "0xa9ba4",
+        "branch_file_offsets": {
+          "8101": "0xa9aa8",
+          "8102": "0xa9aa0",
+          "8103": "0xa9a90",
+          "8104": "0xa9a80",
+          "8105": "0xa9a70",
+          "8106": "0xa9a60",
+          "8107": "0xa9a50",
+          "8108": "0xa9a40",
+          "8109": "0xa9a04",
+          "8110": "0xa99c8",
+          "8111": "0xa99b8",
+          "8112": "0xa99a8",
+          "8113": "0xa9998",
+          "8114": "0xa9992",
+          "8115": "0xa998c"
+        }
+      }
+    },
+    "classes7.dex": {
+      "sha256": "d9e9eb7aaffc649d1c14e642250d1e4b64beaf8ea6e2ecd3eadd38ba31e47d3a",
+      "bytes": 3255812,
+      "methods": {
+        "voiceassistant.a.m(String)": {
+          "code_item": "0xe682c",
+          "insns_offset": "0xe683c",
+          "code_units": 81,
+          "registers": 6,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "2a6d23eb377e4cd56fa13c9034a18a9e25bb13519ae188207fd5331d893b5ef4"
+        },
+        "VoiceService.processIntentInternal(Intent)": {
+          "code_item": "0xead0c",
+          "insns_offset": "0xead1c",
+          "code_units": 204,
+          "registers": 11,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "258e474599a47d494c444d60a8b7d62376aa90b1601b63695874a80bd1249d72"
+        },
+        "VoiceService.stopEngine(boolean,boolean,int)": {
+          "code_item": "0xeaeb4",
+          "insns_offset": "0xeaec4",
+          "code_units": 15,
+          "registers": 5,
+          "inputs": 4,
+          "outputs": 3,
+          "insns_sha256": "635d7e6f80d19a4226b0b42c83e7f85a32b5ae384cca6ba1974b44b74e791364"
+        },
+        "VoiceService.onCreate()": {
+          "code_item": "0xeac1c",
+          "insns_offset": "0xeac2c",
+          "code_units": 48,
+          "registers": 3,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "93fb94f217e1c5f8e7263a866c318df67a8ecd7863c74a8c4b334e0e62611803"
+        },
+        "execute.j.d(xh.a)": {
+          "code_item": "0xf3fa4",
+          "insns_offset": "0xf3fb4",
+          "code_units": 35,
+          "registers": 4,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "c2af90290645c9c59d0902b1e495f1ba2c8c4c6b15d35778dd936beda26fa2dd"
+        },
+        "execute.j.a(boolean,int)": {
+          "code_item": "0xf3ad4",
+          "insns_offset": "0xf3ae4",
+          "code_units": 17,
+          "registers": 5,
+          "inputs": 3,
+          "outputs": 4,
+          "insns_sha256": "0d456b3de7fe618409f1570749b81f1ce66b2de286e93b10034c276fed548f4f"
         }
       }
     }
