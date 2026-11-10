@@ -17,11 +17,15 @@ class CarPlayKeyAdapter(private val mapper:HostKeyMapper?) {
     /** Page-qualified HID mapping for Consumer, Telephony and future HID pages. */
     fun hidEvent(prefix:String,usage:Int):Int? = mapper?.hidKey(prefix,usage)
 
-    /** No independent host toggle code is known; use Android's real media-session meaning. */
+    /** Standard Consumer usages mapped to Android media-button events, independent of vendor codes. */
     fun systemMediaUsage(usage:Int):Int?=when(usage){
         0xcd->android.view.KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE
+        0xb3->android.view.KeyEvent.KEYCODE_MEDIA_FAST_FORWARD
+        0xb4->android.view.KeyEvent.KEYCODE_MEDIA_REWIND
         else->null
     }
+
+    fun continuousMediaUsage(usage:Int):Boolean=usage==0xb3||usage==0xb4
 
     fun uiEvent(eventId:String):Int? = mapper?.uiKey(eventId)
 }

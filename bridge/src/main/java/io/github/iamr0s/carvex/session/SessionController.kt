@@ -419,15 +419,29 @@ class SessionController(
             if(prefix=="media")keyAdapter.systemMediaUsage(usage)?.let{return it to true}
             return keyAdapter.hidEvent(prefix,usage)?.let{it to false}
         }
-        val mediaOutput=Channel<Pair<String,Int>>(16)
-        r.own(AutoCloseable{mediaOutput.cancel()})
+        val mediaOutput=Channel<Triple<String,Int,Boolean>>(16)
+        val heldSystemMedia=HeldSystemMediaKeys()
+        val mediaManager=context.getSystemService(android.media.AudioManager::class.java)
+        val sendSystemMedia:(Int,Long,Long,Boolean)->Boolean={code,started,at,down->
+            if(mediaManager==null)false else {
+                mediaManager.dispatchMediaKeyEvent(KeyEvent(started,at,
+                    if(down)KeyEvent.ACTION_DOWN else KeyEvent.ACTION_UP,code,0))
+                inputs.incrementAndGet();true
+            }
+        }
+        r.own(AutoCloseable{
+            mediaOutput.cancel()
+            heldSystemMedia.close(SystemClock.uptimeMillis(),sendSystemMedia)
+        })
         sessionScope.launch(Dispatchers.IO){
-            for((prefix,usage) in mediaOutput){
+            for((prefix,usage,pressed) in mediaOutput){
                 if(ended.get())break
                 // Decide from the latest player report, not when this press entered the queue.
                 val (code,system)=mediaDispatch(prefix,usage)?:continue
                 try{
-                    val accepted=if(system){
+                    val accepted=if(system&&keyAdapter.continuousMediaUsage(usage)){
+                        heldSystemMedia.transition(code,pressed,SystemClock.uptimeMillis(),sendSystemMedia)
+                    }else if(system){
                         val manager=context.getSystemService(android.media.AudioManager::class.java)
                         if(manager==null)false else {
                             val at=SystemClock.uptimeMillis()
@@ -440,7 +454,7 @@ class SessionController(
                         val up=if(down)sendHostKey(code,false) else false
                         down&&up
                     }
-                    BridgeStore.log(id,"HID press delivered; playback acceptance pending; code="+code+" systemRoute="+system+" delivered="+accepted)
+                    BridgeStore.log(id,"HID media delivered; playback acceptance pending; code="+code+" down="+pressed+" systemRoute="+system+" delivered="+accepted)
                 }catch(t:Exception){BridgeStore.log(id,"Media press dispatch failed code="+code+" "+t.javaClass.simpleName)}
             }
         }
@@ -452,10 +466,10 @@ class SessionController(
             }
             val usage=eventId.substringAfter(':').substringBefore(':').toIntOrNull(16)?:return false
             val down=eventId.endsWith(":down")
-            // U2IW consumes Consumer/Telephony presses once; releases only update decoder state.
-            if(!down)return true
+            // One-shot actions consume presses; fast forward/rewind preserve both physical edges.
+            if(!down&&!(prefix=="media"&&keyAdapter.continuousMediaUsage(usage)))return true
             if(mediaDispatch(prefix,usage)==null)return false
-            return mediaOutput.trySend(prefix to usage).isSuccess
+            return mediaOutput.trySend(Triple(prefix,usage,down)).isSuccess
         }
         /**
          * requestUI is a one-shot protocol action, rather than a user-configurable binding.

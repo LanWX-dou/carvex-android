@@ -66,4 +66,14 @@ class CarPlayKeyAdapterTest {
         assertNull(adapter.systemMediaUsage(0xb5))
         assertNull(adapter.systemMediaUsage(0xffff))
     }
+
+    @Test fun seekUsagesUseStandardKeysWithoutInventingVendorCodes(){
+        val none=CarPlayKeyAdapter(null)
+        assertEquals(android.view.KeyEvent.KEYCODE_MEDIA_FAST_FORWARD,none.systemMediaUsage(0xb3))
+        assertEquals(android.view.KeyEvent.KEYCODE_MEDIA_REWIND,none.systemMediaUsage(0xb4))
+        assertEquals(true,none.continuousMediaUsage(0xb3))
+        assertEquals(true,none.continuousMediaUsage(0xb4))
+        assertEquals(false,none.continuousMediaUsage(0xb5))
+        assertNull(none.mediaUsage(0xb3));assertNull(none.mediaUsage(0xb4))
+    }
 }
