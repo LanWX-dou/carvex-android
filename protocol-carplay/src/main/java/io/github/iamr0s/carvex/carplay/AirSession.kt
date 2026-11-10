@@ -845,7 +845,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         val command=Plist.dictionary(request.body)
         if(command["type"]!="changeModes")return
         val reply=Plist.dictionary(body)
-        val notification=mapOf("type" to "modesChanged","params" to reply["params"])
+        val notification=ResourceModeNotification.fromReply(reply)?:return
         if(modeOutput.trySend(notification).isFailure)throw IOException("Modes notification queue unavailable")
     }
     private fun event(r:RtspMessage,replays:SiriRequests=controlSiri):Pair<Int,ByteArray> =
