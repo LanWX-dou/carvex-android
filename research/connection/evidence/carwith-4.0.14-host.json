@@ -146,6 +146,24 @@
           "outputs": 3,
           "insns_sha256": "71a5e08a211b6d6c4e648ac873590e9bd65a9a732457733d3b063eae5e8639c1"
         },
+        "e2.a$a.<clinit>()": {
+          "code_item": "0x476018",
+          "insns_offset": "0x476028",
+          "code_units": 37,
+          "registers": 3,
+          "inputs": 0,
+          "outputs": 3,
+          "insns_sha256": "877360bbfa71ced412dee5fd0fdae429348a70678c6d59db59c456b59de86a5b"
+        },
+        "e2.a.L(boolean)": {
+          "code_item": "0x4769d0",
+          "insns_offset": "0x4769e0",
+          "code_units": 46,
+          "registers": 3,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "46b07a9cd4160cd96aefec1715d7eb95f7f6e32b78eb51ecbb0656c7f19ce0f5"
+        },
         "e2.a.o()": {
           "code_item": "0x4761c4",
           "insns_offset": "0x4761d4",
@@ -430,6 +448,15 @@
           "inputs": 1,
           "outputs": 2,
           "insns_sha256": "ae97372eea070244e081a67ea8049242f810b606492710cbcd55657d9023d0ce"
+        },
+        "SettingsIndexAdapter.p0(boolean,SettingViewHolderTypeRadio)": {
+          "code_item": "0x1fcbe0",
+          "insns_offset": "0x1fcbf0",
+          "code_units": 56,
+          "registers": 7,
+          "inputs": 3,
+          "outputs": 3,
+          "insns_sha256": "1711f1563323b95ce0d49b787b68157659876ee523a69503c5a0a548f3bef670"
         }
       },
       "distance_strings": [
@@ -781,6 +808,15 @@
           "outputs": 12,
           "insns_sha256": "4b71f00f985aa36a38fd58ea16faf0dc1993fdaadde2a4de0ab74fd1debb1a1b"
         },
+        "CarlifeConnService.g(Integer)": {
+          "code_item": "0xa7888",
+          "insns_offset": "0xa7898",
+          "code_units": 258,
+          "registers": 7,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "58fcce9646ca007245bd6d84e77d275e116e3dbcac5fd31d52923b57ca308f1c"
+        },
         "carlife.j.q(Intent)": {
           "code_item": "0xa7fd0",
           "insns_offset": "0xa7fe0",
@@ -898,6 +934,60 @@
           "inputs": 3,
           "outputs": 4,
           "insns_sha256": "0d456b3de7fe618409f1570749b81f1ce66b2de286e93b10034c276fed548f4f"
+        },
+        "execute.j$a.run()": {
+          "code_item": "0xf2dd0",
+          "insns_offset": "0xf2de0",
+          "code_units": 81,
+          "registers": 4,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "ab4fed365e0df05f7ce2a174315f3e64da7ade41d1c0d01410250e7a2846b591"
+        },
+        "execute.j$f.run()": {
+          "code_item": "0xf3298",
+          "insns_offset": "0xf32a8",
+          "code_units": 28,
+          "registers": 3,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "97d81bdcf12b3b75e8d5146092d29e02de1d0f90ff9af8ea6711f2ba869965db"
+        },
+        "execute.j.w(j,xh.a)": {
+          "code_item": "0xf38a4",
+          "insns_offset": "0xf38b4",
+          "code_units": 4,
+          "registers": 2,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "d6c50e1ba6ec6f34fc043e8c43bc8aa9aadbafaa98d5c18766f55681782ea1d8"
+        },
+        "execute.j.x(j,xh.a)": {
+          "code_item": "0xf38bc",
+          "insns_offset": "0xf38cc",
+          "code_units": 4,
+          "registers": 2,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "bf1339d6acaa2aefa8e16fcc8d625db0ed4678ec8b5b89bdcd7f3a2eceea198a"
+        },
+        "execute.j.J(xh.a)": {
+          "code_item": "0xf3f28",
+          "insns_offset": "0xf3f38",
+          "code_units": 54,
+          "registers": 14,
+          "inputs": 2,
+          "outputs": 8,
+          "insns_sha256": "e8499a9385b527fc48e69ecb86aa22286b77c1e81dd6723750bb7872cfff4b79"
+        },
+        "execute.j.K(xh.a)": {
+          "code_item": "0xf3ffc",
+          "insns_offset": "0xf400c",
+          "code_units": 386,
+          "registers": 12,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "09e913fd37d89cf14196254c843df4ffe23f76acde829ea3865ab17c2f307d5f"
         }
       }
     }

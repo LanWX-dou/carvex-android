@@ -72,4 +72,4 @@ APK中25个arm64原生库已提取到忽略目录；libmicastcore动态符号包
 python -B research/connection/tools/inspect_carwith_host.py D:\home\CarWith_4.0.14-20260801.apk
 ```
 
-最新 PASS：APK身份、6份 DEX、91处原 code item 指令哈希、3个原距离字符串及语音键packed-switch目标。扩展包括[封面与语音专项](carwith-artwork-voice-20261110.md)本次实际读取的位置；前一轮39处的结果作为历史记录保留。复核只证明字节位置与身份，不运行供应商代码，也不证明语义、蜂窝声音或车机互通。
+最新 PASS：APK身份、6份 DEX、101处原 code item 指令哈希、3个原距离字符串及语音键packed-switch目标。扩展包括[封面与语音专项](carwith-artwork-voice-20261110.md)实际读取的位置，本轮新增10处listener初始化、麦克风偏好/设置和助手任务入口；此前39处、91处的结果作为历史记录保留。复核只证明字节位置与身份，完整方法哈希不代表所有分支语义已闭合，不运行供应商代码，也不证明蜂窝声音或车机互通。

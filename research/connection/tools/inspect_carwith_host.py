@@ -29,6 +29,8 @@ METHODS = {
         'common.utils.c1.l()': 0x456634,
         'e2.a.<init>()': 0x476570,
         'e2.a.u()': 0x47660c,
+        'e2.a$a.<clinit>()': 0x476018,
+        'e2.a.L(boolean)': 0x4769d0,
         'e2.a.o()': 0x4761c4,
         'e2.a.p()': 0x4761dc,
         'e2.d.b()': 0x476bfc,
@@ -62,6 +64,7 @@ METHODS = {
         'HomeActivity$f.c()': 0x1a5340,
         'HomeActivity.M1()': 0x1a6758,
         'HomeActivity.onDestroy()': 0x1a7200,
+        'SettingsIndexAdapter.p0(boolean,SettingViewHolderTypeRadio)': 0x1fcbe0,
     },
     'classes4.dex': {
         'DataBusService$DataBusServiceStub.readAssistantRecorderData([B)': 0x10f738,
@@ -103,6 +106,7 @@ METHODS = {
         'bh.d$c.b([BIIII)': 0x0a4c04,
         'carlife.j.A([BIIII)': 0x0a9488,
         'CarlifeHw.onKeyEvent(KeyEvent)': 0x0a98e8,
+        'CarlifeConnService.g(Integer)': 0x0a7888,
         'carlife.j.q(Intent)': 0x0a7fd0,
         'carlife.j.x(int)': 0x0a93a8,
         'bh.d$c.a(int,int)': 0x0a4be4,
@@ -115,6 +119,12 @@ METHODS = {
         'VoiceService.onCreate()': 0x0eac1c,
         'execute.j.d(xh.a)': 0x0f3fa4,
         'execute.j.a(boolean,int)': 0x0f3ad4,
+        'execute.j$a.run()': 0x0f2dd0,
+        'execute.j$f.run()': 0x0f3298,
+        'execute.j.w(j,xh.a)': 0x0f38a4,
+        'execute.j.x(j,xh.a)': 0x0f38bc,
+        'execute.j.J(xh.a)': 0x0f3f28,
+        'execute.j.K(xh.a)': 0x0f3ffc,
     },
 }
 

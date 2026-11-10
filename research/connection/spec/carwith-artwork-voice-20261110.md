@@ -1,6 +1,6 @@
 # CarWith 封面更新与语音控制核对
 
-2026-11-10，继续读取用户提供的 CarWith 4.0.14-20260801 APK 原 DEX。来源身份见[宿主证据](carwith-4.0.14-host-evidence.md)，本次[字节记录](../evidence/carwith-4.0.14-host.json)扩展至6份DEX、91处code item，另直接解析语音键的 packed-switch。APK与全量供应商反汇编仅保留本地。
+2026-11-10，继续读取用户提供的 CarWith 4.0.14-20260801 APK 原 DEX。来源身份见[宿主证据](carwith-4.0.14-host-evidence.md)，最新[字节记录](../evidence/carwith-4.0.14-host.json)扩展至6份DEX、101处code item，另直接解析语音键的 packed-switch。封面轮为91处，语音修复轮新增10处。APK与全量供应商反汇编仅保留本地。
 
 下文位置均为 DEX 文件内偏移；code item 指令正文从偏移加16 bytes开始。宿主行为独立核对，不作为 Apple 资源仲裁、音频类型或增强 Siri 的协议依据。没有新的实车日志。
 
@@ -44,6 +44,9 @@ R01频闪仍未关闭：歌词文字变化可以触发本端图片代际更新�
 | classes7 `voiceassistant.a.m` `0x0e682c` | 显式启动本包VoiceService，带fromTV=false、isCloseMic=false、queryOrigin=VoiceButtonAtDocker、disableVad=false、need_tts=true。强制停止action另通知内部a$g.onStop观察者。 |
 | classes7 `VoiceService.processIntentInternal` `0x0ead0c` | START分支创建xh.a，停止原任务后调用wh.a.d；STOP分支调用stopEngine(true,true,0)。onCreate `0x0eac1c`从execute.j.B取得实际任务实例。 |
 | classes7 `stopEngine` `0x0eaeb4` / `execute.j.a` `0x0f3ad4` / `d` `0x0f3fa4` | STOP转发内部停止及任务a；START转发任务d。任务通过Handler发布工作，START另发送what=1消息。以上调用不是识别成功或正在监听的回执。 |
+| classes7 `execute.j$f.run` `0x0f3298` / `x` `0x0f38bc` / `K` `0x0f3ffc` | run构造Recognize事件，经x调用K；K在`0x0f4300`调用ASR入口i.T0，随后在`0x0f4306`写内部j=true。已核这些局部分支，不将内部标志当公开助手状态，i.T0到实际producer的完整SDK路径另核。 |
+| classes7 `execute.j.w` `0x0f38a4` / `J` `0x0f3f28` / `j$a.run` `0x0f2dd0` | w转J，J调用i.S0；停止工作run取消现有execute任务，调用j.t并清掉当前xh.a。以上仍是宿主内部任务路径。 |
+| classes6 `CarlifeConnService.g` `0x0a7888` | 正常初始化分支先`0x0a792e`登记audio listener，再`0x0a7956`登记key listener。此顺序不证明助手ready或已选择共享队列。 |
 
 当前本端8107/8108的DOWN/UP投递符合这一入口。UP不是语音结束，不能将协议action3直接解释成宿主STOP。`VoiceButtonToggle`仍仅保存本地已接受请求；静态证据确认了宿主返回true也可能因callback缺失或小爱准备门而没有实际启动。因此不把downAccepted升级成助手运行确认。
 
@@ -54,6 +57,8 @@ classes `e2.d.c` `0x476c98` 查询carlife_vr_use_phone_mic，读is_use_phone_mic
 读取入口已经确定：classes6 `carlife.j.q` `0x0a7fd0` 收到 **carlife_notify_vehicle_channel** 时，`0x0a8066` 调用e2.a.u，之后才解析params/vehicle_channel。本次扫描原DEX的直接u调用只有这个位置，不能据此认定每次语音键都会重新查询。
 
 `e2.a.u` `0x47660c`读取ucar_settings_data_bg中的carlife_is_use_phone_mic整数偏好。令P为is_use_phone_mic、W为hu_wake_up_enable：t=!P；默认枚举a时s=(!W || P)，枚举b时s=true，枚举c时s=P。o `0x4761c4`读t，p `0x4761dc`读s；经o1.a.c/d `0x519cd8/0x519d28`进入消费。s还可由o1.a.g `0x519e64`进入setter改变，因此不是不可更新的永久缓存。
+
+本轮直接核对枚举`e2.a$a.<clinit>` `0x476018`：a=NONE/0、b=TRUE/1、c=FALSE/2。setter `e2.a.L` `0x4769d0`写s，并将true保存为b.ordinal、false保存为c.ordinal。classes2 `SettingsIndexAdapter.p0` `0x1fcbe0`在o1.a.c为false时提示不支持车机mic并返回；通过后在`0x1fcc40`调用o1.a.g更新选择，再同步两个radio状态。用户偏好有真实修改入口，本端不能用一条能力查询覆盖它。
 
 classes5 `be.h.b` `0x1b2620` 在普通分支按o1.a.d选择：true创建be.g，false创建be.f；参数3/4有另外分支。g.d `0x1b20bc`直接AudioRecord.read，f.d `0x1b1fc8`调用DataBusClient.readAssistantRecorderData。后者的CarLife共享助手队列已在[宿主证据](carwith-4.0.14-host-evidence.md#g02共享-pcm-队列已定位未证明蜂窝上下行)核对，不构成蜂窝modem上行。
 
@@ -67,10 +72,20 @@ classes `i1.a.q/s` `0x495838/0x49597c`在相关状态门下启动/停止TTS输�
 
 两条公开回调独立：bh.d$c.a `0x0a4be4`传递category/state到系统音频回调；notifyAudioState `0x0a4ba4`经j.x `0x0a93a8`传递无类别整数到ICarLifeCastCallback。i1.a.h `0x495648`的notifyAudioState路径没有识别实例身份，PhoneAudioCast.q `0x432b24`与上述TTS开始都可产生此状态，不能把0/1当作助手运行/结束。
 
-当前语音自然结束后本地requestedActive可能残留，导致下一次切换先发STOP，这是待核风险。内部onStopEngine/助手观察者到公开mixing接口的完整回传尚未闭合；没有宣称宿主绝无该回调，也没有用输出静音、category3停止或notifyAudioState猜结束。G07普通语音边界补证，增强Siri触发时间、历史/Aux及Apple语音资源状态仍OPEN。本次没有语音生产代码修复。
+当前语音自然结束后本地requestedActive可能残留，导致下一次切换先发STOP，这是待核风险。内部onStopEngine/助手观察者到公开mixing接口的完整回传尚未闭合；没有宣称宿主绝无该回调，也没有用输出静音、category3停止或notifyAudioState猜结束。G07普通语音边界补证，增强Siri触发时间、历史/Aux及Apple语音资源状态仍OPEN。前一封面轮没有语音生产修复；本轮仅修复下述本端启动准备顺序。
+
+## 已实施的语音启动准备修复
+
+Android `8148ed5`：原协议动作先异步请求speech SETUP，随后立即排队发8107。CarWith语音DOWN会开始实际助手任务，本端没有保证队列输入已安装；手动8107此前不经过这条准备，切换到STOP也会提前请求SETUP。
+
+现协议切换与手动键共用有序工作协程。START先保留请求、等待会话SETUP发布准备入口；有实际车端输入声明时复用speech请求，等待对应完成对象，再检查输入已安装、会话未结束且无电话占用，最后发DOWN/UP。完成对象在启动准备协程前发布，避免仅等待类别mutex可能先于worker取得锁。准备失败不发START、不改变本地requestedActive；断开撤销等待请求，取消/异常释放保留状态。STOP跳过准备，仍遵守队列顺序，不会超车或取消前项RTSP事务。
+
+车端未声明输入能力时保留宿主自行选择手机输入的既有行为。输入有声明但准备失败时本次START被拒绝；本端尚不能读取宿主的明确手机mic偏好，无法区分该情形是否应继续启动。未改宿主query答复、W声明或偏好，未伪造vehicle_channel，未改变Apple SETUP或资源政策。安装ready和宿主DOWN接受都不等于助手实际消费PCM。
+
+新增6项协程回归验证等待/不超车、失败后仍可START、手动和切换STOP跳过准备、断开拒绝迟到启动、取消释放请求、DOWN拒绝不提交状态。本轮core112项/19 suites、bridge51项/9 suites、protocol1110项/135 suites及小米Debug Kotlin编译实际执行通过，失败/错误/跳过均0。见[Android说明](../../../android/docs/fixes/2026-11-10-carwith-voice-preparation.md)。G07仍PARTIAL，录音源、自然结束及增强语音边界保留。
 
 ## 复核与实车范围
 
-`python -B research/connection/tools/inspect_carwith_host.py D:\home\CarWith_4.0.14-20260801.apk`通过APK身份、6份DEX、91处指令哈希、3个距离字符串和原语音switch目标复核。它只验证原字节身份及位置，不运行宿主、助手或车机。
+`python -B research/connection/tools/inspect_carwith_host.py D:\home\CarWith_4.0.14-20260801.apk`最新通过APK身份、6份DEX、101处指令哈希、3个距离字符串和原语音switch目标复核。它只验证原字节身份及位置，不运行宿主、助手或车机；完整code item哈希不等于每条SDK分支语义已闭合。
 
-实车应分别验证：临时不可读封面恢复、连续歌词/换曲图片稳定；8107发起、8108停止、小爱未就绪和自然结束后再次发起；麦克风偏好、查询结果、协商输入与宿主实际PCM消费。尚未打包、安装、推送或实车验证。
+实车应分别验证：临时不可读封面恢复、连续歌词/换曲图片稳定；START日志中输入ready先于8107 DOWN，准备失败无START；8108停止、小爱未就绪、电话占用/断开等待和自然结束后再次发起；麦克风偏好、查询结果、协商输入与宿主实际PCM消费。尚未打包、安装、推送或实车验证。
