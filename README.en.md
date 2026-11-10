@@ -273,4 +273,4 @@ Not affiliated with Apple, Baidu, or any phone, vehicle or head-unit vendor. Car
 
 ### Music playback state sync
 
-Enable notification access from Music playback sync in Settings. The app observes only the Android media session uniquely matching the host song and reports its playback state to the cluster; notification text is not read. Missing access or ambiguous players leave the state unknown. Audio focus changes are not treated as player state. Steering wheel behavior still needs vehicle verification.
+Enable notification access from Music playback sync in Settings. The app observes only the Android media session uniquely matching the host song and reports its playback state to the cluster; notification text is not read. Missing access or ambiguous players leave the state unknown. Audio focus changes are not treated as player state. Steering-wheel toggles select host Play/Pause only from the reported player state at dispatch; unknown state uses Android's native media toggle. Key delivery never predicts the next playback state. Steering wheel behavior still needs vehicle verification.

@@ -271,7 +271,6 @@ class SessionController(
                 // Speech output stopping does not establish that microphone recognition ended.
                 if(category==2)audioDemand.sourceState(category,state==1,audio::finish)
                 audio.state(category,state)
-                if(category==1)mediaPlayback.audioLaneActive(state==1)
                 // category3 is an audio lane only. Prompt completion must not stop recognition.
             }}}
             override fun music(info:HostMusic?){
@@ -411,11 +410,22 @@ class SessionController(
          * Events are still recorded while capture mode is active for diagnostics only.
          */
         // A single bounded consumer preserves car press order across both local backends.
-        val mediaOutput=Channel<Pair<Int,Boolean>>(16)
+        fun mediaDispatch(prefix:String,usage:Int):Pair<Int,Boolean>? {
+            if(prefix=="media"&&usage==0xcd){
+                val play=keyAdapter.mediaUsage(0xb0)
+                val pause=keyAdapter.mediaUsage(0xb1)
+                if(play!=null&&pause!=null)mediaPlayback.choose(play,pause)?.let{return it to false}
+            }
+            if(prefix=="media")keyAdapter.systemMediaUsage(usage)?.let{return it to true}
+            return keyAdapter.hidEvent(prefix,usage)?.let{it to false}
+        }
+        val mediaOutput=Channel<Pair<String,Int>>(16)
         r.own(AutoCloseable{mediaOutput.cancel()})
         sessionScope.launch(Dispatchers.IO){
-            for((code,system) in mediaOutput){
+            for((prefix,usage) in mediaOutput){
                 if(ended.get())break
+                // Decide from the latest player report, not when this press entered the queue.
+                val (code,system)=mediaDispatch(prefix,usage)?:continue
                 try{
                     val accepted=if(system){
                         val manager=context.getSystemService(android.media.AudioManager::class.java)
@@ -444,21 +454,8 @@ class SessionController(
             val down=eventId.endsWith(":down")
             // U2IW consumes Consumer/Telephony presses once; releases only update decoder state.
             if(!down)return true
-            val systemCode=if(prefix=="media")keyAdapter.systemMediaUsage(usage)else null
-            var useSystem=systemCode!=null
-            val code=when{
-                prefix=="media"&&usage==0xcd&&keyAdapter.mediaUsage(0xb0)!=null&&keyAdapter.mediaUsage(0xb1)!=null->
-                    mediaPlayback.choose(requireNotNull(keyAdapter.mediaUsage(0xb0)),requireNotNull(keyAdapter.mediaUsage(0xb1))).also{
-                        useSystem=false
-                    }
-                systemCode!=null->systemCode
-                else->{
-                    val mapped=keyAdapter.hidEvent(prefix,usage)?:return false
-                    mediaPlayback.observeExplicitKey(usage)
-                    mapped
-                }
-            }
-            return mediaOutput.trySend(code to useSystem).isSuccess
+            if(mediaDispatch(prefix,usage)==null)return false
+            return mediaOutput.trySend(prefix to usage).isSuccess
         }
         /**
          * requestUI is a one-shot protocol action, rather than a user-configurable binding.
