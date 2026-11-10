@@ -42,7 +42,12 @@ internal class HostArtworkState(private val deliver: (ByteArray) -> Unit) {
     fun complete(request: Request, bytes: ByteArray?) {
         if (closed || request.generation != generation) return
         if (bytes != null) publish(bytes)
-        else if (replacementPending) publish(byteArrayOf())
+        else {
+            // A failed source is not cached as successful. A later host event may
+            // try it again; identical events still share an in-flight request.
+            identity = null
+            if (replacementPending) publish(byteArrayOf())
+        }
     }
 
     private fun changeTrack(title: String?, artist: String?): Boolean {

@@ -85,6 +85,46 @@ class HostArtworkStateTest {
         assertEquals(1, h.delivered.size)
     }
 
+    @Test fun failedReplacementCanRecoverOnALaterIdenticalHostUpdate() {
+        val h = Harness()
+        h.load("Old")
+        val failed = requireNotNull(h.state.begin("New", "Artist", true, listOf("source")))
+        assertNull(h.state.begin("New", "Artist", true, listOf("source")))
+        h.state.complete(failed, null)
+        assertEquals(0, h.delivered.last().size)
+
+        val retry = requireNotNull(h.state.begin("New", "Artist", true, listOf("source")))
+        assertTrue(retry.generation > failed.generation)
+        h.state.complete(failed, byteArrayOf(9))
+        assertEquals(2, h.delivered.size)
+        h.state.complete(retry, byteArrayOf(3, 4))
+        assertArrayEquals(byteArrayOf(3, 4), h.delivered.last())
+        assertNull(h.state.begin("New", "Artist", true, listOf("source")))
+    }
+
+    @Test fun failedRefreshRetriesWithoutClearingOrRepublishingTheSameImage() {
+        val h = Harness()
+        h.load("Song")
+        val failed = requireNotNull(h.state.begin("Song", "Artist", true, listOf("refresh")))
+        h.state.complete(failed, null)
+        val retry = requireNotNull(h.state.begin("Song", "Artist", true, listOf("refresh")))
+        assertEquals(1, h.delivered.size)
+        h.state.complete(retry, byteArrayOf(1, 2))
+        assertEquals(1, h.delivered.size)
+        assertNull(h.state.begin("Song", "Artist", true, listOf("refresh")))
+    }
+
+    @Test fun staleFailureCannotInvalidateANewerSuccessfulSource() {
+        val h = Harness()
+        val old = requireNotNull(h.state.begin("Old", "Artist", true, listOf("old")))
+        h.load("New", source = "new")
+        h.state.complete(old, null)
+        assertNull(h.state.begin("New", "Artist", true, listOf("new")))
+        assertEquals(1, h.delivered.size)
+        h.state.close()
+        assertNull(h.state.begin("New", "Artist", true, listOf("new")))
+    }
+
     @Test fun metadataOnlyTrackChangeAndCloseRejectLateDecodes() {
         val h = Harness()
         val old = requireNotNull(h.state.begin("Old", "Artist", true, listOf("source")))
