@@ -17,39 +17,32 @@ internal class CarLifeArtworkLoader(
     private val context:Context,private val scope:CoroutineScope,
     private val deliver:(ByteArray)->Unit,private val log:(String)->Unit,
 ):AutoCloseable {
-    private var generation=0L
+    private val state=HostArtworkState(deliver)
     private var closed=false
-    private var identity:List<Any?>?=null
-    private var song:Pair<String,String?>?=null
     private var job:Job?=null
 
     @Synchronized fun track(title:String?,artist:String?) {
-        if(closed||title==null)return
-        val next=title to (artist?:song?.takeIf{it.first==title}?.second)
-        if(song==next)return
-        song=next;generation++;identity=null;job?.cancel();job=null
-        deliver(byteArrayOf())
+        if(state.track(title,artist)){job?.cancel();job=null}
     }
 
     @Synchronized fun update(intent:Intent) {
         if(closed||intent.action!="carlife_vehicle_music_info")return
         val extras=intent.extras?:return
         val metadata=CarLifeMusicIntent.parse(intent)
-        track(metadata?.title,metadata?.artist)
         val keys=listOf("cover","artwork","MediaAlbumArt","MediaArtwork","coverUrl")
-        if(keys.none{extras.containsKey(it)})return // Partial metadata is not an instruction to clear art.
         val candidates=keys.mapNotNull{extras.get(it)}.filter{
             it is Bitmap||it is ByteArray||it is Uri||it is String&&it.isNotBlank()
         }
-        val next=listOf(song)+candidates.map{value->when(value){
+        val sources=candidates.map{value->when(value){
                 is ByteArray->value.contentHashCode()
                 is Bitmap->listOf(value.generationId,value.width,value.height)
                 else->value.toString()
             }}
-        if(identity==next)return
-        identity=next;val ticket=++generation
-        job?.cancel()
-        if(candidates.isEmpty())deliver(byteArrayOf())
+        val previousGeneration=state.generation
+        val request=state.begin(metadata?.title,metadata?.artist,
+            keys.any{extras.containsKey(it)},sources)
+        if(state.generation!=previousGeneration){job?.cancel();job=null}
+        if(request==null)return
         job=scope.launch(Dispatchers.IO){
             var image:ByteArray?=null
             for(candidate in candidates){
@@ -60,7 +53,7 @@ internal class CarLifeArtworkLoader(
             }
             ensureActive()
             synchronized(this@CarLifeArtworkLoader){
-                if(!closed&&generation==ticket&&image!=null){deliver(requireNotNull(image))}
+                state.complete(request,image)
             }
         }
     }
@@ -119,6 +112,6 @@ internal class CarLifeArtworkLoader(
         }
         return out.toByteArray()
     }
-    @Synchronized override fun close(){closed=true;generation++;job?.cancel();job=null;identity=null}
+    @Synchronized override fun close(){closed=true;state.close();job?.cancel();job=null}
     companion object{private const val MAX_SOURCE_BYTES=2*1024*1024}
 }
