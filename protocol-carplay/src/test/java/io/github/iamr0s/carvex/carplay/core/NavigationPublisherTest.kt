@@ -86,4 +86,39 @@ class NavigationPublisherTest {
         other.command(0x5200,start(43))
         assertTrue(packets.isEmpty())
     }
+
+    @Test fun sourceEndBeforeStartDiscardsCachedRoute() {
+        val packets=mutableListOf<Int>()
+        val p=NavigationPublisher({id,_->packets.add(id);true})
+        p.update(sample())
+        p.clearRoute()
+        p.linkReady(true,sends,receives)
+        assertTrue(p.command(0x5200,start(42)))
+        assertTrue(packets.isEmpty())
+    }
+
+    @Test fun sourceEndDoesNotReplayOldRouteOnResubscription() {
+        val packets=mutableListOf<Int>()
+        val p=NavigationPublisher({id,_->packets.add(id);true})
+        p.linkReady(true,sends,receives)
+        p.command(0x5200,start(42))
+        p.update(sample())
+        p.clearRoute()
+        p.clearRoute() // The host sends both lifecycle-false and HUD action 3.
+        assertTrue(p.command(0x5200,start(43)))
+        assertEquals(listOf(0x5201),packets)
+    }
+
+    @Test fun nextRealRouteUsesExistingAccessorySubscription() {
+        val packets=mutableListOf<List<Pair<Int,ByteArray>>>()
+        val p=NavigationPublisher({_,fields->packets.add(fields);true})
+        p.linkReady(true,sends,receives)
+        p.command(0x5200,start(42))
+        p.update(sample())
+        p.clearRoute()
+        assertEquals(1,packets.size) // No guessed end-state message.
+        assertTrue(p.update(sample().copy(currentRoad="New road")))
+        assertArrayEquals(IapWire.be16(42),packets.last().first().second)
+        assertArrayEquals(IapWire.cstring("New road"),packets.last().first{it.first==3}.second)
+    }
 }

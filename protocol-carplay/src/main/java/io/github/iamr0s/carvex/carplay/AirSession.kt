@@ -1003,6 +1003,8 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     /** Cache the backend sample; the current runtime Link supplies components and options. */
     fun navigationRouteUpdate(update:NavigationGuidance.RouteUpdate):Boolean =
         navigationPublisher.update(update)
+    /** The host ended navigation. Invalidate its sample without changing Link subscription. */
+    fun clearNavigationRoute(){navigationPublisher.clearRoute()}
     fun navigationManeuverUpdate(values:List<Pair<Int,ByteArray>>):Boolean =
         navigationPublisher.send(0x5202,values)
     fun navigationLaneUpdate(values:List<Pair<Int,ByteArray>>):Boolean =

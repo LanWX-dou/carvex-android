@@ -235,6 +235,12 @@ class SessionController(
             if(musicAir.get()?.navigationRouteUpdate(update)!=true)
                 BridgeStore.log(id,"navigation 5201 cached; no update queued")
         }}
+        fun clearNavigation(){synchronized(navigationLock){
+            latestNavigation=null
+            musicAir.get()?.clearNavigationRoute()
+            BridgeStore.update(id){it.copy(hostHud="")}
+            BridgeStore.log(id,"CarLife navigation ended; cached route discarded")
+        }}
         // Speech output activity is not proof that recognition is listening or has ended.
         // VoiceButtonToggle keeps local accepted requests until a verified host state is available.
         val heldKeys=mutableMapOf<Int,Long>()
@@ -324,10 +330,15 @@ class SessionController(
                 when(action){
                     "mix_notify_start_navi"->{
                         val value=intent.extras?.get("isNavi")
+                        if(CarLifeNavigationIntent.ended(intent))clearNavigation()
                         BridgeStore.log(id,"CarLife navigation lifecycle isNavi="+value+
                             " type="+value?.javaClass?.simpleName+"; wire state mapping unverified")
                     }
                     "carlife_show_hud_info"->{
+                        if(CarLifeNavigationIntent.ended(intent)){
+                            clearNavigation()
+                            return
+                        }
                         val road=intent.getStringExtra("road_name")?:""
                         val remain=intent.getIntExtra("remain_distance",-1)
                         BridgeStore.log(id,"CarLife HUD action="+intent.extras?.get("action")+

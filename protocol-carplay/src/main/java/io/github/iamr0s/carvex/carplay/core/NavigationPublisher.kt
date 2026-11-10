@@ -47,6 +47,12 @@ class NavigationPublisher(
         return sendRoute(requireNotNull(route))
     }
 
+    /** Local source invalidation is separate from the accessory's 5203 subscription.
+     * Do not fabricate an iAP state value or replay an ended host route on a later START. */
+    @Synchronized fun clearRoute() {
+        route = null
+    }
+
     private fun sendRoute(value: NavigationGuidance.RouteUpdate): Boolean {
         val selected = selection ?: return false
         if (!ready) return false

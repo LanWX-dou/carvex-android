@@ -71,6 +71,8 @@ This repository can also live inside the larger research workspace at
 
 ## Current CarPlay capabilities
 
+- CarWith navigation end notifications discard cached routes, so a later subscription does not replay an ended route. Guidance state, maneuver and lane mappings remain incomplete; see [route cache repair](docs/fixes/2026-11-10-g03-navigation-end.md).
+
 - Resource changes accept combined screen/audio requests within the supported transfer subset. Constraint arbitration and active application states remain incomplete; see [validation record](docs/fixes/2026-11-10-resource-batch.md).
 - Active navigation prompts retain a bounded PCM prefix during SETUP and deliver it before live audio. Source stop or failed setup discards the prefix; see [startup buffer limits](docs/fixes/2026-11-10-navigation-startup.md). Vehicle playback remains unverified.
 
