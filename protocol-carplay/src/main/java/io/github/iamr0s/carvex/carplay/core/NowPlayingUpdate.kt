@@ -168,10 +168,11 @@ object NowPlayingUpdate {
 /** One authenticated Link owns the subscription. Backend snapshots may precede Link readiness.
  * All mutations and sends serialize: STOP cancels uncommitted updates, not bytes already sent. */
 class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean) {
+    var artworkSelectionChanged:(Boolean)->Unit={}
     private var ready=false
     private var selection:NowPlayingUpdate.Selection?=null
     private var snapshot=NowPlayingUpdate.Track()
-    @Synchronized fun linkReady(ready:Boolean){this.ready=ready;selection=null}
+    @Synchronized fun linkReady(ready:Boolean){this.ready=ready;selection=null;artworkSelectionChanged(false)}
     @Synchronized fun command(id:Int,fields:IapFields):Boolean {
         if(!ready)return false
         when(id){
@@ -179,6 +180,7 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean)
             NowPlayingUpdate.START->{
                 val selected=NowPlayingUpdate.selection(fields)?:return false
                 selection=null
+                artworkSelectionChanged(false)
                 val initial=NowPlayingUpdate.fields(NowPlayingUpdate.initialDefaults,selected)
                 // A failed enqueue must not let a real update overtake initialization.
                 if(initial.isNotEmpty()&&!emit(initial))return false
@@ -186,10 +188,12 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean)
                 // Our backend may already have delivered a snapshot before START.
                 // Publish it after the independent default message, never instead.
                 val current=NowPlayingUpdate.fields(snapshot,selected)
-                return current.isEmpty() || emit(current)
+                val accepted=current.isEmpty() || emit(current)
+                artworkSelectionChanged(NowPlayingUpdate.Attribute(0,0x1a) in selected.attributes)
+                return accepted
             }
             // 5002 没有参数，handler 不读 param；多余参数按固件忽略。
-            NowPlayingUpdate.STOP->selection=null
+            NowPlayingUpdate.STOP->{selection=null;artworkSelectionChanged(false)}
             else->return false
         }
         return true

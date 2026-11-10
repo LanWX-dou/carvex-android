@@ -71,6 +71,8 @@ This repository can also live inside the larger research workspace at
 
 ## Current CarPlay capabilities
 
+- Cluster album art: host images are sent through the subscribed iAP2 file session. Requires the receiver's file-session capability and artwork subscription; display on a real cluster remains unverified.
+
 - Paired-device list, explicit connect/disconnect, per-device settings and diagnostics.
 - iAP2 link establishment, identification flow and control-session routing.
 - Wi-Fi handoff and AirPlay control / RTSP setup pipeline.

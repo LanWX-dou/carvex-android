@@ -185,6 +185,14 @@ class SessionController(
         val keyLock=Any()
         val musicRelay=HostMusicRelay()
         val musicAir=AtomicReference<AirSession?>(null)
+        val artworkLock=Any()
+        var latestArtwork:ByteArray?=null
+        val artworkLoader=r.own(CarLifeArtworkLoader(context,sessionScope,{image->synchronized(artworkLock){
+            if(!ended.get()){
+                latestArtwork=image
+                musicAir.get()?.nowPlayingArtwork(image)
+            }
+        }},{BridgeStore.log(id,it)}))
         val navigationLock=Any()
         var latestNavigation:NavigationGuidance.RouteUpdate?=null
         fun deliverMusic(track:NowPlayingUpdate.Track,replaceMedia:Boolean=false){
@@ -269,6 +277,7 @@ class SessionController(
                     appName=NowPlayingUpdate.textOrNull(info.source))
                 deliverMusic(track,replaceMedia=true)
                 playbackMonitor.track(track.title,track.artist)
+                artworkLoader.track(track.title,track.artist)
             }
             override fun musicProgress(progress:Long){
                 if(ended.get())return
@@ -296,8 +305,7 @@ class SessionController(
                         if(parsed.title!=null)playbackMonitor.track(parsed.title,parsed.artist)
                         parsed.elapsedMs?.let{progress->BridgeStore.update(id){it.copy(hostMusicProgress=progress)}}
                     }else BridgeStore.log(id,"CarLife music Intent had no recognized metadata fields")
-                    if(CarLifeMusicIntent.hasArtwork(intent))
-                        BridgeStore.log(id,"CarLife music artwork observed; 5001 artwork file transfer remains unimplemented")
+                    artworkLoader.update(intent)
                     return
                 }
                 when(action){
@@ -697,6 +705,7 @@ class SessionController(
             if(disconnecting)throw CancellationException("User disconnect before AirPlay preparation")
             synchronized(navigationLock){
                 musicAir.set(air)
+                synchronized(artworkLock){latestArtwork?.let{air.nowPlayingArtwork(it)}}
                 latestNavigation?.let{air.navigationRouteUpdate(it)}
             }
             musicRelay.attach{track,replace->if(!ended.get())air.nowPlaying(track,replace)}

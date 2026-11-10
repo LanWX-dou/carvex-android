@@ -10,6 +10,12 @@ sealed interface IapCommand {
     /** TLV 字段；lingo 载荷时为 null。 */
     val fields:IapFields?
 
+    /** One service-1 datagram. File headers are not CSM/TLV and must retain frame boundaries. */
+    data class FileTransfer(val session:Int,val payload:ByteArray):IapCommand {
+        override val id:Int=-1
+        override val fields:IapFields?=null
+    }
+
     data class Fields(override val id:Int,val value:IapFields):IapCommand {
         override val fields:IapFields get()=value
     }
@@ -95,6 +101,10 @@ class IapLink(input:InputStream, private val output:OutputStream,
     /** Null until the peer has acknowledged this synchronization's initial sequence. */
     @Volatile var negotiatedControlSession:ControlSession?=null
         private set
+    @Volatile private var negotiatedSessions:List<ControlSession> = emptyList()
+    val negotiatedFileSession:ControlSession? get()=if(negotiatedControlSession==null)null
+        else negotiatedSessions.singleOrNull{it.kind==1&&it.version in 1..2}
+    val maximumFilePayload:Int get()=maxPayloadBytes()
     /** Successful link synchronizations, including the initial one; never reused after a restart. */
     @Volatile var generation:Int=0
         private set
@@ -651,6 +661,7 @@ class IapLink(input:InputStream, private val output:OutputStream,
                         SynchronizationSchema.LINK_SYNC_V1_IMMEDIATE_ACK else SynchronizationSchema.LINK_SYNC_V1_RELIABLE
                     generation++
                     // Publish the ready marker LAST, after all active fields.
+                    negotiatedSessions=local.sessions.toList()
                     negotiatedControlSession=session
                     log("iAP synchronized session="+control+" version="+controlVersion+" maxPacket="+maxPacket+
                         " proposals="+budget.proposals+" epoch="+handshakeEpoch)
@@ -852,6 +863,10 @@ class IapLink(input:InputStream, private val output:OutputStream,
     }
     private fun deliver(f:IapWire.Frame){
         receiveSeq=f.seq
+        if(f.session==negotiatedFileSession?.id){
+            require(incoming.offer(IapCommand.FileTransfer(f.session,f.payload.copyOf()))){"iAP file receive queue overflow"}
+            return
+        }
         if(f.session!=control){log("Unsupported iAP session "+f.session);return}
         // A new link payload can finish a maximum-size CSM and already contain the next one.
         // Bound the accumulated byte window, then use each CSM total to retain its tail separately.
@@ -909,10 +924,24 @@ class IapLink(input:InputStream, private val output:OutputStream,
             true
         } catch(_:RejectedExecutionException) { false }
     }
-    @Synchronized private fun sendCsm(data:ByteArray,expectedGeneration:Int?=null) {
+    fun sendFileAsync(data:ByteArray,expectedGeneration:Int,valid:()->Boolean={true},
+                      completion:(Throwable?)->Unit):Boolean {
+        if(closed.get()||error!=null||negotiatedFileSession==null)return false
+        require(data.size in 2..maximumFilePayload)
+        val copy=data.copyOf()
+        return try{
+            asyncSender.execute{
+                val error=runCatching{if(valid())sendCsm(copy,expectedGeneration,1)}.exceptionOrNull()
+                runCatching{completion(error)}
+            };true
+        }catch(_:RejectedExecutionException){false}
+    }
+    @Synchronized private fun sendCsm(data:ByteArray,expectedGeneration:Int?=null,kind:Int=0) {
         val snapshot=synchronized(writeLock){
             check(expectedGeneration==null||expectedGeneration==generation){"iAP control generation changed before send"}
-            val session=checkNotNull(negotiatedControlSession){"iAP link has no confirmed control session"}
+            checkNotNull(negotiatedControlSession){"iAP link has no confirmed control session"}
+            val session=checkNotNull(if(kind==0)negotiatedControlSession else negotiatedFileSession){"iAP session unavailable"}
+            if(kind==1)require(data.size<=maxPayloadBytes()){"File datagram exceeds negotiated MTU"}
             Triple(session,synchronizationEpoch,generation)
         }
         val (session,epoch,controlGeneration)=snapshot
@@ -926,7 +955,7 @@ class IapLink(input:InputStream, private val output:OutputStream,
         var nextChunk=0
         while(nextChunk<chunks.size||synchronized(ackLock){txSlots.isNotEmpty()}){
             check(!closed.get()); error?.let{throw IOException("iAP reader failed",it)}
-            check(synchronizationEpoch==epoch&&negotiatedControlSession==session){"iAP link synchronization changed during send"}
+            check(synchronizationEpoch==epoch&&generation==controlGeneration&&negotiatedControlSession!=null){"iAP link synchronization changed during send"}
             val pendingWrites=mutableListOf<IapWire.Frame>()
             val now=System.nanoTime()
             synchronized(ackLock){
@@ -962,7 +991,7 @@ class IapLink(input:InputStream, private val output:OutputStream,
             pendingWrites.forEach{frame->
                 check(synchronizationEpoch==epoch&&!closed.get()){ "iAP link synchronization changed during send" }
                 synchronized(writeLock){
-                    check(synchronizationEpoch==epoch&&generation==controlGeneration&&negotiatedControlSession==session)
+                    check(synchronizationEpoch==epoch&&generation==controlGeneration&&negotiatedControlSession!=null)
                     write(frame)
                 }
             }
@@ -978,7 +1007,7 @@ class IapLink(input:InputStream, private val output:OutputStream,
             }
         }
         synchronized(ackLock){pendingSeq=-1}
-        log("iAP TX "+IapWire.u16(data,4).toString(16))
+        if(kind==0)log("iAP TX "+IapWire.u16(data,4).toString(16))
     }
     fun await(id:Int,seconds:Long=20):IapFields = synchronized(consumerLock) {
         val cached=synchronized(deferredLock){deferred.firstOrNull{it.id==id&&it.fields!=null}?.also{deferred.remove(it)}}

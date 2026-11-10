@@ -123,14 +123,29 @@ class RuntimeIap(private val emit:(ByteArray)->Boolean,private val log:(String)-
     }
     /** 运行期提交一条控制会话消息。固件同样是提交即返回；ACK/重传失败
      *  由后台发送队列回调到 [fail]，不会阻塞事件/业务线程。 */
-    fun send(id:Int,fields:List<Pair<Int,ByteArray>>):Boolean {
+    fun send(id:Int,fields:List<Pair<Int,ByteArray>>,completion:(Throwable?)->Unit={}):Boolean {
         if(closed.get()||degraded.get()||(state!=RuntimeIapState.CONTROL_READY&&(negotiate!=null||state!=RuntimeIapState.LINK_READY)))return false
         return try{
             if(negotiate!=null)check(link.generation==authorizedGeneration&&link.linkEpoch==authorizedEpoch&&link.negotiatedControlSession!=null)
             link.sendAsync(id,fields,expectedGeneration=if(negotiate!=null)authorizedGeneration else null){t->
                 if(t!=null)fail(t)
+                completion(t)
             }
         }catch(t:Throwable){fail(t);false}
+    }
+    fun fileSession():Pair<Int,Int>? {
+        if(closed.get()||degraded.get()||state!=RuntimeIapState.CONTROL_READY)return null
+        if(link.generation!=authorizedGeneration||link.linkEpoch!=authorizedEpoch)return null
+        return link.negotiatedFileSession?.let{it.version to link.maximumFilePayload}
+    }
+    fun sendFile(data:ByteArray,valid:()->Boolean,completion:(Throwable?)->Unit):Boolean {
+        if(fileSession()==null)return false
+        val generation=authorizedGeneration;val epoch=authorizedEpoch
+        return try{link.sendFileAsync(data,generation,
+            {authorizedGeneration==generation&&authorizedEpoch==epoch&&valid()}){t->
+            if(t!=null&&authorizedGeneration==generation&&authorizedEpoch==epoch)fail(t)
+            completion(t)
+        }}catch(t:Throwable){fail(t);false}
     }
     fun fail(t:Throwable){
         if(closed.get()||!degraded.compareAndSet(false,true))return

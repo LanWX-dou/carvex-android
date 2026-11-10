@@ -7,8 +7,8 @@ import org.json.JSONObject
 /**
  * Normalizes the vehicle-music Intent without treating private field names
  * as an iAP2 schema. Only fields with a known Now Playing analogue are
- * copied. Artwork and playback-state values remain diagnostic until their
- * wire mapping is independently confirmed.
+ * copied. Artwork is handled by CarLifeArtworkLoader; player state comes from
+ * the matched Android media session rather than guessed private Intent values.
  */
 internal object CarLifeMusicIntent {
     private const val ACTION = "carlife_vehicle_music_info"
@@ -72,8 +72,4 @@ internal object CarLifeMusicIntent {
         )
     }
 
-    fun hasArtwork(intent: Intent): Boolean =
-        intent.action == ACTION && listOf("cover", "artwork", "MediaAlbumArt", "MediaArtwork").any {
-            intent.extras?.containsKey(it) == true
-        }
 }

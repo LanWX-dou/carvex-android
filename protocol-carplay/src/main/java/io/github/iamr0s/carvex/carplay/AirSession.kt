@@ -134,6 +134,13 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     @Volatile private var micStreamId:Long?=null
     private fun micTeardownDescriptor():Map<String,Any?> = AudioTeardownDescriptor.forType(100)
     @Volatile private var runtimeCapabilities=CapabilityRegistry()
+    // Runtime callbacks can hold the runtime/publisher locks. Queue artwork events so
+    // file ACK callbacks never acquire those locks in the opposite order.
+    private val artworkEvents=Channel<()->Unit>(Channel.UNLIMITED)
+    private val artwork=NowPlayingArtwork(
+        session={runtime.fileSession()},
+        announce={fields,completion->runtime.send(NowPlayingUpdate.ID,fields,completion)},
+        send={bytes,valid,completion->runtime.sendFile(bytes,valid,completion)},log=log)
     private val nowPlayingPublisher=NowPlayingPublisher{fields->
         val accepted=runtime.send(NowPlayingUpdate.ID,fields)
         log("Now Playing 5001 queued=$accepted fields="+fields.joinToString(";"){(group,bytes)->
@@ -154,11 +161,13 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         log("Runtime iAP state="+state)
         if(state in setOf(RuntimeIapState.SYNCHRONIZING,RuntimeIapState.DEGRADED,RuntimeIapState.CLOSED))runtimeCapabilities=CapabilityRegistry()
         nowPlayingPublisher.linkReady(state==RuntimeIapState.CONTROL_READY)
+        artworkEvents.trySend{artwork.linkReady(state==RuntimeIapState.CONTROL_READY)}
         navigationPublisher.linkReady(state==RuntimeIapState.CONTROL_READY,
             runtimeCapabilities.sentByAccessory.map{it.value}.toSet(),
             runtimeCapabilities.receivedByAccessory.map{it.value}.toSet())
         runtimeChanged(state)
     },message={command->
+        if(command is IapCommand.FileTransfer)artworkEvents.trySend{artwork.receive(command.payload)}
         if(command.id in setOf(NowPlayingUpdate.START,NowPlayingUpdate.STOP,0x5003)&&
             runtimeCapabilities.sentByAccessory.any{it.value==command.id}&&
             runtimeCapabilities.receivedByAccessory.any{it.value==NowPlayingUpdate.ID}){
@@ -196,6 +205,10 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     private val invited get()=publication.invited
     private val timingWallClock=CarPlayTiming.WallClock()
     init {
+        nowPlayingPublisher.artworkSelectionChanged={selected->artworkEvents.trySend{artwork.subscribe(selected)}}
+        scope.launch{for(event in artworkEvents)event()}
+        scope.launch{while(isActive){delay(1000);artworkEvents.trySend{artwork.expire()}}}
+        resources.own(AutoCloseable{artworkEvents.cancel()})
         resources.own(AutoCloseable{events.close();runtime.close();runtimeOutput.close();modeOutput.close();audioStreams.close();client?.close();scope.cancel()})
         // Events may arrive inside RtspClient.request's lock. Never issue a nested
         // request from that callback: a separate writer runs after its reply.
@@ -986,6 +999,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     /** Cache real metadata until this Link subscribes. False means no selected update was sent. */
     fun nowPlaying(track:NowPlayingUpdate.Track,replaceMedia:Boolean=false):Boolean =
         nowPlayingPublisher.update(track,replaceMedia)
+    fun nowPlayingArtwork(image:ByteArray){artworkEvents.trySend{artwork.update(image)}}
     /** Cache the backend sample; the current runtime Link supplies components and options. */
     fun navigationRouteUpdate(update:NavigationGuidance.RouteUpdate):Boolean =
         navigationPublisher.update(update)
