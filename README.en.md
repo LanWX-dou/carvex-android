@@ -124,6 +124,11 @@ that restrict `Settings.Secure.bluetooth_address`.
 
 ## Build
 
+Plugins and dependencies use the Aliyun Google, Central and Gradle Plugin mirrors in
+`settings.gradle.kts` first, then official repositories for missing artifacts. Gradle
+Wrapper 9.8.1 downloads from Huawei Cloud and verifies the official SHA-256 checksum.
+The mirror change preserves dependency versions. Do not add repositories in modules.
+
 1. Point Gradle at your SDK. Create `local.properties` if it is missing:
 
    ```properties

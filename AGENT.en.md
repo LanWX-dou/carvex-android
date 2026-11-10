@@ -97,6 +97,11 @@ Forbidden:
 
 ## 4. Build, signing and versions
 
+Repositories are centralized in `settings.gradle.kts`: Aliyun Google, Central and Gradle
+Plugin mirrors first, then official repositories for missing artifacts. Modules must not
+add repositories. Gradle Wrapper 9.8.1 uses Huawei Cloud with the official SHA-256 checksum;
+preserve verification when changing its URL and do not change dependency versions with it.
+
 Prerequisites: JDK 17+, Android SDK platform 37, build-tools 36.0.0, and the repository's
 Gradle Wrapper. `compileSdk`/`targetSdk` are 37; `minSdk` is 29.
 

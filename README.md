@@ -108,6 +108,10 @@ Shizuku 是可选项，只用于在系统限制 `Settings.Secure.bluetooth_addre
 
 ## 构建
 
+插件与依赖优先使用 `settings.gradle.kts` 中的阿里云 Google、Central 和 Gradle Plugin
+镜像，缺少制品时再查询官方仓库。Gradle Wrapper 9.8.1 从华为云镜像下载，并通过官方
+SHA-256 校验；仓库切换不改变依赖版本。不要在模块中另行添加仓库。
+
 1. 配置 SDK 路径。若缺少 `local.properties`，创建并写入：
 
    ```properties

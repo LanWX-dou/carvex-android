@@ -92,6 +92,10 @@
 
 ## 4. 构建、签名与版本
 
+仓库集中配置在 `settings.gradle.kts`：优先查询阿里云 Google、Central 与 Gradle Plugin
+镜像，缺少制品时查询官方仓库。模块不得自行添加仓库。Gradle Wrapper 9.8.1 使用华为云
+镜像与官方 SHA-256 校验；修改下载地址时必须保留校验，不得顺带更换依赖版本。
+
 前置条件：JDK 17+、Android SDK platform 37、build-tools 36.0.0，以及仓库内的 Gradle
 Wrapper。`compileSdk`/`targetSdk` 为 37，`minSdk` 为 29。
 
