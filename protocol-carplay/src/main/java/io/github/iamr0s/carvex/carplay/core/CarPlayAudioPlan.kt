@@ -40,40 +40,27 @@ object CarPlayAudioPlan {
     /** 只影响之后的选择；一个会话应只设置一次。 */
     fun useTransport(value:Transport){transport=value}
     val currentTransport:Transport get()=transport
-    /** Keep each announcement separate: masks for different purposes/directions are never combined. */
+    /** Keep the original ordered first-match semantics for every purpose/direction. */
     /** 不做传输掩码过滤。用于本地兼容路径（PCM 回退、双工捕获判定）——它们不是固件的候选选择。 */
     const val NO_MASK:Long=-1L
     fun advertised(entries:List<AudioCapabilities.Entry>,route:Route,capture:Boolean=false,
-                   mask:Long=NO_MASK):List<Format> =
-        entries.filter{it.streamType==route.type&&it.audioType==route.purpose}.flatMap{entry->
-            val announced=if(capture)entry.inputMask else entry.outputMask
-            formats.filter{format->announced!=null&&announced and format.bit!=0L&&mask and format.bit!=0L}
-        }.distinct()
+                   mask:Long=NO_MASK):List<Format> {
+        val announced=AudioCapabilities.formatsFor(entries,route.type,route.purpose,capture)?.mask?:return emptyList()
+        return formats.filter{format->announced and format.bit!=0L&&mask and format.bit!=0L}
+    }
     /** 24A446 getFormatsKeyForAudioType: Main default/telephony/speech use input formats.
      * This selects the format description; it does not by itself enable a microphone. */
     fun playbackFormats(entries:List<AudioCapabilities.Entry>,route:Route,mask:Long=NO_MASK):List<Format> =
         advertised(entries,route,capture=route.type==100&&route.purpose in setOf("default","telephony","speechRecognition"),mask=mask)
-    /** 无线音频的编解码优先序 —— phone-integration-guide §6 / t3-carplay-spec §9.4：
-     *  `AAC-ELD → AAC-LC → OPUS → ALAC → PCM`。
-     *
-     *  为什么必须是"顺序回退"而不是按车型/流类型固定一个：三台车机的交集首选是 AAC-ELD，而
-     *  GM 系的 `audioFormats` 里**没有 AAC-LC**（AAC/AAC-ELD/OPUS），老平台又**没有 OPUS**。
-     *  固定任何一个编码，都会在另一代车机上交不出格式（文档 §6 的两个坑）。
-     *
-     *  ALAC 的优先级位置在 OPUS 之后、PCM 之前，但它不在 [formats] 表里：三份固件证据都没有
-     *  恢复 ALAC 在 `audioOutputFormats` 中的位置掩码，位未知就不能凭空造一个 —— 所以它只是
-     *  优先级里的一个空位，不会选出任何格式。PCM 不进本表：它是 [pcmCompatibility] 的显式兼容路径。
-     *
-     *  注意 features 的编码位（[AirPlayFeature.AUDIO_AAC_LC] 等）**不参与**这里：老平台实际支持
-     *  AAC-LC 却没有置该位，判决权只在 `/info` 的 `audioFormats`。 */
     /**
-     * Ordered wireless codec preference.  This is deliberately a list rather than a set:
-     * negotiation must retain the profile order after intersecting receiver and host
-     * capabilities.  PCM is handled by the explicit compatibility path below.
+     * Existing local codec preference after the firmware-derived candidate read.
+     * The complete 24A446 single-format chooser remains OPEN-CODEC-1; this ordering
+     * is not claimed to be Apple's common policy for all audio purposes.
+     * PCM uses the explicit local compatibility path below.
      */
     val wirelessCodecPreference:List<Codec> = listOf(Codec.AAC_ELD,Codec.AAC_LC,Codec.OPUS)
 
-    /** Stable rank used by every direction of the audio negotiation. */
+    /** Local rank used by every direction of this client's audio negotiation. */
     fun codecPriority(codec:Codec):Int = wirelessCodecPreference.indexOf(codec)
         .takeIf{it>=0}?:wirelessCodecPreference.size
 
@@ -153,9 +140,7 @@ object CarPlayAudioPlan {
      *  差异只在两处，它们属于方向语义、不是优先序：[wirelessCodecPreference] 之外忽略 PCM16
      *  （PCM 由 [pcmCompatibility] 走显式兼容路径），并且只认 inputMask（车机采集）。 */
     fun captureCandidates(entries:List<AudioCapabilities.Entry>,source:PcmFormat):List<Format> =
-        entries.filter{entry->entry.streamType==CAPTURE_STREAM_TYPE&&entry.audioType==CAPTURE_PURPOSE&&entry.inputMask!=null}
-            .flatMap{entry->formats.filter{format->entry.inputMask!! and format.bit!=0L}}
-            .distinct()
+        advertised(entries,assistant,capture=true)
             .filter{it.codec!=Codec.PCM16}
             .sortedWith(compareBy<Format>(
                 {codecPriority(it.codec)},

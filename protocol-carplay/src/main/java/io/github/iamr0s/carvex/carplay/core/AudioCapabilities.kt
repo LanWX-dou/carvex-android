@@ -3,7 +3,10 @@ import io.github.iamr0s.carvex.pcm.PcmFormat
 
 /** Receiver /info announcements, not a network transport contract. Preserve stream/audio type. */
 object AudioCapabilities {
-    data class Entry(val streamType:Int,val audioType:String?,val inputMask:Long?,val outputMask:Long?)
+    data class Entry(val streamType:Int,val audioType:String?,val inputMask:Long?,val outputMask:Long?,
+        val manufacturer:String?=null,val outputFormatsExtended:List<Any?>?=null,
+        val outputFormatsExtendedValid:Boolean=true,val valid:Boolean=true)
+    data class MatchedFormats(val mask:Long,val extended:List<Any?>?,val fallback:Boolean,val index:Int?)
     data class Candidate(val entry:Entry,val formatBit:Long,val pcm:PcmFormat)
     private val pcm16=mapOf(
         0x4L to PcmFormat(8000,1),0x8L to PcmFormat(8000,2),
@@ -20,19 +23,65 @@ object AudioCapabilities {
         }
         return value.toLong().takeIf{it>=0}
     }
-    fun parse(value:Any?,log:(String)->Unit={}):List<Entry> {
+    fun parse(value:Any?,log:(String)->Unit={},manufacturer:String?=null):List<Entry> {
         if(value==null){log("INFO audioFormats absent");return emptyList()}
         val items=value as? List<*>?:run{log("INFO audioFormats invalid container");return emptyList()}
         if(items.size>256){log("INFO audioFormats exceeds local parser budget 256");return emptyList()}
-        return items.mapIndexedNotNull{index,item->
-            val map=item as? Map<*,*>?:return@mapIndexedNotNull null
-            val type=integer(map["type"])?.takeIf{it<=Int.MAX_VALUE}?.toInt()?:return@mapIndexedNotNull null
+        val result=mutableListOf<Entry>()
+        for((index,item) in items.withIndex()){
+            // A malformed row cannot be removed: doing so changes which later row can win.
+            val map=item as? Map<*,*>
+            if(map==null){
+                log("INFO audio row $index invalid dictionary")
+                result.add(Entry(0,null,null,null,manufacturer,valid=false))
+                continue
+            }
+            val type=integer(map["type"])?.takeIf{it<=Int.MAX_VALUE}?.toInt()
+            if(type==null){
+                log("INFO audio row $index invalid type")
+                result.add(Entry(0,null,null,null,manufacturer,valid=false))
+                continue
+            }
             val purpose=map["audioType"]
-            val audioType=when(purpose){null->null;is String->purpose.takeIf{it.length<=128};is Number->integer(purpose)?.toString();else->null}
+            // The original typed getter has no error output here: non-strings become NULL.
+            val audioType=purpose as? String
             val input=integer(map["audioInputFormats"]);val output=integer(map["audioOutputFormats"])
+            val extended=map["audioOutputFormatsExtended"]
             log("${"INFO audio #"}${index}${" streamType="}${type}${" audioType="}"+(audioType?:"unknown")+" inputMask="+(input?.toString(16)?:"unknown")+" outputMask="+(output?.toString(16)?:"unknown"))
-            Entry(type,audioType,input,output)
+            result.add(Entry(type,audioType,input,output,manufacturer,(extended as? List<*>)?.toList(),
+                !map.containsKey("audioOutputFormatsExtended")||extended is List<*>))
         }
+        return result.takeIf{rows->rows.any{it.valid}}?:emptyList()
+    }
+    /** 24A446 0x251adc470..0x251adc6a8: stop on the first anonymous/exact row, even at zero.
+     * Extended values are preserved as opaque values; their complete schema is still OPEN. */
+    fun formatsFor(entries:List<Entry>,type:Int,purpose:String,input:Boolean):MatchedFormats? {
+        var priorDefault=0L
+        var selected=0L
+        var anonymous=false
+        var match:Int?=null
+        var extended:List<Any?>?=null
+        for((index,entry) in entries.withIndex()){
+            if(!entry.valid)return null
+            if(entry.streamType!=type)continue
+            if(entry.audioType==null||entry.audioType==purpose){
+                if(!entry.outputFormatsExtendedValid)return null
+                selected=(if(input)entry.inputMask else entry.outputMask)?:0L
+                extended=entry.outputFormatsExtended?.toList()
+                anonymous=entry.audioType==null
+                match=index
+                break
+            }
+            if(entry.audioType=="default"){
+                val defaultInput=type==100||type==107
+                priorDefault=(if(defaultInput)entry.inputMask else entry.outputMask)?:0L
+            }
+        }
+        if(selected==0L&&priorDefault!=0L&&entries.firstOrNull()?.manufacturer?.startsWith("Apple")==true){
+            selected=priorDefault
+            anonymous=true
+        }
+        return MatchedFormats(selected,extended,anonymous,match)
     }
     /** Output is receiver playback, input is receiver capture per supplied guide; no stream-type guessing. */
     fun playback(entries:List<Entry>,format:PcmFormat):List<Candidate> = entries.flatMap{entry->

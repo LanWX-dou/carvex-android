@@ -614,7 +614,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         if(infoGeneration!=generation)
             log("generation hints differ: Bonjour="+generation+" /info="+infoGeneration+
                 "; diagnostic only, security route remains "+securityRoute)
-        receiverAudio=AudioCapabilities.parse(info["audioFormats"],log)
+        receiverAudio=AudioCapabilities.parse(info["audioFormats"],log,info["manufacturer"] as? String)
         audioOwnership.receiverAdvertised(receiverAudio.any{it.streamType==100})
         receiverAudioLatencies=AudioLatencyCapabilities.parse(info["audioLatencies"],log)
         log("INFO PCM16 capture candidates="+AudioCapabilities.capture(receiverAudio).size+"; microphone transport not established")
