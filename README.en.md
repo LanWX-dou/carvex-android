@@ -72,6 +72,7 @@ This repository can also live inside the larger research workspace at
 ## Current CarPlay capabilities
 
 - Resource changes accept combined screen/audio requests within the supported transfer subset. Constraint arbitration and active application states remain incomplete; see [validation record](docs/fixes/2026-11-10-resource-batch.md).
+- Active navigation prompts retain a bounded PCM prefix during SETUP and deliver it before live audio. Source stop or failed setup discards the prefix; see [startup buffer limits](docs/fixes/2026-11-10-navigation-startup.md). Vehicle playback remains unverified.
 
 - Cluster album art: host images are sent through the subscribed iAP2 file session. Requires the receiver's file-session capability and artwork subscription; display on a real cluster remains unverified.
 

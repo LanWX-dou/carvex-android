@@ -133,7 +133,7 @@ class SessionController(
         val startSpeech=AtomicReference<(() -> Boolean)?>(null)
         val observedAudio=ConcurrentHashMap.newKeySet<String>()
         val audio=r.own(HostAudioBridge(log={BridgeStore.log(id,it)}));audioBridge=audio
-        val audioDemand=r.own(AudioDemandGate())
+        val audioDemand=r.own(AudioDemandGate(log={BridgeStore.log(id,it)}))
         val audioSourceLock=Any()
         val callMicrophone=r.own(CallMicrophoneSession(sessionScope){BridgeStore.log(id,it)})
         val callSuspendedMedia=AtomicBoolean(false)
@@ -914,13 +914,14 @@ class SessionController(
                 fun requestAudio(category:Int,firstPcm:ByteArray,pcmFormat:PcmFormat,prime:Boolean=false):Boolean {
                     if(callMicrophone.active&&(category==3||category==1&&callSuspendedMedia.get()))return true
                     val ticket=if(prime)audioDemand.prime(category,pcmFormat)
+                        else if(category==2)audioDemand.receiveNavigation(firstPcm,pcmFormat,audio::receive)
                         else audioDemand.claim(category,firstPcm.size,pcmFormat)
                     if(ticket!=null){
                         BridgeStore.log(id,"Audio activation category=$category phase=queued prime=$prime firstPcmBytes="+
                             firstPcm.size+" monoNs="+System.nanoTime())
                         val completed=CompletableDeferred<Unit>()
                         completions[category]=completed
-                        val initial=firstPcm.copyOf()
+                        val initial=if(category==2)byteArrayOf() else firstPcm.copyOf()
                         val capturedAt=ticket.capturedAtNs
                         sessionScope.launch(Dispatchers.IO){
                             val setupBegan=System.nanoTime()
@@ -929,11 +930,12 @@ class SessionController(
                             try{
                                 if(!audioDemand.prepare(ticket,
                                     create={air.createAudio(category,pcmFormat){pcm,format->audio.microphone(pcm,format){!callMicrophone.active}}},
-                                    attach=audio::attach)){
+                                    attach=audio::attach,replay=audio::receive)){
                                     setupOutcome="not-installed";return@launch
                                 }
                                 setupOutcome="installed"
-                                // Do not replay a short prompt after a slow network negotiation.
+                                // Retain the existing media/speech first-block policy. Navigation's
+                                // active prefix was already replayed atomically during installation.
                                 if(initial.isNotEmpty()){
                                     if(System.nanoTime()-capturedAt<=100_000_000L)audioDemand.ifActive(ticket){audio.receive(initial,category,pcmFormat)}
                                     else BridgeStore.log(id,"${"Audio category="}${category}${" first PCM expired during SETUP; awaiting fresh source"}")
@@ -951,7 +953,7 @@ class SessionController(
                             }
                         }
                     }
-                    return ticket!=null
+                    return category==2||ticket!=null
                 }
                 // Only media may be prewarmed. Navigation and recognition are demand-driven,
                 // otherwise an idle prompt stream can retain the receiver's volume context.

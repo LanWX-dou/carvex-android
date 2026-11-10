@@ -2,6 +2,8 @@
 
 资源切换已支持现有传输子集内的屏幕/音频组合请求；带约束仲裁和应用活动状态仍未补齐，详见[验证记录](docs/fixes/2026-11-10-resource-batch.md)。
 
+导航提示在 SETUP 期间保留有容量上限的首段 PCM，接通后先于实时音频交付；提示结束或协商失败会清除缓存。详见[启动缓冲边界](docs/fixes/2026-11-10-navigation-startup.md)，车机实际播放仍待验证。
+
 [中文](README.md) | [English](README.en.md)
 
 [![Android signed APK](https://github.com/iamr0s/carvex-android/actions/workflows/android.yml/badge.svg)](https://github.com/iamr0s/carvex-android/actions/workflows/android.yml)
