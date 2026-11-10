@@ -878,12 +878,12 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             "changeModes"->{
                 val params=p["params"] as? Map<*,*>?:return 400 to byteArrayOf()
                 val proposed=screenModes.propose(params)?:return 200 to Plist.encode(mapOf("status" to 1))
-                val resource=screenModes.requestedResource(params)?:return 400 to byteArrayOf()
-                if(resource==1&&screenOwnership?.invoke(proposed.owner==1)!=true)return 200 to Plist.encode(mapOf("status" to 1))
+                val requested=screenModes.requestedResources(params)?:return 400 to byteArrayOf()
+                if(1 in requested&&screenOwnership?.invoke(proposed.owner==1)!=true)return 200 to Plist.encode(mapOf("status" to 1))
                 screenModes.commit(proposed)
-                val changedAudio=resource==2
+                val changedAudio=2 in requested
                 if(changedAudio)audioOwnership.receiverDeclaredModes(proposed)
-                log("${"Resource modes applied resource="}${resource}${" screenOwner="}${proposed.owner}${" audioOwner="}${proposed.audioOwner}${"; receiver acceptance pending"}")
+                log("Resource modes applied resources=$requested screenOwner=${proposed.owner} audioOwner=${proposed.audioOwner}; receiver acceptance pending")
                 200 to Plist.encode(mapOf("status" to 0,"params" to screenModes.params()))
             }
             "forceKeyFrame"->{

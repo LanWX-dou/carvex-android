@@ -6,21 +6,37 @@ class ScreenResourceModes {
         val audioOwner:Int=2,val audioPermanent:Int=2,val audioBorrowed:Boolean=false)
     var state=State();private set
     fun audio(phone:Boolean){state=state.copy(audioOwner=if(phone)1 else 2,audioPermanent=if(phone)1 else 2,audioBorrowed=false)}
-    fun requestedResource(params:Map<*,*>):Int? {
-        val entry=((params["resources"] as? List<*>)?.singleOrNull() as? Map<*,*>)?:return null
-        val value=entry["resourceID"] as? Number?:return null
-        val number=value.toDouble()
-        return value.toInt().takeIf{number.isFinite()&&number==it.toDouble()&&it in 1..2}
+    private fun integer(value:Any?):Int? {
+        val number=value as? Number?:return null
+        val double=number.toDouble()
+        return number.toInt().takeIf{double.isFinite()&&double==it.toDouble()}
+    }
+    fun requestedResource(params:Map<*,*>):Int? = requestedResources(params)?.singleOrNull()
+    fun requestedResources(params:Map<*,*>):Set<Int>? {
+        val requests=params["resources"] as? List<*>?:return null
+        if(requests.size !in 1..2)return null
+        val ids=linkedSetOf<Int>()
+        for(request in requests){
+            val entry=request as? Map<*,*>?:return null
+            val id=integer(entry["resourceID"])?.takeIf{it in 1..2}?:return null
+            if(!ids.add(id))return null
+        }
+        return ids
     }
     fun propose(params:Map<*,*>):State? {
         if(params.keys.any{it !in setOf("resources","appStates")})return null
         val apps=params["appStates"]
         if(apps!=null&&(apps !is List<*>||apps.isNotEmpty()))return null
-        val requests=params["resources"] as? List<*>?:return null
-        if(requests.size!=1)return null
-        val r=requests.single() as? Map<*,*>?:return null
+        requestedResources(params)?:return null
+        val requests=params["resources"] as List<*>
+        var next=state
+        // 24A446 0x251afb178..0x251afb204 iterates resources 1 and 2 into one request.
+        // Validate the entire supported subset before any host side effect or state commit.
+        for(request in requests)next=proposeResource(next,request as Map<*,*>)?:return null
+        return next
+    }
+    private fun proposeResource(state:State,r:Map<*,*>):State? {
         if(r.keys!=setOf("resourceID","transferType"))return null
-        fun integer(v:Any?):Int? {val n=v as? Number?:return null;val d=n.toDouble();if(!d.isFinite()||d!=n.toInt().toDouble())return null;return n.toInt()}
         val resource=integer(r["resourceID"])?:return null;val transfer=integer(r["transferType"])?:return null
         if(resource==1)return when(transfer){
             1->if(state.borrowed)null else state.copy(owner=2,permanent=2,borrowed=false)

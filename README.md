@@ -1,5 +1,7 @@
 # CarVeX
 
+资源切换已支持现有传输子集内的屏幕/音频组合请求；带约束仲裁和应用活动状态仍未补齐，详见[验证记录](docs/fixes/2026-11-10-resource-batch.md)。
+
 [中文](README.md) | [English](README.en.md)
 
 [![Android signed APK](https://github.com/iamr0s/carvex-android/actions/workflows/android.yml/badge.svg)](https://github.com/iamr0s/carvex-android/actions/workflows/android.yml)
