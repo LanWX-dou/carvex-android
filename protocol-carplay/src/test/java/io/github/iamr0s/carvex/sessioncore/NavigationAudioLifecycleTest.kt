@@ -156,6 +156,41 @@ class NavigationAudioLifecycleTest {
         }
     }
 
+    @Test fun newPromptWaitsForBothLocalDrainAndReceiverTeardown():Unit=runBlocking {
+        withTimeout(2000){
+            val gate=AudioDemandGate();val lifecycle=AudioStreamLifecycle()
+            val bridge=HostAudioBridge({},configureRoute={})
+            val drained=CompletableDeferred<Unit>();val entered=CompletableDeferred<Unit>()
+            val lease=lifecycle.reserve(101,"default",1,exclusive=true)
+            val old=object:NegotiatedAudioTransport {
+                @Volatile var closed=false
+                override val ready get()=!closed
+                override val formats=mapOf(2 to format)
+                override val microphoneFormat:PcmFormat?=null
+                override suspend fun send(category:Int,pcm:ByteArray,format:PcmFormat){}
+                override suspend fun finish(){entered.complete(Unit);drained.await()}
+                override fun close(){if(!closed){closed=true;lifecycle.beginClose(lease)}}
+            }
+            try{
+                gate.prepare(gate.claim(2,320,format)!!,{old},bridge::attach)
+                gate.sourceState(2,false,bridge::finish);entered.await();gate.sourceState(2,true)
+                val creating=CompletableDeferred<Unit>();var setup=false
+                val next=async(start=CoroutineStart.UNDISPATCHED){
+                    gate.prepare(gate.claim(2,320,format)!!,{
+                        assertFalse(old.ready);creating.complete(Unit)
+                        lifecycle.reserve(101,"default",2,exclusive=true)
+                        setup=true;Stream(2)
+                    },bridge::attach)
+                }
+                assertFalse(creating.isCompleted);assertFalse(setup)
+                drained.complete(Unit);creating.await()
+                assertFalse(setup);assertFalse(next.isCompleted)
+                lifecycle.completeClose(lease)
+                assertTrue(next.await());assertTrue(setup)
+            }finally{drained.complete(Unit);gate.close();bridge.close();lifecycle.close()}
+        }
+    }
+
     @Test fun musicContinuesWithNewSourcePcmAfterNavigationEnds():Unit=runBlocking {
         val gate=AudioDemandGate();val bridge=HostAudioBridge({},configureRoute={})
         val output=Channel<ByteArray>(4)

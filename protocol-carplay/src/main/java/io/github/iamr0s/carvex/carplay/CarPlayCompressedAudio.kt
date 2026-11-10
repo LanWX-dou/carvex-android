@@ -19,6 +19,9 @@ class CarPlayCompressedAudio private constructor(private val socket:DatagramSock
     private val scope=CoroutineScope(SupervisorJob()+Dispatchers.IO)
     private val output=Channel<CompressedAudioEncoder.Event>(8)
     private lateinit var encoder:CompressedAudioEncoder
+    private var writer:Job?=null
+    private val finishing=AtomicBoolean(false)
+    private val finished=CompletableDeferred<Unit>()
     override val ready get()=!closed.get()&&!socket.isClosed
     override val formats=mapOf(category to selected.decodedPcm)
     override val microphoneFormat:PcmFormat?=null
@@ -48,7 +51,7 @@ class CarPlayCompressedAudio private constructor(private val socket:DatagramSock
         log("${"Compressed audio category="}${category}${" failed: "}${t.javaClass.simpleName}${" "}${t.message}${"; audible acceptance pending"}")
         close()
     }
-    private fun startWriter(){scope.launch(start=CoroutineStart.UNDISPATCHED){
+    private fun startWriter(){writer=scope.launch(start=CoroutineStart.UNDISPATCHED){
         var config=false;var ownershipTaken=false;var firstTiming=true
         val clock=AudioSendClock(selected.rate)
         fun clearHistory(){history=null;historyTimestamp=0L}
@@ -133,9 +136,20 @@ class CarPlayCompressedAudio private constructor(private val socket:DatagramSock
     }}
     override suspend fun send(category:Int,pcm:ByteArray,format:PcmFormat){
         require(category==this.category&&format==selected.decodedPcm&&format.accepts(pcm.size))
-        check(ready){"Compressed stream closed"}
+        check(ready&&!finishing.get()){"Compressed stream closed or finishing"}
         if(!canSend())return
         if(!encoder.submit(pcm,format))log("${"Compressed audio category="}${category}${" source block dropped; encoder queue full"}")
+    }
+    override suspend fun finish(){
+        if(!finishing.compareAndSet(false,true)){finished.await();return}
+        try{
+            if(ready){
+                encoder.finish()
+                output.close()
+                writer?.join()
+                check(ready){"Audio writer stopped during completion"}
+            }
+        }finally{close();finished.complete(Unit)}
     }
     override fun close(){
         if(!closed.compareAndSet(false,true))return

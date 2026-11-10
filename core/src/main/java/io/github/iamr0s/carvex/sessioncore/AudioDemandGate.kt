@@ -2,11 +2,12 @@ package io.github.iamr0s.carvex.sessioncore
 
 import io.github.iamr0s.carvex.pcm.PcmFormat
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.sync.Mutex
 
 /** PCM requests and explicit negotiated bootstrap requests share one setup/ownership gate.
  * A failed category gets one bounded retry per activation after local backoff. Source completion
- * invalidates that activation, closes its transport and rejects late PCM until the next start.
+ * invalidates that activation, finishes/closes its transport and rejects late PCM until the next start.
  * A SETUP completing after source/session stop is discarded before installation. */
 class AudioDemandGate(private val now:()->Long=System::nanoTime,
     private val retryDelayNs:Long=1_000_000_000L,private val maximumAttempts:Int=2):AutoCloseable {
@@ -16,6 +17,8 @@ class AudioDemandGate(private val now:()->Long=System::nanoTime,
         var failedAtNs:Long=0,var transport:NegotiatedAudioTransport?=null)
     private val entries=mutableMapOf<Int,Entry>()
     private val inactive=mutableSetOf<Int>()
+    private data class Finishing(val transport:NegotiatedAudioTransport,val done:Deferred<Unit>)
+    private val finishing=mutableMapOf<Int,Finishing>()
     private val preparationLocks=(1..3).associateWith{Mutex()}
     private var closed=false
     init{require(retryDelayNs>=0&&maximumAttempts in 1..2)}
@@ -58,14 +61,19 @@ class AudioDemandGate(private val now:()->Long=System::nanoTime,
     }
 
     /** Use explicit activity only for lanes whose stop means the stream has ended (navigation).
-     * close() is local and nonblocking; it must begin protocol teardown before a new claim can run.
+     * An installed stream may finish accepted audio asynchronously; the next prepare waits for it.
+     * Pending installation and abort paths still close immediately.
      * Unknown activity still allows the first PCM to request a stream. */
-    @Synchronized fun sourceState(category:Int,active:Boolean){
+    @Synchronized fun sourceState(category:Int,active:Boolean,
+        finish:((NegotiatedAudioTransport)->Deferred<Unit>)?=null){
         require(category in 1..3)
         if(closed)return
         if(active){inactive.remove(category);return}
         inactive.add(category)
-        entries.remove(category)?.transport?.close()
+        val entry=entries.remove(category)?:return
+        val transport=entry.transport?:return
+        if(entry.state==State.ACTIVE&&finish!=null)finishing[category]=Finishing(transport,finish(transport))
+        else transport.close()
     }
 
     /** Serialize creation AND installation across successive activations of a category. A stopped
@@ -75,6 +83,11 @@ class AudioDemandGate(private val now:()->Long=System::nanoTime,
         val lock=preparationLocks.getValue(ticket.category)
         lock.lock()
         try{
+            val retiring=synchronized(this){finishing[ticket.category]}
+            if(retiring!=null){
+                retiring.done.await()
+                synchronized(this){if(finishing[ticket.category]===retiring)finishing.remove(ticket.category)}
+            }
             if(!pending(ticket))return false
             return install(ticket,create(),attach)
         }catch(t:Exception){
@@ -120,7 +133,8 @@ class AudioDemandGate(private val now:()->Long=System::nanoTime,
     @Synchronized override fun close(){
         if(closed)return
         closed=true
-        val transports=entries.values.mapNotNull{it.transport}.distinct()
+        val transports=(entries.values.mapNotNull{it.transport}+finishing.values.map{it.transport}).distinct()
+        finishing.values.forEach{it.done.cancel()};finishing.clear()
         entries.clear();inactive.clear()
         transports.forEach{runCatching{it.close()}}
     }

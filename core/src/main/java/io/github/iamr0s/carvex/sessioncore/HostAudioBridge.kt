@@ -13,6 +13,8 @@ interface NegotiatedAudioTransport:AutoCloseable {
     val microphoneFormat:PcmFormat?
     val microphoneReady:Boolean get()=ready&&microphoneFormat!=null
     suspend fun send(category:Int,pcm:ByteArray,format:PcmFormat)
+    /** Natural source completion. Abort/disconnect uses close() instead. */
+    suspend fun finish(){close()}
     /** 已发出的 RTP 包数与最后一包的单调时刻（纳秒）；心跳用它判断哪条流停了。 */
     val packetsSent:Long get()=0
     val lastPacketNanos:Long get()=0
@@ -31,8 +33,14 @@ internal fun pcmCallbackHasGap(previousNanos:Long?,currentNanos:Long,format:PcmF
 
 class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:(suspend ()->Unit)?=null):AutoCloseable {
     data class Snapshot(val received:Long,val dropped:Long,val forwardedBytes:Long,val microphoneBytes:Long)
-    private data class Binding(val transport:NegotiatedAudioTransport,val formats:Map<Int,PcmFormat>,val mic:PcmFormat?)
-    private data class Block(val pcm:ByteArray,val format:PcmFormat,val binding:Binding,val queuedAt:Long)
+    private class Binding(val transport:NegotiatedAudioTransport,val formats:Map<Int,PcmFormat>,val mic:PcmFormat?){
+        @Volatile var finishing=false
+        var finishJob:Deferred<Unit>?=null
+        val drained=CompletableDeferred<Unit>()
+    }
+    private sealed interface Work
+    private data class Block(val pcm:ByteArray,val format:PcmFormat,val binding:Binding,val queuedAt:Long):Work
+    private data class End(val binding:Binding):Work
     private val active=AtomicReference<Map<Int,Binding>>(emptyMap())
     private val micReceiver=AtomicReference<Pair<MicrophoneInput,PcmFormat>?>(null)
     private val closed=AtomicBoolean(false)
@@ -44,7 +52,7 @@ class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:
     private val firstPcmObserved=AtomicIntegerArray(4)
     private val routeLock=Mutex()
     private val scope=CoroutineScope(SupervisorJob()+Dispatchers.IO)
-    private val queues=(1..3).associateWith{Channel<Block>(8)}
+    private val queues=(1..3).associateWith{Channel<Work>(8)}
     /** Host-side per-category activity: 1 is treated as active because the source is observed to stop during 0. */
     private val hostActive=(1..3).associateWith{AtomicBoolean(true)}
     @Volatile private var host:CastHost?=null
@@ -57,7 +65,21 @@ class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:
         var converter:Pcm16Converter?=null
         var previous:Binding?=null
         var lastArrival:Long?=null
-        for(block in queue){
+        for(work in queue){
+            if(work is End){
+                try{
+                    withTimeout(5000){
+                        if(active.get()[category]===work.binding&&work.binding.transport.ready)work.binding.transport.finish()
+                    }
+                    work.binding.drained.complete(Unit)
+                }catch(t:Exception){
+                    work.binding.drained.completeExceptionally(t)
+                    currentCoroutineContext().ensureActive()
+                }
+                converter=null;previous=null;lastArrival=null
+                continue
+            }
+            val block=work as Block
             val now=System.nanoTime()
             if(closed.get()||active.get()[category]!==block.binding||!block.binding.transport.ready||now-block.queuedAt>100_000_000L){
                 dropped.incrementAndGet();converter=null;continue
@@ -125,6 +147,32 @@ class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:
         }finally{routeLock.unlock()}
     }
     fun categories():Set<Int> = active.get().filterValues{it.transport.ready}.keys
+    /** Enqueue completion behind accepted blocks. Revocation is synchronous; Binder never waits
+     * for the encoder/network. A local timeout bounds a faulty drain, not normal playback timing. */
+    fun finish(transport:NegotiatedAudioTransport):Deferred<Unit> {
+        val binding=active.get().values.firstOrNull{it.transport===transport}
+            ?:return CompletableDeferred(Unit).also{transport.close()}
+        require(binding.formats.size==1){"Natural completion requires an independent lane"}
+        synchronized(binding){
+            binding.finishJob?.let{return it}
+            binding.finishing=true
+            val category=binding.formats.keys.single()
+            val job=scope.async(start=CoroutineStart.LAZY){
+                val began=System.nanoTime()
+                try{
+                    withTimeout(5000){queues.getValue(category).send(End(binding));binding.drained.await()}
+                    log("Audio finish category=$category phase=drained elapsedMs="+(System.nanoTime()-began)/1_000_000)
+                }catch(t:TimeoutCancellationException){
+                    log("Audio finish category=$category phase=timeout; closing stream")
+                }catch(t:Exception){
+                    currentCoroutineContext().ensureActive()
+                    log("Audio finish category=$category phase=failed error="+t.javaClass.simpleName)
+                }finally{remove(binding)}
+            }
+            binding.finishJob=job;job.start()
+            return job
+        }
+    }
     fun testFormat(category:Int):PcmFormat?=active.get()[category]?.takeIf{it.transport.ready}?.formats?.get(category)
     suspend fun sendTest(category:Int,pcm:ByteArray,format:PcmFormat):Boolean {
         val binding=active.get()[category]?:return false
@@ -150,7 +198,7 @@ class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:
                 " attached="+(binding!=null)+" ready="+(binding?.transport?.ready==true)+
                 "; callback observed before queue admission")
         }
-        if(binding==null||!binding.transport.ready){dropped.incrementAndGet();return}
+        if(binding==null||binding.finishing||!binding.transport.ready){dropped.incrementAndGet();return}
         val queue=queues.getValue(category)
         // A fresh callback's duration is not its queue age. In particular, the host
         // supplies 120 ms speech blocks: clipping each to 100 ms loses 1/6 of speech.
@@ -173,10 +221,13 @@ class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:
                 " source="+format.rate+"/"+format.channels+" target="+target.rate+"/"+target.channels+
                 "; this is the host lane that decides speech vs media")
         }
+        synchronized(binding){
+        if(binding.finishing){dropped.incrementAndGet();return}
         if(queue.trySend(block).isFailure){
             // Keep newest source audio when overloaded; never build an unbounded latency backlog.
             if(queue.tryReceive().isSuccess)dropped.incrementAndGet()
             if(queue.trySend(block).isFailure)dropped.incrementAndGet()
+        }
         }
     }
     /** Host state never invents silence and never discards a live source; it only drops blocks the source already stopped producing. */
@@ -193,7 +244,8 @@ class HostAudioBridge(private val log:(String)->Unit,private val configureRoute:
         }
         if(flag.getAndSet(active)==active)return
         log("${"CarWith audio category="}${category}${" host state="}${state}${" -> "}"+(if(active)"resume" else "pause")+"; source stops during 0, no local silence inserted")
-        if(!active)while(queues.getValue(category).tryReceive().isSuccess)dropped.incrementAndGet()
+        if(!active&&this.active.get()[category]?.finishing!=true)
+            while(queues.getValue(category).tryReceive().isSuccess)dropped.incrementAndGet()
         val now=System.nanoTime()
         val lastPcm=lastPcmNanos.get(category)
         val transport=this.active.get()[category]?.transport

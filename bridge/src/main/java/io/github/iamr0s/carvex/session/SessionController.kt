@@ -253,9 +253,9 @@ class SessionController(
             }
             override fun audioState(category:Int,state:Int){synchronized(audioSourceLock){if(!ended.get()){
                 // Navigation completion ends its receiver stream, restoring the receiver's media
-                // volume context. Invalidate pending SETUPs before clearing the local queue.
+                // volume context. Revoke pending SETUPs; finish accepted audio on installed streams.
                 // Speech output stopping does not establish that microphone recognition ended.
-                if(category==2)audioDemand.sourceState(category,state==1)
+                if(category==2)audioDemand.sourceState(category,state==1,audio::finish)
                 audio.state(category,state)
                 if(category==1)mediaPlayback.audioLaneActive(state==1)
                 // category3 is an audio lane only. Prompt completion must not stop recognition.
