@@ -12,6 +12,8 @@ import kotlinx.coroutines.sync.Mutex
 import java.net.*
 import java.io.*
 import java.nio.*
+import io.github.iamr0s.carvex.protocol.api.NavigationSink
+import io.github.iamr0s.carvex.protocol.api.NavigationSnapshot
 
 data class Screen(val width:Int,val height:Int,val fps:Int,val uuid:String?,val touchId:String?,val touch:HidTouch?)
 class AirSession(private val context:Context,private val path:NetworkPath,private val bootstrap:WifiBootstrap,
@@ -41,7 +43,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     /** Selected internally for this peer; not inferred from physical transport. */
     private val setupInputProvider:SetupInputProvider?=null,
     private val pairedCapabilityGate:Boolean?=null,
-    controlPublication:CarPlayControlPublication?=null) {
+    controlPublication:CarPlayControlPublication?=null) : NavigationSink {
     private val network=path.network
     @Volatile private var address=Bootstrap.address(path.properties,bootstrap.address)
     /** Current endpoint candidates also constrain timing/invitation peers. The
@@ -147,10 +149,8 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             "$group:"+IapWire.parseFieldList(bytes).ordered.joinToString(","){it.first.toString()}})
         accepted
     },log)
-    private val navigationPublisher=NavigationPublisher({id,fields->
-        val accepted=runtime.send(id,fields)
-        log("navigation ${id.toString(16)} queued=$accepted fields="+fields.joinToString(","){it.first.toString()})
-        accepted
+    private val navigationPublisher=NavigationPublisher({id,fields,valid,completion->
+        runtime.sendGuarded(id,fields,{!stopping&&sourceContextCurrent()&&valid()},completion)
     },log)
     private fun emitRuntime(bytes:ByteArray):Boolean{
         if(stopping||!options.experiment)return false
@@ -187,7 +187,10 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     },negotiate={link->
         Bootstrap.negotiateRuntimeIdentification(link,options.phoneMac,options.carPlayName,PairStore(context).identity(),
             experimentalIntegrityOnly=options.experiment,log=log)
-    },identificationAccepted={runtimeCapabilities=it.capabilities})
+    },identificationAccepted={
+        runtimeCapabilities=it.capabilities
+        navigationPublisher.identification(it.info.rawParameters)
+    })
     private val channelFailed=java.util.concurrent.atomic.AtomicBoolean(false)
     private fun channelFailure(source:String,t:Throwable){
         if(stopping)return // Normal stop owns cleanup; rejected late business is not a new failure.
@@ -215,7 +218,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         scope.launch{for(event in artworkEvents)event()}
         scope.launch{while(isActive){delay(1000);artworkEvents.trySend{artwork.expire()}}}
         resources.own(AutoCloseable{artworkEvents.cancel()})
-        resources.own(AutoCloseable{events.close();runtime.close();runtimeOutput.close();modeOutput.close();audioStreams.close();client?.close();scope.cancel()})
+        resources.own(AutoCloseable{navigationPublisher.detachNavigation();events.close();runtime.close();runtimeOutput.close();modeOutput.close();audioStreams.close();client?.close();scope.cancel()})
         // Events may arrive inside RtspClient.request's lock. Never issue a nested
         // request from that callback: a separate writer runs after its reply.
         scope.launch{
@@ -1007,14 +1010,9 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         nowPlayingPublisher.update(track,replaceMedia)
     fun nowPlayingArtwork(image:ByteArray){artworkEvents.trySend{artwork.update(image)}}
     /** Cache the backend sample; the current runtime Link supplies components and options. */
-    fun navigationRouteUpdate(update:NavigationGuidance.RouteUpdate):Boolean =
-        navigationPublisher.update(update)
-    /** The host ended navigation. Invalidate its sample without changing Link subscription. */
-    fun clearNavigationRoute(){navigationPublisher.clearRoute()}
-    fun navigationManeuverUpdate(values:List<Pair<Int,ByteArray>>):Boolean =
-        navigationPublisher.send(0x5202,values)
-    fun navigationLaneUpdate(values:List<Pair<Int,ByteArray>>):Boolean =
-        navigationPublisher.send(0x5204,values)
+    override fun attachNavigation(source:()->NavigationSnapshot?) = navigationPublisher.attachNavigation(source)
+    override fun navigationChanged():Boolean = navigationPublisher.navigationChanged()
+    override fun detachNavigation() = navigationPublisher.detachNavigation()
     /** Prefer implemented wireless codec from the announcement; PCM is an explicit compatibility fallback. */
     suspend fun createAudio(category:Int,source:PcmFormat,onMicrophone:(suspend (ByteArray,PcmFormat)->Boolean)?=null):NegotiatedAudioTransport = withContext(Dispatchers.IO){
         val began=System.nanoTime()

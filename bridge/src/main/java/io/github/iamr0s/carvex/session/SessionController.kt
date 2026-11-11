@@ -210,8 +210,7 @@ class SessionController(
                 musicAir.get()?.nowPlayingArtwork(image)
             }
         }},{BridgeStore.log(id,it)}))
-        val navigationLock=Any()
-        var latestNavigation:NavigationGuidance.RouteUpdate?=null
+        val navigationRelay=r.own(HostNavigationRelay { BridgeStore.log(id,it) })
         fun deliverMusic(track:NowPlayingUpdate.Track,replaceMedia:Boolean=false){
             if(ended.get())return
             BridgeStore.log(id,"debug music event=sample source=bridge replace=$replaceMedia air=${musicAir.get()!=null} status=${track.status?:"unknown"} durationMs=${track.durationMs?:"unknown"} elapsedMs=${track.elapsedMs?:"unknown"}")
@@ -238,20 +237,6 @@ class SessionController(
                 if(status!=null)deliverMusic(NowPlayingUpdate.Track(status=status))
             }
         })
-        fun deliverNavigation(update:NavigationGuidance.RouteUpdate){synchronized(navigationLock){
-            if(ended.get())return
-            latestNavigation=update
-            BridgeStore.log(id,"debug navigation event=sample source=bridge air=${musicAir.get()!=null} state=${update.state?:"unknown"} maneuverCount=${update.maneuverCount?:"unknown"} distanceRemaining=${update.distanceRemaining?:"unknown"} distanceToManeuver=${update.distanceToManeuver?:"unknown"}")
-            if(musicAir.get()?.navigationRouteUpdate(update)!=true)
-                BridgeStore.log(id,"navigation 5201 cached; no update queued")
-        }}
-        fun clearNavigation(){synchronized(navigationLock){
-            BridgeStore.log(id,"debug navigation event=lifecycle source=bridge ended=true cached=${latestNavigation!=null} air=${musicAir.get()!=null}")
-            latestNavigation=null
-            musicAir.get()?.clearNavigationRoute()
-            BridgeStore.update(id){it.copy(hostHud="")}
-            BridgeStore.log(id,"CarLife navigation ended; cached route discarded")
-        }}
         // Speech output activity is not proof that recognition is listening or has ended.
         // VoiceButtonToggle keeps local accepted requests until a verified host state is available.
         val heldKeys=mutableMapOf<Int,Long>()
@@ -319,6 +304,16 @@ class SessionController(
                     deliverMusic(NowPlayingUpdate.Track(elapsedMs=progress))
                 }else BridgeStore.log(id,"Host music progress outside u32 ignored: "+progress)
             }
+            override fun navigation(event:HostNavigationEvent){
+                if(ended.get())return
+                if(!navigationRelay.update(event))return
+                val observation=event.observation
+                if(event.change==HostNavigationChange.ENDED||event.change==HostNavigationChange.SOURCE_INVALIDATED)
+                    BridgeStore.update(id){it.copy(hostHud="")}
+                else if(observation!=null)BridgeStore.update(id){it.copy(hostHud=
+                    "kind=${observation.action} turn=${observation.turnHint} remains=${observation.distanceHintMeters} total=${observation.referenceDistanceMeters} road=${observation.roadHint.orEmpty()}")}
+                BridgeStore.log(id,"debug navigation event=host-received source=${event.source.id} binding=${event.source.bindingEpoch} change=${event.change} evidence=${event.evidence}")
+            }
             override fun optionalAction(intent:android.content.Intent){
                 if(ended.get())return
                 val action=intent.action?:"null"
@@ -353,37 +348,6 @@ class SessionController(
                     return
                 }
                 when(action){
-                    "mix_notify_start_navi"->{
-                        val value=intent.extras?.get("isNavi")
-                        BridgeStore.log(id,"debug navigation event=lifecycle source=intent isNavi=${DebugLogValue.value(value)} type=${value?.javaClass?.simpleName?:"null"}")
-                        if(CarLifeNavigationIntent.ended(intent))clearNavigation()
-                        BridgeStore.log(id,"CarLife navigation lifecycle isNavi="+value+
-                            " type="+value?.javaClass?.simpleName+"; wire state mapping unverified")
-                    }
-                    "carlife_show_hud_info"->{
-                        BridgeStore.log(id,"debug navigation event=sample source=intent ended=${CarLifeNavigationIntent.ended(intent)} action=${DebugLogValue.value(intent.extras?.get("action"))} turn=${DebugLogValue.value(intent.extras?.get("navi_turn"))}")
-                        for(field in listOf("road_name","remain_distance","total_distance","turn_icon_data"))
-                            BridgeStore.log(id,"debug navigation event=host-field source=intent field=$field value=${DebugLogValue.value(intent.extras?.get(field))}")
-                        if(CarLifeNavigationIntent.ended(intent)){
-                            clearNavigation()
-                            return
-                        }
-                        val road=intent.getStringExtra("road_name")?:""
-                        val remain=intent.getIntExtra("remain_distance",-1)
-                        BridgeStore.log(id,"CarLife HUD action="+intent.extras?.get("action")+
-                            " turn="+intent.extras?.get("navi_turn")+" remain="+remain+
-                            " total="+intent.extras?.get("total_distance")+
-                            "; route state/5202 mapping unverified")
-                        BridgeStore.update(id){it.copy(hostHud="${"kind="}${intent.getIntExtra("action",0)}${" turn="}${intent.getIntExtra("navi_turn",0)}${" remains="}${remain}${" total="}${intent.getIntExtra("total_distance",0)}${" road="}${road}")}
-                        // Preserve the existing road/distance adapter. Whether remain_distance
-                        // means route distance or next-turn distance still needs host evidence;
-                        // action/turn values must not be copied into unrelated iAP enums.
-                        val route=NavigationGuidance.RouteUpdate(
-                            components=emptyList(),currentRoad=NowPlayingUpdate.textOrNull(road),
-                            distanceRemaining=remain.toLong().takeIf{it>=0})
-                        deliverNavigation(route)
-                        BridgeStore.log(id,"debug navigation event=sample source=mapping currentRoad=road_name distanceRemaining=remain_distance guidanceState=unmapped maneuver=unmapped lane=unmapped")
-                    }
                     "carlife_change_theme"->{
                         val mode=intent.getIntExtra("mode",-1)
                         BridgeStore.update(id){it.copy(hostNightMode=mode)}
@@ -768,11 +732,9 @@ class SessionController(
             // Publication precedes this check: disconnect either captures this
             // AirSession, or prevents its preparation after an earlier null snapshot.
             if(disconnecting)throw CancellationException("User disconnect before AirPlay preparation")
-            synchronized(navigationLock){
-                musicAir.set(air)
-                synchronized(artworkLock){latestArtwork?.let{air.nowPlayingArtwork(it)}}
-                latestNavigation?.let{air.navigationRouteUpdate(it)}
-            }
+            musicAir.set(air)
+            synchronized(artworkLock){latestArtwork?.let{air.nowPlayingArtwork(it)}}
+            navigationRelay.attach(air)
             musicRelay.attach{track,replace->if(!ended.get())air.nowPlaying(track,replace)}
             air.screenOwnership={phone->synchronized(touchLock){
                 if(ended.get()||touchClosed)return@synchronized false
