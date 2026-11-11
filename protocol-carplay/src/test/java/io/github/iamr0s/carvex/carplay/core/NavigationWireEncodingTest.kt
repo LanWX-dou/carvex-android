@@ -117,4 +117,32 @@ class NavigationWireEncodingTest {
         assertArrayEquals(IapWire.be16(2), fields(changed.packets.first())[1])
         assertArrayEquals(IapWire.be16(2), fields(changed.packets.last())[13])
     }
+
+    @Test fun maneuverSlotsRespectMinimumSelectedStorageCapacity() {
+        val selected = NavigationGuidance.Start(listOf(42, 43), 3)
+        val capabilities = NavigationDisplayCapabilities(listOf(component(42, 8), component(43, 3)))
+        assertEquals(8, capabilities.maneuverCapacity(42))
+        assertEquals(3, capabilities.maneuverCapacity(43))
+        val indices = (1L..100L).map { generation ->
+            val plan = NavigationWireEncoding.plan(snapshot().copy(maneuverGeneration = generation), selected, capabilities)
+            val index = fields(plan.packets.first())[1]!!
+            assertArrayEquals(index, fields(plan.packets.last())[13])
+            IapWire.u16(index, 0)
+        }.toSet()
+        assertEquals(setOf(0, 1, 2), indices)
+        val large = NavigationWireEncoding.plan(snapshot().copy(maneuverGeneration = Long.MAX_VALUE), start,
+            NavigationDisplayCapabilities(listOf(component(capacity = 65535))))
+        assertTrue(IapWire.u16(fields(large.packets.first())[1]!!, 0) in 0 until 65535)
+    }
+
+    @Test fun aSingleStorageSlotIsClearedBeforeItsDefinitionCanChangeTheArrow() {
+        val plan = NavigationWireEncoding.plan(snapshot(), start,
+            NavigationDisplayCapabilities(listOf(component(capacity = 1))))
+        assertEquals(listOf(0x5201, 0x5202, 0x5201), plan.packets.map { it.id })
+        assertEquals(0, state(plan.packets.first()))
+        assertArrayEquals(IapWire.be16(0), fields(plan.packets[1])[1])
+        assertArrayEquals(IapWire.be16(0), fields(plan.packets.last())[13])
+        assertArrayEquals(IapWire.be32(200), fields(plan.packets.last())[10])
+        assertNotNull(NavigationWireEncoding.plan(snapshot(), NavigationGuidance.Start(emptyList(), 3), display).blocked)
+    }
 }

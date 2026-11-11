@@ -16,7 +16,7 @@ internal class NavigationDisplayCapabilities(parameters: List<RawParameter>) {
     private val raw = parameters.map { RawParameter(it.id, it.value.copyOf()) }
     fun parameters(): List<RawParameter> = raw.map { RawParameter(it.id, it.value.copyOf()) }
 
-    fun supportsManeuver(component: Int): Boolean {
+    fun maneuverCapacity(component: Int): Int? {
         val matches = raw.filter { it.id == 30 }.mapNotNull { parameter ->
             try {
                 val fields = IapWire.parseFieldList(parameter.value)
@@ -24,11 +24,13 @@ internal class NavigationDisplayCapabilities(parameters: List<RawParameter>) {
                 if (id != component) null else fields
             } catch (_: IllegalArgumentException) { null }
         }
-        if (matches.size != 1) return false
+        if (matches.size != 1) return null
         return try {
-            matches.single()[6]?.takeIf { it.size == 2 }?.let { IapWire.u16(it, 0) > 0 } == true
-        } catch (_: IllegalArgumentException) { false }
+            matches.single()[6]?.takeIf { it.size == 2 }?.let { IapWire.u16(it, 0) }?.takeIf { it > 0 }
+        } catch (_: IllegalArgumentException) { null }
     }
+
+    fun supportsManeuver(component: Int): Boolean = maneuverCapacity(component) != null
 }
 
 /** Numeric core: Apple state/type tables and encoders; GalaxyPlay 0.1.212 p10 meter
@@ -53,10 +55,17 @@ internal object NavigationWireEncoding {
             // Reset clears any previously joined arrow/distance; the route itself is still active.
             return NavigationPlan(listOf(route(0), route(state)))
         }
-        if (selection.components.any { !capabilities.supportsManeuver(it) })
-            return NavigationPlan(blocked = "maneuver-capacity-missing-or-zero")
+        val capacities = selection.components.map { component ->
+            capabilities.maneuverCapacity(component)
+                ?: return NavigationPlan(blocked = "maneuver-capacity-missing-or-zero")
+        }
+        val capacity = capacities.minOrNull()
+            ?: return NavigationPlan(blocked = "maneuver-capacity-missing-or-zero")
         if (snapshot.maneuverGeneration <= 0) return NavigationPlan(blocked = "maneuver-generation-missing")
-        val index = (snapshot.maneuverGeneration and 0xffff).toInt()
+        // p6 is a storage limit, not just a Boolean. Both inspected receivers retain
+        // definitions by U16 index until reset. Reuse a bounded set of slots so a
+        // long route cannot exceed the smallest subscribed component's capacity.
+        val index = (snapshot.maneuverGeneration % capacity).toInt()
         val distance = maneuver.distanceMeters?.takeIf { it in 1..0xffffffffL }
         val definition = NavigationPacket(0x5202,
             NavigationGuidance.maneuver(NavigationGuidance.ManeuverUpdate(selection.components,
@@ -64,7 +73,9 @@ internal object NavigationWireEncoding {
             "24A446:CarPlay:247b3a190/table2690da6a8;accessoryd:1000c5008/1001777c0;GalaxyPlay:024858")
         // Every batch is self-contained, including resubscription. No delivered snapshot cache.
         // A missing/invalid distance must not leave the receiver's old segment intact.
-        return NavigationPlan((if (distance == null) listOf(route(0)) else emptyList()) +
+        // With one slot the new definition would immediately change the currently
+        // referenced arrow while its old distance is still present. Clear first.
+        return NavigationPlan((if (distance == null || capacity == 1) listOf(route(0)) else emptyList()) +
             listOf(definition, route(state, index, distance)))
     }
 
