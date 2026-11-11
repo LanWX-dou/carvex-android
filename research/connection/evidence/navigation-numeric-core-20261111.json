@@ -1,0 +1,679 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "scope": "Original byte identity; no universal meter/order or vehicle claim",
+  "apple": {
+    "accessoryd": {
+      "path": "research/protocol/iap2_input_business_lifecycle/source/firmware/accessoryd",
+      "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+      "slices": {
+        "0x100003b28": {
+          "end": "0x100003d60",
+          "bytes": 568,
+          "sha256": "62e660e3b33078677e756ef201631dacb87327b9060b54c797af3a6c6c65ef0a"
+        },
+        "0x100003d60": {
+          "end": "0x100003dc8",
+          "bytes": 104,
+          "sha256": "1375f9bcc0fca7b448eb580d0913164e35f9f02f43da060dac4721f3648baae2"
+        },
+        "0x100004428": {
+          "end": "0x1000044b0",
+          "bytes": 136,
+          "sha256": "317beafee7b994bf20a4475dba57d2720c2fc11323063b63dc83c413237bebc3"
+        },
+        "0x1000c5008": {
+          "end": "0x1000c504c",
+          "bytes": 68,
+          "sha256": "3d8080fedb34d5b6df3954b69a9dbb2d6cd968243cd96d9813c9ccf83fce4a7d"
+        },
+        "0x1000c5704": {
+          "end": "0x1000c5d64",
+          "bytes": 1632,
+          "sha256": "cc8dac35769f75c160f2f4ba6c34672be8628279c51cad4fe4c707491a9200ab"
+        },
+        "0x1000de30c": {
+          "end": "0x1000de4a8",
+          "bytes": 412,
+          "sha256": "5d42623778ce825cdf953ad8731310cc7f1c023b7c5534bea23c9183cacb887d"
+        },
+        "0x100018f98": {
+          "end": "0x100018fcc",
+          "bytes": 52,
+          "sha256": "29c3dfd046d16c8a7669d6ca24c1037cab3cfef2f363701095fc51fc3095c665"
+        },
+        "0x1000027f4": {
+          "end": "0x100002eb0",
+          "bytes": 1724,
+          "sha256": "f1ad9fe4304a0a2ec88f2379c98b0050430b3ed19a399590d01da402c78bd654"
+        },
+        "0x1001777c0": {
+          "end": "0x100177d80",
+          "bytes": 1472,
+          "sha256": "7a9e3f407e2648dda64898878b0eb9ad235b122a100381c5e63659cdbee2aabc"
+        }
+      },
+      "route_key_jump_targets": {
+        "1": "0x100003b68",
+        "2": "0x100003c04",
+        "3": "0x100003bd4",
+        "4": "0x100003bec",
+        "5": "0x100003b98",
+        "6": "0x100003c28",
+        "7": "0x100003c4c",
+        "8": "0x100003bf8",
+        "9": "0x100003c70",
+        "10": "0x100003bb0",
+        "11": "0x100003c64",
+        "12": "0x100003b8c",
+        "13": "0x100003ba4",
+        "14": "0x100003c40",
+        "15": "0x100003b80",
+        "16": "0x100003be0",
+        "17": "0x100003b74",
+        "18": "0x100003c10",
+        "19": "0x100003c58",
+        "20": "0x100003c88",
+        "21": "0x100003c1c",
+        "22": "0x100003c34",
+        "23": "0x100003c7c",
+        "24": "0x100003c94",
+        "25": "0x100003bc8",
+        "26": "0x100003bbc"
+      },
+      "maneuver_key_jump_targets": {
+        "1": "0x1000de34c",
+        "2": "0x1000de3ac",
+        "3": "0x1000de388",
+        "4": "0x1000de394",
+        "5": "0x1000de364",
+        "6": "0x1000de3b8",
+        "7": "0x1000de400",
+        "8": "0x1000de3a0",
+        "9": "0x1000de418",
+        "10": "0x1000de37c",
+        "11": "0x1000de40c",
+        "12": "0x1000de358",
+        "13": "0x1000de370"
+      }
+    },
+    "CarPlay": {
+      "path": "firmware/extracted/24A446/binaries/CarPlay/CarPlay",
+      "sha256": "4dc1ad040452a76d1f33c291532eedf71bf509663c9e86a41c53f5d2c352afa5",
+      "slices": {
+        "0x247b00444": {
+          "end": "0x247b004ec",
+          "bytes": 168,
+          "sha256": "c0e68d4ef21b90eb33614856ece79bf9ec19be0bb4e9d3108c6dcae16c769865"
+        },
+        "0x247b3a190": {
+          "end": "0x247b3a220",
+          "bytes": 144,
+          "sha256": "6d928844e1170ef9489751372a73fbafab8e67236492fc50021a5a29f769b6c7"
+        }
+      },
+      "guidance_states": {
+        "0": {
+          "slot": "0x2690da898",
+          "raw": "0x100000f57b0798",
+          "cfstring": "0x2757b0798",
+          "text_address": "0x247b7d597",
+          "text": "NotActive"
+        },
+        "1": {
+          "slot": "0x2690da8a0",
+          "raw": "0x100000f57b07b8",
+          "cfstring": "0x2757b07b8",
+          "text_address": "0x247b7d5a1",
+          "text": "Active"
+        },
+        "2": {
+          "slot": "0x2690da8a8",
+          "raw": "0x100000f57b07d8",
+          "cfstring": "0x2757b07d8",
+          "text_address": "0x247b7d5a8",
+          "text": "Arrived"
+        },
+        "3": {
+          "slot": "0x2690da8b0",
+          "raw": "0x100000f57b07f8",
+          "cfstring": "0x2757b07f8",
+          "text_address": "0x247b7d5b0",
+          "text": "Loading"
+        },
+        "4": {
+          "slot": "0x2690da8b8",
+          "raw": "0x100000f57b0818",
+          "cfstring": "0x2757b0818",
+          "text_address": "0x247b7d5b8",
+          "text": "Locating"
+        },
+        "5": {
+          "slot": "0x2690da8c0",
+          "raw": "0x100000f57b0838",
+          "cfstring": "0x2757b0838",
+          "text_address": "0x247b7d5c1",
+          "text": "Rerouting"
+        },
+        "6": {
+          "slot": "0x2690da8c8",
+          "raw": "0x100000f57b0858",
+          "cfstring": "0x2757b0858",
+          "text_address": "0x247b7d5cb",
+          "text": "ProceedToRoute"
+        }
+      },
+      "maneuver_types": {
+        "0": {
+          "slot": "0x2690da6a8",
+          "raw": "0x100000f57afef8",
+          "cfstring": "0x2757afef8",
+          "text_address": "0x247b7d1e9",
+          "text": "NoTurn"
+        },
+        "1": {
+          "slot": "0x2690da6b0",
+          "raw": "0x100000f57aff18",
+          "cfstring": "0x2757aff18",
+          "text_address": "0x247b7d1f0",
+          "text": "LeftTurn"
+        },
+        "2": {
+          "slot": "0x2690da6b8",
+          "raw": "0x100000f57aff38",
+          "cfstring": "0x2757aff38",
+          "text_address": "0x247b7d1f9",
+          "text": "RightTurn"
+        },
+        "3": {
+          "slot": "0x2690da6c0",
+          "raw": "0x100000f57aff58",
+          "cfstring": "0x2757aff58",
+          "text_address": "0x247b7d203",
+          "text": "StraightAhead"
+        },
+        "4": {
+          "slot": "0x2690da6c8",
+          "raw": "0x100000f57aff78",
+          "cfstring": "0x2757aff78",
+          "text_address": "0x247b7d211",
+          "text": "UTurn"
+        },
+        "5": {
+          "slot": "0x2690da6d0",
+          "raw": "0x100000f57aff98",
+          "cfstring": "0x2757aff98",
+          "text_address": "0x247b7d217",
+          "text": "FollowRoad"
+        },
+        "6": {
+          "slot": "0x2690da6d8",
+          "raw": "0x100000f57affb8",
+          "cfstring": "0x2757affb8",
+          "text_address": "0x247b7d222",
+          "text": "EnterRoundabout"
+        },
+        "7": {
+          "slot": "0x2690da6e0",
+          "raw": "0x100000f57affd8",
+          "cfstring": "0x2757affd8",
+          "text_address": "0x247b7d232",
+          "text": "ExitRoundabout"
+        },
+        "8": {
+          "slot": "0x2690da6e8",
+          "raw": "0x100000f57afff8",
+          "cfstring": "0x2757afff8",
+          "text_address": "0x247b7d241",
+          "text": "OffRamp"
+        },
+        "9": {
+          "slot": "0x2690da6f0",
+          "raw": "0x100000f57b0018",
+          "cfstring": "0x2757b0018",
+          "text_address": "0x247b7d249",
+          "text": "OnRamp"
+        },
+        "10": {
+          "slot": "0x2690da6f8",
+          "raw": "0x100000f57b0038",
+          "cfstring": "0x2757b0038",
+          "text_address": "0x247b7d250",
+          "text": "ArriveEndOfNavigation"
+        },
+        "11": {
+          "slot": "0x2690da700",
+          "raw": "0x100000f57b0058",
+          "cfstring": "0x2757b0058",
+          "text_address": "0x247b7d266",
+          "text": "StartRoute"
+        },
+        "12": {
+          "slot": "0x2690da708",
+          "raw": "0x100000f57b0078",
+          "cfstring": "0x2757b0078",
+          "text_address": "0x247b7d271",
+          "text": "ArriveAtDestination"
+        },
+        "13": {
+          "slot": "0x2690da710",
+          "raw": "0x100000f57b0098",
+          "cfstring": "0x2757b0098",
+          "text_address": "0x247b7d285",
+          "text": "KeepLeft"
+        },
+        "14": {
+          "slot": "0x2690da718",
+          "raw": "0x100000f57b00b8",
+          "cfstring": "0x2757b00b8",
+          "text_address": "0x247b7d28e",
+          "text": "KeepRight"
+        },
+        "15": {
+          "slot": "0x2690da720",
+          "raw": "0x100000f57b00d8",
+          "cfstring": "0x2757b00d8",
+          "text_address": "0x247b7d298",
+          "text": "Enter_Ferry"
+        },
+        "16": {
+          "slot": "0x2690da728",
+          "raw": "0x100000f57b00f8",
+          "cfstring": "0x2757b00f8",
+          "text_address": "0x247b7d2a4",
+          "text": "ExitFerry"
+        },
+        "17": {
+          "slot": "0x2690da730",
+          "raw": "0x100000f57b0118",
+          "cfstring": "0x2757b0118",
+          "text_address": "0x247b7d2ae",
+          "text": "ChangeFerry"
+        },
+        "18": {
+          "slot": "0x2690da738",
+          "raw": "0x100000f57b0138",
+          "cfstring": "0x2757b0138",
+          "text_address": "0x247b7d2ba",
+          "text": "StartRouteWithUTurn"
+        },
+        "19": {
+          "slot": "0x2690da740",
+          "raw": "0x100000f57b0158",
+          "cfstring": "0x2757b0158",
+          "text_address": "0x247b7d2ce",
+          "text": "UTurnAtRoundabout"
+        },
+        "20": {
+          "slot": "0x2690da748",
+          "raw": "0x100000f57b0178",
+          "cfstring": "0x2757b0178",
+          "text_address": "0x247b7d2e0",
+          "text": "LeftTurnAtEnd"
+        },
+        "21": {
+          "slot": "0x2690da750",
+          "raw": "0x100000f57b0198",
+          "cfstring": "0x2757b0198",
+          "text_address": "0x247b7d2ee",
+          "text": "RightTurnAtEnd"
+        },
+        "22": {
+          "slot": "0x2690da758",
+          "raw": "0x100000f57b01b8",
+          "cfstring": "0x2757b01b8",
+          "text_address": "0x247b7d2fd",
+          "text": "HighwayOffRampLeft"
+        },
+        "23": {
+          "slot": "0x2690da760",
+          "raw": "0x100000f57b01d8",
+          "cfstring": "0x2757b01d8",
+          "text_address": "0x247b7d310",
+          "text": "HighwayOffRampRight"
+        },
+        "24": {
+          "slot": "0x2690da768",
+          "raw": "0x100000f57b01f8",
+          "cfstring": "0x2757b01f8",
+          "text_address": "0x247b7d324",
+          "text": "ArriveAtDestinationLeft"
+        },
+        "25": {
+          "slot": "0x2690da770",
+          "raw": "0x100000f57b0218",
+          "cfstring": "0x2757b0218",
+          "text_address": "0x247b7d33c",
+          "text": "ArriveAtDestinationRight"
+        },
+        "26": {
+          "slot": "0x2690da778",
+          "raw": "0x100000f57b0238",
+          "cfstring": "0x2757b0238",
+          "text_address": "0x247b7d355",
+          "text": "UTurnWhenPossible"
+        },
+        "27": {
+          "slot": "0x2690da780",
+          "raw": "0x100000f57b0258",
+          "cfstring": "0x2757b0258",
+          "text_address": "0x247b7d367",
+          "text": "ArriveEndOfDirections"
+        },
+        "28": {
+          "slot": "0x2690da788",
+          "raw": "0x100000f57b0278",
+          "cfstring": "0x2757b0278",
+          "text_address": "0x247b7d37d",
+          "text": "RoundaboutExit1"
+        },
+        "29": {
+          "slot": "0x2690da790",
+          "raw": "0x100000f57b0298",
+          "cfstring": "0x2757b0298",
+          "text_address": "0x247b7d38d",
+          "text": "RoundaboutExit2"
+        },
+        "30": {
+          "slot": "0x2690da798",
+          "raw": "0x100000f57b02b8",
+          "cfstring": "0x2757b02b8",
+          "text_address": "0x247b7d39d",
+          "text": "RoundaboutExit3"
+        },
+        "31": {
+          "slot": "0x2690da7a0",
+          "raw": "0x100000f57b02d8",
+          "cfstring": "0x2757b02d8",
+          "text_address": "0x247b7d3ad",
+          "text": "RoundaboutExit4"
+        },
+        "32": {
+          "slot": "0x2690da7a8",
+          "raw": "0x100000f57b02f8",
+          "cfstring": "0x2757b02f8",
+          "text_address": "0x247b7d3bd",
+          "text": "RoundaboutExit5"
+        },
+        "33": {
+          "slot": "0x2690da7b0",
+          "raw": "0x100000f57b0318",
+          "cfstring": "0x2757b0318",
+          "text_address": "0x247b7d3cd",
+          "text": "RoundaboutExit6"
+        },
+        "34": {
+          "slot": "0x2690da7b8",
+          "raw": "0x100000f57b0338",
+          "cfstring": "0x2757b0338",
+          "text_address": "0x247b7d3dd",
+          "text": "RoundaboutExit7"
+        },
+        "35": {
+          "slot": "0x2690da7c0",
+          "raw": "0x100000f57b0358",
+          "cfstring": "0x2757b0358",
+          "text_address": "0x247b7d3ed",
+          "text": "RoundaboutExit8"
+        },
+        "36": {
+          "slot": "0x2690da7c8",
+          "raw": "0x100000f57b0378",
+          "cfstring": "0x2757b0378",
+          "text_address": "0x247b7d3fd",
+          "text": "RoundaboutExit9"
+        },
+        "37": {
+          "slot": "0x2690da7d0",
+          "raw": "0x100000f57b0398",
+          "cfstring": "0x2757b0398",
+          "text_address": "0x247b7d40d",
+          "text": "RoundaboutExit10"
+        },
+        "38": {
+          "slot": "0x2690da7d8",
+          "raw": "0x100000f57b03b8",
+          "cfstring": "0x2757b03b8",
+          "text_address": "0x247b7d41e",
+          "text": "RoundaboutExit11"
+        },
+        "39": {
+          "slot": "0x2690da7e0",
+          "raw": "0x100000f57b03d8",
+          "cfstring": "0x2757b03d8",
+          "text_address": "0x247b7d42f",
+          "text": "RoundaboutExit12"
+        },
+        "40": {
+          "slot": "0x2690da7e8",
+          "raw": "0x100000f57b03f8",
+          "cfstring": "0x2757b03f8",
+          "text_address": "0x247b7d440",
+          "text": "RoundaboutExit13"
+        },
+        "41": {
+          "slot": "0x2690da7f0",
+          "raw": "0x100000f57b0418",
+          "cfstring": "0x2757b0418",
+          "text_address": "0x247b7d451",
+          "text": "RoundaboutExit14"
+        },
+        "42": {
+          "slot": "0x2690da7f8",
+          "raw": "0x100000f57b0438",
+          "cfstring": "0x2757b0438",
+          "text_address": "0x247b7d462",
+          "text": "RoundaboutExit15"
+        },
+        "43": {
+          "slot": "0x2690da800",
+          "raw": "0x100000f57b0458",
+          "cfstring": "0x2757b0458",
+          "text_address": "0x247b7d473",
+          "text": "RoundaboutExit16"
+        },
+        "44": {
+          "slot": "0x2690da808",
+          "raw": "0x100000f57b0478",
+          "cfstring": "0x2757b0478",
+          "text_address": "0x247b7d484",
+          "text": "RoundaboutExit17"
+        },
+        "45": {
+          "slot": "0x2690da810",
+          "raw": "0x100000f57b0498",
+          "cfstring": "0x2757b0498",
+          "text_address": "0x247b7d495",
+          "text": "RoundaboutExit18"
+        },
+        "46": {
+          "slot": "0x2690da818",
+          "raw": "0x100000f57b04b8",
+          "cfstring": "0x2757b04b8",
+          "text_address": "0x247b7d4a6",
+          "text": "RoundaboutExit19"
+        },
+        "47": {
+          "slot": "0x2690da820",
+          "raw": "0x100000f57b04d8",
+          "cfstring": "0x2757b04d8",
+          "text_address": "0x247b7d4b7",
+          "text": "SharpLeftTurn"
+        },
+        "48": {
+          "slot": "0x2690da828",
+          "raw": "0x100000f57b04f8",
+          "cfstring": "0x2757b04f8",
+          "text_address": "0x247b7d4c5",
+          "text": "SharpRightTurn"
+        },
+        "49": {
+          "slot": "0x2690da830",
+          "raw": "0x100000f57b0518",
+          "cfstring": "0x2757b0518",
+          "text_address": "0x247b7d4d4",
+          "text": "SlightLeftTurn"
+        },
+        "50": {
+          "slot": "0x2690da838",
+          "raw": "0x100000f57b0538",
+          "cfstring": "0x2757b0538",
+          "text_address": "0x247b7d4e3",
+          "text": "SlightRightTurn"
+        },
+        "51": {
+          "slot": "0x2690da840",
+          "raw": "0x100000f57b0558",
+          "cfstring": "0x2757b0558",
+          "text_address": "0x247b7d4f3",
+          "text": "ChangeHighway"
+        },
+        "52": {
+          "slot": "0x2690da848",
+          "raw": "0x100000f57b0578",
+          "cfstring": "0x2757b0578",
+          "text_address": "0x247b7d501",
+          "text": "ChangeHighwayLeft"
+        },
+        "53": {
+          "slot": "0x2690da850",
+          "raw": "0x100000f57b0598",
+          "cfstring": "0x2757b0598",
+          "text_address": "0x247b7d513",
+          "text": "ChangeHighwayRight"
+        }
+      }
+    }
+  },
+  "carwith": {
+    "version": "4.0.14-20260801",
+    "apk_sha256": "c7888ec5018b4e279ed3d3395b8c855d2a3571f06ae26b96849a61ad6dbef00e",
+    "classes2_sha256": "ea8f6236622c61ce75f503f4099d5b61ae1a83fb03e7bf564fab75b205577b06",
+    "methods": {
+      "0x16fc3c": {
+        "owner": "Lcom/carwith/launcher/LauncherDataBusClient;",
+        "method": "E",
+        "prototype": "(ZLjava/lang/String;Landroid/graphics/drawable/Icon;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+        "code_units": 430,
+        "insns_sha256": "dcbf56f3c49d18a0e12b6dc8ffe4b50a5a5ec8b5d3e21d2a9d872d5804d7e91d"
+      },
+      "0x16f3f0": {
+        "owner": "Lcom/carwith/launcher/LauncherDataBusClient;",
+        "method": "w",
+        "prototype": "(Ljava/lang/String;Ljava/lang/String;)I",
+        "code_units": 74,
+        "insns_sha256": "30df7a932eea73e7c9bae08da8e94a0cc1f7c2830978856373d22e70a76da717"
+      },
+      "0x1aedb4": {
+        "owner": "Lcom/carwith/launcher/map/l;",
+        "method": "d",
+        "prototype": "(Landroid/graphics/Bitmap;Ljava/lang/String;)I",
+        "code_units": 551,
+        "insns_sha256": "fac846607fab63b24907d50321f4c5e9c52f73344930043a314e25957499c518"
+      },
+      "0x1af2fc": {
+        "owner": "Lcom/carwith/launcher/map/l;",
+        "method": "<clinit>",
+        "prototype": "()V",
+        "code_units": 572,
+        "insns_sha256": "9f2b913962ac44f65dac3ece841610776bc3df4d3858096b8b1e257cd8cda060"
+      },
+      "0x1aeacc": {
+        "owner": "Lcom/carwith/launcher/map/l$a;",
+        "method": "<init>",
+        "prototype": "(II)V",
+        "code_units": 8,
+        "insns_sha256": "ac6940aa41b0fd604553a61917314e7f039502f8ec4452ef0a6da459e96f0186"
+      },
+      "0x1aea9c": {
+        "owner": "Lcom/carwith/launcher/map/l$a;",
+        "method": "a",
+        "prototype": "()I",
+        "code_units": 3,
+        "insns_sha256": "3b8a7c7af3a330fb9857c3faced314728c620fd7505d839554dc3b0a51080221"
+      },
+      "0x1aeab4": {
+        "owner": "Lcom/carwith/launcher/map/l$a;",
+        "method": "b",
+        "prototype": "()I",
+        "code_units": 3,
+        "insns_sha256": "a7244d6603d329482a118aa1b1571bdd0006b9810ca9c476e64c9a283b8e928f"
+      }
+    },
+    "resources_arsc_sha256": "1757e4b0ae0bb0bee28540f15d5f94b486aafebcd7e5545dce9bdfbb61efa2f8",
+    "reviewed_icons": {
+      "hud_gaode_car_2": {
+        "entry": "res/uty.png",
+        "sha256": "7e976fc30872edced174b1883810db995becdc87bbf9551f1fdc69312213cddb"
+      },
+      "hud_gaode_car_3": {
+        "entry": "res/bNv.png",
+        "sha256": "74a53ad0cf3160e1127c76657e21a99a4e863c2887906c23c9040f9f56919bce"
+      },
+      "hud_gaode_car_4": {
+        "entry": "res/xr7.png",
+        "sha256": "b5c9553a4b7f4501abe3b45f1ac864d83b0a8c81e968be57a7f7bde00a64b94f"
+      },
+      "hud_gaode_car_5": {
+        "entry": "res/jb5.png",
+        "sha256": "ddf3849a53b380e499cdc45aa8091840c4ea831ff05fb3f917b5388059b55309"
+      },
+      "hud_gaode_car_6": {
+        "entry": "res/rjB.png",
+        "sha256": "93d0d5f82ac2b0febbf0386fa24ca1cc1402ac067eeb1ff3eca795d41ef299cf"
+      },
+      "hud_gaode_car_7": {
+        "entry": "res/Lub.png",
+        "sha256": "14789094bb3d686434151d9343af0208029c49b65446493fc4bc9a71799547a3"
+      },
+      "hud_gaode_car_8": {
+        "entry": "res/_rj.png",
+        "sha256": "abea9d1f083c895ed5bdf2a6dd73130cae2343610585d6625ae4aed63c82f8b3"
+      },
+      "hud_gaode_car_9": {
+        "entry": "res/PQH.png",
+        "sha256": "78ce5bbc701f7fc0975118d6a07f772615082cac001fd6b1f83e637f6ce9fad7"
+      },
+      "hud_gaode_car_10": {
+        "entry": "res/Vhp.png",
+        "sha256": "17c80a22751287ec875cb795cedfaf4a6a1e7b5d959bfce75242e0c10c9323e1"
+      },
+      "hud_gaode_car_11": {
+        "entry": "res/yrL.png",
+        "sha256": "86da680de55da1940e2828549f35cc45b9e9ab35a69a9d262a01e6a0a2b3b44b"
+      },
+      "hud_gaode_car_12": {
+        "entry": "res/owr.png",
+        "sha256": "a75e5344c8acdd36aef7389afe3b0eed83430eeda22da965513ba9ff139499b9"
+      },
+      "hud_gaode_car_13": {
+        "entry": "res/MLl.png",
+        "sha256": "1b8b2d15abf9472cbe2387c7f233a95137c4632341845d72026a6d5b20c5c061"
+      },
+      "hud_gaode_car_18": {
+        "entry": "res/Jr_.png",
+        "sha256": "61edbe6e092cbfe1f32a6bd688ec24c1e03fa43c503a01b5e2e4622ceef55b3b"
+      },
+      "hud_gaode_car_19": {
+        "entry": "res/j-9.png",
+        "sha256": "ea7ae9bb469e9df4176789c7b51a50ef432551eb654b149c75f7d7bb25a985b8"
+      },
+      "hud_baidu_car_1": {
+        "entry": "res/KFZ.png",
+        "sha256": "30af21172819a69c28aa4d2db5dd27f23fef956f380769e9e57c0f667399d168"
+      },
+      "hud_baidu_car_2": {
+        "entry": "res/ENC.png",
+        "sha256": "92bda909eab532bd32eb3b308a62127834fe7334706ef2a12b5f965a0367f06b"
+      },
+      "hud_baidu_car_7": {
+        "entry": "res/MDm.png",
+        "sha256": "7442f4202e7cda87b3c721c3cb4bfc1cf532a53b10d321cf310ee23d6d4b4b49"
+      },
+      "hud_baidu_car_12": {
+        "entry": "res/VBq.png",
+        "sha256": "f5ec16dc65510ffed4eafea9d5d1544ddbeb08ddb01c1ffe87460508d2ca8f4b"
+      }
+    }
+  }
+}

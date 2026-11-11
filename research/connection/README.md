@@ -23,7 +23,11 @@
 16. [连接消息索引](spec/70-message-index.md)
 17. [开放问题与完成审计](spec/90-open-items.md)
 
-新增[G01–G11 按优先级分项实施](spec/gap-implementation-20261110.md)：按用户要求每项独立提交。G04已修有序候选读取及扩展保存，新增14项回归、协议1099项与桥接27项通过，小米编译通过；最终格式选择仍OPEN。后续按P0/P1/P2推进，不以局部实现关闭整组缺口。
+新增[GalaxyPlay 接收端音乐、仪表与通话审计](spec/galaxyplay-receiver-audit-20261111.md)：0.1.212 / 240 原 APK、5 个 DEX 的 28 处方法归属/指令哈希复核通过。用户确认音乐正常；导航数值核心已按本版接收端修复，实际仪表显示待验收；通话元数据与蜂窝下行缺口后续独立处理。未修改或安装车机 APK。
+
+新增[导航链路修复](../../android/docs/fixes/2026-11-11-navigation-cluster-chain.md)与[数值核心原始证据](spec/navigation-numeric-core-20261111.md)：host/protocol 契约、唯一 relay、当前 Link 订阅和旧队列撤销已接入。启用基础转向、正数机动距离与结束 reset；道路/ETA/车道、通用 Apple 米数/完整时序及实车显示继续 OPEN。相关单测与五个 flavor Kotlin 编译通过。
+
+此前[G01–G11 按优先级分项实施](spec/gap-implementation-20261110.md)：按用户要求每项独立提交。G04已修有序候选读取及扩展保存，新增14项回归、协议1099项与桥接27项通过，小米编译通过；最终格式选择仍OPEN。后续按P0/P1/P2推进，不以局部实现关闭整组缺口。
 
 新增[CarWith封面更新与语音控制](spec/carwith-artwork-voice-20261110.md)：Android `8148ed5`单独修复普通语音START等待实际输入准备、失败拒绝、STOP跳过准备及断开/取消隔离；新增6项回归，core112/bridge51/protocol1110项和小米编译实际通过。前轮 `05fee8f`封面失败恢复保留独立提交。原APK的6份DEX、101处指令与语音switch复核通过；麦克风用户偏好、识别自然结束回传与频闪实车效果仍OPEN。
 

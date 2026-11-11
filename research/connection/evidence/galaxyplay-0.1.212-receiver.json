@@ -1,0 +1,400 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "scope": "Receiver byte identity and method locations; no runtime or Apple-equivalence claim",
+  "apk_sha256": "f106680faa27be5a9dfc4a9a9b9cb59239e4512c5f3b73b64cebfec47bb023e6",
+  "apk_bytes": 23629025,
+  "manifest_identity_review": {
+    "tool": "Android SDK 36.0.0 aapt dump badging",
+    "package": "com.shilapi.galaxyplay",
+    "version_name": "0.1.212",
+    "version_code": 240
+  },
+  "dex": {
+    "classes2.dex": {
+      "sha256": "bd615146d24193339c7777349a1b7c783141b9f5f7064ca1011e41e18659052f",
+      "bytes": 368668,
+      "methods": {
+        "hud/CarPlayNavigationInput.accept": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/CarPlayNavigationInput;",
+          "method": "accept",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2Frame;)Lcom/shilapi/xcertplay/hud/CarPlayNavigationSnapshot;",
+          "code_item": "0x23cb4",
+          "insns_offset": "0x23cc4",
+          "code_units": 439,
+          "registers": 20,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "e6742ab2adac21fe2d0a4ad0ad8cafe0c1367e8f5f73e471a835f52a10d1f4cf"
+        },
+        "hud/CarPlayNavigationInput.updateRoute": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/CarPlayNavigationInput;",
+          "method": "updateRoute",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2ParameterList;)V",
+          "code_item": "0x249f0",
+          "insns_offset": "0x24a00",
+          "code_units": 404,
+          "registers": 16,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "759316667a64105e43c7d1dfc46db3c6625f4f9dbc3a9ed39f5e262aa2f908ce"
+        },
+        "hud/CarPlayNavigationInput.updateManeuver": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/CarPlayNavigationInput;",
+          "method": "updateManeuver",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2ParameterList;)V",
+          "code_item": "0x24858",
+          "insns_offset": "0x24868",
+          "code_units": 195,
+          "registers": 12,
+          "inputs": 2,
+          "outputs": 6,
+          "insns_sha256": "d3a2328f90aaae975f4b3237cf445b62ec681c91223ebd9c66590b6d78c024e5"
+        },
+        "hud/CarPlayNavigationInput.snapshot": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/CarPlayNavigationInput;",
+          "method": "snapshot",
+          "prototype": "()Lcom/shilapi/xcertplay/hud/CarPlayNavigationSnapshot;",
+          "code_item": "0x24070",
+          "insns_offset": "0x24080",
+          "code_units": 614,
+          "registers": 27,
+          "inputs": 1,
+          "outputs": 16,
+          "insns_sha256": "5a5d8b0392a672991125500009016e5a672963583e43c8296a15d3d0005cd171"
+        },
+        "hud/CarPlayNavigationInput.reset": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/CarPlayNavigationInput;",
+          "method": "reset",
+          "prototype": "()V",
+          "code_item": "0x24810",
+          "insns_offset": "0x24820",
+          "code_units": 28,
+          "registers": 2,
+          "inputs": 1,
+          "outputs": 1,
+          "insns_sha256": "e81cbd3f339e7ae971808303ae8654b98f037528477f638da0f27eecbf9a8722"
+        },
+        "hud/BydNavigationOutputs.onFrame$shared": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/BydNavigationOutputs;",
+          "method": "onFrame$shared",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2Frame;)V",
+          "code_item": "0x1a184",
+          "insns_offset": "0x1a194",
+          "code_units": 95,
+          "registers": 5,
+          "inputs": 2,
+          "outputs": 2,
+          "insns_sha256": "cfc4645a2665c28031d70a1bb0bd1758b67ce623cae3ba2e5c050cd3477334c1"
+        },
+        "hud/ClusterSongState.accept": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/ClusterSongState;",
+          "method": "accept",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2Frame;)Lcom/shilapi/xcertplay/hud/ClusterSong;",
+          "code_item": "0x2584c",
+          "insns_offset": "0x2585c",
+          "code_units": 327,
+          "registers": 12,
+          "inputs": 2,
+          "outputs": 7,
+          "insns_sha256": "9177962ba8c97c430f00be5198016c909b8c38b54c6093506c61bd1e99ff79da"
+        },
+        "hud/BydClusterSong.onFrame": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/BydClusterSong;",
+          "method": "onFrame",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2Frame;)V",
+          "code_item": "0x14564",
+          "insns_offset": "0x14574",
+          "code_units": 115,
+          "registers": 9,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "d9ae62cb2abbc07d8c6d96578711a4a77413d832be2bc839347af1904a277452"
+        },
+        "hud/CarPlayCallState.accept": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/CarPlayCallState;",
+          "method": "accept",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2Frame;)Z",
+          "code_item": "0x21b70",
+          "insns_offset": "0x21b80",
+          "code_units": 392,
+          "registers": 16,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "8dcec0aa2cdc77dcd14c29f02729ad5888b2c9c49b5781af93908398e606a71a"
+        },
+        "hud/BydCarPlayCall.onFrame": {
+          "descriptor": "Lcom/shilapi/xcertplay/hud/BydCarPlayCall;",
+          "method": "onFrame",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2Frame;)V",
+          "code_item": "0x11e3c",
+          "insns_offset": "0x11e4c",
+          "code_units": 87,
+          "registers": 7,
+          "inputs": 2,
+          "outputs": 3,
+          "insns_sha256": "8df40433d24e02ed16bc88743217c652b9673c6ebdbd6b0aae03cec59e721e2d"
+        }
+      }
+    },
+    "classes3.dex": {
+      "sha256": "beb624eae387500b809519b2ab5244ae4a3b498aeffc4a08fed1681938c36af8",
+      "bytes": 581608,
+      "methods": {
+        "transport/Iap2WiredControlClient$Companion.subscriptions": {
+          "descriptor": "Lcom/shilapi/xcertplay/transport/Iap2WiredControlClient$Companion;",
+          "method": "subscriptions",
+          "prototype": "()Ljava/util/List;",
+          "code_item": "0x28ef8",
+          "insns_offset": "0x28f08",
+          "code_units": 7,
+          "registers": 2,
+          "inputs": 1,
+          "outputs": 1,
+          "insns_sha256": "70d2646bbf9b42ed25d5a40d5f26c9cbea575f978fefae182e39fa02c249a0aa"
+        },
+        "transport/Iap2IdentificationClient$Companion.identificationInformation": {
+          "descriptor": "Lcom/shilapi/xcertplay/transport/Iap2IdentificationClient$Companion;",
+          "method": "identificationInformation",
+          "prototype": "(Lcom/shilapi/xcertplay/transport/Iap2IdentificationConfig;)Lcom/shilapi/xcertplay/iap2/wire/Iap2Frame;",
+          "code_item": "0x1e3fc",
+          "insns_offset": "0x1e40c",
+          "code_units": 430,
+          "registers": 25,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "13b091d83a89af71f17b4705589e6119dee376c5902ea6e164a5c845cfacb4f4"
+        },
+        "transport/Iap2IdentificationClient$Companion.identificationInformation$lambda$7$lambda$6": {
+          "descriptor": "Lcom/shilapi/xcertplay/transport/Iap2IdentificationClient$Companion;",
+          "method": "identificationInformation$lambda$7$lambda$6",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/body/Iap2BodyBuilder;)Lkotlin/Unit;",
+          "code_item": "0x1e914",
+          "insns_offset": "0x1e924",
+          "code_units": 36,
+          "registers": 3,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "e4d855633728083a592cad84e604a3759c546eb27fb32f2ab2502c2135b604a5"
+        }
+      }
+    },
+    "classes5.dex": {
+      "sha256": "f95e85d5a28a1de6f0c6e57b721ff6f7fee6004da82022e848f5ed5296eda91a",
+      "bytes": 789336,
+      "methods": {
+        "orchestration/CarPlayController.onRouteFrame": {
+          "descriptor": "Lcom/shilapi/xcertplay/orchestration/CarPlayController;",
+          "method": "onRouteFrame",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2Frame;)V",
+          "code_item": "0x4b370",
+          "insns_offset": "0x4b380",
+          "code_units": 295,
+          "registers": 13,
+          "inputs": 2,
+          "outputs": 4,
+          "insns_sha256": "a8a2ad14f09d9f4d636fdf82cef983c7ac6fa147de7b96d07ec0c706459e04b3"
+        },
+        "orchestration/CarPlayController.artworkTransferHandler$lambda$62": {
+          "descriptor": "Lcom/shilapi/xcertplay/orchestration/CarPlayController;",
+          "method": "artworkTransferHandler$lambda$62",
+          "prototype": "(Lcom/shilapi/xcertplay/orchestration/CarPlayController;ILcom/shilapi/xcertplay/transport/Iap2ArtworkTransfer;)Lkotlin/Unit;",
+          "code_item": "0x46990",
+          "insns_offset": "0x469a0",
+          "code_units": 39,
+          "registers": 6,
+          "inputs": 3,
+          "outputs": 3,
+          "insns_sha256": "a1a340bc32f32adc5cc94447a6565c81e9d032594a37e045856324177f48d75c"
+        },
+        "airplay/AirPlaySession.handleStreams": {
+          "descriptor": "Lcom/shilapi/xcertplay/airplay/AirPlaySession;",
+          "method": "handleStreams",
+          "prototype": "(Ljava/util/List;)Ljava/util/List;",
+          "code_item": "0x2409c",
+          "insns_offset": "0x240ac",
+          "code_units": 504,
+          "registers": 19,
+          "inputs": 2,
+          "outputs": 5,
+          "insns_sha256": "94bacdc8e44108474e3801c3edaefa73e773e271876d85ca4d9e88e2646ab9f1"
+        },
+        "airplay/AudioStreamCodec.fromFormatBits": {
+          "descriptor": "Lcom/shilapi/xcertplay/airplay/AudioStreamCodec;",
+          "method": "fromFormatBits",
+          "prototype": "(JILjava/lang/String;)Lcom/shilapi/xcertplay/airplay/AudioFormat;",
+          "code_item": "0x27cec",
+          "insns_offset": "0x27cfc",
+          "code_units": 196,
+          "registers": 18,
+          "inputs": 5,
+          "outputs": 10,
+          "insns_sha256": "2ea0e6eef8d7fa6e6cd58b4225c9d51f20a69e79ac944b931c12e97bed5cd19a"
+        },
+        "airplay/CarPlayMediaEngine.onAudio": {
+          "descriptor": "Lcom/shilapi/xcertplay/airplay/CarPlayMediaEngine;",
+          "method": "onAudio",
+          "prototype": "(Lcom/shilapi/xcertplay/airplay/AirPlaySession;ILjava/util/Map;)Ljava/util/Map;",
+          "code_item": "0x2e9cc",
+          "insns_offset": "0x2e9dc",
+          "code_units": 564,
+          "registers": 32,
+          "inputs": 4,
+          "outputs": 9,
+          "insns_sha256": "62307444a11eb76732380c40c4c788982b958e99147f69800fc2c31ed81d1a3c"
+        },
+        "airplay/CarPlayMediaEngine.microphoneConfig": {
+          "descriptor": "Lcom/shilapi/xcertplay/airplay/CarPlayMediaEngine;",
+          "method": "microphoneConfig",
+          "prototype": "(Lcom/shilapi/xcertplay/airplay/AirPlaySession;ILjava/util/Map;Lcom/shilapi/xcertplay/airplay/AudioFormat;)Lcom/shilapi/xcertplay/airplay/MicrophoneConfig;",
+          "code_item": "0x2e608",
+          "insns_offset": "0x2e618",
+          "code_units": 298,
+          "registers": 25,
+          "inputs": 5,
+          "outputs": 12,
+          "insns_sha256": "280cb7d6335ad7d31c2603e77dd6fcb6092a21ac99b6c90f0b40f0bd8d53b832"
+        },
+        "airplay/CarPlayMediaEngine.dataStreamKey": {
+          "descriptor": "Lcom/shilapi/xcertplay/airplay/CarPlayMediaEngine;",
+          "method": "dataStreamKey",
+          "prototype": "(Lcom/shilapi/xcertplay/airplay/AirPlaySession;Ljava/util/Map;Ljava/lang/String;)[B",
+          "code_item": "0x2e464",
+          "insns_offset": "0x2e474",
+          "code_units": 71,
+          "registers": 10,
+          "inputs": 4,
+          "outputs": 5,
+          "insns_sha256": "76592e5254a9d01252e65c24494a0054b926e428c895e238ede1745a5679d127"
+        }
+      }
+    },
+    "classes6.dex": {
+      "sha256": "15da322054ac963e3c02edd8459e99199e751e308de237861aa440427f496a5a",
+      "bytes": 464884,
+      "methods": {
+        "media/CarPlayPlaybackStatus.acceptUpdate": {
+          "descriptor": "Lcom/shilapi/xcertplay/media/CarPlayPlaybackStatus;",
+          "method": "acceptUpdate",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2Frame;)Lcom/shilapi/xcertplay/media/CarPlayNowPlaying;",
+          "code_item": "0x1f8d8",
+          "insns_offset": "0x1f8e8",
+          "code_units": 295,
+          "registers": 22,
+          "inputs": 2,
+          "outputs": 10,
+          "insns_sha256": "09f53a27c6e121e84f5f4b6a5bf1d45047b79737deee576329eaaa5cbc3e36df"
+        },
+        "media/CarPlayPlaybackStatus.updatedStatus": {
+          "descriptor": "Lcom/shilapi/xcertplay/media/CarPlayPlaybackStatus;",
+          "method": "updatedStatus",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/body/Iap2BodyReader;Z)Z",
+          "code_item": "0x1f83c",
+          "insns_offset": "0x1f84c",
+          "code_units": 63,
+          "registers": 8,
+          "inputs": 3,
+          "outputs": 2,
+          "insns_sha256": "ec25f02ca60743f81ade4be50017452eaf02ffac6bf612d3c03fc0bba649d19b"
+        },
+        "media/AndroidMediaSink.onMicrophoneStarted": {
+          "descriptor": "Lcom/shilapi/xcertplay/media/AndroidMediaSink;",
+          "method": "onMicrophoneStarted",
+          "prototype": "(Lcom/shilapi/xcertplay/airplay/AudioStreamId;Lcom/shilapi/xcertplay/airplay/MicrophoneConfig;)V",
+          "code_item": "0x1228c",
+          "insns_offset": "0x1229c",
+          "code_units": 88,
+          "registers": 7,
+          "inputs": 3,
+          "outputs": 4,
+          "insns_sha256": "477a3646017c43a77157e611830545a20de115d15f31a8af93535b8776812349"
+        },
+        "media/MicrophoneUplink.start": {
+          "descriptor": "Lcom/shilapi/xcertplay/media/MicrophoneUplink;",
+          "method": "start",
+          "prototype": "()Z",
+          "code_item": "0x26c40",
+          "insns_offset": "0x26c50",
+          "code_units": 1142,
+          "registers": 30,
+          "inputs": 1,
+          "outputs": 9,
+          "insns_sha256": "ffe360c8a3bebdd04017e8ba22a05b85a434081da9fadad67034756fd9708bd0"
+        },
+        "media/MicrophoneUplink.capture": {
+          "descriptor": "Lcom/shilapi/xcertplay/media/MicrophoneUplink;",
+          "method": "capture",
+          "prototype": "(Landroid/media/AudioRecord;Ljava/net/DatagramSocket;)V",
+          "code_item": "0x27a24",
+          "insns_offset": "0x27a34",
+          "code_units": 556,
+          "registers": 25,
+          "inputs": 3,
+          "outputs": 8,
+          "insns_sha256": "b996b863a65be8b30a00a0dcb543cae104c3c609d3f05692ce9e12fff1d3cc45"
+        }
+      }
+    },
+    "classes11.dex": {
+      "sha256": "482ca893866380f6b244d89dbc065eba9a5536f8ee1a3a8915abb8df94096057",
+      "bytes": 37220,
+      "methods": {
+        "iap2/message/Iap2ControlMessages.subscriptions": {
+          "descriptor": "Lcom/shilapi/xcertplay/iap2/message/Iap2ControlMessages;",
+          "method": "subscriptions",
+          "prototype": "()Ljava/util/List;",
+          "code_item": "0x2774",
+          "insns_offset": "0x2784",
+          "code_units": 214,
+          "registers": 14,
+          "inputs": 1,
+          "outputs": 3,
+          "insns_sha256": "9c91080908fd1ff48bfd62a882b243ef84d8b103eb2709e6a851e4908ffc79f9"
+        },
+        "iap2/message/Iap2ControlMessages.subscriptions$lambda$5$lambda$2": {
+          "descriptor": "Lcom/shilapi/xcertplay/iap2/message/Iap2ControlMessages;",
+          "method": "subscriptions$lambda$5$lambda$2",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/body/Iap2BodyBuilder;)Lkotlin/Unit;",
+          "code_item": "0x2930",
+          "insns_offset": "0x2940",
+          "code_units": 86,
+          "registers": 7,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "1bee373f61501ec4b264c7e215cea9617e6c32afca6183ecdffbc53b84672c7e"
+        },
+        "iap2/message/Iap2ControlMessages.subscriptions$lambda$5$lambda$4": {
+          "descriptor": "Lcom/shilapi/xcertplay/iap2/message/Iap2ControlMessages;",
+          "method": "subscriptions$lambda$5$lambda$4",
+          "prototype": "(Lcom/shilapi/xcertplay/iap2/body/Iap2BodyBuilder;)Lkotlin/Unit;",
+          "code_item": "0x29ec",
+          "insns_offset": "0x29fc",
+          "code_units": 68,
+          "registers": 7,
+          "inputs": 1,
+          "outputs": 2,
+          "insns_sha256": "da3a52d6996e66dfae7ce59b1351eb9fa6ef2e5b4f98be4d33e6fde4e239e0ca"
+        }
+      }
+    }
+  },
+  "manifest_sha256": "3db5c72813ad030316dcccdaf1f61ff60402b44569e9d495924f8d415d77b818",
+  "dex_count": 18,
+  "android_source_review": {
+    "scope": "Current working files; identity only, not behavior tests",
+    "files": {
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt": "4e252d83d59e25d91980d73d468c6d37f8bc89917f76143742035f82d98d0daf",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NowPlayingUpdate.kt": "beb4cf930ac1453ad47f200a8a8a75983912d272d684806b5825c5d5e4cfc207",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NowPlayingArtwork.kt": "1b1225a34ef3285cb4f9207ff77e2feba138064ccdafef076aac01ba5bb03cad",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/PhoneSubscriptions.kt": "aaf4c720a699c90dd27f9fe251ad3e00896bdeb93eb0e6806d5203a34aaa8dd5",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/CallMicrophonePlan.kt": "99f23a1a15fda0b26d95de932eaa5a7f94cdcefce36e7d4971f71b455d251f48",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/CarPlayAudioPlan.kt": "675b23fca62edccb97500f88b59a1da32948f3f536f1cccc0a3ccf74f0b5c204",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NavigationPublisher.kt": "2e5d860479f96da71f6689b437df2c2a0ba1970a7fefd4d5d1b2fdc8676e7eb3",
+      "bridge/src/main/java/io/github/iamr0s/carvex/session/SessionController.kt": "1eb056eb478b7db21b70af0521ebf2683a0c7dd8777e1c4b51224b28589dfa4f",
+      "bridge/src/main/java/io/github/iamr0s/carvex/session/HostNavigationRelay.kt": "09d7a6940a24f4672089b62c7956b2dda12edf5b14cc6475956d9cc9aff4f050",
+      "host-carlife-mixing/src/main/java/io/github/iamr0s/carvex/host/vendor/CarWithNavigation.kt": "7441271c08cedbcc521a8573d490a66fcbb7f14886bcf7808379140060fa0ee3",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NavigationGuidance.kt": "9f6eeff267dc72b1353c65d64c444fd597947c9f40e5d020e65ce25fe5d96fe4",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/RuntimeIap.kt": "a51eb1d24f2798498b5198dd41d4394e44b7580a565f057e01aa5616556e9d63"
+    }
+  }
+}
