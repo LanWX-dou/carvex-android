@@ -130,7 +130,16 @@ internal class HostNavigationRelay(private val log: (String) -> Unit = {}) : Aut
             evidence.toMap(), if (terminal) emptySet() else base?.unverifiedFields.orEmpty() + event.unverifiedFields,
             maneuverGeneration)
         current.set(next)
-        log("debug navigation event=normalized source=${next.sourceId} binding=${next.bindingEpoch} route=${next.routeEpoch} revision=${next.revision} lifecycle=${next.lifecycle} unverified=${next.unverifiedFields.sorted()}")
+        val guidanceChanged = old == null || old.bindingEpoch != next.bindingEpoch || old.routeEpoch != next.routeEpoch ||
+            old.lifecycle != next.lifecycle || old.route != next.route || old.maneuver != next.maneuver ||
+            old.lanes != next.lanes
+        log("debug navigation event=normalized source=${next.sourceId} binding=${next.bindingEpoch} " +
+            "route=${next.routeEpoch} revision=${next.revision} lifecycle=${next.lifecycle} " +
+            "guidanceChanged=$guidanceChanged maneuverGeneration=${next.maneuverGeneration} " +
+            "turn=${next.maneuver?.turn ?: "absent"} maneuverDistance=${next.maneuver?.distanceMeters ?: "absent"} " +
+            "routeDistance=${next.route.distanceRemainingMeters ?: "absent"} " +
+            "routeSeconds=${next.route.timeRemainingSeconds ?: "absent"} " +
+            "unverified=${next.unverifiedFields.sorted()}")
         sink?.navigationChanged()
         return true
     }

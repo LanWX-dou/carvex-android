@@ -171,6 +171,7 @@ class VendorCastHost(
                         bundle.keySet().associateWith { bundle.get(it) }
                     }.orEmpty()
                     val event = config.navigationDecoder?.invoke(intent?.action, values, binding)
+                    events.event(CarWithNavigation.diagnostic(intent?.action, values, binding, event))
                     if (event != null) events.navigation(event)
                     else events.event("host-navigation-unverified")
                 }

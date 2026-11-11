@@ -8,6 +8,34 @@ class CarWithNavigationTest {
     private val source = HostNavigationSource("xiaomi", 1, "4.0.14-20260801")
     private fun decode(action: String, values: Map<String, Any?>) = CarWithNavigation.decode(action, values, source)
 
+    @Test fun sourceDiagnosticDistinguishesRawChangesWithoutPrivatePayloads() {
+        val icon = byteArrayOf(1, 2, 3)
+        val values = mapOf("action" to 2, "navi_turn" to 7, "remain_distance" to 245,
+            "total_distance" to 1000, "road_name" to "private test road", "turn_icon_data" to icon)
+        fun trace(data: Map<String, Any?>) = CarWithNavigation.diagnostic("carlife_show_hud_info",
+            data, source, decode("carlife_show_hud_info", data))
+        val first = trace(values)
+        assertTrue(first.contains("binding=1 version=4.0.14-20260801"))
+        assertTrue(first.contains("decoded=UPDATED"))
+        assertTrue(first.contains("turn=int:7 distance=int:245 reference=int:1000"))
+        assertTrue(first.contains("roadChars=17"))
+        assertTrue(first.contains("iconBytes=3"))
+        assertFalse(first.contains("private test road"))
+        assertEquals(first, trace(values))
+        val roadDigest = Regex("roadSha256=([a-f0-9]{64})").find(first)?.groupValues?.get(1)
+        val iconDigest = Regex("iconSha256=([a-f0-9]{64})").find(first)?.groupValues?.get(1)
+        assertNotNull(roadDigest)
+        assertNotNull(iconDigest)
+        assertFalse(trace(values + ("road_name" to "another test road")).contains("roadSha256=$roadDigest"))
+        icon.fill(9)
+        assertFalse(trace(values).contains("iconSha256=$iconDigest"))
+        assertTrue(trace(values + ("action" to "2")).contains("decoded=rejected"))
+        assertTrue(trace(values + ("action" to "2")).contains("hudAction=text"))
+        assertTrue(trace(values + ("remain_distance" to 245L)).contains("distance=long:245"))
+        assertTrue(trace(values + ("remain_distance" to "private input")).contains("distance=text"))
+        assertFalse(trace(values + ("remain_distance" to "private input")).contains("private input"))
+    }
+
     @Test fun strictBooleanLifecycleAndIntegerHudEnd() {
         assertEquals(HostNavigationChange.STARTED, decode("mix_notify_start_navi", mapOf("isNavi" to true))?.change)
         assertEquals(HostNavigationChange.ENDED, decode("mix_notify_start_navi", mapOf("isNavi" to false))?.change)

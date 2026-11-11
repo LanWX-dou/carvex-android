@@ -12,6 +12,34 @@ class HostNavigationRelayTest {
         HostNavigationEvent(source.copy(bindingEpoch = binding), change, "test-source-evidence", delta, route, sequence)
     private fun <T> value(value: T) = HostNavigationField.Value(value, "test-field-evidence")
 
+    @Test fun diagnosticsSeparateRepeatedGuidanceDistanceChangesAndTerminalBoundaries() {
+        val logs = mutableListOf<String>()
+        HostNavigationRelay(logs::add).use { relay ->
+            relay.update(event(HostNavigationChange.STARTED))
+            fun hint(distance: Long) = event(HostNavigationChange.UPDATED, HostNavigationDelta(
+                maneuver = value(HostNavigationManeuver("private road identity", "private instruction",
+                    distanceMeters = distance, turn = HostNavigationTurn.LEFT))))
+            relay.update(hint(245))
+            assertTrue(logs.last().contains("guidanceChanged=true"))
+            assertTrue(logs.last().contains("turn=LEFT maneuverDistance=245 routeDistance=absent"))
+            val generation = requireNotNull(relay.snapshot()).maneuverGeneration
+            relay.update(hint(245))
+            assertTrue(logs.last().contains("guidanceChanged=false"))
+            relay.update(hint(200))
+            assertTrue(logs.last().contains("guidanceChanged=true"))
+            assertTrue(logs.last().contains("maneuverDistance=200"))
+            assertEquals(generation, relay.snapshot()?.maneuverGeneration)
+            relay.update(event(HostNavigationChange.ENDED))
+            assertTrue(logs.last().contains("lifecycle=ENDED guidanceChanged=true"))
+            assertTrue(logs.last().contains("turn=absent maneuverDistance=absent"))
+            val ended = relay.snapshot()
+            assertFalse(relay.update(hint(245)))
+            assertTrue(logs.last().contains("reason=no-active-route"))
+            assertSame(ended, relay.snapshot())
+            assertFalse(logs.any { it.contains("private road") || it.contains("private instruction") })
+        }
+    }
+
     @Test fun absentRetainsValuesExplicitClearRemovesAndZeroIsValid() {
         HostNavigationRelay().use { relay ->
             assertTrue(relay.update(event(HostNavigationChange.STARTED,
