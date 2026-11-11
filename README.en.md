@@ -97,6 +97,8 @@ This repository can also live inside the larger research workspace at
 - Local mirror pages (connection splash and no-host screen).
 - Light/dark/system theme and a permission onboarding flow.
 
+On 2026-11-11, DiPlay source cross-checks for the GalaxyPlay target added [navigation storage capacity handling](docs/fixes/2026-11-11-receiver-navigation-capacity.md) and [call answer key routing](docs/fixes/2026-11-11-receiver-call-keys.md). [Optional receiver source tests](tools/receiver-interop/README.md) do not enter production APKs; complete call sources and field acceptance remain unresolved.
+
 ## Connection methods and current limits
 
 The UI exposes three method entries, but the active bridge backs only one today:

@@ -83,6 +83,8 @@ Android 侧是分模组设计：`:protocol-api` 定义协议契约，`:protocol-
 - 本地投屏页（连接建立页与无宿主页）。
 - 浅色/深色/跟随系统主题，以及权限引导流程。
 
+2026-11-11 使用 DiPlay 源码交叉核对 GalaxyPlay 目标，补充[导航缓存容量修复](docs/fixes/2026-11-11-receiver-navigation-capacity.md)与[通话接听键修复](docs/fixes/2026-11-11-receiver-call-keys.md)。[可选接收源码联测](tools/receiver-interop/README.md)不进入生产 APK；完整通话来源和实车验收仍未完成。
+
 ## 连接方式与当前限制
 
 界面列出三种连接方式，但当前活动桥接只支持一种：
