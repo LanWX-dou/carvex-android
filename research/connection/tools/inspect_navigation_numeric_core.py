@@ -23,7 +23,9 @@ APPLE = {
          (0x100004428, 0x1000044b0), (0x1000c5008, 0x1000c504c),
          (0x1000c5704, 0x1000c5d64), (0x1000de30c, 0x1000de4a8),
          (0x100018f98, 0x100018fcc), (0x1000027f4, 0x100002eb0),
-         (0x1001777c0, 0x100177d80)]),
+         (0x1001777c0, 0x100177d80), (0x100003b18, 0x100003b28),
+         (0x100012120, 0x100012138), (0x1000153bc, 0x1000153cc),
+         (0x100004650, 0x1000046d0), (0x1000046d0, 0x100004734)]),
     'CarPlay': (
         'firmware/extracted/24A446/binaries/CarPlay/CarPlay',
         '4dc1ad040452a76d1f33c291532eedf71bf509663c9e86a41c53f5d2c352afa5',
@@ -101,9 +103,39 @@ class Image:
                                   'cfstring': hex(cf), 'text_address': hex(target), 'text': text}
         return result
 
+    def call_target(self, address):
+        instruction, = struct.unpack('<I', self.read(address, 4))
+        if instruction >> 26 != 0b100101:
+            raise ValueError(f'expected original BL at {address:#x}')
+        displacement = instruction & 0x3ffffff
+        if displacement & 0x2000000:
+            displacement -= 0x4000000
+        return address + 4 * displacement
+
+    def route_u32_path(self, parameter, start, expected_key_target, key_slot):
+        # Reviewed six-instruction sender path: select key, lookup snapshot value,
+        # move it to x3, select parameter ID, append through the same U32 helper.
+        for address, register in ((start, 0), (start + 16, 2)):
+            instruction, = struct.unpack('<I', self.read(address, 4))
+            if instruction != 0x52800000 | (parameter << 5) | register:
+                raise ValueError(f'original p{parameter} MOVZ differs at {address:#x}')
+        expected_calls = {start + 4: 0x100003b18, start + 8: 0x100012120,
+                          start + 12: 0x1000153bc, start + 20: 0x100004650}
+        calls = {address: self.call_target(address) for address in expected_calls}
+        if calls != expected_calls:
+            raise ValueError(f'original p{parameter} encoder call targets differ')
+        relative, = struct.unpack('<i', self.read(0x100003d60 + (parameter - 1) * 4, 4))
+        if 0x100003b5c + relative != expected_key_target:
+            raise ValueError(f'original p{parameter} key jump differs')
+        return {'parameter': parameter, 'encoder_start': hex(start), 'payload_bytes': 4,
+                'encoder_sha256': sha(self.read(start, 24)),
+                'call_targets': {hex(address): hex(target) for address, target in calls.items()},
+                'key_jump_target': hex(expected_key_target), 'key_slot': hex(key_slot),
+                'key_branch_sha256': sha(self.read(expected_key_target, 12))}
+
 
 def inspect(apk):
-    result = {'schema': 1, 'date': '2026-11-11',
+    result = {'schema': 2, 'date': '2026-11-11',
               'scope': 'Original byte identity; no universal meter/order or vehicle claim',
               'apple': {}, 'carwith': {}}
     for label, (path, digest, slices) in APPLE.items():
@@ -122,6 +154,10 @@ def inspect(apk):
             entry['maneuver_key_jump_targets'] = {
                 str(i + 1): hex(0x1000de340 + struct.unpack('<i', image.read(0x100018f98 + i * 4, 4))[0])
                 for i in range(13)}
+            entry['route_u32_paths'] = {
+                'distance_remaining': image.route_u32_path(7, 0x100002b94, 0x100003c4c, 0x10023dc10),
+                'distance_to_maneuver': image.route_u32_path(10, 0x100002bfc, 0x100003bb0, 0x10023dc28),
+            }
         result['apple'][label] = entry
     if sha(apk.read_bytes()) != CARWITH_SHA:
         raise ValueError('CarWith original APK identity mismatch')
@@ -159,7 +195,7 @@ def main():
         RECORD.write_text(json.dumps(observed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     elif observed != json.loads(RECORD.read_text(encoding='utf-8')):
         raise ValueError('reviewed navigation byte record differs')
-    print('PASS: 2 Apple images, 7 guidance states, 54 maneuver types, key jump tables;')
+    print('PASS: 2 Apple images, 7 guidance states, 54 maneuver types, key jump tables, p7/p10 U32 paths;')
     print('PASS: CarWith APK, 7 method owners/instruction hashes and 18 reviewed icon hashes.')
     print('No vendor execution, universal unit/order or vehicle validation.')
 

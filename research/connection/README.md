@@ -5,6 +5,16 @@
 
 ## 阅读顺序
 
+新增[全程剩余里程发布器修复](../../android/docs/fixes/2026-11-11-navigation-route-distance.md)：已将快照中有字段证据的 U32 全程值接入 `5201 p7`，缺值先清旧状态再恢复当前转向信息。1240 项回归、14 项原接收源码合同检查及小米 Kotlin 编译通过；Apple 原 p7/U32 调用链已核。CarWith 的真实全程来源仍缺失，现场 -1 米尚未解决，未构建/安装 APK。[验证记录](evidence/navigation-route-distance-validation-20261111.json)。
+
+新增[CarWithEnhance 导航记录核查](spec/carwith-enhance-navigation-search-20261111.md)：已查主分支、两个公开歌词分支、15 个可达提交和公开 Issues；未找到全程里程/HUD 导航出口。NavigationRouting 命中属于媒体页面跳转，Xposed/DexKit 可作为进程内定位参考，尚未补出真实里程来源。
+
+新增[从本地 MiAuto 反查 CarWith 导航出口](spec/miauto-carwith-navigation-20261111.md)：直接读取用户 checkout，闭合 ICCOA 导航回调与 CarWith `sendNavigationInfoToCar → 消息 11`。两份原 APK 的九字段 schema 相同；提示距离、空标题和应用 ID 没有提供真实全程里程。MiAuto 当前接收流尚无仪表映射，运行 SDK 不在仓库；全程剩余里程仍未修复。
+
+新增[CarWith 车载高德全程里程出口核查](spec/carwith-amap-route-boundary-20261111.md)：已核用户提供的高德 17.02.0.2010 / 170200，确认使用 CarWith 车载高德界面。两份原 APK 的 19 个方法复核通过；标准 UCar 导航提示的扩展标题为 null，CarWith HUD 缺少全程字段，DataBus 仍是空标题，getValue 返回 null。继续查实际 CarWith 会话的其他出口，全程里程尚未修复。
+
+新增[日志 6 与原厂/GalaxyPlay 仪表信息流](spec/cluster-navigation-flow-20261111.md)：用户确认 245 米机动距离已显示；全程剩余里程显示 -1 米，高德实际约 19 公里。已定位当前缺少路线距离来源/发布，GalaxyPlay 将缺值转为 -1；全程里程尚未修复。可选 HUD 音乐文字替换与地图注册/引导路径已核。新增诊断，1222 项 Android 回归、小米编译、41 处 APK 方法核查与 3 项日志导出回归通过。
+
 新增 [GalaxyPlay 目标 / DiPlay 源码对接](spec/receiver-source-interop-20261111.md)：手机为 Android 17、DiPlay 未开启，实际目标仍为 GalaxyPlay。导航缓存容量与接听键分别提交；12 项原接收源码联测和共 1627 项回归通过，五品牌编译及小米 Release lint 通过。音乐保持已确认行为；完整通话元数据、蜂窝双向音频与实际仪表输出继续待验收。
 
 1. [研究基线与证据规则](spec/00-baseline.md)

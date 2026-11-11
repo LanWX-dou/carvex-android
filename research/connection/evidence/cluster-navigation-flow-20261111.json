@@ -1,0 +1,1141 @@
+{
+  "schema": 2,
+  "date": "2026-11-11",
+  "scope": "Original APK byte identity and sanitized sender log; no vehicle acceptance claim",
+  "apks": {
+    "galaxyplay": {
+      "sha256": "f106680faa27be5a9dfc4a9a9b9cb59239e4512c5f3b73b64cebfec47bb023e6",
+      "bytes": 23629025,
+      "dex": {
+        "classes4.dex": {
+          "sha256": "6be6ff33e5452ef5373ae5b637f3f28db649d7dcdec76daab65e327425d414c0",
+          "methods": {
+            "Lcom/shilapi/xcertplay/GalaxyHudMediaText;.select": {
+              "code_item": "0xf7348",
+              "prototype": "(Lcom/shilapi/xcertplay/hud/CarPlayNavigationSnapshot;)Lcom/shilapi/xcertplay/hud/CarPlayNavigationSnapshot;",
+              "code_units": 82,
+              "insns_sha256": "395dcf7f6a4864284e22b9fef96b0caef653e496a7b15ed32204f4255ec8a41e"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyHudMediaText;.media": {
+              "code_item": "0xf7524",
+              "prototype": "(Lcom/shilapi/xcertplay/media/CarPlayNowPlaying;)V",
+              "code_units": 55,
+              "insns_sha256": "dc5371403a324959451c3ce3733f137b68232ff51357a1804d315f06b1bfce55"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyMediaKeys;.attach": {
+              "code_item": "0xfc5a8",
+              "prototype": "(Landroid/content/Context;Lcom/shilapi/xcertplay/orchestration/CarPlayController;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V",
+              "code_units": 324,
+              "insns_sha256": "c5b746a6e4f5bc03881d4a249d7bbfdb888f26f85c688a7f34d85c7f0c854ff9"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyMediaKeys;.attach$lambda$5": {
+              "code_item": "0xfbd6c",
+              "prototype": "(Lcom/shilapi/xcertplay/orchestration/CarPlayController;Lcom/shilapi/xcertplay/hud/CarPlayNavigationSnapshot;)Lkotlin/Unit;",
+              "code_units": 41,
+              "insns_sha256": "20e145c304c73f5d19a6e6c8b88d9cf35bd0814ac13883b6272941e5c3d05e2e"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyMediaKeys;.attach$lambda$7": {
+              "code_item": "0xfbddc",
+              "prototype": "(Lcom/shilapi/xcertplay/orchestration/CarPlayController;Z)Lkotlin/Unit;",
+              "code_units": 65,
+              "insns_sha256": "9125a69731f5c2972b10298781cdf0b837e903139a8ca4e8f2e95b02794ceb4e"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyMediaKeys;.attach$lambda$9": {
+              "code_item": "0xfbe7c",
+              "prototype": "(Lcom/shilapi/xcertplay/orchestration/CarPlayController;Lcom/shilapi/xcertplay/media/CarPlayNowPlaying;)Lkotlin/Unit;",
+              "code_units": 134,
+              "insns_sha256": "dc1148dec377fd0a14bcb70f729f41e76aa3cff9a1f5c6c63687024912b53143"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyMediaKeys;.onConnection": {
+              "code_item": "0xfc9dc",
+              "prototype": "(Landroid/content/Context;Lcom/shilapi/xcertplay/orchestration/CarPlayController;ZLkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function3;Lcom/shilapi/xcertplay/L7MediaCommandDispatcher;)V",
+              "code_units": 248,
+              "insns_sha256": "44904c64b317aeb6b9b0d55cbf25b5fb0cba99f446da1a963826fb90f9f8fd97"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyMediaKeys;.onMediaAudioChanged": {
+              "code_item": "0xfcbf8",
+              "prototype": "(Lcom/shilapi/xcertplay/orchestration/CarPlayController;Z)V",
+              "code_units": 56,
+              "insns_sha256": "7e811b14e09a3b0184bceeba65c09f2d0d7ff3b4ee4d9d687bf9f36ec3a5dcb2"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyMediaKeys;.startNavigation": {
+              "code_item": "0xfd170",
+              "prototype": "(Landroid/content/Context;Lcom/shilapi/xcertplay/orchestration/CarPlayController;)V",
+              "code_units": 156,
+              "insns_sha256": "f6df8be4f7b620d3f86e93232f7036b55b71f43e31a88e26a713b3de8b506e0e"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyMediaKeys;.startNavigation$lambda$34": {
+              "code_item": "0xfba60",
+              "prototype": "(Lcom/shilapi/xcertplay/orchestration/CarPlayController;)Z",
+              "code_units": 22,
+              "insns_sha256": "75473c0df08e69d3989695e1279bc40f8cb04c5e3745ae286b1fe4dd8eaa5798"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyMediaKeys$startNavigation$3;.run": {
+              "code_item": "0xfb290",
+              "prototype": "()V",
+              "code_units": 459,
+              "insns_sha256": "e2faa2bcf6a4b03092ddb2298a9745318b0f9c3358a748a9fde6099b6233b7dc"
+            },
+            "Lcom/shilapi/xcertplay/L7NavigationSession;.update": {
+              "code_item": "0x16a6dc",
+              "prototype": "(Lcom/shilapi/xcertplay/hud/CarPlayNavigationSnapshot;)V",
+              "code_units": 46,
+              "insns_sha256": "df32f86d491642cfe13f994f82d760b8e3a1931ab059da27d67f406126605d27"
+            },
+            "Lcom/shilapi/xcertplay/L7NavigationSession;.publish": {
+              "code_item": "0x16a49c",
+              "prototype": "()V",
+              "code_units": 201,
+              "insns_sha256": "140e26f18a49b408bfea21c8f4e5148f5ce7bd8464fe7cc53a420a08670be86e"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyOemNavigation;.guidance": {
+              "code_item": "0x1086a4",
+              "prototype": "(Lcom/shilapi/xcertplay/hud/CarPlayNavigationSnapshot;)V",
+              "code_units": 16,
+              "insns_sha256": "47c734142f3aadf53e442d17af327679918a06608c3a02c4e7ec3db6a21ad215"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyOemNavigation;.register": {
+              "code_item": "0x1087e8",
+              "prototype": "(Lcom/shilapi/xcertplay/GalaxyNavigationBackend;J)V",
+              "code_units": 60,
+              "insns_sha256": "f901d620ca79c01f5267e6bf5ae6a67277d9dfcce1118192daef80165400318a"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyOemNavigation;.flush": {
+              "code_item": "0x1083d0",
+              "prototype": "()V",
+              "code_units": 316,
+              "insns_sha256": "99f87ba38dd220778b108f0c98abc6cec6b3a82779945ca98c5066cd77f2ad26"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyNavigationSdk;.register": {
+              "code_item": "0x1054b4",
+              "prototype": "(Lkotlin/jvm/functions/Function1;)I",
+              "code_units": 220,
+              "insns_sha256": "21732a81449c69d4eaece7062bb8effc397e6ae5334060d63507dfe7d4ed6828"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyNavigationSdk;.register$lambda$4": {
+              "code_item": "0x1057a0",
+              "prototype": "(Lcom/shilapi/xcertplay/GalaxyNavigationSdk;JLkotlin/jvm/functions/Function1;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;",
+              "code_units": 77,
+              "insns_sha256": "a6744cb30e2c8c947d2dcb135df93684113911fea1d8d035c3271d13f8411483"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyNavigationSdk;.respond": {
+              "code_item": "0x105b30",
+              "prototype": "(Ljava/lang/String;[Ljava/lang/Object;)V",
+              "code_units": 129,
+              "insns_sha256": "9f592083b021d759c6abb11f15ed32717885fcb9954091dc5be044ebe90a5b00"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyNavigationSdk$register$callback$1$1$1;.guidance": {
+              "code_item": "0x105330",
+              "prototype": "(Lcom/shilapi/xcertplay/hud/CarPlayNavigationSnapshot;I)V",
+              "code_units": 83,
+              "insns_sha256": "5b2cb35b6e9bb071f3e1583ac95ee6526c1dd6dcbf62053dc0aad41d37c89a49"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyNavigationSdk$register$callback$1$1$1;.status": {
+              "code_item": "0x1053e8",
+              "prototype": "(I)V",
+              "code_units": 57,
+              "insns_sha256": "d8ad620557a1b966efee84046faeb0ee97df9c66b9b326eb8d213070228b21d0"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyNavigationContract;.<init>": {
+              "code_item": "0x1034d0",
+              "prototype": "(Ljava/lang/ClassLoader;Lkotlin/jvm/functions/Function1;)V",
+              "code_units": 990,
+              "insns_sha256": "f859b7458868e1187c6f8bb426fb42498bcbef58e5eec19af151c6f0de324651"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyNavigationContract;.model": {
+              "code_item": "0x102f44",
+              "prototype": "(Lcom/shilapi/xcertplay/hud/CarPlayNavigationSnapshot;Ljava/lang/String;I)Ljava/lang/Object;",
+              "code_units": 510,
+              "insns_sha256": "ba3ab1fda00ecbbc558459994e23128012f3e559064d0fcd2d51aab20a223c0c"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyNavigationContract;.number": {
+              "code_item": "0x102cdc",
+              "prototype": "(Ljava/lang/Long;)I",
+              "code_units": 41,
+              "insns_sha256": "b38ee8428acfb610061018a1d7f8229496f830de061843ff73c34eb2bc02d8ed"
+            },
+            "Lcom/shilapi/xcertplay/GalaxyNavigationIcons;.fromCarPlay": {
+              "code_item": "0x103f04",
+              "prototype": "(Ljava/lang/Integer;I)I",
+              "code_units": 587,
+              "insns_sha256": "8409556dcd8ef3de7af146d536a33acae028138107a8daecb9a2fca6ff472984"
+            }
+          }
+        },
+        "classes5.dex": {
+          "sha256": "f95e85d5a28a1de6f0c6e57b721ff6f7fee6004da82022e848f5ed5296eda91a",
+          "methods": {
+            "Lcom/shilapi/xcertplay/orchestration/CarPlayController;.hasActiveSession": {
+              "code_item": "0x43d7c",
+              "prototype": "()Z",
+              "code_units": 12,
+              "insns_sha256": "a0895f36704b381ac8846cce1fef48c79392ef09ba4df174c1a676db62ecd797"
+            }
+          }
+        }
+      },
+      "manifest_sha256": "3db5c72813ad030316dcccdaf1f61ff60402b44569e9d495924f8d415d77b818",
+      "dex_count": 18,
+      "native_libraries": {
+        "lib/arm64-v8a/libandroidx.graphics.path.so": {
+          "bytes": 10096,
+          "sha256": "41e9a793c43a0f4fddb19e33f346bace464f30f888ba7b9eaf96294ea115bfb6"
+        },
+        "lib/arm64-v8a/libgalaxy_codec_probe.so": {
+          "bytes": 11040,
+          "sha256": "304788c1077645eadd63c68ae28b1bf9f707eeb71ba4d5f98701ef792d5f1b75"
+        },
+        "lib/arm64-v8a/liblocal_hotspot_radio.so": {
+          "bytes": 5248,
+          "sha256": "289c1e1de6296382cef57ec4b38aa47af8c7879ca4925d25f1e29aeb54bd67a6"
+        },
+        "lib/arm64-v8a/libxcertplay_i2c.so": {
+          "bytes": 7464,
+          "sha256": "f653a9de9cdb4d8acce40ebb01dc129c9f205e06b736607ca5572d60642a8500"
+        },
+        "lib/armeabi-v7a/libandroidx.graphics.path.so": {
+          "bytes": 7252,
+          "sha256": "41399eba6fc2a60f6f14642375c1824f3cf25eb8fec7397d753730a3ceda3e2b"
+        },
+        "lib/armeabi-v7a/libgalaxy_codec_probe.so": {
+          "bytes": 9368,
+          "sha256": "12577ac5a26038dba4e674975231768b6a1ba81d4548beab62e854bd51b123b0"
+        },
+        "lib/armeabi-v7a/liblocal_hotspot_radio.so": {
+          "bytes": 3628,
+          "sha256": "2e89845466b3b1a32235cd91512bc9ecf3b20ff94825a6146cf8e083547a0501"
+        },
+        "lib/armeabi-v7a/libxcertplay_i2c.so": {
+          "bytes": 5076,
+          "sha256": "4343cf3bfe1bf88a18e1b0761c0519ccf7a789213606a1e0810d4a02eae16d70"
+        },
+        "lib/x86/libandroidx.graphics.path.so": {
+          "bytes": 9284,
+          "sha256": "eb0570b41fd3bff25d8204a967c03bd7550719e768b791f680cc40cbe35f29af"
+        },
+        "lib/x86_64/libandroidx.graphics.path.so": {
+          "bytes": 10760,
+          "sha256": "4e56c996f13670e70082658de7880c4020eabf4f25e43387f88ed78a713fc9f0"
+        },
+        "lib/x86_64/libgalaxy_codec_probe.so": {
+          "bytes": 11824,
+          "sha256": "7e8449a66a8dcdc4942c82c77f602d2601b54e31c761ef55244c67aaca8632d8"
+        },
+        "lib/x86_64/liblocal_hotspot_radio.so": {
+          "bytes": 5328,
+          "sha256": "9bc9f85ac6dd89fcd81fe39749db1d902b241535374ae2ba129126d14b94be97"
+        },
+        "lib/x86_64/libxcertplay_i2c.so": {
+          "bytes": 7560,
+          "sha256": "1fcec995c9e56034255b709a07d344ccbcde83b2c4d4160a8106944ae601a0ad"
+        }
+      }
+    },
+    "factory": {
+      "sha256": "043866ed5e719fd1617ef57f4060c0fd7030e02df70433c5f5d0f518bf1946af",
+      "bytes": 36651564,
+      "dex": {
+        "classes.dex": {
+          "sha256": "86dc7915ceab2717bcfbcd2dd695cb1917924c46147685992081f733c003a17c",
+          "methods": {
+            "Lcom/geely/carlinkservice/listener/PhoneDataListener;.onMusicInfoReceived": {
+              "code_item": "0x47daa4",
+              "prototype": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$MusicInfo;)V",
+              "code_units": 73,
+              "insns_sha256": "1f025fb4c003fa44e9f45bcb01bc45b5729d371bf5ce80f32fc1a52ee03b4526"
+            },
+            "Lcom/geely/carlinkservice/listener/PhoneDataListener;.onNavigationInfoReceived": {
+              "code_item": "0x47db48",
+              "prototype": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$NavigationInfo;)V",
+              "code_units": 100,
+              "insns_sha256": "24446c04e61f89580c0fe928adabdc44405b33195f2ba65b1a34bedd1c57fe14"
+            },
+            "Lcom/geely/handler/MediaCtrlMgr;.startCarlinkMusic": {
+              "code_item": "0x487058",
+              "prototype": "(Lcom/ucar/vehiclesdk/UCarCommon$MusicInfo;)V",
+              "code_units": 88,
+              "insns_sha256": "65b6c53b77dbe8d2292c8410f83f0ddce00e1eec44a1447024332dde24e1b9e7"
+            },
+            "Lcom/geely/handler/NavCtrMgr;.cancelNavi": {
+              "code_item": "0x48850c",
+              "prototype": "()V",
+              "code_units": 21,
+              "insns_sha256": "fc5c6d981bdad3699178e3cfdb3dbec0889e239eac47732711c594a1a96250ad"
+            },
+            "Lcom/ecarx/eas/framework/sdk/navi/MapAPI;.registerMapClient": {
+              "code_item": "0x3b715c",
+              "prototype": "(Lcom/ecarx/eas/mapsdk/model/MapClientInfo;[Lcom/ecarx/eas/mapsdk/interfaces/IBaseMapClient;)Lcom/ecarx/sdk/navi/model/base/NaviBaseModel;",
+              "code_units": 2,
+              "insns_sha256": "ce2ff1e7819b86272810a0693bcc0f8c4f16cfd0e2ea63423abd4d7d3d234fab"
+            },
+            "Lcom/ecarx/eas/framework/sdk/navi/MapAPI;.unregisterMapClient": {
+              "code_item": "0x3b7188",
+              "prototype": "([Lcom/ecarx/eas/mapsdk/interfaces/IBaseMapClient;)V",
+              "code_units": 1,
+              "insns_sha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+            },
+            "Lcom/ecarx/eas/framework/sdk/navi/MapAPIProxy;.registerMapClient": {
+              "code_item": "0x3b6f58",
+              "prototype": "(Lcom/ecarx/eas/mapsdk/model/MapClientInfo;[Lcom/ecarx/eas/mapsdk/interfaces/IBaseMapClient;)Lcom/ecarx/sdk/navi/model/base/NaviBaseModel;",
+              "code_units": 20,
+              "insns_sha256": "581be80a0f8a1d80275fa8c33e4fc52515fe685a903b3e9e79d9da2f148f0e29"
+            },
+            "Lcom/ecarx/eas/framework/sdk/navi/EASMapAPI;.registerMapClient": {
+              "code_item": "0x3b56a8",
+              "prototype": "(Lcom/ecarx/eas/mapsdk/model/MapClientInfo;[Lcom/ecarx/eas/mapsdk/interfaces/IBaseMapClient;)Lcom/ecarx/sdk/navi/model/base/NaviBaseModel;",
+              "code_units": 61,
+              "insns_sha256": "84ba37f7c38131f53f76fcee98b2bd1057a39f34163d3a0e4fa186ad81a58e55"
+            },
+            "Lcom/ecarx/eas/mapsdk/model/response/GuidingInfoModel;.setNextTurnDistance": {
+              "code_item": "0x3d1828",
+              "prototype": "(I)Lcom/ecarx/eas/mapsdk/model/response/GuidingInfoModel;",
+              "code_units": 3,
+              "insns_sha256": "3625884d1224131b978228a471b2e224a13d7b1a813cc8b1ae1d9a1a284e501e"
+            },
+            "Lcom/ecarx/eas/mapsdk/model/response/GuidingInfoModel;.setRemainDistance": {
+              "code_item": "0x3d1888",
+              "prototype": "(I)Lcom/ecarx/eas/mapsdk/model/response/GuidingInfoModel;",
+              "code_units": 3,
+              "insns_sha256": "397c38b34c99f2c50ee1b460d0c5fb59fb0e23458b01219e907c0997753081bf"
+            },
+            "Lcom/ecarx/eas/mapsdk/model/response/GuidingInfoModel;.setRemainTime": {
+              "code_item": "0x3d1900",
+              "prototype": "(I)Lcom/ecarx/eas/mapsdk/model/response/GuidingInfoModel;",
+              "code_units": 3,
+              "insns_sha256": "12a7d94f959f519c5b5b63e29fc718d48944992a11ab07ac9aa0a9c4532e1c9b"
+            },
+            "Lcom/ecarx/eas/mapsdk/model/response/GuidingInfoModel;.setTurnIconId": {
+              "code_item": "0x3d19c0",
+              "prototype": "(I)Lcom/ecarx/eas/mapsdk/model/response/GuidingInfoModel;",
+              "code_units": 3,
+              "insns_sha256": "0bae14d5e6d71df7f4a99bd3f39ed54d215576ec13d0c95db4e2661ce709d391"
+            },
+            "Lcom/ecarx/eas/mapsdk/model/response/GuidingInfoModel;.writeToParcel": {
+              "code_item": "0x3d2208",
+              "prototype": "(Landroid/os/Parcel;I)V",
+              "code_units": 159,
+              "insns_sha256": "2024db4f14657d4763ece783fde88d34e85edfeb1f4827c13f69b3840b45cac9"
+            }
+          }
+        },
+        "classes3.dex": {
+          "sha256": "e6e7717ae4f4b62841719f50ff6183bffeeb8d1d69e2fbdfb683ea37d88cf107",
+          "methods": {
+            "Lcom/ucar/vehiclesdk/UCarAdapter;.a": {
+              "code_item": "0x1f798c",
+              "prototype": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$NavigationInfo;)V",
+              "code_units": 25,
+              "insns_sha256": "12f4de1fb95432f07ecbb1826ba02b09af2f6a528e755aa6b5b71a08b9bc681b"
+            },
+            "Lcom/ucarsink/sink/natives/SinkNative;.<clinit>": {
+              "code_item": "0x226d40",
+              "prototype": "()V",
+              "code_units": 6,
+              "insns_sha256": "33602f59f2f775aaaa8a4e2aa6a609ff4932de4c09489e3ed10e75f6ccb676d9"
+            }
+          }
+        }
+      },
+      "manifest_sha256": "b869ad7d0029136b2c74edabba8102c8673193759d2e4244ed70d052d9fd6a19",
+      "dex_count": 3,
+      "native_libraries": {
+        "lib/arm64-v8a/libovmsink.so": {
+          "bytes": 1227208,
+          "sha256": "b9a8bfb2e51a6ebc2b0817f1fc9fc3b178632164f51676c968a0136bfdaa34ac"
+        }
+      }
+    }
+  },
+  "device_log": {
+    "sha256": "6ec5f8c173da36f2640142a9975e7595f86da9867e30b683936a4377a14c6061",
+    "bytes": 578277,
+    "line_count": 4416,
+    "build": {
+      "version_code": 20028,
+      "version_name": "20028",
+      "type": "release"
+    },
+    "sessions": {
+      "30059791": {
+        "normalized": [],
+        "navigation_packets": [],
+        "music_transport_completions": [
+          {
+            "line": 433,
+            "utc": "2026-11-11T05:42:37.009833Z"
+          }
+        ],
+        "runtime_navigation_starts": []
+      },
+      "549f0b99": {
+        "normalized": [
+          {
+            "line": 2427,
+            "utc": "2026-11-11T05:44:20.281070Z",
+            "source": "xiaomi",
+            "binding": 1,
+            "route": 1,
+            "revision": 1,
+            "lifecycle": "ACTIVE"
+          },
+          {
+            "line": 2516,
+            "utc": "2026-11-11T05:44:21.692542Z",
+            "source": "xiaomi",
+            "binding": 1,
+            "route": 1,
+            "revision": 2,
+            "lifecycle": "ACTIVE"
+          },
+          {
+            "line": 2540,
+            "utc": "2026-11-11T05:44:21.808907Z",
+            "source": "xiaomi",
+            "binding": 1,
+            "route": 1,
+            "revision": 3,
+            "lifecycle": "ACTIVE"
+          },
+          {
+            "line": 3661,
+            "utc": "2026-11-11T05:45:04.585459Z",
+            "source": "xiaomi",
+            "binding": 1,
+            "route": 1,
+            "revision": 4,
+            "lifecycle": "ACTIVE"
+          },
+          {
+            "line": 3790,
+            "utc": "2026-11-11T05:45:14.028585Z",
+            "source": "xiaomi",
+            "binding": 1,
+            "route": 1,
+            "revision": 5,
+            "lifecycle": "ACTIVE"
+          }
+        ],
+        "navigation_packets": [
+          {
+            "line": 2428,
+            "utc": "2026-11-11T05:44:20.283042Z",
+            "id": "5201",
+            "tx": 71,
+            "field_count": 2,
+            "fields": {
+              "0": 42,
+              "1": 0
+            },
+            "transport_completed": true
+          },
+          {
+            "line": 2433,
+            "utc": "2026-11-11T05:44:20.287140Z",
+            "id": "5201",
+            "tx": 72,
+            "field_count": 2,
+            "fields": {
+              "0": 42,
+              "1": 1
+            },
+            "transport_completed": true
+          },
+          {
+            "line": 2517,
+            "utc": "2026-11-11T05:44:21.694913Z",
+            "id": "5202",
+            "tx": 75,
+            "field_count": 3,
+            "fields": {
+              "0": 42,
+              "1": 1,
+              "3": 1
+            },
+            "transport_completed": true
+          },
+          {
+            "line": 2523,
+            "utc": "2026-11-11T05:44:21.708610Z",
+            "id": "5201",
+            "tx": 76,
+            "field_count": 4,
+            "fields": {
+              "0": 42,
+              "1": 1,
+              "10": 245,
+              "13": 1
+            },
+            "transport_completed": true
+          },
+          {
+            "line": 2541,
+            "utc": "2026-11-11T05:44:21.826064Z",
+            "id": "5202",
+            "tx": 77,
+            "field_count": 3,
+            "fields": {
+              "0": 42,
+              "1": 1,
+              "3": 1
+            },
+            "transport_completed": true
+          },
+          {
+            "line": 2551,
+            "utc": "2026-11-11T05:44:21.831537Z",
+            "id": "5201",
+            "tx": 78,
+            "field_count": 4,
+            "fields": {
+              "0": 42,
+              "1": 1,
+              "10": 245,
+              "13": 1
+            },
+            "transport_completed": true
+          },
+          {
+            "line": 3662,
+            "utc": "2026-11-11T05:45:04.585841Z",
+            "id": "5202",
+            "tx": 129,
+            "field_count": 3,
+            "fields": {
+              "0": 42,
+              "1": 1,
+              "3": 1
+            },
+            "transport_completed": true
+          },
+          {
+            "line": 3668,
+            "utc": "2026-11-11T05:45:04.588042Z",
+            "id": "5201",
+            "tx": 130,
+            "field_count": 4,
+            "fields": {
+              "0": 42,
+              "1": 1,
+              "10": 245,
+              "13": 1
+            },
+            "transport_completed": true
+          },
+          {
+            "line": 3791,
+            "utc": "2026-11-11T05:45:14.029248Z",
+            "id": "5202",
+            "tx": 131,
+            "field_count": 3,
+            "fields": {
+              "0": 42,
+              "1": 1,
+              "3": 1
+            },
+            "transport_completed": true
+          },
+          {
+            "line": 3797,
+            "utc": "2026-11-11T05:45:14.034491Z",
+            "id": "5201",
+            "tx": 132,
+            "field_count": 4,
+            "fields": {
+              "0": 42,
+              "1": 1,
+              "10": 245,
+              "13": 1
+            },
+            "transport_completed": true
+          }
+        ],
+        "music_transport_completions": [
+          {
+            "line": 975,
+            "utc": "2026-11-11T05:43:17.808261Z"
+          },
+          {
+            "line": 1111,
+            "utc": "2026-11-11T05:43:29.178668Z"
+          },
+          {
+            "line": 1114,
+            "utc": "2026-11-11T05:43:29.179039Z"
+          },
+          {
+            "line": 1125,
+            "utc": "2026-11-11T05:43:29.226830Z"
+          },
+          {
+            "line": 1151,
+            "utc": "2026-11-11T05:43:29.239735Z"
+          },
+          {
+            "line": 1164,
+            "utc": "2026-11-11T05:43:29.246786Z"
+          },
+          {
+            "line": 1194,
+            "utc": "2026-11-11T05:43:29.279284Z"
+          },
+          {
+            "line": 1206,
+            "utc": "2026-11-11T05:43:29.285654Z"
+          },
+          {
+            "line": 1252,
+            "utc": "2026-11-11T05:43:38.229868Z"
+          },
+          {
+            "line": 1285,
+            "utc": "2026-11-11T05:43:39.228528Z"
+          },
+          {
+            "line": 1299,
+            "utc": "2026-11-11T05:43:40.224936Z"
+          },
+          {
+            "line": 1315,
+            "utc": "2026-11-11T05:43:41.225680Z"
+          },
+          {
+            "line": 1329,
+            "utc": "2026-11-11T05:43:42.222939Z"
+          },
+          {
+            "line": 1345,
+            "utc": "2026-11-11T05:43:43.223203Z"
+          },
+          {
+            "line": 1364,
+            "utc": "2026-11-11T05:43:44.222694Z"
+          },
+          {
+            "line": 1404,
+            "utc": "2026-11-11T05:43:44.845310Z"
+          },
+          {
+            "line": 1416,
+            "utc": "2026-11-11T05:43:44.852028Z"
+          },
+          {
+            "line": 1446,
+            "utc": "2026-11-11T05:43:44.903663Z"
+          },
+          {
+            "line": 1457,
+            "utc": "2026-11-11T05:43:44.905302Z"
+          },
+          {
+            "line": 1499,
+            "utc": "2026-11-11T05:43:44.962537Z"
+          },
+          {
+            "line": 1502,
+            "utc": "2026-11-11T05:43:44.962915Z"
+          },
+          {
+            "line": 1523,
+            "utc": "2026-11-11T05:43:45.955140Z"
+          },
+          {
+            "line": 1538,
+            "utc": "2026-11-11T05:43:46.955513Z"
+          },
+          {
+            "line": 1554,
+            "utc": "2026-11-11T05:43:47.956090Z"
+          },
+          {
+            "line": 1572,
+            "utc": "2026-11-11T05:43:48.955975Z"
+          },
+          {
+            "line": 1588,
+            "utc": "2026-11-11T05:43:49.954720Z"
+          },
+          {
+            "line": 1602,
+            "utc": "2026-11-11T05:43:50.956437Z"
+          },
+          {
+            "line": 1619,
+            "utc": "2026-11-11T05:43:51.955101Z"
+          },
+          {
+            "line": 1633,
+            "utc": "2026-11-11T05:43:52.955555Z"
+          },
+          {
+            "line": 1653,
+            "utc": "2026-11-11T05:43:53.958880Z"
+          },
+          {
+            "line": 1666,
+            "utc": "2026-11-11T05:43:54.958187Z"
+          },
+          {
+            "line": 1684,
+            "utc": "2026-11-11T05:43:55.956748Z"
+          },
+          {
+            "line": 1698,
+            "utc": "2026-11-11T05:43:56.957026Z"
+          },
+          {
+            "line": 1715,
+            "utc": "2026-11-11T05:43:57.956872Z"
+          },
+          {
+            "line": 1741,
+            "utc": "2026-11-11T05:43:58.961569Z"
+          },
+          {
+            "line": 1752,
+            "utc": "2026-11-11T05:43:58.967215Z"
+          },
+          {
+            "line": 1774,
+            "utc": "2026-11-11T05:43:59.531799Z"
+          },
+          {
+            "line": 1789,
+            "utc": "2026-11-11T05:44:00.529450Z"
+          },
+          {
+            "line": 1805,
+            "utc": "2026-11-11T05:44:01.531838Z"
+          },
+          {
+            "line": 1819,
+            "utc": "2026-11-11T05:44:02.530378Z"
+          },
+          {
+            "line": 1860,
+            "utc": "2026-11-11T05:44:03.353334Z"
+          },
+          {
+            "line": 1877,
+            "utc": "2026-11-11T05:44:03.359183Z"
+          },
+          {
+            "line": 1880,
+            "utc": "2026-11-11T05:44:03.364752Z"
+          },
+          {
+            "line": 1918,
+            "utc": "2026-11-11T05:44:03.452141Z"
+          },
+          {
+            "line": 1922,
+            "utc": "2026-11-11T05:44:03.456163Z"
+          },
+          {
+            "line": 1958,
+            "utc": "2026-11-11T05:44:03.517557Z"
+          },
+          {
+            "line": 1969,
+            "utc": "2026-11-11T05:44:03.520305Z"
+          },
+          {
+            "line": 2002,
+            "utc": "2026-11-11T05:44:04.483234Z"
+          },
+          {
+            "line": 2019,
+            "utc": "2026-11-11T05:44:04.494090Z"
+          },
+          {
+            "line": 2022,
+            "utc": "2026-11-11T05:44:04.494493Z"
+          },
+          {
+            "line": 2051,
+            "utc": "2026-11-11T05:44:05.473014Z"
+          },
+          {
+            "line": 2078,
+            "utc": "2026-11-11T05:44:06.474214Z"
+          },
+          {
+            "line": 2090,
+            "utc": "2026-11-11T05:44:06.475954Z"
+          },
+          {
+            "line": 2106,
+            "utc": "2026-11-11T05:44:07.473422Z"
+          },
+          {
+            "line": 2125,
+            "utc": "2026-11-11T05:44:08.491602Z"
+          },
+          {
+            "line": 2141,
+            "utc": "2026-11-11T05:44:09.506680Z"
+          },
+          {
+            "line": 2155,
+            "utc": "2026-11-11T05:44:10.505055Z"
+          },
+          {
+            "line": 2183,
+            "utc": "2026-11-11T05:44:11.488590Z"
+          },
+          {
+            "line": 2195,
+            "utc": "2026-11-11T05:44:11.490678Z"
+          },
+          {
+            "line": 2211,
+            "utc": "2026-11-11T05:44:12.486243Z"
+          },
+          {
+            "line": 2250,
+            "utc": "2026-11-11T05:44:13.493951Z"
+          },
+          {
+            "line": 2264,
+            "utc": "2026-11-11T05:44:13.496472Z"
+          },
+          {
+            "line": 2290,
+            "utc": "2026-11-11T05:44:14.491357Z"
+          },
+          {
+            "line": 2303,
+            "utc": "2026-11-11T05:44:14.493344Z"
+          },
+          {
+            "line": 2325,
+            "utc": "2026-11-11T05:44:15.485762Z"
+          },
+          {
+            "line": 2341,
+            "utc": "2026-11-11T05:44:16.486878Z"
+          },
+          {
+            "line": 2356,
+            "utc": "2026-11-11T05:44:17.487903Z"
+          },
+          {
+            "line": 2374,
+            "utc": "2026-11-11T05:44:18.487215Z"
+          },
+          {
+            "line": 2420,
+            "utc": "2026-11-11T05:44:19.493090Z"
+          },
+          {
+            "line": 2423,
+            "utc": "2026-11-11T05:44:19.494042Z"
+          },
+          {
+            "line": 2460,
+            "utc": "2026-11-11T05:44:20.505216Z"
+          },
+          {
+            "line": 2513,
+            "utc": "2026-11-11T05:44:21.507587Z"
+          },
+          {
+            "line": 2576,
+            "utc": "2026-11-11T05:44:22.518825Z"
+          },
+          {
+            "line": 2592,
+            "utc": "2026-11-11T05:44:23.504082Z"
+          },
+          {
+            "line": 2610,
+            "utc": "2026-11-11T05:44:24.504233Z"
+          },
+          {
+            "line": 2626,
+            "utc": "2026-11-11T05:44:25.521808Z"
+          },
+          {
+            "line": 2658,
+            "utc": "2026-11-11T05:44:26.509101Z"
+          },
+          {
+            "line": 2670,
+            "utc": "2026-11-11T05:44:26.512248Z"
+          },
+          {
+            "line": 2730,
+            "utc": "2026-11-11T05:44:27.504652Z"
+          },
+          {
+            "line": 2761,
+            "utc": "2026-11-11T05:44:28.509048Z"
+          },
+          {
+            "line": 2773,
+            "utc": "2026-11-11T05:44:28.512014Z"
+          },
+          {
+            "line": 2818,
+            "utc": "2026-11-11T05:44:29.510051Z"
+          },
+          {
+            "line": 2822,
+            "utc": "2026-11-11T05:44:29.510553Z"
+          },
+          {
+            "line": 2840,
+            "utc": "2026-11-11T05:44:30.505679Z"
+          },
+          {
+            "line": 2856,
+            "utc": "2026-11-11T05:44:31.506049Z"
+          },
+          {
+            "line": 2874,
+            "utc": "2026-11-11T05:44:32.523452Z"
+          },
+          {
+            "line": 2902,
+            "utc": "2026-11-11T05:44:33.510076Z"
+          },
+          {
+            "line": 2914,
+            "utc": "2026-11-11T05:44:33.513309Z"
+          },
+          {
+            "line": 2934,
+            "utc": "2026-11-11T05:44:34.505861Z"
+          },
+          {
+            "line": 2962,
+            "utc": "2026-11-11T05:44:35.510444Z"
+          },
+          {
+            "line": 2974,
+            "utc": "2026-11-11T05:44:35.513693Z"
+          },
+          {
+            "line": 2991,
+            "utc": "2026-11-11T05:44:36.507393Z"
+          },
+          {
+            "line": 3018,
+            "utc": "2026-11-11T05:44:37.524655Z"
+          },
+          {
+            "line": 3037,
+            "utc": "2026-11-11T05:44:38.522156Z"
+          },
+          {
+            "line": 3053,
+            "utc": "2026-11-11T05:44:39.524005Z"
+          },
+          {
+            "line": 3070,
+            "utc": "2026-11-11T05:44:40.522720Z"
+          },
+          {
+            "line": 3109,
+            "utc": "2026-11-11T05:44:40.827573Z"
+          },
+          {
+            "line": 3121,
+            "utc": "2026-11-11T05:44:40.836860Z"
+          },
+          {
+            "line": 3145,
+            "utc": "2026-11-11T05:44:40.962506Z"
+          },
+          {
+            "line": 3158,
+            "utc": "2026-11-11T05:44:40.974460Z"
+          },
+          {
+            "line": 3183,
+            "utc": "2026-11-11T05:44:41.012355Z"
+          },
+          {
+            "line": 3195,
+            "utc": "2026-11-11T05:44:41.024151Z"
+          },
+          {
+            "line": 3212,
+            "utc": "2026-11-11T05:44:42.016969Z"
+          },
+          {
+            "line": 3225,
+            "utc": "2026-11-11T05:44:42.995611Z"
+          },
+          {
+            "line": 3247,
+            "utc": "2026-11-11T05:44:43.995687Z"
+          },
+          {
+            "line": 3278,
+            "utc": "2026-11-11T05:44:44.115722Z"
+          },
+          {
+            "line": 3292,
+            "utc": "2026-11-11T05:44:45.016497Z"
+          },
+          {
+            "line": 3317,
+            "utc": "2026-11-11T05:44:46.353953Z"
+          },
+          {
+            "line": 3332,
+            "utc": "2026-11-11T05:44:47.320224Z"
+          },
+          {
+            "line": 3366,
+            "utc": "2026-11-11T05:44:48.332063Z"
+          },
+          {
+            "line": 3379,
+            "utc": "2026-11-11T05:44:48.353552Z"
+          },
+          {
+            "line": 3397,
+            "utc": "2026-11-11T05:44:49.340751Z"
+          },
+          {
+            "line": 3424,
+            "utc": "2026-11-11T05:44:51.100379Z"
+          },
+          {
+            "line": 3440,
+            "utc": "2026-11-11T05:44:52.068548Z"
+          },
+          {
+            "line": 3454,
+            "utc": "2026-11-11T05:44:53.068143Z"
+          },
+          {
+            "line": 3482,
+            "utc": "2026-11-11T05:44:53.481153Z"
+          },
+          {
+            "line": 3505,
+            "utc": "2026-11-11T05:44:54.068492Z"
+          },
+          {
+            "line": 3548,
+            "utc": "2026-11-11T05:44:58.292572Z"
+          },
+          {
+            "line": 3574,
+            "utc": "2026-11-11T05:44:59.284783Z"
+          },
+          {
+            "line": 3590,
+            "utc": "2026-11-11T05:45:00.283861Z"
+          },
+          {
+            "line": 3621,
+            "utc": "2026-11-11T05:45:01.273762Z"
+          },
+          {
+            "line": 3635,
+            "utc": "2026-11-11T05:45:01.299685Z"
+          },
+          {
+            "line": 3975,
+            "utc": "2026-11-11T05:45:46.240947Z"
+          },
+          {
+            "line": 4001,
+            "utc": "2026-11-11T05:45:47.226853Z"
+          },
+          {
+            "line": 4028,
+            "utc": "2026-11-11T05:45:48.226351Z"
+          },
+          {
+            "line": 4045,
+            "utc": "2026-11-11T05:45:49.227276Z"
+          },
+          {
+            "line": 4059,
+            "utc": "2026-11-11T05:45:50.228496Z"
+          },
+          {
+            "line": 4075,
+            "utc": "2026-11-11T05:45:51.229887Z"
+          },
+          {
+            "line": 4110,
+            "utc": "2026-11-11T05:45:52.019850Z"
+          },
+          {
+            "line": 4124,
+            "utc": "2026-11-11T05:45:52.241980Z"
+          },
+          {
+            "line": 4170,
+            "utc": "2026-11-11T05:45:53.319609Z"
+          },
+          {
+            "line": 4179,
+            "utc": "2026-11-11T05:45:53.331820Z"
+          },
+          {
+            "line": 4205,
+            "utc": "2026-11-11T05:45:53.371423Z"
+          },
+          {
+            "line": 4220,
+            "utc": "2026-11-11T05:45:53.383708Z"
+          },
+          {
+            "line": 4232,
+            "utc": "2026-11-11T05:45:53.390070Z"
+          },
+          {
+            "line": 4260,
+            "utc": "2026-11-11T05:45:53.436646Z"
+          },
+          {
+            "line": 4270,
+            "utc": "2026-11-11T05:45:53.450100Z"
+          },
+          {
+            "line": 4293,
+            "utc": "2026-11-11T05:45:54.426727Z"
+          },
+          {
+            "line": 4307,
+            "utc": "2026-11-11T05:45:55.441533Z"
+          },
+          {
+            "line": 4326,
+            "utc": "2026-11-11T05:45:56.443921Z"
+          },
+          {
+            "line": 4341,
+            "utc": "2026-11-11T05:45:57.422531Z"
+          },
+          {
+            "line": 4373,
+            "utc": "2026-11-11T05:45:57.565220Z"
+          },
+          {
+            "line": 4388,
+            "utc": "2026-11-11T05:45:58.420271Z"
+          }
+        ],
+        "runtime_navigation_starts": [
+          {
+            "line": 1001,
+            "utc": "2026-11-11T05:43:17.815419Z",
+            "link": 4,
+            "subscription": 5,
+            "components": [
+              42
+            ],
+            "options": 3
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "scope": "Original producer/IPC byte boundaries; no route-distance fix or runtime claim",
+  "amap": {
+    "apk_sha256": "768d62ee138771c0f1d1a08c68151a0e41f66bda2ada1c559e07ebb09b65857c",
+    "bytes": 177749534,
+    "manifest_identity_review": {
+      "package": "com.autonavi.minimap",
+      "version_name": "17.02.0.2010",
+      "version_code": 170200
+    },
+    "dex": {
+      "classes4.dex": {
+        "sha256": "c418b6640cca20b3a2cb11310af778e19fcc77532cccd1aaf7b13e748bcda2b3",
+        "bytes": 12719648,
+        "methods": {
+          "0x27c038": {
+            "descriptor": "Lcom/amap/bundle/drive/carprojection/module/AjxModuleCarProjection;",
+            "method": "getIAjxModuleCar",
+            "prototype": "()Lcom/amap/bundle/drive/carprojection/module/IAjxModuleCar;",
+            "code_units": 67,
+            "registers": 4,
+            "inputs": 1,
+            "outputs": 2,
+            "insns_sha256": "19a73a6a7990594908ced941ed813d9513813098f834ed5ef7cfa314de3caf42"
+          },
+          "0x27d8e0": {
+            "descriptor": "Lcom/amap/bundle/drive/carprojection/module/AjxModuleCarProjection;",
+            "method": "notifyOngoingCard",
+            "prototype": "(Ljava/lang/String;)V",
+            "code_units": 33,
+            "registers": 4,
+            "inputs": 2,
+            "outputs": 3,
+            "insns_sha256": "9b7bc87a9222f53741c890aab12a159013797bbe50805b2db5505f9cc7f69a46"
+          },
+          "0x5ab8c0": {
+            "descriptor": "Lmv;",
+            "method": "notifyOngoingCard",
+            "prototype": "(Lcom/autonavi/minimap/ajx3/context/IAjxContext;Ljava/lang/String;)V",
+            "code_units": 167,
+            "registers": 7,
+            "inputs": 3,
+            "outputs": 3,
+            "insns_sha256": "0c98d158936d9c6dc50bcaaa7b3c0fd914a739a9ee2b6d37b34f9435d9800def"
+          },
+          "0x3f6d08": {
+            "descriptor": "Lew6;",
+            "method": "d",
+            "prototype": "()V",
+            "code_units": 93,
+            "registers": 6,
+            "inputs": 1,
+            "outputs": 4,
+            "insns_sha256": "831c7136b1a5b2352809b14b448784578c7d1aa18d2342b37d609438be72e813"
+          }
+        }
+      },
+      "classes8.dex": {
+        "sha256": "7a240ac61f6580cc33248028b7acf30d0806bc0e5808461b304a0b77a2b301d5",
+        "bytes": 11515468,
+        "methods": {
+          "0x35eed8": {
+            "descriptor": "Lgv6;",
+            "method": "a",
+            "prototype": "()Landroid/os/Bundle;",
+            "code_units": 67,
+            "registers": 4,
+            "inputs": 1,
+            "outputs": 3,
+            "insns_sha256": "5dc8f549a4b3dca7994786db264a88f761d3e9f41f17f06d00ecbb7a4914945f"
+          },
+          "0x2d5614": {
+            "descriptor": "Lcom/ucar/map/connect/UCarMapConnector;",
+            "method": "f",
+            "prototype": "(Lgv6;)V",
+            "code_units": 100,
+            "registers": 9,
+            "inputs": 2,
+            "outputs": 3,
+            "insns_sha256": "544015da552356b2086e0c026d7a33d6dac7e99f53283eeb846c9afd4030a92a"
+          },
+          "0x482204": {
+            "descriptor": "Lcom/ucar/map/IUCarMapService$Stub$Proxy;",
+            "method": "showNavInfo",
+            "prototype": "(Landroid/os/Bundle;Landroid/os/Bundle;)V",
+            "code_units": 34,
+            "registers": 6,
+            "inputs": 3,
+            "outputs": 5,
+            "insns_sha256": "fbcc806be8f09535ba3cb207e9dca572f70344cbc37d5a6a5c04f5ac0c56e2d5"
+          }
+        }
+      }
+    },
+    "manifest_sha256": "ddb11d941f6d7204373a32fe52686364642a76244eb64e0bb3dcb586923cfa7e",
+    "dex_count": 8
+  },
+  "carwith": {
+    "apk_sha256": "c7888ec5018b4e279ed3d3395b8c855d2a3571f06ae26b96849a61ad6dbef00e",
+    "bytes": 55952823,
+    "manifest_identity_review": {
+      "package": "com.miui.carlink",
+      "version_name": "4.0.14-20260801"
+    },
+    "dex": {
+      "classes2.dex": {
+        "sha256": "ea8f6236622c61ce75f503f4099d5b61ae1a83fb03e7bf564fab75b205577b06",
+        "bytes": 6323024,
+        "methods": {
+          "0x1af960": {
+            "descriptor": "Lcom/carwith/launcher/map/m$a;",
+            "method": "a",
+            "prototype": "(Ljava/lang/String;Lcom/ucar/map/UCarMapInfo;)V",
+            "code_units": 108,
+            "registers": 13,
+            "inputs": 3,
+            "outputs": 10,
+            "insns_sha256": "5889e014a105f47843eda5ed0ddd59f6c91bb8190816ba697dd5e81fb24b9432"
+          },
+          "0x16fc3c": {
+            "descriptor": "Lcom/carwith/launcher/LauncherDataBusClient;",
+            "method": "E",
+            "prototype": "(ZLjava/lang/String;Landroid/graphics/drawable/Icon;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+            "code_units": 430,
+            "registers": 30,
+            "inputs": 10,
+            "outputs": 9,
+            "insns_sha256": "dcbf56f3c49d18a0e12b6dc8ffe4b50a5a5ec8b5d3e21d2a9d872d5804d7e91d"
+          },
+          "0x16ffc4": {
+            "descriptor": "Lcom/carwith/launcher/LauncherDataBusClient;",
+            "method": "F",
+            "prototype": "(ZLjava/lang/String;Lcom/ucar/map/UCarMapInfo;)V",
+            "code_units": 61,
+            "registers": 14,
+            "inputs": 4,
+            "outputs": 10,
+            "insns_sha256": "5ad136febc196c4b6ffbfe49b8e6ab41a56353cd2c5ee6e53a18b006575f0b11"
+          },
+          "0x170050": {
+            "descriptor": "Lcom/carwith/launcher/LauncherDataBusClient;",
+            "method": "G",
+            "prototype": "(Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;)V",
+            "code_units": 34,
+            "registers": 3,
+            "inputs": 2,
+            "outputs": 2,
+            "insns_sha256": "a96c9c1732b613834c5ae133d19be1b7be2dc5e6c707c45c1c312748e4dd99b4"
+          }
+        }
+      },
+      "classes4.dex": {
+        "sha256": "f41c43e358d96cffea567c325ff34f308e13a1bf4816c9a9bea3632fd755bd60",
+        "bytes": 3095392,
+        "methods": {
+          "0x10f6bc": {
+            "descriptor": "Lcom/miui/carlink/databus/DataBusService$DataBusServiceStub;",
+            "method": "sendNavigationInfoToCar",
+            "prototype": "(Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;)Z",
+            "code_units": 13,
+            "registers": 2,
+            "inputs": 2,
+            "outputs": 2,
+            "insns_sha256": "e913bfe175b485963b5b121c45f2b7ace1ba4571b27d88c135f8a38d33d2f30c"
+          },
+          "0x10efc0": {
+            "descriptor": "Lcom/miui/carlink/databus/ControlChannel;",
+            "method": "sendNavigationInfo",
+            "prototype": "(Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;)V",
+            "code_units": 126,
+            "registers": 4,
+            "inputs": 2,
+            "outputs": 3,
+            "insns_sha256": "4db43daba89735efcb3a482771e47d8acca764637ff82d5b3b8864a4008fa4cd"
+          },
+          "0x11c4d0": {
+            "descriptor": "Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;",
+            "method": "<init>",
+            "prototype": "(Z[BLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+            "code_units": 23,
+            "registers": 10,
+            "inputs": 9,
+            "outputs": 1,
+            "insns_sha256": "18b26bdf1d1b99b017bbd83d76933664a67548d4b96894260de00c8fc1bf8624"
+          }
+        }
+      },
+      "classes5.dex": {
+        "sha256": "84bb963ce310114668a38370167075b517d2ba0344f3224e330ada366c1948db",
+        "bytes": 8058612,
+        "methods": {
+          "0x1bf334": {
+            "descriptor": "Lcom/ucar/map/UCarMapInfo;",
+            "method": "fromBundle",
+            "prototype": "(Landroid/os/Bundle;)Lcom/ucar/map/UCarMapInfo;",
+            "code_units": 100,
+            "registers": 10,
+            "inputs": 1,
+            "outputs": 2,
+            "insns_sha256": "ec0551ecf86cd7a388eb1005154a59827b830c2d7164897c74a8d1a7443c2954"
+          },
+          "0x1c06f0": {
+            "descriptor": "Lcom/ucar/map/service/mapservice/IUCarMapServiceStub;",
+            "method": "showNavInfo",
+            "prototype": "(Landroid/os/Bundle;Landroid/os/Bundle;)V",
+            "code_units": 67,
+            "registers": 5,
+            "inputs": 3,
+            "outputs": 3,
+            "insns_sha256": "e0e6eb1dd688cf6bd96ae701241e835a4841e254b69be5e97df8d5e4e9dacbdf"
+          },
+          "0x1c02b0": {
+            "descriptor": "Lcom/ucar/map/service/mapservice/IUCarMapServiceStub;",
+            "method": "getValue",
+            "prototype": "(ILandroid/os/Bundle;)Landroid/os/Bundle;",
+            "code_units": 2,
+            "registers": 3,
+            "inputs": 3,
+            "outputs": 0,
+            "insns_sha256": "29372a6d02c7422f70504ebdc64b95896155fc743fc07407ec9fe13879d10f49"
+          }
+        }
+      },
+      "classes8.dex": {
+        "sha256": "e93702bc9d84cf90eee4d5cdf49773dfc66a536b539a2003fd9e7a28a294fc81",
+        "bytes": 3840584,
+        "methods": {
+          "0x1594b8": {
+            "descriptor": "Lnet/easyconn/carman/bridge/BMapBridge;",
+            "method": "<init>",
+            "prototype": "()V",
+            "code_units": 44,
+            "registers": 3,
+            "inputs": 1,
+            "outputs": 2,
+            "insns_sha256": "8dd021e654d05a8a25cb3f4946e6df367477118af864ce77fb7cc494938cd79e"
+          },
+          "0x1593dc": {
+            "descriptor": "Lnet/easyconn/carman/bridge/BMapBridge;",
+            "method": "getNavigationInfo",
+            "prototype": "()Lnet/easyconn/carman/bridge/BMapBridge$NavigationInfo;",
+            "code_units": 11,
+            "registers": 1,
+            "inputs": 1,
+            "outputs": 1,
+            "insns_sha256": "5f7a2972cbe7e66c3350121a67e721b8b9e0d101ef3988ff5f95535740571efd"
+          }
+        }
+      }
+    },
+    "manifest_sha256": "6562a889ac9ef7dff4a41dd5b35e148232751cbc2ab74bb86ebb831d2cf35d66",
+    "dex_count": 8
+  },
+  "instruction_checks": {
+    "amap_ucar_titles_explicit_null": true,
+    "carwith_ucar_get_value_returns_null": true
+  }
+}

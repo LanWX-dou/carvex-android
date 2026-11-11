@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "date": "2026-11-11",
   "scope": "Original byte identity; no universal meter/order or vehicle claim",
   "apple": {
@@ -51,6 +51,31 @@
           "end": "0x100177d80",
           "bytes": 1472,
           "sha256": "7a9e3f407e2648dda64898878b0eb9ad235b122a100381c5e63659cdbee2aabc"
+        },
+        "0x100003b18": {
+          "end": "0x100003b28",
+          "bytes": 16,
+          "sha256": "ed8c9708f61d32c7f2690d829a3c917e4a6eace8f04b1f4cc76ec9fc7f3018c6"
+        },
+        "0x100012120": {
+          "end": "0x100012138",
+          "bytes": 24,
+          "sha256": "40175de90616cd579ac2d4f1ffc7cdbdbd9df7e8e0bcf118803726d8f2e87d66"
+        },
+        "0x1000153bc": {
+          "end": "0x1000153cc",
+          "bytes": 16,
+          "sha256": "7744d130713863beda7251d0babf73de7d415040129adce557e1613b49954fab"
+        },
+        "0x100004650": {
+          "end": "0x1000046d0",
+          "bytes": 128,
+          "sha256": "7591fb73ecc7e11816f50d975140c953d48667cf4987197344b5a00366de0f76"
+        },
+        "0x1000046d0": {
+          "end": "0x100004734",
+          "bytes": 100,
+          "sha256": "0a8d6b708409c3fecb24e90f49095976870bdf9796a6c921a3281326d0f07c46"
         }
       },
       "route_key_jump_targets": {
@@ -95,6 +120,38 @@
         "11": "0x1000de40c",
         "12": "0x1000de358",
         "13": "0x1000de370"
+      },
+      "route_u32_paths": {
+        "distance_remaining": {
+          "parameter": 7,
+          "encoder_start": "0x100002b94",
+          "payload_bytes": 4,
+          "encoder_sha256": "eb07351a0debdd9965bf971a87cb7b1035fb81849786f8cae787362107511889",
+          "call_targets": {
+            "0x100002b98": "0x100003b18",
+            "0x100002b9c": "0x100012120",
+            "0x100002ba0": "0x1000153bc",
+            "0x100002ba8": "0x100004650"
+          },
+          "key_jump_target": "0x100003c4c",
+          "key_slot": "0x10023dc10",
+          "key_branch_sha256": "b2ade9222696ad3ea0b77354b1f909a206d8fad68aa29d1eb1d561e17676b7ef"
+        },
+        "distance_to_maneuver": {
+          "parameter": 10,
+          "encoder_start": "0x100002bfc",
+          "payload_bytes": 4,
+          "encoder_sha256": "75f748e84178fe1441536a6d1a837796cfa2c940f48c1ebec80144405b22772b",
+          "call_targets": {
+            "0x100002c00": "0x100003b18",
+            "0x100002c04": "0x100012120",
+            "0x100002c08": "0x1000153bc",
+            "0x100002c10": "0x100004650"
+          },
+          "key_jump_target": "0x100003bb0",
+          "key_slot": "0x10023dc28",
+          "key_branch_sha256": "91ed73e98f6dc31b9bec1d81691d0f55f2ab7706b5c3a96bb3b313a1a26e8b7d"
+        }
       }
     },
     "CarPlay": {

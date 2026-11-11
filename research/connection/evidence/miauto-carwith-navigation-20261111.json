@@ -1,0 +1,928 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "scope": "MiAuto source/stub signatures, original CarWith producer and separate factory SDK receiver",
+  "miauto": {
+    "commit": "8ee36108ab74a58cbb0ef5c305e813a5f2fd8f41",
+    "files": {
+      "app/src/main/java/com/miauto/app/IccoaManager.java": "a9757895c642212a08e442ba23f5678a0273aa4e39edf4caa4b13245e7053cba",
+      "app/src/main/java/com/andrerinas/openheadunit/connection/IcocaBridge.kt": "334b1095965c3484d8485d6cbcc54c3c6a6d3dfcf579c5c59ff5b27b26c93628",
+      "app/libs/README.md": "9d5367e66320c5cc41c6bf4eb0b627af38eb702cb1515f4c35f4b4da96769fc6",
+      "app/stubs/icar-sdk-stubs.jar": "224fc1f5014f50a8f1670eb42f3c80625a2978ba5299fde2480a3c49eee2c242"
+    },
+    "runtime_dex_present": false,
+    "stub_classes": {
+      "com/ucar/vehiclesdk/UCarCommon$NavigationInfo.class": {
+        "fields": [],
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getDirectionIcon",
+            "descriptor": "()[B",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getDistance",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getDistanceUnit",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getOperation",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getTitle1",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getTitle2",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getWhere",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "isNavigating",
+            "descriptor": "()Z",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "toString",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          }
+        ]
+      },
+      "com/ucar/vehiclesdk/IPhoneDataListener.class": {
+        "fields": [],
+        "methods": [
+          {
+            "name": "getAudioAttributesByType",
+            "descriptor": "(Lcom/ucar/vehiclesdk/UCarCommon$AudioType;)Lcom/ucar/vehiclesdk/UCarCommon$AudioAttributes;",
+            "access_flags": 1025,
+            "has_constant_value": false
+          },
+          {
+            "name": "onAppListStateChanged",
+            "descriptor": "(Ljava/lang/String;Ljava/util/List;Lcom/ucar/vehiclesdk/UCarCommon$AppListState;)V",
+            "access_flags": 1025,
+            "has_constant_value": false
+          },
+          {
+            "name": "onAppStateChanged",
+            "descriptor": "(Ljava/lang/String;IZIILcom/ucar/vehiclesdk/UCarCommon$AppState;)V",
+            "access_flags": 1025,
+            "has_constant_value": false
+          },
+          {
+            "name": "onAudioFocusChanged",
+            "descriptor": "(Lcom/ucar/vehiclesdk/UCarCommon$AudioType;I)V",
+            "access_flags": 1025,
+            "has_constant_value": false
+          },
+          {
+            "name": "onCallInfoReceived",
+            "descriptor": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$CallInfo;)V",
+            "access_flags": 1025,
+            "has_constant_value": false
+          },
+          {
+            "name": "onMusicInfoReceived",
+            "descriptor": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$MusicInfo;)V",
+            "access_flags": 1025,
+            "has_constant_value": false
+          },
+          {
+            "name": "onNavigationInfoReceived",
+            "descriptor": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$NavigationInfo;)V",
+            "access_flags": 1025,
+            "has_constant_value": false
+          },
+          {
+            "name": "onPOIReceived",
+            "descriptor": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$POIAddress;)V",
+            "access_flags": 1025,
+            "has_constant_value": false
+          },
+          {
+            "name": "onPhoneStateInfoReceived",
+            "descriptor": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$PhoneStateInfo;)V",
+            "access_flags": 1025,
+            "has_constant_value": false
+          }
+        ]
+      },
+      "com/ucar/databus/proto/UCarProto$NotifyNavigationInfo.class": {
+        "fields": [
+          {
+            "name": "DIRECTIONICON_FIELD_NUMBER",
+            "descriptor": "I",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "DISTANCEUNIT_FIELD_NUMBER",
+            "descriptor": "I",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "DISTANCE_FIELD_NUMBER",
+            "descriptor": "I",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "ISNAVIGATING_FIELD_NUMBER",
+            "descriptor": "I",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "OPERATION_FIELD_NUMBER",
+            "descriptor": "I",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "TITLE1_FIELD_NUMBER",
+            "descriptor": "I",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "TITLE2_FIELD_NUMBER",
+            "descriptor": "I",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "WHERE_FIELD_NUMBER",
+            "descriptor": "I",
+            "access_flags": 9,
+            "has_constant_value": false
+          }
+        ],
+        "methods": [
+          {
+            "name": "<init>",
+            "descriptor": "()V",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getDefaultInstance",
+            "descriptor": "()Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "newBuilder",
+            "descriptor": "()Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo$Builder;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "newBuilder",
+            "descriptor": "(Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo$Builder;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseDelimitedFrom",
+            "descriptor": "(Ljava/io/InputStream;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseDelimitedFrom",
+            "descriptor": "(Ljava/io/InputStream;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "(Lcom/google/protobuf/ByteString;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "(Lcom/google/protobuf/ByteString;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "(Lcom/google/protobuf/CodedInputStream;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "(Lcom/google/protobuf/CodedInputStream;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "(Ljava/io/InputStream;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "(Ljava/io/InputStream;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "(Ljava/nio/ByteBuffer;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "(Ljava/nio/ByteBuffer;Lcom/google/protobuf/ExtensionRegistryLite;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "([B)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parseFrom",
+            "descriptor": "([BLcom/google/protobuf/ExtensionRegistryLite;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "parser",
+            "descriptor": "()Lcom/google/protobuf/Parser;",
+            "access_flags": 9,
+            "has_constant_value": false
+          },
+          {
+            "name": "getDirectionIcon",
+            "descriptor": "()Lcom/google/protobuf/ByteString;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getDistance",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getDistanceBytes",
+            "descriptor": "()Lcom/google/protobuf/ByteString;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getDistanceUnit",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getDistanceUnitBytes",
+            "descriptor": "()Lcom/google/protobuf/ByteString;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getIsNavigating",
+            "descriptor": "()Z",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getOperation",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getOperationBytes",
+            "descriptor": "()Lcom/google/protobuf/ByteString;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getTitle1",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getTitle1Bytes",
+            "descriptor": "()Lcom/google/protobuf/ByteString;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getTitle2",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getTitle2Bytes",
+            "descriptor": "()Lcom/google/protobuf/ByteString;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getWhere",
+            "descriptor": "()Ljava/lang/String;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "getWhereBytes",
+            "descriptor": "()Lcom/google/protobuf/ByteString;",
+            "access_flags": 1,
+            "has_constant_value": false
+          },
+          {
+            "name": "<clinit>",
+            "descriptor": "()V",
+            "access_flags": 8,
+            "has_constant_value": false
+          }
+        ]
+      }
+    }
+  },
+  "carwith": {
+    "apk_sha256": "c7888ec5018b4e279ed3d3395b8c855d2a3571f06ae26b96849a61ad6dbef00e",
+    "dex_name": "classes4.dex",
+    "dex_sha256": "f41c43e358d96cffea567c325ff34f308e13a1bf4816c9a9bea3632fd755bd60",
+    "message_id": 11,
+    "fields": {
+      "static": {
+        "DEFAULT_INSTANCE": {
+          "type": "Lcom/miui/carlink/databus/proto/UCarProto$NotifyNavigationInfo;",
+          "access_flags": 26,
+          "value": null
+        },
+        "DIRECTIONICON_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 2
+        },
+        "DISTANCEUNIT_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 4
+        },
+        "DISTANCE_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 3
+        },
+        "ID_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 9
+        },
+        "ISNAVIGATING_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 1
+        },
+        "OPERATION_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 5
+        },
+        "PARSER": {
+          "type": "Lcom/google/protobuf/Parser;",
+          "access_flags": 74,
+          "value": null
+        },
+        "TITLE1_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 7
+        },
+        "TITLE2_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 8
+        },
+        "WHERE_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 6
+        }
+      },
+      "instance": {
+        "bitField0_": {
+          "type": "I",
+          "access_flags": 2
+        },
+        "directionIcon_": {
+          "type": "Lcom/google/protobuf/ByteString;",
+          "access_flags": 2
+        },
+        "distanceUnit_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "distance_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "id_": {
+          "type": "I",
+          "access_flags": 2
+        },
+        "isNavigating_": {
+          "type": "Z",
+          "access_flags": 2
+        },
+        "operation_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "title1_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "title2_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "where_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        }
+      }
+    },
+    "proto_schema_codepoints": [
+      0,
+      9,
+      0,
+      1,
+      1,
+      9,
+      9,
+      0,
+      0,
+      0,
+      1,
+      7,
+      2,
+      10,
+      3,
+      520,
+      4,
+      520,
+      5,
+      520,
+      6,
+      520,
+      7,
+      520,
+      8,
+      520,
+      9,
+      4100,
+      0
+    ],
+    "methods": {
+      "0x10efc0": {
+        "owner": "Lcom/miui/carlink/databus/ControlChannel;",
+        "name": "sendNavigationInfo",
+        "prototype": "(Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;)V",
+        "code_units": 126,
+        "insns_sha256": "4db43daba89735efcb3a482771e47d8acca764637ff82d5b3b8864a4008fa4cd"
+      },
+      "0x10f6bc": {
+        "owner": "Lcom/miui/carlink/databus/DataBusService$DataBusServiceStub;",
+        "name": "sendNavigationInfoToCar",
+        "prototype": "(Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;)Z",
+        "code_units": 13,
+        "insns_sha256": "e913bfe175b485963b5b121c45f2b7ace1ba4571b27d88c135f8a38d33d2f30c"
+      },
+      "0x144120": {
+        "owner": "Lcom/miui/carlink/databus/proto/UCarProto$NotifyNavigationInfo;",
+        "name": "dynamicMethod",
+        "prototype": "(Lcom/google/protobuf/GeneratedMessageLite$MethodToInvoke;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;",
+        "code_units": 120,
+        "insns_sha256": "2c14da34c9fd89ae0d0d7f8a079265a45288eab3e26494f881b2b4329b585cd6"
+      },
+      "0x16bcdc": {
+        "owner": "Lda/j;",
+        "name": "B",
+        "prototype": "(Lcom/miui/carlink/databus/proto/UCarProto$NotifyNavigationInfo;)Lda/k;",
+        "code_units": 25,
+        "insns_sha256": "646d566b700ddb1cc19f979d8172cd9584254c17a72517036a6259b3fa8a3971"
+      }
+    }
+  },
+  "factory": {
+    "apk_sha256": "043866ed5e719fd1617ef57f4060c0fd7030e02df70433c5f5d0f518bf1946af",
+    "dex_name": "classes3.dex",
+    "dex_sha256": "e6e7717ae4f4b62841719f50ff6183bffeeb8d1d69e2fbdfb683ea37d88cf107",
+    "message_id": 11,
+    "fields": {
+      "static": {
+        "DEFAULT_INSTANCE": {
+          "type": "Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+          "access_flags": 26,
+          "value": null
+        },
+        "DIRECTIONICON_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 2
+        },
+        "DISTANCEUNIT_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 4
+        },
+        "DISTANCE_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 3
+        },
+        "ID_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 9
+        },
+        "ISNAVIGATING_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 1
+        },
+        "OPERATION_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 5
+        },
+        "PARSER": {
+          "type": "Lcom/google/protobuf/Parser;",
+          "access_flags": 74,
+          "value": null
+        },
+        "TITLE1_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 7
+        },
+        "TITLE2_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 8
+        },
+        "WHERE_FIELD_NUMBER": {
+          "type": "I",
+          "access_flags": 25,
+          "value": 6
+        }
+      },
+      "instance": {
+        "bitField0_": {
+          "type": "I",
+          "access_flags": 2
+        },
+        "directionIcon_": {
+          "type": "Lcom/google/protobuf/ByteString;",
+          "access_flags": 2
+        },
+        "distanceUnit_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "distance_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "id_": {
+          "type": "I",
+          "access_flags": 2
+        },
+        "isNavigating_": {
+          "type": "Z",
+          "access_flags": 2
+        },
+        "operation_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "title1_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "title2_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        },
+        "where_": {
+          "type": "Ljava/lang/String;",
+          "access_flags": 2
+        }
+      }
+    },
+    "proto_schema_codepoints": [
+      0,
+      9,
+      0,
+      1,
+      1,
+      9,
+      9,
+      0,
+      0,
+      0,
+      1,
+      7,
+      2,
+      10,
+      3,
+      520,
+      4,
+      520,
+      5,
+      520,
+      6,
+      520,
+      7,
+      520,
+      8,
+      520,
+      9,
+      4100,
+      0
+    ],
+    "methods": {
+      "0x1e9e18": {
+        "owner": "Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+        "name": "dynamicMethod",
+        "prototype": "(Lcom/google/protobuf/GeneratedMessageLite$MethodToInvoke;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;",
+        "code_units": 148,
+        "insns_sha256": "7452a9071332a15c9083841f09ecdb49c6e1e8e620206a9ad7f4c78f728c4461"
+      },
+      "0x220214": {
+        "owner": "Lcom/ucar/vehiclesdk/t2;",
+        "name": "H",
+        "prototype": "(Lcom/ucar/vehiclesdk/u2;)Lcom/ucar/databus/proto/UCarProto$NotifyNavigationInfo;",
+        "code_units": 31,
+        "insns_sha256": "eb606363b5a19de6c603313fcbe9face21a28c51f15ae245954a7fde97947364"
+      },
+      "0x218954": {
+        "owner": "Lcom/ucar/vehiclesdk/l0;",
+        "name": "r",
+        "prototype": "(Lcom/ucar/vehiclesdk/u2;)V",
+        "code_units": 174,
+        "insns_sha256": "467dcbdb3d2493833b5649ff07c03120e70449b1fda879c7183bf6a60bc134fd"
+      },
+      "0x2185a0": {
+        "owner": "Lcom/ucar/vehiclesdk/l0;",
+        "name": "l",
+        "prototype": "(Lcom/ucar/vehiclesdk/u2;)V",
+        "code_units": 102,
+        "insns_sha256": "fec0acd063dc4b13b54d7bc346f6f188df30f7839ae70a44349cb5997b2330f1"
+      },
+      "0x1fc088": {
+        "owner": "Lcom/ucar/vehiclesdk/UCarCommon$NavigationInfo;",
+        "name": "<init>",
+        "prototype": "(Z[BLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+        "code_units": 22,
+        "insns_sha256": "ee6303b07b578c545651a01638b603b23056b7ded223f644b003c00f4a372b20"
+      },
+      "0x1f3bf8": {
+        "owner": "Lcom/ucar/vehiclesdk/UCarAdapter$d;",
+        "name": "a",
+        "prototype": "(Lcom/ucar/vehiclesdk/UCarCommon$NavigationInfo;)V",
+        "code_units": 10,
+        "insns_sha256": "4191db1bdbff7f06db5e5e2f81074ef863cd6afbbcbd05dc8381618612109569"
+      },
+      "0x1f7038": {
+        "owner": "Lcom/ucar/vehiclesdk/UCarAdapter;",
+        "name": "a",
+        "prototype": "(Lcom/ucar/vehiclesdk/UCarAdapter;Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$NavigationInfo;)V",
+        "code_units": 4,
+        "insns_sha256": "83a9bc0865a2f939aad05e2a1badcb2ce4857bd389146837df18dedeb6b23e23"
+      },
+      "0x1f821c": {
+        "owner": "Lcom/ucar/vehiclesdk/UCarAdapter;",
+        "name": "b",
+        "prototype": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$NavigationInfo;)V",
+        "code_units": 14,
+        "insns_sha256": "e9bc8df4b7520b87c8d92b8eb1d7f03051752cd4a4092a465490f1ca1264018c"
+      },
+      "0x1f32f0": {
+        "owner": "Lcom/ucar/vehiclesdk/UCarAdapter$$ExternalSyntheticLambda3;",
+        "name": "run",
+        "prototype": "()V",
+        "code_units": 10,
+        "insns_sha256": "4bacd15ef8424bb48040db458cfeba9fdfcf6a5e6972c5697c6dc8788157cfca"
+      },
+      "0x1f69a8": {
+        "owner": "Lcom/ucar/vehiclesdk/UCarAdapter;",
+        "name": "$r8$lambda$F9vZXGRn2fRuRpHxFkA5MCyET2Y",
+        "prototype": "(Lcom/ucar/vehiclesdk/UCarAdapter;Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$NavigationInfo;)V",
+        "code_units": 4,
+        "insns_sha256": "a415af4b1f59421893691b9db1013cab2df9d0a577f4a36e8ba8f0ebc6e1f70e"
+      },
+      "0x1f798c": {
+        "owner": "Lcom/ucar/vehiclesdk/UCarAdapter;",
+        "name": "a",
+        "prototype": "(Ljava/lang/String;Lcom/ucar/vehiclesdk/UCarCommon$NavigationInfo;)V",
+        "code_units": 25,
+        "insns_sha256": "12f4de1fb95432f07ecbb1826ba02b09af2f6a528e755aa6b5b71a08b9bc681b"
+      }
+    }
+  },
+  "carwith_ucar_boundary": {
+    "apk_sha256": "c7888ec5018b4e279ed3d3395b8c855d2a3571f06ae26b96849a61ad6dbef00e",
+    "bytes": 55952823,
+    "manifest_identity_review": {
+      "package": "com.miui.carlink",
+      "version_name": "4.0.14-20260801"
+    },
+    "dex": {
+      "classes2.dex": {
+        "sha256": "ea8f6236622c61ce75f503f4099d5b61ae1a83fb03e7bf564fab75b205577b06",
+        "bytes": 6323024,
+        "methods": {
+          "0x1af960": {
+            "descriptor": "Lcom/carwith/launcher/map/m$a;",
+            "method": "a",
+            "prototype": "(Ljava/lang/String;Lcom/ucar/map/UCarMapInfo;)V",
+            "code_units": 108,
+            "registers": 13,
+            "inputs": 3,
+            "outputs": 10,
+            "insns_sha256": "5889e014a105f47843eda5ed0ddd59f6c91bb8190816ba697dd5e81fb24b9432"
+          },
+          "0x16fc3c": {
+            "descriptor": "Lcom/carwith/launcher/LauncherDataBusClient;",
+            "method": "E",
+            "prototype": "(ZLjava/lang/String;Landroid/graphics/drawable/Icon;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+            "code_units": 430,
+            "registers": 30,
+            "inputs": 10,
+            "outputs": 9,
+            "insns_sha256": "dcbf56f3c49d18a0e12b6dc8ffe4b50a5a5ec8b5d3e21d2a9d872d5804d7e91d"
+          },
+          "0x16ffc4": {
+            "descriptor": "Lcom/carwith/launcher/LauncherDataBusClient;",
+            "method": "F",
+            "prototype": "(ZLjava/lang/String;Lcom/ucar/map/UCarMapInfo;)V",
+            "code_units": 61,
+            "registers": 14,
+            "inputs": 4,
+            "outputs": 10,
+            "insns_sha256": "5ad136febc196c4b6ffbfe49b8e6ab41a56353cd2c5ee6e53a18b006575f0b11"
+          },
+          "0x170050": {
+            "descriptor": "Lcom/carwith/launcher/LauncherDataBusClient;",
+            "method": "G",
+            "prototype": "(Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;)V",
+            "code_units": 34,
+            "registers": 3,
+            "inputs": 2,
+            "outputs": 2,
+            "insns_sha256": "a96c9c1732b613834c5ae133d19be1b7be2dc5e6c707c45c1c312748e4dd99b4"
+          }
+        }
+      },
+      "classes4.dex": {
+        "sha256": "f41c43e358d96cffea567c325ff34f308e13a1bf4816c9a9bea3632fd755bd60",
+        "bytes": 3095392,
+        "methods": {
+          "0x10f6bc": {
+            "descriptor": "Lcom/miui/carlink/databus/DataBusService$DataBusServiceStub;",
+            "method": "sendNavigationInfoToCar",
+            "prototype": "(Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;)Z",
+            "code_units": 13,
+            "registers": 2,
+            "inputs": 2,
+            "outputs": 2,
+            "insns_sha256": "e913bfe175b485963b5b121c45f2b7ace1ba4571b27d88c135f8a38d33d2f30c"
+          },
+          "0x10efc0": {
+            "descriptor": "Lcom/miui/carlink/databus/ControlChannel;",
+            "method": "sendNavigationInfo",
+            "prototype": "(Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;)V",
+            "code_units": 126,
+            "registers": 4,
+            "inputs": 2,
+            "outputs": 3,
+            "insns_sha256": "4db43daba89735efcb3a482771e47d8acca764637ff82d5b3b8864a4008fa4cd"
+          },
+          "0x11c4d0": {
+            "descriptor": "Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;",
+            "method": "<init>",
+            "prototype": "(Z[BLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+            "code_units": 23,
+            "registers": 10,
+            "inputs": 9,
+            "outputs": 1,
+            "insns_sha256": "18b26bdf1d1b99b017bbd83d76933664a67548d4b96894260de00c8fc1bf8624"
+          }
+        }
+      },
+      "classes5.dex": {
+        "sha256": "84bb963ce310114668a38370167075b517d2ba0344f3224e330ada366c1948db",
+        "bytes": 8058612,
+        "methods": {
+          "0x1bf334": {
+            "descriptor": "Lcom/ucar/map/UCarMapInfo;",
+            "method": "fromBundle",
+            "prototype": "(Landroid/os/Bundle;)Lcom/ucar/map/UCarMapInfo;",
+            "code_units": 100,
+            "registers": 10,
+            "inputs": 1,
+            "outputs": 2,
+            "insns_sha256": "ec0551ecf86cd7a388eb1005154a59827b830c2d7164897c74a8d1a7443c2954"
+          },
+          "0x1c06f0": {
+            "descriptor": "Lcom/ucar/map/service/mapservice/IUCarMapServiceStub;",
+            "method": "showNavInfo",
+            "prototype": "(Landroid/os/Bundle;Landroid/os/Bundle;)V",
+            "code_units": 67,
+            "registers": 5,
+            "inputs": 3,
+            "outputs": 3,
+            "insns_sha256": "e0e6eb1dd688cf6bd96ae701241e835a4841e254b69be5e97df8d5e4e9dacbdf"
+          },
+          "0x1c02b0": {
+            "descriptor": "Lcom/ucar/map/service/mapservice/IUCarMapServiceStub;",
+            "method": "getValue",
+            "prototype": "(ILandroid/os/Bundle;)Landroid/os/Bundle;",
+            "code_units": 2,
+            "registers": 3,
+            "inputs": 3,
+            "outputs": 0,
+            "insns_sha256": "29372a6d02c7422f70504ebdc64b95896155fc743fc07407ec9fe13879d10f49"
+          }
+        }
+      },
+      "classes8.dex": {
+        "sha256": "e93702bc9d84cf90eee4d5cdf49773dfc66a536b539a2003fd9e7a28a294fc81",
+        "bytes": 3840584,
+        "methods": {
+          "0x1594b8": {
+            "descriptor": "Lnet/easyconn/carman/bridge/BMapBridge;",
+            "method": "<init>",
+            "prototype": "()V",
+            "code_units": 44,
+            "registers": 3,
+            "inputs": 1,
+            "outputs": 2,
+            "insns_sha256": "8dd021e654d05a8a25cb3f4946e6df367477118af864ce77fb7cc494938cd79e"
+          },
+          "0x1593dc": {
+            "descriptor": "Lnet/easyconn/carman/bridge/BMapBridge;",
+            "method": "getNavigationInfo",
+            "prototype": "()Lnet/easyconn/carman/bridge/BMapBridge$NavigationInfo;",
+            "code_units": 11,
+            "registers": 1,
+            "inputs": 1,
+            "outputs": 1,
+            "insns_sha256": "5f7a2972cbe7e66c3350121a67e721b8b9e0d101ef3988ff5f95535740571efd"
+          }
+        }
+      }
+    },
+    "manifest_sha256": "6562a889ac9ef7dff4a41dd5b35e148232751cbc2ab74bb86ebb831d2cf35d66",
+    "dex_count": 8
+  }
+}

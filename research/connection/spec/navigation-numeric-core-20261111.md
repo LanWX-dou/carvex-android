@@ -30,7 +30,8 @@ LauncherDataBusClient.w（`0x16f3f0`）把距离文本的米/公里分支转成�
 
 - CarPlay NSStringFromCPGuidanceState（`0x247b00444`）经边界 <7 索引 `0x2690da898` 原 CFString 表：0 NotActive、1 Active、2 Arrived、3 Loading、4 Locating、5 Rerouting、6 ProceedToRoute。accessoryd 转换器 `0x100004428` 对 <7 原值输出 U8，其他为 0xff。
 - NSStringFromCPManeuverType（`0x247b3a190`）经 <54 索引 `0x2690da6a8`：1 LeftTurn、2 RightTurn、3 StraightAhead、4 UTurn、47/48 SharpLeft/RightTurn、49/50 SlightLeft/RightTurn。accessoryd `0x1000c5008` 对 <54 原值输出 U8，其他为 0xff。不能使用 Kotlin ordinal 或 CarWith 原组码。
-- Route keyForType（`0x100003b28`）的有符号相对跳转表 `0x100003d60`：p1→`0x100003b68` RouteGuidanceState；p10→`0x100003bb0` DistanceRemainingToNextManeuver；p13→`0x100003ba4` RouteGuidanceManeuverCurrentList。路线原编码器为 `0x1000027f4`，分别使用 U8、U32 与 U16 列表。
+- Route keyForType（`0x100003b28`）的有符号相对跳转表 `0x100003d60`：p1→`0x100003b68` RouteGuidanceState；p7→`0x100003c4c` DistanceRemaining（键槽 `0x10023dc10`）；p10→`0x100003bb0` DistanceRemainingToNextManeuver；p13→`0x100003ba4` RouteGuidanceManeuverCurrentList。路线原编码器为 `0x1000027f4`，状态使用 U8，p7/p10 使用 U32，机动引用使用 U16 列表。
+- 原 p7 调用链 `0x100002b94..0x100002ba8`：w0=7 → keyForType 包装器 `0x100003b18` → 字典查询包装器 `0x100012120` → `0x1000153bc` 将数值移至 x3 → w2=7 → `0x100004650`。数值追加器缺失 x3 时跳过；`0x1000046d0..0x100004734` 预留八字节 TLV，并反转/存储四字节 payload。已新增原始 MOVZ、BL 目标及跳转表验证；不根据字段名猜写入宽度。
 - Maneuver keyForType（`0x1000de30c`）的跳转表 `0x100018f98`：p1→`0x1000de34c` Index；p3→`0x1000de388` ManeuverType。编码器 `0x1001777c0` 使用 U16 索引与经转换的 U8 类型。
 - Identification 解析 `0x1000c5704`：顶层 p30 导航组件，内层 p0 U16 组件 ID、p6 U16 机动容量；`0x1000c5c78..0x1000c5d38` 接入组件能力消费者。本次要求各实际订阅组件有唯一合法声明且容量 >0。只发布一个当前机动；未知容量不当作无限。文本计数/NUL、缺失默认与车道合同继续 OPEN。
 
@@ -42,7 +43,9 @@ CFString 原表含 dyld 非认证 rebase 指针；复核器检查 auth/bind 位�
 
 classes2 的 updateManeuver（`0x024858`）按 p1 索引合并 p3 类型；updateRoute（`0x0249f0`）接受 p1 Active 或 p13 引用激活，并用 p10 U32 更新 segment；snapshot（`0x024070`）按引用从 map 取箭头，并把 segment 作为米距离输出。reset（`0x024810`）清 map 和 segment；updateRoute 的状态 0/2 分支调用 reset。
 
-本次每个有效 HUD 批次自包含：5202 定义后跟 5201 Active、同一 U16 引用及正距离。距离更新复用机动代际；替换机动或新路线增加代际，wire 索引取低 16 位，每次重发该索引定义和明确距离。未知距离先 NotActive reset，再定义、引用；未知转向先 reset，再报告 Active 且无伪造引用。Ended/Invalidated 仅发 NotActive，保持订阅，不伪装 Arrived，也不主动发 5203。
+本次每个有效批次自包含：5202 定义后跟 5201 Active/Rerouting、同一 U16 引用及正转向距离。距离更新复用机动代际；替换机动或新路线增加代际，wire 索引按所选组件的最小正容量复用，每次重发该索引定义和明确距离。未知转向距离先 NotActive reset，再定义、引用；未知转向先 reset，再报告当前路线状态且无伪造引用。Ended/Invalidated 仅发 NotActive，保持订阅，不伪装 Arrived，也不主动发 5203。
+
+用户授权先补发布器后，快照中有该字段来源证据的全程距离已接入 p7，接受 U32 范围内的明确零和正数。GalaxyPlay 原 `0x024c6a..0x024c8e` 按四字节解析 p7，缺值不覆盖旧值；`0x024838` 在 reset 中清除 remainingMeters。因此全程值缺失/无证据/越界也先 reset，再恢复当前已知字段。此时每批次多一条清除消息；瞬时显示效果仍待实车核验。现有宿主没有真实全程值，不能把此发布能力记为来源或全程显示验收。
 
 清除顺序依据这个接收端的 map reset/merge；不宣称已闭合 Apple 所有首报/增量顺序。没有按车型的分支、固定等待或导航重发定时器。接收端自身 30 秒失活窗口不作为手机盲重发依据。
 
@@ -54,3 +57,5 @@ python -X utf8 -B research/connection/tools/inspect_galaxyplay_receiver.py D:/ho
 ```
 
 原字节复核 PASS 证明版本与所审位置一致，不能替代控制流审阅、供应商运行或仪表显示测试。通用 Apple 米数/更新顺序、道路/ETA/车道、取消与抵达细分、上游无标识迟到包均继续 OPEN。代码及本地测试见 [实施记录](../../../android/docs/fixes/2026-11-11-navigation-cluster-chain.md) 与 [验证记录](../../../openspec/changes/replan-carplay-navigation-cluster/validation.md)。
+
+全程距离发布器的本轮代码、1240 项回归、14 项接收源码合同检查与剩余来源边界见[全程里程实施记录](../../../android/docs/fixes/2026-11-11-navigation-route-distance.md)及[本轮验证记录](../evidence/navigation-route-distance-validation-20261111.json)。

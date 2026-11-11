@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "scope": "Local source diagnostics, original receiver APK checks, and sanitized log export; no vehicle acceptance",
+  "android_base": "fa3000f027060d80271a67e0ebd558a19c8717cd",
+  "android_worktree_sha256": {
+    "bridge/src/main/java/io/github/iamr0s/carvex/session/HostNavigationRelay.kt": "d8ebaec6e2717102a9196c28c75eb8029746e2cbdaf06df27cb8bec9e21cc3bc",
+    "bridge/src/test/java/io/github/iamr0s/carvex/session/HostNavigationRelayTest.kt": "bf308faf603a43f73333cca6edfafe12d4a65d13fb93ebf2058bda02451f7320",
+    "host-carlife-mixing/src/main/java/io/github/iamr0s/carvex/host/vendor/CarWithNavigation.kt": "0253fd471a835321425bc15bf63a5d823f4dec2d185cdbdaf49272159866db6b",
+    "host-carlife-mixing/src/main/java/io/github/iamr0s/carvex/host/vendor/VendorCastHost.kt": "2edb60cc13b1109cefb95290f77bb380cfc99778c04e41acbdc84ae758054f62",
+    "host-carlife-mixing/src/test/java/io/github/iamr0s/carvex/host/vendor/CarWithNavigationTest.kt": "f7182401d7bc62b734c5e8e892cb5e8728a5f837101bc352bae445d3ff442deb"
+  },
+  "android_validation": {
+    "command": ".\\gradlew.bat :host-carlife-mixing:testDebugUnitTest :bridge:testDebugUnitTest :protocol-carplay:testDebugUnitTest :app:compileXiaomiDebugKotlin --offline --console=plain",
+    "result": "BUILD SUCCESSFUL",
+    "execution": "Approved outside sandbox after cache lock creation failed; protocol test executed, affected host/bridge tests and Xiaomi compilation used valid Gradle up-to-date results",
+    "tests": {
+      "host-carlife-mixing": {
+        "suites": 5,
+        "tests": 23,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "bridge": {
+        "suites": 9,
+        "tests": 60,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "protocol-carplay": {
+        "suites": 139,
+        "tests": 1139,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "total_tests": 1222
+  },
+  "apk_verifier": {
+    "tool": "research/connection/tools/inspect_cluster_navigation_flow.py",
+    "evidence": "research/connection/evidence/cluster-navigation-flow-20261111.json",
+    "method_count": 41,
+    "result": "PASS"
+  },
+  "log_parser_tests": {
+    "tool": "research/connection/tools/test_inspect_cluster_navigation_flow.py",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "result": "PASS"
+  },
+  "vehicle_acceptance": "PARTIAL: user confirms 245 m maneuver distance; route remainder incorrect; other stages OPEN",
+  "apk_packaged": false,
+  "apk_installed": false,
+  "carwith_verifier": {
+    "tool": "research/connection/tools/inspect_carwith_host.py",
+    "dex_count": 6,
+    "code_item_count": 101,
+    "result": "PASS",
+    "scope": "Original host APK identity and reviewed instruction hashes, not a tested Amap route-distance producer"
+  },
+  "user_report": {
+    "date": "2026-11-11",
+    "source": "User confirmation in this session, no additional receiver log",
+    "map": "Amap",
+    "maneuver_distance_displayed_meters": 245,
+    "instrument_route_remainder_meters": -1,
+    "map_route_remainder_approx_kilometers": 19,
+    "maneuver_distance_display": "PASS for the reported 245 m observation only",
+    "route_remainder": "FAIL",
+    "route_remainder_fixed": false,
+    "other_navigation_acceptance": "OPEN"
+  },
+  "adb_read_only_device_check": {
+    "result": "No attached devices",
+    "scope": "Approved adb devices -l; no device files or application settings accessed"
+  }
+}
