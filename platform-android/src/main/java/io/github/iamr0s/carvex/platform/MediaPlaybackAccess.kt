@@ -63,6 +63,25 @@ class MediaPlaybackMonitor(context: Context, private val log: (String) -> Unit =
         }
     }
 
+    /** Take one fresh metadata snapshot without changing the main-thread observer target. */
+    fun matchingTrack(title: String?, artist: String?,
+                      additionalMatch: ((MediaSessionSelection.Item, MediaSessionSelection.Item) -> Boolean)? = null): MediaSessionSelection.Item? {
+        if (closed.get() || !MediaPlaybackAccess.enabled(context)) return null
+        return try {
+            val items = manager?.getActiveSessions(MediaPlaybackAccess.component(context)).orEmpty().map { controller ->
+                val metadata = controller.metadata
+                MediaSessionSelection.Item(metadata?.getString(MediaMetadata.METADATA_KEY_TITLE),
+                    metadata?.getString(MediaMetadata.METADATA_KEY_ARTIST))
+            }
+            val index = MediaSessionSelection.index(MediaSessionSelection.Item(title, artist), items, additionalMatch)
+            log("debug music event=metadata-match candidates=${items.size} match=${index ?: "none"}")
+            if (closed.get()) null else index?.let { items[it] }
+        } catch (_: SecurityException) {
+            log("debug music event=metadata-match match=none reason=SecurityException")
+            null
+        }
+    }
+
     private fun refresh() {
         if (closed.get()) return
         try {

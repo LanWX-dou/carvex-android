@@ -205,6 +205,7 @@ class SessionController(
         var latestArtwork:ByteArray?=null
         val artworkLoader=r.own(CarLifeArtworkLoader(context,sessionScope,{image->synchronized(artworkLock){
             if(!ended.get()){
+                BridgeStore.log(id,"debug music event=artwork-image source=bridge air=${musicAir.get()!=null} ${DebugLogValue.bytes(image)}")
                 latestArtwork=image
                 musicAir.get()?.nowPlayingArtwork(image)
             }
@@ -329,8 +330,13 @@ class SessionController(
                         for(field in listOf("song","artist","album","source","duration"))
                             BridgeStore.log(id,"debug music event=host-field source=intent field=$field value=${DebugLogValue.value(intent.extras?.get(field))}")
                     }else BridgeStore.log(id,"debug music event=progress source=intent curTime=${DebugLogValue.value(intent.extras?.get("curTime"))} duration=${DebugLogValue.value(intent.extras?.get("duration"))}")
-                    val parsed=CarLifeMusicIntent.parse(intent)
+                    val supplied=CarLifeMusicIntent.parse(intent)
+                    val parsed=if(action=="carlife_vehicle_music_info"&&supplied?.title!=null)
+                        CarLifeMusicPresentation.normalize(supplied,playbackMonitor.matchingTrack(
+                            supplied.title,supplied.artist,CarLifeMusicPresentation::matches))
+                    else supplied
                     if(parsed!=null){
+                        if(parsed!=supplied)BridgeStore.log(id,"debug music event=presentation normalized=true source=media-session")
                         BridgeStore.log(id,"CarLife music Intent normalized for 5001: title="+
                             (parsed.title!=null)+" artist="+(parsed.artist!=null)+" album="+
                             (parsed.album!=null)+" duration="+(parsed.durationMs!=null)+
@@ -339,11 +345,11 @@ class SessionController(
                         // Intent payloads may be partial (for example progress-only); let the
                         // publisher merge them with its last accepted snapshot.
                         deliverMusic(parsed)
-                        if(parsed.title!=null)playbackMonitor.track(parsed.title,parsed.artist,
+                        if(supplied?.title!=null)playbackMonitor.track(supplied.title,supplied.artist,
                             CarLifeMusicPresentation::matches)
                         parsed.elapsedMs?.let{progress->BridgeStore.update(id){it.copy(hostMusicProgress=progress)}}
                     }else BridgeStore.log(id,"CarLife music Intent had no recognized metadata fields")
-                    artworkLoader.update(intent)
+                    artworkLoader.update(intent,parsed)
                     return
                 }
                 when(action){

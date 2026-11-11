@@ -6,6 +6,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import io.github.iamr0s.carvex.carplay.core.ArtworkFileWire
+import io.github.iamr0s.carvex.carplay.core.NowPlayingUpdate
+import io.github.iamr0s.carvex.sessioncore.DebugLogValue
 import kotlinx.coroutines.*
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -25,10 +27,9 @@ internal class CarLifeArtworkLoader(
         if(state.track(title,artist)){job?.cancel();job=null}
     }
 
-    @Synchronized fun update(intent:Intent) {
+    @Synchronized fun update(intent:Intent,metadata:NowPlayingUpdate.Track?=CarLifeMusicIntent.parse(intent)) {
         if(closed||intent.action!="carlife_vehicle_music_info")return
         val extras=intent.extras?:return
-        val metadata=CarLifeMusicIntent.parse(intent)
         val keys=listOf("cover","artwork","MediaAlbumArt","MediaArtwork","coverUrl")
         val candidates=keys.mapNotNull{extras.get(it)}.filter{
             it is Bitmap||it is ByteArray||it is Uri||it is String&&it.isNotBlank()
@@ -41,6 +42,7 @@ internal class CarLifeArtworkLoader(
         val previousGeneration=state.generation
         val request=state.begin(metadata?.title,metadata?.artist,
             keys.any{extras.containsKey(it)},sources)
+        log("debug music event=artwork-source present=${keys.any{extras.containsKey(it)}} types=${candidates.map{it.javaClass.simpleName}} generation=${state.generation} load=${request!=null}")
         if(state.generation!=previousGeneration){job?.cancel();job=null}
         if(request==null)return
         job=scope.launch(Dispatchers.IO){
@@ -53,6 +55,7 @@ internal class CarLifeArtworkLoader(
             }
             ensureActive()
             synchronized(this@CarLifeArtworkLoader){
+                log("debug music event=artwork-decode generation=${request.generation} current=${request.generation==state.generation} result=${image?.let{DebugLogValue.bytes(it)}?:"unavailable"}")
                 state.complete(request,image)
             }
         }
