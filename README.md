@@ -154,6 +154,7 @@ Android 构建使用 `android/.signing/` 中随仓库公开的签名材料，详
 | [`docs/status.md`](docs/status.md) | 当前结构与优先事项 |
 | [`research/protocol/README.md`](research/protocol/README.md) | docset 结构与覆盖范围 |
 | [`research/connection/README.md`](research/connection/README.md) | 最新连接研究、证据与开放项 |
+| [GalaxyPlay / DiPlay 对接记录](research/connection/spec/receiver-source-interop-20261111.md) | 导航与通话独立修复、接收源码联测及实车边界 |
 | [`android/README.md`](android/README.md) | 应用功能、构建、签名、品牌与状态 |
 
 持久的架构或流程决策写入 `docs/decisions/`，按编号归档。协议规范放在 `research/`，

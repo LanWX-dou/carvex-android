@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "receiver_commit": "615b32ce0b40cd0b99ce94ba23a512001553684f",
+  "source_sha256": {
+    "shared/src/main/java/com/shilapi/xcertplay/iap2/wire/Iap2Wire.kt": "20c1d5b911826927b610cbdd54920d865938177b8ca626f82664161836a1d2d7",
+    "shared/src/main/java/com/shilapi/xcertplay/iap2/wire/Iap2WireCodec.kt": "8fad8a288103ad417314c40d2bcdf70662a7970a646bb1ffa93bdf2020e5d9dd",
+    "shared/src/main/java/com/shilapi/xcertplay/iap2/wire/Iap2CsmFramer.kt": "1fe14e34290da058c6f934c35bb923e724a17de5f766e3eeb83653384c55a838",
+    "shared/src/main/java/com/shilapi/xcertplay/iap2/catalog/Iap2Endpoint.kt": "cf5a314177062e5ce78f79ae5006913675bbbb58e72d308f7ef057107fbce1db",
+    "shared/src/main/java/com/shilapi/xcertplay/iap2/body/Iap2BodyReader.kt": "5c8efabf7674ddf49b67c1c6a106d78ec6b4bf14636c03393d3d34826b283476",
+    "shared/src/main/java/com/shilapi/xcertplay/iap2/body/Iap2BodyBuilder.kt": "111f8892fa3bcae5e15b5464a224836e70dc18108a8e50ec7c425dc0de58b716",
+    "shared/src/main/java/com/shilapi/xcertplay/iap2/message/Iap2Messages.kt": "56651f0707fb8c3490948e1a567521f96f3eee1222860985ae45c0b6c8a14471",
+    "shared/src/main/java/com/shilapi/xcertplay/media/CarPlayPlaybackStatus.kt": "2eedb5cd9d98958928428d4b704d84adbc5a9b2796b8a659e3c63a7960216dd4",
+    "shared/src/main/java/com/shilapi/xcertplay/hud/BydHudRouteState.kt": "a6f2c0623f3574c28589635d10c39555e3e4d5213a048fa6b93203646257202f",
+    "shared/src/main/java/com/shilapi/xcertplay/hud/BydManeuverCodes.kt": "bfaa4294b4b8cab2e2dbf916222c9498c420d070fa5008a1f1b6a75882fe6b6b",
+    "shared/src/main/java/com/shilapi/xcertplay/airplay/AirPlayHid.kt": "a058302aefb1f252297dd7844f574469774c7d4c1c8ff5cfdf5dfc34716b047f",
+    "shared/src/main/java/com/shilapi/xcertplay/hud/BydCarPlayCall.kt": "481a8d9f7e2ea3af1b88a5105b5dcca2f120942a633cc959a00f6a56ddd8e5ef",
+    "shared/src/main/java/com/shilapi/xcertplay/airplay/AirPlayInfoPlist.kt": "68dcd0f6c47bee875093ab1f779cbed781674635c5bad01ac8398ee85c9ae259",
+    "shared/src/main/java/com/shilapi/xcertplay/airplay/BufferedAudioStream.kt": "4ad54ab054664bfaf5f164339a373560d971e2c2e66e6f3c2f8badc51d7a1401",
+    "shared/src/main/java/com/shilapi/xcertplay/orchestration/CarPlayController.kt": "231afcdee9fcadf3d5a30ca2d2ea50c28fdb9092cb08f3a2fe81b91f9592ce98",
+    "shared/src/main/java/com/shilapi/xcertplay/airplay/CarPlayMediaEngine.kt": "9e49c115ea2bfd6c514ab1c14b417c870f157b531a1490ed29d5491e07498afa",
+    "shared/src/main/java/com/shilapi/xcertplay/airplay/AirPlaySession.kt": "9e506f487a1c79a8abaf5721593fa53ad34f60a8de5743210daca1a7aba12bf8",
+    "shared/src/main/java/com/shilapi/xcertplay/transport/Iap2IdentificationClient.kt": "3bfe7b00f306ffd7e8c316895b82827ff3a8820da44038f763039a910ee649e1",
+    "shared/src/main/java/com/shilapi/xcertplay/transport/Iap2WirelessControlClient.kt": "91c5c633e72ebaf31b9abfa064a7f5ae9cd88c1429f3f832f516c55068e24798",
+    "shared/src/main/java/com/shilapi/xcertplay/airplay/AirPlayIapTunnelStream.kt": "8dee257a4d75368cab42d2719acdec77a824f3ed798570c93acb8390f00f894f",
+    "shared/src/main/java/com/shilapi/xcertplay/glance/CarPlayGlance.kt": "c9b338761dcfbe7245d721b7824c61209994b4ee42fe1865449e69209a7949a1",
+    "shared/src/main/java/com/shilapi/xcertplay/iap2/message/Iap2LaneGuidance.kt": "417bc5d002c1996accc003861d5ee7b375ff863613989ddfd9858eb430ec5705"
+  },
+  "unchanged_body_slice_sha256": {
+    "hud/CarPlayCallState.kt": "779c781c985b08fcbac5e6b06a06f0e46ec6ddafb1aaa94ef7b53e184937e1a7",
+    "airplay/ReceiverAudioFormats.kt": "fc8f86256be230a380e7533d77671dce1a575639a8f08d161a90e7e8ed868b74"
+  },
+  "galaxyplay_apk_sha256": "f106680faa27be5a9dfc4a9a9b9cb59239e4512c5f3b73b64cebfec47bb023e6",
+  "galaxyplay_classes5_sha256": "f95e85d5a28a1de6f0c6e57b721ff6f7fee6004da82022e848f5ed5296eda91a",
+  "galaxyplay_call_key_methods": [
+    {
+      "code_item": "0x01cc1c",
+      "owner": "Lcom/shilapi/xcertplay/airplay/AirPlayHid;",
+      "method": "<clinit>",
+      "prototype": "()V",
+      "code_units": 698,
+      "instructions_sha256": "24c43c751661a17a68aef517233c4f533cbed66538f918c9d5e77a326b082b8b"
+    },
+    {
+      "code_item": "0x01c5a4",
+      "owner": "Lcom/shilapi/xcertplay/airplay/AirPlayHid;",
+      "method": "descriptor",
+      "prototype": "([I)[B",
+      "code_units": 15,
+      "instructions_sha256": "b623bc998c4fde417b9c0e5cdde2db23b383df67cdb150e91aa2ceea1da5b8f9"
+    },
+    {
+      "code_item": "0x01cbb0",
+      "owner": "Lcom/shilapi/xcertplay/airplay/AirPlayHid;",
+      "method": "telephonyHidDevice",
+      "prototype": "(Ljava/lang/String;)Ljava/util/Map;",
+      "code_units": 17,
+      "instructions_sha256": "71651609133449ce3baff2224e060f6a3206ac458d3433fcaf8d477f4069a3c7"
+    },
+    {
+      "code_item": "0x01c7a8",
+      "owner": "Lcom/shilapi/xcertplay/airplay/AirPlayHid;",
+      "method": "telephonyReport",
+      "prototype": "(I)[B",
+      "code_units": 8,
+      "instructions_sha256": "2d577fb3f4e3828b2949f6fe107b55f97212929dd35c5d8de8449e3e6fe4202a"
+    },
+    {
+      "code_item": "0x025cd4",
+      "owner": "Lcom/shilapi/xcertplay/airplay/AirPlaySession;",
+      "method": "sendTelephony",
+      "prototype": "(I)V",
+      "code_units": 23,
+      "instructions_sha256": "b76f53e84f94ce5bfa5c0a15d91bce52dc1e47023fc92634a7a9ca50adf3440d"
+    },
+    {
+      "code_item": "0x0439e8",
+      "owner": "Lcom/shilapi/xcertplay/orchestration/CarPlayController;",
+      "method": "answerCall",
+      "prototype": "()Z",
+      "code_units": 6,
+      "instructions_sha256": "8a1a261228d4b5098d32e6bdc8667760940d828ca435d6030f6af3975579fa91"
+    },
+    {
+      "code_item": "0x043cec",
+      "owner": "Lcom/shilapi/xcertplay/orchestration/CarPlayController;",
+      "method": "endCall",
+      "prototype": "()Z",
+      "code_units": 6,
+      "instructions_sha256": "7e4b808e92cb4335f030fc88e772ad151da34848cb3b88c7330c54c54051072a"
+    }
+  ],
+  "telephony_descriptor": {
+    "array_payload_offset": "0x01d0b4",
+    "hex": "050b0907a10115002511050b0900092009210926092f09b009b109b209b309b409b509b609b709b809b909ba09bb0507092a750895018100c0",
+    "sha256": "2cc77897f585a5754e285315bc759d8d1f94a8c989542850ad0da2c80f31c77f",
+    "source_and_apk_equal": true
+  },
+  "scope": "Original receiver input identity and local call-key fact; no vehicle or Apple equivalence claim"
+}

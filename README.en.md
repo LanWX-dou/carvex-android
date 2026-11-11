@@ -156,6 +156,7 @@ hard configuration failure by design.
 | [`docs/status.md`](docs/status.md) | Current structure and priorities |
 | [`research/protocol/README.md`](research/protocol/README.md) | Docset structure and scope |
 | [`research/connection/README.md`](research/connection/README.md) | Latest connection research, evidence and open items |
+| [GalaxyPlay / DiPlay interoperability record](research/connection/spec/receiver-source-interop-20261111.md) | Separate navigation/call repairs, receiver source tests and field acceptance limits |
 | [`android/README.en.md`](android/README.en.md) | Application features, build, signing, brands and status |
 
 Durable architecture or process decisions belong in `docs/decisions/` as numbered

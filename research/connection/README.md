@@ -5,6 +5,8 @@
 
 ## 阅读顺序
 
+新增 [GalaxyPlay 目标 / DiPlay 源码对接](spec/receiver-source-interop-20261111.md)：手机为 Android 17、DiPlay 未开启，实际目标仍为 GalaxyPlay。导航缓存容量与接听键分别提交；12 项原接收源码联测和共 1627 项回归通过，五品牌编译及小米 Release lint 通过。音乐保持已确认行为；完整通话元数据、蜂窝双向音频与实际仪表输出继续待验收。
+
 1. [研究基线与证据规则](spec/00-baseline.md)
 2. [端到端时序、状态与阶段验收](spec/01-connection-map.md)
 3. [蓝牙、iAP2 与网络建立](spec/10-bluetooth-iap2-network.md)
