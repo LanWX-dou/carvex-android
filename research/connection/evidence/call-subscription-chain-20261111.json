@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "date": "2026-11-11",
+  "path": "research/protocol/iap2_input_business_lifecycle/source/firmware/accessoryd",
+  "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+  "scope": "Original byte identity, declarations and mode branches; no provider or vehicle test",
+  "slices": {
+    "0x10011e6e4": {
+      "end": "0x10011eb34",
+      "sha256": "3cb8ce3f918e2461e3fbe27a7856b0b7738f475dc8922afee9940f9c44e13095"
+    },
+    "0x10011ec18": {
+      "end": "0x10011ece4",
+      "sha256": "7c37b5f4302868ee5cb584b6c5023ff1737fe09068134773c628e2c8512450e9"
+    },
+    "0x10011ece4": {
+      "end": "0x10011f020",
+      "sha256": "d673365554471133c83bb512ed9493e0239ff11d2fb3062e3cfa93c3943b99da"
+    },
+    "0x10011f020": {
+      "end": "0x10011f0e0",
+      "sha256": "675f41823f4e3102444d8d9a9906ce66065bdda58e4290997430a41bfeabfcac"
+    },
+    "0x1001208f8": {
+      "end": "0x10012114c",
+      "sha256": "c24d9cdc94eae24b36a0aa8b901ce51a548eaf8ccb7bcc34857c5805625dc5dd"
+    },
+    "0x1000186a8": {
+      "end": "0x1000186dc",
+      "sha256": "1f5e9d72e47a1a1eecd637553b4476ac7194822e06b2cf6ad82a16c29e5dc6a1"
+    }
+  },
+  "required_groups": {
+    "call": {
+      "address": "0x1001b3158",
+      "entries": [
+        [
+          16724,
+          0,
+          1
+        ],
+        [
+          16725,
+          1,
+          1
+        ],
+        [
+          16726,
+          0,
+          0
+        ]
+      ]
+    },
+    "communications": {
+      "address": "0x1001b317c",
+      "entries": [
+        [
+          16727,
+          0,
+          1
+        ],
+        [
+          16728,
+          1,
+          1
+        ],
+        [
+          16729,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "legacy_status_table": {
+    "address": "0x1001b3248",
+    "values_for_1_to_6": [
+      3,
+      3,
+      1,
+      1,
+      2,
+      1
+    ]
+  },
+  "call_parameter_jump_targets": {
+    "0": "0x100120c40",
+    "1": "0x100120d54",
+    "2": "0x100120cac",
+    "3": "0x100120de4",
+    "4": "0x100120e64",
+    "5": "0x100121050",
+    "6": "0x100120cd8",
+    "7": "0x100120d8c",
+    "8": "0x100120db8",
+    "9": "0x100120ed4",
+    "10": "0x100120e8c",
+    "11": "0x100120c78",
+    "12": "0x100120d04"
+  }
+}

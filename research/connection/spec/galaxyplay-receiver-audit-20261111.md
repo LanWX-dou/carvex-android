@@ -82,9 +82,9 @@ INFERRED：旧 HUD→`currentRoad/distanceRemaining` 发送代码即使记录 `5
 
 CONFIRMED：订阅构造器请求 `4154` 的 `0/1/2/3/4/11`。`CarPlayCallState.accept` code_item `0x021b70` 要求 `4155` 且 p2 状态存在；读取 p0 remoteId、p1 displayName、p4 UUID 后维护 calls map。`BydCarPlayCall.onFrame` code_item `0x011e3c` 在解析变化、有 context 且 `carPlayCalls(context)` 启用后，将卡片交给 writer。
 
-发送端目前有 `PhoneSubscriptions` 的订阅记录和纯编码辅助函数，但 `AirSession` runtime 对通话消息明确记录 `no-runtime-call-metadata-provider`；全源码调用检查没有生产 `callStateUpdate` 调用。因此接收端卡片不能从当前 CarVeX 得到完整姓名/接听/保持/挂断状态。bootstrap 接受过订阅不能代替 runtime 上报。
+原断点为全局 `PhoneSubscriptions` 与 runtime 未处理订阅；本次已改为当前 Link 独立实例并接入 START/STOP。接受订阅后仍记录 `no-runtime-call-metadata-provider`；全源码调用检查仍没有真实电话 provider 调用 `callStateUpdate`。因此接收端卡片不能从当前 CarVeX 得到完整姓名/接听/保持/挂断状态。bootstrap 接受过订阅不能代替 runtime 上报。
 
-现存辅助编码器还使用 `legacyStatus` 转换，例如输入 4 输出 1；接收端本版的局部定义将 1 作为 SENDING、4 作为 ACTIVE。辅助函数输入枚举与实际电话 provider 的含义仍需独立闭合，不能把 Android/宿主整数直接套入它。本次没有启用或按接收端定义修改 Apple 通话编码。
+原辅助编码器对所有订阅都执行 `legacyStatus`，例如 4→1；原 Apple 分支新复核确认仅默认模式转换，显式字段模式保留原状态/方向，现已修正，p9 也改为会议标记。接收端本版把 1 作为 SENDING、4 作为 ACTIVE，只作为兼容对照。真实电话 provider 输入合同仍需独立闭合，不能把 Android/宿主整数直接套入它；未启用虚构元数据发布。
 
 麦克风是另一条链路，局部请求相符：
 
@@ -97,7 +97,7 @@ CONFIRMED：订阅构造器请求 `4154` 的 `0/1/2/3/4/11`。`CarPlayCallState.
 
 ## 复核入口与验收
 
-[证据 JSON](../evidence/galaxyplay-0.1.212-receiver.json) 记录 5 个 DEX 的 28 个 code_item、方法签名/归属、指令哈希和 12 份当前发送源码哈希。只读复核：
+[证据 JSON](../evidence/galaxyplay-0.1.212-receiver.json) 记录 5 个 DEX 的 28 个 code_item、方法签名/归属、指令哈希和 15 份当前发送源码哈希。只读复核：
 
 ```powershell
 python -X utf8 -B research/connection/tools/inspect_galaxyplay_receiver.py D:/home/GalaxyPlay.apk --check-android
@@ -112,3 +112,7 @@ python -X utf8 -B research/connection/tools/inspect_galaxyplay_receiver.py D:/ho
 实际 Identification 构造器 classes3 code_item 0x01e3fc，以及导航 lambda 0x01e914 已复核：p30 导航组件内 p0=42、p2/p4=64、p6=8。手机从实际 Link 字段与 START 读取这些值，不硬编码样本。
 
 本次 5202→5201 以及缺值时 reset→定义→引用由接收端 map 合并/清除路径支持；Apple 原枚举和参数表独立核查。宿主 navi_turn 来自模板图标分类器，不能照抄原整数。完整原地址、资源像素核查、指令/图标哈希、字段与通用 Apple 边界见[数值核心核查](navigation-numeric-core-20261111.md)。
+
+## 本次通话独立修复
+
+运行期订阅、全局实例隔离、默认/显式状态模式、会议字段和麦克风关闭异常清理已修复；完整卡片与双向蜂窝音频仍 OPEN。原表、分支地址、哈希及验证入口见[通话链路记录](call-subscription-chain-20261111.md)，代码见[实施记录](../../../android/docs/fixes/2026-11-11-call-subscriptions-chain.md)。音乐用户已确认正常，未修改音乐链路。

@@ -23,7 +23,7 @@
 16. [连接消息索引](spec/70-message-index.md)
 17. [开放问题与完成审计](spec/90-open-items.md)
 
-新增[GalaxyPlay 接收端音乐、仪表与通话审计](spec/galaxyplay-receiver-audit-20261111.md)：0.1.212 / 240 原 APK、5 个 DEX 的 28 处方法归属/指令哈希复核通过。用户确认音乐正常；导航数值核心已按本版接收端修复，实际仪表显示待验收；通话元数据与蜂窝下行缺口后续独立处理。未修改或安装车机 APK。
+新增[GalaxyPlay 接收端音乐、仪表与通话审计](spec/galaxyplay-receiver-audit-20261111.md)：0.1.212 / 240 原 APK、5 个 DEX 的 28 处方法归属/指令哈希复核通过。用户确认音乐正常；导航数值核心已按本版接收端修复，实际仪表显示待验收；通话运行期订阅/状态编码/清理已独立修复，完整元数据与蜂窝下行仍缺来源。未修改或安装车机 APK。
 
 新增[导航链路修复](../../android/docs/fixes/2026-11-11-navigation-cluster-chain.md)与[数值核心原始证据](spec/navigation-numeric-core-20261111.md)：host/protocol 契约、唯一 relay、当前 Link 订阅和旧队列撤销已接入。启用基础转向、正数机动距离与结束 reset；道路/ETA/车道、通用 Apple 米数/完整时序及实车显示继续 OPEN。相关单测与五个 flavor Kotlin 编译通过。
 
@@ -123,3 +123,5 @@
 - `tools/verify_profile_audit.py`：只读核对本批JSON声明的文件哈希和有定位的cache切片；不证明语义或互通。
 
 文档中的图表达已知依赖与有条件分支，不是一份可无条件重放的报文脚本。车机真实显示并持续更新、断线重连成功必须有相应观察，发送端单边日志不能证明这些结果。
+
+新增[通话订阅链路修复](spec/call-subscription-chain-20261111.md)：当前 Link 独立状态、显式/默认编码分支和麦克风异常关闭清理；原 Apple 声明表/处理器字节复核 PASS，相关单测/编译结果见实施记录。卡片与双向音频仍 OPEN。

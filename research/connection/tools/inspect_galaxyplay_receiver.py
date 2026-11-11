@@ -68,6 +68,9 @@ ANDROID_FILES = (
     'host-carlife-mixing/src/main/java/io/github/iamr0s/carvex/host/vendor/CarWithNavigation.kt',
     'protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NavigationGuidance.kt',
     'protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/RuntimeIap.kt',
+    'protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/RuntimePhoneSubscriptions.kt',
+    'protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/Bootstrap.kt',
+    'core/src/main/java/io/github/iamr0s/carvex/sessioncore/CallMicrophoneSession.kt',
 )
 
 

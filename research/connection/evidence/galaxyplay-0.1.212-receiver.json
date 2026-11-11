@@ -383,10 +383,10 @@
   "android_source_review": {
     "scope": "Current working files; identity only, not behavior tests",
     "files": {
-      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt": "4e252d83d59e25d91980d73d468c6d37f8bc89917f76143742035f82d98d0daf",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/AirSession.kt": "a70d989a52f6fb88da2516b8b754fa051678488f989c6c8c802066be14964902",
       "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NowPlayingUpdate.kt": "beb4cf930ac1453ad47f200a8a8a75983912d272d684806b5825c5d5e4cfc207",
       "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NowPlayingArtwork.kt": "1b1225a34ef3285cb4f9207ff77e2feba138064ccdafef076aac01ba5bb03cad",
-      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/PhoneSubscriptions.kt": "aaf4c720a699c90dd27f9fe251ad3e00896bdeb93eb0e6806d5203a34aaa8dd5",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/PhoneSubscriptions.kt": "18b1b7aef3c03765843358f9ba6d322d3faaa8cb2df111fb0d1631c0b929e0d6",
       "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/CallMicrophonePlan.kt": "99f23a1a15fda0b26d95de932eaa5a7f94cdcefce36e7d4971f71b455d251f48",
       "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/CarPlayAudioPlan.kt": "675b23fca62edccb97500f88b59a1da32948f3f536f1cccc0a3ccf74f0b5c204",
       "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NavigationPublisher.kt": "2e5d860479f96da71f6689b437df2c2a0ba1970a7fefd4d5d1b2fdc8676e7eb3",
@@ -394,7 +394,10 @@
       "bridge/src/main/java/io/github/iamr0s/carvex/session/HostNavigationRelay.kt": "09d7a6940a24f4672089b62c7956b2dda12edf5b14cc6475956d9cc9aff4f050",
       "host-carlife-mixing/src/main/java/io/github/iamr0s/carvex/host/vendor/CarWithNavigation.kt": "7441271c08cedbcc521a8573d490a66fcbb7f14886bcf7808379140060fa0ee3",
       "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NavigationGuidance.kt": "9f6eeff267dc72b1353c65d64c444fd597947c9f40e5d020e65ce25fe5d96fe4",
-      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/RuntimeIap.kt": "a51eb1d24f2798498b5198dd41d4394e44b7580a565f057e01aa5616556e9d63"
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/RuntimeIap.kt": "a51eb1d24f2798498b5198dd41d4394e44b7580a565f057e01aa5616556e9d63",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/RuntimePhoneSubscriptions.kt": "2afa52dcd7f3b8d4d5105ba063d4a9ad65609f116d3e32b7cc173087355140ea",
+      "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/Bootstrap.kt": "64191f09088d302c65a29082c74186e5fb76799fb9caef9e6140b4c238f680e9",
+      "core/src/main/java/io/github/iamr0s/carvex/sessioncore/CallMicrophoneSession.kt": "ece0db1bd7ad3188e3ec78abf965b68f1953ce5f0b34ad9182c9d394d45c2c3e"
     }
   }
 }
