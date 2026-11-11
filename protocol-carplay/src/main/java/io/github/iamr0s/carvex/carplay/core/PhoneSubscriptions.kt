@@ -7,11 +7,13 @@ package io.github.iamr0s.carvex.carplay.core
  * 异步发 `4155`/`4158`。本实现目前**没有通话状态来源**，所以这里只做"接受订阅 + 记录字段集"，
  * 不主动上报——把消息从"未知命令"变成"已接受"，为后续接入通话状态留出接口。
  */
-object PhoneSubscriptions {
-    /** `4154` 的字段集合上限（固件 CFSet 容量 13）。 */
-    const val CALL_FIELDS_MAX = 13
-    /** 默认集：无参数、或只列了 id 5 时追加 `{0,1,2,3,4}`。 */
-    val DEFAULT_CALL_FIELDS = setOf(0, 1, 2, 3, 4)
+class PhoneSubscriptions {
+    companion object {
+        /** `4154` 的字段集合上限（固件 CFSet 容量 13）。 */
+        const val CALL_FIELDS_MAX = 13
+        /** 默认集：无参数、或只列了 id 5 时追加 `{0,1,2,3,4}`。 */
+        val DEFAULT_CALL_FIELDS = setOf(0, 1, 2, 3, 4)
+    }
 
     @Volatile var callStateFields: Set<Int> = emptySet(); private set
     @Volatile var callStateActive: Boolean = false; private set
@@ -23,7 +25,7 @@ object PhoneSubscriptions {
     @Volatile var communicationActive: Boolean = false; private set
 
     /** `4154`：N 个空载荷参数，id ∈ 0..0x0c；id 越界只忽略，载荷非空则整条失败。返回是否被接受。 */
-    fun startCallStateUpdates(fields: IapFields): Boolean {
+    @Synchronized fun startCallStateUpdates(fields: IapFields): Boolean {
         val ids = mutableSetOf<Int>()
         var saw5 = false
         var sawNon5 = false
@@ -35,14 +37,14 @@ object PhoneSubscriptions {
         }
         callStateDefaultSet = !sawNon5
         if (callStateDefaultSet) ids += DEFAULT_CALL_FIELDS
-        callStateFields = ids
+        callStateFields = ids.toSet()
         sawParam5 = saw5
         callStateActive = true
         return true
     }
 
     /** `4156`：无参数，退订通话状态。 */
-    fun stopCallStateUpdates() {
+    @Synchronized fun stopCallStateUpdates() {
         callStateActive = false
         callStateFields = emptySet()
         callStateDefaultSet = false
@@ -50,20 +52,20 @@ object PhoneSubscriptions {
     }
 
     /** `4157`：通信状态订阅，语义同 `4154` 的"空载荷参数/越界忽略/非空失败"。 */
-    fun startCommunicationUpdates(fields: IapFields): Boolean {
+    @Synchronized fun startCommunicationUpdates(fields: IapFields): Boolean {
         val ids = mutableSetOf<Int>()
         for ((id, payload) in fields.ordered) {
             if (id > 0x11) continue
             if (payload.isNotEmpty()) return false
             ids += id
         }
-        communicationFields = ids
+        communicationFields = ids.toSet()
         communicationActive = true
         return true
     }
 
     /** `4159`：退订通信状态。 */
-    fun stopCommunicationUpdates() {
+    @Synchronized fun stopCommunicationUpdates() {
         communicationActive = false
         communicationFields = emptySet()
     }
@@ -97,23 +99,26 @@ object PhoneSubscriptions {
         else -> 2
     }
 
-    fun callStateUpdate(subscribed: Set<Int>, state: CallState): List<Pair<Int, ByteArray>> {
+    @Synchronized fun callStateUpdate(subscribed: Set<Int>, state: CallState): List<Pair<Int, ByteArray>> {
         if (!callStateActive) return emptyList()
         val out = mutableListOf<Pair<Int, ByteArray>>()
         fun add(id: Int, value: ByteArray) {
-            if (id in subscribed) out += id to value
+            if (id in subscribed && id in callStateFields) out += id to value
         }
         add(0, IapWire.cstring(state.remoteId))
         add(1, IapWire.cstring(state.displayName))
-        add(2, byteArrayOf(legacyStatus(state.status).toByte()))
-        add(3, byteArrayOf(legacyDirection(state.direction).toByte()))
+        // 24A446 100120cac/100120e28: feature+8 selects legacy conversion only
+        // for the default field mode. Explicit subscriptions retain platform values.
+        add(2, byteArrayOf((if (callStateDefaultSet) legacyStatus(state.status) else state.status).toByte()))
+        add(3, byteArrayOf((if (callStateDefaultSet) legacyDirection(state.direction) else state.direction).toByte()))
         val uuid = state.callUuid
         if (!uuid.isNullOrEmpty()) {
             add(4, IapWire.cstring(uuid))
             state.addressBookId?.takeIf { it.isNotEmpty() }?.let { add(6, IapWire.cstring(it)) }
             state.label?.takeIf { it.isNotEmpty() }?.let { add(7, IapWire.cstring(it)) }
             state.service?.let { add(8, byteArrayOf(it.toByte())) }
-            add(9, byteArrayOf(legacyDirection(state.direction).toByte()))
+            // 100120ed4 reads IsConferenced for p9, independently of direction.
+            add(9, byteArrayOf(if (state.conferenced) 1 else 0))
             if (state.conferenced && state.conferenceGroup != null) add(0x0a, byteArrayOf(state.conferenceGroup.toByte()))
             if (state.status == 0 && state.disconnectReason != null) add(0x0b, byteArrayOf(state.disconnectReason.toByte()))
             state.startTimestamp?.takeIf { it != 0L }?.let { add(0x0c, IapWire.be64(it)) }
@@ -143,7 +148,7 @@ object PhoneSubscriptions {
         val holdAvailable: Boolean = false,
     )
 
-    fun communicationUpdate(subscribed: Set<Int>, state: Communications): List<Pair<Int, ByteArray>> {
+    @Synchronized fun communicationUpdate(subscribed: Set<Int>, state: Communications): List<Pair<Int, ByteArray>> {
         if (!communicationActive) return emptyList()
         val u8 = mapOf(0 to state.signalStrength, 1 to state.registrationStatus, 2 to state.airplaneModeStatus,
             3 to state.ttyStatus, 0x0a to state.currentCallCount, 0x0b to state.newVoicemailCount)
@@ -154,7 +159,7 @@ object PhoneSubscriptions {
             0x10 to state.mergeAvailable, 0x11 to state.holdAvailable)
         val out = mutableListOf<Pair<Int, ByteArray>>()
         fun add(id: Int, value: ByteArray) {
-            if (id in subscribed) out += id to value
+            if (id in subscribed && id in communicationFields) out += id to value
         }
         for ((id, value) in u8) add(id, byteArrayOf(value.toByte()))
         add(4, IapWire.cstring(state.carrierName))

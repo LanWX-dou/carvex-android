@@ -71,4 +71,32 @@ class CallMicrophoneSessionTest {
         call.attach{input};call.update(true);call.close();call.close()
         assertEquals(1,input.closes)
     }
+
+    @Test fun failedCloseRevokesOldCallAndDoesNotPreventTheNextCall():Unit=runBlocking {
+        val logs=mutableListOf<String>()
+        val call=CallMicrophoneSession(CoroutineScope(coroutineContext+Dispatchers.Unconfined),logs::add)
+        var opens=0;var closes=0;lateinit var oldCurrent:()->Boolean
+        val next=Input()
+        try{
+            call.attach{valid->
+                if(++opens==1){oldCurrent=valid;AutoCloseable{closes++;error("local close failed")}}
+                else next
+            }
+            call.update(true);assertTrue(oldCurrent())
+            call.update(false)
+            assertFalse(oldCurrent());assertFalse(call.active);assertEquals(1,closes)
+            call.update(true);assertEquals(2,opens)
+            call.update(false);assertEquals(1,next.closes)
+            assertTrue(logs.any{it.contains("event=teardown")&&it.contains("phase=failed")})
+        }finally{call.close()}
+    }
+
+    @Test fun failedInstalledCloseCannotAbortSessionCleanup():Unit=runBlocking {
+        val call=CallMicrophoneSession(CoroutineScope(coroutineContext+Dispatchers.Unconfined)){}
+        var closes=0;lateinit var current:()->Boolean
+        call.attach{valid->current=valid;AutoCloseable{closes++;error("close refused")}}
+        call.update(true);call.close();call.close()
+        assertFalse(current());assertFalse(call.active);assertEquals(1,closes)
+        call.update(true);assertFalse(call.active)
+    }
 }

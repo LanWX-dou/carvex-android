@@ -89,6 +89,8 @@ This repository can also live inside the larger research workspace at
   Actual cellular uplink consumption by the host remains unverified; VoIP is outside this path.
   See the [implementation and validation record](docs/fixes/2026-11-10-call-microphone.md).
 - CarLife mixing host for Xiaomi, OPPO, vivo and Samsung; Honor is packaging-only.
+- Call subscriptions are isolated per Link, with runtime START/STOP handling, corrected explicit/default status encoding and microphone cleanup after close failures. Complete per-call metadata and cellular downlink still lack verified sources; see the [repair and remaining limits](docs/fixes/2026-11-11-call-subscriptions-chain.md).
+
 - Structured bridge logs with copy and export. Debug and Release both record music, navigation and call host inputs, protocol fields, subscriptions and send outcomes; see the [debug log record](docs/fixes/2026-11-10-business-debug.md).
 - Shizuku-assisted read of the phone Bluetooth MAC address, used by the identity
   handshake when the system does not expose it.

@@ -152,6 +152,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     private val navigationPublisher=NavigationPublisher({id,fields,valid,completion->
         runtime.sendGuarded(id,fields,{!stopping&&sourceContextCurrent()&&valid()},completion)
     },log)
+    private val phoneSubscriptions=RuntimePhoneSubscriptions(log)
     private fun emitRuntime(bytes:ByteArray):Boolean{
         if(stopping||!options.experiment)return false
         tunnel?.let{return it.send(bytes)}
@@ -159,11 +160,13 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     }
     private val runtime:RuntimeIap=RuntimeIap({emitRuntime(it)},log,{state->
         log("Runtime iAP state="+state)
-        log("debug call event=link source=runtime state=$state; iAP call metadata provider not installed")
         if(state in setOf(RuntimeIapState.SYNCHRONIZING,RuntimeIapState.DEGRADED,RuntimeIapState.CLOSED))runtimeCapabilities=CapabilityRegistry()
         nowPlayingPublisher.linkReady(state==RuntimeIapState.CONTROL_READY)
         artworkEvents.trySend{artwork.linkReady(state==RuntimeIapState.CONTROL_READY)}
         navigationPublisher.linkReady(state==RuntimeIapState.CONTROL_READY,
+            runtimeCapabilities.sentByAccessory.map{it.value}.toSet(),
+            runtimeCapabilities.receivedByAccessory.map{it.value}.toSet())
+        phoneSubscriptions.linkReady(state==RuntimeIapState.CONTROL_READY,
             runtimeCapabilities.sentByAccessory.map{it.value}.toSet(),
             runtimeCapabilities.receivedByAccessory.map{it.value}.toSet())
         runtimeChanged(state)
@@ -182,7 +185,9 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
             val accepted=navigationPublisher.command(command.id,requireNotNull(command.fields))
             if(!accepted)log("navigation runtime ${command.id.toString(16)} rejected: capability/state/fields")
         }
-        if(BusinessDiagnostics.domain(command.id)=="call")
+        if(command.id in RuntimePhoneSubscriptions.COMMANDS)
+            phoneSubscriptions.command(command.id,requireNotNull(command.fields))
+        else if(BusinessDiagnostics.domain(command.id)=="call")
             log("debug call event=dispatch direction=rx id=${command.id.toString(16)} handled=false reason=no-runtime-call-metadata-provider")
     },negotiate={link->
         Bootstrap.negotiateRuntimeIdentification(link,options.phoneMac,options.carPlayName,PairStore(context).identity(),
