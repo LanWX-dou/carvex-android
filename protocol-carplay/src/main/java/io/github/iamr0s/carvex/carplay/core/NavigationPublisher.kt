@@ -33,27 +33,34 @@ internal class NavigationDisplayCapabilities(parameters: List<RawParameter>) {
     fun supportsManeuver(component: Int): Boolean = maneuverCapacity(component) != null
 }
 
-/** Numeric core: Apple state/type tables and encoders; GalaxyPlay 0.1.212 p10 meter
+/** Numeric core: Apple state/type tables and encoders; GalaxyPlay 0.1.212 p7/p10 meter
  * consumer and definition/reference merge. Text, display units and lanes remain omitted.
  * See the navigation fix record for the receiver-specific unit/order evidence boundary. */
 internal object NavigationWireEncoding {
     fun plan(snapshot: NavigationSnapshot, selection: NavigationGuidance.Start,
              capabilities: NavigationDisplayCapabilities): NavigationPlan {
         if (snapshot.evidence["lifecycle"].isNullOrBlank()) return NavigationPlan(blocked = "host-lifecycle-unverified")
-        fun route(state: Int, index: Int? = null, distance: Long? = null) = NavigationPacket(0x5201,
+        fun route(state: Int, index: Int? = null, distance: Long? = null,
+                  remaining: Long? = null) = NavigationPacket(0x5201,
             NavigationGuidance.route(NavigationGuidance.RouteUpdate(selection.components,
-                state = state, distanceToManeuver = distance, maneuverList = listOfNotNull(index)), selection.mask),
+                state = state, distanceRemaining = remaining, distanceToManeuver = distance,
+                maneuverList = listOfNotNull(index)), selection.mask),
             "24A446:CarPlay:247b00444/table2690da898;accessoryd:100004428/1000027f4;GalaxyPlay:0249f0")
         if (snapshot.lifecycle in setOf(NavigationLifecycle.ENDED, NavigationLifecycle.INVALIDATED))
             return NavigationPlan(listOf(route(0))) // NotActive; no fabricated Arrived reason or STOP.
         if (snapshot.lifecycle !in setOf(NavigationLifecycle.ACTIVE, NavigationLifecycle.REROUTING))
             return NavigationPlan(blocked = "no-active-route")
         val state = if (snapshot.lifecycle == NavigationLifecycle.REROUTING) 5 else 1
+        // accessoryd 100002b94..100002ba8 selects p7 and uses the U32 writer.
+        // Require this field's source evidence; an explicit zero is a valid route value.
+        val remaining = snapshot.route.distanceRemainingMeters?.takeIf {
+            !snapshot.evidence["distanceRemainingMeters"].isNullOrBlank() && it in 0..0xffffffffL
+        }
         val maneuver = snapshot.maneuver
         val type = maneuver?.turn?.let(::type)
         if (type == null || snapshot.evidence["maneuver"].isNullOrBlank()) {
             // Reset clears any previously joined arrow/distance; the route itself is still active.
-            return NavigationPlan(listOf(route(0), route(state)))
+            return NavigationPlan(listOf(route(0), route(state, remaining = remaining)))
         }
         val capacities = selection.components.map { component ->
             capabilities.maneuverCapacity(component)
@@ -72,11 +79,12 @@ internal object NavigationWireEncoding {
                 index = index, type = type)),
             "24A446:CarPlay:247b3a190/table2690da6a8;accessoryd:1000c5008/1001777c0;GalaxyPlay:024858")
         // Every batch is self-contained, including resubscription. No delivered snapshot cache.
-        // A missing/invalid distance must not leave the receiver's old segment intact.
+        // Missing/invalid values must not leave the receiver's old segment or route
+        // remainder intact. GalaxyPlay 024c74 skips a missing p7; 024838 resets it.
         // With one slot the new definition would immediately change the currently
         // referenced arrow while its old distance is still present. Clear first.
-        return NavigationPlan((if (distance == null || capacity == 1) listOf(route(0)) else emptyList()) +
-            listOf(definition, route(state, index, distance)))
+        return NavigationPlan((if (distance == null || remaining == null || capacity == 1) listOf(route(0)) else emptyList()) +
+            listOf(definition, route(state, index, distance, remaining)))
     }
 
     private fun type(turn: NavigationTurn): Int = when (turn) {

@@ -25,10 +25,13 @@ class ReceiverProtocolContractTest {
     private fun display(capacity: Int = 8) = NavigationDisplayCapabilities(listOf(RawParameter(30,
         IapWire.fields(listOf(0 to IapWire.be16(42), 6 to IapWire.be16(capacity))))))
     private fun snapshot(generation: Long = 1, turn: NavigationTurn? = NavigationTurn.RIGHT,
-                         distance: Long? = 200) = NavigationSnapshot("xiaomi", 1, 1, generation,
-        NavigationLifecycle.ACTIVE, maneuver = NavigationManeuver("hint-$generation",
+                         distance: Long? = 200, remaining: Long? = null,
+                         routeEvidence: String? = "fixture:verified-route") = NavigationSnapshot("xiaomi", 1, 1, generation,
+        NavigationLifecycle.ACTIVE, route = NavigationRoute(distanceRemainingMeters = remaining),
+        maneuver = NavigationManeuver("hint-$generation",
             distanceMeters = distance, turn = turn), maneuverGeneration = generation,
-        evidence = mapOf("lifecycle" to "H01:16fc3c", "maneuver" to "H01:HUD-maneuver"))
+        evidence = mapOf("lifecycle" to "H01:16fc3c", "maneuver" to "H01:HUD-maneuver") +
+            listOfNotNull(routeEvidence?.takeIf { remaining != null }?.let { "distanceRemainingMeters" to it }).toMap())
     private fun deliver(receiver: BydHudRouteState, plan: NavigationPlan) {
         assertNull(plan.blocked)
         plan.packets.forEach { packet ->
@@ -87,11 +90,49 @@ class ReceiverProtocolContractTest {
         assertNull(receiver.currentApple())
     }
 
+    @Test fun actualReceiverSeparatesRouteRemainderFromManeuverDistanceAndAcceptsZero() {
+        val receiver = BydHudRouteState()
+        for (remaining in listOf(19000L, 18000L, 0L, 0xffffffffL)) {
+            deliver(receiver, NavigationWireEncoding.plan(snapshot(distance = 245, remaining = remaining), selection, display()))
+            assertEquals(remaining, receiver.currentApple()!!.remainingMeters)
+            assertEquals(245, receiver.currentApple()!!.distanceMeters)
+            assertEquals(2, receiver.currentApple()!!.type)
+        }
+        deliver(receiver, NavigationWireEncoding.plan(snapshot(distance = null, remaining = 19000), selection, display()))
+        assertEquals(19000L, receiver.currentApple()!!.remainingMeters)
+        assertEquals(0, receiver.currentApple()!!.distanceMeters)
+    }
+
+    @Test fun actualReceiverClearsKnownRouteRemainderOnUnknownValuesNewRoutesAndEnd() {
+        val receiver = BydHudRouteState()
+        val unknown = listOf(snapshot(remaining = null), snapshot(remaining = -1),
+            snapshot(remaining = 0x100000000L), snapshot(remaining = 19000, routeEvidence = null),
+            snapshot(remaining = 19000, routeEvidence = " "), snapshot().copy(routeEpoch = 2))
+        for (next in unknown) {
+            deliver(receiver, NavigationWireEncoding.plan(snapshot(remaining = 19000), selection, display()))
+            assertEquals(19000L, receiver.currentApple()!!.remainingMeters)
+            val plan = NavigationWireEncoding.plan(next, selection, display())
+            assertEquals(listOf(0x5201, 0x5202, 0x5201), plan.packets.map { it.id })
+            deliver(receiver, plan)
+            assertNull(receiver.currentApple()!!.remainingMeters)
+            assertEquals(200, receiver.currentApple()!!.distanceMeters)
+            assertEquals(2, receiver.currentApple()!!.type)
+        }
+        for (lifecycle in listOf(NavigationLifecycle.ENDED, NavigationLifecycle.INVALIDATED)) {
+            deliver(receiver, NavigationWireEncoding.plan(snapshot(remaining = 19000), selection, display()))
+            deliver(receiver, NavigationWireEncoding.plan(snapshot(remaining = 19000).copy(lifecycle = lifecycle), selection, display()))
+            assertNull(receiver.currentApple())
+            deliver(receiver, NavigationWireEncoding.plan(snapshot(), selection, display()))
+            assertNull(receiver.currentApple()!!.remainingMeters)
+        }
+    }
+
     @Test fun longRouteDoesNotExceedTheReceiversManeuverStorage() {
         val receiver = BydHudRouteState()
         val indices = mutableSetOf<Int>()
         for (generation in 1L..100L) {
-            val plan = NavigationWireEncoding.plan(snapshot(generation, distance = 200 - generation), selection, display())
+            val plan = NavigationWireEncoding.plan(snapshot(generation, distance = 200 - generation,
+                remaining = 19000 - generation), selection, display())
             plan.packets.filter { it.id == 0x5202 }.forEach {
                 indices += IapWire.u16(IapWire.parseFieldList(IapWire.fields(it.fields))[1]!!, 0)
             }
@@ -106,8 +147,8 @@ class ReceiverProtocolContractTest {
 
     @Test fun singleSlotResetPreventsAnOldDistanceWithTheNewArrow() {
         val receiver = BydHudRouteState()
-        deliver(receiver, NavigationWireEncoding.plan(snapshot(), selection, display(1)))
-        val changed = NavigationWireEncoding.plan(snapshot(2, NavigationTurn.LEFT, 50), selection, display(1))
+        deliver(receiver, NavigationWireEncoding.plan(snapshot(remaining = 19000), selection, display(1)))
+        val changed = NavigationWireEncoding.plan(snapshot(2, NavigationTurn.LEFT, 50, remaining = 18000), selection, display(1))
         assertEquals(listOf(0x5201, 0x5202, 0x5201), changed.packets.map { it.id })
         changed.packets.forEachIndexed { index, packet ->
             val parsed = frame(packet.id, packet.fields)
@@ -116,6 +157,7 @@ class ReceiverProtocolContractTest {
         }
         assertEquals(1, receiver.currentApple()!!.type)
         assertEquals(50, receiver.currentApple()!!.distanceMeters)
+        assertEquals(18000L, receiver.currentApple()!!.remainingMeters)
     }
 
     @Test fun realNowPlayingParserRetainsAndClearsIncrementalFields() {
