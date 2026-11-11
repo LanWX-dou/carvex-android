@@ -4,10 +4,12 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class BusinessLogEvidenceTest {
-    @Test fun singleLineTextIsBoundedAndTruncationStillHasAnIdentity() {
-        val rendered=DebugLogValue.text("歌词\n\r\t\"\\" + "\u0001".repeat(500))
+    @Test fun singleLineTextKeepsCompleteEscapedValueAndIdentity() {
+        val value = "歌词\n\r\t\"\\" + "\u0001".repeat(500) + "tail-marker"
+        val rendered=DebugLogValue.text(value)
         assertFalse(rendered.contains('\n'));assertFalse(rendered.contains('\r'))
-        assertTrue(rendered.length<280)
+        assertTrue(rendered.contains("\\u0001".repeat(500)))
+        assertTrue(rendered.contains("tail-marker\" chars=${value.length}"))
         assertTrue(rendered.contains("\\n"));assertTrue(rendered.contains("sha256="))
         assertNotEquals(DebugLogValue.text("a".repeat(100)+"X"),DebugLogValue.text("a".repeat(100)+"Y"))
         assertEquals("unknown",DebugLogValue.text(null))

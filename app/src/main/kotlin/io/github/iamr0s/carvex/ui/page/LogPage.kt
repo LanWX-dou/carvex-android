@@ -10,7 +10,6 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -25,7 +24,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ContentCopy
@@ -58,6 +56,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.iamr0s.carvex.ui.model.DeviceViewModel
 import io.github.iamr0s.carvex.ui.model.LogGroup
+import io.github.iamr0s.carvex.ui.model.LogLine
 import io.github.iamr0s.carvex.ui.model.UiState
 import io.github.iamr0s.carvex.R
 import io.github.iamr0s.carvex.ui.tool.LocalAppInsets
@@ -167,15 +166,32 @@ fun LogPage(
                 .clip(MaterialTheme.shapes.large)
                 .background(x.logBg),
         ) {
-            items(state.logs, key = { it.id }) { group ->
-                LogGroupView(group, x) { vm.toggleGroup(group.id) }
+            state.logs.forEach { group ->
+                item(key = "${group.id}-header", contentType = "header") {
+                    LogGroupHeader(group, x) { vm.toggleGroup(group.id) }
+                }
+                if (group.open) {
+                    items(group.lines.size, key = { "${group.id}-line-$it" }, contentType = { "line" }) { index ->
+                        Text(
+                            text = lineText(group.lines[index], x),
+                            fontFamily = FontFamily.Monospace,
+                            fontSize = 12.5.sp,
+                            lineHeight = 21.sp,
+                            color = x.logText,
+                            softWrap = false,
+                            modifier = Modifier
+                                .horizontalScroll(rememberScrollState())
+                                .padding(horizontal = 14.dp, vertical = 2.dp),
+                        )
+                    }
+                }
             }
         }
     }
 }
 
 @Composable
-private fun LogGroupView(group: LogGroup, x: ExtraColors, onToggle: () -> Unit) {
+private fun LogGroupHeader(group: LogGroup, x: ExtraColors, onToggle: () -> Unit) {
     val angle by animateFloatAsState(if (group.open) 0f else -90f, tween(250), label = "chevron")
     Column {
         Row(
@@ -201,33 +217,17 @@ private fun LogGroupView(group: LogGroup, x: ExtraColors, onToggle: () -> Unit) 
             )
             Text("${group.lines.size}", color = x.logDim, fontSize = 13.sp)
         }
-        AnimatedVisibility(visible = group.open) {
-            Text(
-                text = groupText(group, x),
-                fontFamily = FontFamily.Monospace,
-                fontSize = 12.5.sp,
-                lineHeight = 21.sp,
-                color = x.logText,
-                softWrap = false, // long lines stay on one line...
-                modifier = Modifier
-                    .horizontalScroll(rememberScrollState()) // ...and scroll sideways
-                    .padding(horizontal = 14.dp, vertical = 8.dp),
-            )
-        }
     }
 }
 
-private fun groupText(group: LogGroup, x: ExtraColors): AnnotatedString = buildAnnotatedString {
-    group.lines.forEachIndexed { i, line ->
-        if (i > 0) append('\n')
-        withStyle(SpanStyle(color = x.logDim)) { append(line.time) }
-        append(' ')
-        val levelColor = when (line.level) {
-            "WARN" -> x.warn
-            "ERROR" -> x.bad
-            else -> x.info
-        }
-        withStyle(SpanStyle(color = levelColor)) { append(line.level.padEnd(5)) }
-        append(line.message)
+private fun lineText(line: LogLine, x: ExtraColors): AnnotatedString = buildAnnotatedString {
+    withStyle(SpanStyle(color = x.logDim)) { append(line.time) }
+    append(' ')
+    val levelColor = when (line.level) {
+        "WARN" -> x.warn
+        "ERROR" -> x.bad
+        else -> x.info
     }
+    withStyle(SpanStyle(color = levelColor)) { append(line.level.padEnd(5)) }
+    append(line.message)
 }
