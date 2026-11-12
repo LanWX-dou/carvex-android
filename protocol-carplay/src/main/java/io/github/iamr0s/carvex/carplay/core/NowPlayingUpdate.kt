@@ -164,14 +164,24 @@ object NowPlayingUpdate {
 
 /** One authenticated Link owns the subscription. Backend snapshots may precede Link readiness.
  * All mutations and sends serialize: STOP cancels uncommitted updates, not bytes already sent. */
-class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean,private val log:(String)->Unit) {
+class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolean)->Boolean,private val log:(String)->Unit) {
+    /** Immediate sinks are useful for in-memory consumers; queued transports must keep the guard. */
+    constructor(emit:(List<Pair<Int,ByteArray>>)->Boolean,log:(String)->Unit):this(
+        {fields,valid->valid()&&emit(fields)},log)
     constructor(emit:(List<Pair<Int,ByteArray>>)->Boolean):this(emit,{})
     var artworkSelectionChanged:(Boolean)->Unit={}
     private var ready=false
     private var selection:NowPlayingUpdate.Selection?=null
     private var snapshot=NowPlayingUpdate.Track()
+    // Writer guards read only this atomic token, never the publisher/relay monitor.
+    private val subscriptionEpoch=java.util.concurrent.atomic.AtomicLong()
+    private fun revoke(){subscriptionEpoch.incrementAndGet();selection=null;artworkSelectionChanged(false)}
+    private fun emitCurrent(fields:List<Pair<Int,ByteArray>>):Boolean {
+        val epoch=subscriptionEpoch.get()
+        return emit(fields,{subscriptionEpoch.get()==epoch})
+    }
     @Synchronized fun linkReady(ready:Boolean){
-        this.ready=ready;selection=null;artworkSelectionChanged(false)
+        this.ready=ready;revoke()
         log("debug music event=link ready=$ready subscribed=false cachedTitle=${snapshot.title!=null} cachedState=${snapshot.status?:"unknown"}")
     }
     @Synchronized fun command(id:Int,fields:IapFields):Boolean {
@@ -182,24 +192,23 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean,
                 val selected=NowPlayingUpdate.selection(fields)?:run{
                     log("debug music event=subscription direction=rx id=5000 accepted=false reason=invalid-fields");return false
                 }
-                selection=null
-                artworkSelectionChanged(false)
+                revoke()
                 val initial=NowPlayingUpdate.fields(NowPlayingUpdate.initialDefaults,selected)
                 // A failed enqueue must not let a real update overtake initialization.
-                if(initial.isNotEmpty()&&!emit(initial)){
+                if(initial.isNotEmpty()&&!emitCurrent(initial)){
                     log("debug music event=subscription direction=rx id=5000 accepted=false reason=initial-enqueue-failed");return false
                 }
                 selection=selected
                 // Our backend may already have delivered a snapshot before START.
                 // Publish it after the independent default message, never instead.
                 val current=NowPlayingUpdate.fields(snapshot,selected)
-                val accepted=current.isEmpty() || emit(current)
+                val accepted=current.isEmpty() || emitCurrent(current)
                 artworkSelectionChanged(NowPlayingUpdate.Attribute(0,0x1a) in selected.attributes)
                 log("debug music event=subscription direction=rx id=5000 accepted=$accepted attributes=${selected.orderedAttributes.size} infoMask=${selected.infoMask} queueStart=${selected.startIndexOverride?:"unknown"} artwork=${NowPlayingUpdate.Attribute(0,0x1a) in selected.attributes}")
                 return accepted
             }
             // 5002 没有参数，handler 不读 param；多余参数按固件忽略。
-            NowPlayingUpdate.STOP->{selection=null;artworkSelectionChanged(false);log("debug music event=subscription direction=rx id=5002 subscribed=false")}
+            NowPlayingUpdate.STOP->{revoke();log("debug music event=subscription direction=rx id=5002 subscribed=false")}
             else->return false
         }
         return true
@@ -238,6 +247,6 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>)->Boolean,
         if(!ready){log("debug music event=blocked direction=tx id=5001 reason=link-not-ready");return false}
         val fields=NowPlayingUpdate.fields(track,selected)
         if(fields.isEmpty())log("debug music event=blocked direction=tx id=5001 reason=no-selected-values")
-        return fields.isNotEmpty()&&emit(fields)
+        return fields.isNotEmpty()&&emitCurrent(fields)
     }
 }

@@ -143,8 +143,8 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         session={runtime.fileSession()},
         announce={fields,completion->runtime.send(NowPlayingUpdate.ID,fields,completion)},
         send={bytes,valid,completion->runtime.sendFile(bytes,valid,completion)},log=log)
-    private val nowPlayingPublisher=NowPlayingPublisher({fields->
-        val accepted=runtime.send(NowPlayingUpdate.ID,fields)
+    private val nowPlayingPublisher=NowPlayingPublisher({fields,valid->
+        val accepted=runtime.sendGuarded(NowPlayingUpdate.ID,fields,{!stopping&&sourceContextCurrent()&&valid()})
         log("Now Playing 5001 queued=$accepted fields="+fields.joinToString(";"){(group,bytes)->
             "$group:"+IapWire.parseFieldList(bytes).ordered.joinToString(","){it.first.toString()}})
         accepted
