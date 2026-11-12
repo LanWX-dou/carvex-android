@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.*
 import java.time.Instant
 import java.util.UUID
 import java.io.File
+import java.io.OutputStream
 import java.util.concurrent.atomic.AtomicBoolean
 
 enum class Stage(val title:String) {
@@ -125,6 +126,7 @@ object BridgeStore {
     private val logFileLock=Any()
     private var diskLogGeneration=-1L // guarded by logFileLock
     private val writer=Channel<LogWrite>(Channel.UNLIMITED)
+    private val logHistoryLoaded=CompletableDeferred<Unit>()
     private val scope=CoroutineScope(SupervisorJob()+Dispatchers.IO)
     @Synchronized fun init(c:Context){
         if(::context.isInitialized)return;context=c.applicationContext
@@ -160,6 +162,7 @@ object BridgeStore {
                     logState.value=logBuffer.snapshot()
                 }
             }
+            logHistoryLoaded.complete(Unit)
             for(entry in writer){runCatching{
                 synchronized(logFileLock){
                     if(entry.line==null){f.writeText("");diskLogGeneration=entry.generation}
@@ -272,16 +275,24 @@ object BridgeStore {
         synchronized(this){if(snapshot.generation!=logGeneration)snapshot=logSnapshot()}
         val current=snapshot.session
         val lines=DiagnosticLogText.merge(snapshot.generation,disk.first,disk.second,snapshot.evidence,snapshot.recent)
-        return "CarVeX diagnostics\n"+
+        return exportHeader(current)+lines.joinToString("\n")
+    }
+
+    /** Wait for startup history, then stream a stable view including entries still queued for disk. */
+    suspend fun exportTo(output:OutputStream)=withContext(Dispatchers.IO){
+        if(::context.isInitialized)logHistoryLoaded.await()
+        val (current,lines)=synchronized(this@BridgeStore){mutable.value to logState.value}
+        DiagnosticLogExport(exportHeader(current),lines).writeTo(output){ensureActive()}
+    }
+
+    private fun exportHeader(current:SessionState):String = "CarVeX diagnostics\n"+
                 environment()+
                 "Authentication: experimental signature integrity; Apple root chain unverified\n"+
                 "Audio: HomeKit codec/transport implementation; audible acceptance requires device verification\n"+
                 "Session=${current.id} audioStatus=${current.audioStatus}\n"+
                 "Downstream sourcePCMBytes=${current.audioBytes} sourceBlocks=${current.audioPackets} droppedBlocks=${current.audioUnsentPackets} submittedPCMBytes=${current.audioForwardedBytes}\n"+
                 "Upstream microphoneDeliveredPCMBytes=${current.microphoneBytes}\n"+
-                "--- Complete raw log (oldest first; retained until manually cleared) ---\n"+
-                lines.joinToString("\n")
-    }
+                "--- Complete raw log (oldest first; retained until manually cleared) ---\n"
     /**
      * 历史监听配置的持久存储。运行时不读取它来转发 CarPlay 事件；协议映射由会话直接处理，
      * 这里仅供诊断界面查看和保留历史记录。

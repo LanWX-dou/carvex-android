@@ -1,0 +1,7 @@
+allprojects {
+    if (path == ':core') {
+        tasks.withType(Test).configureEach {
+            maxHeapSize = '64m'
+        }
+    }
+}

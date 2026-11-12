@@ -262,6 +262,8 @@ installed" is not evidence that a third-party app can bind the Honor system serv
 
 The log page, in-memory history, log file, and copy/export have no line-count or file-size cutoff. Individual messages and selected diagnostic fields are no longer truncated. Logs are appended and survive app restarts until manually cleared. The write queue does not discard records when busy; the page loads individual rows and appending records does not copy the entire history. Existing sensitive-field redaction remains active.
 
+File export writes a fixed view of the complete history as UTF-8 rows on a background dispatcher, without rereading, merging, sorting or creating a full text/byte array. It waits for startup history to load and includes records still queued for disk. Repeated export clicks are disabled while writing; write, flush and close failures report an export failure.
+
 Long debugging sessions increase memory and disk usage. After exporting, logs can be cleared manually in settings.
 
 ## Tests

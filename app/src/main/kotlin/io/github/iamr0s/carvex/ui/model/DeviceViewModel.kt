@@ -3,6 +3,7 @@ package io.github.iamr0s.carvex.ui.model
 import android.app.Application
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.iamr0s.carvex.R
@@ -348,6 +349,13 @@ class DeviceViewModel(app: Application) : AndroidViewModel(app) {
 
     /** Complete raw diagnostics. Disk reads stay off the UI. */
     suspend fun logText(): String = withContext(Dispatchers.IO) { BridgeStore.export() }
+
+    /** Open, stream and close the selected document off the UI thread. */
+    suspend fun exportLogs(uri: Uri) = withContext(Dispatchers.IO) {
+        checkNotNull(appContext.contentResolver.openOutputStream(uri, "wt")).use { output ->
+            BridgeStore.exportTo(output)
+        }
+    }
 
     private fun newGroup(title: String, vararg lines: Pair<String, String>): Long {
         val id = nextLogId++

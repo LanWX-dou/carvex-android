@@ -10,7 +10,7 @@ class DiagnosticLogTextTest {
     private fun line(index: Int) = "${Instant.EPOCH.plusMillis(index.toLong())} [session] line=$index"
 
     @Test fun historyPreservesEveryEntryBeyondFormerLineLimit() {
-        val all = (0 until 10000).map(::line)
+        val all = (0 until 100_000).map(::line)
         val buffer = DiagnosticLogBuffer()
         all.forEach(buffer::append)
         assertEquals(all, buffer.snapshot())

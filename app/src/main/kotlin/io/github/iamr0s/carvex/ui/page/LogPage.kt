@@ -37,7 +37,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -62,9 +65,7 @@ import io.github.iamr0s.carvex.R
 import io.github.iamr0s.carvex.ui.tool.LocalAppInsets
 import io.github.iamr0s.carvex.ui.tool.toPaddingValues
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @Composable
 fun LogPage(
@@ -76,6 +77,7 @@ fun LogPage(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    var exporting by remember { mutableStateOf(false) }
     val exportedMessage = stringResource(R.string.log_exported)
     val exportFailedMessage = stringResource(R.string.log_export_failed)
     val copiedMessage = stringResource(R.string.log_copied)
@@ -87,20 +89,18 @@ fun LogPage(
     val export = rememberLauncherForActivityResult(
         ActivityResultContracts.CreateDocument("text/plain"),
     ) { uri ->
-        if (uri != null) {
+        if (uri != null && !exporting) {
+            exporting = true
             scope.launch {
                 try {
-                    val text = vm.logText()
-                    withContext(Dispatchers.IO) {
-                        checkNotNull(context.contentResolver.openOutputStream(uri)).use {
-                            it.write(text.toByteArray(Charsets.UTF_8))
-                        }
-                    }
+                    vm.exportLogs(uri)
                     vm.say(exportedMessage)
                 } catch (cancelled: CancellationException) {
                     throw cancelled
                 } catch (_: Exception) {
                     vm.say(exportFailedMessage)
+                } finally {
+                    exporting = false
                 }
             }
         }
@@ -135,7 +135,7 @@ fun LogPage(
                 )
             }
             Spacer(Modifier.width(8.dp))
-            IconButton(onClick = { export.launch("device-log.txt") }) {
+            IconButton(enabled = !exporting, onClick = { export.launch("device-log.txt") }) {
                 Icon(
                     Icons.Default.FileDownload,
                     contentDescription = stringResource(R.string.action_export),
