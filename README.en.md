@@ -1,5 +1,7 @@
 # CarVeX
 
+On 2026-11-12, [complete navigation input logging](docs/fixes/2026-11-12-navigation-full-input.md) was added for the requested field investigation. It records all navigation extra keys, types, nested values and complete text/image bytes, with a tool to recover exported fields and images. The user confirmed the right-turn plan; the added capture awaits device testing.
+
 On 2026-11-12, [navigation delivery diagnostics](docs/fixes/2026-11-12-navigation-delivery-diagnostics.md) added event, snapshot, batch, writer-check and completion attribution, with distinct subscription, capability and stale-generation reasons. Road text, route overview, lanes and vehicle display remain unresolved.
 
 On 2026-11-12, navigation decoding was extended to audited CarWith `4.0.23-20261016`, whose inputs were rejected by the previous version check. The added version has separate original APK method and arrow-template evidence. See the [version adaptation record](docs/fixes/2026-11-12-carwith-navigation-version.md). Field validation, road text, lanes and route overview remain unresolved.
