@@ -639,12 +639,9 @@ class SessionController(
             var bootstrap=phase(Stage.AUTH,90000){
                 runner.negotiate(link,o.phoneMac,o.carPlayName,identity,lastBootstrap,
                     experimentalIntegrityOnly=o.experiment,
-                    networkHandoff=networkHandoff,
-                    onNowPlayingCommand={command,fields->
-                        // 发布器在 AirSession 建好后才有；先暂存订阅，建立后由 AirSession 取走。
-                        NowPlayingUpdate.pendingSubscription=if(command==NowPlayingUpdate.START)fields else null
-                        true
-                    })
+                    // This Bluetooth owner has no music publisher. AirSession negotiates
+                    // its own owner and waits for its actual START; snapshots carry no grant.
+                    networkHandoff=networkHandoff)
             }
             val sourceAuthentication=requireNotNull(bootstrap.authentication)
             val sourceBinding=SecurityBinding(sourceAuthentication.generation,id,sourceAuthentication.epoch)

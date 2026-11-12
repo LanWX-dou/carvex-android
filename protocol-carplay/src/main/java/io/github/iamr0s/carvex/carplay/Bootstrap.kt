@@ -837,7 +837,8 @@ object Bootstrap {
                         else log("destination status failed="+DigitalAudioAndDestination.destinationFailed+
                             " keys="+DigitalAudioAndDestination.destinationReasonKeys)
                     // 5000/5002 是"开始/停止 Now Playing 更新"的订阅命令（第 17 章 §2.1/§2.3）。
-                    // 它们可能在识别阶段就到达，交给 Now Playing 发布器；没有接收方时仍按未知命令记录。
+                    // Only a publisher owned by this Link may handle them. No handler means
+                    // unsupported; neither success nor a grant for a later endpoint is fabricated.
                     0x5000,0x5002,0x5003->if(onNowPlayingCommand?.invoke(command.id,fields)!=true)
                         log("Unsupported handshake command "+command.id.toString(16)+"; ignored")
                     // VoiceOver 全族（5601–5613）：本实现没有 VoiceOver 后端，明确记录并忽略，

@@ -6,9 +6,6 @@ object NowPlayingUpdate {
     const val ID=0x5001
     const val STOP=0x5002
     val ids=setOf(START,ID,STOP)
-    /** 订阅命令可能在 AirPlay 会话建立之前就到达（识别阶段），此时发布器还不存在。
-     *  这里暂存最近一条 5000 的字段，AirSession 建好发布器后取走并立即回一次快照。 */
-    @Volatile var pendingSubscription:IapFields?=null
     data class Attribute(val group:Int,val id:Int)
     /** Membership remains exposed for existing callers; ordered entries preserve
      * firmware's repeated subscription parameters for outgoing encoding. */

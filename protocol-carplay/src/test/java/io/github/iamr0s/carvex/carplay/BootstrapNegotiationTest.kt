@@ -131,6 +131,27 @@ class BootstrapNegotiationTest {
         }
     }
 
+    @Test(timeout=10000) fun bluetoothMusicWithoutAnOwnerRemainsUnsupportedAcrossStartStopAndHandoff() {
+        Peer(2).use { peer ->
+            peer.initialize()
+            val work=peer.negotiate()
+            authenticateV2(peer,SyntheticAccessory(),
+                byteArrayOf(0x57,3,0x50,0,0x50,2,0x50,3),byteArrayOf(0x57,2,0x50,1))
+            assertEquals(0x5702,peer.nextOf(0x5702).first)
+            peer.command(0x5000,listOf(0 to IapWire.fields(listOf(1 to byteArrayOf()))))
+            peer.command(0x5002)
+            peer.command(0x5000,listOf(0 to IapWire.fields(listOf(12 to byteArrayOf()))))
+            peer.command(0x5003,listOf(0 to IapWire.be32(42)))
+            peer.command(0x5703,wifiAnnouncement(security=2))
+            assertNotNull(work.get(3,TimeUnit.SECONDS).authentication)
+            assertEquals(listOf("5000","5002","5000","5003"),
+                peer.logs.filter{it.startsWith("Unsupported handshake command 50")}
+                    .map{it.substringAfter("command ").substringBefore(';')})
+            assertFalse(peer.outputAttempts.contains(0x5001))
+            assertNoApplicationOutput(peer)
+        }
+    }
+
     /** Explicit initial-message fixture; power fields 8/9 are registered, not unknown strings. */
     private fun identification(sends:ByteArray=byteArrayOf(0x57,3),receives:ByteArray=byteArrayOf(0x57,2),transport:Int=17)=listOf(
         0 to IapWire.cstring("synthetic-accessory"),1 to IapWire.cstring("synthetic-model"),
