@@ -5,6 +5,10 @@
 
 ## 阅读顺序
 
+2026-11-12 已续接[GalaxyPlay 导航记录](spec/galaxyplay-navigation-progress-20261112.md)：新增[投递关联诊断](../../android/docs/fixes/2026-11-12-navigation-delivery-diagnostics.md)与[字段原字节续查](spec/galaxyplay-navigation-fields-20261112.md)，可追踪缺订阅、能力和旧批次阻断。道路归属/文本长度、全程公里/分钟与车道仍 OPEN；构建显式使用 `D:/Java/gradle`，没有新增实车验收。
+
+新增[日志 7 与 CarWith 4.0.23 导航适配](spec/carwith-navigation-upgrade-20261112.md)：两个已订阅 GalaxyPlay 会话的 132 条新版宿主导航输入均被旧版本门拒绝。已核新版原 APK 的 9 个方法及 18 个未变模板并接入独立 H02 来源，基础转向/正数机动距离相关测试与小米编译通过；道路、车道、全程剩余公里/分钟及修复后实车显示仍未完成。
+
 新增[全程剩余里程发布器修复](../../android/docs/fixes/2026-11-11-navigation-route-distance.md)：已将快照中有字段证据的 U32 全程值接入 `5201 p7`，缺值先清旧状态再恢复当前转向信息。1240 项回归、14 项原接收源码合同检查及小米 Kotlin 编译通过；Apple 原 p7/U32 调用链已核。CarWith 的真实全程来源仍缺失，现场 -1 米尚未解决，未构建/安装 APK。[验证记录](evidence/navigation-route-distance-validation-20261111.json)。
 
 新增[CarWithEnhance 导航记录核查](spec/carwith-enhance-navigation-search-20261111.md)：已查主分支、两个公开歌词分支、15 个可达提交和公开 Issues；未找到全程里程/HUD 导航出口。NavigationRouting 命中属于媒体页面跳转，Xposed/DexKit 可作为进程内定位参考，尚未补出真实里程来源。

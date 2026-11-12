@@ -1,4 +1,4 @@
-本轮已完成 19/38 项：导航契约、会话 relay、当前 Link 订阅、队列撤销和本地验证。未勾选项保留证据/生产编码/实车缺口；规划或基础设施完成不等于仪表互通完成。任务遵循 [设计](design.md) 和三份 [需求](specs/navigation-source-contract/spec.md)、[发布需求](specs/carplay-navigation-publication/spec.md)、[诊断需求](specs/navigation-delivery-diagnostics/spec.md)。
+当前已完成 25/38 项：导航契约、会话 relay、当前 Link 订阅、数值核心、队列撤销、投递关联诊断和本地验证。未勾选项保留证据/生产编码/实车缺口；规划或基础设施完成不等于仪表互通完成。任务遵循 [设计](design.md) 和三份 [需求](specs/navigation-source-contract/spec.md)、[发布需求](specs/carplay-navigation-publication/spec.md)、[诊断需求](specs/navigation-delivery-diagnostics/spec.md)。
 
 ## 1. P0 实施前状态与证据基线
 
@@ -55,7 +55,7 @@
 
 ## 8. P4 日志、检查与实车验收
 
-- [ ] 8.1 添加宿主事件→快照→批次→writer 的关联日志，记录所有代际、字段/证据项、首个阻断原因；遵守现有脱敏规则。
+- [x] 8.1 添加宿主事件→快照→批次→writer 的关联日志，记录所有代际、字段/证据项、首个阻断原因；遵守现有脱敏规则。
 - [x] 8.2 按实际改动运行 `:host-api:test`、`:host-carlife-mixing:testDebugUnitTest`、`:protocol-carplay:testDebugUnitTest`、`:bridge:testDebugUnitTest` 及小米 app Kotlin 编译，接口影响其他 flavor 时补对应编译/测试；运行 diff 空白与文档链接检查。
 - [x] 8.3 同步研究的已证边界、阶段结果和用户可见变化说明；涉及入口文档规则/状态变化时同步中英，不把本地测试写成实车互通。
 - [ ] 8.4 准备可追溯提交及实车测试步骤；用户自行构建安装，逐项验证开始、机动、距离递减、重算、取消、抵达，保留完整会话/订阅/发送日志。
@@ -66,6 +66,18 @@
 
 新增完成 3.3、5.5、6.1、6.2、6.5：基础图标映射、实际组件容量门、生产数值编码、自包含定义/引用批次以及相关发布测试。未知组继续 unknown，不勾选通用 Apple 顺序/单位或文本/车道合同任务。
 
-2.3 的原状态/类型枚举已闭合，但完整距离单位与 ETA 消费合同仍未齐；2.5/5.3 已接入 p30/p0/p6 正机动容量，文本/NUL 和车道仍 OPEN；2.6 通用 Apple 顺序仍 OPEN，当前清除/合并只限 GalaxyPlay 核查范围。3.2/3.4 保留外部地图阶段、道路角色、routeId/sequence 和可选字段缺口。6.3 现已发布 NotActive，结束原因仍 unknown。7.1 完成的是缺来源分支，不声称实现车道。8.1 仍缺全部字段的完整关联，8.4/8.5 的实车工作尚未执行。
+2.3 的原状态/类型枚举已闭合，但完整距离单位与 ETA 消费合同仍未齐；2.5/5.3 已接入 p30/p0/p6 正机动容量，文本/NUL 和车道仍 OPEN；2.6 通用 Apple 顺序仍 OPEN，当前清除/合并只限 GalaxyPlay 核查范围。3.2/3.4 保留外部地图阶段、道路角色、routeId/sequence 和可选字段缺口。6.3 现已发布 NotActive，结束原因仍 unknown。7.1 完成的是缺来源分支，不声称实现车道。8.1 已于 2026-11-12 补齐当前链路字段/证据与冻结批次的关联诊断，8.4/8.5 的实车工作尚未执行。
 
 原 docset 完整 FAIL 保留历史记录，新原表/字节复核独立记录，不改写旧 manifest。详细见[实施记录](../../../android/docs/fixes/2026-11-11-navigation-cluster-chain.md)、[数值核心证据](../../../research/connection/spec/navigation-numeric-core-20261111.md)和[检查记录](validation.md)。音乐已由用户确认正常；通话作为下一条独立提交，不能把本地导航修复写成仪表已实车通过。
+
+## 2026-11-12 新版来源补证
+
+日志 7 的 132 条 CarWith 4.0.23 来源输入被旧版本门拒绝，当前 GalaxyPlay 会话已有订阅。已补 3.1/3.3/4.2 的新版范围：独立原 APK 的 9 个方法、18 个未变模板，H02 地址与严格类型，以及 2 项版本升级回归；离线宿主/bridge/协议测试 XML 合计 1,228 项通过，小米编译通过。详见[新版审计](../../../research/connection/spec/carwith-navigation-upgrade-20261112.md)和[实施记录](../../../android/docs/fixes/2026-11-12-carwith-navigation-version.md)。
+
+原清单保持 24/38：此次恢复已实现数值核心的来源适配，不关闭道路/车道/路线时间、全程距离来源或修复后实车项目，不归档变更。
+
+## 2026-11-12 续接：投递诊断
+
+新增完成 8.1，当前 25/38。宿主接收/拒绝、规范化、规划、排队、writer-check 和完成日志关联原快照与批次；道路/目的地/来源 route ID 脱敏，日志异常不改变 writer 有效性决定。新增四项回归及专用车道能力阻断断言。详见[诊断实施记录](../../../android/docs/fixes/2026-11-12-navigation-delivery-diagnostics.md)和[字段原字节续查](../../../research/connection/spec/galaxyplay-navigation-fields-20261112.md)。
+
+2.1/2.5/5.3 和 3.2/3.4/7.2 的字段证据缺口仍未关闭：原地图身份未进入 HUD，Apple shared-cache 长度目标缺失，真实全程公里/分钟来源与本版 5204 支持均未补齐。未打包、安装、提交或实车验收。

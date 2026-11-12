@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "scope": "Sanitized sender log; raw numeric producer values are not wire enum evidence",
+  "device_log": {
+    "sha256": "da960902e8b6353d37a768c0eeaba2a9342179b38a135911351951ce84270259",
+    "bytes": 2665988,
+    "line_count": 19936,
+    "build": {
+      "version_code": 20033,
+      "version_name": "20033",
+      "type": "release"
+    }
+  },
+  "affected_sessions": {
+    "d76de65f": {
+      "runtime_subscriptions": [
+        {
+          "line": 17494,
+          "utc": "2026-11-11T10:43:23.672932Z",
+          "link": 4,
+          "subscription": 5,
+          "components": [
+            42
+          ],
+          "options": 3
+        }
+      ],
+      "source_events": 21,
+      "decoded": {
+        "rejected": 21
+      },
+      "source_versions": [
+        "4.0.23-20261016"
+      ],
+      "normalized_events": 0,
+      "navigation_packets": 0,
+      "first_source": {
+        "line": 17568,
+        "utc": "2026-11-11T10:43:31.749092Z",
+        "session": "d76de65f",
+        "version": "4.0.23-20261016",
+        "action": "mix_notify_start_navi",
+        "decoded": "rejected",
+        "isNavi": "bool:true",
+        "hudAction": "absent",
+        "turn": "absent",
+        "distance": "absent",
+        "reference": "absent"
+      },
+      "last_source": {
+        "line": 19601,
+        "utc": "2026-11-11T10:45:09.643850Z",
+        "session": "d76de65f",
+        "version": "4.0.23-20261016",
+        "action": "carlife_show_hud_info",
+        "decoded": "rejected",
+        "isNavi": "absent",
+        "hudAction": "int:2",
+        "turn": "int:2",
+        "distance": "int:2200",
+        "reference": "int:3700"
+      },
+      "sample_numeric_hud": {
+        "line": 17573,
+        "utc": "2026-11-11T10:43:33.181076Z",
+        "session": "d76de65f",
+        "version": "4.0.23-20261016",
+        "action": "carlife_show_hud_info",
+        "decoded": "rejected",
+        "isNavi": "absent",
+        "hudAction": "int:1",
+        "turn": "int:2",
+        "distance": "int:3300",
+        "reference": "int:3700"
+      }
+    },
+    "8392ec2a": {
+      "runtime_subscriptions": [
+        {
+          "line": 6927,
+          "utc": "2026-11-11T10:36:09.636255Z",
+          "link": 4,
+          "subscription": 5,
+          "components": [
+            42
+          ],
+          "options": 3
+        }
+      ],
+      "source_events": 111,
+      "decoded": {
+        "rejected": 111
+      },
+      "source_versions": [
+        "4.0.23-20261016"
+      ],
+      "normalized_events": 0,
+      "navigation_packets": 0,
+      "first_source": {
+        "line": 11302,
+        "utc": "2026-11-11T10:39:40.126687Z",
+        "session": "8392ec2a",
+        "version": "4.0.23-20261016",
+        "action": "mix_notify_start_navi",
+        "decoded": "rejected",
+        "isNavi": "bool:true",
+        "hudAction": "absent",
+        "turn": "absent",
+        "distance": "absent",
+        "reference": "absent"
+      },
+      "last_source": {
+        "line": 16491,
+        "utc": "2026-11-11T10:42:46.530206Z",
+        "session": "8392ec2a",
+        "version": "4.0.23-20261016",
+        "action": "carlife_show_hud_info",
+        "decoded": "rejected",
+        "isNavi": "absent",
+        "hudAction": "int:2",
+        "turn": "int:2",
+        "distance": "int:3300",
+        "reference": "int:3700"
+      },
+      "sample_numeric_hud": {
+        "line": 11386,
+        "utc": "2026-11-11T10:39:41.242562Z",
+        "session": "8392ec2a",
+        "version": "4.0.23-20261016",
+        "action": "carlife_show_hud_info",
+        "decoded": "rejected",
+        "isNavi": "absent",
+        "hudAction": "int:1",
+        "turn": "int:3",
+        "distance": "int:128",
+        "reference": "int:128"
+      }
+    }
+  },
+  "source_event_count": 132,
+  "source_actions": {
+    "mix_notify_start_navi": 6,
+    "carlife_show_hud_info": 126
+  },
+  "raw_turn_types": {
+    "absent": 6,
+    "int:3": 60,
+    "int:7": 41,
+    "int:0": 2,
+    "int:2": 23
+  },
+  "prior_session": {
+    "session": "549f0b99",
+    "normalized_events": 5,
+    "navigation_packets": 10,
+    "note": "Earlier retained session; does not prove current navigation delivery"
+  },
+  "user_report": {
+    "date": "2026-11-12",
+    "navigation_display": "FAIL: listed navigation content not displayed"
+  },
+  "android_base": "deada9d0e465599c460e5d2704db5ef5f80f45a1",
+  "research_base": "036827a4a9c8ab453a9fa7cbd2e4dc56efdc5079",
+  "original_version_gate": "source.version != 4.0.14-20260801 returns null",
+  "fix_scope": "Audited 4.0.23 lifecycle and positive maneuver distance/basic-turn decoding",
+  "remaining_fields": "Road role/text, route remainder/time and lane source/receiver support remain OPEN",
+  "post_fix_vehicle_acceptance": "OPEN: no new vehicle run"
+}

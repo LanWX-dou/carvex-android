@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "android_base": "deada9d0e465599c460e5d2704db5ef5f80f45a1",
+  "changed_source_sha256": {
+    "android/host-carlife-mixing/src/main/java/io/github/iamr0s/carvex/host/vendor/CarWithNavigation.kt": "829bf63696fd2d4dd78a68f70f4fa80ad98292846744e679af432fed9c3c42f7",
+    "android/host-carlife-mixing/src/test/java/io/github/iamr0s/carvex/host/vendor/CarWithNavigationTest.kt": "e13336e79915a16678cd5273b9c519a564050c4a49d14243f9df7cc2aefbc4d6"
+  },
+  "gradle": {
+    "command": ".\\gradlew.bat :host-carlife-mixing:testDebugUnitTest :bridge:testDebugUnitTest :protocol-carplay:testDebugUnitTest :app:compileXiaomiDebugKotlin --offline --console=plain",
+    "result": "BUILD SUCCESSFUL",
+    "elapsed": "1m 17s",
+    "execution": "Approved outside sandbox after C:/.gradle wrapper lock creation failed; host and protocol tests executed, bridge tests were up-to-date",
+    "test_xml": {
+      "host-carlife-mixing": {
+        "suites": 5,
+        "tests": 25,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "bridge": {
+        "suites": 9,
+        "tests": 60,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "protocol-carplay": {
+        "suites": 139,
+        "tests": 1143,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "total_tests": 1228,
+    "new_host_regressions": 2
+  },
+  "original_apk_verifier": {
+    "tool": "research/connection/tools/inspect_carwith_navigation_upgrade.py",
+    "result": "PASS",
+    "method_count": 9,
+    "unchanged_reviewed_icons": 18
+  },
+  "adb_read_only_check": "No attached devices",
+  "apk_packaged": false,
+  "apk_installed": false,
+  "post_fix_vehicle_acceptance": "OPEN",
+  "remaining": "Road role/text, route remaining distance/time, lane producer/receiver support",
+  "local_checks": {
+    "documentation_links_checked": 121,
+    "documentation_link_failures": 0,
+    "openspec_strict": "PASS: 1 change, 0 issues",
+    "research_diff_whitespace": "PASS",
+    "android_diff_whitespace": "PASS",
+    "final_source_hashes": "PASS"
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "scope": "Original producer bytes and template identity; no vehicle acceptance",
+  "version": "4.0.23-20261016",
+  "apk_sha256": "c897a45d92c84f06e670fc4edd323824093a093f67d8e7d7b058fee2a737d06c",
+  "apk_bytes": 56209661,
+  "manifest_identity_review": {
+    "tool": "Android SDK 36.0.0 aapt dump badging",
+    "package": "com.miui.carlink",
+    "version_code": 104000023
+  },
+  "methods": {
+    "0x1d3c14": {
+      "owner": "Lcom/carwith/launcher/map/wms/j$b0;",
+      "method": "g",
+      "prototype": "(Z)V",
+      "registers": 3,
+      "inputs": 2,
+      "outputs": 3,
+      "tries": 0,
+      "code_units": 77,
+      "insns_sha256": "ed26a4dfc39253b7761b8adaf2c3e084ff18c491b46eef075e78b28dbe64836c"
+    },
+    "0x17aae8": {
+      "owner": "Lcom/carwith/launcher/LauncherDataBusClient;",
+      "method": "D",
+      "prototype": "()V",
+      "registers": 7,
+      "inputs": 1,
+      "outputs": 3,
+      "tries": 0,
+      "code_units": 63,
+      "insns_sha256": "6bd10e8c329ceaf35c5bf126390f1f598d13ea560bfd9c5c10e27ac716b3a5e4"
+    },
+    "0x17abdc": {
+      "owner": "Lcom/carwith/launcher/LauncherDataBusClient;",
+      "method": "F",
+      "prototype": "(ZLjava/lang/String;Landroid/graphics/drawable/Icon;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+      "registers": 30,
+      "inputs": 10,
+      "outputs": 9,
+      "tries": 2,
+      "code_units": 430,
+      "insns_sha256": "71702ecc6484e6aa94308e83549a9bb70d901fe6e87731eaca72b58bfe1eb713"
+    },
+    "0x17a338": {
+      "owner": "Lcom/carwith/launcher/LauncherDataBusClient;",
+      "method": "x",
+      "prototype": "(Ljava/lang/String;Ljava/lang/String;)I",
+      "registers": 4,
+      "inputs": 3,
+      "outputs": 2,
+      "tries": 1,
+      "code_units": 74,
+      "insns_sha256": "04ae1be9336186f7a69ed232c3bb328621e82e928f1e61b4c50f13512c4def8a"
+    },
+    "0x1ba904": {
+      "owner": "Lcom/carwith/launcher/map/l;",
+      "method": "d",
+      "prototype": "(Landroid/graphics/Bitmap;Ljava/lang/String;)I",
+      "registers": 23,
+      "inputs": 3,
+      "outputs": 4,
+      "tries": 16,
+      "code_units": 551,
+      "insns_sha256": "dca9ca95c9326729075af0cfdf4ff7c9ffecfec0d39cf9e78ecddfa21ddaf496"
+    },
+    "0x1bae4c": {
+      "owner": "Lcom/carwith/launcher/map/l;",
+      "method": "<clinit>",
+      "prototype": "()V",
+      "registers": 20,
+      "inputs": 0,
+      "outputs": 3,
+      "tries": 0,
+      "code_units": 572,
+      "insns_sha256": "66ebe4743fea710f2000ea674ffdc0775191ad979aee1473c7260a2c64505ff7"
+    },
+    "0x1ba61c": {
+      "owner": "Lcom/carwith/launcher/map/l$a;",
+      "method": "<init>",
+      "prototype": "(II)V",
+      "registers": 3,
+      "inputs": 3,
+      "outputs": 1,
+      "tries": 0,
+      "code_units": 8,
+      "insns_sha256": "082162de739cc7dac76c510a1eeba13493f069f8af4d1b234eec9a387bf2590a"
+    },
+    "0x1ba5ec": {
+      "owner": "Lcom/carwith/launcher/map/l$a;",
+      "method": "a",
+      "prototype": "()I",
+      "registers": 1,
+      "inputs": 1,
+      "outputs": 0,
+      "tries": 0,
+      "code_units": 3,
+      "insns_sha256": "479579bc738eb4ab1224632947ac75fbe98974300144ab7375af6ba65630794d"
+    },
+    "0x1ba604": {
+      "owner": "Lcom/carwith/launcher/map/l$a;",
+      "method": "b",
+      "prototype": "()I",
+      "registers": 1,
+      "inputs": 1,
+      "outputs": 0,
+      "tries": 0,
+      "code_units": 3,
+      "insns_sha256": "472d1735e3a80f9b048d1a0db8669dc318f47058dff2d72e02f8fdcda7721eb9"
+    }
+  },
+  "reviewed_icons": {
+    "hud_gaode_car_2": {
+      "entry": "res/uty.png",
+      "sha256": "7e976fc30872edced174b1883810db995becdc87bbf9551f1fdc69312213cddb"
+    },
+    "hud_gaode_car_3": {
+      "entry": "res/bNv.png",
+      "sha256": "74a53ad0cf3160e1127c76657e21a99a4e863c2887906c23c9040f9f56919bce"
+    },
+    "hud_gaode_car_4": {
+      "entry": "res/xr7.png",
+      "sha256": "b5c9553a4b7f4501abe3b45f1ac864d83b0a8c81e968be57a7f7bde00a64b94f"
+    },
+    "hud_gaode_car_5": {
+      "entry": "res/jb5.png",
+      "sha256": "ddf3849a53b380e499cdc45aa8091840c4ea831ff05fb3f917b5388059b55309"
+    },
+    "hud_gaode_car_6": {
+      "entry": "res/rjB.png",
+      "sha256": "93d0d5f82ac2b0febbf0386fa24ca1cc1402ac067eeb1ff3eca795d41ef299cf"
+    },
+    "hud_gaode_car_7": {
+      "entry": "res/Lub.png",
+      "sha256": "14789094bb3d686434151d9343af0208029c49b65446493fc4bc9a71799547a3"
+    },
+    "hud_gaode_car_8": {
+      "entry": "res/_rj.png",
+      "sha256": "abea9d1f083c895ed5bdf2a6dd73130cae2343610585d6625ae4aed63c82f8b3"
+    },
+    "hud_gaode_car_9": {
+      "entry": "res/PQH.png",
+      "sha256": "78ce5bbc701f7fc0975118d6a07f772615082cac001fd6b1f83e637f6ce9fad7"
+    },
+    "hud_gaode_car_10": {
+      "entry": "res/Vhp.png",
+      "sha256": "17c80a22751287ec875cb795cedfaf4a6a1e7b5d959bfce75242e0c10c9323e1"
+    },
+    "hud_gaode_car_11": {
+      "entry": "res/yrL.png",
+      "sha256": "86da680de55da1940e2828549f35cc45b9e9ab35a69a9d262a01e6a0a2b3b44b"
+    },
+    "hud_gaode_car_12": {
+      "entry": "res/owr.png",
+      "sha256": "a75e5344c8acdd36aef7389afe3b0eed83430eeda22da965513ba9ff139499b9"
+    },
+    "hud_gaode_car_13": {
+      "entry": "res/MLl.png",
+      "sha256": "1b8b2d15abf9472cbe2387c7f233a95137c4632341845d72026a6d5b20c5c061"
+    },
+    "hud_gaode_car_18": {
+      "entry": "res/Jr_.png",
+      "sha256": "61edbe6e092cbfe1f32a6bd688ec24c1e03fa43c503a01b5e2e4622ceef55b3b"
+    },
+    "hud_gaode_car_19": {
+      "entry": "res/j-9.png",
+      "sha256": "ea7ae9bb469e9df4176789c7b51a50ef432551eb654b149c75f7d7bb25a985b8"
+    },
+    "hud_baidu_car_1": {
+      "entry": "res/KFZ.png",
+      "sha256": "30af21172819a69c28aa4d2db5dd27f23fef956f380769e9e57c0f667399d168"
+    },
+    "hud_baidu_car_2": {
+      "entry": "res/ENC.png",
+      "sha256": "92bda909eab532bd32eb3b308a62127834fe7334706ef2a12b5f965a0367f06b"
+    },
+    "hud_baidu_car_7": {
+      "entry": "res/MDm.png",
+      "sha256": "7442f4202e7cda87b3c721c3cb4bfc1cf532a53b10d321cf310ee23d6d4b4b49"
+    },
+    "hud_baidu_car_12": {
+      "entry": "res/VBq.png",
+      "sha256": "f5ec16dc65510ffed4eafea9d5d1544ddbeb08ddb01c1ffe87460508d2ca8f4b"
+    }
+  },
+  "classes2_sha256": "09a0967aa62f5d0e78705759934a607a95a1c0c7bd9f6d2a2fad2efcad844797",
+  "manifest_sha256": "8a3363abe8d021d2cabe68ff77343aabaddd14509abc7a2fb5b580d0d1b9b642",
+  "resources_arsc_sha256": "ab640391ca561a242f099d11437654c3a20cb348dc0e1a01c88630cff1bd3cf1"
+}

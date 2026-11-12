@@ -1,6 +1,26 @@
 # 规划、实施与接收端检查记录
 
-日期：2026-11-11。已实施导航契约、relay、订阅和投递撤销，并审计用户提供的 GalaxyPlay 接收端原 DEX。生产导航数值核心已启用；未构建 APK、安装或进行实车测试。
+日期：2026-11-11，后续新增 2026-11-12 版本适配与投递诊断验证。已实施导航契约、relay、订阅和投递撤销，并审计用户提供的 GalaxyPlay 接收端原 DEX。生产导航数值核心已启用；未构建 APK、安装或进行实车测试。
+
+## 2026-11-12 续接与投递诊断
+
+完成 8.1，当前 25/38：宿主输入与拒绝归属、快照字段/证据、规划/排队、writer 有效性检查和异步完成沿同一冻结批次关联，保留 session、binding、route/revision、Link/subscription/delivery 与机动代际。日志不打印道路/目的地/来源 route ID，writer 日志异常不影响当前或过期发送判断。当前字段与订阅 wire 合同未改。
+
+所有 Gradle 命令使用用户指定的 `--gradle-user-home D:\Java\gradle`。新缓存的初次离线检查缺 Kotlin 依赖，经审批在线补齐后执行宿主/bridge/协议测试和小米编译，BUILD SUCCESSFUL（2m 50s），1,231 项全部通过。最终增加 writer 日志异常保护与第四项回归，只重跑受影响的协议测试和小米编译，BUILD SUCCESSFUL（1m 3s）。最终 XML 宿主 25、bridge 61、协议 1,146，合计 **1,232** 项，0 失败/错误/跳过；宿主测试沿用 Gradle 判定有效的 up-to-date XML，bridge 在本轮前一条成功命令执行，协议为最终重跑结果。小米编译在最终命令使用有效 up-to-date 结果。
+
+21 份文档的 189 个本地链接、根/Android diff 空白检查和 OpenSpec 严格校验均 PASS（1 个变更，0 issues）。
+
+新增复核器独立读取三份原 APK、16 个 DEX 方法归属/签名/指令哈希与两份 Apple 原镜像、四个符号、12 个局部切片，PASS。纠正高德 ew6.e 原入口为 `0x3f6e04`。CarWith 公共查询未补出地图身份/路线概览；CarKitNavigation 的长度消费者仍依赖本地缺失的原 shared-cache 目标。没有把局部字节复核变成完整语义证明，2.1/2.5/5.3、道路/全程/车道来源和实车项仍 OPEN；原 docset 2,145 项 FAIL 保留。
+
+详见[诊断实施记录](../../../android/docs/fixes/2026-11-12-navigation-delivery-diagnostics.md)、[字段审计](../../../research/connection/spec/galaxyplay-navigation-fields-20261112.md)和[本轮验证 JSON](../../../research/connection/evidence/navigation-diagnostics-validation-20261112.json)。备份在 local-backups/2026-11-12-carvex-navigation-diagnostics/，包含 SessionController 原文件和 manifest。未构建 APK、安装、提交/推送或新增实车验收。
+
+## 2026-11-12 CarWith 4.0.23 来源适配
+
+日志 7 的两个已订阅会话有 132 条新版宿主导航输入，全部 rejected，规范化/导航发送均为零；新原 APK 的 9 个方法归属/签名/指令哈希及 18 个与旧版相同的模板复核 PASS。已新增明确版本与 H02 证据、拒绝原因及 2 项宿主回归。变更前基线 Android 为 `deada9d0e465599c460e5d2704db5ef5f80f45a1`。
+
+离线执行 `:host-carlife-mixing:testDebugUnitTest :bridge:testDebugUnitTest :protocol-carplay:testDebugUnitTest :app:compileXiaomiDebugKotlin` 为 BUILD SUCCESSFUL（1m 17s）。宿主 25 / bridge 60 / 协议 1,143 项 debug XML 共 1,228 项，无失败/错误/跳过。宿主/协议测试和小米编译实际执行，bridge 使用有效 up-to-date 结果。沙箱锁文件失败后已获准使用本机 Gradle 缓存。ADB 只读检查无连接设备，未打包/安装，修复后仪表输出保持 OPEN。
+
+详见[新版审计](../../../research/connection/spec/carwith-navigation-upgrade-20261112.md)、[验证 JSON](../../../research/connection/evidence/carwith-navigation-upgrade-validation-20261112.json)。道路文本/角色、全程距离/时间和车道来源/接收能力仍未闭合，原任务保持 24/38。
 
 ## 初始规划与基础重构（历史记录）
 

@@ -1,0 +1,247 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "scope": "Local byte identity; no display unit, source role or vehicle claim",
+  "apks": {
+    "carwith": {
+      "sha256": "c897a45d92c84f06e670fc4edd323824093a093f67d8e7d7b058fee2a737d06c",
+      "dexes": {
+        "classes.dex": {
+          "sha256": "efab5b247679424ec553c8f271bbb3f10e2623135c5669e14c1e5e19a160c792",
+          "methods": {
+            "0x46ef90": {
+              "owner": "Le2/d$a;",
+              "method": "invokeMethod",
+              "prototype": "(Landroid/content/Intent;)Landroid/os/Bundle;",
+              "code_units": 2,
+              "insns_sha256": "29372a6d02c7422f70504ebdc64b95896155fc743fc07407ec9fe13879d10f49"
+            }
+          }
+        },
+        "classes2.dex": {
+          "sha256": "09a0967aa62f5d0e78705759934a607a95a1c0c7bd9f6d2a2fad2efcad844797",
+          "methods": {
+            "0x1bb4b0": {
+              "owner": "Lcom/carwith/launcher/map/m$a;",
+              "method": "a",
+              "prototype": "(Ljava/lang/String;Lcom/ucar/map/UCarMapInfo;)V",
+              "code_units": 108,
+              "insns_sha256": "b9be83a6ecf5ebfa9835e71b18725b094d7b3fedb6de9b897aaba1f9a5e2c3d1"
+            },
+            "0x17abdc": {
+              "owner": "Lcom/carwith/launcher/LauncherDataBusClient;",
+              "method": "F",
+              "prototype": "(ZLjava/lang/String;Landroid/graphics/drawable/Icon;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+              "code_units": 430,
+              "insns_sha256": "71702ecc6484e6aa94308e83549a9bb70d901fe6e87731eaca72b58bfe1eb713"
+            },
+            "0x17af64": {
+              "owner": "Lcom/carwith/launcher/LauncherDataBusClient;",
+              "method": "G",
+              "prototype": "(ZLjava/lang/String;Lcom/ucar/map/UCarMapInfo;)V",
+              "code_units": 61,
+              "insns_sha256": "96317a21e3c3c348bd2a292e14f729e39af53b891bfe410b438c9353712bea71"
+            }
+          }
+        },
+        "classes4.dex": {
+          "sha256": "b5bd708d997fc2543de29e429327cc00a5603237d2bceb74f76dc4500ece0e1a",
+          "methods": {
+            "0x122648": {
+              "owner": "Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;",
+              "method": "<init>",
+              "prototype": "(Z[BLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+              "code_units": 23,
+              "insns_sha256": "affb6e9e2b64f4f68daf3924d96d190102d807cc3d07dd884df1ce636727b684"
+            },
+            "0x122584": {
+              "owner": "Lcom/miui/carlink/databus/p2cdatastructure/NavigationInfo;",
+              "method": "i",
+              "prototype": "()Ljava/lang/String;",
+              "code_units": 3,
+              "insns_sha256": "d60b5571b4be0542459ad8e79d13790cfe8ccff40a9d92107c200ba5077955e5"
+            }
+          }
+        },
+        "classes6.dex": {
+          "sha256": "b51d1282060b85466deaa47c7cfa05b3f6393b328b87adae395826ed319533d8",
+          "methods": {
+            "0xa65c4": {
+              "owner": "Lcom/xiaomi/ucar/carlife/CarlifeConnService$CarLifeCastManagerImpl;",
+              "method": "invokeMethod",
+              "prototype": "(Landroid/content/Intent;)Landroid/os/Bundle;",
+              "code_units": 21,
+              "insns_sha256": "4a76c977a9d21cbab7d47b59fd072c93a3724193bd0b4c75d5d6a301b9b650d9"
+            },
+            "0xa751c": {
+              "owner": "Lcom/xiaomi/ucar/carlife/k;",
+              "method": "r",
+              "prototype": "(Landroid/content/Intent;)Landroid/os/Bundle;",
+              "code_units": 1114,
+              "insns_sha256": "8b3c75f6ac743f783e5c6b3e14295336034532b27badfd51cf96211f267a6295"
+            },
+            "0xa7e14": {
+              "owner": "Lcom/xiaomi/ucar/carlife/k;",
+              "method": "s",
+              "prototype": "(Landroid/content/Intent;)Landroid/os/Bundle;",
+              "code_units": 112,
+              "insns_sha256": "d3201df2faa33507cce820869e36254af431743c2adba7e457eae35f26f23cf8"
+            }
+          }
+        }
+      }
+    },
+    "amap": {
+      "sha256": "768d62ee138771c0f1d1a08c68151a0e41f66bda2ada1c559e07ebb09b65857c",
+      "dexes": {
+        "classes4.dex": {
+          "sha256": "c418b6640cca20b3a2cb11310af778e19fcc77532cccd1aaf7b13e748bcda2b3",
+          "methods": {
+            "0x5ab8c0": {
+              "owner": "Lmv;",
+              "method": "notifyOngoingCard",
+              "prototype": "(Lcom/autonavi/minimap/ajx3/context/IAjxContext;Ljava/lang/String;)V",
+              "code_units": 167,
+              "insns_sha256": "0c98d158936d9c6dc50bcaaa7b3c0fd914a739a9ee2b6d37b34f9435d9800def"
+            },
+            "0x3f6e04": {
+              "owner": "Lew6;",
+              "method": "e",
+              "prototype": "(Ljava/lang/String;Ljava/lang/String;)V",
+              "code_units": 74,
+              "insns_sha256": "9a838a334f86e76753575f8ff6bf9402dd49cc13d8d25dd4310d53eeef71f1a0"
+            }
+          }
+        },
+        "classes8.dex": {
+          "sha256": "7a240ac61f6580cc33248028b7acf30d0806bc0e5808461b304a0b77a2b301d5",
+          "methods": {
+            "0x35eed8": {
+              "owner": "Lgv6;",
+              "method": "a",
+              "prototype": "()Landroid/os/Bundle;",
+              "code_units": 67,
+              "insns_sha256": "5dc8f549a4b3dca7994786db264a88f761d3e9f41f17f06d00ecbb7a4914945f"
+            }
+          }
+        }
+      }
+    },
+    "galaxyplay": {
+      "sha256": "f106680faa27be5a9dfc4a9a9b9cb59239e4512c5f3b73b64cebfec47bb023e6",
+      "dexes": {
+        "classes2.dex": {
+          "sha256": "bd615146d24193339c7777349a1b7c783141b9f5f7064ca1011e41e18659052f",
+          "methods": {
+            "0x245e4": {
+              "owner": "Lcom/shilapi/xcertplay/hud/CarPlayNavigationInput;",
+              "method": "text",
+              "prototype": "([B)Ljava/lang/String;",
+              "code_units": 67,
+              "insns_sha256": "c6470320cd9e6eed7f037f0e17a48e5912dac4265d48039e03f9168092c1abfe"
+            },
+            "0x24810": {
+              "owner": "Lcom/shilapi/xcertplay/hud/CarPlayNavigationInput;",
+              "method": "reset",
+              "prototype": "()V",
+              "code_units": 28,
+              "insns_sha256": "e81cbd3f339e7ae971808303ae8654b98f037528477f638da0f27eecbf9a8722"
+            },
+            "0x24858": {
+              "owner": "Lcom/shilapi/xcertplay/hud/CarPlayNavigationInput;",
+              "method": "updateManeuver",
+              "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2ParameterList;)V",
+              "code_units": 195,
+              "insns_sha256": "d3a2328f90aaae975f4b3237cf445b62ec681c91223ebd9c66590b6d78c024e5"
+            },
+            "0x249f0": {
+              "owner": "Lcom/shilapi/xcertplay/hud/CarPlayNavigationInput;",
+              "method": "updateRoute",
+              "prototype": "(Lcom/shilapi/xcertplay/iap2/wire/Iap2ParameterList;)V",
+              "code_units": 404,
+              "insns_sha256": "759316667a64105e43c7d1dfc46db3c6625f4f9dbc3a9ed39f5e262aa2f908ce"
+            }
+          }
+        }
+      }
+    }
+  },
+  "accessoryd": {
+    "path": "research/protocol/iap2_input_business_lifecycle/source/firmware/accessoryd",
+    "sha256": "2b0a2010e6d2605e07d87f05659c932e03de34476a76431196a9bb58da7dc4fe",
+    "slices": {
+      "0x1000041bc": {
+        "end": "0x100004428",
+        "bytes": 620,
+        "sha256": "a00fd419fff9331c7543b709764521eb26194783c2fba2f49d1ff529050472a1"
+      },
+      "0x1000c5704": {
+        "end": "0x1000c5d64",
+        "bytes": 1632,
+        "sha256": "cc8dac35769f75c160f2f4ba6c34672be8628279c51cad4fe4c707491a9200ab"
+      },
+      "0x1000dd220": {
+        "end": "0x1000dd514",
+        "bytes": 756,
+        "sha256": "a6fde5caf5c1705e7cb15100ee895048763d547e3ade9c81be5b95d445fc439d"
+      },
+      "0x100003b28": {
+        "end": "0x100003dc8",
+        "bytes": 672,
+        "sha256": "94654acf4894d7aa349d66d4697d695e10f77fb6bbdf3c34dba4fa0767a3599b"
+      },
+      "0x1000de30c": {
+        "end": "0x1000de4a8",
+        "bytes": 412,
+        "sha256": "5d42623778ce825cdf953ad8731310cc7f1c023b7c5534bea23c9183cacb887d"
+      },
+      "0x100018f98": {
+        "end": "0x100018fcc",
+        "bytes": 52,
+        "sha256": "29c3dfd046d16c8a7669d6ca24c1037cab3cfef2f363701095fc51fc3095c665"
+      },
+      "0x1000de8b8": {
+        "end": "0x1000de958",
+        "bytes": 160,
+        "sha256": "cc586697e76f5f7395225ce96a137645c54941672e3df08b20950b874d3d9378"
+      },
+      "0x1000dec88": {
+        "end": "0x1000ded58",
+        "bytes": 208,
+        "sha256": "940be2dbb095ac67cbdad1de03de6f35e2fba7c11cb37bf23dc8f3a64c2ffe92"
+      }
+    }
+  },
+  "CarKitNavigation": {
+    "path": "firmware/extracted/24A446/binaries/CarKitNavigation/CarKitNavigation",
+    "sha256": "df991f16ab607f32f090612463e8f1a18c96c3f14407dace74053b645f3f2e47",
+    "symbols": {
+      "+[ACCNavigationAccessoryComponent(CarPlay) CP_variant:fittingMaxLength:]": "0x22b03d3d8",
+      "-[ACCNavigationAccessoryComponent(CarPlay) CP_variantFittingCurrentRoadName:]": "0x22b03d15c",
+      "-[ACCNavigationAccessoryComponent(CarPlay) CP_variantFittingPostManeuverRoadName:]": "0x22b03ffa8",
+      "-[NSString(ACCNavigation) stringByEllipsingPastMaxLength:]": "0x22b040144"
+    },
+    "slices": {
+      "0x22b03d15c": {
+        "end": "0x22b03d3d8",
+        "bytes": 636,
+        "sha256": "63b4fbc09961fc123ac460bc13ad77bd8822f54819d3a0d54af00948c187c168"
+      },
+      "0x22b03d3d8": {
+        "end": "0x22b03d594",
+        "bytes": 444,
+        "sha256": "a9c4c2b0436d209e838b6d79676208d666cd2d4f26977d652b4bc889b4da0d4f"
+      },
+      "0x22b03ffa8": {
+        "end": "0x22b040018",
+        "bytes": 112,
+        "sha256": "d464e54e194e7a8130cb47f03378b44d58582ad6dec5b39a323c71360a803d9c"
+      },
+      "0x22b040144": {
+        "end": "0x22b040280",
+        "bytes": 316,
+        "sha256": "df6bd62e882a7826a1930fb2fb119a4c68f5a9fd418c62ba10938d97bfcc4e46"
+      }
+    }
+  }
+}

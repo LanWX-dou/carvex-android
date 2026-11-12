@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "scope": "Navigation diagnostics; local validation only, vehicle acceptance OPEN",
+  "gradle_user_home": "D:/Java/gradle",
+  "builds": [
+    {
+      "command": ".\\gradlew.bat --gradle-user-home D:\\Java\\gradle :host-carlife-mixing:testDebugUnitTest :bridge:testDebugUnitTest :protocol-carplay:testDebugUnitTest :app:compileXiaomiDebugKotlin --console=plain",
+      "result": "BUILD SUCCESSFUL",
+      "duration": "2m 50s",
+      "actionable_tasks": 90,
+      "executed_tasks": 11,
+      "tests": 1231,
+      "host_tests": "UP-TO-DATE",
+      "bridge_tests": "EXECUTED"
+    },
+    {
+      "command": ".\\gradlew.bat --gradle-user-home D:\\Java\\gradle :protocol-carplay:testDebugUnitTest :app:compileXiaomiDebugKotlin --offline --console=plain",
+      "result": "BUILD SUCCESSFUL",
+      "duration": "1m 3s",
+      "actionable_tasks": 76,
+      "executed_tasks": 5,
+      "app_compile": "UP-TO-DATE",
+      "protocol_tests": 1146,
+      "protocol_test_task": "EXECUTED"
+    }
+  ],
+  "final_xml": {
+    "host-carlife-mixing": {
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xml_files": 5,
+      "timestamps": [
+        "2026-11-12T00:39:26.898Z",
+        "2026-11-12T00:39:26.991Z"
+      ]
+    },
+    "bridge": {
+      "tests": 61,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xml_files": 9,
+      "timestamps": [
+        "2026-11-12T01:46:21.689Z",
+        "2026-11-12T01:46:21.797Z"
+      ]
+    },
+    "protocol-carplay": {
+      "tests": 1146,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xml_files": 139,
+      "timestamps": [
+        "2026-11-12T01:53:41.985Z",
+        "2026-11-12T01:54:35.707Z"
+      ]
+    }
+  },
+  "final_test_total": 1232,
+  "source_hashes": {
+    "bridge/src/main/java/io/github/iamr0s/carvex/session/HostNavigationRelay.kt": "e9d80f5b5c0fdc91d995a5cf5841f7d420713b167092a4666403c7827922c674",
+    "bridge/src/main/java/io/github/iamr0s/carvex/session/SessionController.kt": "989e5582245ec693250b379862ec9ac879310185d6c54c9bbc3ebe823363cb46",
+    "bridge/src/test/java/io/github/iamr0s/carvex/session/HostNavigationRelayTest.kt": "a15ba55f517275ca9afcc905eecf76e77b0125d112013c51f2eada9ee02772e2",
+    "protocol-carplay/src/main/java/io/github/iamr0s/carvex/carplay/core/NavigationPublisher.kt": "ec34ae252bb115971912aea1b24d0537bd74a437324da9ef58895542a4211fd1",
+    "protocol-carplay/src/test/java/io/github/iamr0s/carvex/carplay/core/NavigationPublisherTest.kt": "c89ffb10fb4689f90449ce69ff504e655ad9555f89a985c6298fbe6d7617bcad"
+  },
+  "original_byte_verifier": {
+    "tool": "research/connection/tools/inspect_galaxyplay_navigation_fields.py",
+    "record": "research/connection/evidence/galaxyplay-navigation-fields-20261112.json",
+    "result": "PASS",
+    "apk_count": 3,
+    "dex_methods": 16,
+    "apple_images": 2,
+    "symbols": 4,
+    "slices": 12
+  },
+  "documents": {
+    "count": 21,
+    "local_links": 189,
+    "errors": 0
+  },
+  "openspec": {
+    "change": "replan-carplay-navigation-cluster",
+    "complete": 25,
+    "total": 38
+  },
+  "limitations": [
+    "Full historical docset verification remains FAIL (2145)",
+    "Road identity/display semantics, route overview and lane source/support remain OPEN",
+    "No APK, installation, commit, push or vehicle acceptance"
+  ],
+  "checks": {
+    "root_whitespace": "PASS",
+    "android_whitespace": "PASS",
+    "openspec_strict": {
+      "result": "PASS",
+      "changes": 1,
+      "issues": 0
+    },
+    "markdown": {
+      "documents": 21,
+      "local_links": 189,
+      "errors": 0
+    }
+  }
+}
