@@ -10,6 +10,7 @@ import com.shilapi.xcertplay.iap2.message.Iap2ControlMessages
 import com.shilapi.xcertplay.iap2.wire.Iap2CsmFramer
 import com.shilapi.xcertplay.iap2.wire.Iap2Frame
 import com.shilapi.xcertplay.media.CarPlayPlaybackStatus
+import com.shilapi.xcertplay.transport.Iap2FileTransferReceiver
 import io.github.iamr0s.carvex.carplay.HidKeyRegistry
 import io.github.iamr0s.carvex.protocol.api.*
 import io.github.iamr0s.carvex.sessioncore.RawParameter
@@ -68,6 +69,43 @@ class ReceiverProtocolContractTest {
         assertEquals("新歌手",receiver.nowPlaying.artist)
         assertNull(receiver.nowPlaying.album)
         assertEquals(0L,receiver.nowPlaying.elapsedMillis)
+    }
+
+    @Test fun knownPlaybackStatesReachTheReceiverWithoutLosingSeekOrStop() {
+        val receiver = CarPlayPlaybackStatus()
+        val requested = NowPlayingUpdate.selection(IapWire.parseFieldList(
+            Iap2ControlMessages.startNowPlayingUpdates().payload))!!
+        for (status in NowPlayingUpdate.PlaybackStatus.entries) {
+            receiver.acceptUpdate(frame(0x5001, NowPlayingUpdate.fields(
+                NowPlayingUpdate.Track(status = status), requested)))
+            assertEquals(status.wire, receiver.nowPlaying.rawPlaybackStatus)
+            assertEquals(status.wire in listOf(1, 3, 4), receiver.playing)
+        }
+        receiver.acceptUpdate(frame(0x5001, listOf(1 to IapWire.fields(listOf(0 to byteArrayOf(-1))))))
+        assertEquals(255, receiver.nowPlaying.rawPlaybackStatus)
+        assertNull(receiver.nowPlaying.playbackState)
+        assertFalse(receiver.playing)
+        receiver.acceptUpdate(frame(0x5001, listOf(0 to IapWire.fields(listOf(1 to IapWire.cstring("Track"))))))
+        assertEquals(255, receiver.nowPlaying.rawPlaybackStatus)
+    }
+
+    @Test fun actualFileReceiverRejectsCancelledDataAndAcceptsTheReplacementArtwork() {
+        val receiver = Iap2FileTransferReceiver()
+        val first = byteArrayOf(1, 2, 3, 4)
+        val second = byteArrayOf(5, 6, 7)
+        assertArrayEquals(byteArrayOf(-128, 1), receiver.accept(ArtworkFileWire.setup(128, first.size, 2)).replies.single())
+        assertArrayEquals(first, receiver.accept(ArtworkFileWire.chunk(128, first, 0, 12)).completed!!.bytes)
+        // A pending second transfer is cancelled before completion; later chunks cannot revive it.
+        receiver.accept(ArtworkFileWire.setup(129, second.size, 2))
+        assertEquals(0, receiver.accept(ArtworkFileWire.control(129, 2)).completed!!.bytes.size)
+        assertNull(receiver.accept(ArtworkFileWire.chunk(129, second, 0, 12)).completed)
+        receiver.accept(ArtworkFileWire.setup(130, second.size, 2))
+        val completed = receiver.accept(ArtworkFileWire.chunk(130, second, 0, 12)).completed!!
+        assertEquals(130, completed.id)
+        assertArrayEquals(second, completed.bytes)
+        receiver.accept(ArtworkFileWire.setup(131, second.size, 2))
+        receiver.clear()
+        assertNull(receiver.accept(ArtworkFileWire.chunk(131, second, 0, 12)).completed)
     }
 
     @Test fun sourceSubscriptionsSelectTheActualRequestedFields() {

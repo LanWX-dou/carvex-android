@@ -141,8 +141,9 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     private val artworkEvents=Channel<()->Unit>(Channel.UNLIMITED)
     private val artwork=NowPlayingArtwork(
         session={runtime.fileSession()},
-        announce={fields,completion->runtime.send(NowPlayingUpdate.ID,fields,completion)},
-        send={bytes,valid,completion->runtime.sendFile(bytes,valid,completion)},log=log)
+        announce={fields,valid,completion->runtime.sendGuarded(NowPlayingUpdate.ID,fields,
+            {!stopping&&sourceContextCurrent()&&valid()},completion)},
+        send={bytes,valid,completion->runtime.sendFile(bytes,{!stopping&&sourceContextCurrent()&&valid()},completion)},log=log)
     private val nowPlayingPublisher=NowPlayingPublisher({fields,valid->
         val accepted=runtime.sendGuarded(NowPlayingUpdate.ID,fields,{!stopping&&sourceContextCurrent()&&valid()})
         log("Now Playing 5001 queued=$accepted fields="+fields.joinToString(";"){(group,bytes)->
@@ -222,7 +223,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         nowPlayingPublisher.artworkSelectionChanged={selected->artworkEvents.trySend{artwork.subscribe(selected)}}
         scope.launch{for(event in artworkEvents)event()}
         scope.launch{while(isActive){delay(1000);artworkEvents.trySend{artwork.expire()}}}
-        resources.own(AutoCloseable{artworkEvents.cancel()})
+        resources.own(AutoCloseable{artworkEvents.cancel();artwork.close()})
         resources.own(AutoCloseable{nowPlayingPublisher.close();navigationPublisher.detachNavigation();events.close();runtime.close();runtimeOutput.close();modeOutput.close();audioStreams.close();client?.close();scope.cancel()})
         // Events may arrive inside RtspClient.request's lock. Never issue a nested
         // request from that callback: a separate writer runs after its reply.
@@ -249,6 +250,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     fun stopNormally(){
         stopping=true
         nowPlayingPublisher.close()
+        artwork.close()
         val control=client;val url=connectionPath;val setup=setupLifecycle
         // The volatile gate rejects new business without waiting for a running
         // host event callback. Keep resource close/join after control completion.

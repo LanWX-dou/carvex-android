@@ -172,7 +172,7 @@ class RuntimeIap(private val emit:(ByteArray)->Boolean,private val log:(String)-
         val generation=authorizedGeneration;val epoch=authorizedEpoch
         return try{link.sendFileAsync(data,generation,
             {authorizedGeneration==generation&&authorizedEpoch==epoch&&valid()}){t->
-            if(t!=null&&authorizedGeneration==generation&&authorizedEpoch==epoch)fail(t)
+            if(t!=null&&t !is StaleIapSendException&&authorizedGeneration==generation&&authorizedEpoch==epoch)fail(t)
             completion(t)
         }}catch(t:Throwable){fail(t);false}
     }

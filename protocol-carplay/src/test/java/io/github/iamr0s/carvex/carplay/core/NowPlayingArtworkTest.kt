@@ -9,11 +9,12 @@ class NowPlayingArtworkTest {
         var time=0L
         var supported=true
         val references=mutableListOf<Pair<Int,(Throwable?)->Unit>>()
+        val referenceGuards=mutableListOf<()->Boolean>()
         val packets=mutableListOf<Packet>()
         val logs=mutableListOf<String>()
-        val publisher=NowPlayingArtwork({if(supported)version to mtu else null}, {fields,ack->
+        val publisher=NowPlayingArtwork({if(supported)version to mtu else null}, {fields,valid,ack->
             val id=IapWire.parseFieldList(fields.single().second).ordered.single().second.single().toInt() and 255
-            references.add(id to ack);true
+            references.add(id to ack);referenceGuards+=valid;true
         },{data,valid,ack->packets.add(Packet(data,valid,ack));true},logs::add,{time})
         fun ready(){publisher.linkReady(true);publisher.subscribe(true)}
         fun reply(op:Int,id:Int=references.last().first){publisher.receive(byteArrayOf(id.toByte(),op.toByte()))}
@@ -51,6 +52,7 @@ class NowPlayingArtworkTest {
         val h=Harness();h.start(ByteArray(40));h.packets[0].ack(null);h.reply(1)
         val oldId=h.references[0].first;val oldPacket=h.packets[1]
         h.publisher.update(byteArrayOf(7,8))
+        assertFalse(h.referenceGuards.first()());assertTrue(h.referenceGuards.last()())
         assertFalse(oldPacket.valid());assertNotEquals(oldId,h.references.last().first)
         oldPacket.ack(null);h.reply(5,oldId)
         assertFalse(h.logs.any{it.contains("result=accepted")})
@@ -59,6 +61,7 @@ class NowPlayingArtworkTest {
     @Test fun unsubscribeAndNewLinkRejectOldCallbacksAndRequireNewSubscription() {
         val h=Harness();h.start(byteArrayOf(1));val oldAck=h.references[0].second
         h.publisher.subscribe(false);assertFalse(h.packets[0].valid())
+        assertFalse(h.referenceGuards.first()())
         val cancelled=h.packets.last()
         h.publisher.linkReady(false);h.publisher.linkReady(true)
         assertFalse(cancelled.valid())
@@ -110,5 +113,20 @@ class NowPlayingArtworkTest {
         assertTrue(selected.last())
         assertFalse(publisher.command(0x5000,IapFields(listOf(0 to IapWire.fields(listOf(1 to byteArrayOf()))))))
         assertFalse(selected.last())
+    }
+    @Test fun guardsDoNotAcquireArtworkMonitorAndClosedOwnerCannotRestart() {
+        val h=Harness();h.start(byteArrayOf(1))
+        val executor=java.util.concurrent.Executors.newSingleThreadExecutor()
+        try {
+            synchronized(h.publisher){
+                assertTrue(executor.submit<Boolean>{h.referenceGuards.first()()&&h.packets.first().valid()}
+                    .get(1,java.util.concurrent.TimeUnit.SECONDS))
+            }
+            h.publisher.close();h.publisher.close();h.ready();h.publisher.update(byteArrayOf(2))
+            assertFalse(h.referenceGuards.first()());assertFalse(h.packets.first().valid())
+            assertEquals(1,h.references.size)
+            h.references.first().second(null)
+            assertEquals(1,h.packets.size)
+        } finally {executor.shutdownNow()}
     }
 }

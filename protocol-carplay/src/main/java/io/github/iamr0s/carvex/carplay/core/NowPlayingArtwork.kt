@@ -22,35 +22,39 @@ object ArtworkFileWire {
  * Limits and timeout are local resource bounds, not new protocol retry rules. */
 class NowPlayingArtwork(
     private val session:()->Pair<Int,Int>?,
-    private val announce:(List<Pair<Int,ByteArray>>,(Throwable?)->Unit)->Boolean,
+    private val announce:(List<Pair<Int,ByteArray>>,()->Boolean,(Throwable?)->Unit)->Boolean,
     private val send:(ByteArray,()->Boolean,(Throwable?)->Unit)->Boolean,
     private val log:(String)->Unit={},
     private val now:()->Long=System::nanoTime,
-) {
+) : AutoCloseable {
     private enum class Phase { ANNOUNCING, SETUP, SENDING, PAUSED, RESULT }
     private class Transfer(val id:Int,val data:ByteArray,val version:Int,val mtu:Int,var touched:Long) {
         var phase=Phase.ANNOUNCING
         var offset=0
         var inFlight=false
     }
-    private var ready=false
-    private var subscribed=false
+    private var closed=false
+    @Volatile private var ready=false
+    @Volatile private var subscribed=false
     private var image:ByteArray?=null
-    private var current:Transfer?=null
+    @Volatile private var current:Transfer?=null
     private val retired=mutableSetOf<Int>()
     private var nextId=128
-    private var epoch=0L
+    @Volatile private var epoch=0L
 
     @Synchronized fun linkReady(value:Boolean) {
+        if(closed)return
         // Old callbacks are isolated by object identity even when buffer IDs are reused on a new link.
         epoch++;ready=value;subscribed=false;current=null;retired.clear();nextId=128
     }
     @Synchronized fun subscribe(value:Boolean) {
+        if(closed)return
         cancelCurrent()
         subscribed=value
         if(value)start()
     }
     @Synchronized fun update(bytes:ByteArray) {
+        if(closed)return
         require(bytes.size<=ArtworkFileWire.MAX_BYTES)
         if(image?.contentEquals(bytes)==true)return
         image=bytes.copyOf()
@@ -67,7 +71,7 @@ class NowPlayingArtwork(
         nextId=128+((id-127)%128)
         val transfer=Transfer(id,data,info.first,minOf(info.second,4096),now())
         current=transfer
-        val accepted=announce(ArtworkFileWire.reference(id)){error->synchronized(this){
+        val accepted=announce(ArtworkFileWire.reference(id),{isCurrent(transfer)}){error->synchronized(this){
             if(current!==transfer)return@synchronized
             if(error!=null){abort(transfer,"reference failed");return@synchronized}
             transfer.phase=Phase.SETUP;transfer.inFlight=true;transfer.touched=now()
@@ -81,7 +85,8 @@ class NowPlayingArtwork(
         if(!accepted)abort(transfer,"reference not queued")
         else log("Artwork reference queued id=$id bytes=${data.size} version=${info.first}")
     }
-    @Synchronized private fun isCurrent(transfer:Transfer)=ready&&subscribed&&current===transfer
+    // Writer callbacks must never acquire the artwork monitor while holding Link locks.
+    private fun isCurrent(transfer:Transfer)=ready&&subscribed&&current===transfer
     private fun pump(transfer:Transfer) {
         if(current!==transfer||transfer.inFlight||transfer.phase!=Phase.SENDING)return
         val bytes=ArtworkFileWire.chunk(transfer.id,transfer.data,transfer.offset,transfer.mtu)
@@ -141,5 +146,9 @@ class NowPlayingArtwork(
         val observedEpoch=epoch
         if(ready)send(ArtworkFileWire.control(old.id,2),{sameEpoch(observedEpoch)}){}
     }
-    @Synchronized private fun sameEpoch(value:Long)=ready&&epoch==value
+    private fun sameEpoch(value:Long)=ready&&epoch==value
+    @Synchronized override fun close() {
+        if(closed)return
+        closed=true;ready=false;subscribed=false;epoch++;current=null;image=null;retired.clear()
+    }
 }

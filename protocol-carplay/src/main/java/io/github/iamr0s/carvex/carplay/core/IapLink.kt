@@ -941,7 +941,7 @@ class IapLink(input:InputStream, private val output:OutputStream,
         val copy=data.copyOf()
         return try{
             asyncSender.execute{
-                val error=runCatching{if(valid())sendCsm(copy,expectedGeneration,1)}.exceptionOrNull()
+                val error=runCatching{sendCsm(copy,expectedGeneration,1,valid)}.exceptionOrNull()
                 runCatching{completion(error)}
             };true
         }catch(_:RejectedExecutionException){false}

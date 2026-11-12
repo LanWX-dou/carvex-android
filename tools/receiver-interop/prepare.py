@@ -21,6 +21,7 @@ WHOLE = (
     'iap2/wire/Iap2CsmFramer.kt', 'iap2/catalog/Iap2Endpoint.kt',
     'iap2/body/Iap2BodyReader.kt', 'iap2/body/Iap2BodyBuilder.kt',
     'iap2/message/Iap2Messages.kt', 'media/CarPlayPlaybackStatus.kt',
+    'transport/Iap2FileTransferReceiver.kt',
     'hud/BydHudRouteState.kt', 'hud/BydManeuverCodes.kt', 'airplay/AirPlayHid.kt',
 )
 
