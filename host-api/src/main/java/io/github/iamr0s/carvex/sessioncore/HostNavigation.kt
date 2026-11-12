@@ -45,7 +45,7 @@ data class HostNavigationDelta(
     }
 }
 
-/** A HUD observation whose navigation role is not proven. Never treated as a route delta. */
+/** Raw HUD diagnostics. Published navigation fields are supplied explicitly through the delta. */
 data class HostNavigationObservation(
     val roadHint: String? = null,
     val distanceHintMeters: Long? = null,

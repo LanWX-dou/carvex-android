@@ -1,5 +1,9 @@
 # CarVeX
 
+On 2026-11-12, the user requested a vehicle trial mapping CarWith `total_distance` to route remaining distance. `remain_distance` continues to supply maneuver distance, and diagnostics retain an explicit trial marker. Time fields still lack an input source. See the [distance trial record](docs/fixes/2026-11-12-navigation-total-distance-trial.md).
+
+On 2026-11-12, the user confirmed `road_name` as the road after the maneuver. Host mapping now supplies `afterRoad`, and maneuver definitions publish its text in `5202` parameter 4. Update, clearing and termination regressions pass; instrument display awaits retesting. See the [after-road fix](docs/fixes/2026-11-12-navigation-after-road.md).
+
 On 2026-11-12, [complete navigation input logging](docs/fixes/2026-11-12-navigation-full-input.md) was added for the requested field investigation. It records all navigation extra keys, types, nested values and complete text/image bytes, with a tool to recover exported fields and images. The user confirmed the right-turn plan; the added capture awaits device testing.
 
 On 2026-11-12, [navigation delivery diagnostics](docs/fixes/2026-11-12-navigation-delivery-diagnostics.md) added event, snapshot, batch, writer-check and completion attribution, with distinct subscription, capability and stale-generation reasons. Road text, route overview, lanes and vehicle display remain unresolved.

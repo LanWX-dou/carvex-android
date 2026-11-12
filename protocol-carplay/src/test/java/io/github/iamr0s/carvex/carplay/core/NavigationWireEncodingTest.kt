@@ -16,7 +16,7 @@ class NavigationWireEncodingTest {
         NavigationSnapshot("xiaomi", 1, 1, 2, NavigationLifecycle.ACTIVE,
             maneuver = NavigationManeuver("hint", distanceMeters = distance, turn = turn),
             evidence = mapOf("lifecycle" to "H01:classes2:16fc3c", "maneuver" to "H01:HUD-maneuver"),
-            unverifiedFields = setOf("road_name-role"), maneuverGeneration = 1)
+            maneuverGeneration = 1)
     private fun fields(packet: NavigationPacket) = IapWire.parseFieldList(IapWire.fields(packet.fields))
     private fun state(packet: NavigationPacket) = fields(packet)[1]!!.single().toInt()
     private fun withRoute(distance: Long?, evidence: String? = "fixture:verified-route") = snapshot().let {
@@ -118,7 +118,8 @@ class NavigationWireEncodingTest {
         assertArrayEquals(byteArrayOf(1), route[1])
         assertArrayEquals(IapWire.be32(200), route[10])
         assertNull(route[7]); assertNull(route[14]) // No fabricated whole-route distance/count.
-        assertNull(route[3]); assertNull(definition[4]) // Unclassified road hint is not a road field.
+        assertNull(route[3]) // No current-road source.
+        assertArrayEquals(byteArrayOf(0), definition[4]) // Explicitly clear a missing after-road.
         assertNull(definition[8]) // The host has no driving-side source.
     }
 
@@ -129,6 +130,50 @@ class NavigationWireEncodingTest {
             val packet = NavigationWireEncoding.plan(snapshot(turn), start, display).packets.single { it.id == 0x5202 }
             assertArrayEquals(byteArrayOf(value.toByte()), fields(packet)[3])
         }
+    }
+
+    @Test fun afterRoadIsSentAsUtf8WithTheManeuverDefinitionBeforeItsReference() {
+        val road = "测试转向后道路🚘"
+        val initial = snapshot()
+        val plan = NavigationWireEncoding.plan(initial.copy(
+            maneuver = initial.maneuver!!.copy(afterRoad = road)), start, display)
+        assertNull(plan.blocked)
+        val definition = plan.packets.single { it.id == 0x5202 }
+        val text = requireNotNull(fields(definition)[4])
+        assertEquals(0, text.last().toInt())
+        assertEquals(road, String(text, 0, text.size - 1, Charsets.UTF_8))
+        assertNull(fields(definition)[2]) // A road name is not an instruction.
+        assertTrue(plan.packets.filter { it.id == 0x5201 }.all { fields(it)[3] == null })
+        assertArrayEquals(fields(definition)[1], fields(plan.packets.last())[13])
+        assertArrayEquals(IapWire.be32(200), fields(plan.packets.last())[10])
+    }
+
+    @Test fun reusedDefinitionUpdatesOrClearsItsAfterRoadAndRejectsMalformedText() {
+        val initial = snapshot()
+        val cached = mutableMapOf<Int, ByteArray>()
+        for (road in listOf("测试道路甲", "测试道路乙", null, "", "broken\u0000road", "\uD800", "x".repeat(4097))) {
+            val plan = NavigationWireEncoding.plan(initial.copy(
+                maneuver = initial.maneuver!!.copy(afterRoad = road)), start, display)
+            val definition = fields(plan.packets.single { it.id == 0x5202 })
+            cached.putAll(definition.ordered.toMap()) // The receiver merges existing slots.
+            assertArrayEquals(IapWire.be16(1), cached[1])
+            val expected = if (road in listOf("测试道路甲", "测试道路乙")) road!! else ""
+            assertArrayEquals(IapWire.cstring(expected), cached[4])
+            assertArrayEquals(IapWire.be32(200), fields(plan.packets.last())[10])
+        }
+    }
+
+    @Test fun unknownTurnAndEndedRouteKeepTheirResetBehaviorWithAnAfterRoad() {
+        val initial = snapshot()
+        val unknown = initial.copy(maneuver = initial.maneuver!!.copy(afterRoad = "测试道路", turn = null))
+        val plan = NavigationWireEncoding.plan(unknown, start, display)
+        assertEquals(listOf(0x5201, 0x5201), plan.packets.map { it.id })
+        assertEquals(listOf(0, 1), plan.packets.map(::state))
+        assertTrue(plan.packets.all { fields(it)[13] == null })
+        val ended = NavigationWireEncoding.plan(initial.copy(lifecycle = NavigationLifecycle.ENDED,
+            maneuver = requireNotNull(initial.maneuver).copy(afterRoad = "测试道路")), start, display)
+        assertEquals(listOf(0x5201), ended.packets.map { it.id })
+        assertEquals(0, state(ended.packets.single()))
     }
 
     @Test fun unknownTurnAndUnknownDistanceClearOldReceiverValues() {

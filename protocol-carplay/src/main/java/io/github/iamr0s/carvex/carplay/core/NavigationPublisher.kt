@@ -34,7 +34,8 @@ internal class NavigationDisplayCapabilities(parameters: List<RawParameter>) {
 }
 
 /** Numeric core: Apple state/type tables and encoders; GalaxyPlay 0.1.212 p7/p10 meter
- * consumer and definition/reference merge. Text, display units and lanes remain omitted.
+ * consumer and definition/reference merge. The confirmed after-road text accompanies the definition;
+ * other optional text, display units and lanes remain omitted.
  * See the navigation fix record for the receiver-specific unit/order evidence boundary. */
 internal object NavigationWireEncoding {
     fun plan(snapshot: NavigationSnapshot, selection: NavigationGuidance.Start,
@@ -76,7 +77,10 @@ internal object NavigationWireEncoding {
         val distance = maneuver.distanceMeters?.takeIf { it in 1..0xffffffffL }
         val definition = NavigationPacket(0x5202,
             NavigationGuidance.maneuver(NavigationGuidance.ManeuverUpdate(selection.components,
-                index = index, type = type)),
+                index = index, type = type,
+                // Definitions merge by index at the receiver. An explicit empty C string
+                // clears an old road when the new HUD has no valid text.
+                afterRoad = NowPlayingUpdate.textOrNull(maneuver.afterRoad).orEmpty())),
             "24A446:CarPlay:247b3a190/table2690da6a8;accessoryd:1000c5008/1001777c0;GalaxyPlay:024858")
         // Every batch is self-contained, including resubscription. No delivered snapshot cache.
         // Missing/invalid values must not leave the receiver's old segment or route

@@ -5,7 +5,9 @@ import java.security.MessageDigest
 
 /** CarWith 4.0.14 classes2: lifecycle 1c5c20/16fb48, HUD 16fc3c,
  * meter conversion 16f3f0 and icon classifier 1aedb4/1af2fc.
- * Road hints and cached reference distances are not route overview fields. */
+ * The user confirmed road_name as the road after the maneuver on 2026-11-12.
+ * The cached total_distance is published as route distance for the user's field trial;
+ * its route-level meaning remains unverified. */
 internal object CarWithNavigation {
     private data class Evidence(val start: String, val end: String, val hud: String, val maneuver: String)
 
@@ -65,14 +67,23 @@ internal object CarWithNavigation {
                 when (kind) {
                     3 -> HostNavigationEvent(source, HostNavigationChange.ENDED, evidence.end)
                     1, 2 -> HostNavigationEvent(source, HostNavigationChange.UPDATED, evidence.hud,
-                        delta = HostNavigationDelta(maneuver = HostNavigationField.Value(
-                            HostNavigationManeuver(
-                                // A local identity for the current HUD hint, not a vendor/wire index.
-                                id = "hud:${values["navi_turn"] as? Int}:${values["road_name"] as? String}",
-                                distanceMeters = (values["remain_distance"] as? Int)?.toLong()
-                                    ?.takeIf { it in 1 until Int.MAX_VALUE.toLong() },
-                                turn = turn(values["navi_turn"] as? Int)),
-                            evidence.maneuver)),
+                        delta = HostNavigationDelta(
+                            // User-requested field trial, not a verified route-level source contract.
+                            // Clear missing/invalid inputs so a previous trial value cannot survive.
+                            distanceRemainingMeters = (values["total_distance"] as? Int)
+                                ?.takeIf { it in 0 until Int.MAX_VALUE }?.let {
+                                    HostNavigationField.Value(it.toLong(),
+                                        "${evidence.hud}:total_distance-route:user-test-20261112")
+                                } ?: HostNavigationField.Clear,
+                            maneuver = HostNavigationField.Value(
+                                HostNavigationManeuver(
+                                    // A local identity for the current HUD hint, not a vendor/wire index.
+                                    id = "hud:${values["navi_turn"] as? Int}:${values["road_name"] as? String}",
+                                    afterRoad = (values["road_name"] as? String)?.takeIf { it.isNotBlank() },
+                                    distanceMeters = (values["remain_distance"] as? Int)?.toLong()
+                                        ?.takeIf { it in 1 until Int.MAX_VALUE.toLong() },
+                                    turn = turn(values["navi_turn"] as? Int)),
+                                evidence.maneuver)),
                         observation = HostNavigationObservation(
                             roadHint = values["road_name"] as? String,
                             distanceHintMeters = (values["remain_distance"] as? Int)?.toLong()?.takeIf { it >= 0 },
@@ -81,7 +92,7 @@ internal object CarWithNavigation {
                             action = kind,
                             iconBytes = (values["turn_icon_data"] as? ByteArray)?.size),
                         unverifiedFields = buildSet {
-                            add("road_name-role")
+                            add("total_distance-route-role-user-test")
                             if (turn(values["navi_turn"] as? Int) == null) add("navi_turn-enum")
                             if ((values["remain_distance"] as? Int)?.let { it > 0 && it < Int.MAX_VALUE } != true)
                                 add("remain_distance-validity")

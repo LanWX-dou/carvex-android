@@ -58,6 +58,40 @@ class HostNavigationRelayTest {
         }
     }
 
+    @Test fun trialRouteDistanceRemainsSeparateClearsAndCannotReturnAfterEnd() {
+        val trialEvidence = "H02:classes2:17abdc:total_distance-route:user-test-20261112"
+        val trialMarker = "total_distance-route-role-user-test"
+        HostNavigationRelay().use { relay ->
+            relay.update(event(HostNavigationChange.STARTED))
+            fun hint(remaining: Long, total: HostNavigationField<Long>) = event(HostNavigationChange.UPDATED,
+                HostNavigationDelta(distanceRemainingMeters = total,
+                    maneuver = value(HostNavigationManeuver("hud:right:road",
+                        distanceMeters = remaining, turn = HostNavigationTurn.RIGHT))))
+                .copy(unverifiedFields = setOf(trialMarker))
+            for (remaining in listOf(6400L, 4000L, 92L)) {
+                assertTrue(relay.update(hint(remaining, HostNavigationField.Value(6400L, trialEvidence))))
+                val snapshot = requireNotNull(relay.snapshot())
+                assertEquals(6400L, snapshot.route.distanceRemainingMeters)
+                assertEquals(remaining, snapshot.maneuver?.distanceMeters)
+                assertEquals(trialEvidence, snapshot.evidence["distanceRemainingMeters"])
+                assertTrue(snapshot.unverifiedFields.contains(trialMarker))
+                assertNull(snapshot.route.timeRemainingSeconds)
+            }
+            relay.update(hint(91L, HostNavigationField.Clear))
+            assertNull(relay.snapshot()?.route?.distanceRemainingMeters)
+            assertFalse(requireNotNull(relay.snapshot()).evidence.containsKey("distanceRemainingMeters"))
+            relay.update(hint(90L, HostNavigationField.Value(0L, trialEvidence)))
+            assertEquals(0L, relay.snapshot()?.route?.distanceRemainingMeters)
+            relay.update(event(HostNavigationChange.ENDED))
+            val ended = relay.snapshot()
+            assertNull(ended?.route?.distanceRemainingMeters)
+            assertFalse(relay.update(hint(89L, HostNavigationField.Value(6400L, trialEvidence))))
+            assertSame(ended, relay.snapshot())
+            relay.update(event(HostNavigationChange.STARTED))
+            assertNull(relay.snapshot()?.route?.distanceRemainingMeters)
+        }
+    }
+
     @Test fun rejectedSourceLogsIncomingAndActiveBindingsWithoutPrivateRouteIdentifiers() {
         val logs = mutableListOf<String>()
         HostNavigationRelay(logs::add).use { relay ->
@@ -128,6 +162,29 @@ class HostNavigationRelayTest {
             relay.update(event(HostNavigationChange.STARTED))
             relay.update(hint("right-road", 300, HostNavigationTurn.RIGHT))
             assertTrue(requireNotNull(relay.snapshot()).maneuverGeneration > first.maneuverGeneration)
+        }
+    }
+
+    @Test fun afterRoadSurvivesDistanceUpdatesChangesWithTheHintAndClearsOnEnd() {
+        HostNavigationRelay().use { relay ->
+            relay.update(event(HostNavigationChange.STARTED))
+            fun hint(road: String?, distance: Long) = event(HostNavigationChange.UPDATED,
+                HostNavigationDelta(maneuver = value(HostNavigationManeuver("hud:right:$road",
+                    afterRoad = road, distanceMeters = distance, turn = HostNavigationTurn.RIGHT))))
+            relay.update(hint("测试道路甲", 101))
+            val first = requireNotNull(relay.snapshot())
+            assertEquals("测试道路甲", first.maneuver?.afterRoad)
+            assertNull(first.route.currentRoad)
+            relay.update(hint("测试道路甲", 100))
+            assertEquals("测试道路甲", relay.snapshot()?.maneuver?.afterRoad)
+            assertEquals(first.maneuverGeneration, relay.snapshot()?.maneuverGeneration)
+            relay.update(hint("测试道路乙", 200))
+            assertEquals("测试道路乙", relay.snapshot()?.maneuver?.afterRoad)
+            assertTrue(requireNotNull(relay.snapshot()).maneuverGeneration > first.maneuverGeneration)
+            relay.update(hint(null, 199))
+            assertNull(relay.snapshot()?.maneuver?.afterRoad)
+            relay.update(event(HostNavigationChange.ENDED))
+            assertNull(relay.snapshot()?.maneuver)
         }
     }
 

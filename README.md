@@ -1,5 +1,9 @@
 # CarVeX
 
+2026-11-12 按用户要求，将 CarWith `total_distance` 临时映射为全程剩余里程，供实车观察；`remain_distance` 继续表示转向距离。日志保留试验标记，时间字段仍缺来源。见[里程试验记录](docs/fixes/2026-11-12-navigation-total-distance-trial.md)。
+
+2026-11-12 按用户实车反馈确认 `road_name` 为转向后的道路，补齐宿主 `afterRoad` 映射与 `5202` 字段 4 的文字发送；道路更新、空值清除和结束回归通过，仪表显示待复测。见[转向后道路修复](docs/fixes/2026-11-12-navigation-after-road.md)。
+
 2026-11-12 按实车调查要求增加[导航完整原始输入日志](docs/fixes/2026-11-12-navigation-full-input.md)：记录全部导航 extras 的键、类型、嵌套值及完整文字/图标字节，导出后可还原图片与字段供车道、全程距离/时间核对。右转规划已由用户确认正确；新增诊断的实车采集待测试。
 
 2026-11-12 补充[导航投递关联诊断](docs/fixes/2026-11-12-navigation-delivery-diagnostics.md)：可追踪宿主事件、快照、批次、发送前检查与完成，区分缺订阅/能力和旧代际；道路/路线概览/车道及实车显示仍待完成。
