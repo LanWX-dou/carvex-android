@@ -166,4 +166,38 @@ class NowPlayingUpdateTest {
         publisher.command(0x5000,IapFields(listOf(1 to IapWire.fields(listOf(2 to byteArrayOf())))))
         assertTrue(publisher.setInfo(IapFields(listOf(1 to IapWire.be32(0xffffffffL)))))
     }
+
+    @Test fun unknownTopLevelPayloadIsIgnoredAndFlagGroupUsesEmptyChildren() {
+        val selected=NowPlayingUpdate.selection(IapFields(listOf(
+            99 to byteArrayOf(1,2,3), // Not a nested TLV: the unknown group is never parsed.
+            0 to IapWire.fields(listOf(1 to byteArrayOf(),1 to byteArrayOf())),
+            1 to IapWire.fields(listOf(0x11 to IapWire.be32(0xffffffffL))),
+            2 to IapWire.fields(listOf(0 to byteArrayOf(),31 to byteArrayOf(),0 to byteArrayOf())))))!!
+        assertEquals(0xffffffffL,selected.startIndexOverride)
+        assertEquals(0x80000001.toInt(),selected.infoMask)
+        assertEquals(listOf(1,1),NowPlayingUpdate.fields(NowPlayingUpdate.Track(title="Song"),selected)
+            .single().second.let(IapWire::parseFieldList).ordered.map{it.first})
+        assertNull(NowPlayingUpdate.selection(IapFields(listOf(2 to IapWire.fields(listOf(1 to byteArrayOf(0)))))))
+        // Local defensive profile: IDs >=32 alias in the original 32-bit shift, not a proven wire limit.
+        assertNull(NowPlayingUpdate.selection(IapFields(listOf(2 to IapWire.fields(listOf(32 to byteArrayOf()))))))
+    }
+
+    @Test fun invalidLaterGroupDoesNotReplaceOrRevokeTheOldSubscription() {
+        val guards=mutableListOf<()->Boolean>()
+        val sent=mutableListOf<List<Pair<Int,ByteArray>>>()
+        val publisher=NowPlayingPublisher({values,valid->guards+=valid;sent+=values;true},{})
+        publisher.linkReady(true)
+        assertTrue(publisher.command(0x5000,IapFields(listOf(0 to IapWire.fields(listOf(1 to byteArrayOf()))))))
+        val oldGuard=guards.single()
+        for(group in 0..2){
+            val bad=IapFields(listOf(0 to IapWire.fields(listOf(12 to byteArrayOf())),
+                group to IapWire.fields(listOf(2 to byteArrayOf(0)))))
+            assertFalse(publisher.command(0x5000,bad))
+            assertTrue(oldGuard())
+        }
+        assertTrue(publisher.update(NowPlayingUpdate.Track(title="Kept",artist="Not selected")))
+        assertEquals(listOf(1),IapWire.parseFieldList(sent.last().single().second).ordered.map{it.first})
+        assertTrue(publisher.command(0x5000,IapFields(listOf(0 to IapWire.fields(listOf(12 to byteArrayOf()))))))
+        assertFalse(oldGuard())
+    }
 }
