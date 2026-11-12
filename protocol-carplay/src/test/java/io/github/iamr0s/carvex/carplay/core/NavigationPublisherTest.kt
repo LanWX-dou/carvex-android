@@ -142,6 +142,7 @@ class NavigationPublisherTest {
         f.source.set(snapshot()); f.publisher.linkReady(true, sends, receives)
         assertTrue(f.publisher.command(0x5200, start(42)))
         assertTrue(f.queued.isEmpty())
+        assertTrue(f.logs.any { it.contains("reason=lane-capability-missing") && it.contains("id=5204") })
         f.publisher.linkReady(true, sends, receives + 0x5204)
         f.publisher.command(0x5200, start(42))
         assertEquals(listOf(0x5204), f.queued.map { it.id })
@@ -191,5 +192,76 @@ class NavigationPublisherTest {
         f.publisher.linkReady(false); f.publisher.linkReady(true, sends, receives)
         f.publisher.command(0x5200, start(42))
         assertTrue(seen.last().isEmpty())
+    }
+
+    @Test fun missingSubscriptionReportsAvailableSourceAndUnverifiedFieldsWithoutPrivateText() {
+        val f = fixture()
+        val state = snapshot(7).copy(bindingEpoch = 3, routeEpoch = 5,
+            route = NavigationRoute("private road", "private destination", 200),
+            maneuver = NavigationManeuver("private maneuver id", "private instruction", "private after road"),
+            evidence = mapOf("lifecycle" to "reviewed-lifecycle"), unverifiedFields = setOf("road_name-role"))
+        f.source.set(state)
+        assertFalse(f.publisher.navigationChanged())
+        val message = f.logs.last()
+        assertTrue(message.contains("reason=no-subscription"))
+        assertTrue(message.contains("source=synthetic-host binding=3 route=5 revision=7"))
+        assertTrue(message.contains("available=[currentRoad, destination, distanceRemainingMeters"))
+        assertTrue(message.contains("timeRemainingSeconds"))
+        assertTrue(message.contains("sourceEvidence={lifecycle=reviewed-lifecycle}"))
+        assertTrue(message.contains("unverified=[road_name-role]"))
+        assertTrue(f.queued.isEmpty())
+        assertFalse(f.logs.any { it.contains("private ") })
+    }
+
+    @Test fun writerAndCompletionDiagnosticsKeepTheQueuedSnapshotWhenSourceChanges() {
+        val f = Fixture { state, selection, display ->
+            NavigationPlan(synthetic(state, selection, display).packets + NavigationPacket(0x5202,
+                selection.components.map { 0 to IapWire.be16(it) } + listOf(1 to IapWire.be16(0)), "maneuver-evidence"))
+        }
+        f.source.set(snapshot(7).copy(bindingEpoch = 3, routeEpoch = 5, maneuverGeneration = 4,
+            route = NavigationRoute("private old road", distanceRemainingMeters = 200)))
+        f.publisher.linkReady(true, sends, receives)
+        f.publisher.command(0x5200, start(42))
+        val planned = f.logs.single { it.contains("event=planned") }
+        assertTrue(planned.contains("components=[42] options=0"))
+        assertTrue(planned.contains("messages=[5201, 5202]"))
+        val queued = f.logs.filter { it.contains("event=queued") }
+        assertEquals(2, queued.size)
+        assertTrue(queued[0].contains("packet=1/2 id=5201"))
+        assertTrue(queued[1].contains("packet=2/2 id=5202"))
+        f.source.set(snapshot(8).copy(route = NavigationRoute("private new road")))
+        assertFalse(f.queued[0].valid())
+        assertFalse(f.queued[0].valid()) // A repeated gate evaluation must not duplicate its trace.
+        f.queued[0].complete(java.io.IOException("private transport details"))
+        val checked = f.logs.single { it.contains("event=writer-check") }
+        val completed = f.logs.last()
+        for (message in listOf(checked, completed)) {
+            assertTrue(message.contains("source=synthetic-host binding=3 route=5 revision=7"))
+            assertTrue(message.contains("maneuverGeneration=4"))
+            assertTrue(message.contains("packet=1/2 id=5201 fields=[0, 3, 7]"))
+        }
+        assertTrue(checked.contains("accepted=false"))
+        assertTrue(completed.contains("event=transport"))
+        assertTrue(completed.contains("writerChecked=true completed=0/2 error=IOException"))
+        assertFalse(f.queued[1].valid())
+        assertEquals(2, f.queued.size)
+        assertFalse(f.logs.any { it.contains("private ") })
+    }
+
+    @Test fun writerDiagnosticFailureDoesNotRejectCurrentWorkOrAdmitStaleWork() {
+        val source = AtomicReference<NavigationSnapshot?>(snapshot())
+        val queued = mutableListOf<Queued>()
+        val publisher = NavigationPublisher({ id, fields, valid, complete ->
+            queued += Queued(id, fields, valid, complete)
+            true
+        }, { message ->
+            if (message.contains("event=writer-check")) throw java.io.IOException("diagnostic sink failed")
+        }, ::synthetic)
+        publisher.attachNavigation { source.get() }
+        publisher.linkReady(true, sends, receives)
+        publisher.command(0x5200, start(42))
+        assertTrue(queued.single().valid())
+        source.set(snapshot(2))
+        assertFalse(queued.single().valid())
     }
 }

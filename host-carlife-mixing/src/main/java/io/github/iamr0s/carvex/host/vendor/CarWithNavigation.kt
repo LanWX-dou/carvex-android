@@ -7,6 +7,17 @@ import java.security.MessageDigest
  * meter conversion 16f3f0 and icon classifier 1aedb4/1af2fc.
  * Road hints and cached reference distances are not route overview fields. */
 internal object CarWithNavigation {
+    private data class Evidence(val start: String, val end: String, val hud: String, val maneuver: String)
+
+    // Each supported version has its own original APK audit. The 4.0.23 classifier
+    // groups and all 18 reviewed template PNGs match 4.0.14; method offsets changed.
+    private val reviewedVersions = mapOf(
+        "4.0.14-20260801" to Evidence("H01:classes2:1c5c20", "H01:classes2:16fb48",
+            "H01:classes2:16fc3c", "H01:classes2:16fc3c/16f3f0/1aedb4/1af2fc:HUD-maneuver"),
+        "4.0.23-20261016" to Evidence("H02:classes2:1d3c14", "H02:classes2:17aae8",
+            "H02:classes2:17abdc", "H02:classes2:17abdc/17a338/1ba904/1bae4c:HUD-maneuver"),
+    )
+
     fun recognizes(action: String?) = action == "mix_notify_start_navi" || action == "carlife_show_hud_info"
 
     /** Trace the producer before normalization, including rejected types, without road/icon payloads. */
@@ -27,6 +38,11 @@ internal object CarWithNavigation {
         val icon = values["turn_icon_data"] as? ByteArray
         return "navigation event=source source=${source.id} binding=${source.bindingEpoch} " +
             "version=${source.version ?: "unknown"} action=$action decoded=${event?.change ?: "rejected"} " +
+            "reason=${when {
+                source.version !in reviewedVersions -> "unsupported-version"
+                event == null -> "invalid-action-or-type"
+                else -> "none"
+            }} " +
             "isNavi=${scalar("isNavi")} hudAction=${scalar("action")} turn=${scalar("navi_turn")} " +
             "distance=${scalar("remain_distance")} reference=${scalar("total_distance")} " +
             "roadType=${scalar("road_name")} roadChars=${road?.length ?: 0} " +
@@ -37,18 +53,18 @@ internal object CarWithNavigation {
 
     fun decode(action: String?, values: Map<String, Any?>, source: HostNavigationSource): HostNavigationEvent? {
         // The inspected producer is version-bound. Other versions need their own evidence.
-        if (source.version != "4.0.14-20260801") return null
+        val evidence = reviewedVersions[source.version] ?: return null
         return when (action) {
             "mix_notify_start_navi" -> (values["isNavi"] as? Boolean)?.let { active ->
                 HostNavigationEvent(source,
                     if (active) HostNavigationChange.STARTED else HostNavigationChange.ENDED,
-                    "H01:classes2:${if (active) "1c5c20" else "16fb48"}")
+                    if (active) evidence.start else evidence.end)
             }
             "carlife_show_hud_info" -> {
                 val kind = values["action"] as? Int ?: return null
                 when (kind) {
-                    3 -> HostNavigationEvent(source, HostNavigationChange.ENDED, "H01:classes2:16fb48")
-                    1, 2 -> HostNavigationEvent(source, HostNavigationChange.UPDATED, "H01:classes2:16fc3c",
+                    3 -> HostNavigationEvent(source, HostNavigationChange.ENDED, evidence.end)
+                    1, 2 -> HostNavigationEvent(source, HostNavigationChange.UPDATED, evidence.hud,
                         delta = HostNavigationDelta(maneuver = HostNavigationField.Value(
                             HostNavigationManeuver(
                                 // A local identity for the current HUD hint, not a vendor/wire index.
@@ -56,7 +72,7 @@ internal object CarWithNavigation {
                                 distanceMeters = (values["remain_distance"] as? Int)?.toLong()
                                     ?.takeIf { it in 1 until Int.MAX_VALUE.toLong() },
                                 turn = turn(values["navi_turn"] as? Int)),
-                            "H01:classes2:16fc3c/16f3f0/1aedb4/1af2fc:HUD-maneuver")),
+                            evidence.maneuver)),
                         observation = HostNavigationObservation(
                             roadHint = values["road_name"] as? String,
                             distanceHintMeters = (values["remain_distance"] as? Int)?.toLong()?.takeIf { it >= 0 },

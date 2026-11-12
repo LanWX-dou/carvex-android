@@ -58,6 +58,23 @@ class HostNavigationRelayTest {
         }
     }
 
+    @Test fun rejectedSourceLogsIncomingAndActiveBindingsWithoutPrivateRouteIdentifiers() {
+        val logs = mutableListOf<String>()
+        HostNavigationRelay(logs::add).use { relay ->
+            relay.update(event(HostNavigationChange.STARTED, route = "private current route", binding = 2))
+            val current = relay.snapshot()
+            assertFalse(relay.update(event(HostNavigationChange.UPDATED, route = "private old route", binding = 1)))
+            val received = logs[logs.lastIndex - 1]
+            assertTrue(received.contains("event=host-received source=test-host binding=1"))
+            assertTrue(received.contains("sourceRouteId=present sequence=absent"))
+            assertTrue(logs.last().contains("reason=stale-binding"))
+            assertTrue(logs.last().contains("incomingSource=test-host incomingBinding=1 incomingChange=UPDATED"))
+            assertTrue(logs.last().contains("activeSource=test-host activeBinding=2"))
+            assertSame(current, relay.snapshot())
+            assertFalse(logs.any { it.contains("private ") })
+        }
+    }
+
     @Test fun maneuverReplacementClearsLanesAndInputsAreCopied() {
         val directions = mutableListOf(HostNavigationTurn.LEFT)
         val lanes = mutableListOf(HostNavigationLane(directions, true))

@@ -312,7 +312,7 @@ class SessionController(
                     BridgeStore.update(id){it.copy(hostHud="")}
                 else if(observation!=null)BridgeStore.update(id){it.copy(hostHud=
                     "kind=${observation.action} turn=${observation.turnHint} remains=${observation.distanceHintMeters} total=${observation.referenceDistanceMeters} road=${observation.roadHint.orEmpty()}")}
-                BridgeStore.log(id,"debug navigation event=host-received source=${event.source.id} binding=${event.source.bindingEpoch} change=${event.change} evidence=${event.evidence}")
+                BridgeStore.log(id,"debug navigation event=host-applied source=${event.source.id} binding=${event.source.bindingEpoch} change=${event.change} evidence=${event.evidence}")
             }
             override fun optionalAction(intent:android.content.Intent){
                 if(ended.get())return

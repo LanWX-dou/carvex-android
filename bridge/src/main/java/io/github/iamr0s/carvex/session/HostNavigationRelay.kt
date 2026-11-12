@@ -35,10 +35,14 @@ internal class HostNavigationRelay(private val log: (String) -> Unit = {}) : Aut
 
     @Synchronized fun update(event: HostNavigationEvent): Boolean {
         if (closed) return false
+        log("debug navigation event=host-received source=${event.source.id} binding=${event.source.bindingEpoch} " +
+            "version=${event.source.version ?: "unknown"} change=${event.change} evidence=${event.evidence} " +
+            "sourceRouteId=${if (event.routeId == null) "absent" else "present"} sequence=${event.sequence ?: "absent"}")
+        fun reject(reason: String) = blocked(reason, event)
         val previousSource = source
         if (previousSource != null && (event.source.bindingEpoch < previousSource.bindingEpoch ||
                 event.source.bindingEpoch == previousSource.bindingEpoch && event.source.id != previousSource.id))
-            return blocked("stale-binding")
+            return reject("stale-binding")
         val sourceChanged = previousSource == null || event.source.bindingEpoch > previousSource.bindingEpoch
         if (sourceChanged) {
             source = event.source
@@ -50,26 +54,26 @@ internal class HostNavigationRelay(private val log: (String) -> Unit = {}) : Aut
         }
         val old = current.get()
         if (old?.lifecycle == NavigationLifecycle.INVALIDATED && event.change != HostNavigationChange.SOURCE_INVALIDATED)
-            return blocked("invalidated-binding")
+            return reject("invalidated-binding")
         val newRoute = event.change == HostNavigationChange.STARTED &&
             (old == null || old.lifecycle in setOf(NavigationLifecycle.ENDED, NavigationLifecycle.INVALIDATED) ||
                 event.routeId != null && event.routeId != routeId)
-        if (event.routeId != null && event.routeId in retiredRoutes) return blocked("retired-route")
+        if (event.routeId != null && event.routeId in retiredRoutes) return reject("retired-route")
         // With an explicit new route ID, sequence is route-local; otherwise it is binding-local.
         val resetsSequence = newRoute && event.routeId != null && event.routeId != routeId
         val receivedSequence = event.sequence
         if (!resetsSequence && receivedSequence != null && sequence != null && receivedSequence <= requireNotNull(sequence))
-            return blocked("stale-sequence")
+            return reject("stale-sequence")
         if (event.change != HostNavigationChange.STARTED && routeId != null &&
-            event.routeId != null && event.routeId != routeId) return blocked("stale-route")
+            event.routeId != null && event.routeId != routeId) return reject("stale-route")
         if (event.change == HostNavigationChange.UPDATED || event.change == HostNavigationChange.REROUTING) {
             if (old == null || old.lifecycle in setOf(NavigationLifecycle.ENDED, NavigationLifecycle.INVALIDATED))
-                return blocked("no-active-route")
+                return reject("no-active-route")
         }
         if (event.change == HostNavigationChange.ENDED && old?.lifecycle == NavigationLifecycle.ENDED)
-            return blocked("duplicate-end")
+            return reject("duplicate-end")
         if (event.change == HostNavigationChange.SOURCE_INVALIDATED && old?.lifecycle == NavigationLifecycle.INVALIDATED)
-            return blocked("duplicate-invalidation")
+            return reject("duplicate-invalidation")
         if (newRoute) {
             routeEpoch++
             if (resetsSequence) {
@@ -139,13 +143,16 @@ internal class HostNavigationRelay(private val log: (String) -> Unit = {}) : Aut
             "turn=${next.maneuver?.turn ?: "absent"} maneuverDistance=${next.maneuver?.distanceMeters ?: "absent"} " +
             "routeDistance=${next.route.distanceRemainingMeters ?: "absent"} " +
             "routeSeconds=${next.route.timeRemainingSeconds ?: "absent"} " +
+            "sourceEvidence=${next.evidence.toSortedMap()} " +
             "unverified=${next.unverifiedFields.sorted()}")
         sink?.navigationChanged()
         return true
     }
 
-    private fun blocked(reason: String): Boolean {
-        log("debug navigation event=blocked source=relay reason=$reason route=$routeEpoch revision=$revision")
+    private fun blocked(reason: String, event: HostNavigationEvent): Boolean {
+        log("debug navigation event=blocked source=relay reason=$reason route=$routeEpoch revision=$revision " +
+            "incomingSource=${event.source.id} incomingBinding=${event.source.bindingEpoch} incomingChange=${event.change} " +
+            "activeSource=${source?.id ?: "absent"} activeBinding=${source?.bindingEpoch ?: "absent"}")
         return false
     }
 

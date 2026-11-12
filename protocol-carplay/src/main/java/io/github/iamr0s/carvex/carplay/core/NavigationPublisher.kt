@@ -132,7 +132,9 @@ internal class NavigationPublisher(
         subscriptionEpoch++
         deliveryEpoch.incrementAndGet()
         if (!ready) display = NavigationDisplayCapabilities(emptyList())
-        log("debug navigation event=link ready=$ready link=$linkEpoch subscription=$subscriptionEpoch")
+        log("debug navigation event=link ready=$ready link=$linkEpoch subscription=$subscriptionEpoch " +
+            "accessorySends=${accessorySends.sorted().map { it.toString(16) }} " +
+            "accessoryReceives=${accessoryReceives.sorted().map { it.toString(16) }}")
     }
 
     @Synchronized override fun attachNavigation(source: () -> NavigationSnapshot?) {
@@ -148,7 +150,8 @@ internal class NavigationPublisher(
     }
 
     @Synchronized fun command(id: Int, fields: IapFields): Boolean {
-        if (!ready || !NavigationGuidance.featureReady(accessorySends, accessoryReceives))
+        if (!ready) return blocked("link-not-ready", id)
+        if (!NavigationGuidance.featureReady(accessorySends, accessoryReceives))
             return blocked("required-capabilities", id)
         when (id) {
             0x5200 -> {
@@ -176,8 +179,31 @@ internal class NavigationPublisher(
         return publish()
     }
 
-    private fun blocked(reason: String, id: Int = 0x5201, context: String = ""): Boolean {
-        log("debug navigation event=blocked id=${id.toString(16)} link=$linkEpoch subscription=$subscriptionEpoch reason=$reason $context")
+    /** Field presence and evidence labels only: maneuver IDs can contain private road text. */
+    private fun snapshotContext(snapshot: NavigationSnapshot?): String {
+        if (snapshot == null) return "source=absent"
+        val fields = linkedMapOf(
+            "currentRoad" to snapshot.route.currentRoad,
+            "destination" to snapshot.route.destination,
+            "distanceRemainingMeters" to snapshot.route.distanceRemainingMeters,
+            "timeRemainingSeconds" to snapshot.route.timeRemainingSeconds,
+            "arrivalEpochSeconds" to snapshot.route.arrivalEpochSeconds,
+            "maneuver.turn" to snapshot.maneuver?.turn,
+            "maneuver.distanceMeters" to snapshot.maneuver?.distanceMeters,
+            "maneuver.description" to snapshot.maneuver?.description,
+            "maneuver.afterRoad" to snapshot.maneuver?.afterRoad,
+            "lanes" to snapshot.lanes,
+        )
+        return "source=${snapshot.sourceId} binding=${snapshot.bindingEpoch} route=${snapshot.routeEpoch} " +
+            "revision=${snapshot.revision} lifecycle=${snapshot.lifecycle} maneuverGeneration=${snapshot.maneuverGeneration} " +
+            "available=${fields.filterValues { it != null }.keys} unavailable=${fields.filterValues { it == null }.keys} " +
+            "sourceEvidence=${snapshot.evidence.toSortedMap()} unverified=${snapshot.unverifiedFields.sorted()}"
+    }
+
+    private fun blocked(reason: String, id: Int = 0x5201,
+                        context: String = snapshotContext(source?.invoke())): Boolean {
+        log("debug navigation event=blocked id=${id.toString(16)} link=$linkEpoch subscription=$subscriptionEpoch " +
+            "ready=$ready components=${selection?.components.orEmpty()} options=${selection?.mask ?: 0} reason=$reason $context")
         return false
     }
 
@@ -187,10 +213,12 @@ internal class NavigationPublisher(
         if (selected.components.isEmpty()) return blocked("empty-components-profile-unverified")
         val supplier = source ?: return blocked("no-source")
         val snapshot = supplier() ?: return blocked("no-snapshot")
-        val context = "source=${snapshot.sourceId} binding=${snapshot.bindingEpoch} route=${snapshot.routeEpoch} revision=${snapshot.revision}"
+        val context = snapshotContext(snapshot)
         val plan = encode(snapshot, selected, display)
         plan.blocked?.let { return blocked(it, context = context) }
         if (plan.packets.isEmpty()) return blocked("no-verified-fields", context = context)
+        if (plan.packets.any { it.id == 0x5204 } && 0x5204 !in accessoryReceives)
+            return blocked("lane-capability-missing", 0x5204, context)
         if (plan.packets.any { it.id !in accessoryReceives || it.id !in setOf(0x5201, 0x5202, 0x5204) })
             return blocked("message-not-declared", context = context)
         val token = deliveryEpoch.get()
@@ -216,20 +244,36 @@ internal class NavigationPublisher(
         val batchValid = java.util.concurrent.atomic.AtomicBoolean(true)
         val completed = java.util.concurrent.atomic.AtomicInteger()
         val submitted = java.util.concurrent.atomic.AtomicInteger()
-        for (packet in packets) {
+        val batchContext = "batch=$batch link=$link subscription=$subscription delivery=$token " +
+            "components=${selected.components} options=${selected.mask} $context"
+        log("debug navigation event=planned $batchContext " +
+            "maneuverCapacities=${selected.components.associateWith { display.maneuverCapacity(it) }} " +
+            "laneSupported=${0x5204 in accessoryReceives} messages=${packets.map { it.id.toString(16) }}")
+        for ((position, packet) in packets.withIndex()) {
             if (!valid() || !batchValid.get()) return blocked("stale-batch", packet.id, context)
-            val accepted = emit(packet.id, packet.fields, { batchValid.get() && valid() }) { error ->
+            val packetContext = "$batchContext packet=${position + 1}/${packets.size} id=${packet.id.toString(16)} " +
+                "fields=${packet.fields.map { it.first }} evidence=${packet.evidence}"
+            val writerChecked = java.util.concurrent.atomic.AtomicBoolean()
+            val accepted = emit(packet.id, packet.fields, {
+                val current = batchValid.get() && valid()
+                if (writerChecked.compareAndSet(false, true))
+                    runCatching {
+                        log("debug navigation event=writer-check $packetContext accepted=$current; generation check before sequence allocation")
+                    } // Diagnostics must not change the writer's generation decision.
+                current
+            }) { error ->
                 if (error != null) batchValid.set(false)
                 val count = if (error == null) completed.incrementAndGet() else completed.get()
-                log("debug navigation event=transport batch=$batch link=$link subscription=$subscription $context id=${packet.id.toString(16)} completed=$count/${packets.size} error=${error?.javaClass?.simpleName ?: "none"}; transport completion, instrument display unverified")
+                log("debug navigation event=transport $packetContext writerChecked=${writerChecked.get()} " +
+                    "completed=$count/${packets.size} error=${error?.javaClass?.simpleName ?: "none"}; transport completion, instrument display unverified")
             }
             if (!accepted) {
                 batchValid.set(false)
-                log("debug navigation event=queue-rejected batch=$batch link=$link subscription=$subscription $context submitted=${submitted.get()}/${packets.size}; partial submission possible")
+                log("debug navigation event=queue-rejected $packetContext submitted=${submitted.get()}/${packets.size}; partial submission possible")
                 return false
             }
             submitted.incrementAndGet()
-            log("debug navigation event=queued batch=$batch link=$link subscription=$subscription $context id=${packet.id.toString(16)} fields=${packet.fields.map { it.first }} evidence=${packet.evidence}")
+            log("debug navigation event=queued $packetContext")
         }
         return true // Queue acceptance only; no delivery baseline is advanced.
     }

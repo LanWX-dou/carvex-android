@@ -1,5 +1,9 @@
 # CarVeX
 
+On 2026-11-12, [navigation delivery diagnostics](docs/fixes/2026-11-12-navigation-delivery-diagnostics.md) added event, snapshot, batch, writer-check and completion attribution, with distinct subscription, capability and stale-generation reasons. Road text, route overview, lanes and vehicle display remain unresolved.
+
+On 2026-11-12, navigation decoding was extended to audited CarWith `4.0.23-20261016`, whose inputs were rejected by the previous version check. The added version has separate original APK method and arrow-template evidence. See the [version adaptation record](docs/fixes/2026-11-12-carwith-navigation-version.md). Field validation, road text, lanes and route overview remain unresolved.
+
 [中文](README.md) | English
 
 [![Android signed APK](https://github.com/iamr0s/carvex-android/actions/workflows/android.yml/badge.svg)](https://github.com/iamr0s/carvex-android/actions/workflows/android.yml)
@@ -71,7 +75,7 @@ This repository can also live inside the larger research workspace at
 
 ## Current CarPlay capabilities
 
-- Instrument navigation uses host events, one session snapshot and the current Link subscription. The GalaxyPlay 0.1.212 audit now enables basic turns and positive maneuver distances from the audited CarWith version, with `5202` definitions and `5201` references. Local tests cover end/reset, resubscription and stale queue cancellation. Road text, ETA and lanes remain unavailable; vehicle display is unverified. See [implementation and evidence limits](docs/fixes/2026-11-11-navigation-cluster-chain.md).
+- Instrument navigation uses host events, one session snapshot and the current Link subscription. The GalaxyPlay 0.1.212 audit now enables basic turns and positive maneuver distances from audited CarWith 4.0.14 / 4.0.23 versions, with `5202` definitions and `5201` references. Local tests cover end/reset, resubscription and stale queue cancellation. Road text, ETA and lanes remain unavailable; vehicle display is unverified. See [implementation and evidence limits](docs/fixes/2026-11-11-navigation-cluster-chain.md).
 
 - Resource changes accept combined screen/audio requests within the supported transfer subset. Constraint arbitration and active application states remain incomplete; see [validation record](docs/fixes/2026-11-10-resource-batch.md).
 - Active navigation prompts retain a bounded PCM prefix during SETUP and deliver it before live audio. Source stop or failed setup discards the prefix; see [startup buffer limits](docs/fixes/2026-11-10-navigation-startup.md). Vehicle playback remains unverified.

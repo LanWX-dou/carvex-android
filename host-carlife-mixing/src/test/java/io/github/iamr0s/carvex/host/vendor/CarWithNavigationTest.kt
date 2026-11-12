@@ -8,6 +8,58 @@ class CarWithNavigationTest {
     private val source = HostNavigationSource("xiaomi", 1, "4.0.14-20260801")
     private fun decode(action: String, values: Map<String, Any?>) = CarWithNavigation.decode(action, values, source)
 
+    @Test fun upgradedHostAcceptsStartChangingManeuversAndBothEndNotifications() {
+        val upgraded = source.copy(version = "4.0.23-20261016")
+        fun current(action: String, values: Map<String, Any?>) =
+            requireNotNull(CarWithNavigation.decode(action, values, upgraded))
+        val start = current("mix_notify_start_navi", mapOf("isNavi" to true))
+        assertEquals(HostNavigationChange.STARTED, start.change)
+        assertEquals("H02:classes2:1d3c14", start.evidence)
+        // Raw numeric shapes from log 7; road text is a synthetic fixture.
+        for ((raw, distance, expected) in listOf(Triple(3, 128, HostNavigationTurn.RIGHT),
+            Triple(3, 127, HostNavigationTurn.RIGHT), Triple(2, 2700, HostNavigationTurn.SLIGHT_RIGHT))) {
+            val event = current("carlife_show_hud_info", mapOf("action" to 2,
+                "navi_turn" to raw, "remain_distance" to distance,
+                "total_distance" to 3700, "road_name" to "test road"))
+            assertEquals(HostNavigationChange.UPDATED, event.change)
+            assertEquals("H02:classes2:17abdc", event.evidence)
+            val field = event.delta.maneuver as HostNavigationField.Value
+            assertEquals(expected, field.value.turn)
+            assertEquals(distance.toLong(), field.value.distanceMeters)
+            assertEquals("H02:classes2:17abdc/17a338/1ba904/1bae4c:HUD-maneuver", field.evidence)
+            assertEquals(HostNavigationField.Absent, event.delta.currentRoad)
+            assertEquals(HostNavigationField.Absent, event.delta.distanceRemainingMeters)
+            assertEquals(HostNavigationField.Absent, event.delta.timeRemainingSeconds)
+            assertEquals(HostNavigationField.Absent, event.delta.lanes)
+        }
+        for ((action, values) in listOf("mix_notify_start_navi" to mapOf("isNavi" to false),
+            "carlife_show_hud_info" to mapOf("action" to 3))) {
+            val end = current(action, values)
+            assertEquals(HostNavigationChange.ENDED, end.change)
+            assertEquals("H02:classes2:17aae8", end.evidence)
+        }
+    }
+
+    @Test fun upgradedHostRetainsStrictTypesAndReportsUnsupportedVersions() {
+        val upgraded = source.copy(version = "4.0.23-20261016")
+        for (wrong in listOf("true", 1, 1L, null))
+            assertNull(CarWithNavigation.decode("mix_notify_start_navi", mapOf("isNavi" to wrong), upgraded))
+        for (wrong in listOf("2", 2L, false, null))
+            assertNull(CarWithNavigation.decode("carlife_show_hud_info", mapOf("action" to wrong), upgraded))
+        for (distance in listOf(0, -1, Int.MAX_VALUE, 127L, "127", null)) {
+            val event = requireNotNull(CarWithNavigation.decode("carlife_show_hud_info",
+                mapOf("action" to 2, "navi_turn" to 3, "remain_distance" to distance), upgraded))
+            assertNull((event.delta.maneuver as HostNavigationField.Value).value.distanceMeters)
+        }
+        val unknown = source.copy(version = "4.0.24-20261016")
+        val values = mapOf("isNavi" to true)
+        assertNull(CarWithNavigation.decode("mix_notify_start_navi", values, unknown))
+        assertTrue(CarWithNavigation.diagnostic("mix_notify_start_navi", values, unknown, null)
+            .contains("reason=unsupported-version"))
+        assertTrue(CarWithNavigation.diagnostic("mix_notify_start_navi", mapOf("isNavi" to "true"), upgraded, null)
+            .contains("reason=invalid-action-or-type"))
+    }
+
     @Test fun sourceDiagnosticDistinguishesRawChangesWithoutPrivatePayloads() {
         val icon = byteArrayOf(1, 2, 3)
         val values = mapOf("action" to 2, "navi_turn" to 7, "remain_distance" to 245,
