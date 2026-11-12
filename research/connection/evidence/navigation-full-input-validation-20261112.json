@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "scope": "User-requested complete navigation input diagnostics; synthetic recovery and local verification only",
+  "baseline": {
+    "android": "2973f061b43177df1ad04aaafc5d64da48e82049",
+    "research": "b7ed83101ce39e237fdd8aa158f5d423f77ec3f7"
+  },
+  "source_sha256": {
+    "android/host-carlife-mixing/src/main/java/io/github/iamr0s/carvex/host/vendor/VendorCastHost.kt": "c1ace881025dffa3e02678cc5668f4fe70bd1a6fab984a299474593badd50390",
+    "android/host-carlife-mixing/src/main/java/io/github/iamr0s/carvex/host/vendor/NavigationRawDiagnostics.kt": "a3ae7c24460ebe8845a841b3ecd84cad50bbfde3aacdbafd470581a108556c17",
+    "android/host-carlife-mixing/src/main/java/io/github/iamr0s/carvex/host/vendor/NavigationAndroidValue.kt": "bb3ea68bc4fead26fe1855c235fbfed3a04362daf126e585556ed4d44ff36ec6",
+    "android/host-carlife-mixing/src/test/java/io/github/iamr0s/carvex/host/vendor/NavigationRawDiagnosticsTest.kt": "f198919eaf2142ab37d14328a882abe2d3c8f9f137d2002aab9442749a599b3f",
+    "research/connection/tools/extract_navigation_raw.py": "3bf7a078ce2a4ebaae2225770612f90df27fba4c61d1d788f0560bb04b9b419e"
+  },
+  "gradle": {
+    "command": ".\\gradlew.bat --gradle-user-home D:\\Java\\gradle :host-carlife-mixing:testDebugUnitTest :protocol-carplay:testDebugUnitTest :app:compileXiaomiDebugKotlin --offline --console=plain",
+    "result": "BUILD SUCCESSFUL",
+    "host_tests": "30 executed, 0 failures/errors/skipped",
+    "protocol_tests": "1146 valid up-to-date, not rerun",
+    "xiaomi_compile": "PASS"
+  },
+  "verification": {
+    "raw_capture_recovery": "PASS (actual compiled formatter, 2 captures; long text, 13301 bytes, PNG, nested lanes)",
+    "missing_and_corrupt_detection": "PASS",
+    "existing_redaction_preserves_payload": "PASS",
+    "local_links": 118,
+    "xml": {
+      "host-carlife-mixing": {
+        "tests": 30,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "protocol-carplay": {
+        "tests": 1146,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "openspec_strict": "PASS",
+  "field_test": "OPEN; right-turn plan confirmed by user, new raw capture awaits device test",
+  "android_commit": "36c1fa470231cc87fee17057e81b525f2a5e703b",
+  "version_code": 20035,
+  "post_commit_xiaomi_compile": "BUILD SUCCESSFUL; generated VERSION_CODE verified as 20035"
+}

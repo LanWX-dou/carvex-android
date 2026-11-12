@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "scope": "Sanitized sender log and separately attributed user display feedback; no receiver runtime capture",
+  "device_log": {
+    "sha256": "e35d7c93845618bdd9881348394665ff37a48a02beebcbaf5698bf4eb2823ec4",
+    "bytes": 776734,
+    "line_count": 5264,
+    "build": {"version_code": 20033, "version_name": "20033", "type": "release"}
+  },
+  "user_feedback": {
+    "next_maneuver": {"displayed": true, "turn": "RIGHT", "distance_meters": 258},
+    "total_distance": {"displayed": true, "reported_value": null},
+    "total_time": {"displayed": true, "reported_value": null},
+    "lanes": {"displayed": false},
+    "attribution": "User report on 2026-11-12; 258 meters and total distance/time are not present in sender navigation fields"
+  },
+  "sessions": {
+    "055e58c4": {
+      "runtime_subscription": {"line": 613, "components": [42], "options": 3},
+      "source_events": 0,
+      "normalized_events": 0,
+      "navigation_packets": {"5201": 0, "5202": 0, "5204": 0},
+      "runtime_identification_line": 493,
+      "receiver_declares_5204": false
+    },
+    "18f7c3d1": {
+      "runtime_subscription": {"line": 1533, "components": [42], "options": 3},
+      "source_events": 11,
+      "decoded": {"STARTED": 3, "ENDED": 4, "UPDATED": 4},
+      "source_versions": ["4.0.23-20261016"],
+      "normalized_events": 9,
+      "planned_batches": 9,
+      "navigation_packets": {"5201": 16, "5202": 4, "5204": 0},
+      "local_transport_completed": {"5201": 16, "5202": 4},
+      "route_field_ids": [0, 1, 10, 13],
+      "runtime_identification_line": 1413,
+      "receiver_declares_5204": false,
+      "lane_snapshots": 0
+    },
+    "f0de9143": {
+      "runtime_subscription": {"line": 4011, "components": [42], "options": 3},
+      "source_events": 14,
+      "decoded": {"STARTED": 2, "ENDED": 6, "UPDATED": 6},
+      "source_versions": ["4.0.23-20261016"],
+      "normalized_events": 11,
+      "planned_batches": 11,
+      "navigation_packets": {"5201": 19, "5202": 6, "5204": 0},
+      "local_transport_completed": {"5201": 19, "5202": 6},
+      "route_field_ids": [0, 1, 10, 13],
+      "runtime_identification_line": 3889,
+      "receiver_declares_5204": false,
+      "lane_snapshots": 0
+    }
+  },
+  "samples": {
+    "right_maneuver_source": {"line": 5069, "utc": "2026-11-12T04:45:54.037552Z", "turn": 3, "distance_meters": 117},
+    "right_maneuver_normalized": {"line": 5071, "turn": "RIGHT", "distance_meters": 117, "route_distance": null, "route_seconds": null},
+    "lane_plan": {"line": 5072, "lane_supported": false, "lanes_available": false, "messages": ["5201", "5202", "5201"]},
+    "right_maneuver_type": {"line": 5081, "id": "5202", "field": 3, "value": 2},
+    "right_maneuver_distance": {"line": 5098, "id": "5201", "field": 10, "value": 117}
+  },
+  "receiver_original_apk": {
+    "sha256": "f106680faa27be5a9dfc4a9a9b9cb59239e4512c5f3b73b64cebfec47bb023e6",
+    "reviewed_version": "0.1.212",
+    "accept_code_item": "classes2.dex:0x023cb4",
+    "accept_message_ids": ["5201", "5202"],
+    "check": "PASS: APK identity, 5 reviewed DEX files, 28 method owners and instruction hashes; no receiver runtime validation"
+  },
+  "conclusion": {
+    "source_version_rejection_resolved_in_capture": true,
+    "lane_blockers": ["Current CarWith HUD producer supplies no structured lanes", "Current runtime Identification omits 5204; reviewed GalaxyPlay accept excludes it"],
+    "total_distance_time_display": "User-confirmed display; sender field provenance remains OPEN because all 5201 packets omit p5/p6/p7",
+    "field_validation": "PARTIAL; reported display does not validate all lifecycle and reconnect scenarios"
+  }
+}

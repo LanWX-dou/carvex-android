@@ -5,6 +5,10 @@
 
 ## 阅读顺序
 
+2026-11-12 按用户要求新增[导航完整原始输入日志](../../android/docs/fixes/2026-11-12-navigation-full-input.md)：全部 extras、类型、嵌套数组和完整文字/图标分段保留，实车导出后用[提取工具](tools/extract_navigation_raw.py)恢复字段和图像，再对照判断车道、全程距离与时间。右转规划已确认正确，新增采集仍待实车测试。
+
+2026-11-12 新增[日志 8 导航显示反馈](spec/navigation-log8-feedback-20261112.md)：用户确认已显示“前方 258 米右转”、总距离和时间，车道仍缺失。25 条新版来源事件成功解码，45 条导航消息完成本地发送；当前快照无车道，runtime 接收声明与已审 GalaxyPlay 解析均不支持 `5204`。总距离/时间按用户观察记录，本日志未发送相应全程字段，来源仍 OPEN。
+
 2026-11-12 已续接[GalaxyPlay 导航记录](spec/galaxyplay-navigation-progress-20261112.md)：新增[投递关联诊断](../../android/docs/fixes/2026-11-12-navigation-delivery-diagnostics.md)与[字段原字节续查](spec/galaxyplay-navigation-fields-20261112.md)，可追踪缺订阅、能力和旧批次阻断。道路归属/文本长度、全程公里/分钟与车道仍 OPEN；构建显式使用 `D:/Java/gradle`，没有新增实车验收。
 
 新增[日志 7 与 CarWith 4.0.23 导航适配](spec/carwith-navigation-upgrade-20261112.md)：两个已订阅 GalaxyPlay 会话的 132 条新版宿主导航输入均被旧版本门拒绝。已核新版原 APK 的 9 个方法及 18 个未变模板并接入独立 H02 来源，基础转向/正数机动距离相关测试与小米编译通过；道路、车道、全程剩余公里/分钟及修复后实车显示仍未完成。
