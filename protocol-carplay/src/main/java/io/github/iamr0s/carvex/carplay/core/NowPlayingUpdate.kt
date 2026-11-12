@@ -164,13 +164,14 @@ object NowPlayingUpdate {
 
 /** One authenticated Link owns the subscription. Backend snapshots may precede Link readiness.
  * All mutations and sends serialize: STOP cancels uncommitted updates, not bytes already sent. */
-class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolean)->Boolean,private val log:(String)->Unit) {
+class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolean)->Boolean,private val log:(String)->Unit) : AutoCloseable {
     /** Immediate sinks are useful for in-memory consumers; queued transports must keep the guard. */
     constructor(emit:(List<Pair<Int,ByteArray>>)->Boolean,log:(String)->Unit):this(
         {fields,valid->valid()&&emit(fields)},log)
     constructor(emit:(List<Pair<Int,ByteArray>>)->Boolean):this(emit,{})
     var artworkSelectionChanged:(Boolean)->Unit={}
     private var ready=false
+    private var closed=false
     private var selection:NowPlayingUpdate.Selection?=null
     private var snapshot=NowPlayingUpdate.Track()
     // Writer guards read only this atomic token, never the publisher/relay monitor.
@@ -181,10 +182,12 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolea
         return emit(fields,{subscriptionEpoch.get()==epoch})
     }
     @Synchronized fun linkReady(ready:Boolean){
+        if(closed)return
         this.ready=ready;revoke()
         log("debug music event=link ready=$ready subscribed=false cachedTitle=${snapshot.title!=null} cachedState=${snapshot.status?:"unknown"}")
     }
     @Synchronized fun command(id:Int,fields:IapFields):Boolean {
+        if(closed)return false
         if(!ready){log("debug music event=blocked direction=rx id=${id.toString(16)} reason=link-not-ready");return false}
         when(id){
             // 非法订阅整条丢弃，不改已有 selection（固件返回 0，不中止会话）。
@@ -216,6 +219,7 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolea
     /** `5003`：参数 0/1 是 U32（elapsed/queueIndex），参数 2 是 S32 startIndex（-1=自动）。
      *  三个都可缺；只有参数 2 且 5000 未声明 +0x51(startIndexOverride) 时返回 false。 */
     @Synchronized fun setInfo(fields:IapFields):Boolean {
+        if(closed)return false
         var elapsed:Long?=null;var index:Long?=null;var start:Int?=null
         for((id,bytes) in fields.ordered){
             when(id){
@@ -236,6 +240,7 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolea
     private fun be32(b:ByteArray):Long=((b[0].toLong() and 255) shl 24) or ((b[1].toLong() and 255) shl 16) or
         ((b[2].toLong() and 255) shl 8) or (b[3].toLong() and 255)
     @Synchronized fun update(delta:NowPlayingUpdate.Track,replaceMedia:Boolean=false):Boolean {
+        if(closed)return false
         // Validate even before a subscriber exists, so bad ranges are never cached.
         NowPlayingUpdate.fields(delta)
         val old=if(replaceMedia)NowPlayingUpdate.Track() else snapshot
@@ -248,5 +253,9 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolea
         val fields=NowPlayingUpdate.fields(track,selected)
         if(fields.isEmpty())log("debug music event=blocked direction=tx id=5001 reason=no-selected-values")
         return fields.isNotEmpty()&&emitCurrent(fields)
+    }
+    @Synchronized override fun close() {
+        if(closed)return
+        closed=true;ready=false;revoke();snapshot=NowPlayingUpdate.Track()
     }
 }

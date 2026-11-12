@@ -223,7 +223,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         scope.launch{for(event in artworkEvents)event()}
         scope.launch{while(isActive){delay(1000);artworkEvents.trySend{artwork.expire()}}}
         resources.own(AutoCloseable{artworkEvents.cancel()})
-        resources.own(AutoCloseable{navigationPublisher.detachNavigation();events.close();runtime.close();runtimeOutput.close();modeOutput.close();audioStreams.close();client?.close();scope.cancel()})
+        resources.own(AutoCloseable{nowPlayingPublisher.close();navigationPublisher.detachNavigation();events.close();runtime.close();runtimeOutput.close();modeOutput.close();audioStreams.close();client?.close();scope.cancel()})
         // Events may arrive inside RtspClient.request's lock. Never issue a nested
         // request from that callback: a separate writer runs after its reply.
         scope.launch{
@@ -248,6 +248,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
      * session transaction is confirmed or its bounded local failure is known. */
     fun stopNormally(){
         stopping=true
+        nowPlayingPublisher.close()
         val control=client;val url=connectionPath;val setup=setupLifecycle
         // The volatile gate rejects new business without waiting for a running
         // host event callback. Keep resource close/join after control completion.
@@ -1013,7 +1014,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     /** Cache real metadata until this Link subscribes. False means no selected update was sent. */
     fun nowPlaying(track:NowPlayingUpdate.Track,replaceMedia:Boolean=false):Boolean =
         nowPlayingPublisher.update(track,replaceMedia)
-    fun nowPlayingArtwork(image:ByteArray){artworkEvents.trySend{artwork.update(image)}}
+    fun nowPlayingArtwork(image:ByteArray){if(!stopping&&sourceContextCurrent())artworkEvents.trySend{artwork.update(image)}}
     /** Cache the backend sample; the current runtime Link supplies components and options. */
     override fun attachNavigation(source:()->NavigationSnapshot?) = navigationPublisher.attachNavigation(source)
     override fun navigationChanged():Boolean = navigationPublisher.navigationChanged()

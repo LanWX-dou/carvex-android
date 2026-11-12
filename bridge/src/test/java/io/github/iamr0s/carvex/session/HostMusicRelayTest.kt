@@ -55,4 +55,34 @@ class HostMusicRelayTest {
         assertEquals("Album",snapshot?.album)
         assertEquals(42L,snapshot?.elapsedMs)
     }
+
+    @Test fun detachedCacheDoesNotDeliverToOldSinkAndNeedsANewSubscription() {
+        val relay=HostMusicRelay()
+        val old=mutableListOf<NowPlayingUpdate.Track>()
+        relay.attach{track,_->old+=track}
+        relay.update(NowPlayingUpdate.Track(title="Old"),true)
+        relay.detach()
+        relay.update(NowPlayingUpdate.Track(title="New"),true)
+        val sent=mutableListOf<List<Pair<Int,ByteArray>>>()
+        val next=NowPlayingPublisher{sent+=it;true}
+        relay.attach{track,replace->next.update(track,replace)}
+        next.linkReady(true)
+        assertEquals(listOf("Old"),old.map{it.title})
+        assertTrue(sent.isEmpty())
+        assertTrue(next.command(0x5000,selection))
+        assertEquals("New",IapWire.text(IapWire.parseFieldList(sent.last().first{it.first==0}.second)[1]!!))
+    }
+
+    @Test fun closeRejectsLateUpdatesAndAttachAndIsIdempotent() {
+        val relay=HostMusicRelay()
+        var calls=0
+        relay.attach{_,_->calls++}
+        relay.update(NowPlayingUpdate.Track(title="Old"),true)
+        relay.close();relay.close()
+        // A malformed late callback is ignored before validation; it cannot fail a new owner.
+        relay.update(NowPlayingUpdate.Track(durationMs=-1))
+        relay.attach{_,_->calls++}
+        relay.detach()
+        assertEquals(1,calls)
+    }
 }

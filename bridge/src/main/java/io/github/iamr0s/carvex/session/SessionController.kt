@@ -199,10 +199,11 @@ class SessionController(
         var lastX=0f
         var lastY=0f
         val keyLock=Any()
-        val musicRelay=HostMusicRelay()
+        val musicRelay=r.own(HostMusicRelay())
         val musicAir=AtomicReference<AirSession?>(null)
         val artworkLock=Any()
         var latestArtwork:ByteArray?=null
+        r.own(AutoCloseable{synchronized(artworkLock){musicAir.set(null);latestArtwork=null}})
         val artworkLoader=r.own(CarLifeArtworkLoader(context,sessionScope,{image->synchronized(artworkLock){
             if(!ended.get()){
                 BridgeStore.log(id,"debug music event=artwork-image source=bridge air=${musicAir.get()!=null} ${DebugLogValue.bytes(image)}")

@@ -77,6 +77,11 @@ class NowPlayingGuardedTransportTest {
     },true)
     @Test(timeout=8000) fun linkInvalidationRevokesQueuedMusic()=cancellation({it.linkReady(false)})
     @Test(timeout=8000) fun aNewLinkNeedsItsOwnStart()=cancellation({it.linkReady(false);it.linkReady(true)})
+    @Test(timeout=8000) fun closeRevokesQueuedMusicAndCannotBeReopened()=cancellation({
+        it.close();it.close();it.linkReady(true)
+        assertFalse(it.command(0x5000,titleSelection))
+        assertFalse(it.update(NowPlayingUpdate.Track(title="late")))
+    })
 
     @Test(timeout=8000) fun malformedStartDoesNotRevokeValidQueuedMusic() {
         Peer().use { peer->
