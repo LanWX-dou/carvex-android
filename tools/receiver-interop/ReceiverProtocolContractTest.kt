@@ -40,6 +40,36 @@ class ReceiverProtocolContractTest {
         }
     }
 
+    @Test fun replacingMusicClearsReceiverTextWithoutInventingUnknownNumbers() {
+        val receiver=CarPlayPlaybackStatus()
+        val packets=mutableListOf<List<Pair<Int,ByteArray>>>()
+        val publisher=NowPlayingPublisher { fields->
+            packets+=fields
+            receiver.acceptUpdate(frame(0x5001,fields))
+            true
+        }
+        val start=Iap2ControlMessages.subscriptions().single{it.messageId==0x5000}
+        publisher.linkReady(true)
+        assertTrue(publisher.command(0x5000,IapWire.parseFieldList(start.payload)))
+        assertTrue(publisher.update(NowPlayingUpdate.Track(title="旧歌",artist="旧歌手",album="旧专辑",durationMs=12000),true))
+        publisher.update(NowPlayingUpdate.Track(elapsedMs=50))
+        assertEquals("旧专辑",receiver.nowPlaying.album)
+        assertTrue(publisher.update(NowPlayingUpdate.Track(title="新歌"),true))
+        assertEquals("新歌",receiver.nowPlaying.title)
+        assertNull(receiver.nowPlaying.artist)
+        assertNull(receiver.nowPlaying.album)
+        val media=IapWire.parseFieldList(packets.last().single().second)
+        assertArrayEquals(byteArrayOf(0),media[6])
+        assertArrayEquals(byteArrayOf(0),media[12])
+        assertNull(media[4]) // No invented duration=0 in the live replacement.
+        assertEquals(12000L,receiver.nowPlaying.durationMillis) // Numeric invalidation remains OPEN.
+        publisher.update(NowPlayingUpdate.Track(artist="新歌手"))
+        publisher.update(NowPlayingUpdate.Track(elapsedMs=0))
+        assertEquals("新歌手",receiver.nowPlaying.artist)
+        assertNull(receiver.nowPlaying.album)
+        assertEquals(0L,receiver.nowPlaying.elapsedMillis)
+    }
+
     @Test fun sourceSubscriptionsSelectTheActualRequestedFields() {
         val requests = Iap2ControlMessages.subscriptions().associateBy { it.messageId }
         val music = NowPlayingUpdate.selection(

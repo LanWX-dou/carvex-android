@@ -131,15 +131,19 @@ class NowPlayingUpdateTest {
         assertEquals(listOf(1,1),children.map{it.first})
     }
 
-    @Test fun replacingMediaDropsStaleFieldsRatherThanInventingClearValues(){
+    @Test fun replacingMediaClearsKnownTextAndLeavesUnknownNumbersAbsent(){
         val sent=mutableListOf<List<Pair<Int,ByteArray>>>()
         val publisher=NowPlayingPublisher{sent.add(it);true}
         publisher.update(NowPlayingUpdate.Track(title="A",artist="Old",durationMs=100,status=NowPlayingUpdate.PlaybackStatus.PLAYING))
         publisher.update(NowPlayingUpdate.Track(title="B"),replaceMedia=true)
-        publisher.linkReady(true);publisher.command(0x5000,fields(subscription))
+        publisher.linkReady(true);publisher.command(0x5000,IapFields(listOf(0 to IapWire.fields(
+            listOf(1,4,12).map{it to byteArrayOf()}))))
         assertEquals(2,sent.size)
         assertEquals(listOf(0),sent.last().map{it.first})
-        assertEquals(listOf(1),IapWire.parseFieldList(sent.last().single().second).ordered.map{it.first})
+        val media=IapWire.parseFieldList(sent.last().single().second)
+        assertEquals(listOf(1,12),media.ordered.map{it.first})
+        assertEquals("",IapWire.text(media[12]!!))
+        assertNull(media[4])
     }
 
     @Test fun firmwareSupportedExtendedAttributesEncodeWithTheirDocumentedWidths(){

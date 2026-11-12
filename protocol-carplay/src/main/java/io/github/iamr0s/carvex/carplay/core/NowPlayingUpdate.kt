@@ -156,6 +156,12 @@ object NowPlayingUpdate {
             delta.playbackSpeed?:old.playbackSpeed,delta.setTimeElapsedAvailable?:old.setTimeElapsedAvailable,
             delta.appBundleId?:old.appBundleId)
     }
+    /** A replacement invalidates known media text. Empty C strings clear retained
+     * receiver values; unknown numbers/flags have no proven clear value and stay absent. */
+    fun replacement(old:Track,delta:Track):Track = delta.copy(
+        title=delta.title?:old.title?.let{""}, artist=delta.artist?:old.artist?.let{""},
+        album=delta.album?:old.album?.let{""}, genre=delta.genre?:old.genre?.let{""},
+        composer=delta.composer?:old.composer?.let{""})
     fun encode(track:Track):ByteArray {
         val fields=fields(track);require(fields.isNotEmpty())
         return IapWire.csm(ID,fields)
@@ -244,8 +250,9 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolea
         // Validate even before a subscriber exists, so bad ranges are never cached.
         NowPlayingUpdate.fields(delta)
         val old=if(replaceMedia)NowPlayingUpdate.Track() else snapshot
-        snapshot=NowPlayingUpdate.merge(old,delta)
-        return send(delta)
+        val outgoing=if(replaceMedia)NowPlayingUpdate.replacement(snapshot,delta) else delta
+        snapshot=NowPlayingUpdate.merge(old,outgoing)
+        return send(outgoing)
     }
     private fun send(track:NowPlayingUpdate.Track):Boolean {
         val selected=selection?:run{log("debug music event=blocked direction=tx id=5001 reason=no-subscription cached=true");return false}
