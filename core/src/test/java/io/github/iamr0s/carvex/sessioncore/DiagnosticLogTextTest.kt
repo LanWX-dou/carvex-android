@@ -4,21 +4,39 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.nio.file.Files
 import java.time.Instant
+import kotlin.concurrent.thread
 
 class DiagnosticLogTextTest {
     private fun line(index: Int) = "${Instant.EPOCH.plusMillis(index.toLong())} [session] line=$index"
 
-    @Test fun retentionKeepsStartupAndNewestTwoThousandRatherThanUiFourHundred() {
-        val all = (0 until 2500).map(::line)
-        val retained = DiagnosticLogText.retain(all)
-        assertEquals(2000, retained.size)
-        assertEquals(all.take(24), retained.take(24))
-        assertEquals(all.takeLast(1976), retained.drop(24))
+    @Test fun historyPreservesEveryEntryBeyondFormerLineLimit() {
+        val all = (0 until 10000).map(::line)
+        val buffer = DiagnosticLogBuffer()
+        all.forEach(buffer::append)
+        assertEquals(all, buffer.snapshot())
     }
 
-    @Test fun smallLogIsNotTruncated() {
-        val all = (0 until 600).map(::line)
-        assertEquals(all, DiagnosticLogText.retain(all))
+    @Test fun publishedSnapshotRemainsStableDuringLaterAppendsAndClear() {
+        var buffer = DiagnosticLogBuffer(listOf(line(0)))
+        val first = buffer.snapshot()
+        val second = buffer.append(line(1))
+        buffer = DiagnosticLogBuffer()
+        buffer.append(line(2))
+        assertEquals(listOf(line(0)), first)
+        assertEquals(listOf(line(0), line(1)), second)
+        assertThrows(IndexOutOfBoundsException::class.java) { first[1] }
+        assertEquals(listOf(line(2)), buffer.snapshot())
+    }
+
+    @Test(timeout = 5000) fun publishedHistoryCanBeReadWhileLoggingContinues() {
+        val initial = (0 until 3000).map(::line)
+        val buffer = DiagnosticLogBuffer(initial)
+        val published = buffer.snapshot()
+        val writer = thread { (3000 until 10000).forEach { buffer.append(line(it)) } }
+        try {
+            repeat(20) { assertEquals(initial, published.toList()) }
+        } finally { writer.join() }
+        assertEquals((0 until 10000).map(::line), buffer.snapshot())
     }
 
     @Test fun exportIncludesDiskHistoryAndPendingMemoryWithoutDuplicateRows() {
@@ -53,15 +71,13 @@ class DiagnosticLogTextTest {
         } finally { file.delete() }
     }
 
-    @Test fun oversizedDiskReadIsBoundedAndDiscardsPartialLeadingLine() {
+    @Test fun diskReadPreservesCompleteUtf8HistoryBeyondFormerFileSizeLimit() {
         val file = Files.createTempFile("carvex-log-test", ".txt").toFile()
         try {
             val lines = (0 until 4000).map { line(it) + " 导航".repeat(100) }
             file.writeText(lines.joinToString("\n", postfix = "\n"))
-            val exported = DiagnosticLogText.readDisk(file)
-            assertTrue(exported.size < lines.size)
-            assertEquals(lines.takeLast(exported.size), exported)
-            assertTrue(exported.joinToString("\n").toByteArray(Charsets.UTF_8).size <= DiagnosticLogText.DISK_BYTES)
+            assertTrue(file.length() > 1024 * 1024)
+            assertEquals(lines, DiagnosticLogText.readDisk(file))
         } finally { file.delete() }
     }
 
@@ -70,15 +86,31 @@ class DiagnosticLogTextTest {
         val session = BridgeStore.begin(1)
         try {
             repeat(2100) { BridgeStore.log(session, "retention-regression-$it") }
-            assertEquals(2000, BridgeStore.logs.value.size)
+            assertEquals(2100, BridgeStore.logs.value.size)
             assertTrue(BridgeStore.logs.value.first().endsWith("retention-regression-0"))
+            assertTrue(BridgeStore.logs.value[100].endsWith("retention-regression-100"))
             assertTrue(BridgeStore.logs.value.last().endsWith("retention-regression-2099"))
             val exported = BridgeStore.export()
             assertTrue(exported.contains("[$session] retention-regression-0"))
+            assertTrue(exported.contains("[$session] retention-regression-100"))
             assertTrue(exported.contains("[$session] retention-regression-2099"))
-            assertTrue(exported.lineSequence().count() > 400)
+            assertEquals(2100, exported.lineSequence().count { it.contains("retention-regression-") })
             BridgeStore.clearLogs()
             assertFalse(BridgeStore.export().contains("retention-regression-"))
+        } finally { BridgeStore.clearLogs(); BridgeStore.idle() }
+    }
+
+    @Test fun longMessagesKeepTheirTailWhileSecretsRemainRedacted() {
+        BridgeStore.clearLogs()
+        val session = BridgeStore.begin(1)
+        try {
+            val message = "diagnostic-" + "x".repeat(4096) + " password=secret-value tail-marker"
+            BridgeStore.log(session, message)
+            val stored = BridgeStore.logs.value.single()
+            assertTrue(stored.contains("x".repeat(4096)))
+            assertTrue(stored.endsWith("password=<redacted> tail-marker"))
+            assertFalse(stored.contains("secret-value"))
+            assertTrue(BridgeStore.export().contains(stored))
         } finally { BridgeStore.clearLogs(); BridgeStore.idle() }
     }
 }

@@ -76,7 +76,7 @@ class VideoSendDiagnostics(
 
     /** Call from the existing heartbeat, not from the blocked sender. At most one diagnostic batch
      * per 5 s, with two stack samples per slow operation and three related threads/eight frames.
-     * Every line stays below the application's 500-character log limit, including deep frames. */
+     * Sampled frame descriptions are logged in full on separate lines. */
     fun poll(){
         val now=nanoTime()
         val report=synchronized(stateLock){
@@ -90,16 +90,16 @@ class VideoSendDiagnostics(
             Report(snapshotLocked(now),workers,capture)
         }
         val description=report.snapshot.operations.take(MAX_THREADS).joinToString(";"){operation->
-            safe(operation.kind,20)+"#"+operation.threadId+
+            safe(operation.kind)+"#"+operation.threadId+
                 ":phase="+operation.phase.label+",elapsedMs="+operation.elapsedNanos/1_000_000+
                 ",phaseMs="+operation.phaseElapsedNanos/1_000_000
         }
-        val owner=report.snapshot.owner?.let{safe(it.kind,20)+"@"+safe(it.threadName,40)+"#"+it.threadId}?:"none"
+        val owner=report.snapshot.owner?.let{safe(it.kind)+"@"+safe(it.threadName)+"#"+it.threadId}?:"none"
         emit("Video send pending owner="+owner+" operations=["+description+"]"+
             if(report.captureExtra)" stacks=sampled" else " stacks=not-sampled")
         val extras=if(report.captureExtra)runCatching{extraThreads()}.getOrDefault(emptyList()) else emptyList()
         for(thread in (report.workers+extras).distinct().take(MAX_THREADS)){
-            val frames=runCatching{stackCapture(thread).take(MAX_STACK_DEPTH).map{safe(it,MAX_FRAME_CHARS)}}
+            val frames=runCatching{stackCapture(thread).take(MAX_STACK_DEPTH).map{safe(it)}}
                 .getOrElse{listOf("capture-failed:"+it.javaClass.simpleName)}
             val prefix="Video send stack thread="+safe(thread.name)+"#"+thread.id
             if(frames.isEmpty())emit(prefix+" frames=empty")
@@ -107,13 +107,11 @@ class VideoSendDiagnostics(
         }
     }
 
-    private fun emit(message:String){runCatching{log(message.take(MAX_LINE_CHARS))}}
-    private fun safe(value:String,limit:Int=80)=value.replace('\n',' ').replace('\r',' ').take(limit)
+    private fun emit(message:String){runCatching{log(message)}}
+    private fun safe(value:String)=value.replace('\n',' ').replace('\r',' ')
     private companion object {
         const val MAX_STACK_DEPTH=8
         const val MAX_STACK_SAMPLES=2
         const val MAX_THREADS=3
-        const val MAX_FRAME_CHARS=180
-        const val MAX_LINE_CHARS=450
     }
 }

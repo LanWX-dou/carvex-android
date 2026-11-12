@@ -126,6 +126,14 @@ class RuntimeIap(private val emit:(ByteArray)->Boolean,private val log:(String)-
     /** 运行期提交一条控制会话消息。固件同样是提交即返回；ACK/重传失败
      *  由后台发送队列回调到 [fail]，不会阻塞事件/业务线程。 */
     fun send(id:Int,fields:List<Pair<Int,ByteArray>>,completion:(Throwable?)->Unit={}):Boolean {
+        return submitControl(id,fields,null,completion)
+    }
+
+    fun sendGuarded(id:Int,fields:List<Pair<Int,ByteArray>>,valid:()->Boolean,
+                    completion:(Throwable?)->Unit={}):Boolean = submitControl(id,fields,valid,completion)
+
+    private fun submitControl(id:Int,fields:List<Pair<Int,ByteArray>>,valid:(()->Boolean)?,
+                              completion:(Throwable?)->Unit):Boolean {
         val domain=BusinessDiagnostics.domain(id)
         val ticket=if(domain!=null)diagnosticTx.incrementAndGet() else 0
         if(domain!=null)BusinessDiagnostics.fields(id,"tx",fields,"source=runtime tx=$ticket").forEach(log)
@@ -135,11 +143,18 @@ class RuntimeIap(private val emit:(ByteArray)->Boolean,private val log:(String)-
         }
         return try{
             if(negotiate!=null)check(link.generation==authorizedGeneration&&link.linkEpoch==authorizedEpoch&&link.negotiatedControlSession!=null)
-            val queued=link.sendAsync(id,fields,expectedGeneration=if(negotiate!=null)authorizedGeneration else null){t->
+            val generation=link.generation;val epoch=link.linkEpoch
+            val finished:(Throwable?)->Unit={t->
                 if(domain!=null)log("debug $domain event=transport direction=tx id=${id.toString(16)} tx=$ticket completed=${t==null} error=${t?.javaClass?.simpleName?:"none"}; local transport completion, receiver display unverified")
-                if(t!=null)fail(t)
+                if(t!=null&&t !is StaleIapSendException)fail(t)
                 completion(t)
             }
+            val queued=if(valid==null)link.sendAsync(id,fields,
+                expectedGeneration=if(negotiate!=null)authorizedGeneration else null,completion=finished)
+            else link.sendGuardedAsync(id,fields,expectedGeneration=generation,valid={
+                !closed.get()&&!degraded.get()&&link.generation==generation&&link.linkEpoch==epoch&&
+                    state==RuntimeIapState.CONTROL_READY&&valid()
+            },completion=finished)
             if(domain!=null)log("debug $domain event=queued direction=tx id=${id.toString(16)} tx=$ticket accepted=$queued generation=${link.generation} epoch=${link.linkEpoch}")
             queued
         }catch(t:Throwable){

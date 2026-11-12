@@ -27,6 +27,9 @@ import io.github.iamr0s.carvex.sessioncore.CastHost
 import io.github.iamr0s.carvex.sessioncore.HostCallbacks
 import io.github.iamr0s.carvex.sessioncore.HostCapabilities
 import io.github.iamr0s.carvex.sessioncore.HostMusic
+import io.github.iamr0s.carvex.sessioncore.HostNavigationSource
+import io.github.iamr0s.carvex.sessioncore.HostNavigationEvent
+import io.github.iamr0s.carvex.sessioncore.HostNavigationChange
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +40,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import org.json.JSONObject
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicLong
 
 /**
  * One implementation for every verified CarLife mixing endpoint.
@@ -52,6 +56,7 @@ class VendorCastHost(
 ) : CastHost {
     companion object {
         const val MANAGER_DESCRIPTOR = "com.baidu.carlife.mixing.aidl.ICarLifeCastManager"
+        private val navigationBindings = AtomicLong()
     }
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -67,6 +72,20 @@ class VendorCastHost(
     @Volatile private var microphone: MicrophoneBinding? = null
     private val missingMicrophoneListener=AtomicBoolean(false)
     private val microphonePcm = MixingMicrophonePcm()
+    private val navigationLock = Any()
+    private val rawNavigation = NavigationRawDiagnostics({ events.event(it) }, ::expandNavigationValue)
+    private var navigationSource: HostNavigationSource? = null
+    @Volatile private var connectionEpoch = 0L
+    private var death: IBinder.DeathRecipient? = null
+
+    private fun invalidateNavigation(reason: String, expectedEpoch: Long? = null) = synchronized(navigationLock) {
+        if (expectedEpoch != null && connectionEpoch != expectedEpoch) return@synchronized
+        connectionEpoch = 0
+        val source = navigationSource ?: return@synchronized
+        navigationSource = null
+        events.navigation(HostNavigationEvent(source, HostNavigationChange.SOURCE_INVALIDATED,
+            "host-binding:$reason"))
+    }
 
     private fun allowed(): Boolean {
         val packages = context.packageManager.getPackagesForUid(Binder.getCallingUid()).orEmpty()
@@ -98,7 +117,7 @@ class VendorCastHost(
         }
     }
 
-    private val callback = object : ICarLifeCastCallback.Stub() {
+    private fun callback(binding: HostNavigationSource) = object : ICarLifeCastCallback.Stub() {
         override fun onServiceReady() { if (allowed()) events.event("host-ready") }
         override fun onCastPrepared(displayId: Int) { if (allowed()) events.event("host-display", displayId) }
         override fun addTouchListener(listener: IRemoteTouchListener?) {
@@ -146,6 +165,20 @@ class VendorCastHost(
 
         override fun invokeMethod(intent: Intent?): Bundle? {
             if (!allowed()) return null
+            if (CarWithNavigation.recognizes(intent?.action)) {
+                synchronized(navigationLock) {
+                    if (navigationSource !== binding || closed) return null
+                    val values = intent?.extras?.let { bundle ->
+                        bundle.keySet().associateWith { bundle.get(it) }
+                    }.orEmpty()
+                    rawNavigation.record(intent?.action, values, binding)
+                    val event = config.navigationDecoder?.invoke(intent?.action, values, binding)
+                    events.event(CarWithNavigation.diagnostic(intent?.action, values, binding, event))
+                    if (event != null) events.navigation(event)
+                    else events.event("host-navigation-unverified")
+                }
+                return null
+            }
             return when (intent?.action) {
                 "carlife_dynamic_params" -> {
                     events.fps(intent.getIntExtra("carlife_frame", 0)); null
@@ -161,6 +194,20 @@ class VendorCastHost(
                     ?.let { Bundle().apply { putInt("music_sample_rate", it) } }
                 else -> {
                     intent?.let {
+                        if (NavigationRawDiagnostics.isNavigationAction(it.action)) {
+                            val values = try {
+                                it.extras?.let { bundle ->
+                                    bundle.keySet().associateWith { key ->
+                                        try { bundle.get(key) } catch (error: Exception) {
+                                            NavigationRawDiagnostics.Failure(error.javaClass.name)
+                                        }
+                                    }
+                                }.orEmpty()
+                            } catch (error: Exception) {
+                                mapOf("<extras-read-error>" to NavigationRawDiagnostics.Failure(error.javaClass.name))
+                            }
+                            rawNavigation.record(it.action, values, binding)
+                        }
                         events.event("host-action:${it.action ?: "null"}")
                         events.optionalAction(it)
                     }
@@ -170,41 +217,65 @@ class VendorCastHost(
         }
 
         override fun notifyAudioState(state: Int) { if (allowed()) events.event("host-wakeup-audio-state", state) }
-        override fun onServiceDestroy() { if (allowed()) events.event("host-destroy") }
+        override fun onServiceDestroy() { if (allowed()) {
+            invalidateNavigation("destroy", binding.bindingEpoch)
+            events.event("host-destroy")
+        } }
     }
 
-    private val death = IBinder.DeathRecipient { events.event("host-binder-died") }
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, binder: IBinder) {
             if (closed) return
+            val connectedEpoch = synchronized(navigationLock) {
+                invalidateNavigation("replaced")
+                navigationBindings.incrementAndGet().also { connectionEpoch = it }
+            }
             scope.launch {
                 try {
+                    if (closed || connectionEpoch != connectedEpoch) return@launch
                     check(binder.interfaceDescriptor == MANAGER_DESCRIPTOR) {
                         "${config.id} binder descriptor mismatch: ${binder.interfaceDescriptor}"
                     }
-                    binder.linkToDeath(death, 0)
+                    val binding = HostNavigationSource(config.id, connectedEpoch,
+                        runCatching { context.packageManager.getPackageInfo(config.hostPackage, 0).versionName }.getOrNull())
+                    val recipient = IBinder.DeathRecipient {
+                        invalidateNavigation("binder-died", connectedEpoch)
+                        events.event("host-binder-died")
+                    }
+                    binder.linkToDeath(recipient, 0)
                     val manager = ICarLifeCastManager.Stub.asInterface(binder)
-                    if (closed) {
-                        binder.unlinkToDeath(death, 0)
+                    if (closed || connectionEpoch != connectedEpoch) {
+                        binder.unlinkToDeath(recipient, 0)
                         return@launch
                     }
-                    remote = manager
-                    manager.setCastCallback(callback)
+                    synchronized(navigationLock) {
+                        if (closed || connectionEpoch != connectedEpoch) {
+                            binder.unlinkToDeath(recipient, 0)
+                            return@launch
+                        }
+                        runCatching { death?.let { remote?.asBinder()?.unlinkToDeath(it, 0) } }
+                        remote = manager
+                        death = recipient
+                        navigationSource = binding
+                    }
+                    manager.setCastCallback(callback(binding))
                     manager.setSystemAudioCallback(systemAudio)
-                    if (!closed) {
+                    if (!closed && connectionEpoch == connectedEpoch) {
                         ready.complete(manager)
                         events.event("host-bound")
                     }
                 } catch (t: Throwable) {
+                    invalidateNavigation("bind-error", connectedEpoch)
                     ready.completeExceptionally(t)
                     events.event("host-bind-error")
                 }
             }
         }
 
-        override fun onServiceDisconnected(name: ComponentName) { events.event("host-disconnected") }
-        override fun onBindingDied(name: ComponentName) { events.event("host-binding-died") }
+        override fun onServiceDisconnected(name: ComponentName) { invalidateNavigation("disconnected"); events.event("host-disconnected") }
+        override fun onBindingDied(name: ComponentName) { invalidateNavigation("binding-died"); events.event("host-binding-died") }
         override fun onNullBinding(name: ComponentName) {
+            invalidateNavigation("null-binding")
             ready.completeExceptionally(IllegalStateException("Null host binding"))
             events.event("host-null-binding")
         }
@@ -305,8 +376,9 @@ class VendorCastHost(
     override fun close() {
         if (closed) return
         closed = true
+        invalidateNavigation("closed")
         runCatching { remote?.stopCast() }
-        runCatching { remote?.asBinder()?.unlinkToDeath(death, 0) }
+        runCatching { death?.let { remote?.asBinder()?.unlinkToDeath(it, 0) } }
         remote = null
         touch = null
         key = null

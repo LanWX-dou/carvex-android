@@ -1,5 +1,11 @@
 # CarVeX
 
+On 2026-11-12, [complete navigation input logging](docs/fixes/2026-11-12-navigation-full-input.md) was added for the requested field investigation. It records all navigation extra keys, types, nested values and complete text/image bytes, with a tool to recover exported fields and images. The user confirmed the right-turn plan; the added capture awaits device testing.
+
+On 2026-11-12, [navigation delivery diagnostics](docs/fixes/2026-11-12-navigation-delivery-diagnostics.md) added event, snapshot, batch, writer-check and completion attribution, with distinct subscription, capability and stale-generation reasons. Road text, route overview, lanes and vehicle display remain unresolved.
+
+On 2026-11-12, navigation decoding was extended to audited CarWith `4.0.23-20261016`, whose inputs were rejected by the previous version check. The added version has separate original APK method and arrow-template evidence. See the [version adaptation record](docs/fixes/2026-11-12-carwith-navigation-version.md). Field validation, road text, lanes and route overview remain unresolved.
+
 [中文](README.md) | English
 
 [![Android signed APK](https://github.com/iamr0s/carvex-android/actions/workflows/android.yml/badge.svg)](https://github.com/iamr0s/carvex-android/actions/workflows/android.yml)
@@ -71,7 +77,7 @@ This repository can also live inside the larger research workspace at
 
 ## Current CarPlay capabilities
 
-- CarWith navigation end notifications discard cached routes, so a later subscription does not replay an ended route. Guidance state, maneuver and lane mappings remain incomplete; see [route cache repair](docs/fixes/2026-11-10-g03-navigation-end.md).
+- Instrument navigation uses host events, one session snapshot and the current Link subscription. The GalaxyPlay 0.1.212 audit now enables basic turns and positive maneuver distances from audited CarWith 4.0.14 / 4.0.23 versions, with `5202` definitions and `5201` references. Local tests cover end/reset, resubscription and stale queue cancellation. Road text, ETA and lanes remain unavailable; vehicle display is unverified. See [implementation and evidence limits](docs/fixes/2026-11-11-navigation-cluster-chain.md).
 
 - Resource changes accept combined screen/audio requests within the supported transfer subset. Constraint arbitration and active application states remain incomplete; see [validation record](docs/fixes/2026-11-10-resource-batch.md).
 - Active navigation prompts retain a bounded PCM prefix during SETUP and deliver it before live audio. Source stop or failed setup discards the prefix; see [startup buffer limits](docs/fixes/2026-11-10-navigation-startup.md). Vehicle playback remains unverified.
@@ -89,11 +95,15 @@ This repository can also live inside the larger research workspace at
   Actual cellular uplink consumption by the host remains unverified; VoIP is outside this path.
   See the [implementation and validation record](docs/fixes/2026-11-10-call-microphone.md).
 - CarLife mixing host for Xiaomi, OPPO, vivo and Samsung; Honor is packaging-only.
+- Call subscriptions are isolated per Link, with runtime START/STOP handling, corrected explicit/default status encoding and microphone cleanup after close failures. Complete per-call metadata and cellular downlink still lack verified sources; see the [repair and remaining limits](docs/fixes/2026-11-11-call-subscriptions-chain.md).
+
 - Structured bridge logs with copy and export. Debug and Release both record music, navigation and call host inputs, protocol fields, subscriptions and send outcomes; see the [debug log record](docs/fixes/2026-11-10-business-debug.md).
 - Shizuku-assisted read of the phone Bluetooth MAC address, used by the identity
   handshake when the system does not expose it.
 - Local mirror pages (connection splash and no-host screen).
 - Light/dark/system theme and a permission onboarding flow.
+
+On 2026-11-11, DiPlay source cross-checks for the GalaxyPlay target added [navigation storage capacity handling](docs/fixes/2026-11-11-receiver-navigation-capacity.md) and [call answer key routing](docs/fixes/2026-11-11-receiver-call-keys.md). [Optional receiver source tests](tools/receiver-interop/README.md) do not enter production APKs; complete call sources and field acceptance remain unresolved.
 
 ## Connection methods and current limits
 
@@ -248,6 +258,12 @@ fallback to Xiaomi when a flavor is unknown.
 The Honor flavor builds for packaging, but its host plugin reports unavailable. "APK
 installed" is not evidence that a third-party app can bind the Honor system service.
 
+## Diagnostic logs
+
+The log page, in-memory history, log file, and copy/export have no line-count or file-size cutoff. Individual messages and selected diagnostic fields are no longer truncated. Logs are appended and survive app restarts until manually cleared. The write queue does not discard records when busy; the page loads individual rows and appending records does not copy the entire history. Existing sensitive-field redaction remains active.
+
+Long debugging sessions increase memory and disk usage. After exporting, logs can be cleared manually in settings.
+
 ## Tests
 
 ```powershell
@@ -283,6 +299,6 @@ Not affiliated with Apple, Baidu, or any phone, vehicle or head-unit vendor. Car
 
 Enable notification access from Music playback sync in Settings. The app observes only the Android media session uniquely matching the host song and reports its playback state to the cluster; notification text is not read. Missing access or ambiguous players leave the state unknown. Audio focus changes are not treated as player state. Steering-wheel toggles select host Play/Pause only from the reported player state at dispatch; unknown state uses Android's native media toggle. Key delivery never predicts the next playback state. Steering wheel behavior still needs vehicle verification.
 
-CarWith's cluster music notification can put a lyric in the song field and the complete song-artist label in the artist field. This presentation now participates in unique player matching; state still comes from the actual media session. Incomplete fields or multiple matching players leave state unknown. See [lyric presentation and state matching repair](docs/fixes/2026-11-10-carwith-lyrics-state.md).
+CarWith's cluster music notification can put a lyric in the song field and the complete song-artist label in the artist field. When a unique media session matches, display and artwork caching use its actual title and artist; playback state still comes from that session. Missing access, incomplete fields or ambiguous players preserve the host's display metadata and leave state unknown. See [lyric display and artwork identity repair](docs/fixes/2026-11-11-cluster-lyrics.md) and [state matching](docs/fixes/2026-11-10-carwith-lyrics-state.md).
 
 Fast-forward and rewind now use Android's standard media keys and preserve physical press, release and disconnect cleanup. Sustained seeking and stopping on release still need verification with the target player; see the [media key repair record](docs/fixes/2026-11-10-g08-media-key-edges.md).

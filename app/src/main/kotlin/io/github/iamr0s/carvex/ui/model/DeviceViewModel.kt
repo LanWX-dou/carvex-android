@@ -89,7 +89,12 @@ class DeviceViewModel(app: Application) : AndroidViewModel(app) {
     private fun observeBridgeLogs() {
         viewModelScope.launch {
             BridgeStore.logs.collect { raw ->
-                _state.update { it.copy(logs = toLogGroups(raw)) }
+                val groups = toLogGroups(raw)
+                _state.update { before ->
+                    before.copy(logs = groups.map { group ->
+                        group.copy(open = before.logs.firstOrNull { it.id == group.id }?.open ?: true)
+                    })
+                }
             }
         }
     }
@@ -341,7 +346,7 @@ class DeviceViewModel(app: Application) : AndroidViewModel(app) {
         say(appContext.getString(R.string.log_cleared))
     }
 
-    /** Raw retained diagnostics, not the 400-line UI preview. Disk reads stay off the UI. */
+    /** Complete raw diagnostics. Disk reads stay off the UI. */
     suspend fun logText(): String = withContext(Dispatchers.IO) { BridgeStore.export() }
 
     private fun newGroup(title: String, vararg lines: Pair<String, String>): Long {
@@ -357,15 +362,7 @@ class DeviceViewModel(app: Application) : AndroidViewModel(app) {
 
     private fun toLogGroups(raw: List<String>): List<LogGroup> {
         if (raw.isEmpty()) return emptyList()
-        val lines = raw.takeLast(400).map { line ->
-            val message = line.substringAfter("] ", line)
-            val level = when {
-                message.startsWith("ERROR", true) || message.contains("failed", true) -> "ERROR"
-                message.startsWith("WARN", true) || message.contains("warning", true) -> "WARN"
-                else -> "INFO"
-            }
-            LogLine(line.substringBefore(" [").takeLast(12), level, message)
-        }
+        val lines = diagnosticLogLines(raw)
         return listOf(
             LogGroup(
                 id = 0L,

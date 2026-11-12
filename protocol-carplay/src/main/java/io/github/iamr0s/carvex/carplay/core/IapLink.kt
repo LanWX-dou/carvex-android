@@ -909,15 +909,25 @@ class IapLink(input:InputStream, private val output:OutputStream,
                   completion:(Throwable?)->Unit = {}):Boolean =
         sendRawAsync(IapWire.csm(id,fields),expectedGeneration,completion)
 
+    /** Cancel stale control work before allocating packet sequences. Once committed,
+     * finish the CSM and its normal reliability handling, including all fragments. */
+    fun sendGuardedAsync(id:Int, fields:List<Pair<Int,ByteArray>>, expectedGeneration:Int?=null,
+                         valid:()->Boolean, completion:(Throwable?)->Unit = {}):Boolean =
+        enqueueControl(IapWire.csm(id,fields),expectedGeneration,valid,completion)
+
     /** Async form for already-framed CSM bytes. */
     fun sendRawAsync(csm:ByteArray,expectedGeneration:Int?=null,
-                     completion:(Throwable?)->Unit = {}):Boolean {
+                     completion:(Throwable?)->Unit = {}):Boolean =
+        enqueueControl(csm,expectedGeneration,null,completion)
+
+    private fun enqueueControl(csm:ByteArray,expectedGeneration:Int?,valid:(()->Boolean)?,
+                               completion:(Throwable?)->Unit):Boolean {
         if(closed.get()||error!=null)return false
         val copy=csm.copyOf()
         return try {
             asyncSender.execute {
                 var failureCause:Throwable?=null
-                try { sendCsm(copy,expectedGeneration) }
+                try { sendCsm(copy,expectedGeneration,valid=valid) }
                 catch(t:Throwable){ failureCause=t }
                 finally { runCatching{completion(failureCause)} }
             }
@@ -936,8 +946,9 @@ class IapLink(input:InputStream, private val output:OutputStream,
             };true
         }catch(_:RejectedExecutionException){false}
     }
-    @Synchronized private fun sendCsm(data:ByteArray,expectedGeneration:Int?=null,kind:Int=0) {
+    @Synchronized private fun sendCsm(data:ByteArray,expectedGeneration:Int?=null,kind:Int=0,valid:(()->Boolean)?=null) {
         val snapshot=synchronized(writeLock){
+            if(valid!=null&&!valid())throw StaleIapSendException()
             check(expectedGeneration==null||expectedGeneration==generation){"iAP control generation changed before send"}
             checkNotNull(negotiatedControlSession){"iAP link has no confirmed control session"}
             val session=checkNotNull(if(kind==0)negotiatedControlSession else negotiatedFileSession){"iAP session unavailable"}
@@ -1046,4 +1057,7 @@ class IapLink(input:InputStream, private val output:OutputStream,
         reader?.interrupt();asyncSender.shutdownNow();ackScheduler.shutdownNow();handshakeDeadline.shutdownNow()
     }
 }
+
+/** Local revocation is not a reader failure, ACK timeout, or Link degradation. */
+class StaleIapSendException : java.util.concurrent.CancellationException("Stale iAP control submission")
 private class SocketTimeoutExceptionCompat(s:String):java.net.SocketTimeoutException(s)

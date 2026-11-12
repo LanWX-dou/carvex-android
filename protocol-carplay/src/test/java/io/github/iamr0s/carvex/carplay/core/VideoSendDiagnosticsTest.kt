@@ -60,12 +60,12 @@ class VideoSendDiagnosticsTest {
         now+=10_000_000_000;diagnostic.poll();assertEquals(6,lines.size)
     }
 
-    @Test fun stackSamplingIsBoundedAndDeepFramesSurvivePerLineLogTruncation(){
+    @Test fun stackSamplingIsBoundedAndSampledFramesAreLoggedInFull(){
         var now=0L
         val lines=mutableListOf<String>();val captured=mutableListOf<Thread>()
         val extra=(0..4).map{Thread("control-$it")}
         val diagnostic=VideoSendDiagnostics(lines::add,{now},{worker->
-            captured+=worker;List(20){"depth-$it\n"+"x".repeat(500)}
+            captured+=worker;List(20){"depth-$it\n"+"x".repeat(500)+"-frame-tail"}
         },{extra})
         val ticket=diagnostic.begin("frame\nunsafe")
         diagnostic.phase(ticket,VideoSendDiagnostics.Phase.SOCKET_WRITE)
@@ -73,9 +73,11 @@ class VideoSendDiagnosticsTest {
         assertEquals(3,captured.size)
         assertEquals(listOf(Thread.currentThread(),extra[0],extra[1]),captured)
         assertEquals(25,lines.size)
-        assertTrue(lines.all{it.length<=450&&!it.contains('\n')})
+        assertTrue(lines.none{it.contains('\n')})
+        assertTrue(lines.filter{it.contains("Video send stack")}.all{it.length>500&&it.endsWith("-frame-tail")})
         assertEquals(3,lines.count{it.contains("depth-7")})
-        assertFalse(lines.any{it.contains("depth-8")||it.contains("x".repeat(181))})
+        assertFalse(lines.any{it.contains("depth-8")})
+        assertTrue(lines.last().contains("x".repeat(500)))
         assertTrue(lines.last().contains("thread=control-1"))
         assertTrue(lines.last().contains("depth=8/8 depth-7"))
         diagnostic.complete(ticket)

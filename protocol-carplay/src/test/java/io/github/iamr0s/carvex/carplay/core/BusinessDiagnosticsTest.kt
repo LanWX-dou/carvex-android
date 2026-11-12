@@ -59,15 +59,21 @@ class BusinessDiagnosticsTest {
 
     @Test fun loggingSubscriptionAndCacheFailuresDoesNotInventMessagesOrLoseTheRoute() {
         val messages=mutableListOf<Int>();val logs=mutableListOf<String>()
-        val publisher=NavigationPublisher({id,_->messages.add(id);true},logs::add)
-        assertFalse(publisher.update(NavigationGuidance.RouteUpdate(emptyList(),currentRoad="Road")))
+        var snapshot:io.github.iamr0s.carvex.protocol.api.NavigationSnapshot?=
+            io.github.iamr0s.carvex.protocol.api.NavigationSnapshot("test",1,1,1,
+                io.github.iamr0s.carvex.protocol.api.NavigationLifecycle.ACTIVE)
+        val publisher=NavigationPublisher({id,_,_,_->messages.add(id);true},logs::add)
+        publisher.attachNavigation{snapshot}
+        assertFalse(publisher.navigationChanged())
         assertTrue(logs.any{it.contains("reason=no-subscription")})
         publisher.linkReady(true,setOf(0x5200,0x5203),setOf(0x5201,0x5202))
         publisher.command(0x5200,IapFields(listOf(0 to IapWire.be16(42))))
-        assertEquals(listOf(0x5201),messages)
-        publisher.clearRoute()
+        assertTrue(messages.isEmpty()) // Unverified wire states cannot be manufactured by diagnostics.
+        snapshot=null
+        publisher.navigationChanged()
         publisher.command(0x5200,IapFields(listOf(0 to IapWire.be16(43))))
-        assertEquals(listOf(0x5201),messages)
-        assertTrue(logs.any{it.contains("event=lifecycle")&&it.contains("cached=true")})
+        assertTrue(messages.isEmpty())
+        assertTrue(logs.any{it.contains("reason=host-lifecycle-unverified")})
+        assertTrue(logs.any{it.contains("reason=no-snapshot")})
     }
 }

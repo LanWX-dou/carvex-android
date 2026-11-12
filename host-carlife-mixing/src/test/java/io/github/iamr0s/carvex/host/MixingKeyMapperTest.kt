@@ -23,9 +23,18 @@ class MixingKeyMapperTest {
         assertEquals(MixingKeys.PAUSE,mapper.mediaKey(0xb7))
         assertEquals(MixingKeys.MUTE,mapper.mediaKey(0xe2))
 
-        assertEquals(MixingKeys.PHONE,mapper.hidKey("pageb",0x20))
-        assertEquals(MixingKeys.CALL,mapper.hidKey("pageb",0x21))
+        assertEquals(MixingKeys.CALL,mapper.hidKey("pageb",0x20))
+        assertNull(mapper.hidKey("pageb",0x21))
         assertEquals(MixingKeys.END_CALL,mapper.hidKey("pageb",0x26))
         assertNull(mapper.hidKey("pageb",0x7f))
+    }
+
+    @Test fun answerAndPhoneUiAreDifferentHostActions() {
+        val mapper=MixingKeyMapper()
+        assertEquals(MixingKeys.CALL,mapper.hidKey("pageb",0x20))
+        assertEquals(MixingKeys.END_CALL,mapper.hidKey("pageb",0x26))
+        assertNull(mapper.hidKey("pageb",0x21))
+        assertEquals(MixingKeys.PHONE,mapper.uiKey("ui:mobilephone:"))
+        assertNotEquals(mapper.uiKey("ui:mobilephone:"),mapper.hidKey("pageb",0x20))
     }
 }

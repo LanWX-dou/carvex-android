@@ -48,8 +48,10 @@ class MixingKeyMapper : HostKeyMapper {
     override fun hidKey(prefix:String,usage:Int):Int? = when(prefix) {
         "media" -> mediaKey(usage)
         "pageb" -> when(usage) {
-            0x20 -> MixingKeys.PHONE
-            0x21 -> MixingKeys.CALL
+            // Hook Switch is the receiver's answer button. Flash (0x21) is a
+            // separate telephony action without a verified mixing equivalent.
+            // GalaxyPlay 0.1.212 classes5:0439e8; DiPlay answerCall()/AirPlayHid.
+            0x20 -> MixingKeys.CALL
             0x26 -> MixingKeys.END_CALL
             else -> null
         }

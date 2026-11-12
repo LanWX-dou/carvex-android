@@ -50,6 +50,8 @@ interface HostCallbacks {
     fun music(info: HostMusic?) {}
 
     fun musicProgress(progress: Long) {}
+    /** Navigation is normalized by the host adapter; vendor Intents do not cross this boundary. */
+    fun navigation(event: HostNavigationEvent) {}
     fun optionalAction(intent: Intent) {}
     fun musicSampleRate(): Int? = null
     fun vehicleMicrophoneReady(): Boolean = false

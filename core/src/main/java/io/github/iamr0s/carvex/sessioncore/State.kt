@@ -111,6 +111,7 @@ object BridgeStore {
     private val mutable=MutableStateFlow(SessionState())
     val state=mutable.asStateFlow()
     private val logState=MutableStateFlow<List<String>>(emptyList())
+    private var logBuffer=DiagnosticLogBuffer()
     private val sessionStartup=mutableListOf<String>()
     private val audioEvidence=linkedMapOf<String,String>()
     private val businessEvidence=BusinessLogEvidence()
@@ -123,7 +124,7 @@ object BridgeStore {
     // Disk access never holds the BridgeStore monitor used by live audio/video logging.
     private val logFileLock=Any()
     private var diskLogGeneration=-1L // guarded by logFileLock
-    private val writer=Channel<LogWrite>(512)
+    private val writer=Channel<LogWrite>(Channel.UNLIMITED)
     private val scope=CoroutineScope(SupervisorJob()+Dispatchers.IO)
     @Synchronized fun init(c:Context){
         if(::context.isInitialized)return;context=c.applicationContext
@@ -154,22 +155,15 @@ object BridgeStore {
                 runCatching{DiagnosticLogText.readDisk(f)}.getOrDefault(emptyList()).also{diskLogGeneration=0L}
             }
             synchronized(this@BridgeStore){
-                if(logGeneration==0L)logState.value=DiagnosticLogText.retain((saved+logState.value).distinct())
+                if(logGeneration==0L){
+                    logBuffer=DiagnosticLogBuffer((saved+logState.value).distinct())
+                    logState.value=logBuffer.snapshot()
+                }
             }
             for(entry in writer){runCatching{
                 synchronized(logFileLock){
                     if(entry.line==null){f.writeText("");diskLogGeneration=entry.generation}
                     else if(entry.generation==logGeneration){
-                        if(f.length()>1024*1024){
-                            val tail=buildList {
-                                var bytes=0
-                                logState.value.asReversed().forEach { line ->
-                                    val size=line.toByteArray(Charsets.UTF_8).size+1
-                                    if(bytes<512*1024 || isEmpty()){add(line);bytes+=size}
-                                }
-                            }.asReversed()
-                            f.writeText(tail.joinToString("\n")+"\n")
-                        }
                         f.appendText(entry.line+"\n")
                     }
                 }
@@ -221,7 +215,7 @@ object BridgeStore {
     }
     @Synchronized fun idle(){mutable.value=SessionState()}
     fun redact(s:String):String = s.replace(Regex("(?i)([0-9a-f]{2}:){5}[0-9a-f]{2}"),"**:**:**:**:**:**")
-        .replace(Regex("(?i)(password|psk|seed|secret|ssid|pairingPin|setupCode)\\s*[:=]\\s*[^,\\s]+"),"$1=<redacted>").take(500)
+        .replace(Regex("(?i)(password|psk|seed|secret|ssid|pairingPin|setupCode)\\s*[:=]\\s*[^,\\s]+"),"$1=<redacted>")
     @Synchronized fun log(id:String,message:String){
         val line=Instant.now().toString()+" ["+id+"] "+redact(message)
         if(id==mutable.value.id){
@@ -241,18 +235,13 @@ object BridgeStore {
                 while(audioEvidence.size>80)audioEvidence.remove(audioEvidence.keys.first())
             }
         }
-        // UI 预览仍可限制 400 行；原始日志保留 2000 行，其中包括前 24 行启动记录。
-        logState.value=DiagnosticLogText.retain(logState.value+line)
-        writer.trySend(LogWrite(logGeneration,line))
+        logState.value=logBuffer.append(line)
+        check(writer.trySend(LogWrite(logGeneration,line)).isSuccess)
     }
     @Synchronized fun clearLogs(){
-        logGeneration++;logState.value=emptyList();sessionStartup.clear();audioEvidence.clear();businessEvidence.clear()
+        logGeneration++;logBuffer=DiagnosticLogBuffer();logState.value=emptyList();sessionStartup.clear();audioEvidence.clear();businessEvidence.clear()
         val clear=LogWrite(logGeneration,null)
-        if(writer.trySend(clear).isFailure){
-            // Clear remains ordered before new writes even when the disk queue is full.
-            while(writer.tryReceive().isSuccess){}
-            check(writer.trySend(clear).isSuccess)
-        }
+        check(writer.trySend(clear).isSuccess)
     }
     /** 诊断头里的运行环境。诊断文件常被单独转发出去 —— 缺了版本/机型就无法确定
      *  "这是哪个构建、哪台设备、对哪台车机"，而这三件事决定日志该怎么读。 */
@@ -290,7 +279,7 @@ object BridgeStore {
                 "Session=${current.id} audioStatus=${current.audioStatus}\n"+
                 "Downstream sourcePCMBytes=${current.audioBytes} sourceBlocks=${current.audioPackets} droppedBlocks=${current.audioUnsentPackets} submittedPCMBytes=${current.audioForwardedBytes}\n"+
                 "Upstream microphoneDeliveredPCMBytes=${current.microphoneBytes}\n"+
-                "--- Retained raw log (disk, startup evidence and recent memory; oldest first) ---\n"+
+                "--- Complete raw log (oldest first; retained until manually cleared) ---\n"+
                 lines.joinToString("\n")
     }
     /**

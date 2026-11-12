@@ -21,6 +21,7 @@ val XiaomiHostPlugin: HostPlugin = plugin(VendorHostConfig(
     id = "xiaomi", displayName = "小米 CarWith",
     hostPackage = "com.miui.carlink",
     serviceClass = "com.xiaomi.ucar.carlife.CarlifeConnService",
+    navigationDecoder = CarWithNavigation::decode,
 ))
 
 /** OPPO Car+ endpoint. */
