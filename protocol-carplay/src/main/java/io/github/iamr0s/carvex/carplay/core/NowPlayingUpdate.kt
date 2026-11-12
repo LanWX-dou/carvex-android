@@ -12,6 +12,25 @@ object NowPlayingUpdate {
     data class Selection(val attributes:Set<Attribute>,val startIndexOverride:Long?=null,val infoMask:Int=0,
                          val orderedAttributes:List<Attribute> = attributes.toList())
     enum class PlaybackStatus(val wire:Int){ STOPPED(0),PLAYING(1),PAUSED(2),SEEK_FORWARD(3),SEEK_BACKWARD(4) }
+    /** Raw U32 request values. Elapsed units and platform/index validation remain OPEN. */
+    data class SetInfo(val elapsedValue:Long?=null,val queueIndex:Long?=null,val queueWindowStart:Long?=null) {
+        val autoWindow:Boolean get()=queueWindowStart==0xffffffffL
+        val empty:Boolean get()=elapsedValue==null&&queueIndex==null&&queueWindowStart==null
+    }
+    fun parseSetInfo(fields:IapFields):SetInfo? {
+        var result=SetInfo()
+        for((id,bytes) in fields.ordered){
+            if(id !in 0..2)continue
+            if(bytes.size!=4)return null
+            val value=java.nio.ByteBuffer.wrap(bytes).int.toLong() and 0xffffffffL
+            result=when(id){
+                0->result.copy(elapsedValue=value)
+                1->result.copy(queueIndex=value)
+                else->result.copy(queueWindowStart=value)
+            }
+        }
+        return result
+    }
     /** Null means unknown, never stopped/zero/playing. Units here are explicitly milliseconds.
      * queueIndex must already use the selected peer's index convention; it is not inferred. */
     /** Fields mirror the firmware's two 5001 encoders. Nullable values are omitted, as on iOS. */
@@ -170,7 +189,8 @@ object NowPlayingUpdate {
 
 /** One authenticated Link owns the subscription. Backend snapshots may precede Link readiness.
  * All mutations and sends serialize: STOP cancels uncommitted updates, not bytes already sent. */
-class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolean)->Boolean,private val log:(String)->Unit) : AutoCloseable {
+class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolean)->Boolean,private val log:(String)->Unit,
+                          private val request:((NowPlayingUpdate.SetInfo)->Boolean)?=null) : AutoCloseable {
     /** Immediate sinks are useful for in-memory consumers; queued transports must keep the guard. */
     constructor(emit:(List<Pair<Int,ByteArray>>)->Boolean,log:(String)->Unit):this(
         {fields,valid->valid()&&emit(fields)},log)
@@ -222,29 +242,27 @@ class NowPlayingPublisher(private val emit:(List<Pair<Int,ByteArray>>,()->Boolea
         }
         return true
     }
-    /** `5003`：参数 0/1 是 U32（elapsed/queueIndex），参数 2 是 S32 startIndex（-1=自动）。
-     *  三个都可缺；只有参数 2 且 5000 未声明 +0x51(startIndexOverride) 时返回 false。 */
+    /** Parse first, then request a real provider. An accepted request is not observed playback.
+     * p0/p1 have no START-active gate in this handler; p2's instantaneous request does. */
     @Synchronized fun setInfo(fields:IapFields):Boolean {
-        if(closed)return false
-        var elapsed:Long?=null;var index:Long?=null;var start:Int?=null
-        for((id,bytes) in fields.ordered){
-            when(id){
-                0->{if(bytes.size!=4)return false;elapsed=be32(bytes)}
-                1->{if(bytes.size!=4)return false;index=be32(bytes)}
-                2->{if(bytes.size!=4)return false;start=be32(bytes).toInt()}
-                else->Unit
-            }
+        if(closed||!ready)return false
+        val parsed=NowPlayingUpdate.parseSetInfo(fields)?:run{
+            log("debug music event=set-info parsed=false platformRequestQueued=false reason=invalid-fields");return false
         }
-        if(elapsed==null&&index==null&&start==null)return false
-        if(elapsed==null&&index==null&&start!=null&&selection?.startIndexOverride==null)return false
-        if(elapsed!=null||index!=null){
-            snapshot=snapshot.copy(elapsedMs=elapsed?:snapshot.elapsedMs,queueIndex=index?:snapshot.queueIndex)
-            return send(snapshot)
+        if(parsed.empty){log("debug music event=set-info parsed=true platformRequestQueued=false reason=no-known-request");return true}
+        val actionable=if(selection?.startIndexOverride==null)parsed.copy(queueWindowStart=null) else parsed
+        if(actionable.empty){
+            log("debug music event=set-info parsed=true platformRequestQueued=false reason=window-not-subscribed");return false
         }
-        return true
+        val provider=request?:run{
+            log("debug music event=set-info parsed=true platformRequestQueued=false reason=no-player-provider observedExecution=unverified");return false
+        }
+        val accepted=runCatching{provider(actionable)}.getOrElse{
+            log("debug music event=set-info parsed=true platformRequestQueued=false reason=provider-error error=${it.javaClass.simpleName}");false
+        }
+        log("debug music event=set-info parsed=true platformRequestQueued=$accepted elapsed=${actionable.elapsedValue!=null} queueIndex=${actionable.queueIndex!=null} window=${actionable.queueWindowStart!=null} autoWindow=${actionable.autoWindow} observedExecution=unverified")
+        return accepted
     }
-    private fun be32(b:ByteArray):Long=((b[0].toLong() and 255) shl 24) or ((b[1].toLong() and 255) shl 16) or
-        ((b[2].toLong() and 255) shl 8) or (b[3].toLong() and 255)
     @Synchronized fun update(delta:NowPlayingUpdate.Track,replaceMedia:Boolean=false):Boolean {
         if(closed)return false
         // Validate even before a subscriber exists, so bad ranges are never cached.

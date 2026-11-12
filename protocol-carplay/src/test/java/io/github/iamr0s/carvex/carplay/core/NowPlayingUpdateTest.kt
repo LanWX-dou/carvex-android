@@ -166,9 +166,7 @@ class NowPlayingUpdateTest {
         val values=IapWire.parseFieldList(encoded.first{it.first==1}.second).ordered
         assertArrayEquals(IapWire.be32(0xffffffffL),values.first{it.first==2}.second)
         assertArrayEquals(IapWire.be32(0x80000000L),values.first{it.first==3}.second)
-        val publisher=NowPlayingPublisher{true};publisher.linkReady(true)
-        publisher.command(0x5000,IapFields(listOf(1 to IapWire.fields(listOf(2 to byteArrayOf())))))
-        assertTrue(publisher.setInfo(IapFields(listOf(1 to IapWire.be32(0xffffffffL)))))
+        assertEquals(0xffffffffL,NowPlayingUpdate.parseSetInfo(IapFields(listOf(1 to IapWire.be32(0xffffffffL))))!!.queueIndex)
     }
 
     @Test fun unknownTopLevelPayloadIsIgnoredAndFlagGroupUsesEmptyChildren() {
