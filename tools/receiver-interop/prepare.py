@@ -21,6 +21,7 @@ WHOLE = (
     'iap2/wire/Iap2CsmFramer.kt', 'iap2/catalog/Iap2Endpoint.kt',
     'iap2/body/Iap2BodyReader.kt', 'iap2/body/Iap2BodyBuilder.kt',
     'iap2/message/Iap2Messages.kt', 'media/CarPlayPlaybackStatus.kt',
+    'iap2/message/Iap2LaneGuidance.kt', 'hud/NavigationOutputWorker.kt',
     'transport/Iap2FileTransferReceiver.kt',
     'hud/BydHudRouteState.kt', 'hud/BydManeuverCodes.kt', 'airplay/AirPlayHid.kt',
 )
@@ -44,6 +45,7 @@ def main():
     commit = git(receiver, 'rev-parse', 'HEAD')
     sources = {}
     slices = {}
+    staged = {}
 
     def read(relative):
         data = (receiver / relative).read_bytes()
@@ -54,6 +56,7 @@ def main():
         dest = OUT / module / 'receiver' / relative
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(data)
+        staged[dest.relative_to(OUT).as_posix()] = digest(data)
 
     protocol = 'protocol-carplay'
     for relative in WHOLE:
@@ -61,6 +64,9 @@ def main():
         stage(protocol, relative, data)
         if relative == 'airplay/AirPlayHid.kt':
             stage('host-carlife-mixing', relative, data)
+
+    worker_test = 'shared/src/test/java/com/shilapi/xcertplay/hud/NavigationOutputWorkerTest.kt'
+    stage(protocol, 'hud/NavigationOutputWorkerTest.kt', read(worker_test))
 
     # Only imports are reduced. Model and parser bodies are copied exactly.
     call_source = read(PREFIX + 'hud/BydCarPlayCall.kt')
@@ -97,9 +103,11 @@ def main():
         target = OUT / module / 'contracts' / name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(TEMPLATES / name, target)
+        staged[target.relative_to(OUT).as_posix()] = digest(target.read_bytes())
 
     manifest = {
-        'schema': 1, 'receiver_commit': commit, 'source_sha256': sources,
+        'schema': 2, 'receiver_commit': commit, 'source_sha256': sources,
+        'staged_sha256': staged,
         'unchanged_body_slice_sha256': slices,
         'contract_template_sha256': {name: digest((TEMPLATES / name).read_bytes()) for name in
                                     ('ReceiverProtocolContractTest.kt', 'ReceiverCallKeyContractTest.kt')},
@@ -107,7 +115,6 @@ def main():
         'validation_scope': 'JVM contracts, not vehicle acceptance or Apple sender equivalence',
     }
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     # Avoid interpolating user source paths into executable Groovy/shell text.
     # All roots below are derived from this project's own fixed build directory.
     init = '''gradle.beforeProject { p ->
@@ -122,6 +129,8 @@ def main():
 }
 '''
     (OUT / 'receiver-tests.init.gradle').write_text(init, encoding='utf-8')
+    staged['receiver-tests.init.gradle'] = digest((OUT / 'receiver-tests.init.gradle').read_bytes())
+    (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     print(f'Prepared receiver {commit}; {len(sources)} source hashes, {len(slices)} body hashes')
     print('Manifest: build/receiver-interop/manifest.json')
     print(r'.\gradlew.bat :protocol-carplay:testDebugUnitTest '

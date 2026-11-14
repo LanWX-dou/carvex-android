@@ -7,6 +7,7 @@ import com.shilapi.xcertplay.hud.BydHudRouteState
 import com.shilapi.xcertplay.hud.CarPlayCallCard
 import com.shilapi.xcertplay.hud.CarPlayCallState
 import com.shilapi.xcertplay.iap2.message.Iap2ControlMessages
+import com.shilapi.xcertplay.iap2.message.Iap2LaneGuidance
 import com.shilapi.xcertplay.iap2.wire.Iap2CsmFramer
 import com.shilapi.xcertplay.iap2.wire.Iap2Frame
 import com.shilapi.xcertplay.media.CarPlayPlaybackStatus
@@ -280,6 +281,76 @@ class ReceiverProtocolContractTest {
         deliver(receiver, NavigationWireEncoding.plan(snapshot(3, NavigationTurn.RIGHT, 70).copy(routeEpoch = 2), selection, display()))
         assertEquals(70, receiver.currentApple()!!.distanceMeters)
         assertNull(receiver.currentApple()!!.remainingMeters)
+    }
+
+    @Test fun musicRouteAndOptionalLaneUpdatesRemainIndependentIncludingMalformedInputs() {
+        val route = BydHudRouteState()
+        val music = CarPlayPlaybackStatus()
+        val requested = NowPlayingUpdate.selection(IapWire.parseFieldList(
+            Iap2ControlMessages.startNowPlayingUpdates().payload))!!
+        deliver(route, NavigationWireEncoding.plan(snapshot(remaining = 19000), selection, display()))
+        val guidance = route.currentApple()
+        for (status in NowPlayingUpdate.PlaybackStatus.entries) {
+            val update = frame(0x5001, NowPlayingUpdate.fields(NowPlayingUpdate.Track(
+                title = "Track", status = status), requested))
+            music.acceptUpdate(update)
+            route.accept(update.messageId, update.payload)
+            assertEquals(guidance, route.currentApple())
+        }
+        val nowPlaying = music.nowPlaying
+        // Synthetic lane values test only receiver-domain isolation; no lane provider is enabled.
+        val lane = frame(0x5204, NavigationGuidance.lane(NavigationGuidance.LaneUpdate(
+            listOf(42), index = 0, lanes = listOf(NavigationGuidance.Lane(index = 0, status = 2,
+                angles = listOf(0), highlight = 0)))))
+        assertEquals(1, Iap2LaneGuidance.parse(lane.payload).size)
+        assertTrue(Iap2LaneGuidance.parse(byteArrayOf(0, 9, 0, 2)).isEmpty())
+        assertTrue(Iap2LaneGuidance.parse(byteArrayOf()).isEmpty())
+        route.accept(lane.messageId, lane.payload)
+        music.acceptUpdate(lane)
+        assertEquals(guidance, route.currentApple())
+        assertEquals(nowPlaying, music.nowPlaying)
+        val malformed = frame(0x5001, listOf(0 to byteArrayOf(0, 9, 0, 1)))
+        music.acceptUpdate(malformed)
+        route.accept(malformed.messageId, malformed.payload)
+        assertEquals(guidance, route.currentApple())
+        val ended = NavigationWireEncoding.plan(snapshot().copy(lifecycle = NavigationLifecycle.ENDED), selection, display())
+        ended.packets.forEach { packet -> music.acceptUpdate(frame(packet.id, packet.fields)) }
+        deliver(route, ended)
+        assertNull(route.currentApple())
+        assertEquals(nowPlaying, music.nowPlaying)
+    }
+
+    @Test fun actualReceiverKeepsTextRolesAndClearsAfterRoadWithoutInventingCurrentRoad() {
+        val route = BydHudRouteState()
+        for (road in listOf("道路🚘", "طريق", "Rue é", "", null, "bad\u0000road", "\uD800")) {
+            val initial = snapshot(remaining = 19000)
+            val plan = NavigationWireEncoding.plan(initial.copy(
+                maneuver = initial.maneuver!!.copy(afterRoad = road)), selection, display())
+            deliver(route, plan)
+            val expected = if (road != null && NowPlayingUpdate.textOrNull(road) != null) road else ""
+            assertEquals(expected, route.currentApple()!!.road)
+            assertTrue(plan.packets.filter { it.id == 0x5201 }.all { packet ->
+                packet.fields.none { it.first == 3 || it.first == 4 }
+            })
+            assertTrue(plan.packets.single { it.id == 0x5202 }.fields.none { it.first == 2 })
+        }
+    }
+
+    @Test fun retainedOverlayExpiresAcrossWirelessDropAndNewGuidanceStartsClean() {
+        var now = 0L
+        val route = BydHudRouteState(nanoTime = { now }, staleRouteNs = 120_000_000_000L,
+            keepAcrossNoRoute = true)
+        deliver(route, NavigationWireEncoding.plan(snapshot(remaining = 19000), selection, display()))
+        route.holdAcrossDrop()
+        now = 119_000_000_000L
+        assertNotNull(route.currentApple())
+        now = 120_000_000_000L
+        assertNull(route.currentApple())
+        route.clear()
+        assertNull(route.currentApple())
+        deliver(route, NavigationWireEncoding.plan(snapshot(2, NavigationTurn.LEFT, 50), selection, display()))
+        assertEquals(50, route.currentApple()!!.distanceMeters)
+        assertNull(route.currentApple()!!.remainingMeters)
     }
 
     @Test fun realNowPlayingParserRetainsAndClearsIncrementalFields() {

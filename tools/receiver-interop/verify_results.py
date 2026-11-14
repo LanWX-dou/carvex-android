@@ -27,6 +27,13 @@ def digest(data):
 
 def inspect(full):
     manifest = json.loads((ANDROID / 'build/receiver-interop/manifest.json').read_text(encoding='utf-8'))
+    staged_root = (ANDROID / 'build/receiver-interop').resolve()
+    if manifest.get('schema') != 2 or not manifest.get('staged_sha256'):
+        raise ValueError('Receiver manifest predates staged input hashing; prepare and run tests again')
+    for relative, expected_hash in manifest['staged_sha256'].items():
+        path = (staged_root / relative).resolve()
+        if not path.is_relative_to(staged_root) or digest(path.read_bytes()) != expected_hash:
+            raise ValueError(f'Staged receiver input changed; prepare and run tests again: {relative}')
     paths = {module: f'{module}/build/test-results/testDebugUnitTest' for module in CONTRACTS}
     if full:
         paths.update({module: f'{module}/build/test-results/testDebugUnitTest'
@@ -68,11 +75,24 @@ def inspect(full):
             if not expected or found != expected:
                 raise ValueError(f'Receiver contracts missing or changed in {module}: expected={sorted(expected)} found={sorted(found)}')
             totals['receiver_contracts'] = len(found)
+            if module == 'protocol-carplay':
+                worker_source = 'shared/src/test/java/com/shilapi/xcertplay/hud/NavigationOutputWorkerTest.kt'
+                worker_staged = ANDROID / 'build/receiver-interop/protocol-carplay/receiver/hud/NavigationOutputWorkerTest.kt'
+                worker_bytes = worker_staged.read_bytes()
+                if digest(worker_bytes) != manifest['source_sha256'][worker_source]:
+                    raise ValueError('Receiver worker test changed; prepare and run tests again')
+                worker_report = ANDROID / relative / 'TEST-com.shilapi.xcertplay.hud.NavigationOutputWorkerTest.xml'
+                worker_cases = ET.fromstring(worker_report.read_bytes()).findall('testcase')
+                worker_expected = set(re.findall(r'@Test\s+fun\s+`([^`]+)`\s*\(', worker_bytes.decode('utf-8')))
+                if not worker_expected or {case.attrib['name'] for case in worker_cases} != worker_expected:
+                    raise ValueError('Receiver worker tests missing or changed')
+                totals['receiver_worker_tests'] = len(worker_cases)
         summary[module] = totals
     result = {
-        'schema': 1, 'receiver_commit': manifest['receiver_commit'],
+        'schema': 2, 'receiver_commit': manifest['receiver_commit'],
         'sender_commit_at_prepare': manifest['sender_commit'],
         'source_sha256': manifest['source_sha256'],
+        'staged_sha256': manifest['staged_sha256'],
         'unchanged_body_slice_sha256': manifest['unchanged_body_slice_sha256'],
         'contract_template_sha256': manifest['contract_template_sha256'],
         'sender_source_sha256': {relative: digest((ANDROID / relative).read_bytes()) for relative in (
