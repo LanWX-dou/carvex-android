@@ -228,6 +228,60 @@ class ReceiverProtocolContractTest {
         assertEquals(18000L, receiver.currentApple()!!.remainingMeters)
     }
 
+    @Test fun multipleComponentsUseTheSmallestCacheAndUnsignedComponentBoundaries() {
+        val selected = NavigationGuidance.Start(listOf(0, 65535), 3)
+        fun capabilities(capacity: Int) = NavigationDisplayCapabilities(listOf(0, 65535).map { id ->
+            RawParameter(30, IapWire.fields(listOf(0 to IapWire.be16(id),
+                6 to IapWire.be16(if (id == 0) 65535 else capacity))))
+        })
+        val receiver = BydHudRouteState()
+        for (generation in 1L..100L) {
+            val plan = NavigationWireEncoding.plan(snapshot(generation, distance = 200 - generation,
+                remaining = 19000 - generation), selected, capabilities(3))
+            for (packet in plan.packets) {
+                val fields = IapWire.parseFieldList(IapWire.fields(packet.fields))
+                assertEquals(listOf(0, 65535), fields.ordered.filter { it.first == 0 }.map { IapWire.u16(it.second, 0) })
+            }
+            val definition = IapWire.parseFieldList(IapWire.fields(plan.packets.first().fields))
+            assertEquals((generation % 3).toInt(), IapWire.u16(definition[1]!!, 0))
+            deliver(receiver, plan)
+            assertEquals((200 - generation).toInt(), receiver.currentApple()!!.distanceMeters)
+            val cache = BydHudRouteState::class.java.getDeclaredField("maneuvers").apply { isAccessible = true }
+                .get(receiver) as Map<*, *>
+            assertTrue(cache.size <= 3)
+        }
+        for (generation in listOf(65534L, 65535L, Long.MAX_VALUE)) {
+            val plan = NavigationWireEncoding.plan(snapshot(generation, remaining = 19000), selected, capabilities(65535))
+            val definition = IapWire.parseFieldList(IapWire.fields(plan.packets.first().fields))
+            val reference = IapWire.parseFieldList(IapWire.fields(plan.packets.last().fields))
+            assertEquals((generation % 65535).toInt(), IapWire.u16(definition[1]!!, 0))
+            assertArrayEquals(definition[1], reference[13])
+            deliver(receiver, plan)
+            assertEquals(2, receiver.currentApple()!!.type)
+        }
+    }
+
+    @Test fun reroutingAndNewRoutesRebuildGuidanceWithoutInferringAnArrival() {
+        val receiver = BydHudRouteState()
+        deliver(receiver, NavigationWireEncoding.plan(snapshot(remaining = 19000), selection, display()))
+        val rerouting = snapshot(turn = null, remaining = 18000).copy(lifecycle = NavigationLifecycle.REROUTING)
+        val plan = NavigationWireEncoding.plan(rerouting, selection, display())
+        assertEquals(listOf(0, 5), plan.packets.map { it.fields.single { field -> field.first == 1 }.second.single().toInt() })
+        deliver(receiver, plan)
+        assertNull(receiver.currentApple())
+        deliver(receiver, NavigationWireEncoding.plan(snapshot(2, NavigationTurn.LEFT, 50, remaining = 18000), selection, display()))
+        assertEquals(1, receiver.currentApple()!!.type)
+        assertEquals(50, receiver.currentApple()!!.distanceMeters)
+        val ended = NavigationWireEncoding.plan(snapshot().copy(lifecycle = NavigationLifecycle.ENDED,
+            endReason = NavigationEndReason.UNKNOWN), selection, display())
+        assertArrayEquals(byteArrayOf(0), ended.packets.single().fields.single { it.first == 1 }.second)
+        deliver(receiver, ended)
+        assertNull(receiver.currentApple())
+        deliver(receiver, NavigationWireEncoding.plan(snapshot(3, NavigationTurn.RIGHT, 70).copy(routeEpoch = 2), selection, display()))
+        assertEquals(70, receiver.currentApple()!!.distanceMeters)
+        assertNull(receiver.currentApple()!!.remainingMeters)
+    }
+
     @Test fun realNowPlayingParserRetainsAndClearsIncrementalFields() {
         val receiver = CarPlayPlaybackStatus()
         val requested = NowPlayingUpdate.selection(IapWire.parseFieldList(

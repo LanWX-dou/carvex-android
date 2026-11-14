@@ -224,7 +224,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
         scope.launch{for(event in artworkEvents)event()}
         scope.launch{while(isActive){delay(1000);artworkEvents.trySend{artwork.expire()}}}
         resources.own(AutoCloseable{artworkEvents.cancel();artwork.close()})
-        resources.own(AutoCloseable{nowPlayingPublisher.close();navigationPublisher.detachNavigation();events.close();runtime.close();runtimeOutput.close();modeOutput.close();audioStreams.close();client?.close();scope.cancel()})
+        resources.own(AutoCloseable{nowPlayingPublisher.close();navigationPublisher.close();events.close();runtime.close();runtimeOutput.close();modeOutput.close();audioStreams.close();client?.close();scope.cancel()})
         // Events may arrive inside RtspClient.request's lock. Never issue a nested
         // request from that callback: a separate writer runs after its reply.
         scope.launch{
@@ -250,6 +250,7 @@ class AirSession(private val context:Context,private val path:NetworkPath,privat
     fun stopNormally(){
         stopping=true
         nowPlayingPublisher.close()
+        navigationPublisher.close()
         artwork.close()
         val control=client;val url=connectionPath;val setup=setupLifecycle
         // The volatile gate rejects new business without waiting for a running

@@ -123,6 +123,52 @@ class NavigationPublisherTest {
         assertFalse(old.valid())
     }
 
+    @Test fun closePermanentlyRejectsLateReadinessSubscriptionsAndSourceCallbacks() {
+        val f = fixture(); f.source.set(snapshot())
+        f.publisher.linkReady(true, sends, receives)
+        f.publisher.command(0x5200, start(42))
+        val old = f.queued.single()
+        f.publisher.close()
+        f.publisher.close()
+        assertFalse(old.valid())
+        var supplierReads = 0
+        f.publisher.attachNavigation { supplierReads++; snapshot(2) }
+        f.publisher.identification(listOf(RawParameter(30, byteArrayOf())))
+        f.publisher.linkReady(true, sends, receives)
+        assertFalse(f.publisher.command(0x5200, start(43)))
+        assertFalse(f.publisher.navigationChanged())
+        old.complete(java.io.IOException("late completion"))
+        assertEquals(0, supplierReads)
+        assertEquals(1, f.queued.size)
+        val fresh = fixture(); fresh.source.set(snapshot(3))
+        fresh.publisher.linkReady(true, sends, receives)
+        fresh.publisher.command(0x5200, start(43))
+        assertTrue(fresh.queued.single().valid())
+    }
+
+    @Test fun displayReplacementRevokesQueuedDefinitionsBeforeANewBatch() {
+        val f = Fixture(NavigationWireEncoding::plan)
+        f.source.set(snapshot().copy(
+            maneuver = NavigationManeuver("hint", turn = NavigationTurn.RIGHT, distanceMeters = 100),
+            maneuverGeneration = 1,
+            evidence = mapOf("lifecycle" to "fixture", "maneuver" to "fixture")))
+        fun display(capacity: Int) = listOf(RawParameter(30, IapWire.fields(listOf(
+            0 to IapWire.be16(42), 6 to IapWire.be16(capacity)))))
+        f.publisher.identification(display(8))
+        f.publisher.linkReady(true, sends, receives)
+        f.publisher.command(0x5200, start(42))
+        val old = f.queued.toList()
+        assertTrue(old.all { it.valid() })
+        f.publisher.identification(display(1))
+        assertTrue(old.none { it.valid() })
+        assertTrue(f.publisher.navigationChanged())
+        val next = f.queued.drop(old.size)
+        assertEquals(listOf(0x5201, 0x5202, 0x5201), next.map { it.id })
+        assertArrayEquals(IapWire.be16(0), next[1].fields.single { it.first == 1 }.second)
+        old[1].complete(java.io.IOException("old batch failure"))
+        assertTrue(next.all { it.valid() })
+    }
+
     @Test fun productionEncoderRequiresSourceEvidenceEvenForTerminals() {
         val f = Fixture(NavigationWireEncoding::plan)
         f.publisher.linkReady(true, sends, receives + 0x5204)

@@ -110,7 +110,8 @@ internal class NavigationPublisher(
     private val log: (String) -> Unit = {},
     private val encode: (NavigationSnapshot, NavigationGuidance.Start, NavigationDisplayCapabilities) -> NavigationPlan =
         NavigationWireEncoding::plan,
-) : NavigationSink {
+) : NavigationSink, AutoCloseable {
+    private var closed = false
     private var ready = false
     private var accessorySends = emptySet<Int>()
     private var accessoryReceives = emptySet<Int>()
@@ -123,11 +124,13 @@ internal class NavigationPublisher(
     private val batches = AtomicLong()
 
     @Synchronized fun identification(parameters: List<RawParameter>) {
+        if (closed) return
         display = NavigationDisplayCapabilities(parameters)
         deliveryEpoch.incrementAndGet()
     }
 
     @Synchronized fun linkReady(ready: Boolean, sends: Set<Int> = emptySet(), receives: Set<Int> = emptySet()) {
+        if (closed) return
         this.ready = ready
         accessorySends = sends.toSet()
         accessoryReceives = receives.toSet()
@@ -142,6 +145,7 @@ internal class NavigationPublisher(
     }
 
     @Synchronized override fun attachNavigation(source: () -> NavigationSnapshot?) {
+        if (closed) return
         deliveryEpoch.incrementAndGet()
         this.source = source
     }
@@ -153,7 +157,20 @@ internal class NavigationPublisher(
         subscriptionEpoch++
     }
 
+    /** R-7.4 local ownership policy: teardown permanently revokes this publisher. */
+    @Synchronized override fun close() {
+        if (closed) return
+        closed = true
+        ready = false
+        detachNavigation()
+        accessorySends = emptySet()
+        accessoryReceives = emptySet()
+        display = NavigationDisplayCapabilities(emptyList())
+        linkEpoch++
+    }
+
     @Synchronized fun command(id: Int, fields: IapFields): Boolean {
+        if (closed) return false
         if (!ready) return blocked("link-not-ready", id)
         if (!NavigationGuidance.featureReady(accessorySends, accessoryReceives))
             return blocked("required-capabilities", id)
@@ -179,6 +196,7 @@ internal class NavigationPublisher(
     }
 
     @Synchronized override fun navigationChanged(): Boolean {
+        if (closed) return false
         deliveryEpoch.incrementAndGet()
         return publish()
     }
