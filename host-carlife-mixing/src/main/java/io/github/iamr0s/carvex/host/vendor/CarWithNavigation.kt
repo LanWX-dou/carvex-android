@@ -6,8 +6,8 @@ import java.security.MessageDigest
 /** CarWith 4.0.14 classes2: lifecycle 1c5c20/16fb48, HUD 16fc3c,
  * meter conversion 16f3f0 and icon classifier 1aedb4/1af2fc.
  * The user confirmed road_name as the road after the maneuver on 2026-11-12.
- * The cached total_distance is published as route distance for the user's field trial;
- * its route-level meaning remains unverified. */
+ * The user rejected total_distance as route distance on 2026-11-14.
+ * It remains a cached maneuver reference in diagnostics; no route-distance provider is confirmed. */
 internal object CarWithNavigation {
     private data class Evidence(val start: String, val end: String, val hud: String, val maneuver: String)
 
@@ -68,13 +68,9 @@ internal object CarWithNavigation {
                     3 -> HostNavigationEvent(source, HostNavigationChange.ENDED, evidence.end)
                     1, 2 -> HostNavigationEvent(source, HostNavigationChange.UPDATED, evidence.hud,
                         delta = HostNavigationDelta(
-                            // User-requested field trial, not a verified route-level source contract.
-                            // Clear missing/invalid inputs so a previous trial value cannot survive.
-                            distanceRemainingMeters = (values["total_distance"] as? Int)
-                                ?.takeIf { it in 0 until Int.MAX_VALUE }?.let {
-                                    HostNavigationField.Value(it.toLong(),
-                                        "${evidence.hud}:total_distance-route:user-test-20261112")
-                                } ?: HostNavigationField.Clear,
+                            // The producer caches maneuver distance on road-text changes.
+                            // Clear the withdrawn trial value; SDK/native candidates are separate channels.
+                            distanceRemainingMeters = HostNavigationField.Clear,
                             maneuver = HostNavigationField.Value(
                                 HostNavigationManeuver(
                                     // A local identity for the current HUD hint, not a vendor/wire index.
@@ -92,7 +88,7 @@ internal object CarWithNavigation {
                             action = kind,
                             iconBytes = (values["turn_icon_data"] as? ByteArray)?.size),
                         unverifiedFields = buildSet {
-                            add("total_distance-route-role-user-test")
+                            add("route-distance-provider")
                             if (turn(values["navi_turn"] as? Int) == null) add("navi_turn-enum")
                             if ((values["remain_distance"] as? Int)?.let { it > 0 && it < Int.MAX_VALUE } != true)
                                 add("remain_distance-validity")

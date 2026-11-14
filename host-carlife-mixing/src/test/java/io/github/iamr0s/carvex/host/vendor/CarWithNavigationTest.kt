@@ -30,7 +30,8 @@ class CarWithNavigationTest {
             assertFalse(event.unverifiedFields.contains("road_name-role"))
             assertEquals("H02:classes2:17abdc/17a338/1ba904/1bae4c:HUD-maneuver", field.evidence)
             assertEquals(HostNavigationField.Absent, event.delta.currentRoad)
-            assertEquals(3700L, (event.delta.distanceRemainingMeters as HostNavigationField.Value).value)
+            assertEquals(HostNavigationField.Clear, event.delta.distanceRemainingMeters)
+            assertEquals(3700L, event.observation?.referenceDistanceMeters)
             assertEquals(HostNavigationField.Absent, event.delta.timeRemainingSeconds)
             assertEquals(HostNavigationField.Absent, event.delta.lanes)
         }
@@ -138,7 +139,7 @@ class CarWithNavigationTest {
         assertEquals(0L, event.observation?.distanceHintMeters)
         assertEquals(2000L, event.observation?.referenceDistanceMeters)
         assertEquals(HostNavigationField.Absent, event.delta.currentRoad)
-        assertEquals(2000L, (event.delta.distanceRemainingMeters as HostNavigationField.Value).value)
+        assertEquals(HostNavigationField.Clear, event.delta.distanceRemainingMeters)
         val maneuver = (event.delta.maneuver as HostNavigationField.Value).value
         assertEquals(HostNavigationTurn.LEFT, maneuver.turn)
         assertNull(maneuver.distanceMeters)
@@ -176,7 +177,7 @@ class CarWithNavigationTest {
             val maneuver = (event.delta.maneuver as HostNavigationField.Value).value
             assertEquals(turn, maneuver.turn)
             assertEquals(125L, maneuver.distanceMeters)
-            assertEquals(500L, (event.delta.distanceRemainingMeters as HostNavigationField.Value).value)
+            assertEquals(HostNavigationField.Clear, event.delta.distanceRemainingMeters)
         }
         for (raw in listOf(0, 1, 9, 11, 23, 24, 99)) {
             val event = requireNotNull(decode("carlife_show_hud_info", mapOf("action" to 2, "navi_turn" to raw)))
@@ -193,17 +194,17 @@ class CarWithNavigationTest {
         }
     }
 
-    @Test fun userRequestedTotalDistanceTrialIsIndependentOfManeuverDistanceForBothVersions() {
+    @Test fun cachedTotalDistanceCannotBecomeRouteDistanceForBothVersions() {
         for (version in listOf("4.0.14-20260801", "4.0.23-20261016")) {
             for ((kind, remaining, total) in listOf(Triple(1, 6400, 6400), Triple(2, 4000, 6400),
                 Triple(2, 92, 6400), Triple(2, 0, 0))) {
                 val event = requireNotNull(CarWithNavigation.decode("carlife_show_hud_info",
                     mapOf("action" to kind, "navi_turn" to 3,
                         "remain_distance" to remaining, "total_distance" to total), source.copy(version = version)))
-                val route = event.delta.distanceRemainingMeters as HostNavigationField.Value
-                assertEquals(total.toLong(), route.value)
-                assertTrue(route.evidence.contains("total_distance-route:user-test-20261112"))
-                assertTrue(event.unverifiedFields.contains("total_distance-route-role-user-test"))
+                assertEquals(HostNavigationField.Clear, event.delta.distanceRemainingMeters)
+                assertEquals(total.toLong(), event.observation?.referenceDistanceMeters)
+                assertTrue(event.unverifiedFields.contains("route-distance-provider"))
+                assertFalse(event.unverifiedFields.contains("total_distance-route-role-user-test"))
                 val maneuver = (event.delta.maneuver as HostNavigationField.Value).value
                 assertEquals(remaining.toLong().takeIf { it > 0 }, maneuver.distanceMeters)
                 assertEquals(HostNavigationField.Absent, event.delta.timeRemainingSeconds)
@@ -212,7 +213,7 @@ class CarWithNavigationTest {
         }
     }
 
-    @Test fun invalidOrMissingTrialDistanceClearsWithoutUsingManeuverDistance() {
+    @Test fun missingRouteProviderClearsWithoutUsingManeuverDistance() {
         for (total in listOf(null, -1, Int.MAX_VALUE, "6400", 6400L, true)) {
             val event = requireNotNull(decode("carlife_show_hud_info", mapOf("action" to 2,
                 "navi_turn" to 3, "remain_distance" to 92, "total_distance" to total)))
@@ -227,6 +228,20 @@ class CarWithNavigationTest {
                 "total_distance" to 6400)))
             assertEquals(HostNavigationChange.ENDED, end.change)
             assertEquals(HostNavigationField.Absent, end.delta.distanceRemainingMeters)
+        }
+    }
+
+    @Test fun sdkAndNativeTextCandidatesAreNotFieldsOfTheMixingHudContract() {
+        for (version in listOf("4.0.14-20260801", "4.0.23-20261016")) {
+            val event = requireNotNull(CarWithNavigation.decode("carlife_show_hud_info", mapOf(
+                "action" to 2, "navi_turn" to 3, "remain_distance" to 92, "total_distance" to 6400,
+                "destinationRemainingDistance" to 19000, "remainDistance" to 19000,
+                "ucar.map.bundle.TITLE_1" to "19 km", "ucar.map.bundle.TITLE_2" to "31 min"),
+                source.copy(version = version)))
+            assertEquals(HostNavigationField.Clear, event.delta.distanceRemainingMeters)
+            assertEquals(HostNavigationField.Absent, event.delta.timeRemainingSeconds)
+            assertEquals(HostNavigationField.Absent, event.delta.arrivalEpochSeconds)
+            assertEquals(92L, (event.delta.maneuver as HostNavigationField.Value).value.distanceMeters)
         }
     }
 }

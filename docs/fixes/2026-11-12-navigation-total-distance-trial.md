@@ -1,5 +1,8 @@
 # total_distance 全程剩余里程试验
 
+2026-11-14用户否定该字段的全程距离角色，试验映射已撤下，见[来源纠正](2026-11-14-navigation-route-distance-source.md)。
+以下内容保留为2026-11-12试验的历史记录。
+
 日期：2026-11-12。用户明确要求把 `total_distance` 放入全程剩余里程，随后实车观察其含义。
 
 本次是按用户要求实施的试验映射，不能将其视为已确认的全程剩余距离来源。APK 4.0.23 的 `LauncherDataBusClient.F`（classes2 code item `0x17abdc`）在 `where` 文本变化时保存当时的机动距离到缓存字段 `f`，再将此缓存写入 `total_distance`；因此现场可能观察到该数值保持不变并在道路提示切换时跳变。

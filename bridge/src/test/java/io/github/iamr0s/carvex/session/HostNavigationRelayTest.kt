@@ -58,34 +58,31 @@ class HostNavigationRelayTest {
         }
     }
 
-    @Test fun trialRouteDistanceRemainsSeparateClearsAndCannotReturnAfterEnd() {
-        val trialEvidence = "H02:classes2:17abdc:total_distance-route:user-test-20261112"
-        val trialMarker = "total_distance-route-role-user-test"
+    @Test fun providedRouteDistanceRemainsSeparateClearsAndCannotReturnAfterEnd() {
+        val routeEvidence = "test-route-distance-provider"
         HostNavigationRelay().use { relay ->
             relay.update(event(HostNavigationChange.STARTED))
             fun hint(remaining: Long, total: HostNavigationField<Long>) = event(HostNavigationChange.UPDATED,
                 HostNavigationDelta(distanceRemainingMeters = total,
                     maneuver = value(HostNavigationManeuver("hud:right:road",
                         distanceMeters = remaining, turn = HostNavigationTurn.RIGHT))))
-                .copy(unverifiedFields = setOf(trialMarker))
             for (remaining in listOf(6400L, 4000L, 92L)) {
-                assertTrue(relay.update(hint(remaining, HostNavigationField.Value(6400L, trialEvidence))))
+                assertTrue(relay.update(hint(remaining, HostNavigationField.Value(6400L, routeEvidence))))
                 val snapshot = requireNotNull(relay.snapshot())
                 assertEquals(6400L, snapshot.route.distanceRemainingMeters)
                 assertEquals(remaining, snapshot.maneuver?.distanceMeters)
-                assertEquals(trialEvidence, snapshot.evidence["distanceRemainingMeters"])
-                assertTrue(snapshot.unverifiedFields.contains(trialMarker))
+                assertEquals(routeEvidence, snapshot.evidence["distanceRemainingMeters"])
                 assertNull(snapshot.route.timeRemainingSeconds)
             }
             relay.update(hint(91L, HostNavigationField.Clear))
             assertNull(relay.snapshot()?.route?.distanceRemainingMeters)
             assertFalse(requireNotNull(relay.snapshot()).evidence.containsKey("distanceRemainingMeters"))
-            relay.update(hint(90L, HostNavigationField.Value(0L, trialEvidence)))
+            relay.update(hint(90L, HostNavigationField.Value(0L, routeEvidence)))
             assertEquals(0L, relay.snapshot()?.route?.distanceRemainingMeters)
             relay.update(event(HostNavigationChange.ENDED))
             val ended = relay.snapshot()
             assertNull(ended?.route?.distanceRemainingMeters)
-            assertFalse(relay.update(hint(89L, HostNavigationField.Value(6400L, trialEvidence))))
+            assertFalse(relay.update(hint(89L, HostNavigationField.Value(6400L, routeEvidence))))
             assertSame(ended, relay.snapshot())
             relay.update(event(HostNavigationChange.STARTED))
             assertNull(relay.snapshot()?.route?.distanceRemainingMeters)
