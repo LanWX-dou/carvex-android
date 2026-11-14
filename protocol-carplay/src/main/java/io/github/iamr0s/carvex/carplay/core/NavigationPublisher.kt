@@ -35,6 +35,7 @@ internal class NavigationDisplayCapabilities(parameters: List<RawParameter>) {
 
 /** Numeric core: Apple state/type tables and encoders; GalaxyPlay 0.1.212 p7/p10 meter
  * consumer and definition/reference merge. The confirmed after-road text accompanies the definition;
+ * p6 publishes source-labelled remaining seconds, including the explicit user input trial;
  * other optional text, display units and lanes remain omitted.
  * See the navigation fix record for the receiver-specific unit/order evidence boundary. */
 internal object NavigationWireEncoding {
@@ -42,9 +43,9 @@ internal object NavigationWireEncoding {
              capabilities: NavigationDisplayCapabilities): NavigationPlan {
         if (snapshot.evidence["lifecycle"].isNullOrBlank()) return NavigationPlan(blocked = "host-lifecycle-unverified")
         fun route(state: Int, index: Int? = null, distance: Long? = null,
-                  remaining: Long? = null) = NavigationPacket(0x5201,
+                  remaining: Long? = null, seconds: Long? = null) = NavigationPacket(0x5201,
             NavigationGuidance.route(NavigationGuidance.RouteUpdate(selection.components,
-                state = state, distanceRemaining = remaining, distanceToManeuver = distance,
+                state = state, distanceRemaining = remaining, timeRemaining = seconds, distanceToManeuver = distance,
                 maneuverList = listOfNotNull(index)), selection.mask),
             "24A446:CarPlay:247b00444/table2690da898;accessoryd:100004428/1000027f4;GalaxyPlay:0249f0")
         if (snapshot.lifecycle in setOf(NavigationLifecycle.ENDED, NavigationLifecycle.INVALIDATED))
@@ -57,11 +58,16 @@ internal object NavigationWireEncoding {
         val remaining = snapshot.route.distanceRemainingMeters?.takeIf {
             !snapshot.evidence["distanceRemainingMeters"].isNullOrBlank() && it in 0..0xffffffffL
         }
+        // accessoryd 100002b74..100002b8c selects p6 and calls the U64 field writer.
+        // DiPlay BydHudRouteState consumes p6 as seconds; host units include a user-authorized trial.
+        val seconds = snapshot.route.timeRemainingSeconds?.takeIf {
+            !snapshot.evidence["timeRemainingSeconds"].isNullOrBlank() && it >= 0
+        }
         val maneuver = snapshot.maneuver
         val type = maneuver?.turn?.let(::type)
         if (type == null || snapshot.evidence["maneuver"].isNullOrBlank()) {
             // Reset clears any previously joined arrow/distance; the route itself is still active.
-            return NavigationPlan(listOf(route(0), route(state, remaining = remaining)))
+            return NavigationPlan(listOf(route(0), route(state, remaining = remaining, seconds = seconds)))
         }
         val capacities = selection.components.map { component ->
             capabilities.maneuverCapacity(component)
@@ -87,8 +93,9 @@ internal object NavigationWireEncoding {
         // remainder intact. GalaxyPlay 024c74 skips a missing p7; 024838 resets it.
         // With one slot the new definition would immediately change the currently
         // referenced arrow while its old distance is still present. Clear first.
-        return NavigationPlan((if (distance == null || remaining == null || capacity == 1) listOf(route(0)) else emptyList()) +
-            listOf(definition, route(state, index, distance, remaining)))
+        // Omitted p6 preserves the receiver's old time too; reset when it becomes unknown.
+        return NavigationPlan((if (distance == null || remaining == null || seconds == null || capacity == 1) listOf(route(0)) else emptyList()) +
+            listOf(definition, route(state, index, distance, remaining, seconds)))
     }
 
     private fun type(turn: NavigationTurn): Int = when (turn) {

@@ -20,8 +20,39 @@ class NavigationWireEncodingTest {
     private fun fields(packet: NavigationPacket) = IapWire.parseFieldList(IapWire.fields(packet.fields))
     private fun state(packet: NavigationPacket) = fields(packet)[1]!!.single().toInt()
     private fun withRoute(distance: Long?, evidence: String? = "fixture:verified-route") = snapshot().let {
-        it.copy(route = NavigationRoute(distanceRemainingMeters = distance),
-            evidence = it.evidence + listOfNotNull(evidence?.let { value -> "distanceRemainingMeters" to value }).toMap())
+        it.copy(route = NavigationRoute(distanceRemainingMeters = distance, timeRemainingSeconds = 600),
+            evidence = it.evidence + ("timeRemainingSeconds" to "fixture:route-seconds") +
+                listOfNotNull(evidence?.let { value -> "distanceRemainingMeters" to value }).toMap())
+    }
+
+    @Test fun remainingSecondsUsesUnsigned64FieldAndClearsMissingInvalidOrUnlabelledTime() {
+        val known = withRoute(19000)
+        for (seconds in listOf(1860L, 0L, 0x100000000L, Long.MAX_VALUE)) {
+            val plan = NavigationWireEncoding.plan(known.copy(route = known.route.copy(timeRemainingSeconds = seconds)), start, display)
+            assertEquals(listOf(0x5202, 0x5201), plan.packets.map { it.id })
+            assertArrayEquals(IapWire.be64(seconds), fields(plan.packets.last())[6])
+            assertArrayEquals(IapWire.be32(19000), fields(plan.packets.last())[7])
+            assertNull(fields(plan.packets.last())[5])
+        }
+        for (unknown in listOf(known.copy(route = known.route.copy(timeRemainingSeconds = null)),
+            known.copy(route = known.route.copy(timeRemainingSeconds = -1)),
+            known.copy(evidence = known.evidence - "timeRemainingSeconds"),
+            known.copy(evidence = known.evidence + ("timeRemainingSeconds" to " ")))) {
+            val plan = NavigationWireEncoding.plan(unknown, start, display)
+            assertEquals(listOf(0x5201, 0x5202, 0x5201), plan.packets.map { it.id })
+            assertEquals(0, state(plan.packets.first()))
+            assertTrue(plan.packets.all { fields(it)[6] == null })
+            assertArrayEquals(IapWire.be32(19000), fields(plan.packets.last())[7])
+        }
+        for (lifecycle in listOf(NavigationLifecycle.ACTIVE, NavigationLifecycle.REROUTING)) {
+            val plan = NavigationWireEncoding.plan(known.copy(lifecycle = lifecycle, maneuver = null), start, display)
+            assertArrayEquals(IapWire.be64(600), fields(plan.packets.last())[6])
+        }
+        for (lifecycle in listOf(NavigationLifecycle.ENDED, NavigationLifecycle.INVALIDATED)) {
+            val plan = NavigationWireEncoding.plan(known.copy(lifecycle = lifecycle), start, display)
+            assertEquals(0, state(plan.packets.single()))
+            assertNull(fields(plan.packets.single())[6])
+        }
     }
 
     @Test fun verifiedRouteDistanceUsesItsOwnUnsignedParameterIncludingExplicitZero() {

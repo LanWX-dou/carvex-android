@@ -29,10 +29,11 @@ class ReceiverProtocolContractTest {
     private fun snapshot(generation: Long = 1, turn: NavigationTurn? = NavigationTurn.RIGHT,
                          distance: Long? = 200, remaining: Long? = null,
                          routeEvidence: String? = "fixture:verified-route") = NavigationSnapshot("xiaomi", 1, 1, generation,
-        NavigationLifecycle.ACTIVE, route = NavigationRoute(distanceRemainingMeters = remaining),
+        NavigationLifecycle.ACTIVE, route = NavigationRoute(distanceRemainingMeters = remaining, timeRemainingSeconds = 600),
         maneuver = NavigationManeuver("hint-$generation",
             distanceMeters = distance, turn = turn), maneuverGeneration = generation,
-        evidence = mapOf("lifecycle" to "H01:16fc3c", "maneuver" to "H01:HUD-maneuver") +
+        evidence = mapOf("lifecycle" to "H01:16fc3c", "maneuver" to "H01:HUD-maneuver",
+            "timeRemainingSeconds" to "fixture:route-seconds") +
             listOfNotNull(routeEvidence?.takeIf { remaining != null }?.let { "distanceRemainingMeters" to it }).toMap())
     private fun deliver(receiver: BydHudRouteState, plan: NavigationPlan) {
         assertNull(plan.blocked)
@@ -170,6 +171,41 @@ class ReceiverProtocolContractTest {
         deliver(receiver, NavigationWireEncoding.plan(snapshot(distance = null, remaining = 19000), selection, display()))
         assertEquals(19000L, receiver.currentApple()!!.remainingMeters)
         assertEquals(0, receiver.currentApple()!!.distanceMeters)
+    }
+
+    @Test fun actualReceiverUpdatesRemainingSecondsAndClearsItWithoutLosingDistanceOrTurn() {
+        val receiver = BydHudRouteState()
+        val known = snapshot(remaining = 19000).let { it.copy(evidence = it.evidence +
+            ("timeRemainingSeconds" to "user-test-20261114:destination-HUDINFO:meters-seconds:destinationRemainingTime")) }
+        for (seconds in listOf(1860L, 1800L, 0L, 0x100000000L)) {
+            deliver(receiver, NavigationWireEncoding.plan(known.copy(route = known.route.copy(timeRemainingSeconds = seconds)),
+                selection, display()))
+            assertEquals(seconds, receiver.currentApple()!!.remainingSeconds)
+            assertEquals(19000L, receiver.currentApple()!!.remainingMeters)
+            assertEquals(200, receiver.currentApple()!!.distanceMeters)
+            assertEquals(2, receiver.currentApple()!!.type)
+            assertNull(receiver.currentApple()!!.arrivalEpochSeconds)
+        }
+        for (unknown in listOf(known.copy(route = known.route.copy(timeRemainingSeconds = null)),
+            known.copy(route = known.route.copy(timeRemainingSeconds = -1)),
+            known.copy(evidence = known.evidence - "timeRemainingSeconds"),
+            known.copy(routeEpoch = 2, route = known.route.copy(timeRemainingSeconds = null)))) {
+            deliver(receiver, NavigationWireEncoding.plan(known, selection, display()))
+            assertEquals(600L, receiver.currentApple()!!.remainingSeconds)
+            deliver(receiver, NavigationWireEncoding.plan(unknown, selection, display()))
+            assertNull(receiver.currentApple()!!.remainingSeconds)
+            assertEquals(19000L, receiver.currentApple()!!.remainingMeters)
+            assertEquals(200, receiver.currentApple()!!.distanceMeters)
+            assertEquals(2, receiver.currentApple()!!.type)
+        }
+        for (lifecycle in listOf(NavigationLifecycle.ENDED, NavigationLifecycle.INVALIDATED)) {
+            deliver(receiver, NavigationWireEncoding.plan(known, selection, display()))
+            deliver(receiver, NavigationWireEncoding.plan(known.copy(lifecycle = lifecycle), selection, display()))
+            assertNull(receiver.currentApple())
+            deliver(receiver, NavigationWireEncoding.plan(known.copy(route = known.route.copy(timeRemainingSeconds = null)),
+                selection, display()))
+            assertNull(receiver.currentApple()!!.remainingSeconds)
+        }
     }
 
     @Test fun actualReceiverClearsKnownRouteRemainderOnUnknownValuesNewRoutesAndEnd() {

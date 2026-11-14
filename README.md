@@ -1,6 +1,6 @@
 # CarVeX
 
-2026-11-12 按用户要求，将 CarWith `total_distance` 临时映射为全程剩余里程，供实车观察；`remain_distance` 继续表示转向距离。日志保留试验标记，时间字段仍缺来源。见[里程试验记录](docs/fixes/2026-11-12-navigation-total-distance-trial.md)。
+2026-11-14 按用户要求，启用 `destinationRemainingDistance` 按米、`destinationRemainingTime` 按秒的输入映射试验，并发送 `5201` 的距离/剩余时间字段。两者需由宿主回调实际携带；缺失时清除旧值，原始日志可核对来源。此前 `total_distance` 试验已撤下。见[距离与时间试验记录](docs/fixes/2026-11-14-navigation-destination-distance-time-trial.md)。
 
 2026-11-12 按用户实车反馈确认 `road_name` 为转向后的道路，补齐宿主 `afterRoad` 映射与 `5202` 字段 4 的文字发送；道路更新、空值清除和结束回归通过，仪表显示待复测。见[转向后道路修复](docs/fixes/2026-11-12-navigation-after-road.md)。
 
@@ -88,7 +88,7 @@ Android 侧是分模组设计：`:protocol-api` 定义协议契约，`:protocol-
 
 - 结构化桥接日志，支持复制与导出；Debug 与 Release 均记录音乐、导航、通话的宿主输入、协议字段、订阅及发送结果，见[调试日志说明](docs/fixes/2026-11-10-business-debug.md)。
 - 仪表专辑图片：读取宿主图片并按车机订阅通过 iAP2 文件会话发送；需要车机声明文件会话及图片订阅，实际显示仍待实车验证。
-- 仪表导航通过宿主事件、会话唯一快照和当前 Link 订阅发布。已按 GalaxyPlay 0.1.212 核查接通已审 CarWith 4.0.14 / 4.0.23 版本的基础转向和正数机动距离，使用 `5202` 定义与 `5201` 引用；结束清屏、重订阅与旧队列撤销有本地测试。道路/ETA/车道仍未启用，实际仪表显示待验收，详见[实现与证据边界](docs/fixes/2026-11-11-navigation-cluster-chain.md)。
+- 仪表导航通过宿主事件、会话唯一快照和当前 Link 订阅发布。已按 GalaxyPlay 0.1.212 核查接通已审 CarWith 4.0.14 / 4.0.23 版本的基础转向和正数机动距离，使用 `5202` 定义与 `5201` 引用；已发送转向后道路文字，并启用目的地剩余距离/时间的用户试验映射。结束清屏、重订阅与旧队列撤销有本地测试。ETA/车道仍未启用，目的地字段的实时来源及实际仪表显示待验收，详见[距离与时间试验](docs/fixes/2026-11-14-navigation-destination-distance-time-trial.md)。
 - 在系统不暴露蓝牙 MAC 时，可通过 Shizuku 读取手机蓝牙 MAC，供身份握手使用。
 - 本地投屏页（连接建立页与无宿主页）。
 - 浅色/深色/跟随系统主题，以及权限引导流程。

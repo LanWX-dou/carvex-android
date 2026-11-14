@@ -1,6 +1,6 @@
 # CarVeX
 
-On 2026-11-12, the user requested a vehicle trial mapping CarWith `total_distance` to route remaining distance. `remain_distance` continues to supply maneuver distance, and diagnostics retain an explicit trial marker. Time fields still lack an input source. See the [distance trial record](docs/fixes/2026-11-12-navigation-total-distance-trial.md).
+On 2026-11-14, the user requested an input trial treating `destinationRemainingDistance` as meters and `destinationRemainingTime` as seconds, published in the `5201` distance/time fields. The host callback must actually deliver these values; missing input clears old values, and raw diagnostics identify the input. The previous `total_distance` trial was withdrawn. See the [destination distance/time trial](docs/fixes/2026-11-14-navigation-destination-distance-time-trial.md).
 
 On 2026-11-12, the user confirmed `road_name` as the road after the maneuver. Host mapping now supplies `afterRoad`, and maneuver definitions publish its text in `5202` parameter 4. Update, clearing and termination regressions pass; instrument display awaits retesting. See the [after-road fix](docs/fixes/2026-11-12-navigation-after-road.md).
 
@@ -81,7 +81,7 @@ This repository can also live inside the larger research workspace at
 
 ## Current CarPlay capabilities
 
-- Instrument navigation uses host events, one session snapshot and the current Link subscription. The GalaxyPlay 0.1.212 audit now enables basic turns and positive maneuver distances from audited CarWith 4.0.14 / 4.0.23 versions, with `5202` definitions and `5201` references. Local tests cover end/reset, resubscription and stale queue cancellation. Road text, ETA and lanes remain unavailable; vehicle display is unverified. See [implementation and evidence limits](docs/fixes/2026-11-11-navigation-cluster-chain.md).
+- Instrument navigation uses host events, one session snapshot and the current Link subscription. The GalaxyPlay 0.1.212 audit enables basic turns and positive maneuver distances from audited CarWith 4.0.14 / 4.0.23 versions, with `5202` definitions and `5201` references. After-road text is published, and destination remaining distance/time have a user-requested input trial. Local tests cover end/reset, resubscription and stale queue cancellation. ETA and lanes remain unavailable; live destination input and vehicle display await validation. See the [destination distance/time trial](docs/fixes/2026-11-14-navigation-destination-distance-time-trial.md).
 
 - Resource changes accept combined screen/audio requests within the supported transfer subset. Constraint arbitration and active application states remain incomplete; see [validation record](docs/fixes/2026-11-10-resource-batch.md).
 - Active navigation prompts retain a bounded PCM prefix during SETUP and deliver it before live audio. Source stop or failed setup discards the prefix; see [startup buffer limits](docs/fixes/2026-11-10-navigation-startup.md). Vehicle playback remains unverified.

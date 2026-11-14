@@ -7,8 +7,11 @@ import java.security.MessageDigest
  * meter conversion 16f3f0 and icon classifier 1aedb4/1af2fc.
  * The user confirmed road_name as the road after the maneuver on 2026-11-12.
  * The user rejected total_distance as route distance on 2026-11-14.
- * It remains a cached maneuver reference in diagnostics; no route-distance provider is confirmed. */
+ * It remains a cached maneuver reference in diagnostics.
+ * The user requested a destinationRemainingDistance (meters) / destinationRemainingTime (seconds)
+ * input trial on 2026-11-14; live mixing delivery is still unverified. */
 internal object CarWithNavigation {
+    private const val destinationTrial = "user-test-20261114:destination-HUDINFO:meters-seconds"
     private data class Evidence(val start: String, val end: String, val hud: String, val maneuver: String)
 
     // Each supported version has its own original APK audit. The 4.0.23 classifier
@@ -47,6 +50,8 @@ internal object CarWithNavigation {
             }} " +
             "isNavi=${scalar("isNavi")} hudAction=${scalar("action")} turn=${scalar("navi_turn")} " +
             "distance=${scalar("remain_distance")} reference=${scalar("total_distance")} " +
+            "destinationRemainingDistance=${scalar("destinationRemainingDistance")} " +
+            "destinationRemainingTime=${scalar("destinationRemainingTime")} routeUnits=meters/seconds " +
             "roadType=${scalar("road_name")} roadChars=${road?.length ?: 0} " +
             "roadSha256=${road?.let { digest(it.toByteArray(Charsets.UTF_8)) } ?: "absent"} " +
             "iconType=${scalar("turn_icon_data")} iconBytes=${icon?.size ?: 0} " +
@@ -68,9 +73,10 @@ internal object CarWithNavigation {
                     3 -> HostNavigationEvent(source, HostNavigationChange.ENDED, evidence.end)
                     1, 2 -> HostNavigationEvent(source, HostNavigationChange.UPDATED, evidence.hud,
                         delta = HostNavigationDelta(
-                            // The producer caches maneuver distance on road-text changes.
-                            // Clear the withdrawn trial value; SDK/native candidates are separate channels.
-                            distanceRemainingMeters = HostNavigationField.Clear,
+                            // Explicit user trial: read only these destination fields if delivered.
+                            // Missing/invalid values clear the previous trial; never use total_distance.
+                            distanceRemainingMeters = destinationField(values, "destinationRemainingDistance", 0xffffffffL),
+                            timeRemainingSeconds = destinationField(values, "destinationRemainingTime", Long.MAX_VALUE),
                             maneuver = HostNavigationField.Value(
                                 HostNavigationManeuver(
                                     // A local identity for the current HUD hint, not a vendor/wire index.
@@ -88,7 +94,11 @@ internal object CarWithNavigation {
                             action = kind,
                             iconBytes = (values["turn_icon_data"] as? ByteArray)?.size),
                         unverifiedFields = buildSet {
-                            add("route-distance-provider")
+                            add("destination-distance-time-user-test")
+                            if (destinationField(values, "destinationRemainingDistance", 0xffffffffL) !is HostNavigationField.Value)
+                                add("route-distance-provider")
+                            if (destinationField(values, "destinationRemainingTime", Long.MAX_VALUE) !is HostNavigationField.Value)
+                                add("route-time-provider")
                             if (turn(values["navi_turn"] as? Int) == null) add("navi_turn-enum")
                             if ((values["remain_distance"] as? Int)?.let { it > 0 && it < Int.MAX_VALUE } != true)
                                 add("remain_distance-validity")
@@ -98,6 +108,15 @@ internal object CarWithNavigation {
             }
             else -> null
         }
+    }
+
+    private fun destinationField(values: Map<String, Any?>, key: String, maximum: Long): HostNavigationField<Long> {
+        val value = when (val raw = values[key]) {
+            is Int -> raw.toLong()
+            is Long -> raw
+            else -> null
+        }?.takeIf { it in 0..maximum }
+        return value?.let { HostNavigationField.Value(it, "$destinationTrial:$key") } ?: HostNavigationField.Clear
     }
 
     /** Classifier return values are grouped by the actual APK template pixels, not OPERATION.

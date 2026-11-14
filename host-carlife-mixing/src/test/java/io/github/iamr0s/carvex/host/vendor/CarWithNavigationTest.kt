@@ -32,7 +32,7 @@ class CarWithNavigationTest {
             assertEquals(HostNavigationField.Absent, event.delta.currentRoad)
             assertEquals(HostNavigationField.Clear, event.delta.distanceRemainingMeters)
             assertEquals(3700L, event.observation?.referenceDistanceMeters)
-            assertEquals(HostNavigationField.Absent, event.delta.timeRemainingSeconds)
+            assertEquals(HostNavigationField.Clear, event.delta.timeRemainingSeconds)
             assertEquals(HostNavigationField.Absent, event.delta.lanes)
         }
         for ((action, values) in listOf("mix_notify_start_navi" to mapOf("isNavi" to false),
@@ -207,7 +207,7 @@ class CarWithNavigationTest {
                 assertFalse(event.unverifiedFields.contains("total_distance-route-role-user-test"))
                 val maneuver = (event.delta.maneuver as HostNavigationField.Value).value
                 assertEquals(remaining.toLong().takeIf { it > 0 }, maneuver.distanceMeters)
-                assertEquals(HostNavigationField.Absent, event.delta.timeRemainingSeconds)
+                assertEquals(HostNavigationField.Clear, event.delta.timeRemainingSeconds)
                 assertEquals(HostNavigationField.Absent, event.delta.arrivalEpochSeconds)
             }
         }
@@ -231,17 +231,61 @@ class CarWithNavigationTest {
         }
     }
 
-    @Test fun sdkAndNativeTextCandidatesAreNotFieldsOfTheMixingHudContract() {
+    @Test fun destinationTrialUsesMetersAndSecondsWithoutMixingManeuverOrNativeText() {
         for (version in listOf("4.0.14-20260801", "4.0.23-20261016")) {
-            val event = requireNotNull(CarWithNavigation.decode("carlife_show_hud_info", mapOf(
-                "action" to 2, "navi_turn" to 3, "remain_distance" to 92, "total_distance" to 6400,
-                "destinationRemainingDistance" to 19000, "remainDistance" to 19000,
-                "ucar.map.bundle.TITLE_1" to "19 km", "ucar.map.bundle.TITLE_2" to "31 min"),
-                source.copy(version = version)))
+            for (kind in listOf(1, 2)) {
+                val event = requireNotNull(CarWithNavigation.decode("carlife_show_hud_info", mapOf(
+                    "action" to kind, "navi_turn" to 3, "remain_distance" to 92, "total_distance" to 6400,
+                    "destinationRemainingDistance" to 19000, "destinationRemainingTime" to 1860,
+                    "remainDistance" to 17000,
+                    "ucar.map.bundle.TITLE_1" to "19 km", "ucar.map.bundle.TITLE_2" to "31 min"),
+                    source.copy(version = version)))
+                val distance = event.delta.distanceRemainingMeters as HostNavigationField.Value
+                val time = event.delta.timeRemainingSeconds as HostNavigationField.Value
+                assertEquals(19000L, distance.value)
+                assertEquals(1860L, time.value)
+                assertTrue(distance.evidence.contains("user-test-20261114"))
+                assertTrue(time.evidence.endsWith(":destinationRemainingTime"))
+                assertTrue(event.unverifiedFields.contains("destination-distance-time-user-test"))
+                assertFalse(event.unverifiedFields.contains("route-distance-provider"))
+                assertFalse(event.unverifiedFields.contains("route-time-provider"))
+                assertEquals(HostNavigationField.Absent, event.delta.arrivalEpochSeconds)
+                assertEquals(92L, (event.delta.maneuver as HostNavigationField.Value).value.distanceMeters)
+                assertEquals(6400L, event.observation?.referenceDistanceMeters)
+            }
+        }
+    }
+
+    @Test fun destinationTrialAcceptsExplicitZeroAndIntegerWidthsButClearsBadOrMissingValues() {
+        fun trial(values: Map<String, Any?>) = requireNotNull(decode("carlife_show_hud_info",
+            mapOf("action" to 2, "navi_turn" to 3, "remain_distance" to 92) + values))
+        for ((distance, time) in listOf(0 to 0, 19000L to 1860L, 0xffffffffL to Long.MAX_VALUE)) {
+            val event = trial(mapOf("destinationRemainingDistance" to distance, "destinationRemainingTime" to time))
+            assertEquals((distance as Number).toLong(), (event.delta.distanceRemainingMeters as HostNavigationField.Value).value)
+            assertEquals((time as Number).toLong(), (event.delta.timeRemainingSeconds as HostNavigationField.Value).value)
+            assertEquals(HostNavigationChange.UPDATED, event.change)
+            assertEquals(HostNavigationEndReason.UNKNOWN, event.endReason)
+        }
+        for (raw in listOf(null, -1, -1L, "19000", 19000.0, true)) {
+            val event = trial(mapOf("destinationRemainingDistance" to raw, "destinationRemainingTime" to raw))
             assertEquals(HostNavigationField.Clear, event.delta.distanceRemainingMeters)
-            assertEquals(HostNavigationField.Absent, event.delta.timeRemainingSeconds)
-            assertEquals(HostNavigationField.Absent, event.delta.arrivalEpochSeconds)
-            assertEquals(92L, (event.delta.maneuver as HostNavigationField.Value).value.distanceMeters)
+            assertEquals(HostNavigationField.Clear, event.delta.timeRemainingSeconds)
+        }
+        val invalidDistance = trial(mapOf("destinationRemainingDistance" to 0x100000000L,
+            "destinationRemainingTime" to 1860))
+        assertEquals(HostNavigationField.Clear, invalidDistance.delta.distanceRemainingMeters)
+        assertEquals(1860L, (invalidDistance.delta.timeRemainingSeconds as HostNavigationField.Value).value)
+        val missing = trial(mapOf("remainDistance" to 19000, "ucar.map.bundle.TITLE_2" to "31 min"))
+        assertEquals(HostNavigationField.Clear, missing.delta.distanceRemainingMeters)
+        assertEquals(HostNavigationField.Clear, missing.delta.timeRemainingSeconds)
+        val values = mapOf("action" to 2, "destinationRemainingDistance" to 19000, "destinationRemainingTime" to 1860)
+        val log = CarWithNavigation.diagnostic("carlife_show_hud_info", values, source, trial(values))
+        assertTrue(log.contains("destinationRemainingDistance=int:19000 destinationRemainingTime=int:1860 routeUnits=meters/seconds"))
+        for (action in listOf("mix_notify_start_navi", "carlife_show_hud_info")) {
+            val end = requireNotNull(decode(action, values + mapOf("action" to 3, "isNavi" to false)))
+            assertEquals(HostNavigationChange.ENDED, end.change)
+            assertEquals(HostNavigationField.Absent, end.delta.distanceRemainingMeters)
+            assertEquals(HostNavigationField.Absent, end.delta.timeRemainingSeconds)
         }
     }
 }
