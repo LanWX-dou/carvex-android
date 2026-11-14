@@ -8,9 +8,20 @@ import android.util.SparseArray
 import java.io.ByteArrayOutputStream
 import java.io.ObjectOutputStream
 import java.io.Serializable
+import org.json.JSONArray
+import org.json.JSONObject
 
 /** Adapt Android containers/images without retaining them in the navigation snapshot. */
 internal fun expandNavigationValue(value: Any): Any? = when (value) {
+    is JSONObject -> value.keys().asSequence().associateWith { key ->
+        value.opt(key).takeUnless { it === JSONObject.NULL }
+    }
+    is JSONArray -> List(value.length()) { index -> value.opt(index).takeUnless { it === JSONObject.NULL } }
+    is String -> when (value.trimStart().firstOrNull()) {
+        '{' -> try { JSONObject(value) } catch (error: Exception) { NavigationRawDiagnostics.Failure(error.javaClass.name) }
+        '[' -> try { JSONArray(value) } catch (error: Exception) { NavigationRawDiagnostics.Failure(error.javaClass.name) }
+        else -> null
+    }
     is Bundle -> value.keySet().associateWith { key ->
         try { value.get(key) } catch (error: Exception) { NavigationRawDiagnostics.Failure(error.javaClass.name) }
     }

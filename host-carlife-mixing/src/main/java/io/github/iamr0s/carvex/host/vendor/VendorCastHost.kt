@@ -194,18 +194,19 @@ class VendorCastHost(
                     ?.let { Bundle().apply { putInt("music_sample_rate", it) } }
                 else -> {
                     intent?.let {
-                        if (NavigationRawDiagnostics.isNavigationAction(it.action)) {
-                            val values = try {
-                                it.extras?.let { bundle ->
-                                    bundle.keySet().associateWith { key ->
-                                        try { bundle.get(key) } catch (error: Exception) {
-                                            NavigationRawDiagnostics.Failure(error.javaClass.name)
-                                        }
+                        val values = try {
+                            it.extras?.let { bundle ->
+                                bundle.keySet().associateWith { key ->
+                                    try { bundle.get(key) } catch (error: Exception) {
+                                        NavigationRawDiagnostics.Failure(error.javaClass.name)
                                     }
-                                }.orEmpty()
-                            } catch (error: Exception) {
-                                mapOf("<extras-read-error>" to NavigationRawDiagnostics.Failure(error.javaClass.name))
-                            }
+                                }
+                            }.orEmpty()
+                        } catch (error: Exception) {
+                            mapOf("<extras-read-error>" to NavigationRawDiagnostics.Failure(error.javaClass.name))
+                        }
+                        if (NavigationRawDiagnostics.isNavigationAction(it.action) ||
+                            NavigationCandidateDiagnostics.hasCandidate(values, ::expandNavigationValue)) {
                             rawNavigation.record(it.action, values, binding)
                         }
                         events.event("host-action:${it.action ?: "null"}")
@@ -258,6 +259,7 @@ class VendorCastHost(
                         death = recipient
                         navigationSource = binding
                     }
+                    rawNavigation.observer(binding)
                     manager.setCastCallback(callback(binding))
                     manager.setSystemAudioCallback(systemAudio)
                     if (!closed && connectionEpoch == connectedEpoch) {
