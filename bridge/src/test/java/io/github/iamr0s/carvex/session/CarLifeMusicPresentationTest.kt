@@ -89,7 +89,7 @@ class CarLifeMusicPresentationTest {
 
     @Test fun lyricRefreshFailureKeepsCoverAndRealTrackChangeStillClearsIt() {
         val references = mutableListOf<List<Pair<Int, ByteArray>>>()
-        val publisher = NowPlayingArtwork({ 2 to 4096 }, { fields, _ -> references.add(fields); true },
+        val publisher = NowPlayingArtwork({ 2 to 4096 }, { fields, _, _ -> references.add(fields); true },
             { _, _, _ -> true })
         publisher.linkReady(true)
         publisher.subscribe(true)
